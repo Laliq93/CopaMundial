@@ -1,0 +1,7 @@
+.user-panel {
+	position: absolute;
+	height: 100%;
+	width: 300px;
+	background-color: white;
+	z-index: 20;
+}
