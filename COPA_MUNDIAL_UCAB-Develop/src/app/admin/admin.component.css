@@ -1,0 +1,15 @@
+.nav {
+    height: 100%;
+    width: 20%;
+    float: left;
+}
+
+.admin-menu {
+	position: relative;
+}
+
+.admin-module-panel {
+	position: fixed;
+	height: 100%;
+	left: 20%;
+}
