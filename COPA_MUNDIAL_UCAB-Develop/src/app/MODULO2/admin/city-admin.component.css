@@ -1,0 +1,51 @@
+.header-image{
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url("../../../assets/images/background-signin-signup.jpg");
+	height: 100vh;
+	position: relative;	
+}
+
+.header-overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-color: rgba(0,0,0,0.7);
+	position: relative;
+}
+
+.header-inner{
+	position: absolute;
+	top: 30%;
+	left: 40%;
+	color: #fff;
+	z-index: 2;
+}
+
+form {
+    margin-top: 15%;
+    margin-left: 40%;
+    width: 20%;
+    padding: 1;
+    position: absolute;
+}
+
+.form-control:focus, .form-control-file:focus, .custom-select:focus {
+    border-color: #02588E;
+    box-shadow: inset 0 -2px 0 -1px #02588E;
+    outline: 0;
+}
+
+.form-control:hover, .form-control-file:hover, .custom-select:hover {
+    border-color: #02588E;
+    box-shadow: inset 0 -2px 0 -1px #02588E;
+    outline: 0;
+}
+
+.btn-signin{
+	background-color: #A11D1B;
+}
