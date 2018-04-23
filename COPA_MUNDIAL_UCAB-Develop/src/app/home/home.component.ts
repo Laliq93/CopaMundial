@@ -36,7 +36,7 @@ export class HomeComponent {
 	private loadPanel: boolean; 
 	private menu: Menu; 
 	public esHome: boolean;
-
+	
 	constructor(){
 		this.moduleArray = [
 			new Module(MODULES.CIUDADES, "city", false),
@@ -54,7 +54,7 @@ export class HomeComponent {
 	ngOnInit(): void {
 		//Called after the constructor, initializing input properties, and the first call to ngOnChanges.
 		//Add 'implements OnInit' to the class.
-		if (window.location.href=="http://localhost:4200/home")
+		if (window.location.href==window.location.origin+"/home")
 		this.esHome=false;
 		else 
 		this.esHome=true;
