@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "../node_modules/daemonite-material/css/material.css",
-        "styles.css"
+        "styles.css",
+        "../node_modules/open-iconic/font/css/open-iconic-bootstrap.min.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
