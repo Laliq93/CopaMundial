@@ -1,0 +1,28 @@
+form {
+    margin-left: 20%;
+    margin-top: 15%;
+    margin-bottom: 20%;
+    width: 300px;
+   padding: 10px;
+   position: absolute;
+}
+
+.btn-boton{
+	background-color: #A11D1B;
+}
+
+.btn-boton2{
+	background-color: #0000ff;
+}
+
+.form-control:focus, .form-control-file:focus, .custom-select:focus {
+    border-color: #02588E;
+    box-shadow: inset 0 -2px 0 -1px #02588E;
+    outline: 0;
+}
+
+.form-control:hover, .form-control-file:hover, .custom-select:hover {
+    border-color: #02588E;
+    box-shadow: inset 0 -2px 0 -1px #02588E;
+    outline: 0;
+}
