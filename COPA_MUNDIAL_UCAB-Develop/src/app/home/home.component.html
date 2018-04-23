@@ -12,7 +12,9 @@
 	</ul>	
 </nav>
 
-<header class="header-image">
+<router-outlet></router-outlet>
+
+<header class="header-image" *ngIf="!esHome">
 	<div class="header-overlay" align="center"></div>
 	<div class="header-inner" align="center">
 		<div class="container" align="center">
@@ -93,5 +95,3 @@
 
 
 
-
-<router-outlet></router-outlet>
