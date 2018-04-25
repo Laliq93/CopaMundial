@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./match.component.css']
 })
 export class MatchComponent {
-	public modulo: string = "seis"; 
+	public modulo: string = "seis";
 }
