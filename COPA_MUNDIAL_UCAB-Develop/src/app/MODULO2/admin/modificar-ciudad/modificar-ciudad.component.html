@@ -1,4 +1,5 @@
-<form class="card">
+<header class="header-image" *ngIf="!esHome">
+  <form class="card">
   <h1 style="color: black; font-size: 30px; text-align: center;">Modificar Ciudad</h1>
   <div class="form-group">
     <label for="ImputNombre">Nombre</label>
@@ -16,5 +17,6 @@
       <label for="ImputLocaliacion">Localización</label>
       <input type="text" class="form-control" id="ImputLocaliacion" placeholder="Localizacion">
     </div>
-  <button (click)="home()" type="submit" class="btn btn-primary btn-signin">Agregar Ciudad</button>
-</form>
+  <button (click)="volver()" type="submit" class="btn btn-primary btn-signin">Agregar Ciudad</button>
+  </form>
+</header>
