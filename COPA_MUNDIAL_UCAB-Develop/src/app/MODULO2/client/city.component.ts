@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./city.component.css']
 })
 export class CityComponent {
-	public modulo: string = "dos"; 
+  public modulo: string = "dos"; 
+
 }
