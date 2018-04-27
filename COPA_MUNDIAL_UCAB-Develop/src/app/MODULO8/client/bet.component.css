@@ -1,0 +1,53 @@
+
+
+.fondo{
+    background-color: #A11D1B;
+    color: white;
+    padding: 15px 15px;
+    
+}
+.btnPartido{
+    background-color: #000000;
+}
+.espacio{
+    padding-top: 15px;
+}
+.oi { 
+    padding-left: 10px; 
+}
+
+.tr {
+	font-size: 15px;
+}
+
+
+.nav-sidebar {
+    width: 100%;
+    padding: 20px 20px; 
+    border-right: 1px solid #ddd;
+}
+.nav-sidebar a {
+    color: #333;
+    -webkit-transition: all 0.08s linear;
+    -moz-transition: all 0.08s linear;
+    -o-transition: all 0.08s linear;
+    transition: all 0.08s linear;
+    -webkit-border-radius: 4px 0 0 4px; 
+    -moz-border-radius: 4px 0 0 4px; 
+    border-radius: 4px 0 0 4px; 
+}
+.nav-sidebar .active a { 
+    cursor: default;
+    background-color: #A11D1B; 
+    color: #fff; 
+    text-shadow: 1px 1px 1px #666; 
+}
+.nav-sidebar .active a:hover {
+    background-color: #A11D1B;   
+}
+.nav-sidebar  a{
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis; 
+}
