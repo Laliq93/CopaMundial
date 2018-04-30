@@ -19,7 +19,8 @@ export class MatchComponent {
                     "bandera1": "../../../assets/banderas/egy.png",
                     "hora": "08:00",
                     "equipo2": "Uruguay",
-                    "bandera2": "../../../assets/banderas/uru.png"
+                    "bandera2": "../../../assets/banderas/uru.png",
+                    "puntaje": "1 - 0 "
                   },
                   {
                     "fecha":"14 jun. 2018",
@@ -30,7 +31,8 @@ export class MatchComponent {
                     "bandera1": "../../../assets/banderas/mar.png",
                     "hora": "11:00",
                     "equipo2": "RI de Irán",
-                    "bandera2": "../../../assets/banderas/irn.png"
+                    "bandera2": "../../../assets/banderas/irn.png",
+                    "puntaje": "2 - 1 "
                   },
                   {
                     "fecha":"14 jun. 2018",
@@ -41,7 +43,8 @@ export class MatchComponent {
                     "bandera1": "../../../assets/banderas/por.png",
                     "hora": "14:00",
                     "equipo2": "España",
-                    "bandera2": "../../../assets/banderas/esp.png"
+                    "bandera2": "../../../assets/banderas/esp.png",
+                    "puntaje": ""
                   }
                 ]
     },
@@ -56,7 +59,8 @@ export class MatchComponent {
                   "bandera1": "../../../assets/banderas/fra.png",
                   "hora": "06:00",
                   "equipo2": "Australia",
-                  "bandera2": "../../../assets/banderas/aus.png"
+                  "bandera2": "../../../assets/banderas/aus.png",
+                  "puntaje": "2 - 3 "
                 },
                 {
                   "fecha":"16 jun. 2018",
@@ -67,7 +71,8 @@ export class MatchComponent {
                   "bandera1": "../../../assets/banderas/arg.png",
                   "hora": "09:00",
                   "equipo2": "Islandia",
-                  "bandera2": "../../../assets/banderas/isl.png"
+                  "bandera2": "../../../assets/banderas/isl.png",
+                  "puntaje": ""
                 }
                 
               ]

@@ -16,8 +16,9 @@
     <div class="container" *ngFor="let match of listmatches">
         <div class="d-block">{{match.dia}}</div>
         <br>
+     
       <div class="row" *ngFor="let inf of match.info">
-          <div class="col-sm-4">
+        <div class="col-sm-4">
             <p>
                 {{inf.fecha}}
                 <br> 
@@ -33,7 +34,8 @@
           </div>
           <div class="col-sm-4">
               <h4><img src="{{inf.bandera1}}" alt="{{inf.equipo1}}" class="img-thumbnail">
-                {{inf.hora}}
+               <label class="match-time" *ngIf="inf.puntaje.length == 0">{{inf.hora}}</label>
+                <label class="match-score" *ngIf="inf.puntaje.length != 0">{{inf.puntaje}}</label>
               <img src="{{inf.bandera2}}" alt="{{inf.equipo2}" class="img-thumbnail">
               </h4>
             </div>
@@ -42,6 +44,7 @@
           </div>
           <hr>
       </div>
+ 
     </div>
 
   </div>

@@ -1,7 +1,5 @@
 .tab-content{
 
-    /*overflow-y: scroll;
-    height: 100%;*/
     overflow-y: scroll;
     height: 75%;
     position: relative;
@@ -10,8 +8,8 @@
 
 .tab-content
 {
-    margin-top: 1%;
-    margin-bottom: 10%;
+    padding-top: 1%;
+    padding-bottom: 10%;
 }
 .container{
 
@@ -28,6 +26,11 @@ margin-top: 0%;
     margin-top: 0px;
     width: 95%;
 }
+/*
+.row:hover{
+
+    background-color: #e0e0e0;
+}*/
 
 .img-thumbnail{
 
@@ -47,4 +50,12 @@ margin-top: 0%;
 .col-sm-4 p{
 
     margin-left: 20px;
+}
+
+
+.match-score, .match-time{
+
+    font-size: 20px;
+    color: #000;
+    font-weight:  bold;
 }
