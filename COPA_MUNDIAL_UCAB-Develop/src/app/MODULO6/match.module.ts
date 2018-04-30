@@ -10,9 +10,9 @@ import { MatchAdminComponent } from './admin/match-admin.component';
   	MatchAdminComponent
   ],
   providers: [],
-  exports: [ 
+  exports: [
   	MatchComponent,
-  	MatchAdminComponent 
+  	MatchAdminComponent
   ]
 })
 
