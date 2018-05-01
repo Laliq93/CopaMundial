@@ -7,6 +7,13 @@
 .btnEstadio{
     background-color: #000000;
 }
+.btnAgregar{
+    background-color: #1998e2;
+}
+.span3 {  
+    height: 80% !important;
+    overflow: scroll;
+}​
 .espacio{
     padding-top: 15px;
 }
