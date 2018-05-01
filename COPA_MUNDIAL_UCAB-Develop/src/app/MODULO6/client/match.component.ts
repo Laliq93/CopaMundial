@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { RouterModule, Router } from '@angular/router'; 
 
 @Component({
   selector: 'match',
@@ -8,6 +9,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class MatchComponent {
+
+  constructor(private router: Router){}
+
+  faseEliminatorias(): void {
+    alert.call;
+		this.router.navigate(['home/match/Eliminatorias']);
+  }	
   public listmatches: Array<any>= [
       {
         "dia": "Jueves 14 Junio",

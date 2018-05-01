@@ -1,18 +1,18 @@
 <nav class="navbar navbar-light bg-light">
-  <span class="navbar-brand mb-0 h1">Partidos</span>
+  <span class="navbar-brand mb-0 h1">PARTIDOS</span>
 </nav>
 
 <ul class="nav nav-justified nav-tabs" id="justifiedTab" role="tablist">
   <li class="nav-item">
-    <a aria-controls="home" aria-selected="true" class="nav-link active" ng-click="tab = 1 " data-toggle="tab" id="home-tab" role="tab">Fase de Grupos</a>
+    <a aria-controls="groups" aria-selected="true" class="nav-link active"  data-toggle="tab" id="groups-tab" role="tab">Fase de Grupos</a>
   </li>
   <li class="nav-item">
-    <a aria-controls="profile" aria-selected="true" class="nav-link" data-toggle="tab" ng-click="tab = 2"  id="profile-tab" role="tab">Fase de Eliminatorias</a>
+    <a aria-controls="knockout" aria-selected="false" class="nav-link" data-toggle="tab" (click)="faseEliminatorias()"  id="knockout-tab" role="tab">Fase de Eliminatorias</a>
   </li>
 </ul>
 
 <div class="tab-content" id="justifiedTabContent">
-  <div aria-labelledby="home-tab" class="tab-pane fade show active" ng-show="tab === 1" id="home"  role="tabpanel" >
+  <div aria-labelledby="groups-tab" class="tab-pane fade show active" ng-show="tab === 1" id="groups"  role="tabpanel" >
     <div class="container" *ngFor="let match of listmatches">
         <div class="d-block">{{match.dia}}</div>
         <br>
@@ -48,7 +48,7 @@
     </div>
 
   </div>
-  <div aria-labelledby="profile-tab" class="tab-pane fade" id="profile" ng-show="tab === 2" role="tabpanel">
+  <div aria-labelledby="knockout-tab" class="tab-pane fade" id="knockout" ng-show="tab === 2" role="tabpanel">
     Segundo panel
   </div>
 
