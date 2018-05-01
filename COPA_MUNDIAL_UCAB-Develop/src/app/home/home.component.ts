@@ -89,5 +89,8 @@ export class HomeComponent {
 			this.menu = "menu";
 		}
 	}
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 }
