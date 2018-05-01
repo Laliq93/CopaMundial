@@ -8,8 +8,7 @@ enum MODULES {
 	PARTIDOS = "PARTIDOS",
 	APUESTAS = "APUESTAS",
 	ESTADISTICAS = "ESTADISTICAS",
-	USUARIO = "USUARIO"
-}
+	}
 
 class Module {
 	name: MODULES;
@@ -46,8 +45,7 @@ export class HomeComponent {
 			new Module(MODULES.JUGADORES, "player", false),
 			new Module(MODULES.PARTIDOS, "match", false),
 			new Module(MODULES.APUESTAS, "bet", false),
-			new Module(MODULES.ESTADISTICAS, "statistic", false),
-			new Module(MODULES.USUARIO, "user-panel", false)
+			new Module(MODULES.ESTADISTICAS, "statistic", false)
 		];
 
 		this.initialiseModules();

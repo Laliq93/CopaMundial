@@ -1,4 +1,4 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component'
 
@@ -33,7 +33,7 @@ import { UserConfigAdminComponent } from './MODULO10/admin/user-config-admin.com
 import { StadiumDetailComponent } from './MODULO3/client/stadium-detail/stadium-detail.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },      
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login' ,  component:  LoginComponent },
   { path: 'signin' ,  component:  SigninComponent },
   { path: 'signup' ,  component:  SignupComponent },
@@ -49,7 +49,7 @@ const routes: Routes = [
       { path: 'bet' , component: BetComponent },
       { path: 'statistic' , component: StatisticComponent },
       { path: 'user-panel' , component: UserPanelComponent }
-    ] 
+    ]
   },
   { path: 'admin', component:  AdminComponent,
     children: [
@@ -62,7 +62,7 @@ const routes: Routes = [
       { path: 'bet' , component: BetAdminComponent },
       { path: 'statistic' , component: StatisticAdminComponent },
       { path: 'user-panel' , component: UserConfigAdminComponent }
-    ] 
+    ]
   },
 ];
 
