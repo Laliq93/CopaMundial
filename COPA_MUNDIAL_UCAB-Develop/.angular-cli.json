@@ -26,7 +26,8 @@
       ],
       "scripts": [
         "../node_modules/daemonite-material/js/material.js",
-        "../node_modules/jquery/dist/jquery.min.js"
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
         
 
       ],
