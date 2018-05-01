@@ -18,6 +18,8 @@ import { AchievementComponent } from './MODULO7/client/achievement.component'
 import { BetComponent } from './MODULO8/client/bet.component'
 import { StatisticComponent } from './MODULO9/client/statistic.component'
 import { UserPanelComponent } from './MODULO10/client/user-panel.component'
+import { UserConfigComponent} from './MODULO10/client/user-config.component'
+import { UserSecurityComponent } from './MODULO10/client/user-security.component'
 
 //admin
 import { LoginAdminComponent } from './MODULO1/admin/login-admin.component'
@@ -48,7 +50,9 @@ const routes: Routes = [
       { path: 'achievement' , component: AchievementComponent },
       { path: 'bet' , component: BetComponent },
       { path: 'statistic' , component: StatisticComponent },
-      { path: 'user-panel' , component: UserPanelComponent }
+      { path: 'user-panel' , component: UserPanelComponent },
+      { path: 'user-config', component: UserConfigComponent },
+      {path: 'user-security', component: UserSecurityComponent}
     ]
   },
   { path: 'admin', component:  AdminComponent,
