@@ -69,7 +69,7 @@ export class MatchComponent {
                   "hora": "06:00",
                   "equipo2": "Australia",
                   "bandera2": "../../../assets/banderas/aus.png",
-                  "puntaje": "2 - 3 "
+                  "puntaje": ""
                 },
                 {
                   "fecha":"16 jun. 2018",
