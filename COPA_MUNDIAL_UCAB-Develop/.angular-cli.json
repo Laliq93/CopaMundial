@@ -21,9 +21,15 @@
       "styles": [
         "../node_modules/daemonite-material/css/material.css",
         "styles.css",
-        "../node_modules/open-iconic/font/css/open-iconic-bootstrap.min.css"
+        "../node_modules/open-iconic/font/css/open-iconic-bootstrap.min.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/daemonite-material/js/material.js",
+        "../node_modules/jquery/dist/jquery.min.js"
+        
+
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
