@@ -1,1 +1,94 @@
-<p>Soy el modulo {{ modulo }}</p>
+
+<script>
+	$('[data-toggle=offcanvas]').click(function() {
+		$('.row-offcanvas').toggleClass('active');
+		$('.collapse').toggleClass('in').toggleClass('hidden-xs').toggleClass('visible-xs');
+	});
+</script>
+
+<div class="container-fluid">
+	<div class="row row-offcanvas row-offcanvas-right">
+		<div class="col-xs-12 col-sm-9 col-sm-push-3">
+
+			<table class="table table-hover table-condensed">				
+				<thead class="thead-dark" class= "fondo" >
+					<tr >
+						<th>Fecha</th>
+						<th>Hora</th>
+						<th>Equipos a enfrentarse</th>
+						<th>Estadio</th>
+						<th>Ciudad</th>
+						<th><p>Opciones</p></th>        
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>23/4/2018</td>
+						<td>12:00 am</td>
+						<td>Equipo 1 VS Equipo 2</td>
+						<td>SPARTAK STADIUM</td>
+						<td>Moscú</td>
+						<td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" rget="#myModal">Ver partido</button></td>      
+					</tr>
+					<tr>
+						<td>23/4/2018</td>
+						<td>12:00 am</td>
+						<td>Equipo 1 VS Equipo 2</td>
+						<td>SPARTAK STADIUM</td>
+						<td>Moscú</td>
+						<td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" rget="#myModal">Ver partido</button></td>      
+					</tr>
+					<tr>
+						<td>23/4/2018</td>
+						<td>12:00 am</td>
+						<td>Equipo 1 VS Equipo 2</td>
+						<td>SPARTAK STADIUM</td>
+						<td>Moscú</td>
+						<td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" rget="#myModal">Ver partido</button></td>      
+					</tr>
+				</tbody>	
+			</table>	
+		</div><!--/.col-xs-12.col-sm-9-->
+
+			<!-- MODAL -->
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- MODAL CONTENT-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">TIME</button>
+							<h4 class="modal-title">Modal Header</h4>
+						</div>
+						<div class="modal-body">
+							<p>Some text in the modal</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		<div class="col-xs-6 col-sm-3 col-sm-pull-9 sidebar-offcanvas" id="sidebar">
+			<div class="list-group ">
+				<a href="#" class="list-group-item active fondo">JUEGOS</a>
+				<a href="#" class="list-group-item fondo">MIS APUESTAS</a>
+			</div>
+		</div><!--/.sidebar-offcanvas-->
+	</div><!--/row-->
+
+	<hr>
+
+
+</div><!--/.container-->
+
+
+
+
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
