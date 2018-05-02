@@ -131,8 +131,15 @@ a {
 }
 
 .table-row {
+	padding: 10px;
 	margin-top: 20px;
 	cursor: pointer;
+	margin-right: 1px;
+}
+
+.table-row:hover {
+	background-color: rgba(150,150,150,0.1);
+	border-radius: 5px; 
 }
 
 .top-half {
