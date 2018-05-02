@@ -6,10 +6,36 @@
 			<img class="logo-nav" src="../../assets/images/logo.png" alt="">
 		</a>
 		<li class="nav-item" *ngFor="let module of moduleArray">
-			<a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}} routerLinkActive="active">{{module.name}}
-		  	</a>
-		 </li>
-	</ul>	
+			<a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}}
+			 routerLinkActive="active">{{module.name}}
+			</a>
+		</li>
+
+		<li class="nav-item">
+			<div class="col-12">
+				<a class="nav-link" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" />Felix Morales</a>
+
+				<ul class="dropdown-menu animated fadeInDown">
+					<li>
+						<a class="nav-link" (click)="setHome()" routerLink="user-panel" routerLinkActive="active">Perfil</a>
+					</li>
+					<li>
+						<a class="nav-link" (click)="setHome()" routerLink="user-config" routerLinkActive="active">Configuración</a>
+					</li>
+					<li>
+						<a class="nav-link" (click)="setHome()" routerLink="user-security" routerLinkActive="active">Seguridad</a>
+					</li>
+					<li>
+						<a class="nav-link" (click)="setHome()" routerLink="user-accessibility" routerLinkActive="active">Accesibilidad</a>
+					</li>
+					<li>
+						<a class="nav-link" (click)="setHome()" routerLink="">Cerrar Sesion</a>
+					</li>
+				</ul>
+			</div>
+		</li>
+	</ul>
 </nav>
 
 <router-outlet></router-outlet>
@@ -22,34 +48,34 @@
 				<div class="col-4">
 					<a href="">
 						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						    	<button type="submit" class="btn btn-primary btn-home">Ciudades  ></button>
-						  	</div>
-						</div>	
-					</a>					
+							<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
+							<div class="card-body" align="right">
+								<button type="submit" class="btn btn-primary btn-home">Ciudades ></button>
+							</div>
+						</div>
+					</a>
 				</div>
-				
+
 				<div class="col-4">
 					<a href="">
 						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						 		<button type="submit" class="btn btn-primary btn-home">Estadios  ></button>
-						  	</div>
-						</div>	
-					</a>					
+							<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
+							<div class="card-body" align="right">
+								<button type="submit" class="btn btn-primary btn-home">Estadios ></button>
+							</div>
+						</div>
+					</a>
 				</div>
-				
+
 				<div class="col-4">
 					<a href="">
 						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						    	<button type="submit" class="btn btn-primary btn-home">Equipos  ></button>
-						  	</div>
-						</div>	
-					</a>					
+							<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
+							<div class="card-body" align="right">
+								<button type="submit" class="btn btn-primary btn-home">Equipos ></button>
+							</div>
+						</div>
+					</a>
 				</div>
 
 			</div>
@@ -58,40 +84,37 @@
 				<div class="col-4">
 					<a href="">
 						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						    	<button type="submit" class="btn btn-primary btn-home">Ciudades  ></button>
-						  	</div>
-						</div>	
-					</a>					
+							<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
+							<div class="card-body" align="right">
+								<button type="submit" class="btn btn-primary btn-home">Ciudades ></button>
+							</div>
+						</div>
+					</a>
 				</div>
-				
+
 				<div class="col-4">
 					<a href="">
 						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						 		<button type="submit" class="btn btn-primary btn-home">Estadios  ></button>
-						  	</div>
-						</div>	
-					</a>					
+							<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
+							<div class="card-body" align="right">
+								<button type="submit" class="btn btn-primary btn-home">Estadios ></button>
+							</div>
+						</div>
+					</a>
 				</div>
-				
+
 				<div class="col-4">
 					<a href="">
 						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						    	<button type="submit" class="btn btn-primary btn-home">Equipos  ></button>
-						  	</div>
-						</div>	
-					</a>					
+							<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
+							<div class="card-body" align="right">
+								<button type="submit" class="btn btn-primary btn-home">Equipos ></button>
+							</div>
+						</div>
+					</a>
 				</div>
 
 			</div>
 		</div>
 	</div>
 </header>
-
-
-
