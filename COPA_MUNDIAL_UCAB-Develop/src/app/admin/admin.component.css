@@ -11,5 +11,6 @@
 .admin-module-panel {
 	position: fixed;
 	height: 100%;
+	width: 80%;
 	left: 20%;
 }
