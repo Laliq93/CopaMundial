@@ -30,7 +30,8 @@ import { AchievementAdminComponent } from './MODULO7/admin/achievement-admin.com
 import { BetAdminComponent } from './MODULO8/admin/bet-admin.component'
 import { StatisticAdminComponent } from './MODULO9/admin/statistic-admin.component'
 import { UserConfigAdminComponent } from './MODULO10/admin/user-config-admin.component'
-import { StadiumDetailComponent } from './MODULO3/client/stadium-detail/stadium-detail.component';
+import { StadiumDetailComponent } from './MODULO3/client/stadium-detail/stadium-detail.component'
+import { CreateStadiumComponent } from './MODULO3/client/create-stadium/create-stadium.component'
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },      
@@ -42,6 +43,7 @@ const routes: Routes = [
       { path: 'city' ,  component: CityComponent },
       { path: 'stadium' , component: StadiumComponent},
       { path: 'stadium/detalle/:id' ,  component: StadiumDetailComponent },
+      { path: 'stadium/crear-estadio' ,  component: CreateStadiumComponent },
       { path: 'team' , component: TeamComponent },
       { path: 'player' , component: PlayerComponent },
       { path: 'match' , component: MatchComponent },
