@@ -1,5 +1,35 @@
 
-<!DOCTYPE html>
+<head>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="js/main.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.datepicker').datepicker();
+    });   
+</script> 
+</head>
+
+<div class="container" style="margin-left: 0%">
+    <!-- Content here -->
+
+    <div class="row" style="left: 0px" >
+        <div class="col-lg-4">
+          <h2>Componente date picker</h2>
+          <app-datepicker></app-datepicker>
+            <label for="picker">A basic example:</label>
+
+            <input class="bootstrap-datepicker" id="picker" placeholder="Pick a date" type="text">
+           
+        </div> 
+        <div class="col-lg-8">
+          <h2>Grupos</h2>
+            <app-group></app-group>
+        </div> 
+    </div>
+   
+  </div>
+
 <html lang="en">
   <head>
     <!-- Required meta tags always come first -->
@@ -40,4 +70,3 @@
           </div>
       </div>  </div>    
 </html>
-

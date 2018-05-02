@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { $ } from 'protractor';
+import { Component, OnInit } from '@angular/core';
+import * as $ from 'jquery';
+
 
 
 @Component({
@@ -7,14 +8,10 @@ import { $ } from 'protractor';
   templateUrl: './statistic.component.html',
   styleUrls: ['./statistic.component.css']
 })
-export class StatisticComponent {
+export class StatisticComponent implements OnInit{
+  ngOnInit(): void {
+    $('#picker').pickdate();
+  }
     public modulo: string = "nueve"; 
-
-    
-    ngOninit(){
-      //$('#exampleInputDatePicker1').pickdate();
-
-      }
-    
 }
 

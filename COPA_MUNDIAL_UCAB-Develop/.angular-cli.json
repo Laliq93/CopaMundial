@@ -20,19 +20,32 @@
       "prefix": "app",
 
       "styles": [
+<<<<<<< HEAD
         "../node_modules/open-iconic/font/css/open-iconic-bootstrap.min.css",
         "../node_modules/daemonite-material/css/material.css",
         "styles.css"
 
+=======
+       
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/daemonite-material/css/material.css",
+        "../node_modules/open-iconic/font/css/open-iconic-bootstrap.min.css",
+        "styles.css"
+>>>>>>> dff0b3510d61e563378b1f538ddc555bceeef7c1
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.min.js",
+
+        "../node_modules/jquery/dist/jquery.slim.min.js",
         "../node_modules/popper.js/dist/umd/popper.min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
         "../node_modules/daemonite-material/js/material.min.js"
+<<<<<<< HEAD
         
+=======
+>>>>>>> dff0b3510d61e563378b1f538ddc555bceeef7c1
 
       ],
+      
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
