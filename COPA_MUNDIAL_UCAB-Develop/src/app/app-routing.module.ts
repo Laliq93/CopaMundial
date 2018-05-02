@@ -1,4 +1,4 @@
-import { NgModule, Component }             from '@angular/core';
+import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component'
 
@@ -18,6 +18,9 @@ import { AchievementComponent } from './MODULO7/client/achievement.component'
 import { BetComponent } from './MODULO8/client/bet.component'
 import { StatisticComponent } from './MODULO9/client/statistic.component'
 import { UserPanelComponent } from './MODULO10/client/user-panel.component'
+import { UserConfigComponent} from './MODULO10/client/user-config.component'
+import { UserSecurityComponent } from './MODULO10/client/user-security.component'
+import { UserAccessibilityComponent } from './MODULO10/client/user-accessibility.component'
 
 //admin
 import { LoginAdminComponent } from './MODULO1/admin/login-admin.component'
@@ -38,7 +41,7 @@ import { StadiumDetailComponent } from './MODULO3/client/stadium-detail/stadium-
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },      
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login' ,  component:  LoginComponent },
   { path: 'signin' ,  component:  SigninComponent },
   { path: 'signup' ,  component:  SignupComponent },
@@ -55,8 +58,11 @@ const routes: Routes = [
       { path: 'achievement' , component: AchievementComponent },
       { path: 'bet' , component: BetComponent },
       { path: 'statistic' , component: StatisticComponent },
-      { path: 'user-panel' , component: UserPanelComponent }
-    ] 
+      { path: 'user-panel' , component: UserPanelComponent },
+      { path: 'user-config', component: UserConfigComponent },
+      {path: 'user-security', component: UserSecurityComponent},
+      { path: 'user-accessibility', component: UserAccessibilityComponent }
+    ]
   },
 
 
@@ -67,7 +73,6 @@ const routes: Routes = [
       { path: 'city/consultar', component:   ConsultarCiudadComponent } ,   
       { path: 'city/eliminar', component:   EliminarCiudadComponent } ,   
       { path: 'city/modificar', component:   ModificarCiudadComponent } ,   
-
       { path: 'stadium' , component: StadiumAdminComponent },
       { path: 'team' , component: TeamAdminComponent },
       { path: 'player' , component: PlayerAdminComponent },
@@ -76,7 +81,7 @@ const routes: Routes = [
       { path: 'bet' , component: BetAdminComponent },
       { path: 'statistic' , component: StatisticAdminComponent },
       { path: 'user-panel' , component: UserConfigAdminComponent }
-    ] 
+    ]
   },
 ];
 

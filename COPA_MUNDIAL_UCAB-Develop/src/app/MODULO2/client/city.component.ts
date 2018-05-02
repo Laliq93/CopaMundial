@@ -5,7 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: './city.component.html',
   styleUrls: ['./city.component.css']
 })
+<<<<<<< HEAD
 export class CityComponent {
   public modulo: string = "dos"; 
+=======
+export class CityComponent {  
+  public modulo: string = "dos"; 
+  nombreCiudades: string[] = ['Moscu', 'Ekaterimburgo','Leningrado ','San Petersburgo','Samara', 'Rostov','Kazan', 'Novorossiysk', 'Sochi', 'Saransk', 'Nizhni Nóvgorod', 'caracas', 'zulia', 'delta amacuro']
+
+>>>>>>> Develop
 
 }
