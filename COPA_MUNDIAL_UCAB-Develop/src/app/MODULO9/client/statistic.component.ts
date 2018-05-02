@@ -9,9 +9,12 @@ import { $ } from 'protractor';
 })
 export class StatisticComponent {
     public modulo: string = "nueve"; 
+
+    
     ngOninit(){
-    //  $('#exampleInputDatePicker1').pickdate();
-    }
+      //$('#exampleInputDatePicker1').pickdate();
+
+      }
     
 }
 

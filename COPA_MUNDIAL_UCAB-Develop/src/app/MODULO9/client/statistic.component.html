@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   </head>
   <div class="container">
@@ -16,9 +17,27 @@
           <ul class="dropdown-menu">
             <li><a href="#">Mundial Rusia 2018</a></li>
             <li><a href="#">Partido</a></li>
-            <li><a href="#">JavaScript</a></li>
           </ul>
-        </div>
-  </div>
+  
+      </div>
+      <div class="container">
+          <div class="row">
+              <div class='col-sm-6'>
+                  <div class="form-group">
+                      <div class='input-group date' id='datetimepicker1'>
+                          <input type='text' class="form-control" />
+                          <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                      </div>
+                  </div>
+              </div>
+              <script type="text/javascript">
+                  $(function () {
+                      $('#datetimepicker1').datetimepicker();
+                  });
+              </script>
+          </div>
+      </div>  </div>    
 </html>
 
