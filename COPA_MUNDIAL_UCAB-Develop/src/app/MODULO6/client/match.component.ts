@@ -16,6 +16,12 @@ export class MatchComponent {
     alert.call;
 		this.router.navigate(['home/match/Eliminatorias']);
   }	
+
+  details(): void {
+		this.router.navigate(['home/match/Detalle/1']);
+  }	
+
+  
   public listmatches: Array<any>= [
       {
         "dia": "Jueves 14 Junio",

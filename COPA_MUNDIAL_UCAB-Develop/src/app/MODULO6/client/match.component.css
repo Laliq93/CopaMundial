@@ -26,15 +26,27 @@ margin-top: 0%;
     margin-top: 0px;
     width: 95%;
 }
-/*
+
 .row:hover{
 
-    background-color: #e0e0e0;
-}*/
+    background-color: #EBF5FB;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 0px;
+}
+
+button{
+    text-decoration:none;
+    color: #3f3f3f;
+    padding: 0;
+    border: none;
+    background: none;
+    width: 100%;
+}
 
 .img-thumbnail{
 
-    margin: 0px 20px;
+    margin: 10px 20px;
     width: 25%;
     height: 45%;
 }
@@ -48,14 +60,19 @@ margin-top: 0%;
     font-weight: bold;
 }
 
-.col-sm-4 p{
-
+button .col-sm-4 p{
+    padding-top: 10px;
     margin-left: 20px;
+    text-align: left;
 }
 
+button .col-sm-2 h4{
+    padding-top: 40px;
+}
 
 .match-score, .match-time{
 
+    padding-top: 40px;
     font-size: 20px;
     color: #3f3f3f;
     font-weight:  bold;

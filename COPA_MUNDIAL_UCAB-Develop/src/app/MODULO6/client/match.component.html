@@ -17,34 +17,38 @@
         <div class="d-block">{{match.dia}}</div>
         <br>
      
-      <div class="row" *ngFor="let inf of match.info">
-        <div class="col-sm-4">
-            <p>
-                {{inf.fecha}}
-                <br> 
-                {{inf.grupo}}
-                <br>
-                {{inf.estadio}}
-                <br>
-                {{inf.ciudad}}
-            </p>
-          </div>
-          <div class="col-sm-2">
-             <h4>{{inf.equipo1}}</h4>
-          </div>
-          <div class="col-sm-4">
-              <h4><img src="{{inf.bandera1}}" alt="{{inf.equipo1}}" class="img-thumbnail">
-               <label class="match-time" *ngIf="inf.puntaje.length == 0">{{inf.hora}}</label>
-                <label class="match-score" *ngIf="inf.puntaje.length != 0">{{inf.puntaje}}</label>
-              <img src="{{inf.bandera2}}" alt="{{inf.equipo2}" class="img-thumbnail">
-              </h4>
+      <ng-container *ngFor="let inf of match.info">
+        <button (click)="details()">
+            <div class="row" > 
+              <div class="col-sm-4">
+                  <p>
+                      {{inf.fecha}}
+                      <br> 
+                      {{inf.grupo}}
+                      <br>
+                      {{inf.estadio}}
+                      <br>
+                      {{inf.ciudad}}
+                  </p>
+                </div>
+                <div class="col-sm-2">
+                  <h4>{{inf.equipo1}}</h4>
+                </div>
+                <div class="col-sm-4">
+                    <h4><img src="{{inf.bandera1}}" alt="{{inf.equipo1}}" class="img-thumbnail">
+                    <label class="match-time" *ngIf="inf.puntaje.length == 0">{{inf.hora}}</label>
+                      <label class="match-score" *ngIf="inf.puntaje.length != 0">{{inf.puntaje}}</label>
+                    <img src="{{inf.bandera2}}" alt="{{inf.equipo2}" class="img-thumbnail">
+                    </h4>
+                  </div>
+                <div class="col-sm-2">
+                  <h4> {{inf.equipo2}} </h4>  
+                </div>
+              
             </div>
-          <div class="col-sm-2">
-             <h4> {{inf.equipo2}} </h4>  
-          </div>
-          <hr>
-      </div>
- 
+          </button>
+       <hr>
+    </ng-container>
     </div>
 
   </div>

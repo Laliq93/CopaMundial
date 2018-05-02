@@ -1,0 +1,56 @@
+<nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">PARTIDOS</span>
+  </nav>
+  
+  <ul class="nav nav-justified nav-tabs" id="justifiedTab" role="tablist">
+    <li class="nav-item">
+      <a aria-controls="groups" aria-selected="false" class="nav-link"  data-toggle="tab" (click)="faseGrupos()" id="groups-tab" role="tab">Fase de Grupos</a>
+    </li>
+    <li class="nav-item">
+      <a aria-controls="knockout" aria-selected="true" class="nav-link active" data-toggle="tab" (click)="faseEliminatorias()"  id="knockout-tab" role="tab">Fase de Eliminatorias</a>
+    </li>
+  </ul>
+
+<div class="tab-content" id="justifiedTabContent">
+    <div aria-labelledby="knockout-tab" class="tab-pane fade show active"  ng-show="tab === 2" id="knockout" role="tabpanel">
+      <div class="container" *ngFor="let match of listmatches">
+          <div class="d-block">{{match.fase}}</div>
+          <br> 
+          <ng-container *ngFor="let inf of match.info">
+              <button (click)="details()">
+                  <div class="row" > 
+              <!--  <div class="row" *ngFor="let inf of match.info">-->
+                      <div class="col-sm-4">
+                          <p>
+                              {{inf.fecha}}
+                              <br>
+                              {{inf.estadio}}
+                              <br>
+                              {{inf.ciudad}}
+                          </p>
+                        </div>
+                        <div class="col-sm-2">
+                          <label class="match-team" *ngIf="inf.equipo1.length != 0">{{inf.equipo1}}</label>
+                          <label class="match-position" *ngIf="inf.equipo1.length == 0">{{inf.posicion1}}</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <h4>                  
+                              <img src="{{inf.bandera1}}" *ngIf="inf.bandera1.length!=0" class="img-thumbnail">
+                              <img src="../../../assets/images/flag-placeholder.png" *ngIf="inf.bandera1.length==0" class="img-flag-placeholder">
+                            <label class="match-time" *ngIf="inf.puntaje.length == 0">{{inf.hora}}</label>
+                              <label class="match-score" *ngIf="inf.puntaje.length != 0">{{inf.puntaje}}</label>
+                              <img src="{{inf.bandera2}}" *ngIf="inf.bandera2.length!=0" class="img-thumbnail">
+                              <img src="../../../assets/images/flag-placeholder.png" *ngIf="inf.bandera2.length==0" class="img-flag-placeholder">
+                            </h4>
+                          </div>
+                        <div class="col-sm-2">
+                            <label class="match-team" *ngIf="inf.equipo2.length != 0">{{inf.equipo2}}</label>
+                            <label class="match-position" *ngIf="inf.equipo2.length == 0">{{inf.posicion2}}</label> 
+                        </div>
+                </div>
+          </button>
+          <hr>
+      </ng-container>
+      </div>
+  
+    </div>
