@@ -1,8 +1,13 @@
-
-
-<script src="node_modules/core-js/client/shim.min.js"></script>
-<script src="node_modules/zone-js/dist/zone.js"></script>
-<script src="node_modules/systemjs/dist/system.src.js"></script>
+<head>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="js/main.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.datepicker').datepicker();
+    });   
+</script> 
+</head>
 
 <div class="container" style="margin-left: 0%">
     <!-- Content here -->
@@ -11,22 +16,17 @@
         <div class="col-lg-4">
           <h2>Componente date picker</h2>
           <app-datepicker></app-datepicker>
-            <label for="exampleInputDatePicker1">A basic example:</label>
-            <input class="form-control" id="exampleInputDatePicker1" placeholder="Pick a date" type="text">
-            <script type="text/javascript">
-                $(function(){
-                    $('#exampleInputDatePicker1').pickdate();
-                });   
-            </script> 
+            <label for="picker">A basic example:</label>
+
+            <input class="bootstrap-datepicker" id="picker" placeholder="Pick a date" type="text">
+           
         </div> 
         <div class="col-lg-8">
-          <h2>Partidos</h2>
+          <h2>Grupos</h2>
             <app-group></app-group>
         </div> 
     </div>
    
   </div>
- 
-
 
 
