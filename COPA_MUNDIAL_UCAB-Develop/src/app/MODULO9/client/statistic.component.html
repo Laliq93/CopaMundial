@@ -1,72 +1,26 @@
-
 <head>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script src="js/main.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
-<script type="text/javascript">
-    $(function(){
-        $('.datepicker').datepicker();
-    });   
-</script> 
+
 </head>
 
 <div class="container" style="margin-left: 0%">
-    <!-- Content here -->
 
     <div class="row" style="left: 0px" >
         <div class="col-lg-4">
-          <h2>Componente date picker</h2>
-          <app-datepicker></app-datepicker>
-            <label for="picker">A basic example:</label>
+          <h2>Calendario</h2>
+          <button (click)="torneo()" type="submit" class="btn btn-primary">Iniciar sesión</button>
+          <a class="btn btn-info" routerLink="torneo">hh</a>
+          <app-datepicker>
 
-            <input class="bootstrap-datepicker" id="picker" placeholder="Pick a date" type="text">
-           
+          </app-datepicker> 
         </div> 
         <div class="col-lg-8">
           <h2>Grupos</h2>
-            <app-group></app-group>
+            <app-group>
+
+            </app-group>
         </div> 
     </div>
    
   </div>
-
-<html lang="en">
-  <head>
-    <!-- Required meta tags always come first -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  </head>
-  <div class="container">
-      <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li><a href="#">Mundial Rusia 2018</a></li>
-            <li><a href="#">Partido</a></li>
-          </ul>
   
-      </div>
-      <div class="container">
-          <div class="row">
-              <div class='col-sm-6'>
-                  <div class="form-group">
-                      <div class='input-group date' id='datetimepicker1'>
-                          <input type='text' class="form-control" />
-                          <span class="input-group-addon">
-                              <span class="glyphicon glyphicon-calendar"></span>
-                          </span>
-                      </div>
-                  </div>
-              </div>
-              <script type="text/javascript">
-                  $(function () {
-                      $('#datetimepicker1').datetimepicker();
-                  });
-              </script>
-          </div>
-      </div>  </div>    
-</html>

@@ -5,6 +5,7 @@ import { StatisticAdminComponent } from './admin/statistic-admin.component';
 import { GroupComponent } from './group/group.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
 import { ContarClicksDirective } from './client/directiva.directive';
+import { DatosTorneoComponent } from './datos-torneo/datos-torneo.component';
 //import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 //import {MatDatepickerModule} from '@angular/material/datepicker';
 
@@ -14,8 +15,10 @@ import { ContarClicksDirective } from './client/directiva.directive';
   	StatisticComponent,
     StatisticAdminComponent,
     DatepickerComponent,
+    
     GroupComponent,
-    ContarClicksDirective
+    ContarClicksDirective,
+    DatosTorneoComponent
 
     
     
@@ -23,7 +26,8 @@ import { ContarClicksDirective } from './client/directiva.directive';
   providers: [],
   exports: [ 
   	StatisticComponent,
-  	StatisticAdminComponent
+    StatisticAdminComponent,
+    DatosTorneoComponent
   ]
 })
 

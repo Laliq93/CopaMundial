@@ -31,6 +31,7 @@ import { BetAdminComponent } from './MODULO8/admin/bet-admin.component'
 import { StatisticAdminComponent } from './MODULO9/admin/statistic-admin.component'
 import { UserConfigAdminComponent } from './MODULO10/admin/user-config-admin.component'
 import { StadiumDetailComponent } from './MODULO3/client/stadium-detail/stadium-detail.component';
+import { DatosTorneoComponent } from './MODULO9/datos-torneo/datos-torneo.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },      
@@ -48,6 +49,8 @@ const routes: Routes = [
       { path: 'achievement' , component: AchievementComponent },
       { path: 'bet' , component: BetComponent },
       { path: 'statistic' , component: StatisticComponent },
+      {path: 'torneo', component: DatosTorneoComponent},
+  
       { path: 'user-panel' , component: UserPanelComponent }
     ] 
   },
