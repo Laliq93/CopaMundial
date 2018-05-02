@@ -20,6 +20,7 @@ import { StatisticComponent } from './MODULO9/client/statistic.component'
 import { UserPanelComponent } from './MODULO10/client/user-panel.component'
 import { UserConfigComponent} from './MODULO10/client/user-config.component'
 import { UserSecurityComponent } from './MODULO10/client/user-security.component'
+import { UserAccessibilityComponent } from './MODULO10/client/user-accessibility.component'
 
 //admin
 import { LoginAdminComponent } from './MODULO1/admin/login-admin.component'
@@ -52,7 +53,8 @@ const routes: Routes = [
       { path: 'statistic' , component: StatisticComponent },
       { path: 'user-panel' , component: UserPanelComponent },
       { path: 'user-config', component: UserConfigComponent },
-      {path: 'user-security', component: UserSecurityComponent}
+      {path: 'user-security', component: UserSecurityComponent},
+      { path: 'user-accessibility', component: UserAccessibilityComponent }
     ]
   },
   { path: 'admin', component:  AdminComponent,

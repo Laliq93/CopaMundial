@@ -1,24 +1,24 @@
-.header-image{
+.header-image {
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 	height: 100vh;
 	background-image: url("../../assets/images/background-home.jpg");
-	position: relative;	
+	position: relative;
 }
 
-.header-overlay{
+.header-overlay {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	z-index: 1;
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0, 0, 0, 0.5);
 	position: relative;
 }
 
-.header-inner{
+.header-inner {
 	position: absolute;
 	top: 5%;
 	left: 14%;
@@ -26,55 +26,59 @@
 	z-index: 2;
 }
 
-.row-cards{
+.row-cards {
 	margin-top: 20px;
 }
 
-.btn-home{
+.btn-home {
 	background-color: #A11D1B;
 }
 
-.title-box{
+.title-box {
 	color: black;
 	text-align: left;
 	font-size: 15px;
 }
 
-.text-box{
+.text-box {
 	text-align: left;
 }
 
+.profile-pic {
+	width: 20px;
+	border-radius: 100%;
+	margin-right: 10px;
+}
+
 .animated {
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    z-index: 100;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	z-index: 100;
 }
 
 @keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        -webkit-transform: translateY(-20px);
-        -ms-transform: translateY(-20px);
-        transform: translateY(-20px);
-    }
-
-    50% {
-        opacity: 0.5;
-        -webkit-transform: translateY(70px);
-        -ms-transform: translateY(70px);
-        transform: translateY(70px);
-    }
-
-    100% {
-        opacity: 1;
-        -webkit-transform: translateY(50px);
-        -ms-transform: translateY(50px);
-        transform: translateY(50px);
-    }
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(-20px);
+		-ms-transform: translateY(-20px);
+		transform: translateY(-20px);
+	}
+	50% {
+		opacity: 0.5;
+		-webkit-transform: translateY(70px);
+		-ms-transform: translateY(70px);
+		transform: translateY(70px);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translateY(50px);
+		-ms-transform: translateY(50px);
+		transform: translateY(50px);
+	}
 }
 
 .fadeInDown {
-    animation-name: fadeInDown;
+	animation-name: fadeInDown;
 }

@@ -1,42 +1,335 @@
 .container-fluid {
-  padding: 0 30px 25px 30px; }
+  padding: 0 30px 25px 30px;
+}
 
-  .page-titles {
+/*******************
+Page titles
+*******************/
+
+.page-titles {
   background: #ffffff;
   margin: 0 -30px 30px;
   padding: 15px;
+  padding-bottom: 20px;
   -webkit-box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
-  box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1); }
-  .page-titles h3 {
-    margin-bottom: 0px;
-    margin-top: 8px; }
-  .page-titles .breadcrumb {
-    padding: 0px;
-    background: transparent;
-    font-size: 14px; }
-    .page-titles .breadcrumb li {
-      margin-top: 0px;
-      margin-bottom: 0px; }
-    .page-titles .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
-      content: "\e649";
-      font-family: themify;
-      color: #a6b7bf;
-      font-size: 11px; }
-    .page-titles .breadcrumb .breadcrumb-item.active {
-      color: #99abb4; }
+  box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
+}
 
-      .page-titles {
-  padding-bottom: 20px; }
+.page-titles h2 {
+  margin-bottom: 0px;
+  margin-top: 8px;
+}
+
+.page-titles .breadcrumb {
+  padding: 0px;
+  background: transparent;
+  font-size: 14px;
+}
+
+.page-titles .breadcrumb li {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.page-titles .breadcrumb .breadcrumb-item+.breadcrumb-item::before {
+  content: "\e649";
+  font-family: themify;
+  color: #a6b7bf;
+  font-size: 11px;
+}
+
+.breadcrumb {
+  margin-bottom: 0px;
+}
+
+.page-titles .breadcrumb .breadcrumb-item.active {
+  color: #99abb4;
+}
 
 .page-titles .justify-content-end:last-child .d-flex {
-  margin-right: 10px; }
-  
-  html body .text-themecolor {
-  color: #009efb; }
-<<<<<<< Updated upstream
+  margin-right: 10px;
+}
 
-  h2{
-    color: #009efb;
-  }
-=======
->>>>>>> Stashed changes
+/*******************
+ Card title
+*******************/
+
+.card {
+  margin-bottom: 30px;
+}
+
+.card .card-subtitle {
+  font-weight: 300;
+  margin-bottom: 15px;
+  color: #99abb4;
+}
+
+.card-inverse .card-blockquote .blockquote-footer, .card-inverse .card-link, .card-inverse .card-subtitle, .card-inverse .card-text {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.card-success {
+  background: #26c6da;
+  border-color: #26c6da;
+}
+
+.card-danger {
+  background: #fc4b6c;
+  border-color: #fc4b6c;
+}
+
+.card-warning {
+  background: #ffb22b;
+  border-color: #ffb22b;
+}
+
+.card-info {
+  background: #1e88e5;
+  border-color: #1e88e5;
+}
+
+.card-primary {
+  background: #7460ee;
+  border-color: #7460ee;
+}
+
+.card-dark {
+  background: #2f3d4a;
+  border-color: #2f3d4a;
+}
+
+.card-megna {
+  background: #00897b;
+  border-color: #00897b;
+}
+
+/*little-profile*/
+
+.little-profile .pro-img {
+  margin-top: -80px;
+  margin-bottom: 20px;
+}
+
+.little-profile .pro-img img {
+  width: 128px;
+  height: 128px;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 100%;
+}
+
+/*******************
+ Color & Text
+*******************/
+
+.text-themecolor {
+  color: #009efb;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+/*******************
+Paddings
+*******************/
+
+html body .p-0 {
+  padding: 0px;
+}
+
+html body .p-10 {
+  padding: 10px;
+}
+
+html body .p-20 {
+  padding: 20px;
+}
+
+html body .p-30 {
+  padding: 30px;
+}
+
+html body .p-l-0 {
+  padding-left: 0px;
+}
+
+html body .p-l-10 {
+  padding-left: 10px;
+}
+
+html body .p-l-20 {
+  padding-left: 20px;
+}
+
+html body .p-r-0 {
+  padding-right: 0px;
+}
+
+html body .p-r-10 {
+  padding-right: 10px;
+}
+
+html body .p-r-20 {
+  padding-right: 20px;
+}
+
+html body .p-r-30 {
+  padding-right: 30px;
+}
+
+html body .p-r-40 {
+  padding-right: 40px;
+}
+
+html body .p-t-0 {
+  padding-top: 0px;
+}
+
+html body .p-t-10 {
+  padding-top: 10px;
+}
+
+html body .p-t-20 {
+  padding-top: 20px;
+}
+
+html body .p-t-30 {
+  padding-top: 30px;
+}
+
+html body .p-b-0 {
+  padding-bottom: 0px;
+}
+
+html body .p-b-5 {
+  padding-bottom: 5px;
+}
+
+html body .p-b-10 {
+  padding-bottom: 10px;
+}
+
+html body .p-b-20 {
+  padding-bottom: 20px;
+}
+
+html body .p-b-30 {
+  padding-bottom: 30px;
+}
+
+html body .p-b-40 {
+  padding-bottom: 40px;
+}
+
+/*******************
+Margin
+*******************/
+
+html body .m-0 {
+  margin: 0px;
+}
+
+html body .m-l-5 {
+  margin-left: 5px;
+}
+
+html body .m-l-10 {
+  margin-left: 10px;
+}
+
+html body .m-l-15 {
+  margin-left: 15px;
+}
+
+html body .m-l-20 {
+  margin-left: 20px;
+}
+
+html body .m-l-30 {
+  margin-left: 30px;
+}
+
+html body .m-l-40 {
+  margin-left: 40px;
+}
+
+html body .m-r-5 {
+  margin-right: 5px;
+}
+
+html body .m-r-10 {
+  margin-right: 10px;
+}
+
+html body .m-r-15 {
+  margin-right: 15px;
+}
+
+html body .m-r-20 {
+  margin-right: 20px;
+}
+
+html body .m-r-30 {
+  margin-right: 30px;
+}
+
+html body .m-r-40 {
+  margin-right: 40px;
+}
+
+html body .m-t-0 {
+  margin-top: 0px;
+}
+
+html body .m-t-5 {
+  margin-top: 5px;
+}
+
+html body .m-t-10 {
+  margin-top: 10px;
+}
+
+html body .m-t-15 {
+  margin-top: 15px;
+}
+
+html body .m-t-20 {
+  margin-top: 20px;
+}
+
+html body .m-t-30 {
+  margin-top: 30px;
+}
+
+html body .m-t-40 {
+  margin-top: 40px;
+}
+
+html body .m-b-0 {
+  margin-bottom: 0px;
+}
+
+html body .m-b-5 {
+  margin-bottom: 5px;
+}
+
+html body .m-b-10 {
+  margin-bottom: 10px;
+}
+
+html body .m-b-15 {
+  margin-bottom: 15px;
+}
+
+html body .m-b-20 {
+  margin-bottom: 20px;
+}
+
+html body .m-b-30 {
+  margin-bottom: 30px;
+}
+
+html body .m-b-40 {
+  margin-bottom: 40px;
+}
