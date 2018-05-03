@@ -8,8 +8,8 @@ enum MODULES {
 	JUGADORES = "JUGADORES",
 	PARTIDOS = "PARTIDOS",
 	APUESTAS = "APUESTAS",
-	ESTADISTICAS = "ESTADISTICAS"
-}
+	ESTADISTICAS = "ESTADISTICAS",
+	}
 
 class Module {
 	name: MODULES;
@@ -67,6 +67,7 @@ export class HomeComponent {
 		for (var i = 0; i < this.moduleArray.length; i++) {
 			this.moduleMap.set(this.moduleArray[i].name, this.moduleArray[i]);
 		}
+		
 	}
 
 	setModuleActive(module: MODULES) {
@@ -76,6 +77,11 @@ export class HomeComponent {
 
 		this.moduleMap.get(module).isActive = true;
 		this.esHome=true;
+
+	}
+
+	setHome(){
+		this.esHome=true;
 	}
 
 	toggleUserPanel(): void {
@@ -84,7 +90,12 @@ export class HomeComponent {
 			this.menu = "menu";
 		} else {
 			this.menu = "menu";
+<<<<<<< HEAD
 		}		
 	}	
 
+=======
+		}
+	}
+>>>>>>> Develop
 }
