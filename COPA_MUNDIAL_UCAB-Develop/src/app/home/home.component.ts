@@ -90,12 +90,7 @@ export class HomeComponent {
 			this.menu = "menu";
 		} else {
 			this.menu = "menu";
-<<<<<<< HEAD
 		}		
 	}	
 
-=======
-		}
-	}
->>>>>>> Develop
 }
