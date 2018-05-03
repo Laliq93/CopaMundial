@@ -26,6 +26,12 @@
 	z-index: 2;
 }
 
+.img-logo-nav{
+	width: 50px;
+	height: 55px;
+	margin-top: 10px;
+}
+
 .row-cards {
 	margin-top: 20px;
 }
