@@ -4,3 +4,17 @@ form {
     width: 300px;
     padding: 10px;
 }
+
+nav.navbar{
+	background-color: #02588E;
+	color: #ffffff;
+}
+
+.item-border{
+	border-right: 1px solid #ffffff;
+}
+
+.img-logo-nav{
+	width: 50px;
+	height: 55px;
+}
