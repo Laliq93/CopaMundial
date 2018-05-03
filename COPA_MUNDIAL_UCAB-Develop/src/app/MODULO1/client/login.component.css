@@ -29,3 +29,7 @@ nav.navbar{
 	margin: 0;
 	padding: 0;
 }
+
+.carousel-inner{
+	height: 100vh;
+}
