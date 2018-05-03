@@ -10,6 +10,12 @@ nav.navbar{
 	color: #ffffff;
 }
 
+.btn-nav{
+	box-shadow: none;
+	color: #ffffff;
+	text-transform: none;
+}
+
 .item-border{
 	border-right: 1px solid #ffffff;
 }
@@ -17,4 +23,9 @@ nav.navbar{
 .img-logo-nav{
 	width: 50px;
 	height: 55px;
+}
+
+.container-fluid{
+	margin: 0;
+	padding: 0;
 }
