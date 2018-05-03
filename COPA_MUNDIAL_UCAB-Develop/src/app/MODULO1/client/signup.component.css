@@ -2,11 +2,7 @@
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-<<<<<<< HEAD
-	background-image: url("../../../assets/images/background1.jpg");
-=======
 	background-image: url("../../../assets/images/background-russia.jpg");
->>>>>>> bd466e5d8df3f78b4347b0ba4848adfd73984ebc
 	height: 100vh;
 	position: relative;
 }
