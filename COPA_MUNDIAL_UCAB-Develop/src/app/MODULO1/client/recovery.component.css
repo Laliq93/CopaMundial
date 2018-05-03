@@ -28,22 +28,6 @@ form {
 	background-color: #A11D1B;
 }
 
-.link-forgot-password{
-	margin: 15px;
-	text-align: center;
-	color: #02588e;
-}
-
-.btn-forgot-password{
-	box-shadow: none;
-	font-size: 13px;
-	text-transform: none;
-}
-
-.btn-forgot-password:hover{
-	background-image: none;
-}
-
 .no-padding{
 	margin: 0;
 	padding: 0;
@@ -51,6 +35,5 @@ form {
 
 @media screen and (max-width: 480px) {
 	form{
-		margin-top: 60%;
 	}
 }
