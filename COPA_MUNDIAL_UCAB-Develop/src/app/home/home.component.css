@@ -8,6 +8,7 @@
 }
 
 .header-overlay {
+
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -19,6 +20,7 @@
 }
 
 .header-inner {
+	margin-bottom: 50px;
 	position: absolute;
 	top: 5%;
 	left: 14%;
