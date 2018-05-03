@@ -25,6 +25,10 @@ import { UserAccessibilityComponent } from './MODULO10/client/user-accessibility
 //admin
 import { LoginAdminComponent } from './MODULO1/admin/login-admin.component'
 import { CityAdminComponent } from './MODULO2/admin/city-admin.component'
+import { ConsultarCiudadComponent } from './MODULO2/admin/consultar-ciudad/consultar-ciudad.component'
+import { EliminarCiudadComponent } from './MODULO2/admin/eliminar-ciudad/eliminar-ciudad.component'
+import { AgregarCiudadComponent } from './MODULO2/admin/agregar-ciudad/agregar-ciudad.component'
+import { ModificarCiudadComponent } from './MODULO2/admin/modificar-ciudad/modificar-ciudad.component'
 import { StadiumAdminComponent } from './MODULO3/admin/stadium-admin.component'
 import { TeamAdminComponent } from './MODULO4/admin/team-admin.component'
 import { PlayerAdminComponent } from './MODULO5/admin/player-admin.component'
@@ -35,12 +39,15 @@ import { StatisticAdminComponent } from './MODULO9/admin/statistic-admin.compone
 import { UserConfigAdminComponent } from './MODULO10/admin/user-config-admin.component'
 import { StadiumDetailComponent } from './MODULO3/client/stadium-detail/stadium-detail.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login' ,  component:  LoginComponent },
   { path: 'signin' ,  component:  SigninComponent },
   { path: 'signup' ,  component:  SignupComponent },
   { path: 'home', component:  HomeComponent,
+
+
     children: [
       { path: 'city' ,  component: CityComponent },
       { path: 'stadium' , component: StadiumComponent},
@@ -57,9 +64,15 @@ const routes: Routes = [
       { path: 'user-accessibility', component: UserAccessibilityComponent }
     ]
   },
+
+
   { path: 'admin', component:  AdminComponent,
     children: [
-      { path: 'city' ,  component: CityAdminComponent },
+      { path: 'city' ,  component: CityAdminComponent  },
+      { path: 'city/agregar', component:   AgregarCiudadComponent } , 
+      { path: 'city/consultar', component:   ConsultarCiudadComponent } ,   
+      { path: 'city/eliminar', component:   EliminarCiudadComponent } ,   
+      { path: 'city/modificar', component:   ModificarCiudadComponent } ,   
       { path: 'stadium' , component: StadiumAdminComponent },
       { path: 'team' , component: TeamAdminComponent },
       { path: 'player' , component: PlayerAdminComponent },

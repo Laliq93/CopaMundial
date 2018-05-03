@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {RouterModule, Router } from '@angular/router';
 
 enum MODULES {
 	CIUDADES = "CIUDADES",
@@ -31,13 +32,15 @@ type Menu = "menu" | "menu-2";
 })
 
 export class HomeComponent {
+	
 	private moduleArray: Array<Module>;
 	private moduleMap: Map<MODULES, Module> = new Map<MODULES, Module>();
 	private loadPanel: boolean; 
 	private menu: Menu; 
 	public esHome: boolean;
 	
-	constructor(){
+	constructor(private router: Router){
+
 		this.moduleArray = [
 			new Module(MODULES.CIUDADES, "city", false),
 			new Module(MODULES.ESTADIOS, "stadium", false),
@@ -87,6 +90,12 @@ export class HomeComponent {
 			this.menu = "menu";
 		} else {
 			this.menu = "menu";
+<<<<<<< HEAD
+		}		
+	}	
+
+=======
 		}
 	}
+>>>>>>> Develop
 }
