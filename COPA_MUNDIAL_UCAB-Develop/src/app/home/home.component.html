@@ -3,8 +3,9 @@
 	<user-panel *ngIf="loadPanel"></user-panel>
 	<ul class="nav nav-tabs nav-fill justify-content-center">
 		<a class="navbar-brand" href="/home">
-			<img class="logo-nav" src="../../assets/images/logo.png" alt="">
+			<img class="img-logo-nav img-fluid" src="../../assets/images/logo.png" alt="">
 		</a>
+
 		<li class="nav-item" *ngFor="let module of moduleArray">
 			<a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}}
 			 routerLinkActive="active">{{module.name}}
