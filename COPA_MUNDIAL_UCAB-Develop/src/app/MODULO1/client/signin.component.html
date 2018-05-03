@@ -5,7 +5,7 @@
         <div class="image-logo">
           <div class="row justify-content-center">
             <div class="col-3">
-              <img src="../../../assets/images/logo.png" alt="">
+              <img class="img-fluid" src="../../../assets/images/logo.png" alt="">
             </div>
           </div>
         </div>
@@ -17,6 +17,8 @@
           <label for="exampleInputPassword1">Contraseña</label>
           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
         </div>
+
+        <button (click)="recoveryPassword()" class="btn-forgot-password link-forgot-password btn" href="">¿Olvidaste tu contraseña?</button>
         <button (click)="home()" type="submit" class="btn btn-primary btn-signin">Iniciar sesión</button>
       </form>
     </div>
