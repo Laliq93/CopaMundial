@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light">
 	<user-panel *ngIf="loadPanel"></user-panel>
   	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="oi oi-menu"></span>
@@ -22,16 +22,20 @@
 
     <div class="container-fluid no-padding">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 column-sidebar">
           <!-- /. NAV TOP  -->
           <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
+				
+				<div class="section-data-user">
+					<div align="center">
+	                  <img align="center" class="profile-image-sidebar" src="../../assets/images/users/1.jpg" alt="">
+	                </div>
 
-				<div align="center">
-                  <img align="center" class="profile-image-sidebar" src="../../assets/images/users/1.jpg" alt="">
-                </div>
+	                <p class="sidebar-name-user">Felix Morales</p>
+				</div>
 
-                <p class="sidebar-name-user">Felix Morales</p>
+				<hr class="separator">
 
               	<ul class="list-group" id="main-menu">
 
@@ -62,21 +66,19 @@
         </div>
 
         <div class="col-9">
-          <div id="page-wrapper">
-            <div id="page-inner">
-
-              <div class="content-page">
-                <div class="row">
-                  
+        	<div class="content-page">
+                <div class="row justify-content-center">
+                  <div ng-app="headline" class="headline card">
+                    <h4 class="tittle">
+                    	Hoy es 4 de Mayo de 2018
+                    </h4>
+                  </div>
                 </div>
                 <!-- aqui -->
-                
+                <div class="row" style="margin-top: 5%;">
+                  <!-- o aqui -->
+                </div>
               </div>
-
-            </div>
-            <!-- /. PAGE INNER  -->
-          </div>
-          <!-- /. PAGE WRAPPER  -->
         </div>
 
       </div>

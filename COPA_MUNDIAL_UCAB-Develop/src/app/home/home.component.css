@@ -1,8 +1,12 @@
+.column-sidebar{
+	max-width: 20%;
+}
+
 .container-fluid{
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-image: url("../../assets/images/background-russia.jpg");
+	/*background-image: url("../../assets/images/background-russia.jpg");*/
 	height: 100vh;
 	position: relative;
 }
@@ -34,14 +38,34 @@
 	padding: 0;
 }
 
+
+/*************************** PANEL TITULAR ************************/
+
+.card{
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.headline{
+	width: 100%;
+    border-bottom: 5px solid #0B486B;
+    height: 66px;
+    margin-left: 3%;
+}
+
+.tittle{
+	padding: 20px;
+	color: #0B486B;
+	font-size: 23px;
+	font-weight: bold;
+}
+
+.content-page{
+	margin-top: 5%;
+}
+
+/*****************************************************************/
+
 /***************************** SIDEBAR ****************************/
-
-
-/*.sidebar{
-	background-color: white;
-	height: 100%;
-	border-right: 2px solid red;
-}*/
 
 .profile-image-sidebar{
 	width: 80px;
@@ -65,6 +89,11 @@
 
 /* otro sidebar */
 
+.separator{
+	width: 85%;
+	background-color: white;
+}
+
 .navbar-side {
     border: none;
     background-color: #ffffff;
@@ -77,8 +106,13 @@
     margin-top: -13%;
 }
 
+nav.navbar-default{
+	background-color: #DDBE85;
+}
+
 .list-group-item{
 	box-shadow: none;
+	background-color: #DDBE85;
 }
 
 .list-group-item:hover, .list-group-item:focus{
