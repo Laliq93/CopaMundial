@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './client/login.component';
 import { SigninComponent } from './client/signin.component';
 import { SignupComponent } from './client/signup.component';
+import { RecoveryComponent } from './client/recovery.component';
 import { LoginAdminComponent } from './admin/login-admin.component';
 
 @NgModule({
@@ -11,6 +12,7 @@ import { LoginAdminComponent } from './admin/login-admin.component';
   	LoginComponent,
     SigninComponent,
     SignupComponent,
+    RecoveryComponent,
   	LoginAdminComponent
   ],
   providers: [],
@@ -18,6 +20,7 @@ import { LoginAdminComponent } from './admin/login-admin.component';
   	LoginComponent,
     SigninComponent,
     SignupComponent,
+    RecoveryComponent,
 	LoginAdminComponent
   ]
 })

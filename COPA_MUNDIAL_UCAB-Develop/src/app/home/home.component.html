@@ -1,97 +1,85 @@
-<nav>
-	<!--<img class="menu" (click)="toggleUserPanel()" src="../assets/{{menu}}.svg"> -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<user-panel *ngIf="loadPanel"></user-panel>
-	<ul class="nav nav-tabs nav-fill justify-content-center">
-		<a class="navbar-brand" href="/home">
-			<img class="logo-nav" src="../../assets/images/logo.png" alt="">
-		</a>
-		<li class="nav-item" *ngFor="let module of moduleArray">
-			<a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}} routerLinkActive="active">{{module.name}}
-		  	</a>
-		 </li>
-	</ul>	
+  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="oi oi-menu"></span>
+  	</button>
+	<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+		<a class="navbar-brand" href="/home"><img class="img-logo-nav img-fluid" src="../../../assets/images/logo.png" alt="">Mundial de Rusia 2018</a>
+		<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+	  		<li class="nav-item" *ngFor="let module of moduleArray">
+				<a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}}
+				 routerLinkActive="active">{{module.name}}
+				</a>
+			</li>
+		</ul>
+	</div>
 </nav>
+
 
 <router-outlet></router-outlet>
 
-<header class="header-image" *ngIf="!esHome">
-	<div class="header-overlay" align="center"></div>
-	<div class="header-inner" align="center">
-		<div class="container" align="center">
-			<div class="row row-cards" align="center">
-				<div class="col-4">
-					<a href="">
-						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						    	<button type="submit" class="btn btn-primary btn-home">Ciudades  ></button>
-						  	</div>
-						</div>	
-					</a>					
-				</div>
-				
-				<div class="col-4">
-					<a href="">
-						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						 		<button type="submit" class="btn btn-primary btn-home">Estadios  ></button>
-						  	</div>
-						</div>	
-					</a>					
-				</div>
-				
-				<div class="col-4">
-					<a href="">
-						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						    	<button type="submit" class="btn btn-primary btn-home">Equipos  ></button>
-						  	</div>
-						</div>	
-					</a>					
-				</div>
+<div id="wrapper">
 
-			</div>
+    <div class="container-fluid no-padding">
+      <div class="row">
+        <div class="col-md-3">
+          <!-- /. NAV TOP  -->
+          <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
 
-			<div class="row row-cards" align="center">
-				<div class="col-4">
-					<a href="">
-						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						    	<button type="submit" class="btn btn-primary btn-home">Ciudades  ></button>
-						  	</div>
-						</div>	
-					</a>					
-				</div>
-				
-				<div class="col-4">
-					<a href="">
-						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						 		<button type="submit" class="btn btn-primary btn-home">Estadios  ></button>
-						  	</div>
-						</div>	
-					</a>					
-				</div>
-				
-				<div class="col-4">
-					<a href="">
-						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						    	<button type="submit" class="btn btn-primary btn-home">Equipos  ></button>
-						  	</div>
-						</div>	
-					</a>					
-				</div>
+				<div align="center">
+                  <img align="center" class="profile-image-sidebar" src="../../assets/images/users/1.jpg" alt="">
+                </div>
 
-			</div>
-		</div>
-	</div>
-</header>
+                <p class="sidebar-name-user">Felix Morales</p>
 
+              	<ul class="list-group" id="main-menu">
 
+	                <li class="list-group-item item-sidebar">
+	                  <a (click)="setHome()" routerLink="user-panel" routerLinkActive="active"><span class="oi oi-person"></span> Perfil</a>
+	                </li>
 
+	                <li class="list-group-item item-sidebar">
+	                  <a (click)="setHome()" routerLink="user-config" routerLinkActive="active"><span class="oi oi-cog"></span> Configuración</a>
+	                </li>
+
+	                <li class="list-group-item item-sidebar">
+	                  <a (click)="setHome()" routerLink="user-security" routerLinkActive="active"><span class="oi oi-lock-locked"></span> Seguridad</a>
+	                </li>
+
+	                <li class="list-group-item item-sidebar">
+	                  <a (click)="setHome()" routerLink="user-accessibility" routerLinkActive="active"><span class="oi oi-external-link"></span> Accesibilidad</a>
+	                </li>
+
+	                <li class="list-group-item item-sidebar">
+	                  <a href="#"><span class="oi oi-account-logout"></span> Cerrar sesión</a>
+	                </li>
+              	</ul>
+            </div>
+
+          </nav>
+          <!-- /. NAV SIDE  -->
+        </div>
+
+        <div class="col-9">
+          <div id="page-wrapper">
+            <div id="page-inner">
+
+              <div class="content-page">
+                <div class="row">
+                  
+                </div>
+                <!-- aqui -->
+                
+              </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+          </div>
+          <!-- /. PAGE WRAPPER  -->
+        </div>
+
+      </div>
+    </div>
+
+</div>

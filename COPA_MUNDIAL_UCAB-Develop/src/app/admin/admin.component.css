@@ -1,6 +1,6 @@
 .nav {
     height: 100%;
-    width: 20%;
+    width: 12%;
     float: left;
 }
 
@@ -11,5 +11,6 @@
 .admin-module-panel {
 	position: fixed;
 	height: 100%;
+	width: 100%;
 	left: 20%;
 }
