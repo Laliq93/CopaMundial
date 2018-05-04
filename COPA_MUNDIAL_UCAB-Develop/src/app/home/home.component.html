@@ -1,176 +1,110 @@
-<nav>
-	<!--<img class="menu" (click)="toggleUserPanel()" src="../assets/{{menu}}.svg"> -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<user-panel *ngIf="loadPanel"></user-panel>
-	<ul class="nav nav-tabs nav-fill justify-content-center">
-		<a class="navbar-brand" href="/home">
-			<img class="img-logo-nav img-fluid" src="../../assets/images/logo.png" alt="">
-		</a>
+  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="oi oi-menu"></span>
+  	</button>
+	<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+		<a class="navbar-brand" href="/home"><img class="img-logo-nav img-fluid" src="../../../assets/images/logo.png" alt="">Mundial de Rusia 2018</a>
+		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	  		<li class="nav-item" *ngFor="let module of moduleArray">
+				<a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}}
+				 routerLinkActive="active">{{module.name}}
+				</a>
+			</li>
+			
+			<li class="nav-item">
+				<div class="col-12">
+					<a class="nav-link" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" />Felix Morales</a>
 
-		<li class="nav-item" *ngFor="let module of moduleArray">
-			<a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}}
-			 routerLinkActive="active">{{module.name}}
-			</a>
-		</li>
-
-		<li class="nav-item">
-			<div class="col-12">
-				<a class="nav-link" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" />Felix Morales</a>
-
-				<ul class="dropdown-menu animated fadeInDown">
-					<li>
-						<a class="nav-link" (click)="setHome()" routerLink="user-panel" routerLinkActive="active">Perfil</a>
-					</li>
-					<li>
-						<a class="nav-link" (click)="setHome()" routerLink="user-config" routerLinkActive="active">Configuración</a>
-					</li>
-					<li>
-						<a class="nav-link" (click)="setHome()" routerLink="user-security" routerLinkActive="active">Seguridad</a>
-					</li>
-					<li>
-						<a class="nav-link" (click)="setHome()" routerLink="user-accessibility" routerLinkActive="active">Accesibilidad</a>
-					</li>
-					<li>
-						<a class="nav-link" (click)="setHome()" routerLink="">Cerrar Sesion</a>
-					</li>
-				</ul>
-			</div>
-		</li>
-	</ul>
-</nav>
-
-<router-outlet></router-outlet>
-
-<header class="header-image" *ngIf="!esHome">
-	<div class="header-overlay" align="center"></div>
-	<div class="header-inner" align="center">
-		<div class="container" align="center">
-<<<<<<< HEAD
-			<div class="row row-cards" align="center">
-				<div class="col-4">
-					<a href="home/city">
-						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						    	<button type="submit" class="btn btn-primary btn-home">Ciudades ></button>
-						  	</div>
-						</div>	
-					</a>					
-				</div>
-
-				<div class="col-4">
-					<a href="">
-						<div class="card" style="width: 18rem;">
-							<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-							<div class="card-body" align="right">
-								<button type="submit" class="btn btn-primary btn-home">Estadios ></button>
-							</div>
-=======
-				<div class="card-columns">
-						<div class="card">
-						  <img class="card-img-top" src="../../assets/images/card1.jpg" alt="Card image cap">
-						  <div class="card-body">
-							<h5 class="card-title">Explora las ciudades del mundial Rusia 2018</h5>
-							<p class="card-text">Explora las ciudades donde se realizaran los partidos mas esperados del año en el Mundial Rusia 2018.</p>
-						    <a href="#" class="btn btn-home">CIUDADES</a>
-						</div>
->>>>>>> Develop
-						</div>
-						<div class="card p-3">
-						  <blockquote class="blockquote mb-0 card-body">
-							<p>"Mira como convergerán las estrellas".</p>
-							<footer class="blockquote-footer">
-							  <small class="text-muted">
-								Lema del Mundial <cite title="Source Title">Rusia 2018</cite>
-							  </small>
-							</footer>
-						  </blockquote>
-						</div>
-						<div class="card">
-						  <img class="card-img-top" src="../../assets/images/card2.jpg" alt="Card image cap">
-						  <div class="card-body">
-							<h5 class="card-title">Conoce los estadios del mundial</h5>
-							<p class="card-text">Perú clasifica después de 36 años para un mundial.</p>
-							<a href="#" class="btn btn-home">ESTADIOS</a>
-							<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-						  </div>
-						</div>
-						<div class="card bg-primary text-white text-center p-3">
-						  <blockquote class="blockquote mb-0">
-							<p>PARTIDOS.</p>
-							<footer class="blockquote-footer">
-							  <small>
-								Preguntar esta <cite title="Source Title">seccion</cite>
-							  </small>
-							</footer>
-						  </blockquote>
-						</div>
-						<div class="card text-center">
-						  <div class="card-body">
-							<h5 class="card-title">Grupos</h5>
-							<p class="card-text">En esta sección podrás ver todos los grupos, equipos y jugadores que participarán en el evento.</p>
-							<a href="#" class="btn btn-home">EQUIPOS</a>
-						  </div>
-						</div>
-						<div class="card">
-						  <img class="card-img" src="../../assets/images/card3.jpg" alt="Card image">
-						</div>
-						<div class="card p-3 text-right">
-						  <blockquote class="blockquote mb-0">
-							<p>Perú clasifica luego de 36 años fuera de un mundial.</p>
-							<footer class="blockquote-footer">
-							  <small class="text-muted">
-								Anónimo<cite title="Source Title">Diario El País</cite>
-							  </small>
-							</footer>
-						  </blockquote>
-						</div>
-						<div class="card">
-						  <div class="card-body">
-							<h5 class="card-title">Apuestas</h5>
-							<p class="card-text">Preguntar tambien que poner en esta seccion.</p>
-							<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-						  </div>
-						</div>
-					  </div>
-			</div>
-		</div>
-</header>
-
-<footer class="page-footer font-small blue pt-4 mt-4">
-
-		<div class="container-fluid text-center text-md-left">
-			<div class="row">
-	
-				<div class="col-md-6">
-					<h5 class="text-uppercase">Registrate en nuestra página</h5>
-					<p>y disfruta de su contenido.</p>
-				</div>
-	
-				<div class="col-md-6">
-					<h5 class="text-uppercase">Secciones</h5>
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu animated fadeInDown">
 						<li>
-							<a href="#!">Ciudades</a>
+							<a class="nav-link" (click)="setHome()" routerLink="user-panel" routerLinkActive="active">Perfil</a>
 						</li>
 						<li>
-							<a href="#!">Estadios</a>
+							<a class="nav-link" (click)="setHome()" routerLink="user-config" routerLinkActive="active">Configuración</a>
 						</li>
 						<li>
-							<a href="#!">Equipos</a>
+							<a class="nav-link" (click)="setHome()" routerLink="user-security" routerLinkActive="active">Seguridad</a>
 						</li>
 						<li>
-							<a href="#!">Jugadores</a>
+							<a class="nav-link" (click)="setHome()" routerLink="user-accessibility" routerLinkActive="active">Accesibilidad</a>
+						</li>
+						<li>
+							<a class="nav-link" (click)="setHome()" routerLink="">Cerrar Sesion</a>
 						</li>
 					</ul>
 				</div>
-			</div>
-		</div>
+			</li>
+		</ul>
+	</div>
+</nav>
 
-		<div class="footer-copyright py-3 text-center">
-			© CopaUCAB 2018 Copyright:
-			<a href="https://mdbootstrap.com/material-design-for-bootstrap/"> Copaucab.com.ve </a>
-		</div>
 
-	
-	</footer>
+<router-outlet></router-outlet>
+
+<div id="wrapper">
+
+    <div class="container-fluid no-padding">
+      <div class="row">
+        <div class="col-md-3">
+          <!-- /. NAV TOP  -->
+          <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+
+				<div align="center">
+                  <img align="center" class="profile-image-sidebar" src="../../assets/images/users/1.jpg" alt="">
+                </div>
+
+                <p class="sidebar-name-user">Felix Morales</p>
+
+              	<ul class="list-group" id="main-menu">
+
+	                <li class="list-group-item item-sidebar">
+	                  <a href="#"><span class="oi oi-person"></span> Perfil</a>
+	                </li>
+
+	                <li class="list-group-item item-sidebar">
+	                  <a href="#"><span class="oi oi-cog"></span> Configuración</a>
+	                </li>
+
+	                <li class="list-group-item item-sidebar">
+	                  <a href="#"><span class="oi oi-lock-locked"></span> Seguridad</a>
+	                </li>
+
+	                <li class="list-group-item item-sidebar">
+	                  <a href="#"><span class="oi oi-external-link"></span> Accesibilidad</a>
+	                </li>
+
+	                <li class="list-group-item item-sidebar">
+	                  <a href="#"><span class="oi oi-account-logout"></span> Cerrar sesión</a>
+	                </li>
+              	</ul>
+            </div>
+
+          </nav>
+          <!-- /. NAV SIDE  -->
+        </div>
+
+        <div class="col-9">
+          <div id="page-wrapper">
+            <div id="page-inner">
+
+              <div class="content-page">
+                <div class="row">
+                  
+                </div>
+                <!-- aqui -->
+                
+              </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+          </div>
+          <!-- /. PAGE WRAPPER  -->
+        </div>
+
+      </div>
+    </div>
+
+</div>
