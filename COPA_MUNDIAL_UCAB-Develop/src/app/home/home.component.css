@@ -94,7 +94,7 @@
 	font-weight: bold;
 }
 
-.list-group-item > a:hover, .list-group-item > a:focus{
+.list-group-item > a:hover{
 	color: #ffffff;
 	text-decoration: none;
 }

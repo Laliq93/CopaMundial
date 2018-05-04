@@ -5,36 +5,11 @@
   	</button>
 	<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 		<a class="navbar-brand" href="/home"><img class="img-logo-nav img-fluid" src="../../../assets/images/logo.png" alt="">Mundial de Rusia 2018</a>
-		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+		<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 	  		<li class="nav-item" *ngFor="let module of moduleArray">
 				<a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}}
 				 routerLinkActive="active">{{module.name}}
 				</a>
-			</li>
-			
-			<li class="nav-item">
-				<div class="col-12">
-					<a class="nav-link" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" />Felix Morales</a>
-
-					<ul class="dropdown-menu animated fadeInDown">
-						<li>
-							<a class="nav-link" (click)="setHome()" routerLink="user-panel" routerLinkActive="active">Perfil</a>
-						</li>
-						<li>
-							<a class="nav-link" (click)="setHome()" routerLink="user-config" routerLinkActive="active">Configuración</a>
-						</li>
-						<li>
-							<a class="nav-link" (click)="setHome()" routerLink="user-security" routerLinkActive="active">Seguridad</a>
-						</li>
-						<li>
-							<a class="nav-link" (click)="setHome()" routerLink="user-accessibility" routerLinkActive="active">Accesibilidad</a>
-						</li>
-						<li>
-							<a class="nav-link" (click)="setHome()" routerLink="">Cerrar Sesion</a>
-						</li>
-					</ul>
-				</div>
 			</li>
 		</ul>
 	</div>
@@ -61,19 +36,19 @@
               	<ul class="list-group" id="main-menu">
 
 	                <li class="list-group-item item-sidebar">
-	                  <a href="#"><span class="oi oi-person"></span> Perfil</a>
+	                  <a (click)="setHome()" routerLink="user-panel" routerLinkActive="active"><span class="oi oi-person"></span> Perfil</a>
 	                </li>
 
 	                <li class="list-group-item item-sidebar">
-	                  <a href="#"><span class="oi oi-cog"></span> Configuración</a>
+	                  <a (click)="setHome()" routerLink="user-config" routerLinkActive="active"><span class="oi oi-cog"></span> Configuración</a>
 	                </li>
 
 	                <li class="list-group-item item-sidebar">
-	                  <a href="#"><span class="oi oi-lock-locked"></span> Seguridad</a>
+	                  <a (click)="setHome()" routerLink="user-security" routerLinkActive="active"><span class="oi oi-lock-locked"></span> Seguridad</a>
 	                </li>
 
 	                <li class="list-group-item item-sidebar">
-	                  <a href="#"><span class="oi oi-external-link"></span> Accesibilidad</a>
+	                  <a (click)="setHome()" routerLink="user-accessibility" routerLinkActive="active"><span class="oi oi-external-link"></span> Accesibilidad</a>
 	                </li>
 
 	                <li class="list-group-item item-sidebar">
