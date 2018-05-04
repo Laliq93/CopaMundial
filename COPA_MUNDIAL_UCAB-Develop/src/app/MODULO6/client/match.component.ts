@@ -12,10 +12,7 @@ export class MatchComponent {
 
   constructor(private router: Router){}
 
-  faseEliminatorias(): void {
-    alert.call;
-		this.router.navigate(['home/match/Eliminatorias']);
-  }	
+
 
   details(): void {
 		this.router.navigate(['home/match/Detalle/1']);
@@ -34,8 +31,7 @@ export class MatchComponent {
                     "bandera1": "../../../assets/banderas/egy.png",
                     "hora": "08:00",
                     "equipo2": "Uruguay",
-                    "bandera2": "../../../assets/banderas/uru.png",
-                    "puntaje": "1 - 0 "
+                    "bandera2": "../../../assets/banderas/uru.png"
                   },
                   {
                     "fecha":"14 jun. 2018",
@@ -46,8 +42,7 @@ export class MatchComponent {
                     "bandera1": "../../../assets/banderas/mar.png",
                     "hora": "11:00",
                     "equipo2": "RI de Irán",
-                    "bandera2": "../../../assets/banderas/irn.png",
-                    "puntaje": "2 - 1 "
+                    "bandera2": "../../../assets/banderas/irn.png"
                   },
                   {
                     "fecha":"14 jun. 2018",
@@ -58,8 +53,7 @@ export class MatchComponent {
                     "bandera1": "../../../assets/banderas/por.png",
                     "hora": "14:00",
                     "equipo2": "España",
-                    "bandera2": "../../../assets/banderas/esp.png",
-                    "puntaje": ""
+                    "bandera2": "../../../assets/banderas/esp.png"
                   }
                 ]
     },
@@ -74,8 +68,7 @@ export class MatchComponent {
                   "bandera1": "../../../assets/banderas/fra.png",
                   "hora": "06:00",
                   "equipo2": "Australia",
-                  "bandera2": "../../../assets/banderas/aus.png",
-                  "puntaje": ""
+                  "bandera2": "../../../assets/banderas/aus.png"
                 },
                 {
                   "fecha":"16 jun. 2018",
@@ -86,8 +79,7 @@ export class MatchComponent {
                   "bandera1": "../../../assets/banderas/arg.png",
                   "hora": "09:00",
                   "equipo2": "Islandia",
-                  "bandera2": "../../../assets/banderas/isl.png",
-                  "puntaje": ""
+                  "bandera2": "../../../assets/banderas/isl.png"
                 }
                 
               ]

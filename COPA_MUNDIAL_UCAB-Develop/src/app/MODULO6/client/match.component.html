@@ -6,9 +6,6 @@
   <li class="nav-item">
     <a aria-controls="groups" aria-selected="true" class="nav-link active"  data-toggle="tab" id="groups-tab" role="tab">Fase de Grupos</a>
   </li>
-  <li class="nav-item">
-    <a aria-controls="knockout" aria-selected="false" class="nav-link" data-toggle="tab" (click)="faseEliminatorias()"  id="knockout-tab" role="tab">Fase de Eliminatorias</a>
-  </li>
 </ul>
 
 <div class="tab-content" id="justifiedTabContent">
@@ -36,8 +33,7 @@
                 </div>
                 <div class="col-sm-4">
                     <h4><img src="{{inf.bandera1}}" alt="{{inf.equipo1}}" class="img-thumbnail">
-                    <label class="match-time" *ngIf="inf.puntaje.length == 0">{{inf.hora}}</label>
-                      <label class="match-score" *ngIf="inf.puntaje.length != 0">{{inf.puntaje}}</label>
+                    <label class="match-time">{{inf.hora}}</label>
                     <img src="{{inf.bandera2}}" alt="{{inf.equipo2}" class="img-thumbnail">
                     </h4>
                   </div>
@@ -52,8 +48,6 @@
     </div>
 
   </div>
-  <div aria-labelledby="knockout-tab" class="tab-pane fade" id="knockout" ng-show="tab === 2" role="tabpanel">
-    Segundo panel
-  </div>
+
 
 </div>

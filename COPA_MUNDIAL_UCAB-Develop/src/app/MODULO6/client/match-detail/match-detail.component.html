@@ -7,9 +7,6 @@
       <a aria-controls="groups" aria-selected="false" class="nav-link"  data-toggle="tab" (click)="faseGrupos()" id="groups-tab" role="tab">Fase de Grupos</a>
     </li>
     <li class="nav-item">
-      <a aria-controls="knockout" aria-selected="false" class="nav-link" data-toggle="tab" (click)="faseEliminatorias()"  id="knockout-tab" role="tab">Fase de Eliminatorias</a>
-    </li>
-    <li class="nav-item">
         <a aria-controls="details" aria-selected="true" class="nav-link active" data-toggle="tab" (click)="details()"  id="details-tab" role="tab">Partido</a>
       </li>
   </ul>
@@ -22,7 +19,7 @@
             {{match.estadio}}, {{match.ciudad}} {{match.fecha}} Hora: {{match.hora}}
         </div>
         <div class="match-phase"> <strong>{{match.fase}}</strong></div>
-        <div class="match-result"> FINAL DEL PARTIDO </div>
+        <div class="match-result"> HORA DEL PARTIDO </div>
         <div class="row" id="match-header">
           <div class="col-sm-4">
             <h4> <img src="{{match.bandera1}}" alt="{{match.equipo1}}" class="img-thumbnail">
@@ -30,8 +27,7 @@
             </div>
             <div class="col-sm-4">
                <h4>
-                 <label class="match-time" *ngIf="match.puntaje.length == 0">{{match.hora}}</label>
-                 <label class="match-score" *ngIf="match.puntaje.length != 0">{{match.puntaje}}</label>
+                 <label class="match-time">{{match.hora}}</label>
                </h4>
             </div>
             <div class="col-sm-4">
@@ -42,10 +38,6 @@
            
           </div>
         </div>
-        <div class="d-block">RESUMEN</div>
-        <hr>
-        <div class="d-block">MATCHCAST</div>
-        <hr>
         <div class="d-block">ALINEACIÓN</div>
         <hr>
             <div class="row" *ngFor="let partido of listmatch">
@@ -56,14 +48,14 @@
                    </div>
                    <ng-container *ngFor="let player of match.players">
                       <div>
-                            <label class="player-num"  *ngIf="player.posicion == 'titular'">{{player.numero}}</label><label class="player-name" *ngIf="player.posicion == 'titular'">{{player.nombre}}</label>
+                            <label class="player-num"  *ngIf="player.estado == 'titular'">{{player.numero}}</label><label class="player-name" *ngIf="player.estado == 'titular'">{{player.nombre}}</label>
                       </div>
                    </ng-container>
                    <br>
                    <h5><strong>Suplentes</strong></h5>
                    <ng-container  *ngFor="let player of match.players">
                       <div>
-                        <label class="player-num"  *ngIf="player.posicion == 'suplente'">{{player.numero}}</label><label class="player-name" *ngIf="player.posicion == 'suplente'">{{player.nombre}}</label>
+                        <label class="player-num"  *ngIf="player.estado == 'suplente'">{{player.numero}}</label><label class="player-name" *ngIf="player.estado == 'suplente'">{{player.nombre}}</label>
                       </div>
                    </ng-container>
                 </div>
@@ -74,18 +66,20 @@
                     </div>
                     <ng-container *ngFor="let player of match.players">
                         <div>
-                              <label class="player-num"  *ngIf="player.posicion == 'titular'">{{player.numero}}</label><label class="player-name" *ngIf="player.posicion == 'titular'">{{player.nombre}}</label>
+                              <label class="player-num"  *ngIf="player.estado == 'titular'">{{player.numero}}</label><label class="player-name" *ngIf="player.estado == 'titular'">{{player.nombre}}</label>
                         </div>
                      </ng-container>
                     <br>
                       <h5><strong>Suplentes</strong></h5>
                       <ng-container  *ngFor="let player of match.players">
                           <div>
-                            <label class="player-num"  *ngIf="player.posicion == 'suplente'">{{player.numero}}</label><label class="player-name" *ngIf="player.posicion == 'suplente'">{{player.nombre}}</label>
+                            <label class="player-num"  *ngIf="player.estado == 'suplente'">{{player.numero}}</label><label class="player-name" *ngIf="player.estado == 'suplente'">{{player.nombre}}</label>
                           </div>
                        </ng-container>
                 </div>
             </div>
+            <div class="d-block">FORMACIÓN</div>
+            <hr>
          </div>
         
       </div>

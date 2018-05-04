@@ -31,7 +31,6 @@ export class MatchDetailComponent implements OnInit {
       "equipo1": "EGIPTO",
       "bandera1": "../../../assets/banderas/egy.png",
       "hora": "08:00",
-      "puntaje": "1 - 0 ",
       "equipo2": "URUGUAY",
       "bandera2": "../../../assets/banderas/uru.png",
     }
@@ -42,101 +41,117 @@ export class MatchDetailComponent implements OnInit {
       "equipo": "EGIPTO",
       "players": [ {
         "nombre":"NIGMATULLIN",
-        "posicion":"titular",
-        "numero": "1"
+        "posicion":"arquero",
+        "numero": "1",
+        "estado":"titular"
         
       },
       {
         "nombre":"KOVTUN",
-        "posicion":"titular",
-        "numero": "2"
-       
+        "posicion":"defensor",
+        "numero": "2",
+        "estado":"titular"
       },
       {
         "nombre":"NIKIFOROV",
-        "posicion":"titular",
+        "posicion":"defensor",
         "numero": "3",
+        "estado":"titular"
       },
       {
         "nombre":"SOLOMATIN",
-        "posicion":"titular",
+        "posicion":"defensor",
         "numero": "5",
+        "estado":"titular"
       },
       {
         "nombre":"SEMSHOV",
-        "posicion":"titular",
+        "posicion":"defensor",
         "numero": "6",
+        "estado":"titular"
       },
       {
         "nombre":"ONOPKO",
-        "posicion":"titular",
+        "posicion":"medio campista",
         "numero": "7",
+        "estado":"titular"
   
       },
       {
         "nombre":"KARPIN",
-        "posicion":"titular",
+        "posicion":"medio campista",
         "numero": "8",
+        "estado":"titular"
   
       },
       {
         "nombre":"TITOV",
-        "posicion":"titular",
+        "posicion":"medio campista",
         "numero": "9",
+        "estado":"titular"
     
       },
       {
         "nombre":"BESCHASTNYKH",
-        "posicion":"titular",
+        "posicion":"delantero",
         "numero": "11",
+        "estado":"titular"
      
       },
       {
         "nombre":"PIMENOV",
-        "posicion":"titular",
+        "posicion":"delantero",
         "numero": "19",
+        "estado":"titular"
      
       },
       {
         "nombre":"IZMAYLOV",
-        "posicion":"titular",
+        "posicion":"delantero",
         "numero": "20",
+        "estado":"titular"
      
       },
       {
         "nombre":"SMERTIN",
-        "posicion":"suplente",
+        "posicion":"arquero",
         "numero": "19",
+        "estado":"suplente"
      
       },
       {
         "nombre":"MOSTOVOY",
-        "posicion":"suplente",
+        "posicion":"defensa",
         "numero": "10",
+        "estado":"suplente"
      
       },
       {
         "nombre":"CHERCHESOV",
-        "posicion":"suplente",
+        "posicion":"defensa",
         "numero": "12",
+        "estado":"suplente"
      
       },
       {
         "nombre":"DAEV",
-        "posicion":"suplente",
+        "posicion":"delantero",
         "numero": "13",
+        "estado":"suplente"
      
       },
       {
         "nombre":"CHIGAYNOV",
-        "posicion":"suplente",
+        "posicion":"delantero",
         "numero": "14",
+        "estado":"suplente"
      
       },
       {
         "nombre":"ALENICHEV",
-        "posicion":"suplente",
+        "posicion":"delantero",
         "numero": "15",
+        "estado":"suplente"
      
       }
 
@@ -149,107 +164,111 @@ export class MatchDetailComponent implements OnInit {
       "equipo": "URUGUAY",
       "players": [ {
         "nombre":"F. MUSLERA",
-        "posicion":"titular",
+        "posicion":"arquero",
         "numero": "1",
+        "estado":"titular"
        
       },
       {
         "nombre":"D. LUGANO",
-        "posicion":"titular",
+        "posicion":"defensa",
         "numero": "2",
+        "estado":"titular"
       
       },
       {
         "nombre":"D. GODIN",
-        "posicion":"titular",
+        "posicion":"defensa",
         "numero": "3",
+        "estado":"titular"
        
       },
       {
         "nombre":"W. GARGANO",
-        "posicion":"titular",
+        "posicion":"defensa",
         "numero": "5",
+        "estado":"titular"
         
       },
       {
         "nombre":"C. RODRIGUEZ",
-        "posicion":"titular",
+        "posicion":"defensa",
         "numero": "7",
-        
+        "estado":"titular"
       },
       {
         "nombre":"D. FORLAN",
-        "posicion":"titular",
+        "posicion":"medio campista",
         "numero": "10",
-       
+        "estado":"titular"
       },
       {
         "nombre":"C. STUANI",
-        "posicion":"titular",
+        "posicion":"medio campista",
         "numero": "11",
-       
+        "estado":"titular"
       },
       {
         "nombre":"M. PEREIRA",
-        "posicion":"titular",
+        "posicion":"medio campista",
         "numero": "16",
-       
+        "estado":"titular"
       },
       {
         "nombre":"E. AREVALO RIOS",
-        "posicion":"titular",
+        "posicion":"delantero",
         "numero": "17",
-       
+        "estado":"titular"
       },
       {
         "nombre":"E. CAVANI",
-        "posicion":"titular",
+        "posicion":"delantero",
         "numero": "21",
-       
+        "estado":"titular"
       },
       {
         "nombre":"M. CACERES",
-        "posicion":"titular",
+        "posicion":"delantero",
         "numero": "22",
-
+        "estado":"titular"
       },
       {
         "nombre":"R. MUÑOZ",
-        "posicion":"suplente",
+        "posicion":"arquero",
         "numero": "12",
-       
+        "estado":"suplente"
       }
       ,
       {
         "nombre":"M. SILVA",
-        "posicion":"suplente",
+        "posicion":"arquero",
         "numero": "23",
-       
+        "estado":"suplente"
       }
       ,
       {
         "nombre":"J. FUCILE",
-        "posicion":"suplente",
+        "posicion":"arquero",
         "numero": "4",
-       
+        "estado":"suplente"
       },
       {
         "nombre":"A. PEREIRA",
-        "posicion":"suplente",
+        "posicion":"medio campista",
         "numero": "6",
-       
+        "estado":"suplente"
       },
       {
         "nombre":"A. HERNANDEZ",
-        "posicion":"suplente",
-        "numero": "8",
-       
+        "posicion":"medio campista",
+        "numero":"8",
+        "estado":"suplente"
       },
       {
         "nombre":"L. SUAREZ",
-        "posicion":"suplente",
+        "posicion":"delantero",
         "numero": "9",
-       
+        "estado":"suplente"
       }
     ]
     }

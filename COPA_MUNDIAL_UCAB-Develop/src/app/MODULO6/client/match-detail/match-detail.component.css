@@ -29,6 +29,7 @@
 
    #match-header{
         border-bottom: 2px solid #bfbfbf;
+       
     }
     /*
     .row hr{
@@ -63,9 +64,16 @@
         padding-top: 20px;
     }
 
-    .match-score, .match-time, .match-team, .match-position{
+     .match-time, .match-team, .match-position{
     
         font-size: 20px;
+        color: #666;
+        font-weight:  bold;
+    }
+
+    .match-score{
+        padding-top: 10px;
+        font-size: 30px;
         color: #666;
         font-weight:  bold;
     }

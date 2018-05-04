@@ -14,7 +14,6 @@ import { StadiumComponent } from './MODULO3/client/stadium.component'
 import { TeamComponent } from './MODULO4/client/team.component'
 import { PlayerComponent } from './MODULO5/client/player.component'
 import { MatchComponent } from './MODULO6/client/match.component'
-import { KnockoutPhaseComponent } from './MODULO6/client/knockout-phase/knockout-phase.component'
 import { MatchDetailComponent } from './MODULO6/client/match-detail/match-detail.component'
 import { AchievementComponent } from './MODULO7/client/achievement.component'
 import { BetComponent } from './MODULO8/client/bet.component'
@@ -47,7 +46,6 @@ const routes: Routes = [
       { path: 'team' , component: TeamComponent },
       { path: 'player' , component: PlayerComponent },
       { path: 'match' , component: MatchComponent },
-      { path: 'match/Eliminatorias' , component: KnockoutPhaseComponent },
       { path: 'match/Detalle/:id' , component: MatchDetailComponent },
       { path: 'achievement' , component: AchievementComponent },
       { path: 'bet' , component: BetComponent },
