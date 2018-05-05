@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { StadiumComponent } from './client/stadium.component';
 import { StadiumAdminComponent } from './admin/stadium-admin.component';
 import { StadiumDetailComponent } from './client/stadium-detail/stadium-detail.component';
-import { CreateStadiumComponent } from './client/create-stadium/create-stadium.component';
+import { StadiumDetailAdminComponent } from './admin/stadium-detail-admin/stadium-detail-admin.component';
+import { CreateStadiumComponent } from './admin/create-stadium/create-stadium.component';
 
 @NgModule({
   imports: [CommonModule],
@@ -11,13 +12,17 @@ import { CreateStadiumComponent } from './client/create-stadium/create-stadium.c
   	StadiumComponent,
     StadiumAdminComponent,
     StadiumDetailComponent,
-    CreateStadiumComponent
+    CreateStadiumComponent,
+    StadiumDetailAdminComponent,
+    StadiumAdminComponent
   ],
   providers: [],
   exports: [ 
   	StadiumComponent,
     StadiumAdminComponent,
-    StadiumDetailComponent
+    StadiumDetailComponent,
+    StadiumDetailAdminComponent,
+    StadiumAdminComponent
   ]
 })
 

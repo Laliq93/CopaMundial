@@ -30,3 +30,12 @@
 .oi-trash{
     color:	#A52A2A;
 }
+.container-fluid{
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url("../../../assets/images/background-stadium.jpg");
+	height: 100vh;
+    position: relative;
+    background-color: rgb(0, 0, 20);
+}
