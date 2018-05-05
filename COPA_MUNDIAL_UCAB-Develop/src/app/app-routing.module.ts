@@ -10,6 +10,7 @@ import { LoginComponent } from './MODULO1/client/login.component'
 import { SigninComponent } from './MODULO1/client/signin.component'
 import { SignupComponent } from './MODULO1/client/signup.component'
 import { RecoveryComponent } from './MODULO1/client/recovery.component'
+import { ChangePasswordComponent } from './MODULO1/client/changePassword.component'
 import { CityComponent } from './MODULO2/client/city.component'
 import { StadiumComponent } from './MODULO3/client/stadium.component'
 import { TeamComponent } from './MODULO4/client/team.component'
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'signin' ,  component:  SigninComponent },
   { path: 'signup' ,  component:  SignupComponent },
   { path: 'recovery' ,  component:  RecoveryComponent },
+  { path: 'changePassword' ,  component:  ChangePasswordComponent },
   { path: 'home', component:  HomeComponent,
 
 
