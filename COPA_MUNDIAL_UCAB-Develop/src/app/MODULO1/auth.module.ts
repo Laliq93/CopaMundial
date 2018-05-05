@@ -4,6 +4,7 @@ import { LoginComponent } from './client/login.component';
 import { SigninComponent } from './client/signin.component';
 import { SignupComponent } from './client/signup.component';
 import { RecoveryComponent } from './client/recovery.component';
+import { ChangePasswordComponent } from './client/changePassword.component';
 import { LoginAdminComponent } from './admin/login-admin.component';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { LoginAdminComponent } from './admin/login-admin.component';
     SigninComponent,
     SignupComponent,
     RecoveryComponent,
+    ChangePasswordComponent
   	LoginAdminComponent
   ],
   providers: [],
@@ -21,6 +23,7 @@ import { LoginAdminComponent } from './admin/login-admin.component';
     SigninComponent,
     SignupComponent,
     RecoveryComponent,
+    ChangePasswordComponent,
 	LoginAdminComponent
   ]
 })
