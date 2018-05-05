@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-5 col-sm-12">
+      <form class="card">
+        <div class="form">
+          <div class="row justify-content-center">
+            <label class="h2" for="titleNewStadium">Nuevo Estadio</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="subTitle" for="exampleInputNombre">Nombre del Estadio</label>
+          <input type="text" class="form-control" id="exampleInputNombre" placeholder="">
+        </div>
+
+        <div class="form-group">
+            <label class="subTitle" for="exampleInputCity" >Ciudad</label>
+            <div class="col-xs-5 selectContainer">
+                <select class="form-control" name="size">
+                    <option value="">Seleccione ciudad</option>
+                    <option value="s">Opcion 1</option>
+                    <option value="m">Opcion 2</option>
+                    <option value="l">Opcion 3</option>
+                    <option value="xl">Opcion 4</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label class="subTitle" for="exampleInputCapacity">Capacidad</label>
+          <input type="number" class="form-control" id="exampleInputCapacity" placeholder="">
+        </div>
+
+        <div class="form-group">
+          <label class="subTitle" for="exampleInputWeather">Clima</label>
+          <input type="text" class="form-control" id="exampleInputWeather" placeholder="">
+        </div>
+
+        <div class="form-group">
+          <label class="subTitle" for="exampleInputImage">Imagen del Estadio</label>
+          <!--<form action="/action_page.php">-->
+            <input type="file" class="form-control" id="exampleInputImage" accept="image/*">
+          <!--</form>-->
+        </div>
+
+        <button (click)="save()" type="submit" class="btn btn-primary btn-save">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>
