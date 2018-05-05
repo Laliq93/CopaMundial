@@ -17,8 +17,9 @@ namespace WebAPI.Models.Usuario
         private string _nombreUsuario;
         private string _password;
         private string _token;
+        private bool _administrador;
 
-        public Usuario(int id, string nombre, string apellido, DateTime fechaNacimiento, string correo, char genero, string fotoPath, string nombreUsuario, string password)
+        public Usuario(int id, string nombre, string apellido, DateTime fechaNacimiento, string correo, char genero, string fotoPath, string nombreUsuario, string password, bool administrador)
         {
             _id = id;
             _nombre = nombre;
@@ -29,6 +30,7 @@ namespace WebAPI.Models.Usuario
             _fotoPath = fotoPath;
             _nombreUsuario = nombreUsuario;
             _password = password;
+            _administrador = administrador;
         }
 
         public int id
@@ -89,5 +91,10 @@ namespace WebAPI.Models.Usuario
             set { _token = value; }
         }
 
+        public bool administrador
+        {
+            get { return _administrador; }
+            set { _administrador = value; }
+        }
     }
 }
