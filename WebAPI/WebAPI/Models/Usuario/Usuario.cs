@@ -16,11 +16,9 @@ namespace WebAPI.Models.Usuario
         private string _fotoPath;
         private string _nombreUsuario;
         private string _password;
-        private string _passwordTemporal;
         private string _token;
-        private Rol _rol;
 
-        public Usuario(int id, string nombre, string apellido, DateTime fechaNacimiento, string correo, char genero, string fotoPath, string nombreUsuario, string password, Rol rol)
+        public Usuario(int id, string nombre, string apellido, DateTime fechaNacimiento, string correo, char genero, string fotoPath, string nombreUsuario, string password)
         {
             _id = id;
             _nombre = nombre;
@@ -31,7 +29,6 @@ namespace WebAPI.Models.Usuario
             _fotoPath = fotoPath;
             _nombreUsuario = nombreUsuario;
             _password = password;
-            _rol = rol;
         }
 
         public int id
@@ -86,21 +83,10 @@ namespace WebAPI.Models.Usuario
             set { _password = value; }
         }
 
-        public string passwordTemporal
-        {
-            get { return _passwordTemporal; }
-            set { _passwordTemporal = value; }
-        }
-
         public string token
         {
             get { return _token; }
             set { _token = value; }
-        }
-
-        public Rol rol
-        {
-            get { return _rol; }
         }
 
     }
