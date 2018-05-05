@@ -1,1 +1,24 @@
-<p>Soy el modulo {{ modulo }}</p>
+<!--<p>Soy el modulo {{nombreCiudades}}</p> -->
+<!--<ul>
+<li *ngFor="let ciudad of nombreCiudades"> <h2>{{ciudad}}</h2> </li>
+</ul>
+-->
+
+
+
+<header class="header-image anyClass">    
+        <button  class="btn btn-primary btn-SeleccionCiudad" *ngFor="let ciudad of nombreCiudades">        
+            <div class="container">
+                    <div class="row">   <!--Aca utilizamos el grid de bootstrap con los row y clo-sm -->
+                      <div class="col-sm">
+                            <h3>{{ciudad}} </h3> 
+                      </div>
+                    </div>
+                </div>      
+        </button>
+    </header>
+
+
+
+
+
