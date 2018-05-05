@@ -14,7 +14,7 @@ import { LoginAdminComponent } from './admin/login-admin.component';
     SigninComponent,
     SignupComponent,
     RecoveryComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
   	LoginAdminComponent
   ],
   providers: [],
