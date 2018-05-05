@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {RouterModule, Router } from '@angular/router';
 
 enum MODULES {
 	CIUDADES = "CIUDADES",
@@ -7,8 +8,8 @@ enum MODULES {
 	JUGADORES = "JUGADORES",
 	PARTIDOS = "PARTIDOS",
 	APUESTAS = "APUESTAS",
-	ESTADISTICAS = "ESTADISTICAS"
-}
+	ESTADISTICAS = "ESTADISTICAS",
+	}
 
 class Module {
 	name: MODULES;
@@ -31,13 +32,15 @@ type Menu = "menu" | "menu-2";
 })
 
 export class HomeComponent {
+	
 	private moduleArray: Array<Module>;
 	private moduleMap: Map<MODULES, Module> = new Map<MODULES, Module>();
 	private loadPanel: boolean; 
 	private menu: Menu; 
 	public esHome: boolean;
 	
-	constructor(){
+	constructor(private router: Router){
+
 		this.moduleArray = [
 			new Module(MODULES.CIUDADES, "city", false),
 			new Module(MODULES.ESTADIOS, "stadium", false),
@@ -64,6 +67,7 @@ export class HomeComponent {
 		for (var i = 0; i < this.moduleArray.length; i++) {
 			this.moduleMap.set(this.moduleArray[i].name, this.moduleArray[i]);
 		}
+		
 	}
 
 	setModuleActive(module: MODULES) {
@@ -73,6 +77,11 @@ export class HomeComponent {
 
 		this.moduleMap.get(module).isActive = true;
 		this.esHome=true;
+
+	}
+
+	setHome(){
+		this.esHome=true;
 	}
 
 	toggleUserPanel(): void {
@@ -81,6 +90,7 @@ export class HomeComponent {
 			this.menu = "menu";
 		} else {
 			this.menu = "menu";
-		}
+		}		
 	}	
+
 }

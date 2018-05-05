@@ -16,5 +16,9 @@ export class LoginComponent {
 	signup(): void {
 		this.router.navigate(['signup']);
 	}
+	admin(): void {
+		this.router.navigate(['admin']);
+	}
+
 }
 
