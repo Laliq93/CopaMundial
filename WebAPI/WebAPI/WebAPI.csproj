@@ -218,8 +218,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataBase\DataBase.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Usuario\Privilegio.cs" />
-    <Compile Include="Models\Usuario\Rol.cs" />
     <Compile Include="Models\Usuario\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />

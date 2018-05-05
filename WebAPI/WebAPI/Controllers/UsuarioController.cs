@@ -146,7 +146,7 @@ namespace WebAPI.Controllers
 
                 Usuario user = new Usuario(Convert.ToInt32(dataTable.Rows[0][0]), dataTable.Rows[0][1].ToString(), dataTable.Rows[0][2].ToString(),
                     DateTime.Parse(dataTable.Rows[0][3].ToString()), dataTable.Rows[0][4].ToString(), Convert.ToChar(dataTable.Rows[0][5]), null, 
-                        dataTable.Rows[0][6].ToString(), dataTable.Rows[0][7].ToString(), null);
+                        dataTable.Rows[0][6].ToString(), dataTable.Rows[0][7].ToString(), false);
                 return user;
             }
             catch (Exception)
