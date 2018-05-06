@@ -19,6 +19,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 
+
 //servicios
 import { ApiService } from './shared/api.service';
 
@@ -29,7 +30,9 @@ import { ApiService } from './shared/api.service';
   declarations: [
     AppComponent,
     HomeComponent,
-    AdminComponent
+    AdminComponent,
+    
+   
   ],
   imports: [
     BrowserModule,

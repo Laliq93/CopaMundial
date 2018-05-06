@@ -1,0 +1,250 @@
+<div class="wrap-menu">
+	<div class="achievement-menu" [@slideInOut]="menuState">
+	<ul class="nav flex-column nav-tabs">
+		<li class="nav-item">
+			<a class="nav-link" [ngClass]="{'active': dashboardActive }" (click)="setDashboardActive()"> Dashboard
+			</a>
+		</li>		
+		<li class="nav-item">
+			<a class="nav-link" [ngClass]="{'active': gestionarDatosActive }" (click)="setDataActive()"> CARGA DE DATOS
+			</a>
+		</li>		
+		<li class="nav-item">
+			<a class="nav-link" [ngClass]="{'active': gestionarLogrosActive }" (click)="setManagementActive()"> Gestionar Logros
+			</a>
+		</li>
+	</ul>
+	</div>
+</div>
+<div class="main">
+	<div class="dashboard" *ngIf="dashboardActive">
+		<div class="row">
+			<div class="col-md-6 achievement-section" (click)="toggleActiveAchievements()">
+				<div class="achievement-wrap">
+					<h2 class="active-achivements">3</h2>
+					<h3 class="achivement-text">Logros Activos</h3>
+				</div>
+				<achievement-graph [data]="activeData" [graphId]="'activeid'"></achievement-graph>
+			</div>
+			<div class="col-md-6 achievement-section" (click)="toggleInactiveAchievements()">
+				<div class="achievement-wrap">
+					<h2 class="inactive-achivements">16</h2>
+					<h3 class="achivement-text">Logros Inactivos</h3>
+				</div>
+				<achievement-graph [data]="inactiveData" [graphId]="'inactiveid'"></achievement-graph>
+			</div>
+		</div>
+
+		<div class="row" *ngIf="displayActiveAchievement" [@slideUpDown]="isUpDown">
+			<div class="col-md-12">
+				<table class="table table-hover">
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">First</th>
+				      <th scope="col">Last</th>
+				      <th scope="col">Handle</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">1</th>
+				      <td>Mark</td>
+				      <td>Otto</td>
+				      <td>@mdo</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">2</th>
+				      <td>Jacob</td>
+				      <td>Thornton</td>
+				      <td>@fat</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">3</th>
+				      <td colspan="2">Larry the Bird</td>
+				      <td>@twitter</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6 bot-row">
+				<percentage-graph [data]="activePieData" [graphId]="'activepieid'"></percentage-graph>
+			</div>
+			<div class="col-md-6 bot-row">
+				<percentage-graph [data]="inactivePieData" [graphId]="'inactivepieid'"></percentage-graph>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="legend-player"></div>
+						<h3 class="center-text">Jugadores</h3>
+					</div>
+					<div class="col-md-4">
+						<div class="legend-team"></div>
+						<h3 class="center-text">Equipos</h3>					
+					</div>
+					<div class="col-md-4">
+						<div class="legend-independent"></div>
+						<h3 class="center-text">Libres</h3>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>		
+	</div>
+
+
+
+
+	<div class="management" *ngIf="gestionarLogrosActive">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <a class="navbar-brand" href="#">Logros</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		    </ul>
+		    <form class="form-inline my-2 my-lg-0">
+		      <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+		    </form>
+		  </div>
+		</nav>
+
+		<form>
+		  <div class="row">
+		  	<div class="col-1"></div>
+		    <div class="col-3">
+		    	<label for="exampleFormControlFile1">Tipo de logro</label>
+				<select class="form-control form-control-sm">
+				  <option>Todos</option>
+				  <option>Equipo</option>
+				  <option>Libre</option>
+				  <option>Jugador</option>
+				</select>
+		    </div>
+		    <div class="col-3">
+		    	<label for="exampleFormControlFile1">Equipo</label>
+				<select class="form-control form-control-sm">
+				  <option>Todos</option>
+				  <option>Brasil</option>
+				  <option>Argentina</option>
+				  <option>Alemania</option>
+				  <option>...</option>
+				</select>
+		    </div>
+		    <div class="col-3">
+		    	<label for="exampleFormControlFile1">Partido</label>
+      			<input type="text" class="form-control" id="inlineFormInputName" placeholder="ID Partido">
+		    </div>
+		    <div class="col-1">
+		    	<label for="exampleFormControlFile1"></label>
+		    	<button type="submit" class="btn btn-primary">Buscar</button>
+		    </div>
+		    <div class="col-1"></div>
+		  </div>
+		</form>
+
+		<div class="container">
+			<div class="row table-label">
+				<div class="col-1"></div>
+				<div class="col-3">Partido</div>
+				<div class="col-5"></div>
+				<div class="col-3">Fecha</div>
+			</div>	
+		</div>
+		<div class="container">
+			<div class="row table-header">
+				<div class="col-4"></div>
+				<div class="col-5"></div>
+				<div class="col-1"></div>
+				<div class="col-1"></div>
+				<div class="col-1"></div>
+			</div>
+		</div>		
+		<div class="container">		
+			<div class="row table-row" (click)="showMatchDetail()">
+				<div class="col-7">
+					<img class="team" src="../../assets/banderas/rus.png">
+					<span class="vs">VS</span>
+					<img class="team" src="../../assets/banderas/nga.png">
+				</div>
+				<div class="col-2"></div>
+				<div class="col-3">15/06</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-1"></div>
+						<div class="col-10"></div>
+						<div class="col-1"></div>
+					</div>
+				</div>
+			</div>	
+			<div class="row table-row" (click)="showMatchDetail()">
+				<div class="col-7">
+					<img class="team" src="../../assets/banderas/arg.png">
+					<span class="vs">VS</span>
+					<img class="team" src="../../assets/banderas/col.png">
+				</div>
+				<div class="col-2"></div>
+				<div class="col-3">15/06</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-1"></div>
+						<div class="col-10"></div>
+						<div class="col-1"></div>
+					</div>
+				</div>
+			</div>	
+			<div class="row table-row" (click)="showMatchDetail()">
+				<div class="col-7">
+					<img class="team" src="../../assets/banderas/eng.png">
+					<span class="vs">VS</span>
+					<img class="team" src="../../assets/banderas/esp.png">
+				</div>
+				<div class="col-2"></div>
+				<div class="col-3">15/06</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-1"></div>
+						<div class="col-10"></div>
+						<div class="col-1"></div>
+					</div>
+				</div>
+			</div>		
+		</div>
+	</div>
+
+
+
+
+	<div class="row" *ngIf="gestionarDatosActive">
+		<div class="row top-half" (click)="downloaFormat()">
+			<div class="col-4"></div>
+			<div class="col-4">
+				<img class="data-icon" src="../../assets/MODULO-7/download-format.svg">
+				<h4 class="file-text">Descargar formato</h4>
+			</div>
+			<div class="col-4"></div>
+		</div>	
+		<div class="row bottom-half">
+			<div class="col-4"></div>
+			<div class="col-4">				
+				<img class="data-icon" src="../../assets/MODULO-7/upload-data.svg">
+				<h4 class="file-text">Subir archivo</h4>
+			</div>
+			<div class="col-4"></div>
+		</div>
+	</div>
+</div>
+
+
+
+
+

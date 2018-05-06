@@ -2,7 +2,7 @@
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-image: url("../../../assets/images/background.jpg");
+	background-image: url("../../../assets/images/background-russia.jpg");
 	height: 100vh;
 	position: relative;
 }
@@ -26,6 +26,22 @@ form {
 
 .btn-signin{
 	background-color: #A11D1B;
+}
+
+.link-forgot-password{
+	margin: 15px;
+	text-align: center;
+	color: #02588e;
+}
+
+.btn-forgot-password{
+	box-shadow: none;
+	font-size: 13px;
+	text-transform: none;
+}
+
+.btn-forgot-password:hover{
+	background-image: none;
 }
 
 .no-padding{
