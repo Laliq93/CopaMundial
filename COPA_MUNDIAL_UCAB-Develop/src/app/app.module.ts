@@ -24,7 +24,6 @@ import { AdminComponent } from './admin/admin.component';
 import { ApiService } from './shared/api.service';
 
 
-
 //angular pipes (directiva)
 
 @NgModule({
