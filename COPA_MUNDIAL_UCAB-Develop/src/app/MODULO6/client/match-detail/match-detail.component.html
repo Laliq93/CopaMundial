@@ -1,6 +1,6 @@
-<nav class="navbar navbar-light bg-light">
+<!--<nav class="navbar navbar-light bg-light">
     <span class="navbar-brand mb-0 h1">PARTIDOS</span>
-  </nav>
+  </nav>-->
   
   <ul class="nav nav-justified nav-tabs" id="justifiedTab" role="tablist">
     <li class="nav-item">
@@ -10,7 +10,7 @@
         <a aria-controls="details" aria-selected="true" class="nav-link active" data-toggle="tab" (click)="details()"  id="details-tab" role="tab">Partido</a>
       </li>
   </ul>
-  
+  <div class="container-fluid">
   <div class="tab-content" id="justifiedTabContent">
     <div aria-labelledby="details-tab" class="tab-pane fade show active" ng-show="tab === 1" id="details"  role="tabpanel" >
       <div class="container" *ngFor="let match of listmatch">
@@ -38,10 +38,36 @@
            
           </div>
         </div>
+        
+        <div class="d-block">FORMACIÓN</div>
+        <hr>
+        <div class="match-lineup">
+         <img src="../../../../assets/images/field.png" class="img-field">
+            <div class="row justify-content-md-center">
+                <div class="col">
+                  1 of 2
+                </div>
+            </div>
+              <div class="row justify-content-md-center">
+                <div class="col">
+                  1 of 4
+                </div>
+                <div class="col">
+                  2 of 4
+                </div>
+                <div class="col">
+                  3 of 4
+                </div>
+                <div class="col">
+                    4 of 4
+                  </div>
+              </div>
+        </div>
         <div class="d-block">ALINEACIÓN</div>
         <hr>
             <div class="row" *ngFor="let partido of listmatch">
                 <div class="col-sm-6" *ngFor="let match of listAlineacion1">
+                    <div class="container-info">
                    <div class="row">
                       <img src="{{partido.bandera1}}" alt="{{partido.equipo1}" class="img-team">
                       <h4><strong>{{match.equipo}}</strong></h4>
@@ -58,8 +84,10 @@
                         <label class="player-num"  *ngIf="player.estado == 'suplente'">{{player.numero}}</label><label class="player-name" *ngIf="player.estado == 'suplente'">{{player.nombre}}</label>
                       </div>
                    </ng-container>
+                    </div>
                 </div>
                 <div class="col-sm-6" *ngFor="let match of listAlineacion2">
+                    <div class="container-info">
                     <div class="row">
                       <img src="{{partido.bandera2}}" alt="{{partido.equipo2}" class="img-team">
                       <h4><strong>{{match.equipo}}</strong></h4>
@@ -76,13 +104,12 @@
                             <label class="player-num"  *ngIf="player.estado == 'suplente'">{{player.numero}}</label><label class="player-name" *ngIf="player.estado == 'suplente'">{{player.nombre}}</label>
                           </div>
                        </ng-container>
+                    </div>
                 </div>
             </div>
-            <div class="d-block">FORMACIÓN</div>
-            <hr>
          </div>
         
       </div>
     </div>
-  
+  </div>
   

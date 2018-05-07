@@ -1,11 +1,35 @@
-.tab-content{
+/*.tab-content{
     
         overflow-y: scroll;
         height: 75%;
         position: relative;
     
+}*/
+    .nav, .nav-justified, .nav-tabs
+    {
+        background-color: #A11D1B;
+        color: #fff;
+        
+        
     }
     
+    .nav-tabs a{
+        color: #fff;
+    }
+    
+    .container-fluid{
+        
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: local;
+            background-image: url("../../../../assets/images/background-match.jpg");
+            height: 100vh;
+            position: relative;
+            /*background-color: rgb(0, 0, 100);*/
+            background-color: #fff;
+        
+        }
     .tab-content
     {
         padding-top: 1%;
@@ -18,14 +42,25 @@
     
     }
 
-    
+    .container-info{
+        
+        margin-top: 0px;
+        padding-top: 5px;
+        padding-left: 15px;
+        padding-right: 5px;
+        background-color: rgba(63,63,63,0.7);
+        border-radius: 10px 10px 10px 10px;
+    }
     .row{
        
         margin-bottom: 0px;
-        padding-bottom: 30px;
+        padding-bottom: 20px;
+        padding-top: 10px;
         color: #666;
+     /*   color: #fff;*/
        
     }
+
 
    #match-header{
         border-bottom: 2px solid #bfbfbf;
@@ -48,9 +83,14 @@
     .d-block {
     
         margin-top: 50px;
-        color: #3f3f3f;
+        color: #fff;
+        /*color: #3f3f3f;*/
         font-size: 16px;
         font-weight: bold;
+        border-radius: 5px 5px 5px 5px;
+        background: #02588E;
+        padding: 15px;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
     }
     
     .col-sm-4 p{
@@ -61,7 +101,7 @@
     .col-sm-6{
 
         text-align: left;
-        padding-top: 20px;
+        padding-top: 10px;
     }
 
      .match-time, .match-team, .match-position{
@@ -105,6 +145,37 @@
     .player-name{
 
         padding-bottom: 10px;
-        color: #666;
+        color: #fff;
+       /* color: #666;*/
         font-size: 16px;
     }
+    
+    .img-field{
+
+        background-image: url("../../../../assets/images/field.png");
+        position: relative;
+        /*background-color: rgb(0, 0, 100);*/
+        width: 95%;
+        height: 95%;
+      /*  margin-left: 35px;*/
+      display: block;
+
+   
+    }
+    .match-lineup .row{
+
+        color: #fff;
+    }
+
+    .match-lineup .row{
+        margin-left: 25%;
+        margin-right: 25%;
+        position: relative;
+        display: block;
+    }
+/*
+    .match-lineup{
+        background-image:  url("../../../../assets/images/field.png");
+        position: relative;
+    }
+*/
