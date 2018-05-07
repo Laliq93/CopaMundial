@@ -1,0 +1,50 @@
+<ul class="nav nav-justified nav-tabs" id="justifiedTab" role="tablist">
+  <li class="nav-item">
+    <a aria-controls="groups" aria-selected="true" class="nav-link active"  data-toggle="tab" id="groups-tab" role="tab">Fase de Grupos</a>
+  </li>
+  <li class="nav-item">
+    <a aria-controls="Create" aria-selected="false" class="nav-link" data-toggle="tab" id="create-tab" role="tab">Crear Partido</a>
+  </li>
+</ul>
+
+<div class="tab-content" id="justifiedTabContent">
+  <div aria-labelledby="groups-tab" class="tab-pane fade show active" id="groups"  role="tabpanel" >
+    <div class="container" *ngFor="let match of listmatches">
+        <div class="d-block">{{match.dia}}</div>
+
+      <ng-container *ngFor="let inf of match.info">
+            <div class="row" >
+                <div class="col-sm-2">
+                  <h4>{{inf.equipo1}}</h4>
+                </div>
+                <div class="col-sm-4">
+                    <h4><img src="{{inf.bandera1}}" alt="{{inf.equipo1}}" class="img-thumbnail">
+                    <label class="match-time" *ngIf="inf.puntaje.length == 0">{{inf.hora}}</label>
+                      <label class="match-score" *ngIf="inf.puntaje.length != 0">{{inf.puntaje}}</label>
+                    <img src="{{inf.bandera2}}" alt="{{inf.equipo2}" class="img-thumbnail">
+                    </h4>
+                  </div>
+                <div class="col-sm-2">
+                  <h4> {{inf.equipo2}} </h4>
+                </div>
+                <div class="col-sm-2">
+                  <div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Dropdown link
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="dropdown-divider"></div>
+    </ng-container>
+    </div>
+
+  </div>
+
+</div>
