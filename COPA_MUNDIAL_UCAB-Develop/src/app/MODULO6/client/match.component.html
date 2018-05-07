@@ -16,11 +16,11 @@
      <div class="matches-container">
       <ng-container *ngFor="let inf of match.info">
         <button (click)="details()">
-            <div class="row" > 
+            <div class="row" >
               <div class="col-sm-4">
                   <p>
                       {{inf.fecha}}
-                      <br> 
+                      <br>
                       {{inf.grupo}}
                       <br>
                       {{inf.estadio}}
@@ -38,12 +38,11 @@
                     </h4>
                   </div>
                 <div class="col-sm-2">
-                  <h4> {{inf.equipo2}} </h4>  
+                  <h4> {{inf.equipo2}} </h4>
                 </div>
-              
+
             </div>
           </button>
-       <hr>
     </ng-container>
   </div>
     </div>
