@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
-
+ import { Component, OnInit } from '@angular/core';
+ //declare var jquery:any;
+ declare var $ :any;
 
 
 @Component({
@@ -9,8 +9,14 @@ import * as $ from 'jquery';
   styleUrls: ['./statistic.component.css']
 })
 export class StatisticComponent implements OnInit{
+
+
+
+
   ngOnInit(): void {
-    $('#picker').pickdate();
+    
+        $("#picker").pickdate();
+  
   }
     public modulo: string = "nueve"; 
   

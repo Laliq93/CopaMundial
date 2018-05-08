@@ -1,26 +1,25 @@
 
-<head>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script src="js/main.js"></script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- <script src="js/main.js"></script>
 <script src="js/bootstrap-datepicker.js"></script>
+<script src=""></script>
 <script type="text/javascript">
     $(function(){
-        $('.datepicker').datepicker();
+        $('.picker').datepicker();
     });   
 </script> 
-</head>
+ -->
 
-<div class="container" style="margin-left: 0%">
-    <!-- Content here -->
+<div class="container"  [ngClass]="'fondo'" >
+   <!--Content here -->
 
     <div class="row" style="left: 0px" >
         <div class="col-lg-4">
-          <h2>Componente date picker</h2>
+          <h2 >Componente date picker</h2>
           <app-datepicker></app-datepicker>
             <label for="picker">A basic example:</label>
-
-            <input class="bootstrap-datepicker" id="picker" placeholder="Pick a date" type="text">
-           
+            <input class="form-control" id="picker" placeholder="Pick a date" type="text">        
         </div> 
         <div class="col-lg-8">
           <h2>Grupos</h2>
@@ -30,15 +29,14 @@
    
   </div>
 
-<html lang="en">
-  <head>
-    <!-- Required meta tags always come first -->
+
+
+
+      <!-- Required meta tags always come first -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  </head>
   <div class="container">
       <div class="dropdown">
           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
@@ -50,4 +48,3 @@
           </ul>
         </div>
   </div>
-</html>
