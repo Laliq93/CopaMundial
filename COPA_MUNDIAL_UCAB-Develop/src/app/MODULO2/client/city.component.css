@@ -1,39 +1,6 @@
-.header-image{
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-    height: 100vh; 
-    background-color: rgba(0,0,0,0.8);
-	background-image: url("../../../assets/images/background-home.jpg");
-    position: relative;	
-}
-
-.header-image:before {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    content: "";
-    background: #000;
-    opacity: 0.5;
-    z-index: 0
-}
-
-.btn-SeleccionCiudad{
-    position: center ;
-    background-color: #A11D1B;
-    margin-left: 5%;
-    margin-top: 3%;
-    margin-bottom: 3%;
-    height: 10%;
-    width: 25%;   
- }
-
-
 .col-sm{
     margin:3%;
-    width: 25%;
+    width: 30%;
 
 }
 
@@ -42,10 +9,38 @@
     overflow-y: scroll;
   }
 
-                
+  
+  .btn-global{
+    background-color: #A11D1B;
+    color: aliceblue;
+    height: auto;
+    width: 23%; 
+    text-align: center;
+    position: center;
+    font: bold;
+    margin:1%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   
 
+    
 
+    }
 
+    .upper{
 
+        width: 100%; 
+        height: auto;
 
+    }
+
+    .botonaco{
+        display: block;
+        width: 200px;
+        height: 200px;
+        padding: 50px;
+       
+        }
+        
+        
+        
 

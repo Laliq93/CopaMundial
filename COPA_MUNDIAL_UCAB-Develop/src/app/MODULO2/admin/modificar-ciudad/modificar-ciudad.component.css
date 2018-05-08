@@ -1,15 +1,6 @@
-.header-image{
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	height: 100vh;
-	background-image: url("../../../../assets/images/background-home.jpg");
-	position: relative;	
-}
-
 form {
-    margin-left: 30%;
-    margin-top: 10%;
+    margin-left: 28%;
+    margin-top: 8%;
     margin-bottom: 20%;
     width: 300px;
    padding: 10px;
@@ -30,4 +21,11 @@ form {
 
 .btn-signin{
    background-color: #A11D1B;
+   margin-top: 1%;
+}
+
+.central{
+
+margin-right: 25%;
+    margin-left: 15%;
 }
