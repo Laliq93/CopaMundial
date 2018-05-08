@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class CityComponent {  
   public modulo: string = "dos"; 
-  nombreCiudades: string[] = ['Moscu', 'Ekaterimburgo','Leningrado ','San Petersburgo','Samara', 'Rostov','Kazan', 'Novorossiysk', 'Sochi', 'Saransk', 'Nizhni Nóvgorod', 'caracas', 'zulia', 'delta amacuro']
+  nombreCiudades: string[] = ['Moscu', 'Ekaterimburgo','Leningrado ','San Petersburgo','Samara', 'Rostov','Kazan', 'Novorossiysk', 'Sochi', 'Saransk', 'Nizhni Nóvgorod']
 
 
 }
