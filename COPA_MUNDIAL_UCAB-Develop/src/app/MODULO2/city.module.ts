@@ -6,6 +6,7 @@ import { ConsultarCiudadComponent } from './admin/consultar-ciudad/consultar-ciu
 import { ModificarCiudadComponent } from './admin/modificar-ciudad/modificar-ciudad.component';
 import { EliminarCiudadComponent } from './admin/eliminar-ciudad/eliminar-ciudad.component';
 import { AgregarCiudadComponent } from './admin/agregar-ciudad/agregar-ciudad.component';
+import { DetalleCiudadComponent } from './detalle-ciudad/detalle-ciudad.component';
 
 @NgModule({
   imports: [CommonModule],
@@ -15,7 +16,8 @@ import { AgregarCiudadComponent } from './admin/agregar-ciudad/agregar-ciudad.co
   	ConsultarCiudadComponent,
   	ModificarCiudadComponent,
   	EliminarCiudadComponent,
-  	AgregarCiudadComponent
+  	AgregarCiudadComponent,
+  	DetalleCiudadComponent
   ],
   providers: [],
   exports: [ 
