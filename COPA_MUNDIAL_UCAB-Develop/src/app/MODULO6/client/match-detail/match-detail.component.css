@@ -22,14 +22,15 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: local;
+            background-attachment: fixed;
             background-image: url("../../../../assets/images/background-match.jpg");
             height: 100vh;
             position: relative;
             /*background-color: rgb(0, 0, 100);*/
             background-color: #fff;
-        
+            overflow: scroll;
         }
+        
     .tab-content
     {
         padding-top: 1%;
@@ -51,15 +52,15 @@
         background-color: rgba(63,63,63,0.7);
         border-radius: 10px 10px 10px 10px;
     }
-    .row{
+    /*.row{
        
         margin-bottom: 0px;
         padding-bottom: 20px;
         padding-top: 10px;
         color: #666;
-     /*   color: #fff;*/
+     /*   color: #fff;
        
-    }
+    }*/
 
 
    #match-header{
@@ -133,6 +134,18 @@
         width: 10;
         height: 20px;
     }
+
+    .img-lineup{
+        width: 60;
+        height: 70px;
+
+    }
+
+    .img-lineup:hover{
+        width: 70;
+        height: 80px;
+
+    }
     .player-num{
 
         color: #9f9f9f;
@@ -149,33 +162,87 @@
        /* color: #666;*/
         font-size: 16px;
     }
-    
+
     .img-field{
 
-        background-image: url("../../../../assets/images/field.png");
+      /*  background-image: url("../../../../assets/images/field.png");*/
         position: relative;
-        /*background-color: rgb(0, 0, 100);*/
-        width: 95%;
-        height: 95%;
-      /*  margin-left: 35px;*/
-      display: block;
-
-   
+        width: 110%;
+        height: 110%;
+       /* background-position: center;*/
+        background-repeat: no-repeat;
+        
     }
+
     .match-lineup .row{
 
         color: #fff;
+        position: relative;
+        transform: translate(-20%,-530px);/*-200px,-400px*/
+        text-align: center;
+        margin-left: 35%;
+        margin-bottom: 1%;/*80px*/
     }
 
-    .match-lineup .row{
-        margin-left: 25%;
-        margin-right: 25%;
-        position: relative;
-        display: block;
+   .col-team{
+       display: inline-block;
+   }
+
+   .col label{
+
+    width: 80%;
+    padding: 2px;
+    border-top: 2px  solid white;
+    border-bottom: 2px  solid white;
+    margin: 0;
+    background: rgba(2,88,142,0.8);
+    font-size: 14px;
+    font-weight: bold;
+   }
+
+   .col-arquero label{
+    width: 100%;
+    padding: 4px;
+    border-top: 2px  solid white;
+    border-bottom: 2px  solid white;
+    margin: 0;
+    background: rgba(2,88,142,0.8);
+    font-size: 14px;
+    font-weight: bold;
+   }
+
+   .col-arquero label:hover{
+
+    background: rgba(4, 110, 175, 0.8);
+    font-size: 16px;
+    font-weight: bold;
+   }
+
+   .col label:hover{
+
+    background: rgba(4, 110, 175, 0.8);
+    font-size: 16px;
+    font-weight: bold;
+   }
+
+
+    #row-equipo{
+        transform: translate(-20%,-515px);
+        font-size: 20px;
     }
-/*
+
+    #row-equipo img{
+
+        margin: 0px 20px;
+        width: 20;
+        height: 30px;
+         
+    }
+
+
     .match-lineup{
-        background-image:  url("../../../../assets/images/field.png");
-        position: relative;
+        
+         position: relative;
+         display: inline-block;
+         text-align: center;
     }
-*/

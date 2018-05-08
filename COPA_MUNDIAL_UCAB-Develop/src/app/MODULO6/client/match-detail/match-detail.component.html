@@ -41,28 +41,110 @@
         
         <div class="d-block">FORMACIÓN</div>
         <hr>
-        <div class="match-lineup">
+        <ng-container *ngFor="let partido of listmatch">
+        <div class="match-lineup" *ngFor="let match of listAlineacion1">
          <img src="../../../../assets/images/field.png" class="img-field">
-            <div class="row justify-content-md-center">
-                <div class="col">
-                  1 of 2
-                </div>
+            <div class="row justify-content-md-center" id="row-equipo">
+                  <img src="{{partido.bandera1}}" alt="{{partido.equipo1}" class="img-team"><h4><strong>{{partido.equipo1}}</strong></h4>
             </div>
+            <ng-container *ngFor="let player of match.players">
+              <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='arquero'">
+                <div class="row justify-content-md-center">
+                    <div class="col-arquero">
+                        <img src="../../../../assets/images/player.png" class="img-lineup">
+                        <label class="player-name">{{player.numero}}. {{player.nombre}}</label>
+                    </div>
+                </div>
+              </ng-container>
+            </ng-container>
               <div class="row justify-content-md-center">
-                <div class="col">
-                  1 of 4
-                </div>
-                <div class="col">
-                  2 of 4
-                </div>
-                <div class="col">
-                  3 of 4
-                </div>
-                <div class="col">
-                    4 of 4
-                  </div>
+                <ng-container *ngFor="let player of match.players">
+                  <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='defensor1'">
+                    <div class="col">
+                        <img src="../../../../assets/images/player.png" class="img-lineup">
+                        <label class="player-name">{{player.numero}}.  {{player.nombre}}</label>
+                    </div>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngFor="let player of match.players">
+                    <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='defensor2'">
+                        <div class="col">
+                            <img src="../../../../assets/images/player.png" class="img-lineup">
+                            <label class="player-name">{{player.numero}}.  {{player.nombre}}</label>
+                        </div>
+                      </ng-container>
+                </ng-container>
+                <ng-container *ngFor="let player of match.players">
+                    <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='defensor3'">
+                        <div class="col">
+                            <img src="../../../../assets/images/player.png" class="img-lineup">
+                            <label class="player-name">{{player.numero}}.  {{player.nombre}}</label>
+                        </div>
+                      </ng-container>
+                </ng-container>
+                <ng-container *ngFor="let player of match.players">
+                    <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='defensor4'">
+                        <div class="col">
+                            <img src="../../../../assets/images/player.png" class="img-lineup">
+                            <label class="player-name">{{player.numero}}.  {{player.nombre}}</label>
+                        </div>
+                      </ng-container>
+                </ng-container>
+              </div>
+              <div class="row justify-content-md-center">
+                  <ng-container *ngFor="let player of match.players">
+                      <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='medio campista1'">
+                        <div class="col">
+                            <img src="../../../../assets/images/player.png" class="img-lineup">
+                            <label class="player-name">{{player.numero}}.  {{player.nombre}}</label>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                    <ng-container *ngFor="let player of match.players">
+                        <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='medio campista2'">
+                            <div class="col">
+                                <img src="../../../../assets/images/player.png" class="img-lineup">
+                                <label class="player-name">{{player.numero}}.  {{player.nombre}}</label>
+                            </div>
+                          </ng-container>
+                    </ng-container>
+                    <ng-container *ngFor="let player of match.players">
+                        <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='medio campista3'">
+                            <div class="col">
+                                <img src="../../../../assets/images/player.png" class="img-lineup">
+                                <label class="player-name">{{player.numero}}.  {{player.nombre}}</label>
+                            </div>
+                          </ng-container>
+                    </ng-container>
+              </div>
+              <div class="row justify-content-md-center">
+                  <ng-container *ngFor="let player of match.players">
+                      <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='delantero1'">
+                        <div class="col">
+                            <img src="../../../../assets/images/player.png" class="img-lineup">
+                            <label class="player-name">{{player.numero}}.  {{player.nombre}}</label>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                    <ng-container *ngFor="let player of match.players">
+                        <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='delantero2'">
+                            <div class="col">
+                                <img src="../../../../assets/images/player.png" class="img-lineup">
+                                <label class="player-name">{{player.numero}}.  {{player.nombre}}</label>
+                            </div>
+                          </ng-container>
+                    </ng-container>
+                    <ng-container *ngFor="let player of match.players">
+                        <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='delantero3'">
+                            <div class="col">
+                                <img src="../../../../assets/images/player.png" class="img-lineup">
+                                <label class="player-name">{{player.numero}}.  {{player.nombre}}</label>
+                            </div>
+                          </ng-container>
+                    </ng-container>
               </div>
         </div>
+      </ng-container>
         <div class="d-block">ALINEACIÓN</div>
         <hr>
             <div class="row" *ngFor="let partido of listmatch">

@@ -48,66 +48,66 @@ export class MatchDetailComponent implements OnInit {
       },
       {
         "nombre":"KOVTUN",
-        "posicion":"defensor",
+        "posicion":"defensor1",
         "numero": "2",
         "estado":"titular"
       },
       {
         "nombre":"NIKIFOROV",
-        "posicion":"defensor",
+        "posicion":"defensor2",
         "numero": "3",
         "estado":"titular"
       },
       {
         "nombre":"SOLOMATIN",
-        "posicion":"defensor",
+        "posicion":"defensor3",
         "numero": "5",
         "estado":"titular"
       },
       {
         "nombre":"SEMSHOV",
-        "posicion":"defensor",
+        "posicion":"defensor4",
         "numero": "6",
         "estado":"titular"
       },
       {
         "nombre":"ONOPKO",
-        "posicion":"medio campista",
+        "posicion":"medio campista1",
         "numero": "7",
         "estado":"titular"
   
       },
       {
         "nombre":"KARPIN",
-        "posicion":"medio campista",
+        "posicion":"medio campista2",
         "numero": "8",
         "estado":"titular"
   
       },
       {
         "nombre":"TITOV",
-        "posicion":"medio campista",
+        "posicion":"medio campista3",
         "numero": "9",
         "estado":"titular"
     
       },
       {
         "nombre":"BESCHASTNYKH",
-        "posicion":"delantero",
+        "posicion":"delantero1",
         "numero": "11",
         "estado":"titular"
      
       },
       {
         "nombre":"PIMENOV",
-        "posicion":"delantero",
+        "posicion":"delantero2",
         "numero": "19",
         "estado":"titular"
      
       },
       {
         "nombre":"IZMAYLOV",
-        "posicion":"delantero",
+        "posicion":"delantero3",
         "numero": "20",
         "estado":"titular"
      
