@@ -7,11 +7,12 @@ import {RouterModule, Router } from '@angular/router';
   styleUrls: ['./bet.component.css']
 })
 export class BetComponent {
+
     public modulo: string = "ocho";
     constructor(private router: Router){}
 
-    mybets(): void {
-      this.router.navigate(['mybets']);
+    goMybets(): void {
+      this.router.navigate(['home/bet/mybets']);
     }	
 
 }

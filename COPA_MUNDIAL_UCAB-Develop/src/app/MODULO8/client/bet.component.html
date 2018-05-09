@@ -1,4 +1,3 @@
-
 <script>
 	$('[data-toggle=offcanvas]').click(function() {
 		$('.row-offcanvas').toggleClass('active');
@@ -6,10 +5,17 @@
 	});
 </script>
 
+
 <div class="container-fluid">
 	<div class="row row-offcanvas row-offcanvas-right">
-		<div class="col-xs-12 col-sm-9 col-sm-push-3">
+		<div class="col-xs-6 col-sm-3 col-sm-pull-9 sidebar-offcanvas" id="sidebar">
+			<div class="list-group ">
+				<a href="#" class="list-group-item active fondo">JUEGOS</a>
+				<a (click)="goMybets()" class="list-group-item fondo">MIS APUESTAS</a>
+			</div>
+		</div><!--/.sidebar-offcanvas-->	
 
+		<div class="col-xs-12 col-sm-9 col-sm-push-3">
 			<table class="table table-hover table-condensed">				
 				<thead class="thead-dark" class= "fondo" >
 					<tr >
@@ -29,7 +35,7 @@
 						<td>SPARTAK STADIUM</td>
 						<td>Moscú</td>
 						<!-- BOTON CON PRUEBA DEL MODAL-->
-						<td><button type="button" class="btn btn-primary btn-info btn-lg" data-toggle="modal" data-target="#exampleModal">Ver partido</button></td>      
+						<td><button type="button" class="btn btn-primary btn-info btn-lg">Ver partido</button></td>      
 					</tr>
 					<tr>
 						<td>23/4/2018</td>
@@ -40,11 +46,13 @@
 						<!--BOTON CON PRUEBA DEL COLLAPSE-->
 						<td><button type="button" class="btn btn-primary btn-info btn-lg" data-toggle="collapse" data-target="#CollapseExample" aria-expanded="false" aria-controls="CollapseExample">Ver partido</button></td>      
 					</tr>
-					<div class="collapse" id="CollapseExample">
-						<div class="card card-body">
-							Prueba del collapse hgghffffffffffffffffffffffffffffffffffffffffffffffffffffff
+					<tr>
+						<div class="collapse" id="CollapseExample">
+							<div class="card card-body">
+								Aqui van todos los logros
+							</div>
 						</div>
-					</div>
+					</tr>
 					<tr>
 						<td>23/4/2018</td>
 						<td>12:00 am</td>
@@ -78,7 +86,7 @@
 				</div>
 			</div>
 
-
+			<!--
 		<div class="col-xs-6 col-sm-3 col-sm-pull-9 sidebar-offcanvas" id="sidebar">
 
 			
@@ -87,7 +95,7 @@
 						<a href="#" class="list-group-item active fondo">JUEGOS</a>
 						<a href="#" class="list-group-item fondo">MIS APUESTAS</a>
 		
-				<!--
+				!
 				<div class="list-group ">
 
 					<button (click)="mybets()" class="btn btn-nav fondo" href="#"> MIS APUESTAS <span class="oi oi-account-bet"></span></button>
@@ -101,10 +109,11 @@
 							<a (click)="mybets()" routerLink="mybets" routerLinkActive="active"><span class="fondo"></span> MIS APUESTAS </a>
 						</li>
 					</ul>
-				-->
+				!
 				</div>
 			</nav>
-		</div><!--/.sidebar-offcanvas-->
+		</div><!.sidebar-offcanvas>
+		-->
 	</div><!--/row-->
 
 	<hr>

@@ -18,7 +18,7 @@ import { PlayerComponent } from './MODULO5/client/player.component'
 import { MatchComponent } from './MODULO6/client/match.component'
 import { AchievementComponent } from './MODULO7/client/achievement.component'
 import { BetComponent } from './MODULO8/client/bet.component'
-import { MybetsComponent } from './MODULO8/client/mybets.component'
+import { MybetsComponent } from './MODULO8/client/mybets/mybets.component'
 import { StatisticComponent } from './MODULO9/client/statistic.component'
 import { UserPanelComponent } from './MODULO10/client/user-panel.component'
 import { UserConfigComponent} from './MODULO10/client/user-config.component'
@@ -54,7 +54,6 @@ const routes: Routes = [
   { path: 'changePassword' ,  component:  ChangePasswordComponent },
   { path: 'home', component:  HomeComponent,
 
-
     children: [
       { path: 'city' ,  component: CityComponent },
       { path: 'stadium' , component: StadiumComponent},
@@ -64,7 +63,7 @@ const routes: Routes = [
       { path: 'match' , component: MatchComponent },
       { path: 'achievement' , component: AchievementComponent },
       { path: 'bet' , component: BetComponent },
-      { path: 'mybets' , component: MybetsComponent },
+      { path: 'bet/mybets' , component: MybetsComponent },
       { path: 'statistic' , component: StatisticComponent },
       { path: 'user-panel' , component: UserPanelComponent },
       { path: 'user-config', component: UserConfigComponent },
