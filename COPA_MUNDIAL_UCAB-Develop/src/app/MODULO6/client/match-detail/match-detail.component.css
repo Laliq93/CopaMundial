@@ -46,7 +46,7 @@
     .container-info{
         
         margin-top: 0px;
-        padding-top: 5px;
+        padding-top: 25px;
         padding-left: 15px;
         padding-right: 5px;
         background-color: rgba(63,63,63,0.7);
@@ -86,7 +86,7 @@
         margin-top: 50px;
         color: #fff;
         /*color: #3f3f3f;*/
-        font-size: 16px;
+        font-size: 20px;
         font-weight: bold;
         border-radius: 5px 5px 5px 5px;
         background: #02588E;
@@ -105,10 +105,17 @@
         padding-top: 10px;
     }
 
-     .match-time, .match-team, .match-position{
+      .match-team, .match-position{
     
         font-size: 20px;
-        color: #666;
+        color: #000;
+        font-weight:  bold;
+    }
+
+    .match-time{
+
+        font-size: 30px;
+        color: #1f1f1f;
         font-weight:  bold;
     }
 
@@ -122,6 +129,7 @@
     .match-info, .match-phase, .row, .match-result{
 
         text-align: center;
+        font-size: 20px;
     }
     
     .match-result{
@@ -148,11 +156,12 @@
     }
     .player-num{
 
-        color: #9f9f9f;
+        color: #dfdfdf;/*9f9f9f*/
         padding-left: 20px;
         padding-right: 15px;
         padding-bottom: 10px;
-        font-size: 16px;
+        font-size: 18px;
+        font-weight: bold;
     }
 
     .player-name{
@@ -243,6 +252,15 @@
     .match-lineup{
         
          position: relative;
-         display: inline-block;
+         /*display: inline-block;*/
+         padding-bottom: opx;
          text-align: center;
+         margin-bottom: 0px;
+    }
+
+    h5, h4{
+        color:  white;
+        font-size: 20px;
+        font-weight: bold;
+    
     }

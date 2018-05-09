@@ -121,35 +121,35 @@ export class MatchDetailComponent implements OnInit {
       },
       {
         "nombre":"MOSTOVOY",
-        "posicion":"defensa",
+        "posicion":"defensor1",
         "numero": "10",
         "estado":"suplente"
      
       },
       {
         "nombre":"CHERCHESOV",
-        "posicion":"defensa",
+        "posicion":"defensor2",
         "numero": "12",
         "estado":"suplente"
      
       },
       {
         "nombre":"DAEV",
-        "posicion":"delantero",
+        "posicion":"delantero1",
         "numero": "13",
         "estado":"suplente"
      
       },
       {
         "nombre":"CHIGAYNOV",
-        "posicion":"delantero",
+        "posicion":"delantero2",
         "numero": "14",
         "estado":"suplente"
      
       },
       {
         "nombre":"ALENICHEV",
-        "posicion":"delantero",
+        "posicion":"delantero3",
         "numero": "15",
         "estado":"suplente"
      
@@ -171,64 +171,64 @@ export class MatchDetailComponent implements OnInit {
       },
       {
         "nombre":"D. LUGANO",
-        "posicion":"defensa",
+        "posicion":"defensor1",
         "numero": "2",
         "estado":"titular"
       
       },
       {
         "nombre":"D. GODIN",
-        "posicion":"defensa",
+        "posicion":"defensor2",
         "numero": "3",
         "estado":"titular"
        
       },
       {
         "nombre":"W. GARGANO",
-        "posicion":"defensa",
+        "posicion":"defensor3",
         "numero": "5",
         "estado":"titular"
         
       },
       {
         "nombre":"C. RODRIGUEZ",
-        "posicion":"defensa",
+        "posicion":"defensor4",
         "numero": "7",
         "estado":"titular"
       },
       {
         "nombre":"D. FORLAN",
-        "posicion":"medio campista",
+        "posicion":"medio campista1",
         "numero": "10",
         "estado":"titular"
       },
       {
         "nombre":"C. STUANI",
-        "posicion":"medio campista",
+        "posicion":"medio campista2",
         "numero": "11",
         "estado":"titular"
       },
       {
         "nombre":"M. PEREIRA",
-        "posicion":"medio campista",
+        "posicion":"medio campista3",
         "numero": "16",
         "estado":"titular"
       },
       {
         "nombre":"E. AREVALO RIOS",
-        "posicion":"delantero",
+        "posicion":"delantero1",
         "numero": "17",
         "estado":"titular"
       },
       {
         "nombre":"E. CAVANI",
-        "posicion":"delantero",
+        "posicion":"delantero2",
         "numero": "21",
         "estado":"titular"
       },
       {
         "nombre":"M. CACERES",
-        "posicion":"delantero",
+        "posicion":"delantero3",
         "numero": "22",
         "estado":"titular"
       },
@@ -254,19 +254,19 @@ export class MatchDetailComponent implements OnInit {
       },
       {
         "nombre":"A. PEREIRA",
-        "posicion":"medio campista",
+        "posicion":"medio campista1",
         "numero": "6",
         "estado":"suplente"
       },
       {
         "nombre":"A. HERNANDEZ",
-        "posicion":"medio campista",
+        "posicion":"medio campista1",
         "numero":"8",
         "estado":"suplente"
       },
       {
         "nombre":"L. SUAREZ",
-        "posicion":"delantero",
+        "posicion":"delantero2",
         "numero": "9",
         "estado":"suplente"
       }
