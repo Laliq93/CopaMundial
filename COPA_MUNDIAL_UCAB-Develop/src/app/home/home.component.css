@@ -47,13 +47,15 @@
 
 .headline{
 	width: 100%;
-    border-bottom: 5px solid #0B486B;
-    height: 66px;
+    border-bottom: 5px solid #02588e;
+	height: 66px;
+	margin-bottom: 5%;
+	margin-top: 3%;
 }
 
 .tittle{
 	padding: 20px;
-	color: #0B486B;
+	color: #02588e;
 	font-size: 23px;
 	font-weight: bold;
 }
@@ -65,11 +67,7 @@
 
 .btn-global{
 	background-color: #A11D1B;
-}
-
-.card-body{
 	color: white;
-	background-color: #02588E;
 }
 
 .card-title{
@@ -79,6 +77,15 @@
 
 .card-text{
 	font-size: 16px;
+}
+
+.image-team, .image-player{
+	width: auto;
+	height: 200px;
+}
+
+.subtitle-card{
+	font-weight: bold;
 }
 
 /*carousel and cards*/
@@ -212,7 +219,7 @@ nav.navbar-default{
 	z-index: 100;
 }
 
-@keyframes fadeInDown {
+/*@keyframes fadeInDown {
 	0% {
 		opacity: 0;
 		-webkit-transform: translateY(-20px);
@@ -235,4 +242,16 @@ nav.navbar-default{
 
 .fadeInDown {
 	animation-name: fadeInDown;
+}*/
+
+@media screen and (min-width: 980px) {
+	.row-statistics{
+		margin-left: 10%;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.card-statistic{
+		margin-top: 5%;
+	}
 }
