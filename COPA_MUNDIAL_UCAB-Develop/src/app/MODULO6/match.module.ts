@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 import { MatchComponent } from './client/match.component';
 import { MatchAdminComponent } from './admin/match-admin.component';
 import { MatchDetailComponent } from './client/match-detail/match-detail.component';
-import { ChangeComponent } from './admin/change/change.component';
-import { CreateComponent } from './admin/create/create.component';
+import { MatchAdminUpdateComponent } from './admin/match-admin-update/match-admin-update.component';
+import { MatchAdminCreateComponent } from './admin/match-admin-create/match-admin-create.component';
 @NgModule({
   imports: [CommonModule],
   declarations: [
   	MatchComponent,
     MatchAdminComponent,
     MatchDetailComponent,
-    ChangeComponent,
-    CreateComponent
+    MatchAdminUpdateComponent,
+    MatchAdminCreateComponent,
   ],
   providers: [],
   exports: [

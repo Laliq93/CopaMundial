@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class MatchAdminComponent {
 
+
+
   public listmatches: Array<any>= [
       {
         "dia": "Jueves 14 Junio",
