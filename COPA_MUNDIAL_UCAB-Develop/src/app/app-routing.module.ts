@@ -10,6 +10,7 @@ import { LoginComponent } from './MODULO1/client/login.component'
 import { SigninComponent } from './MODULO1/client/signin.component'
 import { SignupComponent } from './MODULO1/client/signup.component'
 import { RecoveryComponent } from './MODULO1/client/recovery.component'
+import { ChangePasswordComponent } from './MODULO1/client/changePassword.component'
 import { CityComponent } from './MODULO2/client/city.component'
 import { StadiumComponent } from './MODULO3/client/stadium.component'
 import { TeamComponent } from './MODULO4/client/team.component'
@@ -17,6 +18,7 @@ import { PlayerComponent } from './MODULO5/client/player.component'
 import { MatchComponent } from './MODULO6/client/match.component'
 import { AchievementComponent } from './MODULO7/client/achievement.component'
 import { BetComponent } from './MODULO8/client/bet.component'
+import { MybetsComponent } from './MODULO8/client/mybets/mybets.component'
 import { StatisticComponent } from './MODULO9/client/statistic.component'
 import { UserPanelComponent } from './MODULO10/client/user-panel.component'
 import { UserConfigComponent} from './MODULO10/client/user-config.component'
@@ -38,7 +40,9 @@ import { AchievementAdminComponent } from './MODULO7/admin/achievement-admin.com
 import { BetAdminComponent } from './MODULO8/admin/bet-admin.component'
 import { StatisticAdminComponent } from './MODULO9/admin/statistic-admin.component'
 import { UserConfigAdminComponent } from './MODULO10/admin/user-config-admin.component'
-import { StadiumDetailComponent } from './MODULO3/client/stadium-detail/stadium-detail.component';
+import { StadiumDetailComponent } from './MODULO3/client/stadium-detail/stadium-detail.component'
+import { CreateStadiumComponent } from './MODULO3/admin/create-stadium/create-stadium.component'
+import { StadiumDetailAdminComponent } from './MODULO3/admin/stadium-detail-admin/stadium-detail-admin.component';
 
 
 const routes: Routes = [
@@ -47,8 +51,8 @@ const routes: Routes = [
   { path: 'signin' ,  component:  SigninComponent },
   { path: 'signup' ,  component:  SignupComponent },
   { path: 'recovery' ,  component:  RecoveryComponent },
+  { path: 'changePassword' ,  component:  ChangePasswordComponent },
   { path: 'home', component:  HomeComponent,
-
 
     children: [
       { path: 'city' ,  component: CityComponent },
@@ -59,10 +63,11 @@ const routes: Routes = [
       { path: 'match' , component: MatchComponent },
       { path: 'achievement' , component: AchievementComponent },
       { path: 'bet' , component: BetComponent },
+      { path: 'bet/mybets' , component: MybetsComponent },
       { path: 'statistic' , component: StatisticComponent },
       { path: 'user-panel' , component: UserPanelComponent },
       { path: 'user-config', component: UserConfigComponent },
-      {path: 'user-security', component: UserSecurityComponent},
+      { path: 'user-security', component: UserSecurityComponent},
       { path: 'user-accessibility', component: UserAccessibilityComponent }
     ]
   },
@@ -76,6 +81,8 @@ const routes: Routes = [
       { path: 'city/eliminar', component:   EliminarCiudadComponent } ,   
       { path: 'city/modificar', component:   ModificarCiudadComponent } ,   
       { path: 'stadium' , component: StadiumAdminComponent },
+      { path: 'stadium/detalle/:id' ,  component: StadiumDetailAdminComponent },
+      { path: 'stadium/crear-estadio' ,  component: CreateStadiumComponent },
       { path: 'team' , component: TeamAdminComponent },
       { path: 'player' , component: PlayerAdminComponent },
       { path: 'match' , component: MatchAdminComponent },
