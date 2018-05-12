@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import {RouterModule, Router } from '@angular/router';
+import { Component, NgZone, AfterViewInit } from '@angular/core';
+import { RouterModule, Router } from '@angular/router';
+/* tslint:disable */
 
 enum MODULES {
 	CIUDADES = "CIUDADES",
@@ -9,14 +10,14 @@ enum MODULES {
 	PARTIDOS = "PARTIDOS",
 	APUESTAS = "APUESTAS",
 	ESTADISTICAS = "ESTADISTICAS",
-	}
+}
 
 class Module {
 	name: MODULES;
 	routeName: string;
 	isActive: boolean;
 
-	constructor(name,routeName,isActive){
+	constructor(name, routeName, isActive) {
 		this.name = name;
 		this.routeName = routeName;
 		this.isActive = isActive;
@@ -25,21 +26,23 @@ class Module {
 
 type Menu = "menu" | "menu-2";
 
+declare var $: any;
+
 @Component({
-  selector: 'home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./menu.component.css', './home.component.css']
+	selector: 'home',
+	templateUrl: './home.component.html',
+	styleUrls: ['./menu.component.css', './home.component.css']
 })
 
 export class HomeComponent {
-	
+
 	private moduleArray: Array<Module>;
 	private moduleMap: Map<MODULES, Module> = new Map<MODULES, Module>();
-	private loadPanel: boolean; 
-	private menu: Menu; 
+	private loadPanel: boolean;
+	private menu: Menu;
 	public esHome: boolean;
-	
-	constructor(private router: Router){
+
+	constructor(private router: Router, private _zone: NgZone) {
 
 		this.moduleArray = [
 			new Module(MODULES.CIUDADES, "city", false),
@@ -53,35 +56,36 @@ export class HomeComponent {
 
 		this.initialiseModules();
 		this.menu = "menu";
+		
 	}
 	ngOnInit(): void {
 		//Called after the constructor, initializing input properties, and the first call to ngOnChanges.
 		//Add 'implements OnInit' to the class.
-		if (window.location.href==window.location.origin+"/home")
-		this.esHome=false;
-		else 
-		this.esHome=true;
+		if (window.location.href == window.location.origin + "/home")
+			this.esHome = false;
+		else
+			this.esHome = true;
 	}
 
 	initialiseModules(): void {
 		for (var i = 0; i < this.moduleArray.length; i++) {
 			this.moduleMap.set(this.moduleArray[i].name, this.moduleArray[i]);
 		}
-		
+
 	}
 
 	setModuleActive(module: MODULES) {
-		this.moduleMap.forEach(function(module){
-			module.isActive = false; 
+		this.moduleMap.forEach(function (module) {
+			module.isActive = false;
 		})
 
 		this.moduleMap.get(module).isActive = true;
-		this.esHome=true;
+		this.esHome = true;
 
 	}
 
-	setHome(){
-		this.esHome=true;
+	setHome() {
+		this.esHome = true;
 	}
 
 	toggleUserPanel(): void {
@@ -90,7 +94,15 @@ export class HomeComponent {
 			this.menu = "menu";
 		} else {
 			this.menu = "menu";
-		}		
-	}	
+		}
+	}
+
+	ngAfterViewInit(): void {
+
+		this._zone.runOutsideAngular(() => {
+			$("#copaNavdrawer").navdrawer("show");
+		});
+		
+	}
 
 }
