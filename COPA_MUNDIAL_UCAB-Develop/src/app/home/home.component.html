@@ -1,22 +1,3 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-	<user-panel *ngIf="loadPanel"></user-panel>
-  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="oi oi-menu"></span>
-  	</button>
-	<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-		<a class="navbar-brand" href="/home"><img class="img-logo-nav img-fluid" src="../../../assets/images/logo.png" alt="">Mundial de Rusia 2018</a>
-		<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-	  		<li class="nav-item" *ngFor="let module of moduleArray">
-				<a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}}
-				 routerLinkActive="active">{{module.name}}
-				</a>
-			</li>
-		</ul>
-	</div>
-</nav>
-
-<router-outlet></router-outlet>
-
 <div id="wrapper">
 
     <div class="container-fluid no-padding">
@@ -58,114 +39,189 @@
 	                  <a href="#"><span class="oi oi-account-logout"></span> Cerrar sesión</a>
 	                </li>
               	</ul>
+<header class="navbar navbar-dark navbar-full bg-color">
+
+    <button aria-controls="copaNavdrawer" aria-expanded="false" aria-label="Toggle Navdrawer" class="navbar-toggler" data-target="#copaNavdrawer"
+        data-toggle="navdrawer">
+        <span class="oi oi-menu"></span>
+    </button>
+    <span class="navbar-brand mr-auto">
+        <div class="hidden-xs">
+            <img class="img-logo-nav img-fluid" src="../../../assets/images/logo.png" alt="">Mundial de Rusia 2018
+        </div>
+    </span>
+
+    <div class="navbar-nav">
+        <div class="nav-item dropdown">
+            <a class="nav-link" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" />Felix Morales</a>
+
+            <ul class="dropdown-menu animated fadeInDown">
+                <li>
+                    <a class="nav-link" (click)="setHome()" routerLink="user-panel" routerLinkActive="active">Perfil</a>
+                </li>
+                <li>
+                    <a class="nav-link" (click)="setHome()" routerLink="user-config" routerLinkActive="active">Configuración</a>
+                </li>
+                <li>
+                    <a class="nav-link" (click)="setHome()" routerLink="user-security" routerLinkActive="active">Seguridad</a>
+                </li>
+                <li>
+                    <a class="nav-link" (click)="setHome()" routerLink="user-accessibility" routerLinkActive="active">Accesibilidad</a>
+                </li>
+                <li>
+                    <a class="nav-link" (click)="setHome()" routerLink="">Cerrar Sesion</a>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="flag-icon flag-icon-es"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">
+                    <i class="flag-icon flag-icon-us"></i> Ingles</a>
             </div>
-
-          </nav>
-          <!-- /. NAV SIDE  -->
         </div>
-
-        <!-- CONTENIDO HOME -->
-
-        <div class="col-9">
-        	<div class="content-page">
-				<div class="row justify-content-end">
-					<h6>08/05/2018</h6>
-				</div>
-                <div class="row justify-content-center">
-                	<div class="headline card">
-                    	<h4 class="tittle">Estadísticas</h4>
-                  	</div>
-				</div>
-				
-				<div class="row row-statistics">
-					<div class="col-md-6 col-sm-12">
-						<div class="card card-statistic" style="width: 18rem;">
-							<img class="card-img-top image-team" src="../../assets/images/equipos/equipo1.jpg" alt="Card image cap">
-							<div class="card-body">
-								<h5 class="card-title">Brasil</h5>
-								<p class="subtitle-card goals">Goles: 5</p>
-								<p class="subtitle-card goals-against">Goles en contra: 8</p>
-								<p class="subtitle-card corner">Saques de esquina: 2</p>
-								<p class="subtitle-card shot">Tiro al arco: 3</p>
-								<p class="subtitle-card cards-game">Tarjeta amarilla: 2</p>
-								<p class="subtitle-card cards-game">Tarjeta roja: 2</p>
-								<p class="subtitle-card game-out">Fuera de juego: 2</p>
-								<p class="subtitle-card fails">Faltas: 2</p>
-								<p class="subtitle-card out">Fuera del arco: 5</p>						
-							</div>
-							<button type="submit" class="btn btn-global">Ver más</button>
-						</div>
-					</div>
-
-					<div class="col-md-6 col-sm-12">
-							<div class="card card-statistic" style="width: 18rem;">
-									<img class="card-img-top image-player" src="../../assets/images/jugadores/jugador1.jpg" alt="Card image cap">
-									<div class="card-body">
-										<h5 class="card-title">Cristiano Ronaldo</h5>
-										<p class="subtitle-card goals">Goles: 10</p>
-										<p class="subtitle-card assistent">Asistencias: 5</p>
-										<p class="subtitle-card participation">Tiempo total de participación: 8</p>
-										<p class="subtitle-card remates">Remates realizados: 2</p>
-										<p class="subtitle-card cards-game">Tarjeta amarilla: 2</p>
-										<p class="subtitle-card cards-game">Tarjeta roja: 0</p>
-										<p class="subtitle-card game-out">Fuera de juego: 5</p>
-										<p class="subtitle-card fails">Faltas: 2</p>
-										<p class="subtitle-card out">Fuera del arco: 5</p>										
-										<!--estadisticas en caso de que jugador sea portero pedir luego-->
-									</div>
-									<button type="submit" class="btn btn-global">Ver más</button>
-								</div>
-					</div>
-					
-				</div>
-
-				<div class="row justify-content-center">
-					<div class="headline card">
-						<h4 class="tittle">Últimas apuestas</h4>
-					</div>
-				</div>
-				<!-- aqui -->
-				
-				<div class="row justify-content-center">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-							<th scope="col">Partido</th>
-							<th scope="col">logros</th>
-							<th scope="col">Last</th>
-							<th scope="col">Handle</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-							<th scope="row">1</th>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							</tr>
-							<tr>
-							<th scope="row">2</th>
-							<td>Jacob</td>
-							<td>Thornton</td>
-							<td>@fat</td>
-							</tr>
-							<tr>
-							<th scope="row">3</th>
-							<td colspan="2">Larry the Bird</td>
-							<td>@twitter</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-			
-
-              </div>
-        </div>
-
-        <!-- /CONTENIDO HOME -->
-
-      </div>
     </div>
 
+</header>
+
+<div aria-hidden="true" class="navdrawer" id="copaNavdrawer" tabindex="-1">
+    <div class="navdrawer-content">
+
+        <nav class="navdrawer-nav">
+
+            <div class="user-profile" style="background: url(../assets/images/background/profile-bg.jpg) no-repeat;">
+
+                <div class="profile-img">
+                    <img src="../../assets/images/users/1.jpg" alt="user" /> </div>
+
+                <div class="profile-text">
+                    <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Felix Morales
+                        <span class="oi oi-caret-bottom"></span>
+                    </a>
+                    <div class="dropdown-menu animated flipInY">
+                        <a (click)="setHome()" routerLink="user-config" routerLinkActive="active" class="dropdown-item">
+                            <span class="oi oi-person"></span> Mi Perfil</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <span class="oi oi-wrench" (click)="setHome()" routerLink="user-config" routerLinkActive="active"></span> Configuración</a>
+                        <div class="dropdown-divider"></div>
+                        <a (click)="setHome()" routerLink="" class="dropdown-item">
+                            <span class="oi oi-power-standby"></span> Salir</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="navdrawer-divider"></div>
+        <p class="navdrawer-subheader">Modulos</p>
+        <ul class="navdrawer-nav">
+            <li class="nav-item" *ngFor="let module of moduleArray">
+                <a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}}
+                    routerLinkActive="active">
+                    {{module.name}}
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
 </div>
+
+
+<div class="col-9">
+	<div class="content-page">
+		<div class="row justify-content-end">
+			<h6>08/05/2018</h6>
+		</div>
+        <div class="row justify-content-center">
+        	<div class="headline card">
+            	<h4 class="tittle">Estadísticas</h4>
+          	</div>
+		</div>
+		
+		<div class="row row-statistics">
+			<div class="col-md-6 col-sm-12">
+				<div class="card card-statistic" style="width: 18rem;">
+					<img class="card-img-top image-team" src="../../assets/images/equipos/equipo1.jpg" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Brasil</h5>
+						<p class="subtitle-card goals">Goles: 5</p>
+						<p class="subtitle-card goals-against">Goles en contra: 8</p>
+						<p class="subtitle-card corner">Saques de esquina: 2</p>
+						<p class="subtitle-card shot">Tiro al arco: 3</p>
+						<p class="subtitle-card cards-game">Tarjeta amarilla: 2</p>
+						<p class="subtitle-card cards-game">Tarjeta roja: 2</p>
+						<p class="subtitle-card game-out">Fuera de juego: 2</p>
+						<p class="subtitle-card fails">Faltas: 2</p>
+						<p class="subtitle-card out">Fuera del arco: 5</p>						
+					</div>
+					<button type="submit" class="btn btn-global">Ver más</button>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-sm-12">
+				<div class="card card-statistic" style="width: 18rem;">
+					<img class="card-img-top image-player" src="../../assets/images/jugadores/jugador1.jpg" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Cristiano Ronaldo</h5>
+						<p class="subtitle-card goals">Goles: 10</p>
+						<p class="subtitle-card assistent">Asistencias: 5</p>
+						<p class="subtitle-card participation">Tiempo total de participación: 8</p>
+						<p class="subtitle-card remates">Remates realizados: 2</p>
+						<p class="subtitle-card cards-game">Tarjeta amarilla: 2</p>
+						<p class="subtitle-card cards-game">Tarjeta roja: 0</p>
+						<p class="subtitle-card game-out">Fuera de juego: 5</p>
+						<p class="subtitle-card fails">Faltas: 2</p>
+						<p class="subtitle-card out">Fuera del arco: 5</p>										
+						<!--estadisticas en caso de que jugador sea portero pedir luego-->
+					</div>
+					<button type="submit" class="btn btn-global">Ver más</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="headline card">
+				<h4 class="tittle">Últimas apuestas</h4>
+			</div>
+		</div>
+		<!-- aqui -->
+		
+		<div class="row justify-content-center">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+					<th scope="col">Partido</th>
+					<th scope="col">logros</th>
+					<th scope="col">Last</th>
+					<th scope="col">Handle</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+					<th scope="row">1</th>
+					<td>Mark</td>
+					<td>Otto</td>
+					<td>@mdo</td>
+					</tr>
+					<tr>
+					<th scope="row">2</th>
+					<td>Jacob</td>
+					<td>Thornton</td>
+					<td>@fat</td>
+					</tr>
+					<tr>
+					<th scope="row">3</th>
+					<td colspan="2">Larry the Bird</td>
+					<td>@twitter</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<router-outlet></router-outlet>
