@@ -7,6 +7,14 @@
 .btnEstadio{
     background-color: #000000;
 }
+.btnAgregar{
+    background-color: #1998e2;
+    color: white;
+}
+.span3 {  
+    height: 80% !important;
+    overflow: scroll;
+}​
 .espacio{
     padding-top: 15px;
 }
@@ -21,4 +29,13 @@
 }
 .oi-trash{
     color:	#A52A2A;
+}
+.container-fluid{
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url("../../../assets/images/background-stadium.jpg");
+	height: 100vh;
+    position: relative;
+    background-color: rgb(0, 0, 20);
 }

@@ -1,154 +1,92 @@
-<nav>
-	<!--<img class="menu" (click)="toggleUserPanel()" src="../assets/{{menu}}.svg"> -->
-	<user-panel *ngIf="loadPanel"></user-panel>
-	<ul class="nav nav-tabs nav-fill justify-content-center">
-		<a class="navbar-brand" href="/home">
-			<img class="img-logo-nav img-fluid" src="../../assets/images/logo.png" alt="">
-		</a>
+<header class="navbar navbar-dark navbar-full bg-color">
 
-		<li class="nav-item" *ngFor="let module of moduleArray">
-			<a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}}
-			 routerLinkActive="active">{{module.name}}
-			</a>
-		</li>
+    <button aria-controls="copaNavdrawer" aria-expanded="false" aria-label="Toggle Navdrawer" class="navbar-toggler" data-target="#copaNavdrawer"
+        data-toggle="navdrawer">
+        <span class="oi oi-menu"></span>
+    </button>
+    <span class="navbar-brand mr-auto">
+        <div class="hidden-xs">
+            <img class="img-logo-nav img-fluid" src="../../../assets/images/logo.png" alt="">Mundial de Rusia 2018
+        </div>
+    </span>
 
-		<li class="nav-item">
-			<div class="col-12">
-				<a class="nav-link" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" />Felix Morales</a>
+    <div class="navbar-nav">
+        <div class="nav-item dropdown">
+            <a class="nav-link" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" />Felix Morales</a>
 
-				<ul class="dropdown-menu animated fadeInDown">
-					<li>
-						<a class="nav-link" (click)="setHome()" routerLink="user-panel" routerLinkActive="active">Perfil</a>
-					</li>
-					<li>
-						<a class="nav-link" (click)="setHome()" routerLink="user-config" routerLinkActive="active">Configuración</a>
-					</li>
-					<li>
-						<a class="nav-link" (click)="setHome()" routerLink="user-security" routerLinkActive="active">Seguridad</a>
-					</li>
-					<li>
-						<a class="nav-link" (click)="setHome()" routerLink="user-accessibility" routerLinkActive="active">Accesibilidad</a>
-					</li>
-					<li>
-						<a class="nav-link" (click)="setHome()" routerLink="">Cerrar Sesion</a>
-					</li>
-				</ul>
-			</div>
-		</li>
-	</ul>
-</nav>
+            <ul class="dropdown-menu animated fadeInDown">
+                <li>
+                    <a class="nav-link" (click)="setHome()" routerLink="user-panel" routerLinkActive="active">Perfil</a>
+                </li>
+                <li>
+                    <a class="nav-link" (click)="setHome()" routerLink="user-config" routerLinkActive="active">Configuración</a>
+                </li>
+                <li>
+                    <a class="nav-link" (click)="setHome()" routerLink="user-security" routerLinkActive="active">Seguridad</a>
+                </li>
+                <li>
+                    <a class="nav-link" (click)="setHome()" routerLink="user-accessibility" routerLinkActive="active">Accesibilidad</a>
+                </li>
+                <li>
+                    <a class="nav-link" (click)="setHome()" routerLink="">Cerrar Sesion</a>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="flag-icon flag-icon-es"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">
+                    <i class="flag-icon flag-icon-us"></i> Ingles</a>
+            </div>
+        </div>
+    </div>
 
-<router-outlet></router-outlet>
-
-<header class="header-image" *ngIf="!esHome">
-	<div class="header-overlay" align="center"></div>
-	<div class="header-inner" align="center">
-		<div class="container" align="center">
-				<div class="card-columns">
-						<div class="card">
-						  <img class="card-img-top" src="../../assets/images/card1.jpg" alt="Card image cap">
-						  <div class="card-body">
-							<h5 class="card-title">Explora las ciudades del mundial Rusia 2018</h5>
-							<p class="card-text">Explora las ciudades donde se realizaran los partidos mas esperados del año en el Mundial Rusia 2018.</p>
-						    <a href="#" class="btn btn-home">CIUDADES</a>
-						</div>
-						</div>
-						<div class="card p-3">
-						  <blockquote class="blockquote mb-0 card-body">
-							<p>"Mira como convergerán las estrellas".</p>
-							<footer class="blockquote-footer">
-							  <small class="text-muted">
-								Lema del Mundial <cite title="Source Title">Rusia 2018</cite>
-							  </small>
-							</footer>
-						  </blockquote>
-						</div>
-						<div class="card">
-						  <img class="card-img-top" src="../../assets/images/card2.jpg" alt="Card image cap">
-						  <div class="card-body">
-							<h5 class="card-title">Conoce los estadios del mundial</h5>
-							<p class="card-text">Perú clasifica después de 36 años para un mundial.</p>
-							<a href="#" class="btn btn-home">ESTADIOS</a>
-							<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-						  </div>
-						</div>
-						<div class="card bg-primary text-white text-center p-3">
-						  <blockquote class="blockquote mb-0">
-							<p>PARTIDOS.</p>
-							<footer class="blockquote-footer">
-							  <small>
-								Preguntar esta <cite title="Source Title">seccion</cite>
-							  </small>
-							</footer>
-						  </blockquote>
-						</div>
-						<div class="card text-center">
-						  <div class="card-body">
-							<h5 class="card-title">Grupos</h5>
-							<p class="card-text">En esta sección podrás ver todos los grupos, equipos y jugadores que participarán en el evento.</p>
-							<a href="#" class="btn btn-home">EQUIPOS</a>
-						  </div>
-						</div>
-						<div class="card">
-						  <img class="card-img" src="../../assets/images/card3.jpg" alt="Card image">
-						</div>
-						<div class="card p-3 text-right">
-						  <blockquote class="blockquote mb-0">
-							<p>Perú clasifica luego de 36 años fuera de un mundial.</p>
-							<footer class="blockquote-footer">
-							  <small class="text-muted">
-								Anónimo<cite title="Source Title">Diario El País</cite>
-							  </small>
-							</footer>
-						  </blockquote>
-						</div>
-						<div class="card">
-						  <div class="card-body">
-							<h5 class="card-title">Apuestas</h5>
-							<p class="card-text">Preguntar tambien que poner en esta seccion.</p>
-							<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-						  </div>
-						</div>
-					  </div>
-			</div>
-		</div>
 </header>
 
-<footer class="page-footer font-small blue pt-4 mt-4">
+<div aria-hidden="true" class="navdrawer" id="copaNavdrawer" tabindex="-1">
+    <div class="navdrawer-content">
 
-		<div class="container-fluid text-center text-md-left">
-			<div class="row">
-	
-				<div class="col-md-6">
-					<h5 class="text-uppercase">Registrate en nuestra página</h5>
-					<p>y disfruta de su contenido.</p>
-				</div>
-	
-				<div class="col-md-6">
-					<h5 class="text-uppercase">Secciones</h5>
-					<ul class="list-unstyled">
-						<li>
-							<a href="#!">Ciudades</a>
-						</li>
-						<li>
-							<a href="#!">Estadios</a>
-						</li>
-						<li>
-							<a href="#!">Equipos</a>
-						</li>
-						<li>
-							<a href="#!">Jugadores</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+        <nav class="navdrawer-nav">
 
-		<div class="footer-copyright py-3 text-center">
-			© CopaUCAB 2018 Copyright:
-			<a href="https://mdbootstrap.com/material-design-for-bootstrap/"> Copaucab.com.ve </a>
-		</div>
+            <div class="user-profile" style="background: url(../assets/images/background/profile-bg.jpg) no-repeat;">
 
-	
-	</footer>
+                <div class="profile-img">
+                    <img src="../../assets/images/users/1.jpg" alt="user" /> </div>
+
+                <div class="profile-text">
+                    <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Felix Morales
+                        <span class="oi oi-caret-bottom"></span>
+                    </a>
+                    <div class="dropdown-menu animated flipInY">
+                        <a (click)="setHome()" routerLink="user-config" routerLinkActive="active" class="dropdown-item">
+                            <span class="oi oi-person"></span> Mi Perfil</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <span class="oi oi-wrench" (click)="setHome()" routerLink="user-config" routerLinkActive="active"></span> Configuración</a>
+                        <div class="dropdown-divider"></div>
+                        <a (click)="setHome()" routerLink="" class="dropdown-item">
+                            <span class="oi oi-power-standby"></span> Salir</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="navdrawer-divider"></div>
+        <p class="navdrawer-subheader">Modulos</p>
+        <ul class="navdrawer-nav">
+            <li class="nav-item" *ngFor="let module of moduleArray">
+                <a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}}
+                    routerLinkActive="active">
+                    {{module.name}}
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+</div>
+
+<router-outlet></router-outlet>
