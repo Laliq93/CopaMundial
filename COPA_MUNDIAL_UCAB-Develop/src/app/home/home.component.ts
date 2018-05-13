@@ -2,6 +2,7 @@ import { Component, NgZone, AfterViewInit } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 /* tslint:disable */
 
+
 enum MODULES {
 	CIUDADES = "CIUDADES",
 	ESTADIOS = "ESTADIOS",
