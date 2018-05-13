@@ -1,0 +1,46 @@
+.col-sm{
+    margin:3%;
+    width: 30%;
+
+}
+
+.anyClass {
+    height:100%;
+    overflow-y: scroll;
+  }
+
+  
+  .btn-global{
+    background-color: #A11D1B;
+    color: aliceblue;
+    height: auto;
+    width: 23%; 
+    text-align: center;
+    position: center;
+    font: bold;
+    margin:1%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   
+
+    
+
+    }
+
+    .upper{
+
+        width: 100%; 
+        height: auto;
+
+    }
+
+    .botonaco{
+        display: block;
+        width: 200px;
+        height: 200px;
+        padding: 50px;
+       
+        }
+        
+        
+        
+

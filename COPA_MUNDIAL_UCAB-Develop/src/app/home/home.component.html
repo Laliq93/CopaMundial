@@ -1,97 +1,133 @@
-<nav>
-	<!--<img class="menu" (click)="toggleUserPanel()" src="../assets/{{menu}}.svg"> -->
-	<user-panel *ngIf="loadPanel"></user-panel>
-	<ul class="nav nav-tabs nav-fill justify-content-center">
-		<a class="navbar-brand" href="/home">
-			<img class="logo-nav" src="../../assets/images/logo.png" alt="">
-		</a>
-		<li class="nav-item" *ngFor="let module of moduleArray">
-			<a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}} routerLinkActive="active">{{module.name}}
-		  	</a>
-		 </li>
-	</ul>	
-</nav>
+<div id="wrapper">
 
-<router-outlet></router-outlet>
-
-<header class="header-image" *ngIf="!esHome">
-	<div class="header-overlay" align="center"></div>
-	<div class="header-inner" align="center">
-		<div class="container" align="center">
-			<div class="row row-cards" align="center">
-				<div class="col-4">
-					<a href="">
-						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						    	<button type="submit" class="btn btn-primary btn-home">Ciudades  ></button>
-						  	</div>
-						</div>	
-					</a>					
-				</div>
+    <div class="container-fluid no-padding">
+      <div class="row">
+        <div class="col-md-3 column-sidebar">
+          <!-- /. NAV TOP  -->
+          <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
 				
-				<div class="col-4">
-					<a href="">
-						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						 		<button type="submit" class="btn btn-primary btn-home">Estadios  ></button>
-						  	</div>
-						</div>	
-					</a>					
-				</div>
-				
-				<div class="col-4">
-					<a href="">
-						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						    	<button type="submit" class="btn btn-primary btn-home">Equipos  ></button>
-						  	</div>
-						</div>	
-					</a>					
+				<div class="section-data-user">
+					<div align="center">
+	                  <img align="center" class="profile-image-sidebar" src="../../assets/images/users/1.jpg" alt="">
+	                </div>
+
+	                <p class="sidebar-name-user">Felix Morales</p>
 				</div>
 
-			</div>
+				<hr class="separator">
 
-			<div class="row row-cards" align="center">
-				<div class="col-4">
-					<a href="">
-						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						    	<button type="submit" class="btn btn-primary btn-home">Ciudades  ></button>
-						  	</div>
-						</div>	
-					</a>					
-				</div>
-				
-				<div class="col-4">
-					<a href="">
-						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						 		<button type="submit" class="btn btn-primary btn-home">Estadios  ></button>
-						  	</div>
-						</div>	
-					</a>					
-				</div>
-				
-				<div class="col-4">
-					<a href="">
-						<div class="card" style="width: 18rem;">
-						 	<img class="card-img-top" src="../../assets/images/estadios.jpg" alt="Card image cap">
-						 	<div class="card-body" align="right">
-						    	<button type="submit" class="btn btn-primary btn-home">Equipos  ></button>
-						  	</div>
-						</div>	
-					</a>					
-				</div>
+              	<ul class="list-group" id="main-menu">
 
-			</div>
-		</div>
-	</div>
+	                <li class="list-group-item item-sidebar">
+	                  <a (click)="setHome()" routerLink="user-panel" routerLinkActive="active"><span class="oi oi-person"></span> Perfil</a>
+	                </li>
+
+	                <li class="list-group-item item-sidebar">
+	                  <a (click)="setHome()" routerLink="user-config" routerLinkActive="active"><span class="oi oi-cog"></span> Configuración</a>
+	                </li>
+
+	                <li class="list-group-item item-sidebar">
+	                  <a (click)="setHome()" routerLink="user-security" routerLinkActive="active"><span class="oi oi-lock-locked"></span> Seguridad</a>
+	                </li>
+
+	                <li class="list-group-item item-sidebar">
+	                  <a (click)="setHome()" routerLink="user-accessibility" routerLinkActive="active"><span class="oi oi-external-link"></span> Accesibilidad</a>
+	                </li>
+
+	                <li class="list-group-item item-sidebar">
+	                  <a href="#"><span class="oi oi-account-logout"></span> Cerrar sesión</a>
+	                </li>
+              	</ul>
+<header class="navbar navbar-dark navbar-full bg-color">
+
+    <button aria-controls="copaNavdrawer" aria-expanded="false" aria-label="Toggle Navdrawer" class="navbar-toggler" data-target="#copaNavdrawer"
+        data-toggle="navdrawer">
+        <span class="oi oi-menu"></span>
+    </button>
+    <span class="navbar-brand mr-auto">
+        <div class="hidden-xs">
+            <img class="img-logo-nav img-fluid" src="../../../assets/images/logo.png" alt="">Mundial de Rusia 2018
+        </div>
+    </span>
+
+    <div class="navbar-nav">
+        <div class="nav-item dropdown">
+            <a class="nav-link" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" />Felix Morales</a>
+
+            <ul class="dropdown-menu animated fadeInDown">
+                <li>
+                    <a class="nav-link" (click)="setHome()" routerLink="user-panel" routerLinkActive="active">Perfil</a>
+                </li>
+                <li>
+                    <a class="nav-link" (click)="setHome()" routerLink="user-config" routerLinkActive="active">Configuración</a>
+                </li>
+                <li>
+                    <a class="nav-link" (click)="setHome()" routerLink="user-security" routerLinkActive="active">Seguridad</a>
+                </li>
+                <li>
+                    <a class="nav-link" (click)="setHome()" routerLink="user-accessibility" routerLinkActive="active">Accesibilidad</a>
+                </li>
+                <li>
+                    <a class="nav-link" (click)="setHome()" routerLink="">Cerrar Sesion</a>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="flag-icon flag-icon-es"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">
+                    <i class="flag-icon flag-icon-us"></i> Ingles</a>
+            </div>
+        </div>
+    </div>
+
 </header>
 
+<div aria-hidden="true" class="navdrawer" id="copaNavdrawer" tabindex="-1">
+    <div class="navdrawer-content">
 
+        <nav class="navdrawer-nav">
 
+            <div class="user-profile" style="background: url(../assets/images/background/profile-bg.jpg) no-repeat;">
+
+                <div class="profile-img">
+                    <img src="../../assets/images/users/1.jpg" alt="user" /> </div>
+
+                <div class="profile-text">
+                    <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Felix Morales
+                        <span class="oi oi-caret-bottom"></span>
+                    </a>
+                    <div class="dropdown-menu animated flipInY">
+                        <a (click)="setHome()" routerLink="user-config" routerLinkActive="active" class="dropdown-item">
+                            <span class="oi oi-person"></span> Mi Perfil</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <span class="oi oi-wrench" (click)="setHome()" routerLink="user-config" routerLinkActive="active"></span> Configuración</a>
+                        <div class="dropdown-divider"></div>
+                        <a (click)="setHome()" routerLink="" class="dropdown-item">
+                            <span class="oi oi-power-standby"></span> Salir</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="navdrawer-divider"></div>
+        <p class="navdrawer-subheader">Modulos</p>
+        <ul class="navdrawer-nav">
+            <li class="nav-item" *ngFor="let module of moduleArray">
+                <a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}}
+                    routerLinkActive="active">
+                    {{module.name}}
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+</div>
+
+<router-outlet></router-outlet>

@@ -12,5 +12,9 @@ export class SigninComponent {
 	home(): void {
 		this.router.navigate(['home']);
 	}	
+
+	recoveryPassword(): void {
+		this.router.navigate(['recovery']);
+	}
 }
 

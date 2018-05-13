@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-panel.component.css']
 })
 export class UserPanelComponent {
-	public modulo: string = "diez"; 
+  public modulo: string = 'diez';
 }

@@ -3,7 +3,6 @@ Procedimientos del Modulo_1 de autoregistro, inicio de sesión, recuperación de
 Autores:
   Sabina Quiroga 
   Laura Quiñones
-  Oswaldo Bracho
 **/
 
 /*INSERT*/

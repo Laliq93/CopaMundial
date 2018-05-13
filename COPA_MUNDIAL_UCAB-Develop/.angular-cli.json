@@ -7,10 +7,7 @@
     {
       "root": "src",
       "outDir": "dist",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
+      "assets": ["assets", "favicon.ico"],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
@@ -20,10 +17,15 @@
       "prefix": "app",
       "styles": [
         "../node_modules/daemonite-material/css/material.css",
-        "styles.css",
-        "../node_modules/open-iconic/font/css/open-iconic-bootstrap.min.css"
+        "../node_modules/open-iconic/font/css/open-iconic-bootstrap.min.css",
+        "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/popper.js/dist/umd/popper.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/daemonite-material/js/material.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

@@ -13,7 +13,7 @@ footer {
  * Off Canvas
  * --------------------------------------------------
  */
-@media screen and (max-width: 10px) {
+/*@media screen and (max-width: 10px) {
   .row-offcanvas {
     position: relative;
     -webkit-transition: all .25s ease-out;
@@ -24,7 +24,7 @@ footer {
   .sidebar-offcanvas {
     position: absolute;
     width: 5%; /* 6 columns */
-    display: none;
+ /*  display: none;
   }
 
   .row-offcanvas-right {
@@ -41,19 +41,40 @@ footer {
     text-align: center;
   }
 
-    .th{
+
+    /*.th{
         text-align: center; /*Parrafo centrado*/
-    }
+   /* }
 
     .table{
-        width: 1003px;
+        width: 1003px    
+
     }
+}*/
+
+.container-fluid{
+ padding: 2%
+}
+.table{
+  margin-left: 1%; 
+  width: 100%;
 }
 
 .fondo{
     background-color: #A11D1B;
     color: white;
     padding: 15px 15px;  
+}
+
+ a.list-group-item.fondo{
+  background-color: #A11D1B;
+  color: white;
+} 
+
+a.list-group-item.active.fondo{
+  background-color: #AA4545;
+  color: white;
+  border: 5px solid #A11D1B; 
 }
 
 .btnPartido{
