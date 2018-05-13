@@ -8,10 +8,6 @@ nav.navbar-light{
 	box-shadow: 4px 4px 9px #cdcdcd;
 }
 
-.nav-link{
-	color: #ffffff;
-}
-
 .navbar-brand{
 	color: #ffffff;
 }
@@ -45,4 +41,3 @@ nav.navbar-light{
 .nav-tabs .nav-link.active {
     color: #02588E;
 }
-
