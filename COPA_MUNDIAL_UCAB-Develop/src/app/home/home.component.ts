@@ -101,7 +101,7 @@ export class HomeComponent {
 	ngAfterViewInit(): void {
 
 		this._zone.runOutsideAngular(() => {
-			$("#copaNavdrawer").navdrawer("show");
+			$("#navdrawerPermanent").navdrawer();
 		});
 		
 	}
