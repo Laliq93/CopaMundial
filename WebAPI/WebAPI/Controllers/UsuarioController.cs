@@ -11,7 +11,7 @@ using System.Web;
 
 namespace WebAPI.Controllers
 {
-    [RoutePrefix("api/Usuario_")]
+    [RoutePrefix("api/Usuario")]
     public class UsuarioController : ApiController
     {
         DataBase DataBase = new DataBase();
