@@ -20,7 +20,8 @@ CREATE TABLE USUARIO (
     us_correo	        varchar(30) NOT NULL UNIQUE,
     us_genero   varchar(1) CHECK (us_genero ='M' OR us_genero='F'),
     us_password         varchar(20),
-    us_foto		varchar(100),
+    us_fotoPath		varchar(100),
+    us_esAdmin boolean default false not null,
     CONSTRAINT primaria_usuario PRIMARY KEY(us_id)
 
 );
