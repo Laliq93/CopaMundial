@@ -7,101 +7,131 @@ namespace WebAPI.Models.Usuario
 {
     public class Usuario
     {
-        private int _id;
-        private string _nombre;
-        private string _apellido;
-        private DateTime _fechaNacimiento;
-        private string _correo;
-        private char _genero;
-        private string _fotoPath;
-        private string _nombreUsuario;
-        private string _password;
-        private string _passwordTemporal;
+        private int _id; //identificador unico del usuario
+        private string _nombreUsuario; //nombre de usuario para iniciar sesion
+        private string _nombre; //nombre del usuario
+        private string _apellido; //apellido del usuario
+        private DateTime _fechaNacimiento; //fecha de nacimiento del usuario
+        private string _correo; //correo del usuario
+        private string _genero; //genero del usuario 
+        private string _password; //contrasena del usuario
+        private string _fotoPath; //
+        private bool _esAdmin;
         private string _token;
-        private Rol _rol;
 
-        public Usuario(int id, string nombre, string apellido, DateTime fechaNacimiento, string correo, char genero, string fotoPath, string nombreUsuario, string password, Rol rol)
+        public Usuario(int id, string nombreUsuario, string nombre, string apellido, DateTime fechaNacimiento,
+            string correo, string genero, string password, string fotoPath, bool esAdmin, string token)
         {
             _id = id;
+            _nombreUsuario = nombreUsuario;
             _nombre = nombre;
             _apellido = apellido;
             _fechaNacimiento = fechaNacimiento;
             _correo = correo;
             _genero = genero;
-            _fotoPath = fotoPath;
-            _nombreUsuario = nombreUsuario;
             _password = password;
-            _rol = rol;
+            _fotoPath = fotoPath;
+            _esAdmin = esAdmin;
+            _token = token;
         }
 
-        public int id
+        /// <summary>
+        /// Getters y Setters del atributo id
+        /// </summary>
+        public int Id
         {
             get { return _id; }
+            set { _id = value; }
         }
 
-        public string nombre
+        /// <summary>
+        /// Getters y Setters del atributo nombreUsuario
+        /// </summary>
+        public string NombreUsuario
+        {
+            get { return _nombreUsuario; }
+            set { _nombreUsuario = value; }
+        }
+
+        /// <summary>
+        /// Getters y Setters del atributo nombre
+        /// </summary>
+        public string Nombre
         {
             get { return _nombre; }
             set { _nombre = value; }
         }
-        
-        public string apellido
+
+        /// <summary>
+        /// Getters y Setters del atributo apellido
+        /// </summary>
+        public string Apellido
         {
             get { return _apellido; }
             set { _apellido = value; }
         }
 
-        public DateTime fechaNacimiento
+        /// <summary>
+        /// Getters y Setters del atributo fechaNacimiento
+        /// </summary>
+        public DateTime FechaNacimiento
         {
             get { return _fechaNacimiento; }
             set { _fechaNacimiento = value; }
         }
 
-        public string correo
+        /// <summary>
+        /// Getters y Setters del atributo Correo
+        /// </summary>
+        public string Correo
         {
             get { return _correo; }
             set { _correo = value; }
         }
 
-        public char genero
+        /// <summary>
+        /// Getters y Setters del atributo genero
+        /// </summary>
+        public string Genero
         {
             get { return _genero; }
             set { _genero = value; }
         }
 
-        public string fotoPath
-        {
-            get { return _fotoPath; }
-            set { _fotoPath = value; }
-        }
-
-        public string nombreUsuario
-        {
-            get { return _nombreUsuario; }
-        }
-
-        public string password
+        /// <summary>
+        /// Getters y Setters del atributo password
+        /// </summary>
+        public string Password
         {
             get { return _password; }
             set { _password = value; }
         }
 
-        public string passwordTemporal
+        /// <summary>
+        /// Getters y Setters del atributo fotopath
+        /// </summary>
+        public string FotoPath
         {
-            get { return _passwordTemporal; }
-            set { _passwordTemporal = value; }
+            get { return _fotoPath; }
+            set { _fotoPath = value; }
         }
 
-        public string token
+        /// <summary>
+        /// Getters y Setters del atributo esAdmin
+        /// </summary>
+        public bool EsAdmin
+        {
+            get { return _esAdmin; }
+            set { _esAdmin = value; }
+        }
+
+        /// <summary>
+        /// Getters y Setters del atributo Token
+        /// </summary>
+        public string Token
         {
             get { return _token; }
             set { _token = value; }
         }
-
-        public Rol rol
-        {
-            get { return _rol; }
-        }
-
     }
 }
