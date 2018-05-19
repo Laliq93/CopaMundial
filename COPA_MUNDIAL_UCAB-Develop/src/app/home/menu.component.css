@@ -3,13 +3,13 @@ nav.navbar-light{
 	box-shadow: 9px 4px 4px rgba(0,0,0,0.35);
 }
 
+.navdrawer-permanent-lg {
+	margin-top: 45px;
+}
+
 .nav {
 	padding: 5px;
 	box-shadow: 4px 4px 9px #cdcdcd;
-}
-
-.nav-link{
-	color: #ffffff;
 }
 
 .navbar-brand{
@@ -45,4 +45,3 @@ nav.navbar-light{
 .nav-tabs .nav-link.active {
     color: #02588E;
 }
-

@@ -15,7 +15,8 @@ File: css
  *	5. Footers
  *	6. app
  *	7. Widgets
- *	8. Custom Templates
+ *	8. Media's
+ *	9. Custom Templates
  */
 
 @import url(../src/assets/ccs/cropper.min.css);
@@ -233,5 +234,9 @@ File: css
 ******************/
 
 /*******************
-8. Custom Templates
+8. Media's
+******************/
+
+/*******************
+9. Custom Templates
 ******************/
