@@ -1,4 +1,4 @@
-import { Component, NgZone, AfterViewInit } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 /* tslint:disable */
 
@@ -57,7 +57,7 @@ export class HomeComponent {
 
 		this.initialiseModules();
 		this.menu = "menu";
-		
+
 	}
 	ngOnInit(): void {
 		//Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -96,14 +96,6 @@ export class HomeComponent {
 		} else {
 			this.menu = "menu";
 		}
-	}
-
-	ngAfterViewInit(): void {
-
-		this._zone.runOutsideAngular(() => {
-			$("#copaNavdrawer").navdrawer("show");
-		});
-		
 	}
 
 }

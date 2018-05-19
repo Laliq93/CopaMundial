@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -12,8 +13,72 @@ namespace WebAPI.Models.DataBase
         private NpgsqlConnection _con;
         private NpgsqlCommand _command;
         private DataTable _dataTable;
+        private Dictionary<string, string> _data;
+        private string _cadena;
 
-        private bool isConnected()
+
+
+        public DataBase()
+        {
+            _data = new Dictionary<string, string>();
+            LecturaArchivo();
+            CrearStringConexion();
+        }
+
+        private void LecturaArchivo()
+        {
+            string archivoPath = HttpContext.Current.Request.PhysicalApplicationPath + "config.ini";
+
+            if (!File.Exists(archivoPath))
+                throw new ArgumentException("Error al encontrar el archivo: config.ini");
+
+            try
+            {
+                using (var stream = new StreamReader(archivoPath))
+                {
+                    string linea = "";
+
+                    while ((linea = stream.ReadLine()) != null)
+                    {
+                        if (linea.Length < 1 || linea.StartsWith("#"))
+                        {
+                            continue;
+                        }
+
+                        int posicionDelimitador = linea.IndexOf('=');
+
+                        if (posicionDelimitador != -1)
+                        {
+                            string identificador = linea.Substring(0, posicionDelimitador);
+                            string contenido = linea.Substring(posicionDelimitador + 1);
+
+                            _data.Add(identificador, contenido);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("Error al procesar el archivo de configuracion");
+            }
+        }
+
+        private void CrearStringConexion()
+        {
+            var npSqlCadena = new NpgsqlConnectionStringBuilder()
+            {
+                Host = _data["db.servidor"],
+                Port = Convert.ToInt32(_data["db.puerto"]),
+                UserName = _data["db.usuario"],
+                Database = _data["db.database"],
+                Password = _data["db.password"]
+                
+            };
+
+            _cadena = npSqlCadena.ToString();
+        }
+
+        private bool IsConnected()
         {
             try
             {
@@ -28,12 +93,11 @@ namespace WebAPI.Models.DataBase
             }
         }
 
-        public bool conectar()
+        public bool Conectar()
         {
             try
             {
-                string cadena = "Server=localhost;Port=5432;User Id=admin_copamundial;Database=copamundial; Password=copamundial;";
-                _con = new NpgsqlConnection(cadena);
+                _con = new NpgsqlConnection(_cadena);
                 _con.Open();
                 return true;
             }
@@ -43,15 +107,18 @@ namespace WebAPI.Models.DataBase
             }
         }
 
-        public void desconectar()
+        public void Desconectar()
         {
-            if (_con != null && isConnected())
+            if (_con != null && IsConnected())
                 _con.Close();
         }
 
+        /// <summary>
+        /// Ejecutar el StoredProcedure con un valor de retorno (ResultSet), habilita el uso de las funciones "GetInt, GetString, etc" y devuelve un objeto DataTable.
+        /// </summary>
         public DataTable EjecutarReader()
         {
-            if (!isConnected())
+            if (!IsConnected())
                 return null;
 
             try
@@ -60,11 +127,15 @@ namespace WebAPI.Models.DataBase
 
                 _dataTable.Load(_command.ExecuteReader());
 
-                desconectar();
+                Desconectar();
+
+                if (_dataTable.Rows.Count < 1)
+                    return null;
+
             }
             catch (Exception)
             {
-                desconectar();
+                Desconectar();
                 return null;
             }
 
@@ -72,34 +143,42 @@ namespace WebAPI.Models.DataBase
               
         }
 
+
+        /// <summary>
+        /// Ejecutar el StoredProcedure sin valor de retorno (ResultSet), devuelve el número de filas afectadas.
+        /// </summary>
         public int EjecutarQuery()
         {
             try
             {
-                if (!isConnected())
+                if (!IsConnected())
                     return 0;
 
                 int filasAfectadas = _command.ExecuteNonQuery();
 
-                desconectar();
+                Desconectar();
 
                 return filasAfectadas;
             }
             catch (Exception)
             {
-                desconectar();
+                Desconectar();
                 return 0;
             }
         }
 
-        public NpgsqlCommand crearComando(string comando)
+        /// <summary>
+        /// Crea el comando para ejecutar el StoredProcedure, Ejemplo: StoredProcedure("nombreSP(@param)")
+        /// </summary>
+        public NpgsqlCommand StoredProcedure(string sp)
         {
             try
             {
-                if (!isConnected())
+                if (!IsConnected())
                     return null;
 
-                _command = new NpgsqlCommand(comando, _con);
+                
+                _command = new NpgsqlCommand("select * from "+sp, _con);
             }
             catch (Exception)
             {
@@ -108,6 +187,196 @@ namespace WebAPI.Models.DataBase
 
             return _command;
         }
+
+
+        public void AgregarParametro(string nombre, object valor)
+        {
+            try
+            {
+                _command.Parameters.AddWithValue("@" + nombre, valor);
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+        public int GetInt(int fila, int columna)
+        {
+            try
+            {
+                int intItem = Convert.ToInt32(_dataTable.Rows[fila][columna]);
+
+                return intItem;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
+            catch (OverflowException)
+            {
+                throw new OverflowException();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public char GetChar(int fila, int columna)
+        {
+            try
+            {
+                char charItem = Convert.ToChar(_dataTable.Rows[fila][columna]);
+
+                return charItem;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
+            catch (ArgumentNullException)
+            {
+                throw new ArgumentNullException();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public string GetString(int fila, int columna)
+        {
+            try
+            {
+                string stringItem = Convert.ToString(_dataTable.Rows[fila][columna]);
+
+                return stringItem;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
+            catch (ArgumentNullException)
+            {
+                throw new ArgumentNullException();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public double GetDouble(int fila, int columna)
+        {
+            try
+            {
+                double doubleItem = Convert.ToDouble(_dataTable.Rows[fila][columna]);
+
+                return doubleItem;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
+            catch (OverflowException)
+            {
+                throw new OverflowException();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public bool GetBool(int fila, int columna)
+        {
+            try
+            {
+                bool boolItem = Convert.ToBoolean(_dataTable.Rows[fila][columna]);
+
+                return boolItem;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public DateTime GetDateTime(int fila, int columna)
+        {
+            try
+            {
+                DateTime dateItem = Convert.ToDateTime(_dataTable.Rows[fila][columna]);
+
+                return dateItem;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+
 
 
     }
