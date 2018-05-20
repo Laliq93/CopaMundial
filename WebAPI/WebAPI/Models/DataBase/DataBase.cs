@@ -15,12 +15,18 @@ namespace WebAPI.Models.DataBase
         private DataTable _dataTable;
         private Dictionary<string, string> _data;
         private string _cadena;
+        private int _cantidadRegistros;
 
         public DataBase()
         {
             _data = new Dictionary<string, string>();
             LecturaArchivo();
             CrearStringConexion();
+        }
+
+        public int cantidadRegistros
+        {
+            get { return _cantidadRegistros; }
         }
 
         private void LecturaArchivo()
@@ -128,7 +134,9 @@ namespace WebAPI.Models.DataBase
 
                 Desconectar();
 
-                if (_dataTable.Rows.Count < 1)
+                _cantidadRegistros = _dataTable.Rows.Count;
+
+                if (_cantidadRegistros < 1)
                 {
                     throw new ArgumentNullException("No existen registros.");
                 }

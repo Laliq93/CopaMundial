@@ -14,83 +14,146 @@ namespace WebAPI.Controllers
     [RoutePrefix("api/M10_Usuario")]
     public class M10_UsuarioController : ApiController
     {
-        DataBase DataBase = new DataBase();
+        private DataBase _database = new DataBase();
+        private List<Usuario> _listaUsuarios;
 
         [Route("ActualizarPerfil/{idUsuario:int}/{nombre}/{apellido}/{fechaNacimiento}/{genero}/{fotoPath}")]
         [HttpPut, HttpGet]
         public IHttpActionResult ActualizarPerfil(int idUsuario, string nombre, string apellido, string fechaNacimiento, char genero, string fotoPath)
         {
-            if (!DataBase.Conectar())
-            {
-                DataBase.Desconectar();
-                return BadRequest("Error al conectarse a la base de datos.");
-            }
-
             try
             {
-                DataBase.StoredProcedure("editarperfilusuario(@id, @nombre, @apellido, @fechaNacimiento, @genero, @foto)");
-
-                DataBase.AgregarParametro("id", idUsuario);
-                DataBase.AgregarParametro("nombre", nombre);
-                DataBase.AgregarParametro("apellido", apellido);
-                DataBase.AgregarParametro("fechaNacimiento", fechaNacimiento);
-                DataBase.AgregarParametro("genero", genero.ToString().ToUpper());
-                DataBase.AgregarParametro("foto", fotoPath);
-
-                DataBase.EjecutarQuery();
+                EditarPerfil(idUsuario, nombre, apellido, fechaNacimiento, genero, fotoPath);
 
                 return Ok("Usuario editado con exito.");
             }
             catch (Exception e)
             {
-                DataBase.Desconectar();
+                _database.Desconectar();
                 return BadRequest("Error en el servidor: "+e.Message);
             }
 
         }
 
-        // api/Usuario/ObtenerUsuario/?idUsuario=id
-        [HttpGet]
-        [Route("ObtenerUsuario/{idUsuario:int}")]
-        public HttpResponseMessage ObtenerUsuario(int idUsuario)
+
+        [Route("DesactivarUsuario/{idUsuario:int}")]
+        [HttpPut, HttpGet]
+        public IHttpActionResult DesactivarUsuario(int idUsuario)
         {
             try
             {
-                if (!DataBase.Conectar()) //se abre la conexión con la base de datos
-                {
-                    DataBase.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error al conectarse con la base de datos"));
-                }
+                GestionarActivo(idUsuario, false);
 
-                Usuario usuario = GetUsuario(idUsuario);
-
-                if (usuario == null)
-                    return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("El usuario no existe."));
-
-                return Request.CreateResponse(HttpStatusCode.OK, usuario);
+                return Ok("Usuario desactivado con exito.");
             }
             catch (Exception e)
             {
-                DataBase.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error en el servidor:"+e.Message));
+                _database.Desconectar();
+                return BadRequest("Error en el servidor: " + e.Message);
             }
-           
+
         }
 
-        private Usuario GetUsuario(int idUsario)
+        [Route("ActivarUsuario/{idUsuario:int}")]
+        [HttpPut, HttpGet]
+        public IHttpActionResult ActivarUsuario(int idUsuario)
         {
-            DataBase.StoredProcedure("ConsultarUsuarioId(@Id)");
+            try
+            {
+                GestionarActivo(idUsuario,true);
 
-            DataBase.AgregarParametro("Id", idUsario);
+                return Ok("Usuario activado con exito.");
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return BadRequest("Error en el servidor: " + e.Message);
+            }
 
-            DataBase.EjecutarReader();
+        }
 
-            //string path = HttpContext.Current.Server.MapPath("");
+        [HttpGet]
+        public HttpResponseMessage ObtenerUsuarioActivos()
+        {
+            try
+            {
+                ObtenerUsuarios(true);
 
-            Usuario user = new Usuario(DataBase.GetInt(0, 0), DataBase.GetString(0, 1), DataBase.GetString(0, 2), DataBase.GetString(0, 3), DataBase.GetDateTime(0, 4),
-               DataBase.GetString(0, 5), DataBase.GetChar(0, 6), "password2", "path_foto", false, null);
+                return Request.CreateResponse(HttpStatusCode.OK, _listaUsuarios);
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error en el servidor:" + e.Message));
+            }
+        }
 
-            return user;
+        [HttpGet]
+        public HttpResponseMessage ObtenerUsuariosNoActivos()
+        {
+            try
+            {
+                ObtenerUsuarios(false);
+
+                return Request.CreateResponse(HttpStatusCode.OK, _listaUsuarios);
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error en el servidor:" + e.Message));
+            }
+        }
+
+        private void ObtenerUsuarios(bool activo)
+        {
+            _listaUsuarios = new List<Usuario>();
+
+            _database.Conectar();
+
+            if(activo)
+                _database.StoredProcedure("ObtenerUsuariosActivos()");
+            else
+                _database.StoredProcedure("ObtenerUsuariosNoActivos()");
+
+            _database.EjecutarReader();
+
+            Usuario usuarioLista;
+
+            for(int i = 0; i < _database.cantidadRegistros; i++)
+            {
+                usuarioLista = new Usuario(_database.GetInt(i, 0), _database.GetString(i, 1), _database.GetString(i, 2), 
+                    _database.GetString(i, 3), _database.GetDateTime(i, 4), _database.GetString(i, 5));
+
+                _listaUsuarios.Add(usuarioLista);
+            }
+        }
+
+        private void EditarPerfil(int idUsuario, string nombre, string apellido, string fechaNacimiento, char genero, string fotoPath)
+        {
+            _database.Conectar();
+
+            _database.StoredProcedure("editarperfilusuario(@id, @nombre, @apellido, @fechaNacimiento, @genero, @foto)");
+
+            _database.AgregarParametro("id", idUsuario);
+            _database.AgregarParametro("nombre", nombre);
+            _database.AgregarParametro("apellido", apellido);
+            _database.AgregarParametro("fechaNacimiento", fechaNacimiento);
+            _database.AgregarParametro("genero", genero.ToString().ToUpper());
+            _database.AgregarParametro("foto", fotoPath);
+
+            _database.EjecutarQuery();
+        }
+
+        private void GestionarActivo(int idUsuario, bool activo)
+        {
+            _database.Conectar();
+
+            _database.StoredProcedure("gestionaractivocuentausuario(@id, @activo)");
+
+            _database.AgregarParametro("id", idUsuario);
+            _database.AgregarParametro("activo", activo);
+
+            _database.EjecutarQuery();
         }
 
         

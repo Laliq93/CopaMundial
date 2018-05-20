@@ -38,6 +38,16 @@ namespace WebAPI.Models
             _token = token;
         }
 
+        public Usuario(int id, string nombreUsuario, string nombre, string apellido, DateTime fechaNacimiento, string correo)
+        {
+            _id = id;
+            _nombreUsuario = nombreUsuario;
+            _nombre = nombre;
+            _apellido = apellido;
+            _fechaNacimiento = fechaNacimiento;
+            _correo = correo;
+        }
+
         /// <summary>
         /// Getters y Setters del atributo id
         /// </summary>
