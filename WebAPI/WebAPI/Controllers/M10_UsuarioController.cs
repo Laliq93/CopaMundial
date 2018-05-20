@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebAPI.Models.Usuario;
+using WebAPI.Models;
 using WebAPI.Models.DataBase;
 using System.Data;
 using System.Web;
@@ -88,7 +88,7 @@ namespace WebAPI.Controllers
             //string path = HttpContext.Current.Server.MapPath("");
 
             Usuario user = new Usuario(DataBase.GetInt(0, 0), DataBase.GetString(0, 1), DataBase.GetString(0, 2), DataBase.GetString(0, 3), DataBase.GetDateTime(0, 4),
-               DataBase.GetString(0, 5), DataBase.GetString(0, 6), "password2", "path_foto", false, null);
+               DataBase.GetString(0, 5), DataBase.GetChar(0, 6), "password2", "path_foto", false, null);
 
             return user;
         }
