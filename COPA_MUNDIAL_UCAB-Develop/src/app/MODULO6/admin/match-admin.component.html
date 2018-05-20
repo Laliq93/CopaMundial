@@ -3,7 +3,7 @@
     <a aria-controls="groups" aria-selected="true" class="nav-link active"  data-toggle="tab" id="groups-tab" role="tab">Partidos</a>
   </li>
   <li class="nav-item">
-    <a aria-controls="Create" aria-selected="false" class="nav-link" (click)="crear()" data-toggle="tab" id="create-tab" role="tab">Crear Partido</a>
+    <a aria-controls="Create" aria-selected="false" class="nav-link" (click)="matchCreate()" data-toggle="tab" id="create-tab" role="tab">Crear Partido</a>
   </li>
 </ul>
 
@@ -28,17 +28,8 @@
                   <h4> {{inf.equipo2}} </h4>
                 </div>
                 <div class="col-sm-2">
-                  <div class="dropdown">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true">
-                      Seleccione
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">a</a>
-                      <a class="dropdown-item" href="#">b</a>
-                      <a class="dropdown-item" href="#">c</a>
-                    </div>
-                  </div>
+                  <p></p>
+                  <button type="submit" (click)="matchUpdate()" class="btn">Modificar</button>
                 </div>
             </div>
             <div class="dropdown-divider"></div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'match-admin',
@@ -7,7 +8,16 @@ import { Component } from '@angular/core';
 })
 export class MatchAdminComponent {
 
+  constructor(private router: Router){}
 
+
+    matchCreate(): void {
+  		this.router.navigate(['admin/match/create']);
+    }
+
+    matchUpdate(): void {
+  		this.router.navigate(['admin/match/update']);
+    }
 
   public listmatches: Array<any>= [
       {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-match-admin-update',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MatchAdminUpdateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router){}
 
   ngOnInit() {
+  }
+
+  matchList(): void {
+		this.router.navigate(['admin/match']);
   }
 
 }
