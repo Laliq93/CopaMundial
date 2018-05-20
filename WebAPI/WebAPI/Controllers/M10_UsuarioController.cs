@@ -72,6 +72,24 @@ namespace WebAPI.Controllers
 
         }
 
+        [Route("ActualizarClaveUsuario/{idUsuario:int}/{password}")]
+        [HttpPut, HttpGet]
+        public IHttpActionResult ActualizarClaveUsuario(int idUsuario, string password)
+        {
+            try
+            {
+                EditarPassword(idUsuario, password);
+
+                return Ok("Clave actualizada con exito.");
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return BadRequest("Error en el servidor: " + e.Message);
+            }
+
+        }
+
         [HttpGet]
         public HttpResponseMessage ObtenerUsuarioActivos()
         {
@@ -103,6 +121,8 @@ namespace WebAPI.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error en el servidor:" + e.Message));
             }
         }
+
+
 
         private void ObtenerUsuarios(bool activo)
         {
@@ -157,7 +177,20 @@ namespace WebAPI.Controllers
         }
 
         
-       
+        private void EditarPassword(int idUsuario, string clave)
+        {
+            _database.Conectar();
+
+            _database.StoredProcedure("cambiarpasswordusuario(@id, @clave)");
+
+            _database.AgregarParametro("id", idUsuario);
+            _database.AgregarParametro("clave", clave);
+
+            _database.EjecutarQuery();
+        }
+
+
+
 
     }
 }
