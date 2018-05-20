@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebAPI.Models.Usuario
+namespace WebAPI.Models
 {
+    /// <summary>
+    /// Clase que contiene los datos del usuario
+    /// </summary>
     public class Usuario
     {
         private int _id; //identificador unico del usuario
@@ -13,14 +16,14 @@ namespace WebAPI.Models.Usuario
         private string _apellido; //apellido del usuario
         private DateTime _fechaNacimiento; //fecha de nacimiento del usuario
         private string _correo; //correo del usuario
-        private string _genero; //genero del usuario 
+        private char _genero; //genero del usuario 
         private string _password; //contrasena del usuario
         private string _fotoPath; //
         private bool _esAdmin;
         private string _token;
 
         public Usuario(int id, string nombreUsuario, string nombre, string apellido, DateTime fechaNacimiento,
-            string correo, string genero, string password, string fotoPath, bool esAdmin, string token)
+            string correo, char genero, string password, string fotoPath, bool esAdmin, string token)
         {
             _id = id;
             _nombreUsuario = nombreUsuario;
@@ -92,7 +95,7 @@ namespace WebAPI.Models.Usuario
         /// <summary>
         /// Getters y Setters del atributo genero
         /// </summary>
-        public string Genero
+        public char Genero
         {
             get { return _genero; }
             set { _genero = value; }
