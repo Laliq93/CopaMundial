@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 //modulos
 import { AuthModule } from './MODULO1/auth.module';
@@ -19,25 +22,22 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 
-
 //servicios
 import { ApiService } from './shared/api.service';
 
 
-
+import { HttpModule } from '@angular/http';
 //angular pipes (directiva)
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AdminComponent,
-    
-    
-   
+    AdminComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     AuthModule,
     CityModule,
@@ -48,11 +48,12 @@ import { ApiService } from './shared/api.service';
     AchievementModule,
     BetModule,
     StatisticModule,
-    UserConfigModule
+    UserConfigModule,
+    HttpClientModule
   ],
   providers: [
     ApiService
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
