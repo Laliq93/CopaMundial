@@ -12,13 +12,13 @@ CREATE OR REPLACE FUNCTION InsertarUsuario
 (_nombreUsuario VARCHAR(20), _nombre VARCHAR(30),
  _apellido VARCHAR(30), _fechaNacimiento date,
 _correo VARCHAR(30),  _genero VARCHAR(1),
- _password VARCHAR(20), _foto VARCHAR(100))
+ _password VARCHAR(20), _fotoPath VARCHAR(100))
 RETURNS integer AS
 $$
 BEGIN
 
    INSERT INTO usuario VALUES
-    (nextval('seq_Usuario'), _nombreUsuario, _nombre, _apellido, _fechaNacimiento, _correo, _genero, _password, _foto);
+    (nextval('seq_Usuario'), _nombreUsuario, _nombre, _apellido, _fechaNacimiento, _correo, _genero, _password, _fotoPath);
 
    RETURN currval('seq_Usuario');
 
@@ -41,7 +41,7 @@ AS
 $$
 BEGIN
 	RETURN QUERY SELECT
-	us_id, us_nombreUsuario, us_nombre, us_apellido, us_fechanacimiento, us_correo, us_genero, us_foto
+	us_id, us_nombreUsuario, us_nombre, us_apellido, us_fechanacimiento, us_correo, us_genero, us_fotoPath
 	FROM usuario
 	WHERE us_nombreusuario=_nombreUsuario AND _password = us_password;
 END;
@@ -63,7 +63,7 @@ AS
 $$
 BEGIN
 	RETURN QUERY SELECT
-	us_id, us_nombreUsuario, us_nombre, us_apellido, us_fechanacimiento, us_correo, us_genero, us_foto
+	us_id, us_nombreUsuario, us_nombre, us_apellido, us_fechanacimiento, us_correo, us_genero, us_fotoPath
 	FROM usuario
 	WHERE us_correo=_correo AND  us_password=_password;
 END;
@@ -85,7 +85,7 @@ AS
 $$
 BEGIN
 	RETURN QUERY SELECT
-	us_id, us_nombreUsuario, us_nombre, us_apellido, us_fechanacimiento, us_correo, us_genero, us_foto
+	us_id, us_nombreUsuario, us_nombre, us_apellido, us_fechanacimiento, us_correo, us_genero, us_fotoPath
 	FROM usuario
 	WHERE us_nombreUsuario=_nombreUsuario;
 END;
@@ -105,7 +105,7 @@ AS
 $$
 BEGIN
 	RETURN QUERY SELECT
-	us_nombreUsuario, us_nombre, us_apellido, us_fechanacimiento, us_correo, us_genero, us_foto
+	us_nombreUsuario, us_nombre, us_apellido, us_fechanacimiento, us_correo, us_genero, us_fotoPath
 	FROM usuario
 	WHERE us_id=_id;
 END;
