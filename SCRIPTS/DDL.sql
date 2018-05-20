@@ -22,6 +22,7 @@ CREATE TABLE USUARIO (
     us_password         varchar(20),
     us_fotoPath		varchar(100),
     us_esAdmin boolean default false not null,
+    us_activo boolean default true not null
     CONSTRAINT primaria_usuario PRIMARY KEY(us_id)
 
 );
