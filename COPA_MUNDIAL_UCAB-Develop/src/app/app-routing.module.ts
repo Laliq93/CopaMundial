@@ -43,6 +43,9 @@ import { UserConfigAdminComponent } from './MODULO10/admin/user-config-admin.com
 import { StadiumDetailComponent } from './MODULO3/client/stadium-detail/stadium-detail.component'
 import { CreateStadiumComponent } from './MODULO3/admin/create-stadium/create-stadium.component'
 import { StadiumDetailAdminComponent } from './MODULO3/admin/stadium-detail-admin/stadium-detail-admin.component';
+import { CrearEquipoComponent } from './MODULO4/admin/crear-equipo/crear-equipo.component';
+import { EditarEquipoComponent } from './MODULO4/admin/editar-equipo/editar-equipo.component';
+import { InhabilitarEquipoComponent } from './MODULO4/admin/inhabilitar-equipo/inhabilitar-equipo.component';
 
 
 const routes: Routes = [
@@ -89,7 +92,10 @@ const routes: Routes = [
       { path: 'achievement' , component: AchievementAdminComponent },
       { path: 'bet' , component: BetAdminComponent },
       { path: 'statistic' , component: StatisticAdminComponent },
-      { path: 'user-panel' , component: UserConfigAdminComponent }
+      { path: 'user-panel' , component: UserConfigAdminComponent },
+      { path: 'team/crear', component: CrearEquipoComponent } ,
+      { path: 'team/editar', component: EditarEquipoComponent },
+      { path: 'team/inhabilitar', component: InhabilitarEquipoComponent }
     ]
   },
 ];
