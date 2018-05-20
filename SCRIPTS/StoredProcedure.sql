@@ -8,7 +8,7 @@ Autores:
 /*INSERT*/
 -- Inserta el Usuario
 -- devuelve el id del usuario
-CREATE OR REPLACE FUNCTION InsertarUsuario
+CREATE OR REPLACE FUNCTION AgregarUsuario
 (_nombreUsuario VARCHAR(20), _nombre VARCHAR(30),
  _apellido VARCHAR(30), _fechaNacimiento date,
 _correo VARCHAR(30),  _genero VARCHAR(1),
@@ -18,7 +18,7 @@ $$
 BEGIN
 
    INSERT INTO usuario VALUES
-    (nextval('seq_Usuario'), _nombreUsuario, _nombre, _apellido, _fechaNacimiento, _correo, _genero, md5(_password), _fotoPath);
+    (nextval('seq_Usuario'), _nombreUsuario, _nombre, _apellido, _fechaNacimiento, _correo, _genero, md5(_password), _fotoPath, false, true);
 
    RETURN currval('seq_Usuario');
 
