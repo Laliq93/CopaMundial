@@ -1,6 +1,5 @@
 .tab-content{
 
-    overflow-y: scroll;
     height: 75%;
     position: relative;
 
@@ -28,16 +27,6 @@ margin-top: 0%;
 }
 
 
-
-button{
-    text-decoration:none;
-    color: #3f3f3f;
-    padding: 0;
-    border: none;
-    background: none;
-    width: 100%;
-}
-
 .img-thumbnail{
 
     margin: 10px 20px;
@@ -54,15 +43,13 @@ button{
     font-weight: bold;
 }
 
-button .col-sm-4 p{
-    padding-top: 10px;
-    margin-left: 20px;
-    text-align: left;
+
+.btn {
+  background-color: #A11D1B;
+  color: #fff;
+  width: 100%;
 }
 
-button .col-sm-2 h4{
-    padding-top: 40px;
-}
 
 .match-score, .match-time{
 
@@ -70,4 +57,14 @@ button .col-sm-2 h4{
     font-size: 20px;
     color: #3f3f3f;
     font-weight:  bold;
+}
+
+.nav, .nav-justified, .nav-tabs
+{
+    background-color: #A11D1B;
+    color: #fff;
+
+}
+.nav-tabs a{
+    color: #fff;
 }

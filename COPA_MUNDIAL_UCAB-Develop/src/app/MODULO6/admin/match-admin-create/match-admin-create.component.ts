@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-match-admin-create',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MatchAdminCreateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router){}
 
   ngOnInit() {
+  }
+
+  matchCreate(): void {
+		this.router.navigate(['admin/match/create']);
+  }
+
+  matchList(): void {
+		this.router.navigate(['admin/match']);
   }
 
 }
