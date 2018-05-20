@@ -35,6 +35,24 @@ namespace WebAPI.Controllers
 
         }
 
+        [Route("CrearUsuarioAdministrador/{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}")]
+        [HttpPost, HttpGet]
+        public IHttpActionResult CrearUsuarioAdministrador(string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, char genero, string password)
+        {
+            try
+            {
+                InsertarAdministrador(nombreUsuario, nombre, apellido, fechaNacimiento, correo, genero, password);
+
+                return Ok("Administador creado con exito.");
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return BadRequest("Error en el servidor: " + e.Message);
+            }
+
+        }
+
 
         [Route("DesactivarUsuario/{idUsuario:int}")]
         [HttpPut, HttpGet]
@@ -90,8 +108,26 @@ namespace WebAPI.Controllers
 
         }
 
+        [Route("ActualizarCorreoUsuario/{idUsuario:int}/{correo}")]
+        [HttpPut, HttpGet]
+        public IHttpActionResult ActualizarCorreoUsuario(int idUsuario, string correo)
+        {
+            try
+            {
+                EditarCorreo(idUsuario, correo);
+
+                return Ok("Correo actualizado con exito.");
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return BadRequest("Error en el servidor: " + e.Message);
+            }
+
+        }
+
         [HttpGet]
-        public HttpResponseMessage ObtenerUsuarioActivos()
+        public HttpResponseMessage ObtenerUsuariosActivos()
         {
             try
             {
@@ -121,8 +157,6 @@ namespace WebAPI.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error en el servidor:" + e.Message));
             }
         }
-
-
 
         private void ObtenerUsuarios(bool activo)
         {
@@ -189,6 +223,34 @@ namespace WebAPI.Controllers
             _database.EjecutarQuery();
         }
 
+        private void EditarCorreo(int idUsuario, string correo)
+        {
+            _database.Conectar();
+
+            _database.StoredProcedure("cambiarcorreousuario(@id, @correo)");
+
+            _database.AgregarParametro("id", idUsuario);
+            _database.AgregarParametro("correo", correo);
+
+            _database.EjecutarQuery();
+        }
+
+        private void InsertarAdministrador(string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, char genero, string password)
+        {
+            _database.Conectar();
+
+            _database.StoredProcedure("crearusuarioadministrador(@nombreU, @nombre, @apellido, @fechaNacimiento, @correo, @genero, @clave)");
+
+            _database.AgregarParametro("nombreU", nombreUsuario);
+            _database.AgregarParametro("nombre", nombre);
+            _database.AgregarParametro("apellido", apellido);
+            _database.AgregarParametro("fechaNacimiento", fechaNacimiento);
+            _database.AgregarParametro("correo", correo);
+            _database.AgregarParametro("genero", genero.ToString().ToUpper());
+            _database.AgregarParametro("clave", password);
+
+            _database.EjecutarQuery();
+        }
 
 
 
