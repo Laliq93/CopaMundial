@@ -18,7 +18,7 @@ $$
 BEGIN
 
    INSERT INTO usuario VALUES
-    (nextval('seq_Usuario'), _nombreUsuario, _nombre, _apellido, _fechaNacimiento, _correo, _genero, _password, _fotoPath);
+    (nextval('seq_Usuario'), _nombreUsuario, _nombre, _apellido, _fechaNacimiento, _correo, _genero, md5(_password), _fotoPath);
 
    RETURN currval('seq_Usuario');
 
