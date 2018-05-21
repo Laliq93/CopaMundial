@@ -20,10 +20,10 @@ namespace WebAPI.Models
         private string _password; //contrasena del usuario
         private string _fotoPath; //
         private bool _esAdmin;
-        private string _activo;
+        private bool _activo;
 
         public Usuario(int id, string nombreUsuario, string nombre, string apellido, DateTime fechaNacimiento,
-            string correo, char genero, string password, string fotoPath, bool esAdmin, string activo)
+            string correo, char genero, string password, string fotoPath, bool esAdmin, bool activo)
         {
             _id = id;
             _nombreUsuario = nombreUsuario;
@@ -141,7 +141,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo Token
         /// </summary>
-        public string Activo
+        public bool Activo
         {
             get { return _activo; }
             set { _activo = value; }
