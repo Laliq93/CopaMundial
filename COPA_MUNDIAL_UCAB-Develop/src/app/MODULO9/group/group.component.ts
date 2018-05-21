@@ -8,7 +8,9 @@ import { Router } from '@angular/router';
 })
 export class GroupComponent implements OnInit {
   grupoactual:number = 1;
-  
+  partidos:boolean = false;
+  estadisticas:boolean = true;
+  numero:number;
   constructor(private router: Router){}
 
 	 ngOnInit() {
@@ -21,6 +23,24 @@ export class GroupComponent implements OnInit {
     console.log(this.grupoactual);
     this.router.navigate(['home/statistic']);
     
+  }
+
+  ClickPartidos(){
+    this.partidos = false;
+    this.estadisticas = true;
+    console.log("partidos");
+    this.router.navigate(['home/statistic']);
+  }
+  ClickEstadisticas(){
+    this.partidos = true;
+    this.estadisticas = false;
+
+    console.log("estadisticas");
+    this.router.navigate(['home/statistic']);
+  }
+
+  click(){
+    console.log("aqui el nombre: "+this.numero);
   }
 
   
