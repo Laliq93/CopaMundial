@@ -19,6 +19,7 @@ export interface IUsuario {
 
 class Usuario {
 
+  public id: number = 3;
   public nombre: string = "";
   public apellido: string = "";
   public correo: string = "";
@@ -41,13 +42,15 @@ export class UserPanelComponent {
   }
   Test_Get() {
 
-    let url = `${this.apiRoot}/M10_Usuario/ObtenerUsuario/`;
+    let idUsuario = this.usuario.id;
+
+    let url = `${this.apiRoot}/M10_Usuario/ObtenerUsuario/`+idUsuario.toString();
     let httpHeaders = new HttpHeaders()
       .set('Accept', 'application/json');
 
-    let search = new HttpParams().set('idUsuario', '2');
+    //let search = new HttpParams().set('idUsuario', '2');
 
-    this.http.get<IUsuario>(url, { params: search, responseType: 'json' }).subscribe(data => {
+    this.http.get<IUsuario>(url, { responseType: 'json' }).subscribe(data => {
 
       this.usuario.nombre = data.Nombre;
       this.usuario.apellido = data.Apellido;
