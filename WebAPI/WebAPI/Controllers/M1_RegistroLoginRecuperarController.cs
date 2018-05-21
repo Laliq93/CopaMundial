@@ -16,14 +16,14 @@ namespace WebAPI.Controllers
         private DataBase _database = new DataBase();
         private List<Usuario> _listaUsuarios;
 
-        [Route("RegistrarUsuario/{idUsuario:int}/{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}")]
+        [Route("RegistrarUsuario/{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}")]
         [HttpPost]
-        public IHttpActionResult RegistrarUsuario(int usuarioId, string nombreUsuario, string nombre, string apellido, 
-            string fechaNacimiento, string correo, char genero)
+        public IHttpActionResult PostUsuario(string nombreUsuario, string nombre, string apellido, 
+            string fechaNacimiento, string correo, char genero, string password)
         {
             try
             {
-                AgregarUsuario(usuarioId, nombreUsuario, nombre, apellido, fechaNacimiento, correo, genero);
+                AgregarUsuario(nombreUsuario, nombre, apellido, fechaNacimiento, correo, genero, password);
 
                 return Ok("Usuario registrado exitosamente");
             }
@@ -35,20 +35,20 @@ namespace WebAPI.Controllers
 
         }
 
-        private void AgregarUsuario(int usuarioId, string nombreUsuario, string nombre, string apellido, 
-            string fechaNacimiento, string correo, char genero)
+        private void AgregarUsuario(string nombreUsuario, string nombre, string apellido, 
+            string fechaNacimiento, string correo, char genero, string password)
         {
             _database.Conectar();
 
-            _database.StoredProcedure("AgregarUsuario(@id, @nombreUsuario, @nombre, @apellido, @fechaNacimiento, @correo, @genero)");
+            _database.StoredProcedure("AgregarUsuario(@nombreUsuario, @nombre, @apellido, @fechaNacimiento, @correo, @genero, @password)");
 
-            _database.AgregarParametro("id", usuarioId);
             _database.AgregarParametro("nombreUsuario", nombreUsuario);
             _database.AgregarParametro("nombre", nombre);
             _database.AgregarParametro("apellido", apellido);
             _database.AgregarParametro("fechaNacimiento", fechaNacimiento);
             _database.AgregarParametro("correo", correo);
             _database.AgregarParametro("genero", genero.ToString().ToUpper());
+            _database.AgregarParametro("password", password);
 
             _database.EjecutarQuery();
         }
