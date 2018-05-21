@@ -21,4 +21,9 @@ export class MatchAdminCreateComponent implements OnInit {
 		this.router.navigate(['admin/match']);
   }
 
+  matchLineUp():void {
+    this.router.navigate(['admin/match/lineup']);
+  }
+
+
 }

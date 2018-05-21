@@ -37,12 +37,9 @@ import { StadiumAdminComponent } from './MODULO3/admin/stadium-admin.component'
 import { TeamAdminComponent } from './MODULO4/admin/team-admin.component'
 import { PlayerAdminComponent } from './MODULO5/admin/player-admin.component'
 import { MatchAdminComponent } from './MODULO6/admin/match-admin.component'
-<<<<<<< HEAD
 import { MatchLineUpCreateComponent } from './MODULO6/admin/match-line-up-create/match-line-up-create.component'
-=======
 import { MatchAdminCreateComponent } from './MODULO6/admin/match-admin-create/match-admin-create.component'
 import { MatchAdminUpdateComponent } from './MODULO6/admin/match-admin-update/match-admin-update.component'
->>>>>>> 8230428803c5dab394c9300c113ff4613062abd8
 import { AchievementAdminComponent } from './MODULO7/admin/achievement-admin.component'
 import { BetAdminComponent } from './MODULO8/admin/bet-admin.component'
 import { StatisticAdminComponent } from './MODULO9/admin/statistic-admin.component'
@@ -94,12 +91,9 @@ const routes: Routes = [
       { path: 'team' , component: TeamAdminComponent },
       { path: 'player' , component: PlayerAdminComponent },
       { path: 'match' , component: MatchAdminComponent },
-<<<<<<< HEAD
       { path: 'match/lineup' , component: MatchLineUpCreateComponent},
-=======
       { path: 'match/create' , component: MatchAdminCreateComponent },
       { path: 'match/update' , component: MatchAdminUpdateComponent },
->>>>>>> 8230428803c5dab394c9300c113ff4613062abd8
       { path: 'achievement' , component: AchievementAdminComponent },
       { path: 'bet' , component: BetAdminComponent },
       { path: 'statistic' , component: StatisticAdminComponent },
