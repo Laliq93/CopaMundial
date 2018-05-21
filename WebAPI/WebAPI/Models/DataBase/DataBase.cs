@@ -15,14 +15,18 @@ namespace WebAPI.Models.DataBase
         private DataTable _dataTable;
         private Dictionary<string, string> _data;
         private string _cadena;
-
-
+        private int _cantidadRegistros;
 
         public DataBase()
         {
             _data = new Dictionary<string, string>();
             LecturaArchivo();
             CrearStringConexion();
+        }
+
+        public int cantidadRegistros
+        {
+            get { return _cantidadRegistros; }
         }
 
         private void LecturaArchivo()
@@ -80,17 +84,13 @@ namespace WebAPI.Models.DataBase
 
         private bool IsConnected()
         {
-            try
-            {
-                if (_con.State == System.Data.ConnectionState.Open)
-                    return true;
+            if (_con == null)
+                return false;
 
-                return false;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            if (_con.State == System.Data.ConnectionState.Open)
+                return true;
+
+            return false;
         }
 
         public bool Conectar()
@@ -101,9 +101,13 @@ namespace WebAPI.Models.DataBase
                 _con.Open();
                 return true;
             }
-            catch (Exception)
+            catch (NpgsqlException e)
+            {   
+                throw e;
+            }
+            catch (Exception e)
             {
-                return false;
+                throw e;
             }
         }
 
@@ -118,25 +122,35 @@ namespace WebAPI.Models.DataBase
         /// </summary>
         public DataTable EjecutarReader()
         {
-            if (!IsConnected())
-                return null;
 
             try
             {
+                if (!IsConnected())
+                    return null;
+
                 _dataTable = new DataTable();
 
                 _dataTable.Load(_command.ExecuteReader());
 
                 Desconectar();
 
-                if (_dataTable.Rows.Count < 1)
-                    return null;
+                _cantidadRegistros = _dataTable.Rows.Count;
 
+                if (_cantidadRegistros < 1)
+                {
+                    throw new ArgumentNullException("No existen registros.");
+                }
+
+            }
+            catch(NpgsqlException exc)
+            {
+                Desconectar();
+                throw new ArgumentNullException("Error al ejecutar el StoredProcedure "+exc);
             }
             catch (Exception)
             {
                 Desconectar();
-                return null;
+                throw;
             }
 
             return _dataTable;
@@ -160,10 +174,15 @@ namespace WebAPI.Models.DataBase
 
                 return filasAfectadas;
             }
+            catch (NpgsqlException exc)
+            {
+                Desconectar();
+                throw new ArgumentNullException("Error al ejecutar el StoredProcedure " + exc);
+            }
             catch (Exception)
             {
                 Desconectar();
-                return 0;
+                throw;
             }
         }
 
@@ -180,9 +199,13 @@ namespace WebAPI.Models.DataBase
                 
                 _command = new NpgsqlCommand("select * from "+sp, _con);
             }
+            catch (NpgsqlException)
+            {
+                throw;
+            }
             catch (Exception)
             {
-                return null;
+                throw;
             }
 
             return _command;
@@ -194,6 +217,10 @@ namespace WebAPI.Models.DataBase
             try
             {
                 _command.Parameters.AddWithValue("@" + nombre, valor);
+            }
+            catch (NpgsqlException)
+            {
+                throw;
             }
             catch (NullReferenceException)
             {

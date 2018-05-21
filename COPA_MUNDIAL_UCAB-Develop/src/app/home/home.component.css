@@ -1,4 +1,3 @@
-
 .container-fluid {
     background-size: cover;
     background-position: center;
@@ -78,6 +77,8 @@
 .subtitle-card {
     font-weight: bold;
 }
+
+/*carousel and cards*/
 
 .card-img-overlay {
     top: 0;
