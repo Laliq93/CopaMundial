@@ -16,6 +16,7 @@ namespace WebAPI.Controllers
     {
         private DataBase _database = new DataBase();
         private List<Usuario> _listaUsuarios;
+        private Usuario _usuario;
 
         [Route("ActualizarPerfil/{idUsuario:int}/{nombre}/{apellido}/{fechaNacimiento}/{genero}/{fotoPath}")]
         [HttpPut, HttpGet]
@@ -157,6 +158,22 @@ namespace WebAPI.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error en el servidor:" + e.Message));
             }
         }
+        [Route("ObtenerUsuario/{idUsuario:int}")]
+        [HttpGet]
+        public HttpResponseMessage ObtenerUsuario(int idUsuario)
+        {
+            try
+            {
+                GetUsuario(idUsuario);
+
+                return Request.CreateResponse(HttpStatusCode.OK, _usuario);
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error en el servidor:" + e.Message));
+            }
+        }
 
         private void ObtenerUsuarios(bool activo)
         {
@@ -252,7 +269,19 @@ namespace WebAPI.Controllers
             _database.EjecutarQuery();
         }
 
+        private void GetUsuario(int idUsuario)
+        {
+            _database.Conectar();
 
+            _database.StoredProcedure("ObtenerUsuario(@id)");
+
+            _database.AgregarParametro("id", idUsuario);
+
+            _database.EjecutarReader();
+
+            _usuario = new Usuario(idUsuario, "", _database.GetString(0, 0), _database.GetString(0, 1), _database.GetDateTime(0, 2), 
+                null,_database.GetChar(0, 3),null,_database.GetString(0,4),false,null);
+        }
 
     }
 }
