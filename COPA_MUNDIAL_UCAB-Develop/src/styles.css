@@ -15,27 +15,20 @@ File: css
  *	5. Footers
  *	6. app
  *	7. Widgets
- *	8. Custom Templates
+ *	8. Media's
+ *	9. Custom Templates
  */
 
 @import url(../src/assets/ccs/cropper.min.css);
 @import url(../src/assets/ccs/animate.css);
 @import url(../src/assets/ccs/flag-icon.min.css);
-.main-view {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-}
-
 /******************* 
 1. Global Styles 
 *******************/
 
 /*******************
 2. Headers
-*******************/
+*******************/	
 
 /*******************
 3. Nav | Side
@@ -63,8 +56,7 @@ File: css
 }
 
 .img-logo-nav {
-	width: 50px;
-	height: 55px;
+	height: 40px;
 }
 
 .bg-color {
@@ -75,39 +67,6 @@ File: css
 	width: 30px;
 	border-radius: 100%;
 	margin-right: 10px;
-}
-
-.animated {
-	-webkit-animation-duration: 1s;
-	animation-duration: 1s;
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both;
-	z-index: 100;
-}
-
-@keyframes fadeInDown {
-	0% {
-		opacity: 0;
-		-webkit-transform: translateY(-20px);
-		-ms-transform: translateY(-20px);
-		transform: translateY(-20px);
-	}
-	50% {
-		opacity: 0.5;
-		-webkit-transform: translateY(70px);
-		-ms-transform: translateY(70px);
-		transform: translateY(70px);
-	}
-	100% {
-		opacity: 1;
-		-webkit-transform: translateY(50px);
-		-ms-transform: translateY(50px);
-		transform: translateY(50px);
-	}
-}
-
-.fadeInDown {
-	animation-name: fadeInDown;
 }
 
 /********Side*********/
@@ -233,5 +192,9 @@ File: css
 ******************/
 
 /*******************
-8. Custom Templates
+8. Media's
+******************/
+
+/*******************
+9. Custom Templates
 ******************/
