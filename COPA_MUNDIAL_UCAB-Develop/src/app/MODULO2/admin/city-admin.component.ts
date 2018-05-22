@@ -24,5 +24,10 @@ export class CityAdminComponent {
 
   EliminarCiudad(): void {
 		this.router.navigate(['admin/city/eliminar']);
-	}	
+  }	
+  ResumenCiudad(): void {
+		this.router.navigate(['admin/city/resumen']);
+  }	
+
+
 }
