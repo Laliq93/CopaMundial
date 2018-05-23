@@ -1,0 +1,27 @@
+span.position {
+    color: green;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .width-team {
+    width: 50%;
+  }
+  
+  .group  {
+    margin-bottom: 10px;
+  }
+  
+  .description {
+    margin-top: 15px;
+  }
+  
+  span.eliminated {
+    color: red;
+  }
+  
+  .group-points{
+  }
+  
