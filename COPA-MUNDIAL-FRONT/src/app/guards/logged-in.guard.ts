@@ -17,6 +17,7 @@ constructor(private router: Router) {}
       //this.router.navigate(['login']);
       //return false;
     //}
+    sessionStorage.setItem('Login'  ,'Si');
     return true;
   }
 }

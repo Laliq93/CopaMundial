@@ -4,5 +4,6 @@ export class User {
     Apellido: string;
     FechaNac: string;
     Correo: string;
+    Genero: string;
     Contrasena: string
 }

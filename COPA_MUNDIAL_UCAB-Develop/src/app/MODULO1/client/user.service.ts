@@ -3,23 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import {  Response } from "@angular/http";
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
-import { User } from './user.model';
+/*import { User } from './user.model';*/
  
 @Injectable()
 export class UserService {
-  readonly rootUrl = 'http://localhost:35257';
+  readonly rootUrl = 'http://localhost:4200';
   constructor(private http: HttpClient) { }
  
-  registerUser(user : User){
-    const body: User = {
-      Usuario: user.Usuario,
-      Nombre: user.Nombre,
-	  Apellido: user.Apellido,
-	  FechaNac: user.FechaNac,
-      Correo: user.Correo,
-      Contrasena: user.Contrasena
-    }
-    return this.http.post(this.rootUrl + '/api/User/Register', body);
+  registerUser(data:any){
+    return this.http.post(this.rootUrl + '/api/M1_RegistroLoginRecuperar/RegistrarUsuario', data);
   }
  
 }

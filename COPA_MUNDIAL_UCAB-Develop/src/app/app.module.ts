@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
+import { NgForm, Form, FormGroup, AbstractControl, FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //modulos
 import { AuthModule } from './MODULO1/auth.module';
@@ -47,6 +48,8 @@ import { ApiService } from './shared/api.service';
     PlayerModule,
     AchievementModule,
     BetModule,
+    FormsModule,
+    ReactiveFormsModule,
     StatisticModule,
     UserConfigModule
   ],
