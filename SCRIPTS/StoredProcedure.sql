@@ -91,6 +91,27 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+--Consulta el usuario por su correo sin clave
+CREATE OR REPLACE FUNCTION ConsultarSoloCorreoUsuario(_correo varchar)
+RETURNS TABLE
+  (id integer,
+   nombreUsuario varchar,
+   nombre varchar,
+   apellido varchar,
+   fechaNacimiento date,
+   correo varchar,
+   genero varchar,
+   foto varchar)
+AS
+$$
+BEGIN
+	RETURN QUERY SELECT
+	us_id, us_nombreUsuario, us_nombre, us_apellido, us_fechanacimiento, us_correo, us_genero, us_fotoPath
+	FROM usuario
+	WHERE us_correo=_correo;
+END;
+$$ LANGUAGE plpgsql;
+
 --Consulta el usuario por su id de usuario sin clave
 CREATE OR REPLACE FUNCTION ConsultarUsuarioId(_id integer)
 RETURNS TABLE
