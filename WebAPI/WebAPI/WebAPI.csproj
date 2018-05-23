@@ -215,7 +215,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\M10_UsuarioController.cs" />
-    <Compile Include="Controllers\M1_RegistroLofinRecuperarController.cs" />
+    <Compile Include="Controllers\M1_RegistroLoginRecuperarController.cs" />
+    <Compile Include="Controllers\M1_usuarioController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
