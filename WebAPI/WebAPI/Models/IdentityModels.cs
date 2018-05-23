@@ -29,5 +29,7 @@ namespace WebAPI.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<WebAPI.Models.Usuario> Usuarios { get; set; }
     }
 }
