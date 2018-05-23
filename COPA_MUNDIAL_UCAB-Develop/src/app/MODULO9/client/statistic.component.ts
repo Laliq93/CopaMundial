@@ -1,4 +1,5 @@
  import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
  declare var jquery:any;
  declare var $ :any;
 
@@ -11,6 +12,7 @@
 export class StatisticComponent implements OnInit{
 
 
+  constructor(private router: Router){}
 
 
   ngOnInit(): void {
@@ -20,5 +22,8 @@ export class StatisticComponent implements OnInit{
   }
     public modulo: string = "nueve"; 
   
+    estPartidos(){
+
+    }
 }
 

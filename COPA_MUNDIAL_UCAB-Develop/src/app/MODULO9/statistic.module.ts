@@ -6,6 +6,7 @@ import { GroupComponent } from './group/group.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
 import { ContarClicksDirective } from './client/directiva.directive';
 import { FormsModule } from '@angular/forms';
+import { EstpartidosComponent } from './estpartidos/estpartidos.component';
 //import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 //import {MatDatepickerModule} from '@angular/material/datepicker';
 
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     DatepickerComponent,
     GroupComponent,
     ContarClicksDirective,
+    EstpartidosComponent,
    
 
     
