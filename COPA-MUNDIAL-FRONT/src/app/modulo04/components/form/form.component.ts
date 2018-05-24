@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -8,9 +9,13 @@ import { Location } from '@angular/common';
 })
 export class FormComponent implements OnInit {
 
-  constructor(private location: Location) { }
+  public ruta: string = '';
+
+  constructor(private location: Location, private router: Router) { }
 
   ngOnInit() {
+    this.ruta = this.router.url;
+    console.log('la ruta es ' + this.ruta);
   }
 
   regresar() {
