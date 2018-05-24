@@ -9,6 +9,8 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { RecoveryComponent } from './components/recovery/recovery.component';
+import { ChangePasswordComponent } from './components/changePassword/changePassword.component';
 
 @NgModule({
   imports: [
@@ -20,6 +22,6 @@ import { SignupComponent } from './components/signup/signup.component';
     LoggedInGuard,
     NotLoggedInGuard
   ],
-  declarations: [HomeComponent, LoginComponent, SigninComponent, SignupComponent]
+  declarations: [HomeComponent, LoginComponent, SigninComponent, SignupComponent, RecoveryComponent, ChangePasswordComponent]
 })
 export class Modulo01Module { }

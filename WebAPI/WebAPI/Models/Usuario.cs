@@ -21,9 +21,10 @@ namespace WebAPI.Models
         private string _fotoPath; //
         private bool _esAdmin;
         private bool _activo;
+        private string _token;
 
         public Usuario(int id, string nombreUsuario, string nombre, string apellido, DateTime fechaNacimiento,
-            string correo, char genero, string password, string fotoPath, bool esAdmin, bool activo)
+            string correo, char genero, string password, string fotoPath, bool esAdmin, bool activo, string token)
         {
             _id = id;
             _nombreUsuario = nombreUsuario;
@@ -36,6 +37,7 @@ namespace WebAPI.Models
             _fotoPath = fotoPath;
             _esAdmin = esAdmin;
             _activo = activo;
+            _token = token;
         }
 
         public Usuario(int id, string nombreUsuario, string nombre, string apellido, DateTime fechaNacimiento, string correo)
@@ -47,6 +49,8 @@ namespace WebAPI.Models
             _fechaNacimiento = fechaNacimiento;
             _correo = correo;
         }
+
+        public Usuario() { }
 
         /// <summary>
         /// Getters y Setters del atributo id
