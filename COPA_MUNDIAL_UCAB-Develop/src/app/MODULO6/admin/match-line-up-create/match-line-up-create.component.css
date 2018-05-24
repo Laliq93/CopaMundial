@@ -74,8 +74,20 @@ label{
         font-size: 14px;
     }
 
+    .btn-agregar{
+        background: #02588E;
+        text-align: center;
+        margin: auto;
+        color:white;
+        font-size: 14px;
+    }
+
     .form-row button:hover{
 
+        background-color: #0080FF;
+    }
+
+    .btn-agregar:hover{
         background-color: #0080FF;
     }
 

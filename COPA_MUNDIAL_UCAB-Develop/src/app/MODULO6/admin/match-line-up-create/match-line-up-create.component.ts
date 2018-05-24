@@ -51,12 +51,10 @@ export class MatchLineUpCreateComponent implements OnInit {
 
   public agregarJugador1():void
   {
-      /* data.push({ id:i, preg:[] });*/
          this.listAlineacion1[0].players.push( {nombre: "Prueba",
           posicion: "arquero",
         numero: "223",
         estado: "titular"});
-
         console.log(this.listAlineacion1);
        /* alert(this.listAlineacion1[0].players[17].nombre);*/
      
@@ -65,7 +63,7 @@ export class MatchLineUpCreateComponent implements OnInit {
   
   public agregarJugador2():void
   {
-      /* data.push({ id:i, preg:[] });*/
+
          this.listAlineacion2[0].players.push( {nombre: "Prueba",
           posicion: "arquero",
         numero: "223",
