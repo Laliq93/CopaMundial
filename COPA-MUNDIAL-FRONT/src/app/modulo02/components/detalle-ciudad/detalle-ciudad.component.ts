@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetalleCiudadComponent implements OnInit {
 
-  constructor() { }
+  lat:number =55.7498598;
+  long:number =37.3523222;
+  zoom:number = 10;
 
   ngOnInit() {
-  }
 
+   
 }
