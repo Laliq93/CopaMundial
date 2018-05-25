@@ -1,0 +1,32 @@
+.fondo{
+    background-color: #A11D1B;
+    color: white;
+    padding: 10% 10%;
+    
+}
+.btnBuscar{
+    background-color: #000000;
+}
+.btnAgregar{
+    background-color: #1998e2;
+    color: white;
+}
+.span3 {  
+    height: 80% !important;
+ 
+}​
+.espacio{
+    padding-top: 10% ;
+}
+.oi { 
+    padding-left: 10% ; 
+}
+.oi-pencil{
+    color:	rgb(255, 0, 0);
+}
+.oi-eye{
+    color:rgb(255, 238, 0);
+}
+.oi-trash{
+    color:	rgb(0, 255, 0);
+}
