@@ -16,9 +16,9 @@ namespace WebAPI.Controllers
 
         private DataBase _database = new DataBase();
 
-        [Route("PostUsuario/{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}")]
+        [Route("RegistrarUsuario/{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}")]
         [HttpPost]
-        public IHttpActionResult PostUsuario(string nombreUsuario, string nombre, string apellido,
+        public IHttpActionResult RegistrarUsuario(string nombreUsuario, string nombre, string apellido,
             string fechaNacimiento, string correo, char genero, string password)
         {
             try
@@ -59,19 +59,28 @@ namespace WebAPI.Controllers
 
         }
 
-        [Route("CambiarClave/{correo}")]
+        [Route("CambiarClave/{correo}/{password}")]
         [HttpPost]
         public IHttpActionResult CambiarClave(string correo, string password)
         {
             try
             {
-                if (ValidarCorreo(correo))
-                {
-                    CambiarPassword(correo, password);
-                    return Ok("clave modificada exitosamente");
-                }
 
-                return Ok("clave no se pudo modificar");
+
+                System.Diagnostics.Debug.WriteLine("Prueba correo");
+
+
+                System.Diagnostics.Debug.WriteLine("Prueba correo " + correo);
+
+                System.Diagnostics.Debug.WriteLine("Prueba password " + password);
+
+                // if (ValidarCorreo(correo))
+                //{
+                CambiarPassword(correo, password);
+                    return Ok("clave modificada exitosamente");
+                //}
+
+               // return Ok("clave no se pudo modificar");
 
             }
 
@@ -85,7 +94,33 @@ namespace WebAPI.Controllers
 
         }
 
-        private void EnviarCorreo(string correo)
+
+        [Route("Henry/")]
+        [HttpPost]
+        public IHttpActionResult PruebaHenry(Usuario usuario)
+        {
+
+            System.Diagnostics.Debug.WriteLine("------------------------" );
+
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("Prueba correo "+ usuario.Correo);
+                System.Diagnostics.Debug.WriteLine("Prueba password " + usuario.Password);
+
+                return Ok();
+            }
+
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return BadRequest("Error en el servidor: " + e.Message);
+            }
+
+
+        }
+
+
+        public void EnviarCorreo(string correo)
         {
             MailMessage _email = new MailMessage();
             SmtpClient _smtpServidor = new SmtpClient();

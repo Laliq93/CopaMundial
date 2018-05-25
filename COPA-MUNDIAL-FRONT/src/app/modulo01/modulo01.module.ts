@@ -11,10 +11,12 @@ import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { RecoveryComponent } from './components/recovery/recovery.component';
 import { ChangePasswordComponent } from './components/changePassword/changePassword.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
     CommonModule,
+    BrowserModule,
     FormsModule,
     Modulo01RoutingModule
   ],
