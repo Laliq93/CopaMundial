@@ -20,6 +20,7 @@ namespace WebAPI.Models
         private string _password; //contrasena del usuario
         private string _fotoPath; //
         private bool _esAdmin;
+<<<<<<< HEAD
 
 
         public Usuario(string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, char genero ,bool esAdmin, string clave)
@@ -37,6 +38,13 @@ namespace WebAPI.Models
 
         public Usuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
             string correo, char genero, string password, string fotoPath, bool esAdmin)
+=======
+        private bool _activo;
+        private string _token;
+
+        public Usuario(int id, string nombreUsuario, string nombre, string apellido, DateTime fechaNacimiento,
+            string correo, char genero, string password, string fotoPath, bool esAdmin, bool activo, string token)
+>>>>>>> Develop
         {
             _id = id;
             _nombreUsuario = nombreUsuario;
@@ -48,6 +56,11 @@ namespace WebAPI.Models
             _password = password;
             _fotoPath = fotoPath;
             _esAdmin = esAdmin;
+<<<<<<< HEAD
+=======
+            _activo = activo;
+            _token = token;
+>>>>>>> Develop
         }
 
         public Usuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo)
@@ -60,6 +73,7 @@ namespace WebAPI.Models
             _correo = correo;
         }
 
+<<<<<<< HEAD
         public Usuario(int id, string nombre, string apellido, string fechaNacimiento, char genero, string fotoPath)
         {
             _id = id;
@@ -69,6 +83,9 @@ namespace WebAPI.Models
             _genero = genero;
             _fotoPath = fotoPath;
         }
+=======
+        public Usuario() { }
+>>>>>>> Develop
 
         /// <summary>
         /// Getters y Setters del atributo id
@@ -160,5 +177,16 @@ namespace WebAPI.Models
             set { _esAdmin = value; }
         }
 
+<<<<<<< HEAD
+=======
+        /// <summary>
+        /// Getters y Setters del atributo Token
+        /// </summary>
+        public bool Activo
+        {
+            get { return _activo; }
+            set { _activo = value; }
+        }
+>>>>>>> Develop
     }
 }

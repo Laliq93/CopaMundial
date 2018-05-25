@@ -27,6 +27,46 @@ namespace WebAPI.Models.DataBase
             get { return _cantidadRegistros; }
         }
 
+<<<<<<< HEAD
+=======
+        private void LecturaArchivo()
+        {
+            string archivoPath = HttpContext.Current.Request.PhysicalApplicationPath + "config.ini";
+
+            if (!File.Exists(archivoPath))
+                throw new ArgumentException("Error al encontrar el archivo: config.ini");
+
+            try
+            {
+                using (var stream = new StreamReader(archivoPath))
+                {
+                    string linea = "";
+
+                    while ((linea = stream.ReadLine()) != null)
+                    {
+                        if (linea.Length < 1 || linea.StartsWith("#"))
+                        {
+                            continue;
+                        }
+
+                        int posicionDelimitador = linea.IndexOf('=');
+
+                        if (posicionDelimitador != -1)
+                        {
+                            string identificador = linea.Substring(0, posicionDelimitador);
+                            string contenido = linea.Substring(posicionDelimitador + 1);
+
+                            _data.Add(identificador, contenido);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("Error al procesar el archivo de configuración");
+            }
+        }
+>>>>>>> Develop
 
         /// <summary>
         ///  Busca el string de conexión a la base de datos en el archivo web.config, dicho string se llama "postgrestring"

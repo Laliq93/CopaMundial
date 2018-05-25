@@ -216,8 +216,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\M10_UsuarioController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\M1_RegistroLofinRecuperarController.cs" />
     <Compile Include="Controllers\M5_JugadorController.cs" />
+=======
+    <Compile Include="Controllers\M1_RegistroLoginRecuperarController.cs" />
+>>>>>>> Develop
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Models\Excepciones\ClaveInvalidaException.cs" />
     <Compile Include="Models\Excepciones\CorreoEnUsoException.cs" />

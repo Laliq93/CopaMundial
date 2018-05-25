@@ -14,9 +14,8 @@ WebAPI/.vs/WebAPI/v14/.suo
 *.lnk
 WebAPI/.vs/config/applicationhost.config
 WebAPI/.vs/WebAPI/v14/.suo
-<<<<<<< HEAD
 WebAPI/.vs/WebAPI/v14/.suo
 WebAPI/WebApiPruebas/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
-=======
+
 WebAPI\.vs
->>>>>>> Develop
+WebAPI/.vs/WebAPI/v15/sqlite3/storage.ide
