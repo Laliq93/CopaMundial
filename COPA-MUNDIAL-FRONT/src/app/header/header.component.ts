@@ -16,13 +16,22 @@ class Module {
 	name: MODULES;
 	routeName: string;
 	isActive: boolean;
+	
 
 	constructor(name, routeName, isActive) {
 		this.name = name;
 		this.routeName = routeName;
 		this.isActive = isActive;
+
+
+
+
 	}
+
 }
+
+
+
 
 type Menu = "menu" | "menu-2";
 
