@@ -5,6 +5,11 @@ using System.Web;
 
 namespace WebAPI.Models
 {
+
+    /// <summary>
+    /// Clase que contiene los datos del la alineacion
+    /// del partido
+    /// </summary>
     public class Alineacion
     {
         private int _id; //id de la alineacion
@@ -16,20 +21,22 @@ namespace WebAPI.Models
 
 
         /// <summary>
-        /// Constructor de la clase Alineacion
+        /// Constructor para la clase Alineacion
         /// </summary>
         /// <param name="id"></param>
         /// <param name="jugador"></param>
         /// <param name="equipo"></param>
         /// <param name="posicion"></param>
+        /// <param name="capitan"></param>
         /// <param name="titular"></param>
-        public Alineacion(int id, string jugador, string equipo, string posicion, 
-                            bool titular)
+        public Alineacion(int id, string jugador, string equipo, 
+                          string posicion, bool capitan, bool titular)
        {
             _id = id;
             _jugador = jugador;
             _equipo = equipo;
             _posicion = posicion;
+            _capitan = capitan;
             _titular = titular;
 
         }
@@ -74,5 +81,25 @@ namespace WebAPI.Models
         }
 
 
+        /// <summary>
+        /// Get y set si el jugador es o no 
+        /// el capitan del equipo
+        /// </summary>
+        public bool Capitan
+        {
+            get { return _capitan; }
+            set { _capitan = value; }
+        }
+
+
+        /// <summary>
+        /// Get y set si el jugador es titular= true
+        /// si el jugador es suplente= false
+        /// </summary>
+        public bool Titular
+        {
+            get { return _titular; }
+            set { _titular = value; }
+        }
     }
 }

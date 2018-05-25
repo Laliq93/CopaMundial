@@ -5,6 +5,9 @@ using System.Web;
 
 namespace WebAPI.Models
 {
+    /// <summary>
+    /// Clase que contiene los datos del partido
+    /// </summary>
     public class Partido
     {
         private int _id; //identificador unico del partido
@@ -12,9 +15,10 @@ namespace WebAPI.Models
         private DateTime _fecha; //fecha del partido
         private string _horaInicio; //hora de inicio
         private string _horaFin; //hora de fin
-        private string  _equipo1; //equipo 2
-        private string _equipo2; //equipo 2
+        private int  _equipo1; //equipo 2
+        private int _equipo2; //equipo 2
         private bool _status;//Estatus del partido 
+        private int _estadio;//Estadio donde se jugara el partido
         private List<Alineacion> _alineacion1;//Alineacion del primer equipo
         private List<Alineacion> _alineacion2;//Alineacion del segundo equipo
 
@@ -30,8 +34,8 @@ namespace WebAPI.Models
         /// <param name="equipo1"></param>
         /// <param name="equipo2"></param>
         /// <param name="_status"></param>
-        public Partido(int id, string arbitro, DateTime fecha, string horaInicio, string equipo1,
-            string equipo2, bool _status)
+        public Partido(int id, string arbitro, DateTime fecha, string horaInicio, int equipo1,
+            int equipo2, int estadio, bool _status)
         {
             _id = id;
             _arbitro = arbitro;
@@ -39,7 +43,34 @@ namespace WebAPI.Models
             _horaInicio = horaInicio;
             _equipo1= equipo1;
             _equipo2 = equipo2;
+            _estadio = estadio;
 
+        }
+
+        /// <summary>
+        /// Constructor de la clase Partido
+        /// </summary>
+        /// <param name="arbitro"></param>
+        /// <param name="fecha"></param>
+        /// <param name="horaInicio"></param>
+        /// <param name="equipo1"></param>
+        /// <param name="equipo2"></param>
+        /// <param name="estadio"></param>
+        public Partido(string arbitro, DateTime fecha, string horaInicio, int equipo1,
+           int equipo2, int estadio)
+        {
+       
+            _arbitro = arbitro;
+            _fecha = fecha;
+            _horaInicio = horaInicio;
+            _equipo1 = equipo1;
+            _equipo2 = equipo2;
+            _estadio = estadio;
+
+        }
+
+        public Partido()
+        {
         }
 
         /// <summary>
@@ -94,21 +125,30 @@ namespace WebAPI.Models
 
 
         /// <summary>
-        /// Get y Set del nombre del primer equipo
+        /// Get y Set del id del primer equipo
         /// </summary>
-        public string Equipo1
+        public int Equipo1
         {
             get { return _equipo1; }
             set { _equipo1 = value; }
         }
 
         /// <summary>
-        /// Get y Set del nombre del segundo equipo
+        /// Get y Set del id del segundo equipo
         /// </summary>
-        public string Equipo2
+        public int Equipo2
         {
             get { return _equipo2; }
             set { _equipo2 = value; }
+        }
+
+        /// <summary>
+        /// Get y set del id del estadio del partido
+        /// </summary>
+        public int Estadio
+        {
+            get { return _estadio; }
+            set { _estadio = value; }
         }
 
 
@@ -141,10 +181,10 @@ namespace WebAPI.Models
         public List<Alineacion> Alineacion2
         {
             get { return _alineacion2; }
-            set { _alineacion1 = value; }
+            set { _alineacion2 = value; }
         }
-    
 
+   
 
     }
 }
