@@ -1,12 +1,35 @@
-<div class="central">
-  <form class="card">
-  <h1 style="color: black; font-size: 30px; text-align: center;">Eliminar Ciudad</h1>
-  <div class="form-group">
-    <label for="ImputNombre">Nombre</label>
-    <input type="text" class="form-control" id="ImputNombre" placeholder="Inserte el nombre de la ciudad">
-  </div>
+<div class = "span3">    
+<table class="table table-striped table-dark">
+  <thead class="thead-dark" class = "fondo">
+  <tr>
+      <th scope="col">#</th>
+      <th  scope="col">Nombre    <button class="oi oi-plus boton">
+
+        </button></th>
+      <th scope="col">Accion</th>
+      
+  </tr>
+  </thead>
+ 
+  <tbody>
   
-  <button (click)="volver()" type="submit" class="btn btn-primary btn-signin">Eliminar Ciudad</button>
-  <button i18n="Traduccion de b agregar ciudad" (click)="volver()" type="submit" class="btn btn-primary btn-signin">Cancelar</button>
-  </form>
-</div> 
+  <tr *ngFor="let ciudad of nombreCiudades">
+      <th scope="row">1</th>
+      <td>{{ciudad}}</td>
+      <td><a href="/admin/city/modificar">
+              <span class="oi oi-pencil"></span>
+          </a>
+          <a href="">
+              <span class="oi oi-eye"></span>
+          </a>
+          <a href="#">
+              <span class="oi oi-trash "></span>
+          </a>
+         
+      </td>
+  </tr>
+
+  </tbody>
+
+</table>
+</div>
