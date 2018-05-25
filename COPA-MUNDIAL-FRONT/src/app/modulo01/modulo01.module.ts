@@ -7,6 +7,7 @@ import { NotLoggedInGuard } from '../guards/not-logged-in.guard'
 import { Modulo01RoutingModule } from './modulo01-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { LoginComponent } from './components/login/login.component';
     LoggedInGuard,
     NotLoggedInGuard
   ],
-  declarations: [HomeComponent, LoginComponent]
+  declarations: [HomeComponent, LoginComponent, SignupComponent]
 })
 export class Modulo01Module { }

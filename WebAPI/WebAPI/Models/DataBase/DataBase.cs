@@ -63,7 +63,7 @@ namespace WebAPI.Models.DataBase
             }
             catch (Exception)
             {
-                throw new ArgumentException("Error al procesar el archivo de configuracion");
+                throw new ArgumentException("Error al procesar el archivo de configuración");
             }
         }
 
