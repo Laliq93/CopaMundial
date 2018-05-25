@@ -3,6 +3,11 @@ COPA_MUNDIAL_UCAB-Develop/package\.json
 
 COPA_MUNDIAL_UCAB-Develop/package-lock\.json
 
-*.json
-
-\.DS_Store
+WebAPI/.vs/config/applicationhost.config
+WebAPI/.vs/WebAPI/v14/.suo
+<<<<<<< HEAD
+WebAPI/.vs/WebAPI/v14/.suo
+WebAPI/WebApiPruebas/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+=======
+WebAPI\.vs
+>>>>>>> Develop

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'bet',
@@ -7,10 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./bet.component.css']
 })
 export class BetComponent {
+
     public modulo: string = "ocho";
     constructor(private router: Router){}
 
-    bets(): void {
-      this.router.navigate(['bets']);
+    goMybets(): void {
+      this.router.navigate(['home/bet/mybets']);
     }	
+
 }

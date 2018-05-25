@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -12,102 +13,397 @@ namespace WebAPI.Models.DataBase
         private NpgsqlConnection _con;
         private NpgsqlCommand _command;
         private DataTable _dataTable;
+        private Dictionary<string, string> _data;
+        private string _cadena;
+        private int _cantidadRegistros;
 
-        private bool isConnected()
+        public DataBase()
         {
+            _data = new Dictionary<string, string>();
+            LecturaArchivo();
+            CrearStringConexion();
+        }
+
+        public int cantidadRegistros
+        {
+            get { return _cantidadRegistros; }
+        }
+
+        private void LecturaArchivo()
+        {
+            string archivoPath = HttpContext.Current.Request.PhysicalApplicationPath + "config.ini";
+
+            if (!File.Exists(archivoPath))
+                throw new ArgumentException("Error al encontrar el archivo: config.ini");
+
             try
             {
-                if (_con.State == System.Data.ConnectionState.Open)
-                    return true;
+                using (var stream = new StreamReader(archivoPath))
+                {
+                    string linea = "";
 
-                return false;
+                    while ((linea = stream.ReadLine()) != null)
+                    {
+                        if (linea.Length < 1 || linea.StartsWith("#"))
+                        {
+                            continue;
+                        }
+
+                        int posicionDelimitador = linea.IndexOf('=');
+
+                        if (posicionDelimitador != -1)
+                        {
+                            string identificador = linea.Substring(0, posicionDelimitador);
+                            string contenido = linea.Substring(posicionDelimitador + 1);
+
+                            _data.Add(identificador, contenido);
+                        }
+                    }
+                }
             }
             catch (Exception)
             {
-                return false;
+                throw new ArgumentException("Error al procesar el archivo de configuración");
             }
         }
 
-        public bool conectar()
+        private void CrearStringConexion()
+        {
+            var npSqlCadena = new NpgsqlConnectionStringBuilder()
+            {
+                Host = _data["db.servidor"],
+                Port = Convert.ToInt32(_data["db.puerto"]),
+                UserName = _data["db.usuario"],
+                Database = _data["db.database"],
+                Password = _data["db.password"]
+                
+            };
+
+            _cadena = npSqlCadena.ToString();
+        }
+
+        private bool IsConnected()
+        {
+            if (_con == null)
+                return false;
+
+            if (_con.State == System.Data.ConnectionState.Open)
+                return true;
+
+            return false;
+        }
+
+        public bool Conectar()
         {
             try
             {
-                string cadena = "Server=localhost;Port=5432;User Id=admin_copamundial;Database=copamundial; Password=copamundial;";
-                _con = new NpgsqlConnection(cadena);
+                _con = new NpgsqlConnection(_cadena);
                 _con.Open();
                 return true;
             }
-            catch (Exception)
+            catch (NpgsqlException e)
+            {   
+                throw e;
+            }
+            catch (Exception e)
             {
-                return false;
+                throw e;
             }
         }
 
-        public void desconectar()
+        public void Desconectar()
         {
-            if (_con != null && isConnected())
+            if (_con != null && IsConnected())
                 _con.Close();
         }
 
+        /// <summary>
+        /// Ejecutar el StoredProcedure con un valor de retorno (ResultSet), habilita el uso de las funciones "GetInt, GetString, etc" y devuelve un objeto DataTable.
+        /// </summary>
         public DataTable EjecutarReader()
         {
-            if (!isConnected())
-                return null;
 
             try
             {
+                if (!IsConnected())
+                    return null;
+
                 _dataTable = new DataTable();
 
                 _dataTable.Load(_command.ExecuteReader());
 
-                desconectar();
+                Desconectar();
+
+                _cantidadRegistros = _dataTable.Rows.Count;
+
+                if (_cantidadRegistros < 1)
+                {
+                    throw new ArgumentNullException("No existen registros.");
+                }
+
+            }
+            catch(NpgsqlException exc)
+            {
+                Desconectar();
+                throw new ArgumentNullException("Error al ejecutar el StoredProcedure "+exc);
             }
             catch (Exception)
             {
-                desconectar();
-                return null;
+                Desconectar();
+                throw;
             }
 
             return _dataTable;
               
         }
 
+
+        /// <summary>
+        /// Ejecutar el StoredProcedure sin valor de retorno (ResultSet), devuelve el número de filas afectadas.
+        /// </summary>
         public int EjecutarQuery()
         {
             try
             {
-                if (!isConnected())
+                if (!IsConnected())
                     return 0;
 
                 int filasAfectadas = _command.ExecuteNonQuery();
 
-                desconectar();
+                Desconectar();
 
                 return filasAfectadas;
             }
+            catch (NpgsqlException exc)
+            {
+                Desconectar();
+                throw new ArgumentNullException("Error al ejecutar el StoredProcedure " + exc);
+            }
             catch (Exception)
             {
-                desconectar();
-                return 0;
+                Desconectar();
+                throw;
             }
         }
 
-        public NpgsqlCommand crearComando(string comando)
+        /// <summary>
+        /// Crea el comando para ejecutar el StoredProcedure, Ejemplo: StoredProcedure("nombreSP(@param)")
+        /// </summary>
+        public NpgsqlCommand StoredProcedure(string sp)
         {
             try
             {
-                if (!isConnected())
+                if (!IsConnected())
                     return null;
 
-                _command = new NpgsqlCommand(comando, _con);
+                
+                _command = new NpgsqlCommand("select * from "+sp, _con);
+            }
+            catch (NpgsqlException)
+            {
+                throw;
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
 
             return _command;
         }
+
+
+        public void AgregarParametro(string nombre, object valor)
+        {
+            try
+            {
+                _command.Parameters.AddWithValue("@" + nombre, valor);
+            }
+            catch (NpgsqlException)
+            {
+                throw;
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+        public int GetInt(int fila, int columna)
+        {
+            try
+            {
+                int intItem = Convert.ToInt32(_dataTable.Rows[fila][columna]);
+
+                return intItem;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
+            catch (OverflowException)
+            {
+                throw new OverflowException();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public char GetChar(int fila, int columna)
+        {
+            try
+            {
+                char charItem = Convert.ToChar(_dataTable.Rows[fila][columna]);
+
+                return charItem;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
+            catch (ArgumentNullException)
+            {
+                throw new ArgumentNullException();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public string GetString(int fila, int columna)
+        {
+            try
+            {
+                string stringItem = Convert.ToString(_dataTable.Rows[fila][columna]);
+
+                return stringItem;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
+            catch (ArgumentNullException)
+            {
+                throw new ArgumentNullException();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public double GetDouble(int fila, int columna)
+        {
+            try
+            {
+                double doubleItem = Convert.ToDouble(_dataTable.Rows[fila][columna]);
+
+                return doubleItem;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
+            catch (OverflowException)
+            {
+                throw new OverflowException();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public bool GetBool(int fila, int columna)
+        {
+            try
+            {
+                bool boolItem = Convert.ToBoolean(_dataTable.Rows[fila][columna]);
+
+                return boolItem;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public DateTime GetDateTime(int fila, int columna)
+        {
+            try
+            {
+                DateTime dateItem = Convert.ToDateTime(_dataTable.Rows[fila][columna]);
+
+                return dateItem;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+
 
 
     }

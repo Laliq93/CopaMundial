@@ -1,264 +1,102 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-	<user-panel *ngIf="loadPanel"></user-panel>
-  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="oi oi-menu"></span>
-  	</button>
-	<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-		<a class="navbar-brand" href="/home"><img class="img-logo-nav img-fluid" src="../../../assets/images/logo.png" alt="">Mundial de Rusia 2018</a>
-		<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-	  		<li class="nav-item" *ngFor="let module of moduleArray">
-				<a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}}
-				 routerLinkActive="active">{{module.name}}
-				</a>
-			</li>
-		</ul>
-	</div>
-</nav>
+<header class="navbar navbar-dark navbar-full bg-color">
 
+    <div data-breakpoint="lg" data-target="#navdrawerPermanent" data-toggle="navdrawer" data-type="permanent">
+        <span class="oi oi-menu d-lg-none"></span>
+    </div>
 
-<router-outlet></router-outlet>
+    <span class="navbar-brand mr-auto d-none d-sm-block">
+        <img src="../../../assets/images/logo.png" alt="" class="img-fluid img-logo-nav"> Mundial de Rusia 2018
+    </span>
 
-<div id="wrapper">
+    <div class="navbar-nav">
 
-    <div class="container-fluid no-padding">
-      <div class="row">
-        <div class="col-md-3 column-sidebar">
-          <!-- /. NAV TOP  -->
-          <nav class="navbar-default navbar-side" role="navigation">
-            <div class="sidebar-collapse">
-				
-				<div class="section-data-user">
-					<div align="center">
-	                  <img align="center" class="profile-image-sidebar" src="../../assets/images/users/1.jpg" alt="">
-	                </div>
+        <div class="nav-item dropdown">
+            <a class="nav-link" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" />Felix Morales</a>
 
-	                <p class="sidebar-name-user">Felix Morales</p>
-				</div>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                    <a class="dropdown-item" (click)="setHome()" routerLink="user-panel" routerLinkActive="active">
+                        <span class="oi oi-person"></span>Perfil</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" (click)="setHome()" routerLink="user-config" routerLinkActive="active">Configuración</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" (click)="setHome()" routerLink="user-security" routerLinkActive="active">Seguridad</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" (click)="setHome()" routerLink="user-accessibility" routerLinkActive="active">Accesibilidad</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" (click)="setHome()" routerLink="">Cerrar Sesion</a>
+                </li>
+            </ul>
+        </div>
 
-				<hr class="separator">
-
-              	<ul class="list-group" id="main-menu">
-
-	                <li class="list-group-item item-sidebar">
-	                  <a (click)="setHome()" routerLink="user-panel" routerLinkActive="active"><span class="oi oi-person"></span> Perfil</a>
-	                </li>
-
-	                <li class="list-group-item item-sidebar">
-	                  <a (click)="setHome()" routerLink="user-config" routerLinkActive="active"><span class="oi oi-cog"></span> Configuración</a>
-	                </li>
-
-	                <li class="list-group-item item-sidebar">
-	                  <a (click)="setHome()" routerLink="user-security" routerLinkActive="active"><span class="oi oi-lock-locked"></span> Seguridad</a>
-	                </li>
-
-	                <li class="list-group-item item-sidebar">
-	                  <a (click)="setHome()" routerLink="user-accessibility" routerLinkActive="active"><span class="oi oi-external-link"></span> Accesibilidad</a>
-	                </li>
-
-	                <li class="list-group-item item-sidebar">
-	                  <a href="#"><span class="oi oi-account-logout"></span> Cerrar sesión</a>
-	                </li>
-              	</ul>
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="flag-icon flag-icon-es"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">
+                    <i class="flag-icon flag-icon-us"></i> Ingles</a>
             </div>
-
-          </nav>
-          <!-- /. NAV SIDE  -->
         </div>
 
-        <!-- CONTENIDO HOME -->
+    </div>
 
-        <div class="col-9">
-        	<div class="content-page">
-                <div class="row justify-content-center">
-                	<div ng-app="headline" class="headline card">
-                    	<h4 class="tittle">
-                    	Hoy es 4 de Mayo de 2018
-                    	</h4>
-                  	</div>
-                </div>
-                <!-- aqui -->
+</header>
 
-				<div class="row justify-content-center" style="margin-top: 5%;">
-                	<div class="col-md-12 col-sm-12">
-                		<div class="last-section">
-                			<div class="card mb-3">
-								<!-- <img class="card-img-top" src="../../assets/images/estadisticas.jpg" alt="Card image cap"> -->
-								<div class="card-body">
-									<h5 class="card-title">Estadísticas</h5>
-									<p class="card-text">Suma total: </p>
-									<p class="card-text">Promedio:</p>
-								</div>
+<div class="row">
+    <div class="col-lg-2">
+        <div aria-hidden="true" class="navdrawer navdrawer-permanent-lg" id="navdrawerPermanent" tabindex="-1">
+            <div class="navdrawer-content">
 
-								<button type="submit" class="btn btn-primary btn-global btn-carousel">Ver estadísticas</button>
-							</div>
-                		</div>
-                	</div>
-                </div>
+                <nav class="navdrawer-nav">
 
-                <div class="row" style="margin-top: 5%;">
-                  <!-- o aqui -->
-					<div class="col-md-4 col-sm-12">
-						<div class="first-section">
-							<div class="card bg-dark text-white">
-								<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-									<div class="carousel-inner">
-										<div class="carousel-item active">
-											<img class="d-block w-100" src="../../assets/images/ciudades/moscu.jpg" alt="First slide">
-										</div>
-										<div class="carousel-item">
-											<img class="d-block w-100" src="../../assets/images/ciudades/samara.jpg" alt="Second slide">
-										</div>
-										<div class="carousel-item">
-											<img class="d-block w-100" src="../../assets/images/ciudades/leningrado.jpg" alt="Third slide">
-										</div>
-									</div>
-								</div>
-								<div class="card-img-overlay">
-									<h5 class="card-title">CIUDADES</h5>
-								</div>
+                    <div class="user-profile" style="background: url(../assets/images/background/profile-bg.jpg) no-repeat;">
 
-								<button type="submit" class="btn btn-primary btn-global btn-carousel">Ver ciudades</button>
-							</div>
+                        <div class="profile-img">
+                            <img src="../../assets/images/users/1.jpg" alt="user" /> </div>
 
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-12">
-						<div class="first-section">
-							<div class="card bg-dark text-white">
-								<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-									<div class="carousel-inner">
-										<div class="carousel-item active">
-											<img class="d-block w-100" src="../../assets/images/estadios/estadio1.jpg" alt="First slide">
-										</div>
-										<div class="carousel-item">
-											<img class="d-block w-100" src="../../assets/images/estadios/estadio2.jpg" alt="Second slide">
-										</div>
-										<div class="carousel-item">
-											<img class="d-block w-100" src="../../assets/images/estadios/estadio3.jpg" alt="Third slide">
-										</div>
-									</div>
-								</div>
-								<div class="card-img-overlay">
-									<h5 class="card-title">ESTADIOS</h5>
-								</div>
+                        <div class="profile-text">
+                            <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Felix Morales
+                                <span class="oi oi-caret-bottom"></span>
+                            </a>
+                            <div class="dropdown-menu animated flipInY">
+                                <a (click)="setHome()" routerLink="user-config" routerLinkActive="active" class="dropdown-item">
+                                    <span class="oi oi-person"></span> Mi Perfil</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item">
+                                    <span class="oi oi-wrench" (click)="setHome()" routerLink="user-config" routerLinkActive="active"></span> Configuración</a>
+                                <div class="dropdown-divider"></div>
+                                <a (click)="setHome()" routerLink="" class="dropdown-item">
+                                    <span class="oi oi-power-standby"></span> Salir</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
 
-								<button type="submit" class="btn btn-primary btn-global btn-carousel">Ver estadios</button>
-							</div>
+                <div class="navdrawer-divider"></div>
+                <p class="navdrawer-subheader">Modulos</p>
+                <ul class="navdrawer-nav">
+                    <li class="nav-item" *ngFor="let module of moduleArray">
+                        <a class="nav-link" [ngClass]="{ 'active' : module.isActive == true }" (click)="setModuleActive(module.name)" routerLink={{module.routeName}}
+                            routerLinkActive="active">
+                            {{module.name}}
+                        </a>
+                    </li>
 
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-12">
-						<div class="first-section">
-							<div class="card bg-dark text-white">
-								<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-									<div class="carousel-inner">
-										<div class="carousel-item active">
-											<img class="d-block w-100" src="../../assets/images/equipos/equipo1.jpg" alt="First slide">
-										</div>
-										<div class="carousel-item">
-											<img class="d-block w-100" src="../../assets/images/equipos/equipo2.jpg" alt="Second slide">
-										</div>
-										<div class="carousel-item">
-											<img class="d-block w-100" src="../../assets/images/equipos/equipo3.jpg" alt="Third slide">
-										</div>
-									</div>
-								</div>
-								<div class="card-img-overlay">
-									<h5 class="card-title">EQUIPOS</h5>
-								</div>
+                </ul>
 
-								<button type="submit" class="btn btn-primary btn-global btn-carousel">Ver equipos</button>
-							</div>
-
-						</div>
-					</div>
-                </div>
-
-                <div class="row" style="margin-top: 5%;">
-                  <!-- o aqui -->
-					<div class="col-md-4 col-sm-12">
-						<div class="first-section">
-							<div class="card bg-dark text-white">
-								<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-									<div class="carousel-inner">
-										<div class="carousel-item active">
-											<img class="d-block w-100" src="../../assets/images/jugadores/jugador1.jpg" alt="First slide">
-										</div>
-										<div class="carousel-item">
-											<img class="d-block w-100" src="../../assets/images/jugadores/jugador2.jpg" alt="Second slide">
-										</div>
-										<div class="carousel-item">
-											<img class="d-block w-100" src="../../assets/images/jugadores/jugador3.jpg" alt="Third slide">
-										</div>
-									</div>
-								</div>
-								<div class="card-img-overlay">
-									<h5 class="card-title">JUGADORES</h5>
-								</div>
-
-								<button type="submit" class="btn btn-primary btn-global btn-carousel">Ver jugadores</button>
-							</div>
-
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-12">
-						<div class="first-section">
-							<div class="card bg-dark text-white">
-								<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-									<div class="carousel-inner">
-										<div class="carousel-item active">
-											<img class="d-block w-100" src="../../assets/images/partidos/partido1.jpg" alt="First slide">
-										</div>
-										<div class="carousel-item">
-											<img class="d-block w-100" src="../../assets/images/partidos/partido2.jpg" alt="Second slide">
-										</div>
-										<div class="carousel-item">
-											<img class="d-block w-100" src="../../assets/images/partidos/partido3.jpg" alt="Third slide">
-										</div>
-									</div>
-								</div>
-								<div class="card-img-overlay">
-									<h5 class="card-title">PARTIDOS</h5>
-								</div>
-
-								<button type="submit" class="btn btn-primary btn-global btn-carousel">Ver partidos</button>
-							</div>
-
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-12">
-						<div class="first-section">
-							<div class="card bg-dark text-white">
-								<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-									<div class="carousel-inner">
-										<div class="carousel-item active">
-											<img class="d-block w-100" src="../../assets/images/apuestas/apuesta1.png" alt="First slide">
-										</div>
-										<div class="carousel-item">
-											<img class="d-block w-100" src="../../assets/images/apuestas/apuesta2.jpg" alt="Second slide">
-										</div>
-										<div class="carousel-item">
-											<img class="d-block w-100" src="../../assets/images/apuestas/apuesta3.jpg" alt="Third slide">
-										</div>
-									</div>
-								</div>
-								<div class="card-img-overlay">
-									<h5 class="card-title">APUESTAS</h5>
-								</div>
-
-								<button type="submit" class="btn btn-primary btn-global btn-carousel">Ver apuestas</button>
-							</div>
-
-						</div>
-					</div>
-                </div>
-
-              </div>
+            </div>
         </div>
+    </div>
 
-        <!-- /CONTENIDO HOME -->
 
-      </div>
+    <div class="col-lg-10 col-md-12 col-sm-12">
+        <router-outlet></router-outlet>
     </div>
 
 </div>
