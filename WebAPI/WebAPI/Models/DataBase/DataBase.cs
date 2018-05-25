@@ -27,7 +27,6 @@ namespace WebAPI.Models.DataBase
             get { return _cantidadRegistros; }
         }
 
-
         /// <summary>
         ///  Busca el string de conexión a la base de datos en el archivo web.config, dicho string se llama "postgrestring"
         /// </summary>

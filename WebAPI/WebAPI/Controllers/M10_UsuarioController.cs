@@ -373,7 +373,7 @@ namespace WebAPI.Controllers
             _database.EjecutarReader();
 
             _usuario = new Usuario(idUsuario,_database.GetString(0, 0), _database.GetString(0, 1), _database.GetString(0, 2), Convert.ToDateTime(_database.GetString(0, 3)).ToShortDateString(),
-                _database.GetString(0, 4), _database.GetChar(0, 5),_database.GetString(0,6) ,_database.GetString(0, 7), _database.GetBool(0,8));
+                _database.GetString(0, 4), _database.GetChar(0, 5),_database.GetString(0,6) ,_database.GetString(0, 7),false ,_database.GetBool(0,8), "");
 
             return _usuario;
 
