@@ -1,17 +1,17 @@
 <div class="input-group mb-3 espacio">
-
+  
   <div class="input-group-prepend">
-
+  
     <button type="button" class="btn btn-raised btn-secondary btnBuscar">Buscar</button>
-
+  
   </div>
-
+  
   <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
-
+  
   <div class="input-group-prepend">
-
+  
     <a href="admin/stadium/crear-estadio" class="btn btnAgregar">Agregar Ciudad</a>
-
+  
   </div>
 
 </div>
@@ -26,49 +26,47 @@
 
         <th scope="col">#</th>
 
-        <th scope="col">Nombre</th>
-
+        <th  scope="col">Nombre</th>
+        
         <th scope="col">Accion</th>
-
-      </tr>
-
-    </thead>
- 
-
+        
+    </tr>
+    
+  </thead>
+   
     <tbody>
-
+    
+    <tr *ngFor="let ciudad of nombreCiudades">
+  
+      <th scope="row">1</th>
+  
+      <td>{{ciudad}}</td>
+  
+      <td><a href="/admin/city/modificar">
+  
+        <span class="oi oi-pencil"></span>
+  
+      </a>
+  
+      <a href="">
+  
+        <span class="oi oi-eye"></span>
+  
+      </a>
+  
+      <a href="#">
+  
+        <span class="oi oi-trash "></span>
+  
+      </a>
+  
       
-  <tr>
-
+        </td>
     
-    <th scope="row">1</th>
-    
-    <td>Mark</td> 
-    
-    <td><a href="#">
-    
-      <span class="oi oi-pencil"></span>
-    
-    </a>
-    
-    <a href="">
-    
-      <span class="oi oi-eye "></span>
-    
-    </a>
-    
-    <a href="#">
-    
-      <span class="oi oi-trash "></span>
-    
-    </a>
-    
-  </td>
+      </tr>
   
-</tr>
+    </tbody>
   
-  </tbody>
-
-</table>
-
+  </table>
+ 
 </div>
