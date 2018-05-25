@@ -216,7 +216,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\M10_UsuarioController.cs" />
     <Compile Include="Controllers\M1_RegistroLofinRecuperarController.cs" />
+    <Compile Include="Controllers\M5_JugadorController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Models\Excepciones\ClaveInvalidaException.cs" />
+    <Compile Include="Models\Excepciones\CorreoEnUsoException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -224,6 +227,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataBase\DataBase.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Jugador.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
@@ -269,8 +273,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
-    <Folder Include="Models\Excepciones\" />
     <Folder Include="Views\M1_RegistroLoginRecuperar\" />
+    <Folder Include="Views\M5_Jugador\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

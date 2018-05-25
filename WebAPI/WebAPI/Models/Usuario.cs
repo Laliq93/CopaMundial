@@ -14,7 +14,7 @@ namespace WebAPI.Models
         private string _nombreUsuario; //nombre de usuario para iniciar sesion
         private string _nombre; //nombre del usuario
         private string _apellido; //apellido del usuario
-        private DateTime _fechaNacimiento; //fecha de nacimiento del usuario
+        private string _fechaNacimiento; //fecha de nacimiento del usuario
         private string _correo; //correo del usuario
         private char _genero; //genero del usuario 
         private string _password; //contrasena del usuario
@@ -22,7 +22,36 @@ namespace WebAPI.Models
         private bool _esAdmin;
         private string _token;
 
-        public Usuario(int id, string nombreUsuario, string nombre, string apellido, DateTime fechaNacimiento,
+
+        public Usuario(string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, char genero ,bool esAdmin, string clave)
+        {
+            _nombreUsuario = nombreUsuario;
+            _nombre = nombre;
+            _apellido = apellido;
+            _fechaNacimiento = fechaNacimiento;
+            _correo = correo;
+            _genero = genero;
+            _esAdmin = esAdmin;
+            _password = clave;
+        }
+
+        //Constructor para las PU
+        public Usuario(string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
+    string correo, char genero, string password, string fotoPath, bool esAdmin, string token)
+        {
+            _nombreUsuario = nombreUsuario;
+            _nombre = nombre;
+            _apellido = apellido;
+            _fechaNacimiento = fechaNacimiento;
+            _correo = correo;
+            _genero = genero;
+            _password = password;
+            _fotoPath = fotoPath;
+            _esAdmin = esAdmin;
+            _token = token;
+        }
+
+        public Usuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
             string correo, char genero, string password, string fotoPath, bool esAdmin, string token)
         {
             _id = id;
@@ -38,7 +67,7 @@ namespace WebAPI.Models
             _token = token;
         }
 
-        public Usuario(int id, string nombreUsuario, string nombre, string apellido, DateTime fechaNacimiento, string correo)
+        public Usuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo)
         {
             _id = id;
             _nombreUsuario = nombreUsuario;
@@ -46,6 +75,16 @@ namespace WebAPI.Models
             _apellido = apellido;
             _fechaNacimiento = fechaNacimiento;
             _correo = correo;
+        }
+
+        public Usuario(int id, string nombre, string apellido, string fechaNacimiento, char genero, string fotoPath)
+        {
+            _id = id;
+            _nombre = nombre;
+            _apellido = apellido;
+            _fechaNacimiento = fechaNacimiento;
+            _genero = genero;
+            _fotoPath = fotoPath;
         }
 
         /// <summary>
@@ -87,7 +126,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo fechaNacimiento
         /// </summary>
-        public DateTime FechaNacimiento
+        public string FechaNacimiento
         {
             get { return _fechaNacimiento; }
             set { _fechaNacimiento = value; }

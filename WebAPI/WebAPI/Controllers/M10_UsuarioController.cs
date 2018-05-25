@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using WebAPI.Models;
 using WebAPI.Models.DataBase;
+using WebAPI.Models.Excepciones;
 using System.Data;
 using System.Web;
 
@@ -24,7 +25,9 @@ namespace WebAPI.Controllers
         {
             try
             {
-                EditarPerfil(idUsuario, nombre, apellido, fechaNacimiento, genero, fotoPath);
+                _usuario = new Usuario(idUsuario, nombre, apellido, fechaNacimiento, genero, fotoPath);
+
+                EditarPerfil(_usuario);
 
                 return Ok("Usuario editado con exito.");
             }
@@ -38,13 +41,22 @@ namespace WebAPI.Controllers
 
         [Route("CrearUsuarioAdministrador/{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}")]
         [HttpPost, HttpGet]
-        public IHttpActionResult CrearUsuarioAdministrador(string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, char genero, string password)
+        public IHttpActionResult CrearUsuarioAdministrador(string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
+            string correo, char genero, string password)
         {
             try
             {
-                InsertarAdministrador(nombreUsuario, nombre, apellido, fechaNacimiento, correo, genero, password);
+                VerificarCorreoExiste(correo);
 
-                return Ok("Administador creado con exito.");
+                _usuario = new Usuario(nombreUsuario,nombre,apellido, fechaNacimiento, correo,genero,true, password);
+
+                InsertarAdministrador(_usuario);
+
+                return Ok();
+            }
+            catch(CorreoEnUsoException exc)
+            {
+                return BadRequest(exc.Message);
             }
             catch (Exception e)
             {
@@ -63,7 +75,7 @@ namespace WebAPI.Controllers
             {
                 GestionarActivo(idUsuario, false);
 
-                return Ok("Usuario desactivado con exito.");
+                return Ok();
             }
             catch (Exception e)
             {
@@ -81,7 +93,7 @@ namespace WebAPI.Controllers
             {
                 GestionarActivo(idUsuario,true);
 
-                return Ok("Usuario activado con exito.");
+                return Ok();
             }
             catch (Exception e)
             {
@@ -91,15 +103,21 @@ namespace WebAPI.Controllers
 
         }
 
-        [Route("ActualizarClaveUsuario/{idUsuario:int}/{password}")]
+        [Route("ActualizarClaveUsuario/{idUsuario:int}/{password}/{passwordAnterior}")]
         [HttpPut, HttpGet]
-        public IHttpActionResult ActualizarClaveUsuario(int idUsuario, string password)
+        public IHttpActionResult ActualizarClaveUsuario(int idUsuario, string password, string passwordAnterior)
         {
             try
             {
+                VerificarClaveUsuario(idUsuario, passwordAnterior);
+
                 EditarPassword(idUsuario, password);
 
-                return Ok("Clave actualizada con exito.");
+                return Ok();
+            }
+            catch(ClaveInvalidaException exc)
+            {
+                return BadRequest(exc.Message);
             }
             catch (Exception e)
             {
@@ -109,15 +127,30 @@ namespace WebAPI.Controllers
 
         }
 
-        [Route("ActualizarCorreoUsuario/{idUsuario:int}/{correo}")]
+        [Route("ActualizarCorreoUsuario/{idUsuario:int}/{correo}/{clave}")]
         [HttpPut, HttpGet]
-        public IHttpActionResult ActualizarCorreoUsuario(int idUsuario, string correo)
+        public IHttpActionResult ActualizarCorreoUsuario(int idUsuario, string correo, string clave)
         {
             try
             {
+                
+                VerificarClaveUsuario(idUsuario, clave);
+
+                VerificarCorreoExiste(correo, idUsuario);
+
                 EditarCorreo(idUsuario, correo);
 
-                return Ok("Correo actualizado con exito.");
+
+                return Ok();
+            }
+            catch(ClaveInvalidaException exc)
+            {
+                return BadRequest(exc.Message);
+            }
+            catch(CorreoEnUsoException exc)
+            {
+
+                return BadRequest(exc.Message);
             }
             catch (Exception e)
             {
@@ -175,7 +208,10 @@ namespace WebAPI.Controllers
             }
         }
 
-        private void ObtenerUsuarios(bool activo)
+        /// <summary>
+        /// Devuelve los usuarios (no administradores) activos/no activos registrados en la base de datos. true = activos; false = no activos.
+        /// </summary>
+        public void ObtenerUsuarios(bool activo)
         {
             _listaUsuarios = new List<Usuario>();
 
@@ -193,29 +229,36 @@ namespace WebAPI.Controllers
             for(int i = 0; i < _database.cantidadRegistros; i++)
             {
                 usuarioLista = new Usuario(_database.GetInt(i, 0), _database.GetString(i, 1), _database.GetString(i, 2), 
-                    _database.GetString(i, 3), _database.GetDateTime(i, 4), _database.GetString(i, 5));
+                    _database.GetString(i, 3), _database.GetString(i, 4), _database.GetString(i, 5));
 
                 _listaUsuarios.Add(usuarioLista);
             }
         }
 
-        private void EditarPerfil(int idUsuario, string nombre, string apellido, string fechaNacimiento, char genero, string fotoPath)
+
+        /// <summary>
+        /// Actualiza la información del perfil de usuario en la base de datos.
+        /// </summary>
+        public void EditarPerfil(Usuario usuario)
         {
             _database.Conectar();
 
             _database.StoredProcedure("editarperfilusuario(@id, @nombre, @apellido, @fechaNacimiento, @genero, @foto)");
 
-            _database.AgregarParametro("id", idUsuario);
-            _database.AgregarParametro("nombre", nombre);
-            _database.AgregarParametro("apellido", apellido);
-            _database.AgregarParametro("fechaNacimiento", fechaNacimiento);
-            _database.AgregarParametro("genero", genero.ToString().ToUpper());
-            _database.AgregarParametro("foto", fotoPath);
+            _database.AgregarParametro("id", usuario.Id);
+            _database.AgregarParametro("nombre", usuario.Nombre);
+            _database.AgregarParametro("apellido", usuario.Apellido);
+            _database.AgregarParametro("fechaNacimiento", usuario.FechaNacimiento);
+            _database.AgregarParametro("genero", usuario.Genero.ToString().ToUpper());
+            _database.AgregarParametro("foto", usuario.FotoPath);
 
             _database.EjecutarQuery();
         }
 
-        private void GestionarActivo(int idUsuario, bool activo)
+        /// <summary>
+        /// Activa/Desactiva la cuenta del usuario, true = activa ; false = desactiva.
+        /// </summary>
+        public void GestionarActivo(int idUsuario, bool activo)
         {
             _database.Conectar();
 
@@ -227,8 +270,11 @@ namespace WebAPI.Controllers
             _database.EjecutarQuery();
         }
 
-        
-        private void EditarPassword(int idUsuario, string clave)
+
+        /// <summary>
+        /// Actualiza la contraseña del usuario.
+        /// </summary>
+        public void EditarPassword(int idUsuario, string clave)
         {
             _database.Conectar();
 
@@ -240,7 +286,10 @@ namespace WebAPI.Controllers
             _database.EjecutarQuery();
         }
 
-        private void EditarCorreo(int idUsuario, string correo)
+        /// <summary>
+        /// Actualiza el correo del usuario.
+        /// </summary>
+        public void EditarCorreo(int idUsuario, string correo)
         {
             _database.Conectar();
 
@@ -252,24 +301,68 @@ namespace WebAPI.Controllers
             _database.EjecutarQuery();
         }
 
-        private void InsertarAdministrador(string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, char genero, string password)
+        /// <summary>
+        /// Verifica si el correo ya se encuentra registrado en la base de datos.
+        /// </summary>
+        public void VerificarCorreoExiste(string correo, int idUsuario = -1)
+        {
+            _database.Conectar();
+
+            _database.StoredProcedure("verificarcorreoexiste(@correo)");
+
+            _database.AgregarParametro("correo", correo);
+
+            _database.EjecutarReader();
+
+            int countCorreo = _database.GetInt(0, 0);
+
+            if (countCorreo > 0)
+                throw new CorreoEnUsoException(idUsuario,correo);
+
+        }
+
+        /// <summary>
+        /// Verifica si la clave ingresada coincide con la clave actual del usuario.
+        /// </summary>
+        public void VerificarClaveUsuario(int idUsuario, string clave)
+        {
+            _database.Conectar();
+
+            _database.StoredProcedure("verificarclaveusuario(@clave, @idUsuario)");
+
+            _database.AgregarParametro("clave", clave);
+            _database.AgregarParametro("idUsuario", idUsuario);
+
+            _database.EjecutarReader();
+
+            int countClave = _database.GetInt(0, 0);
+
+            if (countClave < 1)
+                throw new ClaveInvalidaException(idUsuario, clave);
+
+        }
+
+        /// <summary>
+        /// Ingresa un nuevo usuario administrador en la base de datos.
+        /// </summary>
+        public void InsertarAdministrador(Usuario usuario)
         {
             _database.Conectar();
 
             _database.StoredProcedure("crearusuarioadministrador(@nombreU, @nombre, @apellido, @fechaNacimiento, @correo, @genero, @clave)");
 
-            _database.AgregarParametro("nombreU", nombreUsuario);
-            _database.AgregarParametro("nombre", nombre);
-            _database.AgregarParametro("apellido", apellido);
-            _database.AgregarParametro("fechaNacimiento", fechaNacimiento);
-            _database.AgregarParametro("correo", correo);
-            _database.AgregarParametro("genero", genero.ToString().ToUpper());
-            _database.AgregarParametro("clave", password);
+            _database.AgregarParametro("nombreU", usuario.NombreUsuario);
+            _database.AgregarParametro("nombre", usuario.Nombre);
+            _database.AgregarParametro("apellido", usuario.Apellido);
+            _database.AgregarParametro("fechaNacimiento", usuario.FechaNacimiento);
+            _database.AgregarParametro("correo", usuario.Correo);
+            _database.AgregarParametro("genero", usuario.Genero.ToString().ToUpper());
+            _database.AgregarParametro("clave", usuario.Password);
 
             _database.EjecutarQuery();
         }
 
-        private void GetUsuario(int idUsuario)
+        public void GetUsuario(int idUsuario)
         {
             _database.Conectar();
 
@@ -279,7 +372,7 @@ namespace WebAPI.Controllers
 
             _database.EjecutarReader();
 
-            _usuario = new Usuario(idUsuario, "", _database.GetString(0, 0), _database.GetString(0, 1), _database.GetDateTime(0, 2), 
+            _usuario = new Usuario("", _database.GetString(0, 0), _database.GetString(0, 1), _database.GetString(0, 2), 
                 null,_database.GetChar(0, 3),null,_database.GetString(0,4),false,null);
         }
 
