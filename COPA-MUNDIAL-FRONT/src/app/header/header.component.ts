@@ -17,16 +17,12 @@ class Module {
 	routeName: string;
 	isActive: boolean;
 
-	logueado: string;
 	
 
 	constructor(name, routeName, isActive) {
 		this.name = name;
 		this.routeName = routeName;
 		this.isActive = isActive;
-
-		this.logueado = sessionStorage.getItem('Login');
-
 
 
 

@@ -11,7 +11,6 @@ export class NotLoggedInGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    sessionStorage.setItem('Login', 'No');
     return true;
   }
 }
