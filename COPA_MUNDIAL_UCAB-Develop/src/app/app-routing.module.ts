@@ -44,6 +44,7 @@ import { StadiumDetailComponent } from './MODULO3/client/stadium-detail/stadium-
 import { CreateStadiumComponent } from './MODULO3/admin/create-stadium/create-stadium.component'
 import { StadiumDetailAdminComponent } from './MODULO3/admin/stadium-detail-admin/stadium-detail-admin.component';
 
+import { DatosTorneoComponent } from './MODULO9/datos-torneo/datos-torneo.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -68,7 +69,8 @@ const routes: Routes = [
       { path: 'user-panel' , component: UserPanelComponent },
       { path: 'user-config', component: UserConfigComponent },
       { path: 'user-security', component: UserSecurityComponent},
-      { path: 'user-accessibility', component: UserAccessibilityComponent }
+      { path: 'user-accessibility', component: UserAccessibilityComponent },
+      {path: 'torneo', component: DatosTorneoComponent}
     ]
   },
 

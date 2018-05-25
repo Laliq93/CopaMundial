@@ -7,6 +7,7 @@ import { DatepickerComponent } from './datepicker/datepicker.component';
 import { ContarClicksDirective } from './client/directiva.directive';
 import { FormsModule } from '@angular/forms';
 import { EstpartidosComponent } from './estpartidos/estpartidos.component';
+import { DatosTorneoComponent } from './datos-torneo/datos-torneo.component';
 //import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 //import {MatDatepickerModule} from '@angular/material/datepicker';
 
@@ -16,10 +17,12 @@ import { EstpartidosComponent } from './estpartidos/estpartidos.component';
   	StatisticComponent,
     StatisticAdminComponent,
     DatepickerComponent,
+    
     GroupComponent,
     ContarClicksDirective,
     EstpartidosComponent,
    
+    DatosTorneoComponent
 
     
     
@@ -27,7 +30,8 @@ import { EstpartidosComponent } from './estpartidos/estpartidos.component';
   providers: [],
   exports: [ 
   	StatisticComponent,
-  	StatisticAdminComponent
+    StatisticAdminComponent,
+    DatosTorneoComponent
   ]
 })
 

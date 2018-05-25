@@ -25,5 +25,8 @@ export class StatisticComponent implements OnInit{
     estPartidos(){
 
     }
+    torneo(): void {
+      this.router.navigate(['home/torneo']);
+    
+    }	
 }
-
