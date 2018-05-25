@@ -1,43 +1,31 @@
-.fondo{
-    background-color: #A11D1B;
-    color: white;
-    padding: 15px 15px;
-    
-}
-.btnEstadio{
-    background-color: #000000;
-}
-.btnAgregar{
-    background-color: #1998e2;
-    color: white;
-}
-.span3 {  
-    height: 100% !important;
-    overflow: scroll;
-}​
-.espacio{
-    padding-top: 15px;
-}
-.oi { 
-    padding-left: 10px; 
-}
-.oi-pencil{
-    color:	#00BFFF;
-}
-.oi-eye{
-    color:#D3D3D3;
-}
-.oi-trash{
-    color:	#A52A2A;
-}
-.oi-plus{
-
-    color: cyan;
+form {
+    margin-left: 28%;
+    margin-top: 8%;
+    margin-bottom: 20%;
+    width: 300px;
+   padding: 10px;
+   position: absolute;
 }
 
-.boton{
+.form-control:focus, .form-control-file:focus, .custom-select:focus {
+   border-color: #02588E;
+   box-shadow: inset 0 -2px 0 -1px #02588E;
+   outline: 0;
+}
 
-    background-color: #A11D1B;
-    margin-left: 10px; 
+.form-control:hover, .form-control-file:hover, .custom-select:hover {
+   border-color: #02588E;
+   box-shadow: inset 0 -2px 0 -1px #02588E;
+   outline: 0;
+}
 
+.btn-signin{
+   background-color: #A11D1B;
+   margin-top: 1%;
+}
+
+.central{
+
+margin-right: 25%;
+    margin-left: 15%;
 }
