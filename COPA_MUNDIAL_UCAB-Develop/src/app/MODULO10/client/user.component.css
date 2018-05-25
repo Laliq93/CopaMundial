@@ -1,3 +1,4 @@
+
 .container-fluid {
   padding: 0 30px 25px 30px;
 }
@@ -9,6 +10,12 @@ a.link {
 a.link:hover, a.link:focus {
   color: #009efb;
 }
+
+
+.nav-tabs .nav-linkactive{
+    color: #009efb;
+}
+
 
 /*******************
 Page titles

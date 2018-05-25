@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component , NgZone, AfterViewInit  } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+
+declare var $: any;
 
 export interface IUsuario {
   id: number;
@@ -18,11 +20,11 @@ export interface IUsuario {
 class Usuario {
 
   public id: number = 3;
-  public nombre: string = "";
-  public apellido: string = "";
-  public genero: string = "";
-  public fechaNacimiento: string = "";
-  public fotoPath: string = "";
+  public nombre: string = '';
+  public apellido: string = '';
+  public genero: string = '';
+  public fechaNacimiento: string = '';
+  public fotoPath: string = '';
 
 }
 
@@ -33,14 +35,13 @@ class Usuario {
   styleUrls: ['./user.component.css']
 })
 
-
-
+ 
 export class UserConfigComponent {
 
-  apiRoot: string = "http://localhost:54059/api/M10_Usuario/";
+  apiRoot: string = 'http://localhost:54059/api/M10_Usuario/';
   usuario: Usuario;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private _zone: NgZone) {
     this.usuario = new Usuario();
   }
 
@@ -48,6 +49,12 @@ export class UserConfigComponent {
 
     this.ObtenerDatos();
 	}
+
+  ngAfterViewInit(): void {
+    this._zone.runOutsideAngular(() => {
+      $('#exampleInputDatePicker1').pickdate();
+    });
+  }
 
   ObtenerDatos() {
 

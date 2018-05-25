@@ -4,7 +4,6 @@ import { UserPanelComponent } from './client/user-panel.component';
 import { UserConfigAdminComponent } from './admin/user-config-admin.component';
 import { UserConfigComponent } from './client/user-config.component';
 import { UserSecurityComponent } from './client/user-security.component';
-import { UserAccessibilityComponent } from './client/user-accessibility.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -13,16 +12,14 @@ import { FormsModule } from '@angular/forms';
   	UserPanelComponent,
     UserConfigAdminComponent,
     UserConfigComponent,
-    UserSecurityComponent,
-    UserAccessibilityComponent
+    UserSecurityComponent
   ],
   providers: [],
   exports: [ 
   	UserPanelComponent,
     UserConfigAdminComponent,
     UserConfigComponent,
-    UserSecurityComponent,
-    UserAccessibilityComponent
+    UserSecurityComponent
   ]
 })
 
