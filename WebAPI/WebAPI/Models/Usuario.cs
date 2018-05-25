@@ -21,9 +21,15 @@ namespace WebAPI.Models
         private string _fotoPath; //
         private bool _esAdmin;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        private bool _activo;
+        private string _token;
+>>>>>>> Modulo_10
 
 
-        public Usuario(string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, char genero ,bool esAdmin, string clave)
+        public Usuario(string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, char genero,
+            bool esAdmin, string clave)
         {
             _nombreUsuario = nombreUsuario;
             _nombre = nombre;
@@ -35,8 +41,8 @@ namespace WebAPI.Models
             _password = clave;
         }
 
-
         public Usuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
+<<<<<<< HEAD
             string correo, char genero, string password, string fotoPath, bool esAdmin)
 =======
         private bool _activo;
@@ -45,6 +51,9 @@ namespace WebAPI.Models
         public Usuario(int id, string nombreUsuario, string nombre, string apellido, DateTime fechaNacimiento,
             string correo, char genero, string password, string fotoPath, bool esAdmin, bool activo, string token)
 >>>>>>> Develop
+=======
+            string correo, char genero, string password, string fotoPath, bool esAdmin, bool activo, string token)
+>>>>>>> Modulo_10
         {
             _id = id;
             _nombreUsuario = nombreUsuario;
@@ -57,10 +66,15 @@ namespace WebAPI.Models
             _fotoPath = fotoPath;
             _esAdmin = esAdmin;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             _activo = activo;
             _token = token;
 >>>>>>> Develop
+=======
+            _activo = activo;
+            _token = token;
+>>>>>>> Modulo_10
         }
 
         public Usuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo)
@@ -74,6 +88,9 @@ namespace WebAPI.Models
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Modulo_10
         public Usuario(int id, string nombre, string apellido, string fechaNacimiento, char genero, string fotoPath)
         {
             _id = id;
@@ -83,9 +100,12 @@ namespace WebAPI.Models
             _genero = genero;
             _fotoPath = fotoPath;
         }
+<<<<<<< HEAD
 =======
         public Usuario() { }
 >>>>>>> Develop
+=======
+>>>>>>> Modulo_10
 
         /// <summary>
         /// Getters y Setters del atributo id
@@ -178,7 +198,10 @@ namespace WebAPI.Models
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> Modulo_10
         /// <summary>
         /// Getters y Setters del atributo Token
         /// </summary>
@@ -187,6 +210,9 @@ namespace WebAPI.Models
             get { return _activo; }
             set { _activo = value; }
         }
+<<<<<<< HEAD
 >>>>>>> Develop
+=======
+>>>>>>> Modulo_10
     }
 }

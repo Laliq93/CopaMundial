@@ -28,6 +28,7 @@ namespace WebAPI.Models.DataBase
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         private void LecturaArchivo()
         {
@@ -68,6 +69,8 @@ namespace WebAPI.Models.DataBase
         }
 >>>>>>> Develop
 
+=======
+>>>>>>> Modulo_10
         /// <summary>
         ///  Busca el string de conexión a la base de datos en el archivo web.config, dicho string se llama "postgrestring"
         /// </summary>
