@@ -229,7 +229,7 @@ namespace WebAPI.Controllers
             for(int i = 0; i < _database.cantidadRegistros; i++)
             {
                 usuarioLista = new Usuario(_database.GetInt(i, 0), _database.GetString(i, 1), _database.GetString(i, 2), 
-                    _database.GetString(i, 3), _database.GetString(i, 4), _database.GetString(i, 5));
+                    _database.GetString(i, 3), Convert.ToDateTime(_database.GetString(i, 4)).ToShortDateString(), _database.GetString(i, 5));
 
                 _listaUsuarios.Add(usuarioLista);
             }
@@ -248,7 +248,7 @@ namespace WebAPI.Controllers
             _database.AgregarParametro("id", usuario.Id);
             _database.AgregarParametro("nombre", usuario.Nombre);
             _database.AgregarParametro("apellido", usuario.Apellido);
-            _database.AgregarParametro("fechaNacimiento", usuario.FechaNacimiento);
+            _database.AgregarParametro("fechaNacimiento", Convert.ToDateTime(usuario.FechaNacimiento).ToShortDateString());
             _database.AgregarParametro("genero", usuario.Genero.ToString().ToUpper());
             _database.AgregarParametro("foto", usuario.FotoPath);
 
@@ -362,7 +362,7 @@ namespace WebAPI.Controllers
             _database.EjecutarQuery();
         }
 
-        public void GetUsuario(int idUsuario)
+        public Usuario GetUsuario(int idUsuario)
         {
             _database.Conectar();
 
@@ -372,8 +372,11 @@ namespace WebAPI.Controllers
 
             _database.EjecutarReader();
 
-            _usuario = new Usuario("", _database.GetString(0, 0), _database.GetString(0, 1), _database.GetString(0, 2), 
-                null,_database.GetChar(0, 3),null,_database.GetString(0,4),false,null);
+            _usuario = new Usuario(idUsuario,_database.GetString(0, 0), _database.GetString(0, 1), _database.GetString(0, 2), Convert.ToDateTime(_database.GetString(0, 3)).ToShortDateString(),
+                _database.GetString(0, 4), _database.GetChar(0, 5),_database.GetString(0,6) ,_database.GetString(0, 7), _database.GetBool(0,8));
+
+            return _usuario;
+
         }
 
     }

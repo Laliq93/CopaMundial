@@ -90,7 +90,6 @@ C:\Users\Felix\Documents\A Desarrollo\WebService\WebAPI\WebAPI\obj\Debug\WebAPI.
 C:\Users\Felix\Documents\A Desarrollo\WebService\WebAPI\WebAPI\obj\Debug\WebAPI.csprojResolveAssemblyReference.cache
 C:\Users\Felix\Documents\A Desarrollo\WebService\WebAPI\WebAPI\bin\Npgsql.dll
 C:\Users\Felix\Documents\A Desarrollo\WebService\WebAPI\WebAPI\bin\Mono.Security.dll
-C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.csprojResolveAssemblyReference.cache
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.pdb
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\ApplicationInsights.config
@@ -285,3 +284,9 @@ C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\obj\Debug\WebA
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.csproj.CoreCompileInputs.cache
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.dll
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.pdb
+C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\NUnit3.TestAdapter.dll
+C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\NUnit3.TestAdapter.pdb
+C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\nunit.engine.dll
+C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\nunit.engine.api.dll
+C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\Mono.Cecil.dll
+C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.csprojResolveAssemblyReference.cache

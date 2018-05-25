@@ -20,7 +20,6 @@ namespace WebAPI.Models
         private string _password; //contrasena del usuario
         private string _fotoPath; //
         private bool _esAdmin;
-        private string _token;
 
 
         public Usuario(string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, char genero ,bool esAdmin, string clave)
@@ -35,24 +34,9 @@ namespace WebAPI.Models
             _password = clave;
         }
 
-        //Constructor para las PU
-        public Usuario(string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
-    string correo, char genero, string password, string fotoPath, bool esAdmin, string token)
-        {
-            _nombreUsuario = nombreUsuario;
-            _nombre = nombre;
-            _apellido = apellido;
-            _fechaNacimiento = fechaNacimiento;
-            _correo = correo;
-            _genero = genero;
-            _password = password;
-            _fotoPath = fotoPath;
-            _esAdmin = esAdmin;
-            _token = token;
-        }
 
         public Usuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
-            string correo, char genero, string password, string fotoPath, bool esAdmin, string token)
+            string correo, char genero, string password, string fotoPath, bool esAdmin)
         {
             _id = id;
             _nombreUsuario = nombreUsuario;
@@ -64,7 +48,6 @@ namespace WebAPI.Models
             _password = password;
             _fotoPath = fotoPath;
             _esAdmin = esAdmin;
-            _token = token;
         }
 
         public Usuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo)
@@ -177,13 +160,5 @@ namespace WebAPI.Models
             set { _esAdmin = value; }
         }
 
-        /// <summary>
-        /// Getters y Setters del atributo Token
-        /// </summary>
-        public string Token
-        {
-            get { return _token; }
-            set { _token = value; }
-        }
     }
 }
