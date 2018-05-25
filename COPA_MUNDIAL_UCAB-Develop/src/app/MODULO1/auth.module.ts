@@ -6,9 +6,14 @@ import { SignupComponent } from './client/signup.component';
 import { RecoveryComponent } from './client/recovery.component';
 import { ChangePasswordComponent } from './client/changePassword.component';
 import { LoginAdminComponent } from './admin/login-admin.component';
+import { NgForm, Form, FormGroup, AbstractControl, FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserService } from './client/user.service';
+
+
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule,
+    ReactiveFormsModule],
   declarations: [
   	LoginComponent,
     SigninComponent,
@@ -17,6 +22,7 @@ import { LoginAdminComponent } from './admin/login-admin.component';
     ChangePasswordComponent,
   	LoginAdminComponent
   ],
+  
   providers: [],
   exports: [ 
   	LoginComponent,
