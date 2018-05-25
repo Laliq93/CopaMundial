@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RecoveryComponent } from './recovery.component';
+import { EditarCiudadComponent } from './editar-ciudad.component';
 
-describe('RecoveryComponent', () => {
-  let component: RecoveryComponent;
-  let fixture: ComponentFixture<RecoveryComponent>;
+describe('EditarCiudadComponent', () => {
+  let component: EditarCiudadComponent;
+  let fixture: ComponentFixture<EditarCiudadComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecoveryComponent ]
+      declarations: [ EditarCiudadComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RecoveryComponent);
+    fixture = TestBed.createComponent(EditarCiudadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
