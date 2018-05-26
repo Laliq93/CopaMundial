@@ -3,11 +3,11 @@ declare var jquery:any;
 declare var $ :any;
 
 @Component({
-  selector: 'app-predequipo',
-  templateUrl: './predequipo.component.html',
-  styleUrls: ['./predequipo.component.css']
+  selector: 'app-predjugador',
+  templateUrl: './predjugador.component.html',
+  styleUrls: ['./predjugador.component.css']
 })
-export class PredequipoComponent implements OnInit {
+export class PredjugadorComponent implements OnInit {
 
   constructor() { }
 
