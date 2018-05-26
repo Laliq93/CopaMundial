@@ -22,4 +22,9 @@ export class FormComponent implements OnInit {
     this.location.back(); // <-- regresar a la pagina previa al presionar cancelar
   }
 
+  // metodo que abre ventana emergente para agregar un jugador al equipo que se esta creando
+  asociar() {
+    window.open('/jugadores', '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=50,left=150,width=1000,height=600');
+  }
+
 }
