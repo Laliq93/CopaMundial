@@ -9,7 +9,7 @@ using WebAPI.Models;
 using WebAPI.Models.DataBase;
 using WebAPI.Models.Excepciones;
 using System.Net.Http;
-using System.Web.Http;
+using System.Web;
 using System.Web.Http.Results;
 
 namespace WebApiPruebas.M6
@@ -33,7 +33,7 @@ namespace WebApiPruebas.M6
         public void Init()
         {
             _partidoController = new M6_PartidoController();
-            _partidoController.Request = new HttpRequestMessage();
+           // _partidoController.Request = new HttpRequestMessage();
         }
 
         /*
@@ -51,7 +51,19 @@ namespace WebApiPruebas.M6
         }
         
          */
-      
+
+        [Test]
+        public void ConsultarPartidoTest()
+        {
+
+            DateTime fecha = DateTime.ParseExact("2008-01-01", "yyyy-MM-dd",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+
+
+             _partidoController.RegistrarPartido("arbitroPrueba", fecha.ToString(), "08:00", 1, 2, 1);
+                
+        }
+
 
 
         [TearDown]

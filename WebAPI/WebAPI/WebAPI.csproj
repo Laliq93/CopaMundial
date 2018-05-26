@@ -216,15 +216,18 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\M10_UsuarioController.cs" />
     <Compile Include="Controllers\M1_RegistroLoginRecuperarController.cs" />
-    <Compile Include="Controllers\M1_usuarioController.cs" />
+    <Compile Include="Controllers\M6_PartidoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Alineacion.cs" />
     <Compile Include="Models\DataBase\DataBase.cs" />
+    <Compile Include="Models\Excepciones\PartidoNotFoundException.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Partido.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
@@ -270,7 +273,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
-    <Folder Include="Models\Excepciones\" />
     <Folder Include="Views\M1_RegistroLoginRecuperar\" />
   </ItemGroup>
   <ItemGroup>
