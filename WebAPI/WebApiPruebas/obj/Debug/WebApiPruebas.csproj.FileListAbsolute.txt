@@ -62,7 +62,6 @@ C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebApiP
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebApiPruebas\obj\Debug\WebApiPruebas.csprojResolveAssemblyReference.cache
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebApiPruebas\obj\Debug\WebApiPruebas.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebApiPruebas\obj\Debug\WebApiPruebas.pdb
-<<<<<<< HEAD
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\es\System.Net.Http.Formatting.resources.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\es\System.Web.Http.WebHost.resources.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\nunit.engine.api.dll
@@ -70,7 +69,6 @@ C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebApiP
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\NUnit3.TestAdapter.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\Mono.Cecil.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\NUnit3.TestAdapter.pdb
-=======
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\ApplicationInsights.config
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\roslyn\csc.exe
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -142,7 +140,6 @@ C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebApiPruebas\obj\Deb
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebApiPruebas\obj\Debug\WebApiPruebas.csproj.CoreCompileInputs.cache
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebApiPruebas\obj\Debug\WebApiPruebas.dll
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebApiPruebas\obj\Debug\WebApiPruebas.pdb
->>>>>>> Develop
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\NUnit3.TestAdapter.dll
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\NUnit3.TestAdapter.pdb
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\nunit.engine.dll
