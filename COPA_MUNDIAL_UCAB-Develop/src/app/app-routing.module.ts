@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component'
+import { AppComponent } from './app.component';
 
-import { HomeComponent } from './home/home.component'
-import { AdminComponent } from './admin/admin.component'
+import { HomeComponent } from './home/home.component';
+import { AdminComponent } from './admin/admin.component';
 
 //client
 import { LoginComponent } from './MODULO1/client/login.component'
@@ -24,7 +24,7 @@ import { StatisticComponent } from './MODULO9/client/statistic.component'
 import { UserPanelComponent } from './MODULO10/client/user-panel.component'
 import { UserConfigComponent} from './MODULO10/client/user-config.component'
 import { UserSecurityComponent } from './MODULO10/client/user-security.component'
-import { UserAccessibilityComponent } from './MODULO10/client/user-accessibility.component'
+
 
 //admin
 import { LoginAdminComponent } from './MODULO1/admin/login-admin.component'
@@ -47,7 +47,6 @@ import { UserConfigAdminComponent } from './MODULO10/admin/user-config-admin.com
 import { StadiumDetailComponent } from './MODULO3/client/stadium-detail/stadium-detail.component'
 import { CreateStadiumComponent } from './MODULO3/admin/create-stadium/create-stadium.component'
 import { StadiumDetailAdminComponent } from './MODULO3/admin/stadium-detail-admin/stadium-detail-admin.component';
-
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -73,7 +72,6 @@ const routes: Routes = [
       { path: 'user-panel' , component: UserPanelComponent },
       { path: 'user-config', component: UserConfigComponent },
       { path: 'user-security', component: UserSecurityComponent},
-      { path: 'user-accessibility', component: UserAccessibilityComponent }
     ]
   },
 

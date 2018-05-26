@@ -32,7 +32,7 @@ declare var $: any;
 @Component({
 	selector: 'home',
 	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.css']/*styleUrls: ['./menu.component.css', './home.component.css']*/
+	styleUrls: ['./home.component.css']
 })
 
 export class HomeComponent {

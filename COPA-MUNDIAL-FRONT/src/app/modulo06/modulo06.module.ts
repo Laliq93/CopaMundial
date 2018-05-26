@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { LoggedInGuard } from '../guards/logged-in.guard'
+import { NotLoggedInGuard } from '../guards/not-logged-in.guard'
 
 import { Modulo06RoutingModule } from './modulo06-routing.module';
 import { ClientePartidoComponent } from './components/cliente-partido/cliente-partido.component';
@@ -13,6 +16,10 @@ import { AdminMpartidoComponent } from './components/admin-mpartido/admin-mparti
   imports: [
     CommonModule,
     Modulo06RoutingModule
+  ],
+  providers: [
+    LoggedInGuard,
+    NotLoggedInGuard
   ],
   declarations: [ClientePartidoComponent, ClienteDetallesComponent, AdminPartidoComponent, AdminCpartidoComponent, AdminCalineacionComponent, AdminMpartidoComponent]
 })
