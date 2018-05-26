@@ -6,7 +6,7 @@ import { CrearComponent } from './components/crear/crear.component';
 import { EditarComponent } from './components/editar/editar.component';
 
 const routes: Routes = [
-    { path: 'ver', component: ViewComponent, canActivate: [LoggedInGuard] },
+    { path: '', component: ViewComponent, canActivate: [LoggedInGuard] },
     { path: 'crear', component: CrearComponent, canActivate: [LoggedInGuard] },
     { path: 'editar', component: EditarComponent, canActivate: [LoggedInGuard] }
 ];

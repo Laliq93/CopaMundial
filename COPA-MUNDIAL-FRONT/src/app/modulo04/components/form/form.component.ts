@@ -22,4 +22,8 @@ export class FormComponent implements OnInit {
     this.location.back(); // <-- regresar a la pagina previa al presionar cancelar
   }
 
+  asociar() {
+    window.open('/jugadores', '_blank');
+  }
+
 }
