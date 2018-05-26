@@ -285,3 +285,7 @@ C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\obj\Debug\WebA
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.csproj.CoreCompileInputs.cache
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.dll
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.pdb
+C:\Users\Gise\Documents\GitHub\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.csprojResolveAssemblyReference.cache
+C:\Users\Gise\Documents\GitHub\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.csproj.CoreCompileInputs.cache
+C:\Users\Gise\Documents\GitHub\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.dll
+C:\Users\Gise\Documents\GitHub\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.pdb

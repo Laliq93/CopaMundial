@@ -1,0 +1,69 @@
+<div class="container-fluid">
+<ul class="nav nav-justified nav-tabs" id="justifiedTab" role="tablist">
+  <li class="nav-item">
+    <a aria-controls="groups" aria-selected="false" class="nav-link" (click)="matchList()"  data-toggle="tab" id="groups-tab" role="tab">Partidos</a>
+  </li>
+  <li class="nav-item">
+    <a aria-controls="Create" aria-selected="true" class="nav-link active" (click)="matchCreate()" data-toggle="tab" id="create-tab" role="tab">Crear Partido</a>
+  </li>
+</ul>
+
+<form>
+  <div class="card">
+  <div class="card-body">
+
+    <div class="form-group">
+      <label for="selectCuidad">Ciudad</label>
+      <select class="form-control" id="exampleFormCity">
+        <option></option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="selectEstadio">Estadio</label>
+      <select class="form-control" id="exampleFormStadium">
+        <option></option>
+      </select>
+    </div>
+
+  <div class="form-group">
+    <label for="selectEquipo1">Equipo</label>
+    <select class="form-control" id="exampleFormTeam1">
+      <option></option>
+    </select>
+    <small id="teamlHelp" class="form-text text-muted">Seleccione uno de los equipos que jugaran en el partido.</small>
+  </div>
+
+    <div class="form-group">
+      <label for="selectEquipo2">Equipo</label>
+      <select class="form-control" id="exampleFormTeam2">
+        <option></option>
+      </select>
+      <small id="teamlHelp" class="form-text text-muted">Seleccione uno de los equipos que jugaran en el partido.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputDate">Fecha</label>
+      <input type="date" class="form-control" id="exampleFormDate">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputDate">Hora</label>
+      <input type="time" class="form-control" id="exampleFormTime">
+    </div>
+
+    <div class="form-group">
+      <label for="selectEquipo2">Estado del Partido</label>
+      <select class="form-control" id="exampleFormTeam2">
+        <option></option>
+      </select>
+    </div>
+
+
+    <button type="submit" class="btn" (click)="matchLineUp()">Alineación</button>
+    <p></p>
+    <button type="submit" class="btn">Procesar</button>
+  </div>
+</div>
+</form>
+</div>
