@@ -11,7 +11,7 @@ Drop SEQUENCE SEQ_Usuario;
 --Modulo 4
 --DROPS
 Drop table equipo;
-Drop SEQUENCE SEQ_Equipo
+Drop SEQUENCE SEQ_Equipo;
 
 --Creates Tables
 
