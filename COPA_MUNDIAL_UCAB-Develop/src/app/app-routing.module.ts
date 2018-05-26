@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component'
+import { AppComponent } from './app.component';
 
-import { HomeComponent } from './home/home.component'
-import { AdminComponent } from './admin/admin.component'
+import { HomeComponent } from './home/home.component';
+import { AdminComponent } from './admin/admin.component';
 
 //client
 import { LoginComponent } from './MODULO1/client/login.component'
@@ -24,29 +24,30 @@ import { StatisticComponent } from './MODULO9/client/statistic.component'
 import { UserPanelComponent } from './MODULO10/client/user-panel.component'
 import { UserConfigComponent} from './MODULO10/client/user-config.component'
 import { UserSecurityComponent } from './MODULO10/client/user-security.component'
-import { UserAccessibilityComponent } from './MODULO10/client/user-accessibility.component'
+
+
 
 //admin
-import { LoginAdminComponent } from './MODULO1/admin/login-admin.component'
-import { CityAdminComponent } from './MODULO2/admin/city-admin.component'
-import { ConsultarCiudadComponent } from './MODULO2/admin/consultar-ciudad/consultar-ciudad.component'
-import { EliminarCiudadComponent } from './MODULO2/admin/eliminar-ciudad/eliminar-ciudad.component'
-import { AgregarCiudadComponent } from './MODULO2/admin/agregar-ciudad/agregar-ciudad.component'
-import { ModificarCiudadComponent } from './MODULO2/admin/modificar-ciudad/modificar-ciudad.component'
-import { StadiumAdminComponent } from './MODULO3/admin/stadium-admin.component'
-import { TeamAdminComponent } from './MODULO4/admin/team-admin.component'
-import { PlayerAdminComponent } from './MODULO5/admin/player-admin.component'
-import { MatchAdminComponent } from './MODULO6/admin/match-admin.component'
+import { LoginAdminComponent } from './MODULO1/admin/login-admin.component';
+import { CityAdminComponent } from './MODULO2/admin/city-admin.component';
+import { ConsultarCiudadComponent } from './MODULO2/admin/consultar-ciudad/consultar-ciudad.component';
+import { EliminarCiudadComponent } from './MODULO2/admin/eliminar-ciudad/eliminar-ciudad.component';
+import { AgregarCiudadComponent } from './MODULO2/admin/agregar-ciudad/agregar-ciudad.component';
+import { ModificarCiudadComponent } from './MODULO2/admin/modificar-ciudad/modificar-ciudad.component';
+import { StadiumAdminComponent } from './MODULO3/admin/stadium-admin.component';
+import { TeamAdminComponent } from './MODULO4/admin/team-admin.component';
+import { PlayerAdminComponent } from './MODULO5/admin/player-admin.component';
+import { MatchAdminComponent } from './MODULO6/admin/match-admin.component';
 import { MatchLineUpCreateComponent } from './MODULO6/admin/match-line-up-create/match-line-up-create.component'
 import { MatchAdminCreateComponent } from './MODULO6/admin/match-admin-create/match-admin-create.component'
 import { MatchAdminUpdateComponent } from './MODULO6/admin/match-admin-update/match-admin-update.component'
-import { AchievementAdminComponent } from './MODULO7/admin/achievement-admin.component'
-import { BetAdminComponent } from './MODULO8/admin/bet-admin.component'
-import { StatisticAdminComponent } from './MODULO9/admin/statistic-admin.component'
-import { UserConfigAdminComponent } from './MODULO10/admin/user-config-admin.component'
-import { StadiumDetailComponent } from './MODULO3/client/stadium-detail/stadium-detail.component'
-import { CreateStadiumComponent } from './MODULO3/admin/create-stadium/create-stadium.component'
-import { StadiumDetailAdminComponent } from './MODULO3/admin/stadium-detail-admin/stadium-detail-admin.component';
+import { AchievementAdminComponent } from './MODULO7/admin/achievement-admin.component';
+import { BetAdminComponent } from './MODULO8/admin/bet-admin.component';
+import { StatisticAdminComponent } from './MODULO9/admin/statistic-admin.component';
+import { UserConfigAdminComponent } from './MODULO10/admin/user-config-admin.component';
+import { StadiumDetailComponent } from './MODULO3/client/stadium-detail/stadium-detail.component';
+import { CreateStadiumComponent } from './MODULO3/admin/create-stadium/create-stadium.component';
+import { StadiumDetailAdminComponent } from './MODULO3/admin/stadium-detail-admin/stadium-detail-admin.component';;
 
 
 const routes: Routes = [
@@ -73,7 +74,6 @@ const routes: Routes = [
       { path: 'user-panel' , component: UserPanelComponent },
       { path: 'user-config', component: UserConfigComponent },
       { path: 'user-security', component: UserSecurityComponent},
-      { path: 'user-accessibility', component: UserAccessibilityComponent }
     ]
   },
 
