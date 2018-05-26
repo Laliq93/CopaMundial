@@ -15,7 +15,7 @@ namespace WebAPI.Models
         private double _peso;
         private double _altura;
         private string _club;
-        private string _equipo;
+        private int _equipo;
         private int _numero;
         private string _posicion;
         private bool _capitan;
@@ -70,7 +70,7 @@ namespace WebAPI.Models
             set { _apellido = value; }
         }
 
-        public DateTime FechaNacimiento
+        public string FechaNacimiento
         {
             get { return _fechaNacimiento; }
             set { _fechaNacimiento = value; }
@@ -100,7 +100,7 @@ namespace WebAPI.Models
             set { _club = value; }
         }
 
-        public string Equipo
+        public int Equipo
         {
             get { return _equipo; }
             set { _equipo = value; }
