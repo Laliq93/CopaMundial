@@ -2,3 +2,271 @@
   estgeneral works!
 </p>
 <button class="button"> holas </button>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- <div class="card">
+    <div class="card-header d-flex pr-0">
+      <h5 class="card-title mb-0">Card title</h5>
+      <div class="card-actions ml-auto py-0">
+      
+        <div class="dropdown">
+          <button aria-expanded="false" aria-haspopup="true" class="btn btn-outline my-0" data-toggle="dropdown" id="cardTableDrop2" type="button"><i class="material-icons">more_vert</i></button>
+          <div aria-labelledby="cardTableDrop2" class="dropdown-menu dropdown-menu-right menu">
+            <a class="dropdown-item" (click)="clickedgrupo(1)" >Grupo 1</a>
+            <a class="dropdown-item" (click)="clickedgrupo(2)">Grupo 2</a>
+            <a class="dropdown-item" (click)="clickedgrupo(3)">Grupo 3</a>
+            
+            <a class="dropdown-item" (click)="clickedgrupo(4)">Grupo 4</a>
+            <a class="dropdown-item" (click)="clickedgrupo(5)">Grupo 5</a>
+            <a class="dropdown-item" (click)="clickedgrupo(6)">Grupo 6</a>
+            <a class="dropdown-item" (click)="clickedgrupo(7)">Grupo 7</a>
+            <a class="dropdown-item" (click)="clickedgrupo(8)">Grupo 8</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th scope="col">Equipo</th>
+          <th scope="col">PJ</th>
+          <th scope="col">G</th>
+          <th scope="col">E</th>
+          <th scope="col">P</th>
+          <th scope="col">GF</th>
+          <th scope="col">GC</th>
+          <th scope="col">+/-</th>
+          <th scope="col">PTS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let equipo of equipos" >
+          <tr *ngIf="equipo.grupo == grupoactual" >
+            <td>{{equipo.nombre}}</td>
+            <td>{{equipo.pj}}</td>
+            <td>{{equipo.g}}</td>
+            <td>{{equipo.e}}</td>
+            <td>{{equipo.p}}</td>
+            <td>{{equipo.gf}}</td>
+            <td>{{equipo.gc}}</td>
+            <td>{{equipo.masmenos}}</td>
+            <td>{{equipo.pts}}</td>
+          </tr>
+          </ng-container>
+        </tbody>
+    </table>
+ 
+  </div> -->
+
+  
+  <label for="picker" class="centrar">A basic example:</label>
+  <input class="form-control centrar" id="picker" placeholder="Pick a date" type="text">
+  
+
+<div>
+  <div class="card" style="vertical-align: middle">
+   
+        <ul class="nav nav-tabs nav-fill" role="tablist" >
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" (click)="ClickPartidos()" data-toggle="tab"  role="tab" aria-controls="partidos" aria-selected="true">PARTIDOS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" (click)="ClickEstadisticas()" data-toggle="tab"  role="tab" aria-controls="estadisticas" aria-selected="false">ESTADISTICAS</a>
+          </li>
+        </ul>
+  
+    <table class="table mb-0" [hidden]="partidos"> 
+      <tbody>
+        <tr>
+            <th scope="row" style="vertical-align: middle">1</th>
+          <td style="vertical-align: middle"><img src="../../../assets/banderas/esp.png" class="img-thumbnail" alt="Responsive image"></td>
+          <td style="vertical-align: middle">Venezuela</td>
+          <td style="vertical-align: middle">3 vs 2</td>
+          <td style="vertical-align: middle">Espana</td>
+          <td style="vertical-align: middle">  <img src="../../../assets/banderas/esp.png" class="img-thumbnail" alt="Responsive image"> </td>
+          <td style="vertical-align: middle"> <button>Ver mas</button> </td>
+        </tr>
+        <tr >
+            <th scope="row" style="vertical-align: middle">2</th>
+          <td style="vertical-align: middle"><img src="../../../assets/banderas/esp.png" class="img-thumbnail" alt="Responsive image"></td>
+          <td style="vertical-align: middle">Venezuela</td>
+          <td style="vertical-align: middle">3 vs 2</td>
+          <td style="vertical-align: middle">Espana</td>
+          <td style="vertical-align: middle">  <img src="../../../assets/banderas/esp.png" class="img-thumbnail" alt="Responsive image"> </td>
+          <td style="vertical-align: middle"> <button>Ver mas</button> </td>
+        </tr>
+        <tr>
+            <th scope="row" style="vertical-align: middle">3</th>
+          <td style="vertical-align: middle"><img src="../../../assets/banderas/esp.png" class="img-thumbnail" alt="Responsive image"></td>
+          <td style="vertical-align: middle">Venezuela</td>
+          <td style="vertical-align: middle">3 vs 2</td>
+          <td style="vertical-align: middle">Espana</td>
+          <td style="vertical-align: middle">  <img src="../../../assets/banderas/esp.png" class="img-thumbnail" alt="Responsive image"> </td>
+          <td style="vertical-align: middle"> <button>Ver mas</button> </td>
+        </tr>
+      </tbody>
+    </table>
+    
+
+    <div  [hidden]="estadisticas">
+
+    <div class="card-header d-flex pr-0" >
+    <h5 class="card-title mb-0" >Goles</h5>
+    <div class="card-actions ml-auto py-0" > 
+      </div>
+    </div>
+      <table class="table mb-0" [hidden]="estadisticas">
+      
+    <thead>
+      <tr>
+        <th scope="col">Pos</th>
+        <th scope="col">Jugador</th>
+        <th scope="col">Goles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Salah</td>
+        <td>25</td>
+       
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Messi</td>
+        <td>24</td>
+       
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Yonder</td>
+        <td>20</td>
+       
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+  <div class="card-header d-flex pr-0">
+      <h5 class="card-title mb-0">Asistencias</h5> 
+      <div class="card-actions ml-auto py-0">
+        </div>
+      </div>
+  <table class="table mb-0" [hidden]="estadisticas">
+    
+    <thead>
+      <tr>
+        <th scope="col">Pos</th>
+        <th scope="col">Jugador</th>
+        <th scope="col">Goles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Yonder</td>
+        <td>30</td>
+       
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Messi</td>
+        <td>28</td>
+       
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Firmino</td>
+        <td>20</td>
+       
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div class="card-header d-flex pr-0" >
+      <h5 class="card-title mb-0" >Tarjetas Amarillas</h5>
+      <div class="card-actions ml-auto py-0" > 
+        </div>
+      </div>
+        <table class="table mb-0" [hidden]="estadisticas">
+        
+      <thead>
+        <tr>
+          <th scope="col">Pos</th>
+          <th scope="col">Jugador</th>
+          <th scope="col">Goles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Maria alejandra</td>
+          <td>9</td>
+         
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Michelle</td>
+          <td>8</td>
+         
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Jose Angel</td>
+          <td>7</td>
+         
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card-header d-flex pr-0" >
+        <h5 class="card-title mb-0" >Tarjetas rojas</h5>
+        <div class="card-actions ml-auto py-0" > 
+          </div>
+        </div>
+          <table class="table mb-0" [hidden]="estadisticas">
+          
+        <thead>
+          <tr>
+            <th scope="col">Pos</th>
+            <th scope="col">Jugador</th>
+            <th scope="col">Goles</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Ruben</td>
+            <td>5</td>
+           
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Maria alejandra</td>
+            <td>5</td>
+           
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Jose angel</td>
+            <td>4</td> 
+           
+          </tr>
+        </tbody>
+      </table>
+
+
+
+
+
+</div>
+
+  </div>
+
+<div class="margen">
+  <button class="btn btn-light my-1 margen centrar" >Ver estadisticas Jugadores</button>
+  <button class="btn btn-light my-1 centrar margen">Ver estadisticas de equipos</button>
+</div>
+</div>

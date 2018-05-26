@@ -1,0 +1,15 @@
+.centrar{
+  
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+   
+
+};
+.margen{
+   
+    padding-top: 30%;
+    margin-top: 10%;
+    display: inline-block;
+    
+}
