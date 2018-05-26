@@ -39,7 +39,7 @@ const routes: Routes = [
      loadChildren: './modulo09/modulo09.module#Modulo09Module'
    },
    {
-     path: 'usuarios',
+     path: 'usuario',
      loadChildren: './modulo10/modulo10.module#Modulo10Module'
    },
 
