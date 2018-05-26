@@ -4,11 +4,13 @@ import { NotLoggedInGuard } from 'src/app/guards/not-logged-in.guard';
 import { EstgeneralComponent } from './estgeneral/estgeneral.component';
 import { EstpartidoComponent } from './estpartido/estpartido.component';
 import { EstjugadorComponent } from './estjugador/estjugador.component';
+import { PredequipoComponent } from './predequipo/predequipo.component';
 
 const routes: Routes = [
   { path: 'estadisticas', component: EstgeneralComponent, canActivate: [NotLoggedInGuard] },
   { path: 'estpartidos', component: EstpartidoComponent, canActivate: [NotLoggedInGuard] },
-  { path: 'estjugador', component: EstjugadorComponent, canActivate: [NotLoggedInGuard] }
+  { path: 'estjugador', component: EstjugadorComponent, canActivate: [NotLoggedInGuard] },
+  { path: 'predequipo', component: PredequipoComponent, canActivate: [NotLoggedInGuard] }
 ];
 
 @NgModule({

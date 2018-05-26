@@ -1,0 +1,22 @@
+.estilo-marcador{
+
+font-size: 250%;
+color: black
+
+}
+
+.estilo-nombre-pais{
+
+    text-align: center;
+    font-size: 200%
+}
+
+h1{
+font-size: 20px;
+text-align: center;
+color: black
+}
+
+.progress-margin{
+margin-left: 25%
+}
