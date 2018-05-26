@@ -50,7 +50,15 @@ namespace WebAPI.Models
             _correo = correo;
         }
 
-        public Usuario() { }
+        public Usuario(int id, string nombre, string apellido, string fechaNacimiento, char genero, string fotoPath)
+        {
+            _id = id;
+            _nombre = nombre;
+            _apellido = apellido;
+            _fechaNacimiento = fechaNacimiento;
+            _genero = genero;
+            _fotoPath = fotoPath;
+        }
 
         /// <summary>
         /// Getters y Setters del atributo id
