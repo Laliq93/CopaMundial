@@ -392,3 +392,6 @@ C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\bin\es\System.
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.csprojResolveAssemblyReference.cache
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.dll
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.pdb
+C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Cors.dll
+C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.dll
+C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.xml

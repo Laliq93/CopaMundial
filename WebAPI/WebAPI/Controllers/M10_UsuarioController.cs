@@ -12,6 +12,7 @@ using System.Web;
 
 namespace WebAPI.Controllers
 {
+
     [RoutePrefix("api/M10_Usuario")]
     public class M10_UsuarioController : ApiController
     {
@@ -19,17 +20,20 @@ namespace WebAPI.Controllers
         private List<Usuario> _listaUsuarios;
         private Usuario _usuario;
 
-        [Route("ActualizarPerfil/{idUsuario:int}/{nombre}/{apellido}/{fechaNacimiento}/{genero}/{fotoPath}")]
-        [HttpPut, HttpGet]
-        public IHttpActionResult ActualizarPerfil(int idUsuario, string nombre, string apellido, string fechaNacimiento, char genero, string fotoPath)
+        //[Route("ActualizarPerfil/{idUsuario:int}/{nombre}/{apellido}/{fechaNacimiento}/{genero}/{fotoPath}")]
+        [Route("ActualizarPerfil")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public IHttpActionResult ActualizarPerfil(Test testing)
+        //public IHttpActionResult ActualizarPerfil(int idUsuario, string nombre, string apellido, string fechaNacimiento, char genero, string fotoPath)
         {
             try
             {
-                _usuario = new Usuario(idUsuario, nombre, apellido, fechaNacimiento, genero, fotoPath);
+                //_usuario = new Usuario(idUsuario, nombre, apellido, fechaNacimiento, genero, fotoPath);
 
-                EditarPerfil(_usuario);
+                //EditarPerfil(_usuario);
 
-                return Ok("Usuario editado con exito.");
+                return Ok(testing.Nombre);
             }
             catch (Exception e)
             {
