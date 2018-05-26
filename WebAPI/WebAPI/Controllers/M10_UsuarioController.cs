@@ -52,7 +52,7 @@ namespace WebAPI.Controllers
             {
                 VerificarCorreoExiste(correo);
 
-                _usuario = new Usuario(nombreUsuario,nombre,apellido, fechaNacimiento, correo,genero,true, password);
+                _usuario = new Usuario(nombreUsuario, nombre, apellido, fechaNacimiento, correo, genero,true, password);
 
                 InsertarAdministrador(_usuario);
 

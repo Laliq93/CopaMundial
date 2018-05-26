@@ -10,33 +10,33 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="exampleInputUser">* Usuario</label>
-          <input matInput type="text" class="form-control" id="exampleInputUser" placeholder="Usuario">
+          <label data-error="¡Campo requerido!" for="exampleInputUser">* Usuario</label>
+          <input matInput type="text" #nombreUsuario maxlength="20" [(ngModel)]="UsuarioForm.nombreUsuario" name="NombreUsuario" required class="form-control" id="exampleInputUser" placeholder="Usuario">
         </div>
 
         <div class="form-group">
           <label for="exampleInputName">* Nombre</label>
-          <input type="text" class="form-control" id="exampleInputName" placeholder="Nombre">
+          <input matInput type="text" #nombre maxlength="30" [(ngModel)]="UsuarioForm.nombre" name="Nombre" required class="form-control" id="exampleInputName" placeholder="Nombre">
         </div>
 
         <div class="form-group">
           <label for="exampleInputLastname">* Apellido</label>
-          <input type="text" class="form-control" id="exampleInputLastname" placeholder="Apellido">
+          <input matInput type="text" #apellido maxlength="30" [(ngModel)]="UsuarioForm.apellido" name="Apellido" required class="form-control" id="exampleInputLastname" placeholder="Apellido">
         </div>
 
         <div class="form-group">
           <label for="exampleInputDate">* Fecha de nacimiento</label>
-          <input type="date" class="form-control" id="exampleInputDate" placeholder="Fecha de nacimiento">
+          <input matInput type="date" [(ngModel)]="UsuarioForm.fechaNacimiento" name="FechaNacimiento" required class="form-control" id="exampleInputDate" placeholder="Fecha de nacimiento">
         </div>
 
         <div class="form-group">
-          <label for="exampleInputEmail">* Correo electrónico</label>
-          <input type="email" class="form-control" id="exampleInputEmail" placeholder="Correo electrónico">
+          <label data-error="¡Correo inválido!" for="exampleInputEmail">* Correo electrónico</label>
+          <input matInput type="email" [(ngModel)]="UsuarioForm.correo" name="Correo" required [pattern]="emailPattern" class="form-control" id="exampleInputEmail" placeholder="Correo electrónico">
         </div>
 
         <div class="form-group">
           <label for="exampleFormControlSelect1">Género</label>
-          <select class="form-control" id="exampleFormControlSelect1">
+          <select [(ngModel)]="UsuarioForm.genero" name="Genero" required class="form-control" id="exampleFormControlSelect1">
             <option>F</option>
             <option>M</option>
           </select>
@@ -44,7 +44,7 @@
 
         <div class="form-group">
           <label for="exampleInputPassword1">* Contraseña</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+          <input type="password" [(ngModel)]="UsuarioForm.password" name="Password" minlength="3" required class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
         </div>
 
         <div class="form-group">
@@ -52,7 +52,7 @@
           <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirmar contraseña">
         </div>
 
-        <button (click)="signin()" type="submit" class="btn btn-primary btn-signin">Registrarse</button>
+        <button [disabled]="!UsuarioForm.form.valid" type="submit" class="btn btn-primary btn-signin">Registrarse</button>
       </form>
     </div>
   </div>
