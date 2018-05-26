@@ -2,7 +2,8 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { LoggedInGuard } from '../../../guards/logged-in.guard';
 import { NotLoggedInGuard } from '../../../guards/not-logged-in.guard';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { Usuario } from '../../../models/usuario';
 
 
 
@@ -16,7 +17,7 @@ export interface IUsuario {
   Password: string;
 }
 
-class Usuario {
+/*class Usuario {
 
   public nombreUsuario: string = '';
   public nombre: string = '';
@@ -26,7 +27,7 @@ class Usuario {
   public genero: string = '';
   public password: string = '';
 
-}
+}*/
 
 @Component({
   selector: 'app-signup',
@@ -38,6 +39,11 @@ export class SignupComponent implements OnInit {
 
   apiRoot: string = 'http://localhost:54059/api/M1_RegistroLoginRecuperar/';
   usuario: Usuario;
+  UsuarioForm = new Usuario();
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+
+  private emailResponse;
+  private truefalse:boolean = false;
 
 
 
@@ -46,9 +52,35 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.RegistrarUsuario()
+    this.resetForm();
+    this.RegistrarUsuario();
   }
 
+  resetForm(form?: NgForm) {
+    if (form != null)
+      form.reset();
+    this.usuario = {
+      nombreUsuario: '',
+      nombre: '',
+      apellido: '',
+      fechaNacimiento: '',
+			correo: '',
+      genero: '',
+			password: ''
+    }
+  }
+
+  RegisterUsuario(usuario : Usuario){
+    const body: Usuario = {
+      nombreUsuario : usuario.nombreUsuario,
+      nombre : usuario.nombre,
+      apellido : usuario.apellido,
+      fechaNacimiento : usuario.fechaNacimiento,
+      correo : usuario.correo,
+      genero : usuario.genero,
+      password : usuario.password,
+    }
+  }
 
   RegistrarUsuario() {
 
@@ -66,5 +98,9 @@ export class SignupComponent implements OnInit {
 
     });
 
+  }
+
+  OnSubmit(form : NgForm){
+    this.RegisterUsuario(form.value);
   }
 }

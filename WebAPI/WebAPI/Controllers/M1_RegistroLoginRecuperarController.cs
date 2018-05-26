@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -16,14 +16,16 @@ namespace WebAPI.Controllers
 
         private DataBase _database = new DataBase();
 
-        [Route("RegistrarUsuario/{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}")]
+        [Route("RegistrarUsuario")]
         [HttpPost]
-        public IHttpActionResult RegistrarUsuario(string nombreUsuario, string nombre, string apellido,
-            string fechaNacimiento, string correo, char genero, string password)
+        public IHttpActionResult RegistrarUsuario(Usuario usuario)
         {
             try
             {
-                AgregarUsuario(nombreUsuario, nombre, apellido, fechaNacimiento, correo, genero, password);
+                //{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}
+
+                AgregarUsuario(usuario.NombreUsuario, usuario.Nombre, usuario.Apellido, usuario.FechaNacimiento,
+                  usuario.Correo, usuario.Genero, usuario.Password);
 
                 return Ok("Usuario registrado exitosamente");
             }
@@ -35,15 +37,17 @@ namespace WebAPI.Controllers
 
         }
 
-        [Route("RecuperarClave/{correo}")]
+        [Route("RecuperarClave")]
         [HttpPost]
-        public IHttpActionResult RecuperarClave(string correo)
+        public IHttpActionResult RecuperarClave(Usuario usuario)
         {
             try
             {
                 //if (ValidarCorreo(correo))
                 //{
-                    EnviarCorreo(correo);
+
+                    
+                    EnviarCorreo(usuario.Correo);
                     return Ok("correo para recuperación enviado");
                 //}
 
@@ -59,24 +63,16 @@ namespace WebAPI.Controllers
 
         }
 
-        [Route("CambiarClave/{correo}/{password}")]
+        [Route("CambiarClave")]
         [HttpPost]
-        public IHttpActionResult CambiarClave(string correo, string password)
+        public IHttpActionResult CambiarClave(Usuario usuario)
         {
             try
             {
 
-
-                System.Diagnostics.Debug.WriteLine("Prueba correo");
-
-
-                System.Diagnostics.Debug.WriteLine("Prueba correo " + correo);
-
-                System.Diagnostics.Debug.WriteLine("Prueba password " + password);
-
                 // if (ValidarCorreo(correo))
                 //{
-                CambiarPassword(correo, password);
+                CambiarPassword(usuario.Correo, usuario.Password);
                     return Ok("clave modificada exitosamente");
                 //}
 
@@ -90,31 +86,6 @@ namespace WebAPI.Controllers
                 return BadRequest("Error en el servidor: " + e.Message);
             }
 
-
-
-        }
-
-
-        [Route("Henry/")]
-        [HttpPost]
-        public IHttpActionResult PruebaHenry(Usuario usuario)
-        {
-
-            System.Diagnostics.Debug.WriteLine("------------------------" );
-
-            try
-            {
-                System.Diagnostics.Debug.WriteLine("Prueba correo "+ usuario.Correo);
-                System.Diagnostics.Debug.WriteLine("Prueba password " + usuario.Password);
-
-                return Ok();
-            }
-
-            catch (Exception e)
-            {
-                _database.Desconectar();
-                return BadRequest("Error en el servidor: " + e.Message);
-            }
 
 
         }
@@ -188,8 +159,10 @@ namespace WebAPI.Controllers
             _database.EjecutarReader();
             _contador = _database.GetInt(0, 0);
 
+            //System.Diagnostics.Debug.WriteLine("------------------------");
 
-            if (_contador < 1)
+
+      if (_contador < 1)
             {
                 return false;
             }
