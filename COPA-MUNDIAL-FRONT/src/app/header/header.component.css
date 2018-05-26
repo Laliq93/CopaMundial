@@ -1,8 +1,8 @@
 /*
 Template Name: Copa Mundial
-Author: Desarrollo de Software UCAB
+Author: Desarrollo de Software UCAB | Modulo_10
 Email: wjoseperez20@gmail.com
-File: css
+File: css (header)
 */
 
 /**
@@ -15,12 +15,24 @@ File: css
  *	5. Footers
  *	6. app
  *	7. Widgets
- *	8. Custom Templates
+ *	8. Media's
+ *	9. Custom Templates
  */
 
-@import url(../../../src/assets/ccs/cropper.min.css);
-@import url(../../../src/assets/ccs/animate.css);
-@import url(../../../src/assets/ccs/flag-icon.min.css);
+@import url(src/assets/ccs/cropper.min.css);
+@import url(src/assets/ccs/animate.css);
+@import url(src/assets/ccs/flag-icon.min.css);
+/******************* 
+1. Global Styles 
+*******************/
+
+/*******************
+2. Headers
+*******************/	
+
+/*******************
+3. Nav | Side
+******************/
 
 .dropdown-toggle::after {
 	display: none;
@@ -44,8 +56,7 @@ File: css
 }
 
 .img-logo-nav {
-	width: 50px;
-	height: 55px;
+	height: 40px;
 }
 
 .bg-color {
@@ -56,39 +67,6 @@ File: css
 	width: 30px;
 	border-radius: 100%;
 	margin-right: 10px;
-}
-
-.animated {
-	-webkit-animation-duration: 1s;
-	animation-duration: 1s;
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both;
-	z-index: 100;
-}
-
-@keyframes fadeInDown {
-	0% {
-		opacity: 0;
-		-webkit-transform: translateY(-20px);
-		-ms-transform: translateY(-20px);
-		transform: translateY(-20px);
-	}
-	50% {
-		opacity: 0.5;
-		-webkit-transform: translateY(70px);
-		-ms-transform: translateY(70px);
-		transform: translateY(70px);
-	}
-	100% {
-		opacity: 1;
-		-webkit-transform: translateY(50px);
-		-ms-transform: translateY(50px);
-		transform: translateY(50px);
-	}
-}
-
-.fadeInDown {
-	animation-name: fadeInDown;
 }
 
 /********Side*********/
@@ -197,46 +175,26 @@ File: css
 	margin: 0 auto;
 }
 
-nav.navbar-light{
-	background-color: #02588E;
-	box-shadow: 9px 4px 4px rgba(0,0,0,0.35);
-}
+/*******************
+4. Banners
+******************/
 
-.nav {
-	padding: 5px;
-	box-shadow: 4px 4px 9px #cdcdcd;
-}
+/*******************
+5. Footers
+******************/
 
-.navbar-brand{
-	color: #ffffff;
-}
+/*******************
+6. app
+******************/
 
-.logo-nav{
-	margin-top: 10px;
-	margin-left: 25px;
-}
+/*******************
+7. Footers
+******************/
 
-/*.nav-tabs, .nav-link{
-	padding: 15px 15px;
-}*/
+/*******************
+8. Media's
+******************/
 
-.nav-tabs .nav-link{
-	padding: 15px 15px;
-}
-
-.nav-link:hover{
-	background-color: #02588E;
-	color: #ffffff;
-}
-
-.menu {
-	position: absolute;
-	margin: 15px;
-	cursor: pointer;
-	z-index: 50;
-	color: blue;
-}
-
-.nav-tabs .nav-link.active {
-    color: #02588E;
-}
+/*******************
+9. Custom Templates
+******************/
