@@ -12,7 +12,7 @@ namespace WebAPI.Models
     {
         private int _id; //identificador unico del partido
         private string _arbitro; //nombre del arbitro
-        private DateTime _fecha; //fecha del partido
+        private string _fecha; //fecha del partido
         private string _horaInicio; //hora de inicio
         private string _horaFin; //hora de fin
         private int  _equipo1; //equipo 2
@@ -34,7 +34,7 @@ namespace WebAPI.Models
         /// <param name="equipo1"></param>
         /// <param name="equipo2"></param>
         /// <param name="_status"></param>
-        public Partido(int id, string arbitro, DateTime fecha, string horaInicio, int equipo1,
+        public Partido(int id, string arbitro, string fecha, string horaInicio, int equipo1,
             int equipo2, int estadio, bool _status)
         {
             _id = id;
@@ -56,7 +56,7 @@ namespace WebAPI.Models
         /// <param name="equipo1"></param>
         /// <param name="equipo2"></param>
         /// <param name="estadio"></param>
-        public Partido(string arbitro, DateTime fecha, string horaInicio, int equipo1,
+        public Partido(string arbitro, string fecha, string horaInicio, int equipo1,
            int equipo2, int estadio)
         {
        
@@ -95,7 +95,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Get y Set de la fecha del partido
         /// </summary>
-        public DateTime Fecha
+        public string Fecha
         {
             get { return _fecha; }
             set { _fecha = value;}

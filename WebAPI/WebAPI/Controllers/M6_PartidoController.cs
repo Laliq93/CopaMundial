@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
     {
         private DataBase _database = new DataBase();
         private List<Partido> _listaPartido;
-        private Partido _partido;
+        private Partido _partido = new Partido();
 
 
 
@@ -35,13 +35,13 @@ namespace WebAPI.Controllers
         /// <returns></returns>
         [Route("AgregarPartido/{arbitro}/{fecha}/{hora}/{equipo1}/{equipo2}/{estadio}")]
         [HttpPut, HttpGet]
-        public IHttpActionResult RegistrarPartido(string arbitro, string fecha, string horaInicio, int equipo1,
+        public IHttpActionResult RegistrarPartido(string arbitro, string fecha, string hora, int equipo1,
             int equipo2, int estadio)
         {
 
             try
             {
-                AgregarPartido(arbitro, fecha, horaInicio, equipo1, equipo2, estadio);
+                AgregarPartido(arbitro, fecha,hora, equipo1, equipo2, estadio);
                 return Ok("Partido registrado exitosamente.");
             }
             catch (Exception e)
@@ -65,7 +65,6 @@ namespace WebAPI.Controllers
         [HttpGet]
         public HttpResponseMessage ConsultarPartido(int id)
         {
-            
             try
             {
                 _partido = ObtenerPartido(id);
@@ -96,8 +95,9 @@ namespace WebAPI.Controllers
                 _database.AgregarParametro("idPartido", idPartido);
                 _database.EjecutarReader();
                 partido.Id = _database.GetInt(0, 0);
-                partido.Fecha = _database.GetDateTime(0, 1);
+                partido.Fecha = _database.GetString(0, 1);
                 partido.HoraInicio = _database.GetString(0, 2);
+                partido.Arbitro = _database.GetString(0, 3);
                 partido.Equipo1 = _database.GetInt(0, 4);
                 partido.Equipo2 = _database.GetInt(0, 5);
                 partido.Estadio = _database.GetInt(0, 6);
@@ -158,6 +158,11 @@ namespace WebAPI.Controllers
             {
                 throw e;
             }
+        }
+
+        public int IdPartido()
+        {
+            return _partido.Id;
         }
     }
 }

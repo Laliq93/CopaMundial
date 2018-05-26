@@ -11,6 +11,7 @@ using WebAPI.Models.Excepciones;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http.Results;
+using System.Web.Http;
 
 namespace WebApiPruebas.M6
 {
@@ -33,35 +34,34 @@ namespace WebApiPruebas.M6
         public void Init()
         {
             _partidoController = new M6_PartidoController();
-           // _partidoController.Request = new HttpRequestMessage();
+            _partidoController.Request = new HttpRequestMessage();
         }
 
-        /*
+        /// <summary>
+        /// Prueba para Registrar un Partido
+        /// </summary>
         [Test] 
         public void RegistrarPartidoTest()
         {
             
-            DateTime fecha = DateTime.ParseExact("2008-01-01", "yyyy-MM-dd",
-                                       System.Globalization.CultureInfo.InvariantCulture);
-
-
-            IHttpActionResult actionResult= _partidoController.RegistrarPartido("arbitroPrueba", fecha.ToString(), "08:00", 1, 2, 1);
-
-            Assert.IsInstanceOf<OkResult> (actionResult); 
+            IHttpActionResult actionResult= _partidoController.RegistrarPartido("arbitroPrueba","14-06-2018", "08:00", 1, 2, 1);
+            var contentResult = actionResult as OkNegotiatedContentResult<string>;
+            Assert.AreEqual("Partido registrado exitosamente.", contentResult.Content);
         }
         
-         */
+         
 
         [Test]
         public void ConsultarPartidoTest()
         {
 
-            DateTime fecha = DateTime.ParseExact("2008-01-01", "yyyy-MM-dd",
-                                       System.Globalization.CultureInfo.InvariantCulture);
+            _partidoController.AgregarPartido("arbitroPrueba", "14-06-2018", "08:00", 1, 2, 1);
+
+            _partido.Id = _partidoController.IdPartido();
+            var response = _partidoController.ConsultarPartido(_partido.Id);
+            Assert.IsNotNull(response);
 
 
-             _partidoController.RegistrarPartido("arbitroPrueba", fecha.ToString(), "08:00", 1, 2, 1);
-                
         }
 
 
