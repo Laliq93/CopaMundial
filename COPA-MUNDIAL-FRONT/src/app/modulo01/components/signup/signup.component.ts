@@ -3,7 +3,7 @@ import { LoggedInGuard } from '../../../guards/logged-in.guard';
 import { NotLoggedInGuard } from '../../../guards/not-logged-in.guard';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
-import { Usuario } from '../../../models/usuario';
+import { Usuario } from '../../models/usuario';
 
 
 
@@ -37,10 +37,10 @@ export interface IUsuario {
 
 export class SignupComponent implements OnInit {
 
-  apiRoot: string = 'http://localhost:54059/api/M1_RegistroLoginRecuperar/';
   usuario: Usuario;
   UsuarioForm = new Usuario();
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+  readonly rootUrl =  'http://localhost:54059';
 
   private emailResponse;
   private truefalse:boolean = false;
@@ -53,7 +53,6 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.resetForm();
-    this.RegistrarUsuario();
   }
 
   resetForm(form?: NgForm) {
@@ -80,9 +79,11 @@ export class SignupComponent implements OnInit {
       genero : usuario.genero,
       password : usuario.password,
     }
+
+    return this.http.post(this.rootUrl + '/api/M1_RegistroLoginRecuperar/RegistrarUsuario', body);
   }
 
-  RegistrarUsuario() {
+  /*RegistrarUsuario() {
 
 
     let url = `${this.apiRoot}RegistrarUsuario/`+this.usuario.nombreUsuario+'/'+this.usuario.nombre;+'/'
@@ -98,7 +99,7 @@ export class SignupComponent implements OnInit {
 
     });
 
-  }
+  }*/
 
   OnSubmit(form : NgForm){
     this.RegisterUsuario(form.value);

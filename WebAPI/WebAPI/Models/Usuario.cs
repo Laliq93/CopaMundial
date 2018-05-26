@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,6 +22,20 @@ namespace WebAPI.Models
         private bool _esAdmin;
         private bool _activo;
         private string _token;
+
+
+        public Usuario(string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, char genero,
+            bool esAdmin, string clave)
+        {
+            _nombreUsuario = nombreUsuario;
+            _nombre = nombre;
+            _apellido = apellido;
+            _fechaNacimiento = fechaNacimiento;
+            _correo = correo;
+            _genero = genero;
+            _esAdmin = esAdmin;
+            _password = clave;
+        }
 
         public Usuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
             string correo, char genero, string password, string fotoPath, bool esAdmin, bool activo, string token)
