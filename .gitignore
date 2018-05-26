@@ -11,3 +11,4 @@ WebAPI/WebApiPruebas/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 =======
 WebAPI\.vs
 >>>>>>> Develop
+*.lock
