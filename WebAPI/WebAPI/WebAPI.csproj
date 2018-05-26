@@ -215,6 +215,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\M10_UsuarioController.cs" />
+    <Compile Include="Controllers\M4_GestionEquipoController.cs" />
     <Compile Include="Controllers\M1_RegistroLoginRecuperarController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -270,6 +271,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
     <Folder Include="Models\Excepciones\" />
+    <Folder Include="Views\M1_GestionEquipos\" />
     <Folder Include="Views\M1_RegistroLoginRecuperar\" />
   </ItemGroup>
   <ItemGroup>
