@@ -33,7 +33,7 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.resetForm();
+    this.resetForm();
   }
 
   registerUser(userRegistrationForm){
@@ -76,7 +76,7 @@ export class SignupComponent implements OnInit {
     
   }
   
-  /*resetForm(form?: NgForm) {
+  resetForm(form?: NgForm) {
     if (form != null)
       form.reset();
     this.usuario = {
@@ -88,6 +88,6 @@ export class SignupComponent implements OnInit {
       genero: '',
 			password: ''
     }
-  }*/
+  }
   
 }
