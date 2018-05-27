@@ -5,23 +5,17 @@ using System.Web;
 
 namespace WebAPI.Models.Excepciones
 {
-    public class CorreoEnUsoException : Exception
+    public class UsuarioNullException : Exception
     {
-        private readonly string _mensaje = "El correo ingresado ya existe.";
-        private readonly int _codigoError = 10001;
-        private string _correoUsuario;
+        private readonly string _mensaje = "Error al recibir la información del usuario.";
+        private readonly int _codigoError = 10003;
         private DateTime _fechaError;
+        private Exception _innerException;
 
-
-        public CorreoEnUsoException(string correoUsuario)
+        public UsuarioNullException(Exception inner)
         {
-            _correoUsuario = correoUsuario;
             _fechaError = DateTime.Now;
-        }
-
-        public string correoUsuario
-        {
-            get { return _correoUsuario; }
+            _innerException = inner;
         }
 
         public DateTime fechaError
@@ -33,10 +27,15 @@ namespace WebAPI.Models.Excepciones
         {
             get { return _mensaje; }
         }
-        
+
         public int codigoError
         {
             get { return _codigoError; }
+        }
+
+        public new Exception InnerException
+        {
+            get { return _innerException; }
         }
 
     }

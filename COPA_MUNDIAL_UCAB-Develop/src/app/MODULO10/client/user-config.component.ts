@@ -1,10 +1,6 @@
-import { Component , NgZone, AfterViewInit  } from '@angular/core';
+import { Component , NgZone  } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
 
 declare var $: any;
 
@@ -17,14 +13,29 @@ export interface IUsuario {
   FotoPath: string;
 }
 
-class Usuario {
 
-  public id: number = 3;
-  public nombre: string = '';
-  public apellido: string = '';
-  public genero: string = '';
-  public fechaNacimiento: string = '';
-  public fotoPath: string = '';
+class Usuario{
+
+  public Id: number;
+  public NombreUsuario:string;
+  public Nombre: string;
+  public Apellido: string;
+  public FechaNacimiento: string;
+  public Genero: string;
+  public FotoPath: string;
+  public Password: string;
+
+  constructor(id:number, nombre: string, apellido: string, fechaNacimiento:string, 
+    genero:string, fotoPath:string)
+  {
+    this.Id = id;
+    this.Nombre = nombre;
+    this.Apellido = apellido;
+    this.FechaNacimiento = fechaNacimiento;
+    this.Genero = genero;
+    this.FotoPath = fotoPath;
+    this.Password = 'djrex747';
+  }
 
 }
 
@@ -39,15 +50,17 @@ class Usuario {
 export class UserConfigComponent {
 
   apiRoot: string = 'http://localhost:54059/api/M10_Usuario/';
+  //usuario: Usuario;
   usuario: Usuario;
 
   constructor(private http: HttpClient, private _zone: NgZone) {
-    this.usuario = new Usuario();
+    //this.usuario = new Usuario();
+    this.usuario = new Usuario(2,'Felix', 'Morales', '13-12-1995','M','CD');
   }
 
   ngOnInit(): void {
 
-    this.ObtenerDatos();
+   // this.ObtenerDatos();
 	}
 
   ngAfterViewInit(): void {
@@ -58,9 +71,9 @@ export class UserConfigComponent {
 
   ObtenerDatos() {
 
-    let idUsuario = this.usuario.id;
+    //let idUsuario = this.usuario.id;
 
-    let url = `${this.apiRoot}ObtenerUsuario/`+idUsuario.toString();
+    let url = `${this.apiRoot}ObtenerUsuario/2`;
     let httpHeaders = new HttpHeaders()
       .set('Accept', 'application/json');
 
@@ -68,11 +81,10 @@ export class UserConfigComponent {
 
     this.http.get<IUsuario>(url, { responseType: 'json' }).subscribe(data => {
 
-      this.usuario.nombre = data.Nombre;
-      this.usuario.apellido = data.Apellido;
-      this.usuario.genero = data.Genero;
-      this.usuario.fechaNacimiento = data.FechaNacimiento;
-      this.usuario.fotoPath = data.FotoPath;
+      //this.usuario.apellido = data.Apellido;
+      //this.usuario.genero = data.Genero;
+      //this.usuario.fechaNacimiento = data.FechaNacimiento;
+      //this.usuario.fotoPath = data.FotoPath;
 
       console.log(data);
 
@@ -83,20 +95,30 @@ export class UserConfigComponent {
   ActualizarDatos() {
         //ActualizarPerfil/{idUsuario:int}/{nombre}/{apellido}/{fechaNacimiento}/{genero}/{fotoPath
         
-        let url = `${this.apiRoot}ActualizarPerfil/`+this.usuario.id.toString()+`/`
+
+
+        /*let url = `${this.apiRoot}ActualizarPerfil/`+this.usuario.id.toString()+`/`
         +this.usuario.nombre+'/'+this.usuario.apellido+'/'+this.usuario.fechaNacimiento+'/'
-        +this.usuario.genero+'/'+this.usuario.fotoPath;
+        +this.usuario.genero+'/'+this.usuario.fotoPath;*/
+
+        let url = `${this.apiRoot}ActualizarPerfil/djrexpepe/`;
+
+        //this.testing.Id = 12;
 
         let httpHeaders = new HttpHeaders()
           .set('Accept', 'application/json');
     
+        this.http.put(url, this.usuario,{ responseType: 'json' }).subscribe(
+          data => {
+            console.log(data);
+          });
         //let search = new HttpParams().set('idUsuario', '2');
     
-        this.http.get<IUsuario>(url, { responseType: 'json' }).subscribe(data => {
+        /*this.http.put<IUsuario>(url, { responseType: 'json' }).subscribe(data => {
   
           console.log(data);
     
-        });
+        });*/
     
       }
 }
