@@ -18,7 +18,7 @@ export class ConfiguracionUsuarioComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
 
     this._zone.runOutsideAngular(() => {
-      jQuery('#exampleInputDatePicker1').pickdate();
+      jQuery('#copaNavdrawer').navdrawer('show');
     });
 
   }

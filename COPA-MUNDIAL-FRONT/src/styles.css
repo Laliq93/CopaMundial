@@ -35,14 +35,10 @@ File: css (style)
 /*******************
 3. Nav | Side
 ******************/
-.main-container {
-  margin-left: 280px;
-  margin-right: 0px;
+.main-container{
+    margin-left: 280px;
 }
 
-.page-content {
-    padding: 15px;
-}
 /*******************
 4. Banners
 ******************/

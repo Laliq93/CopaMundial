@@ -229,7 +229,6 @@
     <Compile Include="Controllers\M5_JugadorController.cs" />
     <Compile Include="Controllers\M1_RegistroLoginRecuperarController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Models\Excepciones\UsuarioNoExisteException.cs" />
     <Compile Include="Models\Excepciones\UsuarioNullException.cs" />
     <Compile Include="Models\Excepciones\ClaveInvalidaException.cs" />
     <Compile Include="Models\Excepciones\CorreoEnUsoException.cs" />
