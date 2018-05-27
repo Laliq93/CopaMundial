@@ -9,8 +9,9 @@ import { CrearComponent } from './components/crear/crear.component';
 import { EditarComponent } from './components/editar/editar.component';
 import { EquipoComponent } from './components/equipo/equipo.component';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import { EquipoService } from './services/equipo.service';
 
 
 @NgModule({
@@ -22,6 +23,6 @@ import { HttpClientModule } from '@angular/common/http';
     HttpModule
   ],
   declarations: [ViewComponent, FormComponent, CrearComponent, EditarComponent, EquipoComponent],
-  providers: [LoggedInGuard, HttpClientModule]
+  providers: [LoggedInGuard, EquipoService]
 })
 export class Modulo04Module { }

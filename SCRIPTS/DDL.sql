@@ -41,24 +41,35 @@ CREATE TABLE USUARIO (
 CREATE TABLE PAIS (
 
 	pa_iso		varchar(3),
-	pa_nombre	varchar(20),
+	pa_i18n_nombre	varchar(20),
     pa_urlBandera varchar(50),
 
-    CONSTRAINT primaria_pais PRIMARY KEY(pa_iso)
+    CONSTRAINT primaria_pais PRIMARY KEY(pa_iso),
+    CONSTRAINT pa_i18n_nombre FOREIGN KEY (pa_i18n_nombre) REFERENCES i18n_equipo (i18n_id)
 );
 
 CREATE TABLE EQUIPO (
 
 	eq_id		integer,
-    eq_descripcion varchar(100) NOT NULL,
+    eq_i18n_descripcion integer NOT NULL,
     eq_status boolean default true NOT NULL,
     eq_grupo varchar(1) CHECK (eq_grupo ='A' OR eq_grupo ='B' OR eq_grupo ='C' OR eq_grupo ='D' OR eq_grupo ='E' OR eq_grupo ='F' OR eq_grupo ='G' OR eq_grupo ='H'),
     eq_pa_id  varchar(3),
     eq_habilitado boolean,
 
     CONSTRAINT primaria_equipo PRIMARY KEY(eq_id),
-    CONSTRAINT eq_pa_id FOREIGN KEY (eq_pa_id) REFERENCES pais (pa_iso)
+    CONSTRAINT eq_pa_id FOREIGN KEY (eq_pa_id) REFERENCES pais (pa_iso),
+    CONSTRAINT eq_i18n_descripcion FOREIGN KEY (eq_i18n_descripcion) REFERENCES i18n_equipo (i18n_id)
 );
+
+CREATE TABLE I18N_EQUIPO (
+    i18n_id    integer NOT NULL,
+    i18n_idioma     varchar(100) NOT NULL,
+    i18n_mensaje    text NOT NULL,
+
+    CONSTRAINT primaria_i18n_equipo PRIMARY KEY(i18n_id, i18n_idioma),
+);
+
 --Fin de modulo 4
 
 --ALTERS
