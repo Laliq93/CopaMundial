@@ -9,7 +9,7 @@ import { SeguridadUsuarioComponent } from './components/seguridad-usuario/seguri
 
 const routes: Routes = [
   { path: '', component: PerfilUsuarioComponent, canActivate: [NotLoggedInGuard] },
-  { path: 'configuracion', component: ConfiguracionUsuarioComponent, canActivate: [NotLoggedInGuard] },
+  { path: 'usuario/configuracion', component: ConfiguracionUsuarioComponent, canActivate: [NotLoggedInGuard] },
   { path: 'seguridad', component: SeguridadUsuarioComponent, canActivate: [NotLoggedInGuard] }
 ];
 
