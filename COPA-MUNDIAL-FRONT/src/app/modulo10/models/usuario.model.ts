@@ -14,6 +14,7 @@ export class Usuario10 {
     public FotoPath: string;
     public EsAdmin: boolean;
     public Activo: boolean; 
+    public Message: string;
 }
 
 export interface IUsuario10{
