@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Usuario10, IUsuario10, Conexion } from '../models/usuario.model';
+import { RouterModule, Router } from '@angular/router';
 import {
   HttpClient,
   HttpParams,
@@ -7,7 +8,7 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 
-declare var bootbox: any;
+declare var bootbox, router: any;
 
 @Injectable()
 export class ApiService {
@@ -147,7 +148,6 @@ export class ApiService {
     bootbox.alert(mensaje);
   }
 
-  private FatalError(){
-      
+  private FatalError() {
   }
 }

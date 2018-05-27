@@ -1,4 +1,5 @@
 import { Component, OnInit, NgZone, AfterViewInit } from '@angular/core';
+import { RouterModule, Router } from '@angular/router';
 import { Usuario10 } from '../../models/usuario.model';
 import { ApiService } from '../../services/api10.services';
 import { HttpClient } from '@angular/common/http';
