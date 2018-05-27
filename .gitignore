@@ -1,12 +1,4 @@
-
-COPA_MUNDIAL_UCAB-Develop/package\.json
-
-COPA_MUNDIAL_UCAB-Develop/package-lock\.json
-
-WebAPI/.vs/config/applicationhost.config
-WebAPI/.vs/WebAPI/v14/.suo
-WebAPI/.vs/WebAPI/v14/.suo
-WebAPI/WebApiPruebas/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
-
-WebAPI\.vs
-WebAPI/.vs/WebAPI/v15/sqlite3/storage.ide
+/package-lock.json
+/package.json
+\.DS_Store
+*.lnk
