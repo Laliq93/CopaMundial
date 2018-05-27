@@ -236,7 +236,7 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-                err = new HttpError("Error General");
+                err = new HttpError(e.Message);
                 _database.Desconectar();
                 return Request.CreateResponse(HttpStatusCode.OK, err);
             }
