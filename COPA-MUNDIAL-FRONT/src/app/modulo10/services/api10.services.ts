@@ -123,7 +123,7 @@ export class ApiService {
       });
   }
 
-  public AdministradorDesactivaCuenta(usuario: Usuario10){
+  public AdministradorDesactivaCuenta(usuario: Usuario10) {
     this._usuario10 = usuario;
     this._conexion.Controlador = 'AdministradorDesactivaUsuario';
     let url = this._conexion.RutaApi + this._conexion.Controlador;
@@ -140,6 +140,36 @@ export class ApiService {
       });
   }
 
+  public VerUsuariosActivos() {
+    let listaUsuarios: Usuario10[] = new Array();
+
+    this._conexion.Controlador = 'ObtenerUsuariosActivos';
+
+    let url = this._conexion.RutaApi + this._conexion.Controlador;
+
+    this.http.get<IUsuario10>(url, { responseType: 'json' }).subscribe(data => {
+      for (let i = 0; i < Object.keys(data).length; i++) {
+        listaUsuarios[i] = data[i];
+      }
+    });
+  }
+
+  public VerUsuariosNoActivos() {
+    let listaUsuarios: Usuario10[] = new Array();
+
+    this._conexion.Controlador = 'ObtenerUsuariosNoActivos';
+
+    let url = this._conexion.RutaApi + this._conexion.Controlador;
+
+    this.http.get<IUsuario10>(url, { responseType: 'json' }).subscribe(data => {
+      for (let i = 0; i < Object.keys(data).length; i++) {
+        listaUsuarios[i] = data[i];
+      }
+    });
+  }
+
+  public CrearUsuarioAdministrador() {}
+
   private Error(usuario: Usuario10) {
     bootbox.alert(this._usuario10.Message);
   }
@@ -148,6 +178,5 @@ export class ApiService {
     bootbox.alert(mensaje);
   }
 
-  private FatalError() {
-  }
+  private FatalError() {}
 }
