@@ -1,6 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { NgForm, Form, FormGroup, AbstractControl, FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { UserService } from './MODULO1/client/user.service';
+
+
 
 //modulos
 import { AuthModule } from './MODULO1/auth.module';
@@ -19,25 +26,22 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 
-
 //servicios
 import { ApiService } from './shared/api.service';
 
 
-
+import { HttpModule } from '@angular/http';
 //angular pipes (directiva)
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AdminComponent,
-    
-    
-   
+    AdminComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     AuthModule,
     CityModule,
@@ -47,12 +51,15 @@ import { ApiService } from './shared/api.service';
     PlayerModule,
     AchievementModule,
     BetModule,
+    FormsModule,
+    ReactiveFormsModule,
     StatisticModule,
-    UserConfigModule
+    UserConfigModule,
+    HttpClientModule
   ],
   providers: [
     ApiService
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

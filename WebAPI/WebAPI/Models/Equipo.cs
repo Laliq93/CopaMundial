@@ -10,12 +10,12 @@ namespace WebAPI.Models
 
         private int _id; //identificador unico para el equipo
         private string _descripcion; //descripcion del pais al que pertenece el equipo
-        private Boolean _status; //permite saber si el equipo sigue participando o no
-        private Char _grupo; //grupo al que pertene el equipo
+        private bool _status; //permite saber si el equipo sigue participando o no
+        private char _grupo; //grupo al que pertene el equipo
         private string _pais; //es el id del pais(nombre, ISO, bandera) al que pertenece el equipo
-        private Boolean _habilitado; //fecha de nacimiento del usuario
-        
-        public Equipo(int id, string descripcion, string status, char grupo, 
+        private bool _habilitado; //fecha de nacimiento del usuario
+
+        public Equipo(int id, string descripcion, bool status, char grupo,
             string pais, Boolean habilitado)
         {
 
@@ -25,8 +25,6 @@ namespace WebAPI.Models
             _grupo = grupo;
             _pais = pais;
             _habilitado = habilitado;
-
-
 
         }
 
@@ -42,7 +40,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo descripcion
         /// </summary>
-        public int Descripcion
+        public string Descripcion
         {
             get { return _descripcion; }
             set { _descripcion = value; }
@@ -51,7 +49,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo status
         /// </summary>
-        public int Status
+        public bool Status
         {
             get { return _status; }
             set { _status = value; }
@@ -60,7 +58,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo grupo
         /// </summary>
-        public int Grupo
+        public char Grupo
         {
             get { return _grupo; }
             set { _grupo = value; }
@@ -69,7 +67,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo pais
         /// </summary>
-        public int Pais
+        public string Pais
         {
             get { return _pais; }
             set { _pais = value; }
@@ -78,7 +76,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo habilitado
         /// </summary>
-        public int Habilitado
+        public bool Habilitado
         {
             get { return _habilitado; }
             set { _habilitado = value; }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -13,14 +14,11 @@ namespace WebAPI.Models.DataBase
         private NpgsqlConnection _con;
         private NpgsqlCommand _command;
         private DataTable _dataTable;
-        private Dictionary<string, string> _data;
         private string _cadena;
         private int _cantidadRegistros;
 
         public DataBase()
         {
-            _data = new Dictionary<string, string>();
-            LecturaArchivo();
             CrearStringConexion();
         }
 
@@ -29,57 +27,12 @@ namespace WebAPI.Models.DataBase
             get { return _cantidadRegistros; }
         }
 
-        private void LecturaArchivo()
-        {
-            string archivoPath = HttpContext.Current.Request.PhysicalApplicationPath + "config.ini";
-
-            if (!File.Exists(archivoPath))
-                throw new ArgumentException("Error al encontrar el archivo: config.ini");
-
-            try
-            {
-                using (var stream = new StreamReader(archivoPath))
-                {
-                    string linea = "";
-
-                    while ((linea = stream.ReadLine()) != null)
-                    {
-                        if (linea.Length < 1 || linea.StartsWith("#"))
-                        {
-                            continue;
-                        }
-
-                        int posicionDelimitador = linea.IndexOf('=');
-
-                        if (posicionDelimitador != -1)
-                        {
-                            string identificador = linea.Substring(0, posicionDelimitador);
-                            string contenido = linea.Substring(posicionDelimitador + 1);
-
-                            _data.Add(identificador, contenido);
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw new ArgumentException("Error al procesar el archivo de configuracion");
-            }
-        }
-
+        /// <summary>
+        ///  Busca el string de conexión a la base de datos en el archivo web.config, dicho string se llama "postgrestring"
+        /// </summary>
         private void CrearStringConexion()
         {
-            var npSqlCadena = new NpgsqlConnectionStringBuilder()
-            {
-                Host = _data["db.servidor"],
-                Port = Convert.ToInt32(_data["db.puerto"]),
-                UserName = _data["db.usuario"],
-                Database = _data["db.database"],
-                Password = _data["db.password"]
-                
-            };
-
-            _cadena = npSqlCadena.ToString();
+            _cadena = ConfigurationManager.ConnectionStrings["postgrestring"].ConnectionString;
         }
 
         private bool IsConnected()
@@ -135,11 +88,6 @@ namespace WebAPI.Models.DataBase
                 Desconectar();
 
                 _cantidadRegistros = _dataTable.Rows.Count;
-
-                if (_cantidadRegistros < 1)
-                {
-                    throw new ArgumentNullException("No existen registros.");
-                }
 
             }
             catch(NpgsqlException exc)
