@@ -8,27 +8,20 @@
   </li>
 </ul>
 
-<form>
+<form (ngSubmit)="onSubmit(Partido);" #partido="ngForm" >
   <div class="card">
   <div class="card-body">
 
     <div class="form-group">
-      <label for="selectCuidad">Ciudad</label>
-      <select class="form-control" id="exampleFormCity">
-        <option></option>
-      </select>
-    </div>
-
-    <div class="form-group">
       <label for="selectEstadio">Estadio</label>
-      <select class="form-control" id="exampleFormStadium">
+      <select [(ngModel)]="PartidoForm.estadio"   class="form-control" id="exampleFormStadium">
         <option></option>
       </select>
     </div>
 
   <div class="form-group">
     <label for="selectEquipo1">Equipo</label>
-    <select class="form-control" id="exampleFormTeam1">
+    <select [(ngModel)]="PartidoForm.equipo1" class="form-control" id="exampleFormTeam1">
       <option></option>
     </select>
     <small id="teamlHelp" class="form-text text-muted">Seleccione uno de los equipos que jugaran en el partido.</small>
@@ -36,7 +29,7 @@
 
     <div class="form-group">
       <label for="selectEquipo2">Equipo</label>
-      <select class="form-control" id="exampleFormTeam2">
+      <select [(ngModel)]="PartidoForm.equipo2"  class="form-control" id="exampleFormTeam2">
         <option></option>
       </select>
       <small id="teamlHelp" class="form-text text-muted">Seleccione uno de los equipos que jugaran en el partido.</small>
@@ -44,19 +37,12 @@
 
     <div class="form-group">
       <label for="exampleInputDate">Fecha</label>
-      <input type="date" class="form-control" id="exampleFormDate">
+      <input [(ngModel)]="PartidoForm.fecha"  type="date" class="form-control" id="exampleFormDate">
     </div>
 
     <div class="form-group">
       <label for="exampleInputDate">Hora</label>
-      <input type="time" class="form-control" id="exampleFormTime">
-    </div>
-
-    <div class="form-group">
-      <label for="selectEquipo2">Estado del Partido</label>
-      <select class="form-control" id="exampleFormTeam2">
-        <option></option>
-      </select>
+      <input [(ngModel)]="PartidoForm.horaInicio"  type="time" class="form-control" id="exampleFormTime">
     </div>
 
 

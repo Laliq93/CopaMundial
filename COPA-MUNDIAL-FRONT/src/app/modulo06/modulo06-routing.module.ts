@@ -13,10 +13,10 @@ import { IsAdminGuard } from '../guards/is-admin.guard';
 
 const routes: Routes = [ 
   
-{ path: '', component: AdminCalineacionComponent, canActivate: [NotLoggedInGuard] },//admin/alineacion
-{ path: 'admin/crearPartido', component: AdminCpartidoComponent, canActivate: [IsAdminGuard] },
-{ path: 'admin/modificarPartido', component: AdminMpartidoComponent, canActivate: [NotLoggedInGuard] },
-{ path: 'd', component: AdminPartidoComponent, canActivate: [NotLoggedInGuard] },
+{ path: 'crearAlineacion', component: AdminCalineacionComponent, canActivate: [NotLoggedInGuard] },//admin/alineacion
+{ path: 'crearPartido', component: AdminCpartidoComponent, canActivate: [IsAdminGuard] },
+{ path: 'modificarPartido', component: AdminMpartidoComponent, canActivate: [NotLoggedInGuard] },
+{ path: 'listaPartidos', component: AdminPartidoComponent, canActivate: [NotLoggedInGuard] },
 { path: 'listaPartidos', component: ClientePartidoComponent, canActivate: [LoggedInGuard] },
 { path: 'detallePartido', component: ClienteDetallesComponent, canActivate: [LoggedInGuard]}];
 
