@@ -2,15 +2,15 @@
     <div class="form-group row">
 
         <label i18n="Label de nombre de equipos en el formulario @@m4LabelNombre" for="nombre" class="col-form-label">Nombre de Equipo</label>
-        <input type="email" class="form-control" id="nombre" name="nombre" placeholder="Alemania">
+        <input type="email" class="form-control" id="nombre" name="nombre" placeholder="Alemania" [(ngModel)]="equipo.nombre">
 
         <label i18n="Label del grupo en el formulario @@m4LabelGrupo" for="grupo" class="col-form-label">Grupo Perteneciente</label>
-    <select id="grupo" class="form-control" >
-      <option *ngFor="let grupo of grupos" [selected]="equipo.grupo == grupo">{{ grupo }}</option>
-    </select>
+        <select id="grupo" class="form-control" >
+            <option *ngFor="let grupo of grupos" [selected]="equipo.grupo == grupo">{{ grupo }}</option>
+        </select>
 
         <label i18n="Label con la descripción de equipos en los forms @@m4LabelDescripcion" for="descripcion" class="col-form-label">Descripcion</label>
-        <textarea class="form-control" id="descripcion" name="descripcion" rows="5"></textarea>
+        <textarea class="form-control" id="descripcion" name="descripcion" rows="5" [(ngModel)]="equipo.descripcion"></textarea>
 
         <div *ngIf="ruta === '/equipos/crear'; then crear else editar"></div>
 
@@ -26,11 +26,11 @@
 
         <ng-template #editar>
             <div class="custom-control custom-radio col-sm-3 offset-md-3 participando">
-                <input type="radio" id="participando" name="participando" class="custom-control-input">
+                <input type="radio" id="participando" name="participando" class="custom-control-input" [checked]="equipo.status">
                 <label i18n="Opción que indica que el equipo aun participa en la copa @@m4LabelParticipando" class="custom-control-label" for="participando">El equipo aún participa en la copa</label>
             </div>
             <div class="custom-control custom-radio col-sm-3 eliminado">
-                <input type="radio" id="eliminado" name="eliminado" class="custom-control-input">
+                <input type="radio" id="eliminado" name="eliminado" class="custom-control-input" [checked]="!equipo.status">
                 <label i18n="Opción que indica que el equipo fue eliminado @@m4LabelEliminado" class="custom-control-label" for="eliminado">El equipo fué eliminado de la copa</label>
             </div>
         </ng-template>

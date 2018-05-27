@@ -7,40 +7,45 @@ namespace WebAPI.Models
     /// </summary>
     public class Equipo
     {
+        private Pais _pais;
+        private I18nEquipo _descripcion ;
+        private bool _status;
+        private string _grupo;
+        private bool _habilitado;
 
-        private int _id; //identificador unico para el equipo
-        private string _descripcion; //descripcion del pais al que pertenece el equipo
-        private bool _status; //permite saber si el equipo sigue participando o no
-        private char _grupo; //grupo al que pertene el equipo
-        private string _pais; //es el id del pais(nombre, ISO, bandera) al que pertenece el equipo
-        private bool _habilitado; //fecha de nacimiento del usuario
-
-        public Equipo(int id, string descripcion, bool status, char grupo,
-            string pais, Boolean habilitado)
+        /// <summary>
+        /// Constructor de la clase Equipo con parametros
+        /// </summary>
+        public Equipo(Pais pais, I18nEquipo descripcion, bool status, string grupo, bool habilitado)
         {
-
-            _id = id;
+            _pais = pais;
             _descripcion = descripcion;
             _status = status;
             _grupo = grupo;
-            _pais = pais;
             _habilitado = habilitado;
-
         }
 
         /// <summary>
-        /// Getters y Setters del atributo id
+        /// Constructor de la clase Equipo vacio
         /// </summary>
-        public int Id
+        public Equipo()
         {
-            get { return _id; }
-            set { _id = value; }
+
+        }
+        
+        /// <summary>
+        /// Getters y Setters del atributo pais
+        /// </summary>
+        public Pais Pais
+        {
+            get { return _pais; }
+            set { _pais = value; }
         }
 
         /// <summary>
         /// Getters y Setters del atributo descripcion
         /// </summary>
-        public string Descripcion
+        public I18nEquipo Descripcion
         {
             get { return _descripcion; }
             set { _descripcion = value; }
@@ -58,19 +63,10 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo grupo
         /// </summary>
-        public char Grupo
+        public string Grupo
         {
             get { return _grupo; }
             set { _grupo = value; }
-        }
-
-        /// <summary>
-        /// Getters y Setters del atributo pais
-        /// </summary>
-        public string Pais
-        {
-            get { return _pais; }
-            set { _pais = value; }
         }
 
         /// <summary>

@@ -34,9 +34,10 @@ export class FormComponent implements OnInit {
 }
 
 enviar() {
-  this.equipoService.getConfig()
-    .subscribe((data) => console.log(data)
-    );
+  this.equipoService.editarEquipo(this.equipo)
+    .subscribe((data) => {
+      console.log(data);
+    });
 }
 
 regresar() {
