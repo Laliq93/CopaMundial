@@ -139,13 +139,16 @@ namespace WebAPI.Controllers
                 _database.StoredProcedure("ConsultarPartido(@idPartido)");
                 _database.AgregarParametro("idPartido", idPartido);
                 _database.EjecutarReader();
-                partido.Id = _database.GetInt(0, 0);
-                partido.Fecha = _database.GetString(0, 1);
-                partido.HoraInicio = _database.GetString(0, 2);
-                partido.Arbitro = _database.GetString(0, 3);
-                partido.Equipo1 = _database.GetInt(0, 4);
-                partido.Equipo2 = _database.GetInt(0, 5);
-                partido.Estadio = _database.GetInt(0, 6);
+                if (_database.EjecutarReader() != null)
+                { 
+                    partido.Id = _database.GetInt(0, 0);
+                    partido.Fecha = _database.GetString(0, 1);
+                    partido.HoraInicio = _database.GetString(0, 2);
+                    partido.Arbitro = _database.GetString(0, 3);
+                    partido.Equipo1 = _database.GetInt(0, 4);
+                    partido.Equipo2 = _database.GetInt(0, 5);
+                    partido.Estadio = _database.GetInt(0, 6);
+                }
 
             }
             catch (FormatException)
@@ -161,6 +164,7 @@ namespace WebAPI.Controllers
                 throw e;
             }
             
+           
                 return partido;
             
            
@@ -357,7 +361,7 @@ namespace WebAPI.Controllers
                 _database.StoredProcedure("ConsultarDisponibilidadEstadio(@fecha, @horaInicio, @estadio)");
                 _database.AgregarParametro("fecha", fecha);
                 _database.AgregarParametro("horaInicio", horaInicio);
-                _database.AgregarParametro("estadio", fecha);
+                _database.AgregarParametro("estadio", estadio);
                 _database.EjecutarReader();
                  check= _database.GetInt(0, 0);
                 if (check >0)

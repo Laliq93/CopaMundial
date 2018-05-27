@@ -354,4 +354,13 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+--Limpiar las tablas despues de las PU
+CREATE OR REPLACE FUNCTION CleanPU_Partido(_idPartido integer)
+RETURNS VOID
+AS
+$$
+BEGIN
+	DELETE FROM Partido WHERE pa_id= _idPartido;
+END;
+$$ LANGUAGE plpgsql;
 

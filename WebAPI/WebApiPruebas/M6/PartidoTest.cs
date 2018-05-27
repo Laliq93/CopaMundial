@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http.Results;
 using System.Web.Http;
+using System.Net;
 
 namespace WebApiPruebas.M6
 {
@@ -19,15 +20,14 @@ namespace WebApiPruebas.M6
     public class PartidoTest
     {
         private M6_PartidoController _partidoController;
-        private DataBase _database;
+        private DataBase _database = new DataBase();
         private List<Partido> _listaPartido;
         private Partido _partido;
 
         [OneTimeSetUp]
         public void OpenDatabase()
         {
-            _database = new DataBase();
-            _database.Conectar();
+             _database.Conectar();
         }
 
         [SetUp]
@@ -43,12 +43,14 @@ namespace WebApiPruebas.M6
         [Test] 
         public void RegistrarPartidoTest()
         {
-            _partido = new Partido("arbitroPrueba","14-06-2018","08:00",1,2,1);
-            
-          /* 
-            IHttpActionResult actionResult= _partidoController.RegistrarPartido("arbitroPrueba","14-06-2018", "08:00", 1, 2, 1);
+            _partido = new Partido("arbitroPrueba","06-06-2018","07:00",1,2,1);
+      
+
+            IHttpActionResult actionResult= _partidoController.RegistrarPartido(_partido);
             var contentResult = actionResult as OkNegotiatedContentResult<string>;
-            Assert.AreEqual("Partido registrado exitosamente.", contentResult.Content);*/
+            Assert.AreEqual("Partido registrado exitosamente.", contentResult.Content);
+            CleanDatabase(_partidoController.IdPartido());
+
         }
         
          
@@ -58,13 +60,13 @@ namespace WebApiPruebas.M6
         {
 
             _partido = new Partido("arbitroPrueba", "14-06-2018", "08:00", 1, 2, 1);
-            /* _partidoController.AgregarPartido("arbitroPrueba", "14-06-2018", "08:00", 1, 2, 1);
+             _partidoController.AgregarPartido("arbitroPrueba", "14-06-2018", "08:00", 1, 2, 1);
 
              _partido.Id = _partidoController.IdPartido();
-             var response = _partidoController.ConsultarPartido(_partido.Id);
-             Assert.IsNotNull(response);
-
-                 */
+            // var  response =;
+             //Assert.IsNotNull(response);
+            Assert.AreEqual(HttpStatusCode.OK, _partidoController.ConsultarPartido(_partido.Id));
+            //return Request.CreateResponse(HttpStatusCode.OK, _partido);
         }
 
 
@@ -77,9 +79,14 @@ namespace WebApiPruebas.M6
             _database.Desconectar();
         }
 
+       public void CleanDatabase(int idPartido)
+        {
+           _database.StoredProcedure("CleanPU_Partido(@idPartido)");
+            _database.AgregarParametro("idPartido", idPartido);
+            _database.EjecutarQuery();
 
-
-
+        }
+        
 
     }
 }
