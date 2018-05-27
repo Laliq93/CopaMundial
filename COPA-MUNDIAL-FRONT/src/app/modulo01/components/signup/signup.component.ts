@@ -1,4 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoggedInGuard } from '../../../guards/logged-in.guard';
 import { NotLoggedInGuard } from '../../../guards/not-logged-in.guard';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
@@ -17,18 +18,6 @@ export interface IUsuario {
   Password: string;
 }
 
-/*class Usuario {
-
-  public nombreUsuario: string = '';
-  public nombre: string = '';
-  public apellido: string = '';
-  public fechaNacimiento: string = '';
-  public correo: string = '';
-  public genero: string = '';
-  public password: string = '';
-
-}*/
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -40,7 +29,7 @@ export class SignupComponent implements OnInit {
   usuario: Usuario;
   UsuarioForm = new Usuario();
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-  readonly rootUrl =  'http://localhost:54059';
+  readonly rootUrl =  'http://localhost:54059/api';
 
   private emailResponse;
   private truefalse:boolean = false;
@@ -69,7 +58,7 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  RegisterUsuario(usuario : Usuario){
+  RegistrarUsuario(usuario : Usuario){
     const body: Usuario = {
       nombreUsuario : usuario.nombreUsuario,
       nombre : usuario.nombre,
@@ -80,28 +69,16 @@ export class SignupComponent implements OnInit {
       password : usuario.password,
     }
 
-    return this.http.post(this.rootUrl + '/api/M1_RegistroLoginRecuperar/RegistrarUsuario', body);
+    return this.http.post(this.rootUrl + '/M1_RegistroLoginRecuperar/RegistrarUsuario', body);
   }
 
-  /*RegistrarUsuario() {
-
-
-    let url = `${this.apiRoot}RegistrarUsuario/`+this.usuario.nombreUsuario+'/'+this.usuario.nombre;+'/'
-              +this.usuario.apellido;+'/'+this.usuario.fechaNacimiento;+'/'+this.usuario.correo;+'/'
-              +this.usuario.genero;+'/'+this.usuario.password;
-
-    let httpHeaders = new HttpHeaders()
-      .set('Accept', 'application/json');
-
-    this.http.post<IUsuario>(url, { responseType: 'json' }).subscribe(data => {
-
-      console.log(data);
-
-    });
-
-  }*/
-
+  /*recoveryPassword(): void {
+    this.router.navigate(['recovery']);
+	}*/
+  
   OnSubmit(form : NgForm){
-    this.RegisterUsuario(form.value);
+    this.RegistrarUsuario(form.value);
   }
+
+  
 }

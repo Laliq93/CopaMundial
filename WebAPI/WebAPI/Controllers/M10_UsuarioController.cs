@@ -20,46 +20,56 @@ namespace WebAPI.Controllers
         private List<Usuario> _listaUsuarios;
         private Usuario _usuario;
 
-        //[Route("ActualizarPerfil/{idUsuario:int}/{nombre}/{apellido}/{fechaNacimiento}/{genero}/{fotoPath}")]
         [Route("ActualizarPerfil")]
         [System.Web.Http.AcceptVerbs("GET", "PUT")]
         [System.Web.Http.HttpPut]
-        public IHttpActionResult ActualizarPerfil(Test testing)
-        //public IHttpActionResult ActualizarPerfil(int idUsuario, string nombre, string apellido, string fechaNacimiento, char genero, string fotoPath)
+        public IHttpActionResult ActualizarPerfil(Usuario usuario)
         {
             try
             {
-                //_usuario = new Usuario(idUsuario, nombre, apellido, fechaNacimiento, genero, fotoPath);
 
-                //EditarPerfil(_usuario);
+                EditarPerfil(usuario);
 
-                return Ok(testing.Nombre);
+                return Ok(usuario.Nombre);
+            }
+            catch (UsuarioNullException exc)
+            {
+                _database.Desconectar();
+                return BadRequest(exc.Message);
             }
             catch (Exception e)
             {
                 _database.Desconectar();
-                return BadRequest("Error en el servidor: "+e.Message);
+                return BadRequest("Error en el servidor: "+e.GetType().FullName);
             }
+ 
 
         }
 
-        [Route("CrearUsuarioAdministrador/{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}")]
-        [HttpPost, HttpGet]
-        public IHttpActionResult CrearUsuarioAdministrador(string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
-            string correo, char genero, string password)
+        //[Route("CrearUsuarioAdministrador/{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}")]
+        //public IHttpActionResult CrearUsuarioAdministrador(string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
+        //string correo, char genero, string password)
+        [Route("CrearUsuarioAdministrador")]
+        [System.Web.Http.AcceptVerbs("GET", "POST")]
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult CrearUsuarioAdministrador(Usuario usuario)
         {
             try
             {
-                VerificarCorreoExiste(correo);
+                VerificarCorreoExiste(usuario);
 
-                _usuario = new Usuario(nombreUsuario, nombre, apellido, fechaNacimiento, correo, genero,true, password);
-
-                InsertarAdministrador(_usuario);
+                InsertarAdministrador(usuario);
 
                 return Ok();
             }
-            catch(CorreoEnUsoException exc)
+            catch (UsuarioNullException exc)
             {
+                _database.Desconectar();
+                return BadRequest(exc.Message);
+            }
+            catch (CorreoEnUsoException exc)
+            {
+                _database.Desconectar();
                 return BadRequest(exc.Message);
             }
             catch (Exception e)
@@ -72,7 +82,8 @@ namespace WebAPI.Controllers
 
 
         [Route("DesactivarUsuario/{idUsuario:int}")]
-        [HttpPut, HttpGet]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
         public IHttpActionResult DesactivarUsuario(int idUsuario)
         {
             try
@@ -90,7 +101,8 @@ namespace WebAPI.Controllers
         }
 
         [Route("ActivarUsuario/{idUsuario:int}")]
-        [HttpPut, HttpGet]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
         public IHttpActionResult ActivarUsuario(int idUsuario)
         {
             try
@@ -107,19 +119,27 @@ namespace WebAPI.Controllers
 
         }
 
-        [Route("ActualizarClaveUsuario/{idUsuario:int}/{password}/{passwordAnterior}")]
-        [HttpPut, HttpGet]
-        public IHttpActionResult ActualizarClaveUsuario(int idUsuario, string password, string passwordAnterior)
+        [Route("ActualizarClaveUsuario/{passwordNuevo}")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public IHttpActionResult ActualizarClaveUsuario(Usuario usuario, string passwordNuevo)
         {
             try
             {
-                VerificarClaveUsuario(idUsuario, passwordAnterior);
+                VerificarClaveUsuario(usuario);
 
-                EditarPassword(idUsuario, password);
+                usuario.Password = passwordNuevo;
+
+                EditarPassword(usuario);
 
                 return Ok();
             }
-            catch(ClaveInvalidaException exc)
+            catch (UsuarioNullException exc)
+            {
+                _database.Desconectar();
+                return BadRequest(exc.Message);
+            }
+            catch (ClaveInvalidaException exc)
             {
                 return BadRequest(exc.Message);
             }
@@ -132,22 +152,28 @@ namespace WebAPI.Controllers
         }
 
         [Route("ActualizarCorreoUsuario/{idUsuario:int}/{correo}/{clave}")]
-        [HttpPut, HttpGet]
-        public IHttpActionResult ActualizarCorreoUsuario(int idUsuario, string correo, string clave)
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public IHttpActionResult ActualizarCorreoUsuario(Usuario usuario)
         {
             try
             {
                 
-                VerificarClaveUsuario(idUsuario, clave);
+                VerificarClaveUsuario(usuario);
 
-                VerificarCorreoExiste(correo, idUsuario);
+                VerificarCorreoExiste(usuario);
 
-                EditarCorreo(idUsuario, correo);
+                EditarCorreo(usuario);
 
 
                 return Ok();
             }
-            catch(ClaveInvalidaException exc)
+            catch (UsuarioNullException exc)
+            {
+                _database.Desconectar();
+                return BadRequest(exc.Message);
+            }
+            catch (ClaveInvalidaException exc)
             {
                 return BadRequest(exc.Message);
             }
@@ -164,7 +190,8 @@ namespace WebAPI.Controllers
 
         }
 
-        [HttpGet]
+        [System.Web.Http.AcceptVerbs("GET")]
+        [System.Web.Http.HttpGet]
         public HttpResponseMessage ObtenerUsuariosActivos()
         {
             try
@@ -176,11 +203,12 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error en el servidor:" + e.Message));
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new HttpError("Error en el servidor:" + e.Message));
             }
         }
 
-        [HttpGet]
+        [System.Web.Http.AcceptVerbs("GET")]
+        [System.Web.Http.HttpGet]
         public HttpResponseMessage ObtenerUsuariosNoActivos()
         {
             try
@@ -192,11 +220,12 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error en el servidor:" + e.Message));
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new HttpError("Error en el servidor:" + e.Message));
             }
         }
         [Route("ObtenerUsuario/{idUsuario:int}")]
-        [HttpGet]
+        [System.Web.Http.AcceptVerbs("GET")]
+        [System.Web.Http.HttpGet]
         public HttpResponseMessage ObtenerUsuario(int idUsuario)
         {
             try
@@ -245,18 +274,25 @@ namespace WebAPI.Controllers
         /// </summary>
         public void EditarPerfil(Usuario usuario)
         {
-            _database.Conectar();
+            try
+            {
+                _database.Conectar();
 
-            _database.StoredProcedure("editarperfilusuario(@id, @nombre, @apellido, @fechaNacimiento, @genero, @foto)");
+                _database.StoredProcedure("editarperfilusuario(@id, @nombre, @apellido, @fechaNacimiento, @genero, @foto)");
 
-            _database.AgregarParametro("id", usuario.Id);
-            _database.AgregarParametro("nombre", usuario.Nombre);
-            _database.AgregarParametro("apellido", usuario.Apellido);
-            _database.AgregarParametro("fechaNacimiento", Convert.ToDateTime(usuario.FechaNacimiento).ToShortDateString());
-            _database.AgregarParametro("genero", usuario.Genero.ToString().ToUpper());
-            _database.AgregarParametro("foto", usuario.FotoPath);
+                _database.AgregarParametro("id", usuario.Id);
+                _database.AgregarParametro("nombre", usuario.Nombre);
+                _database.AgregarParametro("apellido", usuario.Apellido);
+                _database.AgregarParametro("fechaNacimiento", Convert.ToDateTime(usuario.FechaNacimiento).ToShortDateString());
+                _database.AgregarParametro("genero", usuario.Genero.ToString().ToUpper());
+                _database.AgregarParametro("foto", usuario.FotoPath);
 
-            _database.EjecutarQuery();
+                _database.EjecutarQuery();
+            }
+            catch (NullReferenceException exc)
+            {
+                throw new UsuarioNullException(exc);
+            }
         }
 
         /// <summary>
@@ -278,71 +314,101 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Actualiza la contraseña del usuario.
         /// </summary>
-        public void EditarPassword(int idUsuario, string clave)
+        public void EditarPassword(Usuario usuario)
         {
-            _database.Conectar();
+            try
+            {
+                _database.Conectar();
 
-            _database.StoredProcedure("cambiarpasswordusuario(@id, @clave)");
+                _database.StoredProcedure("cambiarpasswordusuario(@id, @clave)");
 
-            _database.AgregarParametro("id", idUsuario);
-            _database.AgregarParametro("clave", clave);
+                _database.AgregarParametro("id", usuario.Id);
+                _database.AgregarParametro("clave", usuario.Password);
 
-            _database.EjecutarQuery();
+                _database.EjecutarQuery();
+            }
+            catch(NullReferenceException exc)
+            {
+                throw new UsuarioNullException(exc);
+            }
         }
 
         /// <summary>
         /// Actualiza el correo del usuario.
         /// </summary>
-        public void EditarCorreo(int idUsuario, string correo)
+        public void EditarCorreo(Usuario usuario)
         {
-            _database.Conectar();
+            try
+            {
+                _database.Conectar();
 
-            _database.StoredProcedure("cambiarcorreousuario(@id, @correo)");
+                _database.StoredProcedure("cambiarcorreousuario(@id, @correo)");
 
-            _database.AgregarParametro("id", idUsuario);
-            _database.AgregarParametro("correo", correo);
+                _database.AgregarParametro("id", usuario.Id);
+                _database.AgregarParametro("correo", usuario.Correo);
 
-            _database.EjecutarQuery();
+                _database.EjecutarQuery();
+            }
+            catch (NullReferenceException exc)
+            {
+                throw new UsuarioNullException(exc);
+            }
         }
 
         /// <summary>
         /// Verifica si el correo ya se encuentra registrado en la base de datos.
         /// </summary>
-        public void VerificarCorreoExiste(string correo, int idUsuario = -1)
+        public void VerificarCorreoExiste(Usuario usuario)
         {
-            _database.Conectar();
+            try
+            {
 
-            _database.StoredProcedure("verificarcorreoexiste(@correo)");
+                _database.Conectar();
 
-            _database.AgregarParametro("correo", correo);
+                _database.StoredProcedure("verificarcorreoexiste(@correo)");
 
-            _database.EjecutarReader();
+                _database.AgregarParametro("correo", usuario.Correo);
 
-            int countCorreo = _database.GetInt(0, 0);
+                _database.EjecutarReader();
 
-            if (countCorreo > 0)
-                throw new CorreoEnUsoException(idUsuario,correo);
+                int countCorreo = _database.GetInt(0, 0);
+
+                if (countCorreo > 0)
+                    throw new CorreoEnUsoException(usuario.Correo);
+
+            }
+            catch(NullReferenceException exc)
+            {
+                throw new UsuarioNullException(exc);
+            }
 
         }
 
         /// <summary>
         /// Verifica si la clave ingresada coincide con la clave actual del usuario.
         /// </summary>
-        public void VerificarClaveUsuario(int idUsuario, string clave)
+        public void VerificarClaveUsuario(Usuario usuario)
         {
-            _database.Conectar();
+            try
+            {
+                _database.Conectar();
 
-            _database.StoredProcedure("verificarclaveusuario(@clave, @idUsuario)");
+                _database.StoredProcedure("verificarclaveusuario(@clave, @idUsuario)");
 
-            _database.AgregarParametro("clave", clave);
-            _database.AgregarParametro("idUsuario", idUsuario);
+                _database.AgregarParametro("clave", usuario.Password);
+                _database.AgregarParametro("idUsuario", usuario.Id);
 
-            _database.EjecutarReader();
+                _database.EjecutarReader();
 
-            int countClave = _database.GetInt(0, 0);
+                int countClave = _database.GetInt(0, 0);
 
-            if (countClave < 1)
-                throw new ClaveInvalidaException(idUsuario, clave);
+                if (countClave < 1)
+                    throw new ClaveInvalidaException(usuario.Id, usuario.Password);
+            }
+            catch(NullReferenceException exc)
+            {
+                throw new UsuarioNullException(exc);
+            }
 
         }
 
@@ -351,19 +417,26 @@ namespace WebAPI.Controllers
         /// </summary>
         public void InsertarAdministrador(Usuario usuario)
         {
-            _database.Conectar();
+            try
+            {
+                _database.Conectar();
 
-            _database.StoredProcedure("crearusuarioadministrador(@nombreU, @nombre, @apellido, @fechaNacimiento, @correo, @genero, @clave)");
+                _database.StoredProcedure("crearusuarioadministrador(@nombreU, @nombre, @apellido, @fechaNacimiento, @correo, @genero, @clave)");
 
-            _database.AgregarParametro("nombreU", usuario.NombreUsuario);
-            _database.AgregarParametro("nombre", usuario.Nombre);
-            _database.AgregarParametro("apellido", usuario.Apellido);
-            _database.AgregarParametro("fechaNacimiento", usuario.FechaNacimiento);
-            _database.AgregarParametro("correo", usuario.Correo);
-            _database.AgregarParametro("genero", usuario.Genero.ToString().ToUpper());
-            _database.AgregarParametro("clave", usuario.Password);
+                _database.AgregarParametro("nombreU", usuario.NombreUsuario);
+                _database.AgregarParametro("nombre", usuario.Nombre);
+                _database.AgregarParametro("apellido", usuario.Apellido);
+                _database.AgregarParametro("fechaNacimiento", usuario.FechaNacimiento);
+                _database.AgregarParametro("correo", usuario.Correo);
+                _database.AgregarParametro("genero", usuario.Genero.ToString().ToUpper());
+                _database.AgregarParametro("clave", usuario.Password);
 
-            _database.EjecutarQuery();
+                _database.EjecutarQuery();
+            }
+            catch (NullReferenceException exc)
+            {
+                throw new UsuarioNullException(exc);
+            }
         }
 
         public Usuario GetUsuario(int idUsuario)
