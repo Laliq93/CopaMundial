@@ -27,12 +27,14 @@ export class SeguridadUsuarioComponent implements OnInit {
   ngOnInit() {}
 
   VerificarEmail() {
-
-    if ((this._correoConfirm === this._usuario.Correo) &&
-    (this._correoConfirm != null) && (this._usuario.Correo != null)) {
+    if (
+      this._correoConfirm === this._usuario.Correo &&
+      this._correoConfirm != null &&
+      this._usuario.Correo != null
+    ) {
       this._api10.ActualizarCorreo(this._usuario);
-    }
-    else{
+    } else {
       bootbox.alert('Son distintios');
+    }
   }
 }
