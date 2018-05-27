@@ -23,6 +23,10 @@ namespace WebAPI.Models
         private bool _activo;
         private string _token;
 
+        public Usuario()
+        {
+
+        }
 
         public Usuario(string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, char genero,
             bool esAdmin, string clave)

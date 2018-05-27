@@ -229,6 +229,7 @@
     <Compile Include="Controllers\M5_JugadorController.cs" />
     <Compile Include="Controllers\M1_RegistroLoginRecuperarController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Models\Excepciones\UsuarioNullException.cs" />
     <Compile Include="Models\Excepciones\ClaveInvalidaException.cs" />
     <Compile Include="Models\Excepciones\CorreoEnUsoException.cs" />
     <Compile Include="Global.asax.cs">
@@ -237,9 +238,10 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataBase\DataBase.cs" />
+    <Compile Include="Models\Excepciones\CorreoExistenteException.cs" />
+    <Compile Include="Models\Excepciones\NombreUsuarioExistenteException.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Jugador.cs" />
-    <Compile Include="Models\Test.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
