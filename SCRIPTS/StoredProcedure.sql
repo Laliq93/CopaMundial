@@ -56,7 +56,7 @@ BEGIN
 	RETURN QUERY SELECT
 	us_id
 	FROM usuario
-	WHERE us_nombreUsuario=_nombreUsuario AND md5(_password) = us_password;
+	WHERE us_nombreUsuario=_nombreUsuario AND md5(_password) = us_password AND us_activo = true;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -70,7 +70,7 @@ BEGIN
 	RETURN QUERY SELECT
 	us_id
 	FROM usuario
-	WHERE us_correo=_correo AND md5(_password) = us_password;
+	WHERE us_correo=_correo AND md5(_password) = us_password AND us_activo = true;
 END;
 $$ LANGUAGE plpgsql;
 
