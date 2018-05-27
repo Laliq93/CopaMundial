@@ -5,16 +5,9 @@
     <input type="email" class="form-control" id="nombre" name="nombre" placeholder="Alemania" [(ngModel)]="equipo.nombre">
 
     <label for="grupo" class="col-form-label">Grupo Al Que Pertenece</label>
-      <select id="grupo" class="form-control">
-        <option [selected]="equipo.grupo == 'A'">A</option>
-        <option [selected]="equipo.grupo == 'B'">B</option>
-        <option [selected]="equipo.grupo == 'C'">C</option>
-        <option [selected]="equipo.grupo == 'D'">D</option>
-        <option [selected]="equipo.grupo == 'E'">E</option>
-        <option [selected]="equipo.grupo == 'F'">F</option>
-        <option [selected]="equipo.grupo == 'G'">G</option>
-        <option [selected]="equipo.grupo == 'H'">H</option>
-      </select>
+    <select id="grupo" class="form-control" >
+      <option *ngFor="let grupo of grupos" [selected]="equipo.grupo == grupo">{{ grupo }}</option>
+    </select>
 
     <label for="descripcion" class="col-form-label">Descripcion</label>
     <textarea class="form-control" id="descripcion" name="descripcion" rows="5" [(ngModel)]="equipo.descripcion"></textarea>
@@ -43,6 +36,6 @@
     </ng-template>
   </div>
 
-  <button type="button" class="btn btn-info">Guardar</button>
+  <button type="button" class="btn btn-info" (click)="enviar()">Guardar</button>
   <button type="button" class="btn btn-danger" (click)="regresar()">Cancelar</button>
 </form>
