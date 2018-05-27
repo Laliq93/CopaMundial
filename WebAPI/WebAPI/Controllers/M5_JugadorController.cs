@@ -14,6 +14,7 @@ namespace WebAPI.Controllers
     {
         private DataBase _database = new DataBase();
         private Jugador _jugador;
+        private List<Jugador> _listaJugadores;
 
         [Route("CrearJugador/{nombre}/{apellido}/{fechaNacimiento}/{lugarNacimiento}/{peso}/{altura}/{club}/{equipo}/{numero}/{posicion}/{capitan}")]
         [HttpPost, HttpGet]
@@ -55,6 +56,25 @@ namespace WebAPI.Controllers
             {
                 _database.Desconectar();
                 return BadRequest("Error en el servidor: " + e.Message);
+            }
+
+        }
+
+        [Route("ListarJugador/{equipo}")]
+        [HttpPost, HttpGet]
+        public HttpResponseMessage ListarJugador(int equipo)
+        {
+            
+            try
+            {
+                Jugador _equipo = new Jugador(equipo);
+                BuscarJugadores(_equipo);
+                return Request.CreateResponse(statusCode: HttpStatusCode.OK, value: _listaJugadores);
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error en el servidor:" + e.Message));
             }
 
         }
@@ -102,6 +122,34 @@ namespace WebAPI.Controllers
 
 
             _database.EjecutarQuery();
+        }
+
+        private void BuscarJugadores(Jugador jugador)
+        {
+            _database.Conectar();
+
+            if (jugador.Equipo < 0)
+                _database.StoredProcedure("buscartodos()");
+            else
+            {
+                _database.StoredProcedure("buscarequipo(@equipo)"); 
+                _database.AgregarParametro("equipo", jugador.Equipo);
+
+            }
+
+            
+            _database.EjecutarReader();
+
+            Jugador jugadorLista;
+
+            for (int i = 0; i < _database.cantidadRegistros; i++)
+            {
+                jugadorLista = new Jugador(_database.GetInt(i, 0), _database.GetString(i, 1), _database.GetString(i, 2),
+                    Convert.ToDateTime(_database.GetString(i, 3)).ToShortDateString(), _database.GetString(i, 4), _database.GetDouble(i, 5), _database.GetDouble(i, 6), _database.GetString(1, 7), 
+                    _database.GetInt(i, 8), _database.GetInt(i, 9), _database.GetString(i, 10), _database.GetBool(i, 11));
+
+                _listaJugadores.Add(jugadorLista);
+            }
         }
     }
 }

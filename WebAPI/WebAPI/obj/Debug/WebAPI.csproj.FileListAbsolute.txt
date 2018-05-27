@@ -507,6 +507,3 @@ C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\Mono.Cecil
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\bin\System.Web.Cors.dll
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.dll
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.xml
-C:\Users\Dario\Documents\Desarrollo\CopaMundial\WebAPI\WebAPI\bin\System.Web.Cors.dll
-C:\Users\Dario\Documents\Desarrollo\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.dll
-C:\Users\Dario\Documents\Desarrollo\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.xml
