@@ -20,6 +20,7 @@ namespace WebAPI.Controllers
         private List<Usuario> _listaUsuarios;
         private Usuario _usuario;
 
+
         [Route("ActualizarPerfil")]
         [System.Web.Http.AcceptVerbs("GET", "PUT")]
         [System.Web.Http.HttpPut]
@@ -80,17 +81,21 @@ namespace WebAPI.Controllers
 
         }
 
-
-        [Route("DesactivarUsuario/{idUsuario:int}")]
+        [Route("AdministradorDesactivaUsuario")]
         [System.Web.Http.AcceptVerbs("GET", "PUT")]
         [System.Web.Http.HttpPut]
-        public IHttpActionResult DesactivarUsuario(int idUsuario)
+        public IHttpActionResult AdministradorDesactivaUsuario(Usuario usuario)
         {
             try
             {
-                GestionarActivo(idUsuario, false);
+                GestionarActivo(usuario, false);
 
                 return Ok();
+            }
+            catch (UsuarioNullException exc)
+            {
+                _database.Desconectar();
+                return BadRequest(exc.Message);
             }
             catch (Exception e)
             {
@@ -100,16 +105,47 @@ namespace WebAPI.Controllers
 
         }
 
-        [Route("ActivarUsuario/{idUsuario:int}")]
+        [Route("DesactivarUsuarioPropio")]
         [System.Web.Http.AcceptVerbs("GET", "PUT")]
         [System.Web.Http.HttpPut]
-        public IHttpActionResult ActivarUsuario(int idUsuario)
+        public IHttpActionResult DesactivarUsuarioPropio(Usuario usuario)
         {
             try
             {
-                GestionarActivo(idUsuario,true);
+                VerificarClaveUsuario(usuario);
+
+                GestionarActivo(usuario, false);
 
                 return Ok();
+            }
+            catch(UsuarioNullException exc)
+            {
+                _database.Desconectar();
+                return BadRequest(exc.Message);
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return BadRequest("Error en el servidor: " + e.Message);
+            }
+
+        }
+
+        [Route("ActivarUsuario")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public IHttpActionResult ActivarUsuario(Usuario usuario)
+        {
+            try
+            {
+                GestionarActivo(usuario,true);
+
+                return Ok();
+            }
+            catch(UsuarioNullException exc)
+            {
+                _database.Desconectar();
+                return BadRequest(exc.Message);
             }
             catch (Exception e)
             {
@@ -298,16 +334,23 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Activa/Desactiva la cuenta del usuario, true = activa ; false = desactiva.
         /// </summary>
-        public void GestionarActivo(int idUsuario, bool activo)
+        public void GestionarActivo(Usuario usuario, bool activo)
         {
-            _database.Conectar();
+            try
+            {
+                _database.Conectar();
 
-            _database.StoredProcedure("gestionaractivocuentausuario(@id, @activo)");
+                _database.StoredProcedure("gestionaractivocuentausuario(@id, @activo)");
 
-            _database.AgregarParametro("id", idUsuario);
-            _database.AgregarParametro("activo", activo);
+                _database.AgregarParametro("id", usuario.Id);
+                _database.AgregarParametro("activo", activo);
 
-            _database.EjecutarQuery();
+                _database.EjecutarQuery();
+            }
+            catch(NullReferenceException exc)
+            {
+                throw new UsuarioNullException(exc);
+            }
         }
 
 
@@ -439,6 +482,9 @@ namespace WebAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Extrae la información usuario de la base de datos ingresado por su id.
+        /// </summary>
         public Usuario GetUsuario(int idUsuario)
         {
             _database.Conectar();
