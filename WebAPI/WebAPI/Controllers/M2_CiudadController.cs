@@ -54,8 +54,9 @@ namespace WebAPI.Controllers
         }
 
 
-        //------Procedimientos -----------------------------------------//
+        //--------------------------Procedimientos -----------------------------------------//
 
+            //----1 procedimientos de agregar Ciudad----------//
         private void AgregarCiudad(string nombreCiudad, int poblacion, string descripcion,
         string localizacion, string fotopath)
         {
@@ -92,6 +93,10 @@ namespace WebAPI.Controllers
 
             return true;
         }
+
+
+   ////-----------------------------2  Procedimientos de editar Ciudad------------------------////
+
 
 
 
