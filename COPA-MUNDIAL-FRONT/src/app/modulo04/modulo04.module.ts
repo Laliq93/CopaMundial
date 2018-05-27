@@ -8,14 +8,20 @@ import { FormComponent } from './components/form/form.component';
 import { CrearComponent } from './components/crear/crear.component';
 import { EditarComponent } from './components/editar/editar.component';
 import { EquipoComponent } from './components/equipo/equipo.component';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    Modulo04RoutingModule
+    Modulo04RoutingModule,
+    FormsModule,
+    HttpClientModule,
+    HttpModule
   ],
   declarations: [ViewComponent, FormComponent, CrearComponent, EditarComponent, EquipoComponent],
-  providers: [LoggedInGuard]
+  providers: [LoggedInGuard, HttpClientModule]
 })
 export class Modulo04Module { }

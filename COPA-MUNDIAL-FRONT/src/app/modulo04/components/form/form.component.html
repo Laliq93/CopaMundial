@@ -2,22 +2,22 @@
   <div class="form-group row">
 
     <label for="nombre" class="col-form-label">Nombre de Equipo</label>
-    <input type="email" class="form-control" id="nombre" name="nombre" placeholder="Alemania">
+    <input type="email" class="form-control" id="nombre" name="nombre" placeholder="Alemania" [(ngModel)]="equipo.nombre">
 
-    <label for="grupo" class="col-form-label">Grupo Perteneciente</label>
+    <label for="grupo" class="col-form-label">Grupo Al Que Pertenece</label>
       <select id="grupo" class="form-control">
-        <option selected>Grupo A</option>
-        <option>Grupo B</option>
-        <option>Grupo C</option>
-        <option>Grupo D</option>
-        <option>Grupo E</option>
-        <option>Grupo F</option>
-        <option>Grupo G</option>
-        <option>Grupo H</option>
+        <option [selected]="equipo.grupo == 'A'">A</option>
+        <option [selected]="equipo.grupo == 'B'">B</option>
+        <option [selected]="equipo.grupo == 'C'">C</option>
+        <option [selected]="equipo.grupo == 'D'">D</option>
+        <option [selected]="equipo.grupo == 'E'">E</option>
+        <option [selected]="equipo.grupo == 'F'">F</option>
+        <option [selected]="equipo.grupo == 'G'">G</option>
+        <option [selected]="equipo.grupo == 'H'">H</option>
       </select>
 
     <label for="descripcion" class="col-form-label">Descripcion</label>
-    <textarea class="form-control" id="descripcion" name="descripcion" rows="5"></textarea>
+    <textarea class="form-control" id="descripcion" name="descripcion" rows="5" [(ngModel)]="equipo.descripcion"></textarea>
   
     <div *ngIf="ruta === '/equipos/crear'; then crear else editar"></div>
 
@@ -33,16 +33,16 @@
 
     <ng-template #editar>
       <div class="custom-control custom-radio col-sm-3 offset-md-3 participando">
-        <input type="radio" id="participando" name="participando" class="custom-control-input">
+        <input type="radio" id="participando" name="participando" class="custom-control-input" [checked]="equipo.status">
         <label class="custom-control-label" for="participando">El equipo aún participa en la copa</label>
       </div>
       <div class="custom-control custom-radio col-sm-3 eliminado">
-        <input type="radio" id="eliminado" name="eliminado" class="custom-control-input">
+        <input type="radio" id="eliminado" name="eliminado" class="custom-control-input" [checked]="!equipo.status">
         <label class="custom-control-label" for="eliminado">El equipo fué eliminado de la copa</label>
       </div>
     </ng-template>
   </div>
 
-  <button type="submit" class="btn btn-info">Guardar</button>
+  <button type="button" class="btn btn-info">Guardar</button>
   <button type="button" class="btn btn-danger" (click)="regresar()">Cancelar</button>
 </form>

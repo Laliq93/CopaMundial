@@ -12,6 +12,8 @@ Drop SEQUENCE SEQ_Usuario;
 --DROPS
 Drop table equipo;
 Drop SEQUENCE SEQ_Equipo;
+Drop table pais;
+Drop SEQUENCE SEQ_Pais;
 
 --Creates Tables
 
@@ -51,11 +53,11 @@ CREATE TABLE EQUIPO (
     eq_descripcion varchar(100) NOT NULL,
     eq_status boolean default true NOT NULL,
     eq_grupo varchar(1) CHECK (eq_grupo ='A' OR eq_grupo ='B' OR eq_grupo ='C' OR eq_grupo ='D' OR eq_grupo ='E' OR eq_grupo ='F' OR eq_grupo ='G' OR eq_grupo ='H'),
-    eq_pa_id  integer,
-    eq_habilitado smallint,
+    eq_pa_id  varchar(3),
+    eq_habilitado boolean,
 
-    CONSTRAINT primaria_equipo PRIMARY KEY(eq_iso),
-    CONSTRAINT eq_pa_iso FOREIGN KEY (eq_pa_iso) REFERENCES pais (pa_iso)
+    CONSTRAINT primaria_equipo PRIMARY KEY(eq_id),
+    CONSTRAINT eq_pa_id FOREIGN KEY (eq_pa_id) REFERENCES pais (pa_iso)
 );
 --Fin de modulo 4
 

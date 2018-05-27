@@ -61,5 +61,13 @@ namespace WebAPI.Controllers
                 
             }
         }
+
+        [Route("prueba")]
+        [HttpGet]
+        public HttpResponseMessage prueba()
+        {
+            Equipo e = new Equipo(1, "este es el equipo de alemania", true, 'a', "alemania", true);
+            return Request.CreateResponse(HttpStatusCode.OK, e);
+        }
     }
 }
