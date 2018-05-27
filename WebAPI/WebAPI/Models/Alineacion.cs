@@ -14,11 +14,11 @@ namespace WebAPI.Models
     {
         private int _id; //id de la alineacion
         private Jugador _jugador;//jugador 
-        private string _equipo;//nombre del equipo 
+        private int _equipo;//id del equipo 
         private string _posicion;//posicion del jugador en cancha   
         private bool _capitan;//si el jugador es o no capitan
         private bool _titular;//si el jugador es titular o suplente
-
+       
 
         /// <summary>
         /// Constructor para la clase Alineacion
@@ -29,7 +29,7 @@ namespace WebAPI.Models
         /// <param name="posicion"></param>
         /// <param name="capitan"></param>
         /// <param name="titular"></param>
-        public Alineacion(int id, Jugador jugador, string equipo, 
+        public Alineacion(int id, Jugador jugador, int equipo, 
                           string posicion, bool capitan, bool titular)
        {
             _id = id;
@@ -40,6 +40,9 @@ namespace WebAPI.Models
             _titular = titular;
 
         }
+
+        public Alineacion()
+        { }
 
 
         /// <summary>
@@ -63,7 +66,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Get y Set del nombre del Equipo
         /// </summary>
-        public string Equipo
+        public int Equipo
         {
             get { return _equipo; }
             set { _equipo = value; }
