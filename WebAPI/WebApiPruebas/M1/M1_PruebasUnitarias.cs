@@ -25,7 +25,7 @@ namespace WebApiPruebas.M1
         [Test]
         public void AgregarUsuarioTest()
         {
-           //valido que el usuario que estoy ingresando exista
+           //valida que el usuario que se esta ingresando ingresando, exista en la bd
             _nombreusuario2 = "lauraquinones";
             _prueba.AgregarUsuario("lauraquinones","Laura","Quinones","14/09/1993","lvqp.93@gmail.com","F","laliquinones14");
             _prueba.ValidarNombreUsuario(_nombreusuario2);
