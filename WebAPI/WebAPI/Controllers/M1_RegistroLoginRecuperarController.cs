@@ -80,9 +80,8 @@ namespace WebAPI.Controllers
         {
             try
             {
-
+                System.Diagnostics.Debug.WriteLine(usuario);
                 usuario.Id = IniciarSesionCorreo(usuario.Correo, usuario.Password);
-
 
                 return Ok(usuario.Id);
             }

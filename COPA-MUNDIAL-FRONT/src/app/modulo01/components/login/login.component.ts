@@ -5,12 +5,6 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json'
-  })
-};
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +12,7 @@ const httpOptions = {
 })
 export class LoginComponent implements OnInit {
 
-  usuario: Usuario;
+  /*usuario: Usuario;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   readonly rootUrl =  'http://localhost:54059/api';
 
@@ -27,12 +21,12 @@ export class LoginComponent implements OnInit {
 
   constructor(private http: HttpClient) {
     this.usuario = new Usuario();
-  }
+  }*/
   
   ngOnInit() {
   }
 
-  registerUser(userRegistrationForm){
+  /*registerUser(userRegistrationForm){
     const url = `${this.rootUrl}/M1_RegistroLoginRecuperar/RegistrarUsuario`;
     const httpHeaders = new HttpHeaders().set('Accept', 'application/json');
 
@@ -67,10 +61,8 @@ export class LoginComponent implements OnInit {
       this.usuario.genero = data.Genero;
       this.usuario.password = data.Password;*/
 
-      console.log(data);
-    });
-    
-  }
+      /*console.log(data);
+    });*/
 
 
 

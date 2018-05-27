@@ -17,11 +17,14 @@ constructor(private router: Router) {}
       //this.router.navigate(['login']);
       //return false;
     //}
-    //if(localStorage.getItem('userId') != null){
-      
-      return false
-    /*}
-    this.router.navigate(['login']);
-    return false;*/
+    console.log('prueba logged-ijn guard');
+    if(localStorage.getItem('userId') != null){
+      return true;
+    }
+
+    console.log('no entro en el if');
+
+    /*this.router.navigate(['login']);*/
+    return false;
   }
 }
