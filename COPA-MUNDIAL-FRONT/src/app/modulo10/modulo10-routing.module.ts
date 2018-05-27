@@ -8,9 +8,9 @@ import { ConfiguracionUsuarioComponent } from './components/configuracion-usuari
 import { SeguridadUsuarioComponent } from './components/seguridad-usuario/seguridad-usuario.component';
 
 const routes: Routes = [
-  { path: '', component: PerfilUsuarioComponent, canActivate: [NotLoggedInGuard] },
-  { path: 'configuracion', component: ConfiguracionUsuarioComponent, canActivate: [NotLoggedInGuard] },
-  { path: 'seguridad', component: SeguridadUsuarioComponent, canActivate: [NotLoggedInGuard] }
+  { path: '', component: PerfilUsuarioComponent},
+  { path: 'configuracion', component: ConfiguracionUsuarioComponent },
+  { path: 'seguridad', component: SeguridadUsuarioComponent }
 ];
 
 @NgModule({
