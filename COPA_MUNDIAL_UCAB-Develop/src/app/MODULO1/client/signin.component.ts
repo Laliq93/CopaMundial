@@ -10,6 +10,7 @@ export class SigninComponent {
 	constructor(private router: Router){}
 
 	home(): void {
+
 		this.router.navigate(['home']);
 	}	
 
