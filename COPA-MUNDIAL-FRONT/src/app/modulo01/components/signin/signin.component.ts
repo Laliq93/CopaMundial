@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { LoggedInGuard } from '../../../guards/logged-in.guard';
 import { NotLoggedInGuard } from '../../../guards/not-logged-in.guard';
 import { HttpClient, HttpParams, HttpHeaders, HttpHandler } from '@angular/common/http';
 import { FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { catchError, retry } from 'rxjs/operators';
 import { Usuario } from '../../models/usuario';
+import { Router } from '@angular/router';
 
 
 const httpOptions = {
@@ -19,6 +21,7 @@ const httpOptions = {
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
+
 export class SigninComponent implements OnInit {
 
 
