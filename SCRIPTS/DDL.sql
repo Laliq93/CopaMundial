@@ -38,11 +38,11 @@ CREATE TABLE USUARIO (
 
 CREATE TABLE PAIS (
 
-	pa_id		integer,
 	pa_iso		varchar(3),
 	pa_nombre	varchar(20),
+    pa_urlBandera varchar(50),
 
-    CONSTRAINT primaria_pais PRIMARY KEY(pa_id)
+    CONSTRAINT primaria_pais PRIMARY KEY(pa_iso)
 );
 
 CREATE TABLE EQUIPO (
@@ -52,9 +52,10 @@ CREATE TABLE EQUIPO (
     eq_status boolean default true NOT NULL,
     eq_grupo varchar(1) CHECK (eq_grupo ='A' OR eq_grupo ='B' OR eq_grupo ='C' OR eq_grupo ='D' OR eq_grupo ='E' OR eq_grupo ='F' OR eq_grupo ='G' OR eq_grupo ='H'),
     eq_pa_id  integer,
+    eq_habilitado smallint,
 
-    CONSTRAINT primaria_equipo PRIMARY KEY(eq_id),
-    CONSTRAINT eq_pa_id FOREIGN KEY (eq_pa_id) REFERENCES pais (pa_id)
+    CONSTRAINT primaria_equipo PRIMARY KEY(eq_iso),
+    CONSTRAINT eq_pa_iso FOREIGN KEY (eq_pa_iso) REFERENCES pais (pa_iso)
 );
 --Fin de modulo 4
 
