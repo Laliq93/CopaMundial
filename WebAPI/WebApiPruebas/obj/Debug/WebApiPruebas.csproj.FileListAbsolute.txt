@@ -182,8 +182,6 @@ C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Deb
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\Mono.Security.dll
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\System.Web.WebPages.Deployment.dll
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\WebAPI.pdb
-C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\nunit.framework.pdb
-C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\nunit.framework.xml
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\Microsoft.Owin.xml
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\System.Web.Optimization.xml
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\System.Web.Mvc.xml
@@ -213,3 +211,7 @@ C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebApiP
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\System.Web.Http.xml
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\System.Web.Http.Cors.xml
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\es\System.Web.Http.resources.dll
+C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\System.Web.Http.Cors.dll
+C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\System.Web.Cors.dll
+C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\System.Web.Http.xml
+C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebApiPruebas\bin\Debug\System.Web.Http.Cors.xml
