@@ -47,6 +47,8 @@ namespace WebApiPruebas.M1
         [Test]
         public void EnviarCorreoTest()
         {
+      _pruebacontroller.ValidarNombreUsuario("lauraquinones");
+      Assert.AreEqual(HttpStatusCode.OK, _pruebacontroller.EnviarCorreo("lauraquinones");
             //valido que envia el correo para recuperar la contrasena
         }
 /* 
