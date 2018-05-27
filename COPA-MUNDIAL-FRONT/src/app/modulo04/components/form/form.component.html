@@ -1,41 +1,41 @@
 <form action="" class="container">
-  <div class="form-group row">
+    <div class="form-group row">
 
-    <label for="nombre" class="col-form-label">Nombre de Equipo</label>
-    <input type="email" class="form-control" id="nombre" name="nombre" placeholder="Alemania" [(ngModel)]="equipo.nombre">
+        <label i18n="Label de nombre de equipos en el formulario @@m4LabelNombre" for="nombre" class="col-form-label">Nombre de Equipo</label>
+        <input type="email" class="form-control" id="nombre" name="nombre" placeholder="Alemania">
 
-    <label for="grupo" class="col-form-label">Grupo Al Que Pertenece</label>
+        <label i18n="Label del grupo en el formulario @@m4LabelGrupo" for="grupo" class="col-form-label">Grupo Perteneciente</label>
     <select id="grupo" class="form-control" >
       <option *ngFor="let grupo of grupos" [selected]="equipo.grupo == grupo">{{ grupo }}</option>
     </select>
 
-    <label for="descripcion" class="col-form-label">Descripcion</label>
-    <textarea class="form-control" id="descripcion" name="descripcion" rows="5" [(ngModel)]="equipo.descripcion"></textarea>
-  
-    <div *ngIf="ruta === '/equipos/crear'; then crear else editar"></div>
+        <label i18n="Label con la descripción de equipos en los forms @@m4LabelDescripcion" for="descripcion" class="col-form-label">Descripcion</label>
+        <textarea class="form-control" id="descripcion" name="descripcion" rows="5"></textarea>
 
-    <ng-template #crear>
-      <label class="col-sm-12 col-form-label importante">
+        <div *ngIf="ruta === '/equipos/crear'; then crear else editar"></div>
+
+        <ng-template #crear>
+            <label i18n="Mensaje que le indica al usuario que debe haber jugadores en el equipo @@m4MsjDebeHaberJugadores" class="col-sm-12 col-form-label importante">
         ** Para crear un equipo es necesario que se tengan jugadores asociados a este. Por favor asocie al menos 
         un jugador al equipo que se encuentra creando. **
       </label>
-      <div class="col-sm-12">
-          <button type="button" class="btn btn-warning" (click)="asociar()">Asociar jugador</button>
-      </div>
-    </ng-template>
+            <div class="col-sm-12">
+                <button i18n="Header en la pagina de creacion de equipos @@m4BtnAsociarJugador" type="button" class="btn btn-warning" (click)="asociar()">Asociar jugador</button>
+            </div>
+        </ng-template>
 
-    <ng-template #editar>
-      <div class="custom-control custom-radio col-sm-3 offset-md-3 participando">
-        <input type="radio" id="participando" name="participando" class="custom-control-input" [checked]="equipo.status">
-        <label class="custom-control-label" for="participando">El equipo aún participa en la copa</label>
-      </div>
-      <div class="custom-control custom-radio col-sm-3 eliminado">
-        <input type="radio" id="eliminado" name="eliminado" class="custom-control-input" [checked]="!equipo.status">
-        <label class="custom-control-label" for="eliminado">El equipo fué eliminado de la copa</label>
-      </div>
-    </ng-template>
-  </div>
+        <ng-template #editar>
+            <div class="custom-control custom-radio col-sm-3 offset-md-3 participando">
+                <input type="radio" id="participando" name="participando" class="custom-control-input">
+                <label i18n="Opción que indica que el equipo aun participa en la copa @@m4LabelParticipando" class="custom-control-label" for="participando">El equipo aún participa en la copa</label>
+            </div>
+            <div class="custom-control custom-radio col-sm-3 eliminado">
+                <input type="radio" id="eliminado" name="eliminado" class="custom-control-input">
+                <label i18n="Opción que indica que el equipo fue eliminado @@m4LabelEliminado" class="custom-control-label" for="eliminado">El equipo fué eliminado de la copa</label>
+            </div>
+        </ng-template>
+    </div>
 
-  <button type="button" class="btn btn-info" (click)="enviar()">Guardar</button>
-  <button type="button" class="btn btn-danger" (click)="regresar()">Cancelar</button>
+    <button i18n="Boton para guardar @@m4BtnGuardar" type="submit" class="btn btn-info">Guardar</button>
+    <button i18n="Boton para cancelar @@m4BtnCancelar" type="button" class="btn btn-danger" (click)="regresar()">Cancelar</button>
 </form>
