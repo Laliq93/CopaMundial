@@ -16,13 +16,11 @@ export class PerfilUsuarioComponent implements OnInit {
 
   private _usuario: Usuario10;
   private _api10: ApiService;
-  private pene:string;
 
   constructor(private http: HttpClient) {
 
     this._api10 = new ApiService(http);
     this._usuario = new Usuario10();
-    this.pene = 'Dario';
   }
 
 
@@ -52,12 +50,46 @@ export class PerfilUsuarioComponent implements OnInit {
   
   TestActualizarCorreo(){
 
-    let errorCode:string;
-
-    this._usuario.Password = 'lol1223';
-    this._usuario.Correo = 'locd2o123@hotmail.com';
+    this._usuario.Password = 'pepe';
+    this._usuario.Correo = 'felixd123@hotmail.com';
 
     this._api10.ActualizarCorreo(this._usuario);
   }
 
+  TestActualizarClave(){
+
+    let passwordNueva = 'pepe';
+    
+    this._usuario.Password = 'lol123';
+    
+    this._api10.ActualizarClave(this._usuario, passwordNueva);
+  }
+
+  TestDesactivarCuentaPropia(){
+
+    this._usuario.Password = 'pepe';
+
+    if(!this._usuario.Activo){
+        alert('La cuenta ya está desactivada');
+        return;
+    }
+
+    this._api10.DesactivarCuentaPropia(this._usuario);
+
+    this._usuario = this._api10.ObtenerDatos();
+  }
+
+  TestActivar(){
+
+    if(this._usuario.Activo){
+      
+      alert('La cuenta ya está activa');
+      return;
+    
+    }
+    
+    this._api10.ActivarCuenta(this._usuario);
+
+    this._usuario = this._api10.ObtenerDatos();
+  }
 }

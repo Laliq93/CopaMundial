@@ -26,6 +26,7 @@ export class ApiService {
         this._usuario10.Apellido = data.Apellido;
         this._usuario10.Correo = data.Correo;
         this._usuario10.FechaNacimiento = data.FechaNacimiento;
+        this._usuario10.Activo = data.Activo;
         //this._usuario10.Message = data.Message;
           
         });
@@ -60,7 +61,10 @@ export class ApiService {
                 this._usuario10.Message = data.Message;
                 this.Error(this._usuario10);
             }
-        });
+            else{
+                this.Succes('Correo editado con éxito');
+            }
+        }, Error => {});
     }
 
     public ActualizarClave(usuario : Usuario10, claveNueva:string) {
@@ -73,12 +77,55 @@ export class ApiService {
                 this._usuario10.Message = data.Message;
                 this.Error(this._usuario10);
             }
+            else{
+                this.Succes('Clave editada con éxito');
+            }
         });
     }
+
+    public DesactivarCuentaPropia(usuario : Usuario10){
+
+        this._usuario10 = usuario;
+        this._conexion.Controlador = 'DesactivarUsuarioPropio';
+        let url = this._conexion.RutaApi+this._conexion.Controlador;
+
+        this.http.put<IUsuario10>(url, usuario, { responseType: 'json'}).subscribe(data => {
+            if(data != null){
+                this._usuario10.Message = data.Message;
+                this.Error(this._usuario10);
+            }
+            else{
+                this.Succes('Cuenta desactivada con éxito');
+            }
+        });
+
+    }
+
+    public ActivarCuenta(usuario : Usuario10){
+        
+                this._usuario10 = usuario;
+                this._conexion.Controlador = 'ActivarUsuario';
+                let url = this._conexion.RutaApi+this._conexion.Controlador;
+        
+                this.http.put<IUsuario10>(url, usuario, { responseType: 'json'}).subscribe(data => {
+                    if(data != null){
+                        this._usuario10.Message = data.Message;
+                        this.Error(this._usuario10);
+                    }
+                    else{
+                        this.Succes('Cuenta activada con éxito');
+                    }
+                });
+        
+            }
 
     private Error(usuario : Usuario10){
 
         alert(this._usuario10.Message);
+    }
+
+    private Succes(mensaje : string){
+        alert(mensaje);
     }
 
 
