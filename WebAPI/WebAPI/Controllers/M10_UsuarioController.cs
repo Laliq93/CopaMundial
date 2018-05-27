@@ -226,6 +226,39 @@ namespace WebAPI.Controllers
 
         }
 
+        [Route("AgregarJugadorFavorito/{idUsuario:int}/{idJugador:int}")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public IHttpActionResult AgregarJugadorFavorito(int idUsuario, int idJugador)
+        {
+            try
+            {
+
+                return Ok();
+            }
+            catch (UsuarioNullException exc)
+            {
+                _database.Desconectar();
+                return BadRequest(exc.Message);
+            }
+            catch (ClaveInvalidaException exc)
+            {
+                return BadRequest(exc.Message);
+            }
+            catch (CorreoEnUsoException exc)
+            {
+
+                return BadRequest(exc.Message);
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return BadRequest("Error en el servidor: " + e.Message);
+            }
+
+        }
+
+
         [System.Web.Http.AcceptVerbs("GET")]
         [System.Web.Http.HttpGet]
         public HttpResponseMessage ObtenerUsuariosActivos()
@@ -269,6 +302,11 @@ namespace WebAPI.Controllers
                 GetUsuario(idUsuario);
 
                 return Request.CreateResponse(HttpStatusCode.OK, _usuario);
+            }
+            catch(UsuarioNoExisteException exc)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError(exc.Message));
             }
             catch (Exception e)
             {
@@ -487,18 +525,25 @@ namespace WebAPI.Controllers
         /// </summary>
         public Usuario GetUsuario(int idUsuario)
         {
-            _database.Conectar();
+            try
+            {
+                _database.Conectar();
 
-            _database.StoredProcedure("ObtenerUsuario(@id)");
+                _database.StoredProcedure("ObtenerUsuario(@id)");
 
-            _database.AgregarParametro("id", idUsuario);
+                _database.AgregarParametro("id", idUsuario);
 
-            _database.EjecutarReader();
+                _database.EjecutarReader();
 
-            _usuario = new Usuario(idUsuario,_database.GetString(0, 0), _database.GetString(0, 1), _database.GetString(0, 2), Convert.ToDateTime(_database.GetString(0, 3)).ToShortDateString(),
-                _database.GetString(0, 4), _database.GetChar(0, 5),_database.GetString(0,6) ,_database.GetString(0, 7),false ,_database.GetBool(0,8), "");
+                _usuario = new Usuario(idUsuario, _database.GetString(0, 0), _database.GetString(0, 1), _database.GetString(0, 2), Convert.ToDateTime(_database.GetString(0, 3)).ToShortDateString(),
+                    _database.GetString(0, 4), _database.GetChar(0, 5), _database.GetString(0, 6), _database.GetString(0, 7), false, _database.GetBool(0, 8), "");
 
-            return _usuario;
+                return _usuario;
+            }
+            catch (IndexOutOfRangeException exc)
+            {
+                throw new UsuarioNoExisteException(exc, idUsuario);
+            }
 
         }
 

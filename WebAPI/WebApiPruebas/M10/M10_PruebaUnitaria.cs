@@ -23,6 +23,16 @@ namespace WebApiPruebas.M10
         }
 
         [Test]
+        public void GetUsuarioTest()
+        {
+            int IdEsperado = 2;
+
+            _usuario = _controller.GetUsuario(IdEsperado);
+
+            Assert.AreEqual(IdEsperado, _usuario.Id);
+        }
+
+        [Test]
         public void EditarPerfilUsuarioTest()
         {
             Usuario _usuarioAnterior = null;
@@ -151,6 +161,12 @@ namespace WebApiPruebas.M10
             _usuario = null;
 
             Assert.Throws<UsuarioNullException>(() => _controller.EditarCorreo(null));
+        }
+
+        [Test]
+        public void UsuarioNoExisteExceptionGetUsuario()
+        {
+            Assert.Throws<UsuarioNoExisteException>(() => _controller.GetUsuario(-1));
         }
 
         [TearDown]
