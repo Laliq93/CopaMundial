@@ -20,7 +20,7 @@ export class PerfilUsuarioComponent implements OnInit {
   constructor(private http: HttpClient) {
     this.usuario = new Usuario10();
     this.conexion = new Conexion();
-    // this.login = new Usuario();
+    //this.login = new Usuario();
     this.usuario.Id = 2;
   }
   ngOnInit() {
