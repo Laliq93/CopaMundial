@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-@Injectable() 
+@Injectable()
 
-export class Usuario_10 {
+export class Usuario10 {
     public Id: number;
     public NombreUsuario: string;
     public Nombre: string;
@@ -10,8 +10,8 @@ export class Usuario_10 {
     public FechaNacimiento: string;
     public Correo: string;
     public Genero: string;
-    public Password: string; 
+    public Password: string;
     public FotoPath: string;
     public EsAdmin: boolean;
-    public Activo: boolean; 
+    public Activo: boolean;
 }
