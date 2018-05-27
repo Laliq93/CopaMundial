@@ -5,14 +5,14 @@
 /// </summary>
 public class Ciudad
 {
-    
-        private int _id;
-        private string _nombreCiudad;
-        private int _poblacion;
-        private string _descripcion;
-        private string _localizacion;
-        private string _fotopath;
-    
+
+    private int _id;
+    private string _nombreCiudad;
+    private int _poblacion;
+    private string _descripcion;
+    private string _localizacion;
+    private string _fotopath;
+
     public Ciudad()
     {
 
@@ -43,13 +43,13 @@ public class Ciudad
         set { _id = value; }
     }
 
-    public string  nombreCiudad
+    public string nombreCiudad
     {
         get { return _nombreCiudad; }
         set { _nombreCiudad = value; }
     }
 
-    public string poblacion 
+    public string poblacion
     {
         get { return _poblacion; }
         set { _poblacion = value; }
