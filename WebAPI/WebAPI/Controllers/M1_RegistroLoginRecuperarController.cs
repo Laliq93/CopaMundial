@@ -7,6 +7,8 @@ using System.Net.Mail;
 using System.Web.Http;
 using WebAPI.Models;
 using WebAPI.Models.DataBase;
+using WebAPI.Models.Excepciones;
+
 
 namespace WebAPI.Controllers
 {
@@ -17,17 +19,49 @@ namespace WebAPI.Controllers
         private DataBase _database = new DataBase();
 
         [Route("RegistrarUsuario")]
-        [HttpPost]
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
         public IHttpActionResult RegistrarUsuario(Usuario usuario)
         {
             try
             {
                 //{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}
-
+                ValidarCorreo(usuario.Correo);
+                ValidarNombreUsuario(usuario.NombreUsuario);
                 AgregarUsuario(usuario.NombreUsuario, usuario.Nombre, usuario.Apellido, usuario.FechaNacimiento,
                   usuario.Correo, usuario.Genero, usuario.Password);
 
                 return Ok("Usuario registrado exitosamente");
+            }
+            catch (CorreoExistenteException e)
+            {
+                _database.Desconectar();
+                return BadRequest(e.Message);
+            }
+            catch (NombreUsuarioExistenteException e)
+            {
+                _database.Desconectar();
+                return BadRequest(e.Message);
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return BadRequest(e.Message);
+            }
+
+        }
+
+        [Route("IniciarSesionUsuario")]
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult IniciarSesionUsuario(Usuario usuario)
+        {
+            try
+            {
+                //{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}
+
+                usuario.Id = IniciarSesionUsuario(usuario.NombreUsuario, usuario.Password);
+                return Ok(usuario.Id);
             }
             catch (Exception e)
             {
@@ -37,8 +71,53 @@ namespace WebAPI.Controllers
 
         }
 
+        [Route("IniciarSesionCorreo")]
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult IniciarSesionCorreo(Usuario usuario)
+        {
+            try
+            {
+
+                usuario.Id = IniciarSesionCorreo(usuario.Correo, usuario.Password);
+
+
+                return Ok(usuario.Id);
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return BadRequest("Error en el servidor: " + e.Message);
+            }
+
+        }
+
+        [Route("IngresarUsuario")]
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
+        public int IngresarUsuario(Usuario usuario)
+        {
+            try
+            {
+
+                ValidarNombreUsuario(usuario.NombreUsuario);
+                usuario.Id = IniciarSesionUsuario(usuario.NombreUsuario, usuario.Password);
+
+
+               
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                //return BadRequest("Error en el servidor: " + e.Message);
+            }
+
+            return usuario.Id;
+        }
+
         [Route("RecuperarClave")]
-        [HttpPost]
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
         public IHttpActionResult RecuperarClave(Usuario usuario)
         {
             try
@@ -64,7 +143,8 @@ namespace WebAPI.Controllers
         }
 
         [Route("CambiarClave")]
-        [HttpPost]
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
         public IHttpActionResult CambiarClave(Usuario usuario)
         {
             try
@@ -128,6 +208,42 @@ namespace WebAPI.Controllers
             _database.AgregarParametro("password", password);
 
             _database.EjecutarQuery();
+        }
+
+
+        private int IniciarSesionCorreo(string correo, string password)
+        {
+
+            int _id;
+            _database.Conectar();
+
+            _database.StoredProcedure("IniciarSesionCorreo(@correo, @password)");
+
+            
+            _database.AgregarParametro("correo", correo);
+            _database.AgregarParametro("password", password);
+
+            _database.EjecutarReader();
+            _id = _database.GetInt(0, 0);
+
+            return _id;
+        }
+
+        private int IniciarSesionUsuario(string nombreUsuario, string password)
+        {
+            int _id;
+            _database.Conectar();
+
+            _database.StoredProcedure("IniciarSesionUsuario(@nombreUsuario, @password)");
+
+
+            _database.AgregarParametro("nombreUsuario", nombreUsuario);
+            _database.AgregarParametro("password", password);
+
+            _database.EjecutarReader();
+            _id = _database.GetInt(0, 0);
+
+            return _id;
         }
 
 
@@ -206,15 +322,15 @@ namespace WebAPI.Controllers
             _contador = _database.GetInt(0, 0);
 
 
-            if (_contador < 1)
+            if (_contador > 0)
             {
-                return false;
+                throw new NombreUsuarioExistenteException(nombreUsuario);
             }
 
             return true;
         }
 
-        private bool ValidarCorreo(string correo)
+        private void ValidarCorreo(string correo)
         {
             int _contador; //contador de filas retornadas por la bd
             _database.Conectar();
@@ -227,12 +343,8 @@ namespace WebAPI.Controllers
 
             _contador = _database.GetInt(0, 0);
 
-            if (_contador < 1)
-            {
-                return false;
-            }
-
-            return true;
+            if (_contador > 0)
+                throw new CorreoExistenteException(correo);
 
 
         }

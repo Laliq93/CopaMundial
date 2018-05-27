@@ -46,6 +46,14 @@ namespace WebApiPruebas.M10
             Assert.AreEqual(_usuarioAnterior.FotoPath, _usuario.FotoPath);
         }
 
+        [Test]
+        public void ExceptionVerificarCorreoExisteTest()
+        {
+            _usuario = _controller.GetUsuario(2);
+
+            Assert.Throws<CorreoEnUsoException>(() => _controller.VerificarCorreoExiste(_usuario));
+        }
+
         [TearDown]
         public void End()
         {

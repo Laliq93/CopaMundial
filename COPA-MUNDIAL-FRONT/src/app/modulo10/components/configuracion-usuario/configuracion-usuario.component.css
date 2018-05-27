@@ -1,8 +1,8 @@
 /*
 Template Name: Copa Mundial
-Author: Desarrollo de Software UCAB
-Email: 
-File: css (style)
+Author: Desarrollo de Software UCAB | Modulo_10
+Email: wjoseperez20@gmail.com
+File: css (configuracion-usuario)
 */
 
 /**
@@ -23,21 +23,13 @@ File: css (style)
 1. Global Styles 
 *******************/
 
-.material-icons {
-  font-size: 22px !important;
-  margin-right: 5px;
-}
-
 /*******************
 2. Headers
-*******************/
+*******************/	
 
 /*******************
 3. Nav | Side
 ******************/
-.main-container{
-    margin-left: 280px;
-}
 
 /*******************
 4. Banners
