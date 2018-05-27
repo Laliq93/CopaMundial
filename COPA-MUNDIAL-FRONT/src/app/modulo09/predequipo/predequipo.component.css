@@ -19,10 +19,14 @@ h1{
 }
 
 .drop-label-estilo{
-margin-left: 35%
-
+    margin-left: 25%;
+    width: 50%;
 }
 
 .font-estilo{
     color: black
 }
+
+.form-estilo{
+    width: 100%;
+    }

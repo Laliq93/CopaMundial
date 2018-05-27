@@ -8,22 +8,23 @@ h1{
 .dropdown-estilo{
     background-color: #A11D1B;
     width: 25%
- 
 }
 
 .table-estilo{
-
     width: 50%;
     margin-left: 25%;
     margin-top: 5%
-
 }
 
 .drop-label-estilo{
-margin-left: 35%
-
+margin-left: 25%;
+width: 50%;
 }
 
 .font-estilo{
     color: black
+}
+
+.form-estilo{
+width: 100%;
 }

@@ -8,6 +8,7 @@ import { EstjugadorComponent } from './estjugador/estjugador.component';
 import { PredequipoComponent } from './predequipo/predequipo.component';
 import { PredjugadorComponent } from './predjugador/predjugador.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
