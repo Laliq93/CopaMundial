@@ -79,7 +79,7 @@ namespace WebAPI.Controllers
 
         }
 
-        [Route("BuscarJugador/{idUsuario:int}")]
+        [Route("BuscarJugador/{id}")]
         [System.Web.Http.AcceptVerbs("GET")]
         [System.Web.Http.HttpGet]
         public HttpResponseMessage BuscarJugador(int id)
@@ -144,6 +144,7 @@ namespace WebAPI.Controllers
 
         private void BuscarJugadores(Jugador jugador)
         {
+            _listaJugadores = new List<Jugador>();
             _database.Conectar();
 
             if (jugador.Equipo < 0)
@@ -180,7 +181,7 @@ namespace WebAPI.Controllers
 
             _database.EjecutarReader();
 
-            _jugador = new Jugador(_database.GetInt(0, 0), _database.GetString(0, 1), _database.GetString(i0, 2),
+            _jugador = new Jugador(_database.GetInt(0, 0), _database.GetString(0, 1), _database.GetString(0, 2),
                     Convert.ToDateTime(_database.GetString(0, 3)).ToShortDateString(), _database.GetString(0, 4), _database.GetDouble(0, 5), _database.GetDouble(0, 6), _database.GetString(0, 7),
                     _database.GetInt(0, 8), _database.GetInt(0, 9), _database.GetString(0, 10), _database.GetBool(0, 11));
 
