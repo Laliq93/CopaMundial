@@ -22,6 +22,7 @@ export class SeguridadUsuarioComponent implements OnInit {
   constructor(private http: HttpClient) {
     this._api10 = new ApiService(http);
     this._usuario = new Usuario10();
+  }
 
   ngOnInit() {}
 
@@ -32,6 +33,6 @@ export class SeguridadUsuarioComponent implements OnInit {
       this._api10.ActualizarCorreo(this._usuario);
     }
     else{
-      bootbox.alert("Son distintios");
+      bootbox.alert('Son distintios');
   }
 }

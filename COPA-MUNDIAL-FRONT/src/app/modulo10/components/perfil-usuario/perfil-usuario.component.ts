@@ -5,6 +5,8 @@ import { ApiService } from '../../services/api10.services';
 import { HttpClient } from '@angular/common/http';
 // import { Usuario } from '../../../modulo01/models/usuario';
 
+declare var bootbox: any;
+
 @Component({
   selector: 'app-perfil-usuario',
   templateUrl: './perfil-usuario.component.html',
@@ -44,30 +46,27 @@ export class PerfilUsuarioComponent implements OnInit {
     console.log(errorCode);
   }
 
-  TestActualizarCorreo(){
-
+  TestActualizarCorreo() {
     this._usuario.Password = 'pepe';
     this._usuario.Correo = 'felixd123@hotmail.com';
 
     this._api10.ActualizarCorreo(this._usuario);
   }
 
-  TestActualizarClave(){
-
+  TestActualizarClave() {
     let passwordNueva = 'pepe';
-    
+
     this._usuario.Password = 'lol123';
-    
+
     this._api10.ActualizarClave(this._usuario, passwordNueva);
   }
 
-  TestDesactivarCuentaPropia(){
-
+  TestDesactivarCuentaPropia() {
     this._usuario.Password = 'pepe';
 
-    if(!this._usuario.Activo){
-        alert('La cuenta ya está desactivada');
-        return;
+    if (!this._usuario.Activo) {
+      bootbox.alert('La cuenta ya está desactivada');
+      return;
     }
 
     this._api10.DesactivarCuentaPropia(this._usuario);
@@ -75,15 +74,12 @@ export class PerfilUsuarioComponent implements OnInit {
     this._usuario = this._api10.ObtenerDatos();
   }
 
-  TestActivar(){
-
-    if(this._usuario.Activo){
-      
-      alert('La cuenta ya está activa');
+  TestActivar() {
+    if (this._usuario.Activo) {
+      bootbox.alert('La cuenta ya está activa');
       return;
-    
     }
-    
+
     this._api10.ActivarCuenta(this._usuario);
 
     this._usuario = this._api10.ObtenerDatos();

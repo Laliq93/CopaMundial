@@ -8,7 +8,7 @@ import { ConfiguracionUsuarioComponent } from './components/configuracion-usuari
 import { SeguridadUsuarioComponent } from './components/seguridad-usuario/seguridad-usuario.component';
 
 const routes: Routes = [
-  { path: '', component: PerfilUsuarioComponent},
+  { path: '', component: PerfilUsuarioComponent },
   { path: 'configuracion', component: ConfiguracionUsuarioComponent },
   { path: 'seguridad', component: SeguridadUsuarioComponent }
 ];
@@ -17,4 +17,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class Modulo10RoutingModule { }
+export class Modulo10RoutingModule {}

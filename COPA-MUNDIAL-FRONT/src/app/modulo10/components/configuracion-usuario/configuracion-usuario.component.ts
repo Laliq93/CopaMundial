@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone, AfterViewInit } from '@angular/core';
 
 declare var jQuery: any;
+declare var bootbox: any;
 
 @Component({
   selector: 'app-configuracion-usuario',
