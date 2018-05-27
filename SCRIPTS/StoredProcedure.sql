@@ -47,6 +47,45 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION IniciarSesionUsuario(_nombreUsuario varchar, _password varchar)
+RETURNS TABLE
+  (id integer,
+   nombreUsuario varchar,
+   nombre varchar,
+   apellido varchar,
+   fechaNacimiento date,
+   correo varchar,
+   genero varchar)
+AS
+$$
+BEGIN
+	RETURN QUERY SELECT
+	us_id
+	FROM usuario
+	WHERE us_nombreusuario=_nombreUsuario AND md5(_password) = us_password;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION IniciarSesionCorreo(_correo varchar, _password varchar)
+RETURNS TABLE
+  (id integer,
+   nombreUsuario varchar,
+   nombre varchar,
+   apellido varchar,
+   fechaNacimiento date,
+   correo varchar,
+   genero varchar)
+AS
+$$
+BEGIN
+	RETURN QUERY SELECT
+	us_id
+	FROM usuario
+	WHERE us_correo=_correo AND md5(_password) = us_password;
+END;
+$$ LANGUAGE plpgsql;
+
 -- Consulta un usuario por su correo y clave
 -- devuelve los datos del usuario
 CREATE OR REPLACE FUNCTION ConsultarCorreoPassword(_correo varchar, _password varchar)
