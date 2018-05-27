@@ -105,7 +105,7 @@ export class ApiService {
       });
   }
 
-  public ActivarCuenta(usuario: Usuario10) {
+  public AdministradorActivarCuenta(usuario: Usuario10) {
     this._usuario10 = usuario;
     this._conexion.Controlador = 'ActivarUsuario';
     let url = this._conexion.RutaApi + this._conexion.Controlador;
@@ -122,11 +122,32 @@ export class ApiService {
       });
   }
 
+  public AdministradorDesactivaCuenta(usuario: Usuario10){
+    this._usuario10 = usuario;
+    this._conexion.Controlador = 'AdministradorDesactivaUsuario';
+    let url = this._conexion.RutaApi + this._conexion.Controlador;
+
+    this.http
+      .put<IUsuario10>(url, usuario, { responseType: 'json' })
+      .subscribe(data => {
+        if (data != null) {
+          this._usuario10.Message = data.Message;
+          this.Error(this._usuario10);
+        } else {
+          this.Succes('Cuenta desactivada con éxito');
+        }
+      });
+  }
+
   private Error(usuario: Usuario10) {
     bootbox.alert(this._usuario10.Message);
   }
 
   private Succes(mensaje: string) {
     bootbox.alert(mensaje);
+  }
+
+  private FatalError(){
+      
   }
 }

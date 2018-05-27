@@ -19,7 +19,6 @@ namespace WebAPI.Controllers
         private DataBase _database = new DataBase();
         private List<Usuario> _listaUsuarios;
         private Usuario _usuario;
-        HttpError err;
 
 
         [Route("ActualizarPerfil")]
@@ -85,23 +84,23 @@ namespace WebAPI.Controllers
         [Route("AdministradorDesactivaUsuario")]
         [System.Web.Http.AcceptVerbs("GET", "PUT")]
         [System.Web.Http.HttpPut]
-        public IHttpActionResult AdministradorDesactivaUsuario(Usuario usuario)
+        public HttpResponseMessage AdministradorDesactivaUsuario(Usuario usuario)
         {
             try
             {
                 GestionarActivo(usuario, false);
 
-                return Ok();
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (UsuarioNullException exc)
             {
                 _database.Desconectar();
-                return BadRequest(exc.Message);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
             }
             catch (Exception e)
             {
                 _database.Desconectar();
-                return BadRequest("Error en el servidor: " + e.Message);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
             }
 
         }
@@ -121,21 +120,18 @@ namespace WebAPI.Controllers
             }
             catch(UsuarioNullException exc)
             {
-                err = new HttpError(exc.Message);
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.OK, err);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
             }
             catch (ClaveInvalidaException exc)
             {
-                err = new HttpError(exc.Message);
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.OK, err);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
             }
             catch (Exception e)
             {
-                err = new HttpError("Error General");
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.OK, err);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
             }
 
         }
@@ -153,15 +149,13 @@ namespace WebAPI.Controllers
             }
             catch(UsuarioNullException exc)
             {
-                err = new HttpError(exc.Message);
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.OK, err);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
             }
             catch (Exception e)
             {
-                err = new HttpError("Error general");
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.OK, err);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
             }
 
         }
@@ -183,20 +177,17 @@ namespace WebAPI.Controllers
             }
             catch (UsuarioNullException exc)
             {
-                err = new HttpError(exc.Message);
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.OK, err);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
             }
             catch (ClaveInvalidaException exc)
             {
-                err = new HttpError(exc.Message);
-                return Request.CreateResponse(HttpStatusCode.OK, err);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
             }
             catch (Exception e)
             {
-                err = new HttpError("Error general");
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.OK, err);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
             }
 
         }
@@ -215,30 +206,25 @@ namespace WebAPI.Controllers
 
                 EditarCorreo(usuario);
 
-                err = new HttpError();
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (UsuarioNullException exc)
             {
-                err = new HttpError(exc.Message);
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.OK, err);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
             }
             catch (ClaveInvalidaException exc)
             {
-                err = new HttpError(exc.Message);
-                return Request.CreateResponse(HttpStatusCode.OK, err);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
             }
             catch(CorreoEnUsoException exc)
             {
-                err = new HttpError(exc.Message);
-                return Request.CreateResponse(HttpStatusCode.OK, err);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
             }
             catch (Exception e)
             {
-                err = new HttpError(e.Message);
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.OK, err);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
             }
 
         }
@@ -289,7 +275,7 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new HttpError("Error en el servidor:" + e.Message));
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new HttpError("Error general"));
             }
         }
 
@@ -306,7 +292,7 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new HttpError("Error en el servidor:" + e.Message));
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new HttpError("Error general"));
             }
         }
         [Route("ObtenerUsuario/{idUsuario:int}")]
@@ -328,7 +314,7 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error en el servidor:" + e.Message));
+                return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error general"));
             }
         }
 
@@ -553,7 +539,7 @@ namespace WebAPI.Controllers
                 _database.EjecutarReader();
 
                 _usuario = new Usuario(idUsuario, _database.GetString(0, 0), _database.GetString(0, 1), _database.GetString(0, 2), Convert.ToDateTime(_database.GetString(0, 3)).ToShortDateString(),
-                    _database.GetString(0, 4), _database.GetChar(0, 5), _database.GetString(0, 6), _database.GetString(0, 7), false, _database.GetBool(0, 8), "");
+                    _database.GetString(0, 4), _database.GetChar(0, 5), _database.GetString(0, 6), _database.GetString(0, 7), _database.GetBool(0, 8), _database.GetBool(0, 9), "");
 
                 return _usuario;
             }
