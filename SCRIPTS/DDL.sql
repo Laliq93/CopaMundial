@@ -13,6 +13,13 @@ Drop SEQUENCE SEQ_Usuario;
 Drop table equipo;
 Drop SEQUENCE SEQ_Equipo;
 
+--Modulo 6
+--DROPS
+Drop table partido;
+Drop SEQUENCE SEQ_Partido;
+Drop table alineacion;
+Drop SEQ_Alineacion;
+
 --Creates Tables
 
 --Modulo 1
@@ -57,6 +64,42 @@ CREATE TABLE EQUIPO (
     CONSTRAINT eq_pa_id FOREIGN KEY (eq_pa_id) REFERENCES pais (pa_id)
 );
 --Fin de modulo 4
+--Modulo 6
+CREATE TABLE PARTIDO(
+	pa_id integer,
+    pa_fecha varchar(25) NOT NULL,
+    pa_horaInicio varchar(25) NOT NULL,
+    pa_horaFin varchar(25),
+    pa_arbitro varchar(30) NOT NULL,
+    pa_status boolean NOT NULL,
+    pa_eq1_id integer NOT NULL, 
+    pa_eq2_id integer NOT NULL, 
+    pa_es_id integer NOT NULL,
+    
+    CONSTRAINT pk_partido PRIMARY KEY(pa_id),
+    CONSTRAINT pa_eq1_id FOREIGN KEY (pa_eq1_id) REFERENCES EQUIPO(eq_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT pa_eq2_id FOREIGN KEY (pa_eq2_id) REFERENCES EQUIPO(eq_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT pa_es_id FOREIGN KEY (pa_es_id) REFERENCES ESTADIO(es_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE ALINEACION(
+	al_id integer,
+    al_capitan boolean NOT NULL,
+    al_posicion varchar(30) NOT NULL,
+    al_titular boolean NOT NULL,
+    al_ju_id integer NOT NULL,
+    al_eq_id integer NOT NULL,
+    al_pa_id integer NOT NULL,
+    CONSTRAINT pk_alineacion PRIMARY KEY(al_id),
+    CONSTRAINT al_ju_id FOREIGN KEY (al_ju_id) REFERENCES JUGADOR(ju_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT al_eq_id FOREIGN KEY (al_eq_id) REFERENCES EQUIPO(eq_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT al_pa_id FOREIGN KEY (al_pa_id) REFERENCES PARTIDO(pa_id) ON DELETE CASCADE ON UPDATE CASCADE
+
+
+);
+
+--Fin de modulo 6
+
 
 --ALTERS
 --Modulo 1
@@ -92,14 +135,36 @@ CREATE SEQUENCE SEQ_Equipo
   CACHE 1;
 --Fin de modulo 4
 
+--Modulo 6
+CREATE SEQUENCE SEQ_Partido
+  START WITH 1
+  INCREMENT BY 1
+  NO MINVALUE
+  NO MAXVALUE
+  CACHE 1;
+
+CREATE SEQUENCE SEQ_Alineacion
+  START WITH 1
+  INCREMENT BY 1
+  NO MINVALUE
+  NO MAXVALUE
+  CACHE 1;
+--Fin de modulo 6
+
+
 --INDEX
 --Modulo 1
 --Fin de modulo
 --Modulo 4
 --Fin de modulo 4
+--Modulo 6
+--Fin de modulo 6
 
 GRANT ALL PRIVILEGES ON TABLE usuario TO admin_copamundial;
 GRANT ALL PRIVILEGES ON TABLE equipo TO admin_copamundial;
+GRANT ALL PRIVILEGES ON TABLE partido TO admin_copamundial;
+GRANT ALL PRIVILEGES ON TABLE alineacion TO admin_copamundial;
+
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO admin_copamundial;
 
 --Fin Creates tables
