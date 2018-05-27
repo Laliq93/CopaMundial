@@ -41,7 +41,7 @@ File: css (style)
 }
 
 .page-content {
-    padding: 15px;
+  padding: 15px;
 }
 /*******************
 4. Banners
@@ -62,7 +62,16 @@ File: css (style)
 /*******************
 8. Media's
 ******************/
+@media screen and (max-width: 992px) {
+  .main-container {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
 
+  .page-content {
+    padding: 15px;
+  }
+}
 /*******************
 9. Custom Templates
 ******************/

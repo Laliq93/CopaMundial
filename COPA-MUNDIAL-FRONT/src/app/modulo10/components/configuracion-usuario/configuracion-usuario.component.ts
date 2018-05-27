@@ -5,18 +5,17 @@ declare var jQuery: any;
 @Component({
   selector: 'app-configuracion-usuario',
   templateUrl: './configuracion-usuario.component.html',
-  styleUrls: ['./configuracion-usuario.component.css', '../style-usuario.component.css']
+  styleUrls: [
+    './configuracion-usuario.component.css',
+    '../style-usuario.component.css'
+  ]
 })
-
 export class ConfiguracionUsuarioComponent implements OnInit, AfterViewInit {
+  constructor(private _zone: NgZone) {}
 
-  constructor(private _zone: NgZone) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngAfterViewInit(): void {
-
     this._zone.runOutsideAngular(() => {
       jQuery('#exampleInputDatePicker1').pickdate({
         cancel: 'Borrar',
@@ -33,10 +32,10 @@ export class ConfiguracionUsuarioComponent implements OnInit, AfterViewInit {
         labelMonthSelect: 'Choose a month from the dropdown menu',
         labelYearSelect: 'Choose a year from the dropdown menu',
         ok: 'Cerrar',
-        onClose: function () {
+        onClose: function() {
           console.log('Datepicker closes');
         },
-        onOpen: function () {
+        onOpen: function() {
           console.log('Datepicker opens');
         },
         selectMonths: true,
@@ -44,7 +43,5 @@ export class ConfiguracionUsuarioComponent implements OnInit, AfterViewInit {
         today: 'Hoy'
       });
     });
-
   }
-
 }
