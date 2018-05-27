@@ -25,9 +25,10 @@ namespace WebAPI.Controllers
         {
             try
             {
+                System.Diagnostics.Debug.WriteLine(usuario);
                 //{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}
-                ValidarCorreo(usuario.Correo);
-                ValidarNombreUsuario(usuario.NombreUsuario);
+                //ValidarCorreo(usuario.Correo);
+                //ValidarNombreUsuario(usuario.NombreUsuario);
                 AgregarUsuario(usuario.NombreUsuario, usuario.Nombre, usuario.Apellido, usuario.FechaNacimiento,
                   usuario.Correo, usuario.Genero, usuario.Password);
 
@@ -60,6 +61,7 @@ namespace WebAPI.Controllers
             {
                 //{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}
 
+                System.Diagnostics.Debug.WriteLine(usuario);
                 usuario.Id = IniciarSesionUsuario(usuario.NombreUsuario, usuario.Password);
                 return Ok(usuario.Id);
             }

@@ -19,7 +19,7 @@ constructor(private router: Router) {}
     //}
     //if(localStorage.getItem('userId') != null){
       
-      return true
+      return false
     /*}
     this.router.navigate(['login']);
     return false;*/

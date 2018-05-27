@@ -5,15 +5,11 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 
 
-export interface IUsuario {
-  NombreUsuario: string;
-  Nombre: string;
-  Apellido: string;
-  FechaNacimiento: string;
-  Correo: string;
-  Genero: string;
-  Password: string;
-}
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
 
 @Component({
   selector: 'app-login',
@@ -32,27 +28,51 @@ export class LoginComponent implements OnInit {
   constructor(private http: HttpClient) {
     this.usuario = new Usuario();
   }
+  
   ngOnInit() {
   }
 
-  registerUser(){
+  registerUser(userRegistrationForm){
     const url = `${this.rootUrl}/M1_RegistroLoginRecuperar/RegistrarUsuario`;
     const httpHeaders = new HttpHeaders().set('Accept', 'application/json');
 
-    this.http
-      .post<IUsuario>(url, { responseType: 'json' })
+
+    const {NombreUsuario, Nombre, Apellido, FechaNacimiento, Correo, Genero, Password} = userRegistrationForm.controls;
+    
+
+    console.log(userRegistrationForm.controls, Nombre.value, Apellido.value);
+    
+    
+    const user = {
+      nombreUsuario   : NombreUsuario.value,
+      nombre          : Nombre.value,
+      apellido        : Apellido.value,
+      fechaNacimiento : FechaNacimiento.value,
+      correo          : Correo.value,
+      genero          : Genero.value,
+      password        : Password.value  
+    };
+
+      this.http
+      .post<Usuario>(url, user, httpOptions)
       .subscribe(data => {
-      this.usuario.nombreUsuario = data.NombreUsuario;
+
+
+      
+      /*this.usuario.nombreUsuario = data.NombreUsuario;
       this.usuario.nombre = data.Nombre;
       this.usuario.apellido = data.Apellido;
       this.usuario.fechaNacimiento = data.FechaNacimiento;
       this.usuario.correo = data.Correo;
       this.usuario.genero = data.Genero;
-      this.usuario.password = data.Password;
+      this.usuario.password = data.Password;*/
 
       console.log(data);
     });
+    
   }
+
+
 
 
 }
