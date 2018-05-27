@@ -70,23 +70,21 @@ namespace WebApiPruebas.M1
             Assert.AreEqual(_idprueba,_id);
         }
 */
- [Test]
+        [Test]
         public void CorreoExistenteExceptionTest()
         {
             //intento insertar persona con iguales correos
-          _pruebacontroller.AgregarUsuario("lauraquinones","Laura","Quinones","14/09/1993","lvqp.93@gmail.com","F","laliquinones14");
-          _pruebacontroller.AgregarUsuario("probando123","Laura","Quinones","14/09/1993","lvqp.93@gmail.com","F","laliquinones14");
+          _pruebacontroller.AgregarUsuario("probando456","Laura","Quinones","14/09/1993","cualquiercosa@gmail.com","F","laliquinones14");
+          Assert.Throws<CorreoExistenteException>(() => _pruebacontroller.AgregarUsuario("probando123","Laura","Quinones","14/09/1993","cualquiercosa@gmail.com","F","laliquinones14"));
         }
  
         [Test]
         public void NombreUsuarioExistenteExceptionTest()
         {
             //intento insertar personas con iguales nombres de usuario
-          _pruebacontroller.AgregarUsuario("lauraquinones","Laura","Quinones","14/09/1993","lvqp.93@gmail.com","F","laliquinones14");
-          _pruebacontroller.AgregarUsuario("lauraquinones","Laura","Quinones","14/09/1993","probando123@gmail.com","F","laliquinones14");
+         _pruebacontroller.AgregarUsuario("probando123","Laura","Quinones","14/09/1993","cualquiercosa@gmail.com","F","laliquinones14");
+          Assert.Throws<CorreoExistenteException>(() => _pruebacontroller.AgregarUsuario("probando123","Laura","Quinones","14/09/1993","cualquiercosa1@gmail.com","F","laliquinones14"));
         }
-        }
- 
 
         [TearDown]
         public void End()
