@@ -25,6 +25,7 @@ namespace WebAPI.Models
             _grupo = grupo;
             _pais = pais;
             _habilitado = habilitado;
+
         }
 
         /// <summary>
