@@ -6,7 +6,7 @@
     
       <div class="form-group">
     
-        <h1>Cristiano Ronaldo</h1>
+        <h1>{{jugador.nombre}}</h1>
     
       </div>
     
@@ -20,12 +20,15 @@
           <tr>
               <td>
                   <p>Edad</p>
+                  <p>{{jugador.edad}} años</p>
               </td>
               <td>
                   <p>Peso</p>
+                  <p>{{jugador.peso}} kg</p>
               </td>
               <td>
                   <p>Altura</p>
+                  <p>{{jugador.altura}} mts</p>
               </td>
           </tr>
       </table>
@@ -43,33 +46,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">Mexico</th>
-              <td>1</td>
-              <td>0</td>
-              <td>1</td>
-              <td>0</td>
-              <td>90</td>
-              <td>9.8</td>
-            </tr>
-            <tr>
-              <th scope="row">Polonia</th>
-              <td>1</td>
-              <td>0</td>
-              <td>1</td>
-              <td>0</td>
-              <td>90</td>
-              <td>9.8</td>
-            </tr>
-            <tr>
-              <th scope="row">Iran</th>
-              <td>1</td>
-              <td>0</td>
-              <td>1</td>
-              <td>0</td>
-              <td>90</td>
-              <td>9.8</td>
-            </tr>
+            <ng-container *ngFor="let dato of datos; let i = index">
+              <tr>
+                <th scope="row">{{dato.pais}}</th>
+                <td>{{dato.goles}}</td>
+                <td>{{dato.asistencias}}</td>
+                <td>{{dato.tamarillas}}</td>
+                <td>{{dato.trojas}}</td>
+                <td>{{dato.mjugados}}</td>
+                <td>{{dato.calificacion}}</td>
+              </tr>
+            </ng-container>
           </tbody>
         </table>
       
