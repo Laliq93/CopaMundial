@@ -54,7 +54,7 @@ export class ApiService {
 
         this._conexion.Controlador = 'ActualizarCorreoUsuario';
         let url = this._conexion.RutaApi+this._conexion.Controlador;
-
+     
         this.http.put<IUsuario10>(url, usuario, { responseType: 'json'}).subscribe(data => {
             if(data != null){
                 this._usuario10.Message = data.Message;

@@ -70,9 +70,11 @@
               <div class="form-group">
                 <label class="col-md-12">Contraseña</label>
                 <div class="col-md-12">
-                  <input type="password" placeholder="" class="form-control form-control-line">
+                  <input type="password" placeholder="" class="form-control form-control-line" 
+                   name="password" id="password" [(ngModel)]="_usuario.Password">
                 </div>
               </div>
+
               <br>
               <br>
 
@@ -80,10 +82,10 @@
                 <label for="email" class="col-md-12">Introduzca Nuevo Email</label>
                 <div class="col-md-12">
                   <input type="email" placeholder="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control form-control-line"
-                    name="email" id="email" [(ngModel)]="email"  #email="ngModel">
+                    name="email" id="email" [(ngModel)]="_usuario.Correo"  #email="ngModel">
 
-                  <div *ngIf="email.errors &&(email.touched || email.dirty)" class="aler alert-danger">
-                    <div [hidden]="!email.errors?.pattern">
+                  <div *ngIf="email.errors &&  (email.touched || email.dirty)" class="aler alert-danger">
+                    <div [hidden]="!email.errors?.pattern || email">
                       Email Invalido
                     </div>
                   </div>
@@ -95,7 +97,7 @@
                 <label for="emailConfirm" class="col-md-12">Confirmar</label>
                 <div class="col-md-12">
                   <input type="email" placeholder="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control form-control-line"
-                    name="emailConfirm" id="emailConfirm" [ngModel]="emailConfirm" #emailConfirm="ngModel">
+                    name="emailConfirm" id="emailConfirm" [(ngModel)]="_correoConfirm" #emailConfirm="ngModel">
               
                   <div *ngIf="emailConfirm.errors && (emailConfirm.touched || emailConfirm.dirty)" class="aler alert-danger">
                     <div [hidden]="!emailConfirm.errors?.pattern">
@@ -108,7 +110,7 @@
 
               <div class="form-group">
                 <div class="col-sm-12">
-                  <button class="btn btn-success">Actualizar Email</button>
+                  <button class="btn btn-success"  (click)="VerificarEmail()">Actualizar Email</button>
                 </div>
               </div>
 
