@@ -295,14 +295,6 @@ C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\NUnit3.Tes
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\nunit.engine.dll
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\nunit.engine.api.dll
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\Mono.Cecil.dll
-<<<<<<< HEAD
-C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\bin\System.Web.Cors.dll
-C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.dll
-C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.xml
-C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Web.Cors.dll
-C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.dll
-C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.xml
-=======
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\NUnit3.TestAdapter.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\NUnit3.TestAdapter.pdb
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\nunit.engine.dll
@@ -407,4 +399,15 @@ C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\es\System.Web.Http.WebHost.resources.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.pdb
->>>>>>> 2dde2235cfd33fb31cca95dfbad0a4579a85adcd
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Web.Cors.dll
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.dll
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.xml
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\Npgsql.dll
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.ValueTuple.dll
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\Npgsql.pdb
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\Npgsql.xml
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.ValueTuple.xml

@@ -49,33 +49,21 @@ $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION IniciarSesionUsuario(_nombreUsuario varchar, _password varchar)
 RETURNS TABLE
-  (id integer,
-   nombreUsuario varchar,
-   nombre varchar,
-   apellido varchar,
-   fechaNacimiento date,
-   correo varchar,
-   genero varchar)
+  (id integer)
 AS
 $$
 BEGIN
 	RETURN QUERY SELECT
 	us_id
 	FROM usuario
-	WHERE us_nombreusuario=_nombreUsuario AND md5(_password) = us_password;
+	WHERE us_nombreUsuario=_nombreUsuario AND md5(_password) = us_password;
 END;
 $$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION IniciarSesionCorreo(_correo varchar, _password varchar)
 RETURNS TABLE
-  (id integer,
-   nombreUsuario varchar,
-   nombre varchar,
-   apellido varchar,
-   fechaNacimiento date,
-   correo varchar,
-   genero varchar)
+  (id integer)
 AS
 $$
 BEGIN
