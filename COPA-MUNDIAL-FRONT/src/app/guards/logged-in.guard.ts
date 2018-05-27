@@ -17,6 +17,11 @@ constructor(private router: Router) {}
       //this.router.navigate(['login']);
       //return false;
     //}
-    return true;
+    //if(localStorage.getItem('userId') != null){
+      
+      return true
+    /*}
+    this.router.navigate(['login']);
+    return false;*/
   }
 }
