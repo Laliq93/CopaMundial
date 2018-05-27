@@ -339,7 +339,7 @@ namespace WebAPI.Controllers
             for(int i = 0; i < _database.cantidadRegistros; i++)
             {
                 usuarioLista = new Usuario(_database.GetInt(i, 0), _database.GetString(i, 1), _database.GetString(i, 2), 
-                    _database.GetString(i, 3), Convert.ToDateTime(_database.GetString(i, 4)).ToShortDateString(), _database.GetString(i, 5));
+                    _database.GetString(i, 3), Convert.ToDateTime(_database.GetString(i, 4)).ToShortDateString(), _database.GetString(i, 5), activo);
 
                 _listaUsuarios.Add(usuarioLista);
             }

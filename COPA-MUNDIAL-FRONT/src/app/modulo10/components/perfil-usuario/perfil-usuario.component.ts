@@ -89,4 +89,9 @@ export class PerfilUsuarioComponent implements OnInit {
     this._api10.AdministradorActivarCuenta(usuarioNormal);
 
   }
+
+  TestVerActivos(){
+    
+    this._api10.VerUsuariosNoActivos();
+  }
 }
