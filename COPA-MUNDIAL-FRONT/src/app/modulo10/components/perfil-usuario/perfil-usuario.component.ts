@@ -64,24 +64,29 @@ export class PerfilUsuarioComponent implements OnInit {
   TestDesactivarCuentaPropia() {
     this._usuario.Password = 'pepe';
 
-    if (!this._usuario.Activo) {
-      bootbox.alert('La cuenta ya está desactivada');
-      return;
-    }
-
     this._api10.DesactivarCuentaPropia(this._usuario);
 
     this._usuario = this._api10.ObtenerDatos();
   }
 
+  TestDesactivar() {
+    
+    let usuarioNormal : Usuario10;
+    usuarioNormal = new Usuario10();
+    usuarioNormal.Id = 3;
+
+
+    this._api10.AdministradorDesactivaCuenta(usuarioNormal);
+
+  }
+
   TestActivar() {
-    if (this._usuario.Activo) {
-      bootbox.alert('La cuenta ya está activa');
-      return;
-    }
 
-    this._api10.ActivarCuenta(this._usuario);
+    let usuarioNormal : Usuario10;
+    usuarioNormal = new Usuario10();
+    usuarioNormal.Id = 3;
 
-    this._usuario = this._api10.ObtenerDatos();
+    this._api10.AdministradorActivarCuenta(usuarioNormal);
+
   }
 }
