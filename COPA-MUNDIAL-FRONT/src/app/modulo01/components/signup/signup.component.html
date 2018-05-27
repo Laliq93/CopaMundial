@@ -52,7 +52,7 @@
           <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirmar contraseña">
         </div>
 
-        <button [disabled]="!UsuarioForm.form.valid" type="submit" class="btn btn-primary btn-signin">Registrarse</button>
+        <button (click)="signin()" [disabled]="!UsuarioForm.form.valid" type="submit" class="btn btn-primary btn-signin">Registrarse</button>
       </form>
     </div>
   </div>
