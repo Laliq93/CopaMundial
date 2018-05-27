@@ -14,17 +14,19 @@ declare var bootbox: any;
   ]
 })
 export class SeguridadUsuarioComponent implements OnInit {
-  private _usuario: Usuario10;
-  private _api10: ApiService;
+  public _usuario: Usuario10;
+  public _api10: ApiService;
 
-  private _correoConfirm;
+  public _correoConfirm;
 
   constructor(private http: HttpClient) {
     this._api10 = new ApiService(http);
     this._usuario = new Usuario10();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._usuario = this._api10.ObtenerDatos();
+  }
 
   VerificarEmail() {
     if (

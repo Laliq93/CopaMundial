@@ -199,23 +199,8 @@ File: css (style-usuario)
   margin-bottom: 0px;
 }
 
-.page-titles .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
-  content: "\e649";
-  font-family: themify;
-  color: #a6b7bf;
-  font-size: 11px;
-}
-
-.breadcrumb {
-  margin-bottom: 0px;
-}
-
 .page-titles .breadcrumb .breadcrumb-item.active {
-  color: #99abb4;
-}
-
-.page-titles .justify-content-end:last-child .d-flex {
-  margin-right: 10px;
+  color: #2491c7;
 }
 
 /*******************

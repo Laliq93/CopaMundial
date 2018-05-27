@@ -18,15 +18,14 @@
 <div class="row">
 
   <div class="col-lg-4 col-xlg-3 col-md-5">
-
     <div class="card">
       <img class="card-img-top" src="../assets/images/background/profile-bg.jpg" alt="Card image cap">
       <div class="card-block little-profile text-center">
         <div class="pro-img">
           <img src="../assets/images/users/1.jpg" alt="user" />
         </div>
-        <h3 class="m-b-0">Felix Morales</h3>
-        <p>Web Designer &amp; Developer</p>
+        <h3 class="m-b-0">{{_usuario.Nombre+' '+_usuario.Apellido}}</h3>
+        <p>Cumpleaños: {{_usuario.FechaNacimiento}} Correo: {{_usuario.Correo}}</p>
         <div class="row text-center m-t-20">
           <div class="col-lg-4 col-md-4 m-t-20">
             <h3 class="m-b-0 font-light">1099</h3>
@@ -50,28 +49,27 @@
 
       <ul class="nav nav-tabs profile-tab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Email</a>
+          <a class="nav-link active" data-toggle="tab" href="#email" role="tab">Email</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Contraseña</a>
+          <a class="nav-link" data-toggle="tab" href="#pass" role="tab">Contraseña</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Desactivar</a>
+          <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Desactivar</a>
         </li>
       </ul>
 
       <div class="tab-content">
 
-        <div class="tab-pane active" id="home" role="tabpanel">
+        <div class="tab-pane active" id="email" role="tabpanel">
           <div class="card-body">
 
-            <form class="form-horizontal form-material" >
+            <form class="form-horizontal form-material">
 
               <div class="form-group">
                 <label class="col-md-12">Contraseña</label>
                 <div class="col-md-12">
-                  <input type="password" placeholder="" class="form-control form-control-line" 
-                   name="password" id="password" [(ngModel)]="_usuario.Password">
+                  <input type="password" placeholder="" class="form-control form-control-line" name="password" id="password" [(ngModel)]="_usuario.Password">
                 </div>
               </div>
 
@@ -82,7 +80,7 @@
                 <label for="email" class="col-md-12">Introduzca Nuevo Email</label>
                 <div class="col-md-12">
                   <input type="email" placeholder="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control form-control-line"
-                    name="email" id="email" [(ngModel)]="_usuario.Correo"  #email="ngModel">
+                    name="email" id="email" [(ngModel)]="_usuario.Correo" #email="ngModel">
 
                   <div *ngIf="email.errors &&  (email.touched || email.dirty)" class="aler alert-danger">
                     <div [hidden]="!email.errors?.pattern || email">
@@ -98,19 +96,19 @@
                 <div class="col-md-12">
                   <input type="email" placeholder="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control form-control-line"
                     name="emailConfirm" id="emailConfirm" [(ngModel)]="_correoConfirm" #emailConfirm="ngModel">
-              
+
                   <div *ngIf="emailConfirm.errors && (emailConfirm.touched || emailConfirm.dirty)" class="aler alert-danger">
                     <div [hidden]="!emailConfirm.errors?.pattern">
                       Email Invalido
                     </div>
                   </div>
-              
+
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-sm-12">
-                  <button class="btn btn-success"  (click)="VerificarEmail()">Actualizar Email</button>
+                  <button class="btn btn-success" (click)="VerificarEmail()">Actualizar Email</button>
                 </div>
               </div>
 
@@ -120,17 +118,16 @@
         </div>
 
 
-        <div class="tab-pane" id="profile" role="tabpanel">
+        <div class="tab-pane" id="pass" role="tabpanel">
           <div class="card-body">
 
             <form class="form-horizontal form-material">
 
-              <div class="form-inline">
+              <div class="form-group">
                 <label class="col-md-12">Contraseña Anterior</label>
-                <div class="col-md-6">
-                  <input type="password" placeholder="Password" class="form-control form-control-line">
+                <div class="col-md-12">
+                  <input type="password" class="form-control form-control-line">
                 </div>
-                <button type="submit" class="btn btn-info">Verificar</button>
               </div>
               <br>
               <br>
@@ -159,49 +156,11 @@
           </div>
         </div>
 
-        <div class="tab-pane" id="settings" role="tabpanel">
+        <div class="tab-pane" id="profile" role="tabpanel">
           <div class="card-body">
-            <form class="form-horizontal form-material">
-
-              <div class="form-group">
-                <label class="col-md-12">Nombre</label>
-                <div class="col-md-12">
-                  <input type="text" placeholder="Felix" class="form-control form-control-line">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-12">Apellido</label>
-                <div class="col-md-12">
-                  <input type="text" placeholder="Morales" class="form-control form-control-line">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="example-email" class="col-md-12">Email</label>
-                <div class="col-md-12">
-                  <input type="email" placeholder="felixMorales@hotmail.com" class="form-control form-control-line" name="example-email" id="example-email">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-12">Contraseña</label>
-                <div class="col-md-12">
-                  <input type="password" value="password" class="form-control form-control-line">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-12">Telefono</label>
-                <div class="col-md-12">
-                  <input type="text" placeholder="0412 2953841" class="form-control form-control-line">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-sm-12">
-                  <button class="btn btn-success">Actualizar Perfil</button>
-                </div>
-              </div>
-
-            </form>
+            <button class="btn btn-danger" (click)="VerificarEmail()">Desactivar Usuario</button>
           </div>
+
         </div>
       </div>
     </div>

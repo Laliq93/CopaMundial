@@ -7,9 +7,9 @@
     <h2 class="text-themecolor m-b-0 m-t-0">Perfil</h2>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="">Inicio</a>
+        <a href="#">Home</a>
       </li>
-      <li class="breadcrumb-item active">Configuracion Perfil</li>
+      <li class="breadcrumb-item active" aria-current="page">Library</li>
     </ol>
   </div>
 </div>
@@ -17,15 +17,14 @@
 <div class="row">
 
   <div class="col-lg-4 col-xlg-3 col-md-5">
-
     <div class="card">
       <img class="card-img-top" src="../assets/images/background/profile-bg.jpg" alt="Card image cap">
       <div class="card-block little-profile text-center">
         <div class="pro-img">
           <img src="../assets/images/users/1.jpg" alt="user" />
         </div>
-        <h3 class="m-b-0">Felix Morales</h3>
-        <p>Web Designer &amp; Developer</p>
+        <h3 class="m-b-0">{{_usuario.Nombre+' '+_usuario.Apellido}}</h3>
+        <p>Cumpleaños: {{_usuario.FechaNacimiento}} Correo: {{_usuario.Correo}}</p>
         <div class="row text-center m-t-20">
           <div class="col-lg-4 col-md-4 m-t-20">
             <h3 class="m-b-0 font-light">1099</h3>

@@ -16,8 +16,8 @@ declare var bootbox: any;
   ]
 })
 export class PerfilUsuarioComponent implements OnInit {
-  private _usuario: Usuario10;
-  private _api10: ApiService;
+  public _usuario: Usuario10;
+  public _api10: ApiService;
 
   constructor(private http: HttpClient) {
     this._api10 = new ApiService(http);

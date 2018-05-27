@@ -1,4 +1,7 @@
 import { Component, OnInit, NgZone, AfterViewInit } from '@angular/core';
+import { Usuario10 } from '../../models/usuario.model';
+import { ApiService } from '../../services/api10.services';
+import { HttpClient } from '@angular/common/http';
 
 declare var jQuery: any;
 declare var bootbox: any;
@@ -12,9 +15,17 @@ declare var bootbox: any;
   ]
 })
 export class ConfiguracionUsuarioComponent implements OnInit, AfterViewInit {
-  constructor(private _zone: NgZone) {}
+  public _usuario: Usuario10;
+  public _api10: ApiService;
 
-  ngOnInit() {}
+  constructor(private _zone: NgZone, private http: HttpClient) {
+    this._api10 = new ApiService(http);
+    this._usuario = new Usuario10();
+  }
+
+  ngOnInit() {
+    this._usuario = this._api10.ObtenerDatos();
+  }
 
   ngAfterViewInit(): void {
     this._zone.runOutsideAngular(() => {
