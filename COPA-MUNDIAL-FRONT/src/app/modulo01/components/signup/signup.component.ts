@@ -34,17 +34,15 @@ export class SignupComponent implements OnInit {
   private emailResponse;
   private truefalse:boolean = false;
 
-
-
-  constructor(private http: HttpClient, private _zone: NgZone) { 
+  constructor(private http: HttpClient) {
     this.usuario = new Usuario();
   }
 
   ngOnInit() {
-    this.resetForm();
+    //this.resetForm();
   }
 
-  resetForm(form?: NgForm) {
+  /*resetForm(form?: NgForm) {
     if (form != null)
       form.reset();
     this.usuario = {
@@ -56,29 +54,30 @@ export class SignupComponent implements OnInit {
       genero: '',
 			password: ''
     }
+  }*/
+
+  registerUser(){
+    const url = `${this.rootUrl}/M1_RegistroLoginRecuperar/RegistrarUsuario`;
+    const httpHeaders = new HttpHeaders().set('Accept', 'application/json');
+
+    this.http
+      .post<IUsuario>(url, { responseType: 'json' })
+      .subscribe(data => {
+      this.usuario.nombreUsuario = data.NombreUsuario;
+      this.usuario.nombre = data.Nombre;
+      this.usuario.apellido = data.Apellido;
+      this.usuario.fechaNacimiento = data.FechaNacimiento;
+      this.usuario.correo = data.Correo;
+      this.usuario.genero = data.Genero;
+      this.usuario.password = data.Password;
+
+      console.log(data);
+    });
   }
-
-  RegistrarUsuario(usuario : Usuario){
-    const body: Usuario = {
-      nombreUsuario : usuario.nombreUsuario,
-      nombre : usuario.nombre,
-      apellido : usuario.apellido,
-      fechaNacimiento : usuario.fechaNacimiento,
-      correo : usuario.correo,
-      genero : usuario.genero,
-      password : usuario.password,
-    }
-
-    return this.http.post(this.rootUrl + '/M1_RegistroLoginRecuperar/RegistrarUsuario', body);
-  }
-
+  
   /*recoveryPassword(): void {
     this.router.navigate(['recovery']);
 	}*/
-  
-  OnSubmit(form : NgForm){
-    this.RegistrarUsuario(form.value);
-  }
 
   
 }
