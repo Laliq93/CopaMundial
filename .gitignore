@@ -13,3 +13,6 @@ WebAPI\.vs
 WebAPI/.vs/WebAPI/v15/sqlite3/storage.ide
 WebAPI/WebAPI/obj/Debug/WebAPI.csproj.FileListAbsolute.txt
 WebAPI/WebApiPruebas/obj/Debug/WebApiPruebas.csproj.FileListAbsolute.txt
+WebAPI/WebApiPruebas/obj/Debug/WebApiPruebas.csprojResolveAssemblyReference.cache
+WebAPI/WebApiPruebas/bin/Debug/nunit_random_seed.tmp
+WebAPI/WebAPI/obj/Debug/WebAPI.csprojResolveAssemblyReference.cache
