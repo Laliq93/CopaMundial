@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
 
         }
 
-        [Route("EditarJugador/{nombre}/{apellido}/{fechaNacimiento}/{lugarNacimiento}/{peso}/{altura}/{club}/{equipo}/{numero}/{posicion}/{capitan}")]
+        [Route("EditarJugador/{id}/{nombre}/{apellido}/{fechaNacimiento}/{lugarNacimiento}/{peso}/{altura}/{club}/{equipo}/{numero}/{posicion}/{capitan}")]
         [HttpPost, HttpGet]
         public IHttpActionResult EditarJugador(int id, string nombre, string apellido, string fechaNacimiento, string lugarNacimiento,
             double peso, double altura, string club, int equipo, int numero, string posicion, bool capitan)
@@ -77,6 +77,24 @@ namespace WebAPI.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error en el servidor:" + e.Message));
             }
 
+        }
+
+        [Route("BuscarJugador/{idUsuario:int}")]
+        [System.Web.Http.AcceptVerbs("GET")]
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage BuscarJugador(int id)
+        {
+            try
+            {
+                GetJugador(id);
+
+                return Request.CreateResponse(HttpStatusCode.OK, _jugador);
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error en el servidor:" + e.Message));
+            }
         }
 
         private void InsertarJugador(Jugador jugador)
@@ -145,11 +163,30 @@ namespace WebAPI.Controllers
             for (int i = 0; i < _database.cantidadRegistros; i++)
             {
                 jugadorLista = new Jugador(_database.GetInt(i, 0), _database.GetString(i, 1), _database.GetString(i, 2),
-                    Convert.ToDateTime(_database.GetString(i, 3)).ToShortDateString(), _database.GetString(i, 4), _database.GetDouble(i, 5), _database.GetDouble(i, 6), _database.GetString(1, 7), 
+                    Convert.ToDateTime(_database.GetString(i, 3)).ToShortDateString(), _database.GetString(i, 4), _database.GetDouble(i, 5), _database.GetDouble(i, 6), _database.GetString(i, 7), 
                     _database.GetInt(i, 8), _database.GetInt(i, 9), _database.GetString(i, 10), _database.GetBool(i, 11));
 
                 _listaJugadores.Add(jugadorLista);
             }
         }
+
+        public Jugador GetJugador(int id)
+        {
+            _database.Conectar();
+
+            _database.StoredProcedure("buscarjugador(@id)");
+
+            _database.AgregarParametro("id", id);
+
+            _database.EjecutarReader();
+
+            _jugador = new Jugador(_database.GetInt(0, 0), _database.GetString(0, 1), _database.GetString(i0, 2),
+                    Convert.ToDateTime(_database.GetString(0, 3)).ToShortDateString(), _database.GetString(0, 4), _database.GetDouble(0, 5), _database.GetDouble(0, 6), _database.GetString(0, 7),
+                    _database.GetInt(0, 8), _database.GetInt(0, 9), _database.GetString(0, 10), _database.GetBool(0, 11));
+
+            return _jugador;
+
+        }
+
     }
 }
