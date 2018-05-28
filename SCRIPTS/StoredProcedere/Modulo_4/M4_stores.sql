@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION m4_traer_pais(idioma VARCHAR(2))
-RETURNS TABLE (iso VARCHAR(3), nombre text, pk, id)
+RETURNS TABLE (iso VARCHAR(3), nombre text, pk integer, id integer)
 
 AS $$
 DECLARE
