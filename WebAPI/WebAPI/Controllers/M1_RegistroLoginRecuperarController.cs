@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Ingresa dentro de la base de datos del sistema un usuario
         /// </summary>
-        /// <param Usuario="usuario">Objeto usuario</param>
+        /// <param name="usuario">Objeto usuario</param>
         /// <returns>Retorna mensaje de exito</returns>
         /// <exception cref="NombreUsuarioExistenteException">Excepcion HTTP cuando el nombre de
         ///  usuario ya existe en el sistema, con su respectivo codigo</exception>
@@ -66,7 +66,7 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Inicia sesion dentro del sistema con el nombre de usuario
         /// </summary>
-        /// <param Usuario="usuario">Objeto usuario</param>
+        /// <param name="usuario">Objeto usuario</param>
         /// <returns>Retorna el id del usuario que ingresa en el sistema</returns>
         /// <exception cref="NombreUsuarioNoExisteException">Excepcion HTTP cuando el nombre de
         ///  usuario no existe en el sistema, con su respectivo codigo</exception>
@@ -115,6 +115,19 @@ namespace WebAPI.Controllers
 
         }
 
+
+        /// <summary>
+        /// Inicia sesion dentro del sistema con el correo del usuario
+        /// </summary>
+        /// <param name="usuario">Objeto usuario</param>
+        /// <returns>Retorna el id del usuario que ingresa en el sistema</returns>
+        /// <exception cref="CorreoNoExisteException">Excepcion HTTP cuando el correo de
+        ///  usuario no existe en el sistema, con su respectivo codigo</exception>
+        /// <exception cref="UsuarioInactivoException">Excepcion HTTP cuando el usuario
+        /// se encuentra inactivo en el sistema, con su respectivo codigo</exception>
+        /// <exception cref="ClaveCorreoNoCoincideException">Excepcion HTTP cuando el correo del usuario
+        /// no coincide con la clave ingresada, con su respectivo codigo</exception>
+        /// <exception cref="Exception">Excepcion HTTP que le brinda robustez al metodo</exception>
         [Route("IniciarSesionCorreo")]
         [System.Web.Http.AcceptVerbs("POST")]
         [System.Web.Http.HttpPost]
@@ -153,6 +166,15 @@ namespace WebAPI.Controllers
 
         }
 
+
+        /// <summary>
+        /// Recupera la contraseña del cliente mandandole un codigo de recuperacion al correo del usuario
+        /// </summary>
+        /// <param name="usuario">Objeto usuario</param>
+        /// <returns>Retorna un mensaje de exito</returns>
+        /// <exception cref="CorreoNoExisteException">Excepcion HTTP cuando el correo de
+        ///  usuario no existe en el sistema, con su respectivo codigo</exception>
+        /// <exception cref="Exception">Excepcion HTTP que le brinda robustez al metodo</exception>
         [Route("RecuperarClave")]
         [System.Web.Http.AcceptVerbs("POST")]
         [System.Web.Http.HttpPost]
@@ -180,6 +202,17 @@ namespace WebAPI.Controllers
 
         }
 
+
+        /// <summary>
+        /// Cambia la clave del usuario dentro del sistema
+        /// </summary>
+        /// <param name="usuario">Objeto usuario</param>
+        /// <returns>Retorna el id del usuario que ingresa en el sistema</returns>
+        /// <exception cref="CodigoNoCoincideException">Excepcion HTTP cuando el ccodigo ingresado no 
+        /// coincide con el enviado al correo del usuario, con su respectivo codigo</exception>
+        /// <exception cref="CorreoNoExisteException">Excepcion HTTP cuando el correo del usuario
+        /// no existe dentro del sistema, con su respectivo codigo</exception>
+        /// <exception cref="Exception">Excepcion HTTP que le brinda robustez al metodo</exception>
         [Route("CambiarClave")]
         [System.Web.Http.AcceptVerbs("POST")]
         [System.Web.Http.HttpPost]
@@ -195,7 +228,7 @@ namespace WebAPI.Controllers
 
 
             }
-            catch(CodigoNoCoincide e)
+            catch(CodigoNoCoincideException e)
             {
                 _database.Desconectar();
                 return BadRequest("Error en el servidor: " + e.Message);
@@ -217,6 +250,10 @@ namespace WebAPI.Controllers
         }
 
 
+        /// <summary>
+        /// Envia el correo de recuperacion de contraseña
+        /// </summary>
+        /// <param name="correo">correo del usuario</param>
         public void EnviarCorreo(string correo)
         {
             MailMessage _email = new MailMessage();
@@ -253,6 +290,17 @@ namespace WebAPI.Controllers
 
         }
 
+
+        /// <summary>
+        /// Agrega al usuario en la bd
+        /// </summary>
+        /// <param name="nombreUsuario">nombre del usuario</param>
+        /// <param name="nombre">nombre</param>
+        /// <param name="apellido">apellido del usuario</param>   
+        /// <param name="fechaNacimiento">fecha de nacimiento del usuario</param>
+        /// <param name="correo">correo del usuario</param>
+        /// <param name="genero">genero del usuario</param>   
+        /// <param name="password">password del usuario</param>
         private void AgregarUsuario(string nombreUsuario, string nombre, string apellido, 
             string fechaNacimiento, string correo, char genero, string password)
         {
@@ -272,6 +320,11 @@ namespace WebAPI.Controllers
         }
 
 
+        /// <summary>
+        /// Iniciar sesion en el sistema con el correo verificando en la bd los datos
+        /// </summary>
+        /// <param name="correo">correo del usuario</param>
+        /// <param name="password">password del usuario</param>
         private int IniciarSesionCorreo(string correo, string password)
         {
 
@@ -290,6 +343,11 @@ namespace WebAPI.Controllers
             return _id;
         }
 
+        /// <summary>
+        /// Iniciar sesion en el sistema con el nombre de usuario verificando en la bd los datos
+        /// </summary>
+        /// <param name="nombreUsuario">nombre del usuario</param>
+        /// <param name="password">password del usuario</param>
         private int IniciarSesionUsuario(string nombreUsuario, string password)
         {
             int _id;
@@ -308,6 +366,12 @@ namespace WebAPI.Controllers
         }
 
 
+        /// <summary>
+        /// cambia la contraseña del usuario en la bd
+        /// </summary>
+        /// <param name="token">codigo de recuperacion del usuario</param>
+        /// <param name="correo">correo del usuario</param>
+        /// <param name="password">password del usuario</param>
         private void CambiarPassword(string token, string correo, string password)
         {
 
@@ -324,8 +388,12 @@ namespace WebAPI.Controllers
             _database.EjecutarQuery();
         }
 
-        
 
+        /// <summary>
+        /// validar que el usuario y la contraseña coincidan
+        /// </summary>
+        /// <param name="nombreUsuario">nombre del usuario</param>
+        /// <param name="password">password del usuario</param>
         private void ValidarUsuarioPassword(string nombreUsuario, string password)
         {
             int _contador;
@@ -348,6 +416,12 @@ namespace WebAPI.Controllers
 
         }
 
+
+        /// <summary>
+        /// validar que el correo y la contraseña coincidan
+        /// </summary>
+        /// <param name="correo">correo del usuario</param>
+        /// <param name="password">password del usuario</param>
         private void ValidarCorreoPassword(string correo, string password)
         {
             int _contador;
@@ -369,6 +443,11 @@ namespace WebAPI.Controllers
 
         }
 
+
+        /// <summary>
+        /// validar que el nombre de usuario exista en la bd
+        /// </summary>
+        /// <param name="nombreUsuario">nombre del usuario</param>
         private void ValidarNombreUsuario(string nombreUsuario)
         {
             int _contador;
@@ -388,6 +467,11 @@ namespace WebAPI.Controllers
             }
         }
 
+
+        /// <summary>
+        /// validar que el nombre de usuario no exista en la bd
+        /// </summary>
+        /// <param name="nombreUsuario">nombre del usuario</param>
         private void ValidarNombreUsuarioNoExiste(string nombreUsuario)
         {
             int _contador; //contador de filas retornadas por la bd
@@ -408,6 +492,11 @@ namespace WebAPI.Controllers
 
         }
 
+
+        /// <summary>
+        /// validar que el correo de usuario exista en la bd
+        /// </summary>
+        /// <param name="correo">correo del usuario</param>
         private void ValidarCorreo(string correo)
         {
             int _contador; //contador de filas retornadas por la bd
@@ -427,6 +516,11 @@ namespace WebAPI.Controllers
 
         }
 
+
+        /// <summary>
+        /// validar que el correo de usuario no exista en la bd
+        /// </summary>
+        /// <param name="correo">correo del usuario</param>
         private void ValidarCorreoNoExiste(string correo)
         {
             int _contador; //contador de filas retornadas por la bd
@@ -447,6 +541,11 @@ namespace WebAPI.Controllers
 
         }
 
+
+        /// <summary>
+        /// validar que el usuario se encuentre activo
+        /// </summary>
+        /// <param name="nombreUsuario">nombre del usuario</param>
         private void ValidarUsuarioActivo(string nombreUsuario)
         {
             int _contador; //contador de filas retornadas por la bd
@@ -466,6 +565,11 @@ namespace WebAPI.Controllers
 
         }
 
+
+        /// <summary>
+        /// validar que el usuario se encuentre activo
+        /// </summary>
+        /// <param name="correo">correo del usuario</param>
         private void ValidarCorreoActivo(string correo)
         {
             int _contador; //contador de filas retornadas por la bd
@@ -485,6 +589,12 @@ namespace WebAPI.Controllers
 
         }
 
+
+
+        /// <summary>
+        /// validar que el codigo de recuperacion de contraseña coincida 
+        /// </summary>
+        /// <param name="nombreUsuario">nombre del usuario</param>
         private void ValidarToken(string token)
         {
             int _contador; //contador de filas retornadas por la bd
@@ -499,9 +609,8 @@ namespace WebAPI.Controllers
             _contador = _database.GetInt(0, 0);
 
             if (_contador < 1)
-                throw new CodigoNoCoincide(token);
-
-
+                throw new CodigoNoCoincideException(token);
+        
         }
     }
 }
