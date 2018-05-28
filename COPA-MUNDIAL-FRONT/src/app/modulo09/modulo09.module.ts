@@ -7,6 +7,8 @@ import { EstpartidoComponent } from './estpartido/estpartido.component';
 import { EstjugadorComponent } from './estjugador/estjugador.component';
 import { PredequipoComponent } from './predequipo/predequipo.component';
 import { PredjugadorComponent } from './predjugador/predjugador.component';
+import { GenestjugComponent } from './genestjug/genestjug.component';
+import { EstequiposComponent } from './estequipos/estequipos.component';
 
 
 @NgModule({
@@ -14,6 +16,6 @@ import { PredjugadorComponent } from './predjugador/predjugador.component';
     CommonModule,
     Modulo09RoutingModule
   ],
-  declarations: [EstgeneralComponent, EstpartidoComponent, EstjugadorComponent, PredequipoComponent, PredjugadorComponent]
+  declarations: [EstgeneralComponent, EstpartidoComponent, EstjugadorComponent, PredequipoComponent, PredjugadorComponent, GenestjugComponent, EstequiposComponent]
 })
 export class Modulo09Module { }

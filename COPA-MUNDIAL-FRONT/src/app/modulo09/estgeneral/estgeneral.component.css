@@ -2,19 +2,15 @@
   
     margin-left: auto;
     margin-right: auto;
-    display: block;
+    display: block
    
 
 };
 .margen{
-   
-    padding-top: 30%;
-    margin-top: 10%;
-    display: inline-block;
-    
+    margin-top: 50%
 }
 
 .btn-signin{
     background-color: #A11D1B;
-    margin-top: 1%;
+    margin-top: 1%
  }
