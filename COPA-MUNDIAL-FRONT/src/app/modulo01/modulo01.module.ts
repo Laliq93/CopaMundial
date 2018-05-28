@@ -9,6 +9,8 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { SigninComponent } from './components/signin/signin.component';
+import { RecoveryComponent } from './components/recovery/recovery.component';
+import { ChangePasswordComponent } from './components/changePassword/changePassword.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -22,6 +24,6 @@ import { HttpClientModule } from '@angular/common/http';
     LoggedInGuard,
     NotLoggedInGuard
   ],
-  declarations: [HomeComponent, LoginComponent, SignupComponent, SigninComponent]
+  declarations: [HomeComponent, LoginComponent, SignupComponent, SigninComponent, RecoveryComponent, ChangePasswordComponent]
 })
 export class Modulo01Module { }
