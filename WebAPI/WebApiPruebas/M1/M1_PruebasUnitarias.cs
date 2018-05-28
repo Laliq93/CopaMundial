@@ -24,7 +24,7 @@ namespace WebApiPruebas.M1
         _usuarioprueba = new Usuario
        {
         _nombreUsuario = "alefernandez",
-        _nombre = "Alejandro"
+        _nombre = "Alejandro",
         _apellido = "Fernandez",
         _fechaNacimiento = "14/09/1993",
         _correo = "pedropaff7@gmail.com",
@@ -46,7 +46,7 @@ namespace WebApiPruebas.M1
         {
         // valida que se pudo registrar al usuario
         // _pruebacontroller.ValidarNombreUsuario(_usuarioprueba._nombreUsuario);
-        Assert.AreEqual(HttpStatusCode.OK, _pruebacontroller.RegistrarUsuario(_usuarioprueba);
+        Assert.AreEqual(HttpStatusCode.OK, _pruebacontroller.RegistrarUsuario(_usuarioprueba));
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace WebApiPruebas.M1
         public void RecuperarClave()
         {
             _pruebacontroller.AgregarUsuario(_usuarioprueba);
-            Assert.AreEqual(HttpStatusCode.OK, _pruebacontroller.RecuperarClave(_usuarioprueba);
+            Assert.AreEqual(HttpStatusCode.OK, _pruebacontroller.RecuperarClave(_usuarioprueba));
             //valido que envia el correo para recuperar la contrasena
         }
 
@@ -69,14 +69,14 @@ namespace WebApiPruebas.M1
         public void IniciarSesionTest()
         {
             _pruebacontroller.AgregarUsuario(_usuarioprueba);
-            Assert.AreEqual(HttpStatusCode.OK, _pruebacontroller.IniciarSesionUsuario(_usuarioprueba);
+            Assert.AreEqual(HttpStatusCode.OK, _pruebacontroller.IniciarSesionUsuario(_usuarioprueba));
         }
 
         [Test]
         public void IniciarSesionCorreoTest()
         {
             _pruebacontroller.AgregarUsuario(_usuarioprueba);
-            Assert.AreEqual(HttpStatusCode.OK, _pruebacontroller.IniciarSesionCorreo(_usuarioprueba);
+            Assert.AreEqual(HttpStatusCode.OK, _pruebacontroller.IniciarSesionCorreo(_usuarioprueba));
         }
 
         [Test]
