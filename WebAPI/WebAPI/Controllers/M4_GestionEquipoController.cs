@@ -151,8 +151,7 @@ namespace WebAPI.Controllers
                 er.codigo = 410;
                 er.mensaje = "";
                 er.error = "Error al tratar de obtener los datos de los paises:" + e.Message;
-                return Request.CreateResponse(HttpStatusCode.BadRequest, 
-                    new HttpError("Error al tratar de obtener los datos de los paises:" + er));
+                return Request.CreateResponse(HttpStatusCode.BadRequest, er);
             }
             
         }
