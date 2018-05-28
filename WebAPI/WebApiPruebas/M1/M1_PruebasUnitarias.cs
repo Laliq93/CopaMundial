@@ -21,17 +21,17 @@ namespace WebApiPruebas.M1
         public void Init()
         {
         _pruebacontroller = new M1_RegistroLoginRecuperarController();
-        _usuarioprueba = new Usuario
-       {
-        _nombreUsuario = "alefernandez",
-        _nombre = "Alejandro",
-        _apellido = "Fernandez",
-        _fechaNacimiento = "14/09/1993",
-        _correo = "pedropaff7@gmail.com",
-        _genero = "M",
-        _esAdmin = "false",
-        _password "ale12345"
-      };
+        _usuarioprueba = new Usuario();
+        _usuarioprueba._id = 355;
+        _usuarioprueba._nombreUsuario = "alefernandez";
+        _usuarioprueba._nombre = "Alejandro";
+        _usuarioprueba._apellido = "Fernandez";
+        _usuarioprueba._fechaNacimiento = "14/09/1993";
+        _usuarioprueba._correo = "pedropaff7@gmail.com";
+        _usuarioprueba._genero = "M";
+        _usuarioprueba._esAdmin = "false";
+        _usuarioprueba._password "ale12345";
+      
         }
         [Test]
         public void AgregarUsuarioTest()
