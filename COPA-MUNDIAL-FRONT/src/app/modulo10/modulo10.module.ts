@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DataTablesModule } from 'angular-datatables';
 import { HttpClientModule } from '@angular/common/http';
 
 import { Modulo10RoutingModule } from './modulo10-routing.module';
@@ -15,7 +16,8 @@ import { AdminUsuarioComponent } from './components/admin-usuario/admin-usuario.
     CommonModule,
     FormsModule,
     HttpClientModule,
-    Modulo10RoutingModule
+    Modulo10RoutingModule,
+    DataTablesModule
   ],
   declarations: [
     PerfilUsuarioComponent,
