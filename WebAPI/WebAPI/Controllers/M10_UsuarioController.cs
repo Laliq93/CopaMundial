@@ -312,7 +312,7 @@ namespace WebAPI.Controllers
 
                 return Request.CreateResponse(HttpStatusCode.OK, _usuario);
             }
-            catch(UsuarioNoExisteException exc)
+            catch(UsuarioNullException exc)
             {
                 _database.Desconectar();
                 return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
