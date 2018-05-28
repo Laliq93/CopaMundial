@@ -1,4 +1,4 @@
-import { Component, NgZone, AfterViewInit } from '@angular/core';
+import { Component, NgZone, AfterViewInit, Injectable } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 /* tslint:disable */
 
@@ -35,6 +35,8 @@ declare var jQuery: any;
   styleUrls: ['./header.component.css']
 })
 
+
+@Injectable()
 export class HeaderComponent implements AfterViewInit {
 
   public moduleArray: Array<Module>;
@@ -84,6 +86,12 @@ export class HeaderComponent implements AfterViewInit {
 		this.moduleMap.get(module).isActive = true;
 		this.esHome = true;
 
+	}
+
+	logout(){
+		localStorage.removeItem('userId');
+		localStorage.clear();
+		this.router.navigate(['/inicio', 'login']);
 	}
 
 	setHome() {
