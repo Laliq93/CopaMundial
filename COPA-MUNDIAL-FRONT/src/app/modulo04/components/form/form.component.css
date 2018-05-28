@@ -1,0 +1,32 @@
+.col-sm-2,
+.col-sm-10,
+textarea {
+    margin: 1% 0;
+}
+
+.form-group {
+    margin-bottom: 3rem;
+}
+
+.importante {
+    color: red;
+    font-weight: bold;
+}
+
+.eliminado {
+    margin-top: 0px;
+}
+
+.bandera {
+    margin-top: 18px;
+    width: auto;
+    height: 30px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.floating-label label {
+    left: auto !important;
+}
