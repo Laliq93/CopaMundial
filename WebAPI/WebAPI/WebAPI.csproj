@@ -226,7 +226,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\M10_UsuarioController.cs" />
-    <Compile Include="Controllers\M2_CiudadController.cs" />
     <Compile Include="Controllers\M4_GestionEquipoController.cs" />
     <Compile Include="Controllers\M5_JugadorController.cs" />
     <Compile Include="Controllers\M1_RegistroLoginRecuperarController.cs" />
@@ -238,6 +237,8 @@
     <Compile Include="Models\Excepciones\UsuarioNullException.cs" />
     <Compile Include="Models\Excepciones\ClaveInvalidaException.cs" />
     <Compile Include="Models\Excepciones\CorreoEnUsoException.cs" />
+    <Compile Include="Models\Excepciones\UsuarioInactivoException.cs" />
+    <Compile Include="Models\Excepciones\CodigoNoCoincideException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
