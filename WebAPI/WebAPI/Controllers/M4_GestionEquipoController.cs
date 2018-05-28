@@ -63,11 +63,37 @@ namespace WebAPI.Controllers
         }
 
         [Route("prueba")]
-        [HttpGet]
-        public HttpResponseMessage prueba()
+        [HttpPut]
+        public HttpResponseMessage prueba(Equipo e)
         {
-            Equipo e = new Equipo(1, "este es el equipo de alemania", true, 'a', "alemania", true);
+            e.Descripcion = "la descripcion ha cambiado!";
             return Request.CreateResponse(HttpStatusCode.OK, e);
+        }
+
+        /// <summary>
+        /// Actualiza la información del perfil de usuario en la base de datos.
+        /// </summary>
+        public void ActulizarEquipo(Usuario usuario)
+        {
+            try
+            {
+                _database.Conectar();
+
+                /*_database.StoredProcedure("editarperfilusuario(@id, @nombre, @apellido, @fechaNacimiento, @genero, @foto)");
+
+                _database.AgregarParametro("id", usuario.Id);
+                _database.AgregarParametro("nombre", usuario.Nombre);
+                _database.AgregarParametro("apellido", usuario.Apellido);
+                _database.AgregarParametro("fechaNacimiento", Convert.ToDateTime(usuario.FechaNacimiento).ToShortDateString());
+                _database.AgregarParametro("genero", usuario.Genero.ToString().ToUpper());
+                _database.AgregarParametro("foto", usuario.FotoPath);
+
+                _database.EjecutarQuery();*/
+            }
+            catch (NullReferenceException exc)
+            {
+                //throw new UsuarioNullException(exc);
+            }
         }
     }
 }

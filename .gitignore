@@ -2,3 +2,7 @@
 /package.json
 \.DS_Store
 *.lnk
+
+WebAPI/\.vs/WebAPI/v15/Server/sqlite3/storage\.ide
+
+*.ide
