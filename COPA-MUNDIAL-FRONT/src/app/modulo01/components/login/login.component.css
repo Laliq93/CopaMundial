@@ -30,3 +30,8 @@ body{
 .carousel-inner{
 	height: 100vh;
 }
+
+.btn-signin-signup{
+	background-color: #A11D1B;
+    color: white;
+}
