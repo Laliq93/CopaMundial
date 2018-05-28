@@ -6,7 +6,8 @@ using System.Web;
 namespace WebAPI.Models
 {
 
-	public class equipo{
+	public class equipo
+	{
 		public equipo(String nombre, int valor)
 		{
 			this.nombre = nombre;
@@ -37,11 +38,11 @@ namespace WebAPI.Models
 		public int faltasC;
 		public int goles;
 		public int tirosfuera;
-}
+	}
 
 	public class EstJugador
 	{
-		public EstJugador(String nombre,int valor,int minuto)
+		public EstJugador(String nombre, int valor, int minuto)
 		{
 			this.nombre = nombre;
 			this.valor = valor;
@@ -51,14 +52,14 @@ namespace WebAPI.Models
 		public String nombre;
 		public int valor;
 		public int minuto;
-		
+
 	}
 
 	public class EstJugGen
 	{
-		public EstJugGen(int goles, int asistencias, int tiempojugado, 
-			int tiros, int tarjetasR, int tarjetasA, 
-			int faltasR, int faltasC, int golesrec, 
+		public EstJugGen(int goles, int asistencias, int tiempojugado,
+			int tiros, int tarjetasR, int tarjetasA,
+			int faltasR, int faltasC, int golesrec,
 			int penaltisA, int portimb)
 		{
 			this.goles = goles;
@@ -91,11 +92,30 @@ namespace WebAPI.Models
 		public int portimb;
 		public int offsides;
 
-		
+
 	}
 
 	public class EstPartido
 	{
-		
+
+	}
+
+
+	public class Prediccion
+	{
+
+		public Prediccion()
+		{
+		}
+
+		public Prediccion(String nombre, int valor)
+		{
+			this.nombre = nombre;
+			this.valor = valor;
+		}
+
+		public String nombre;
+		public int valor;
+
 	}
 }
