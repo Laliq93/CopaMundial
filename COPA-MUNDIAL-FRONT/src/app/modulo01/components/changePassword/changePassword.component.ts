@@ -40,13 +40,14 @@ export class ChangePasswordComponent implements OnInit {
     const httpHeaders = new HttpHeaders().set('Accept', 'application/json');
 
 
-    const {Correo, Password} = changePasswordForm.controls;
+    const {Token, Correo, Password} = changePasswordForm.controls;
     
 
-    console.log(changePasswordForm.controls, Correo.value, Password.value);
+    console.log(changePasswordForm.controls, Token.value, Correo.value, Password.value);
     
     
     const user = {
+      token           : Token.value,
       correo          : Correo.value,
       password        : Password.value
     };
@@ -58,7 +59,7 @@ export class ChangePasswordComponent implements OnInit {
           console.log(success);
           this.router.navigate(['/inicio', 'signin']);
         },
-        error => alert("correo no existe")
+        error => alert("codigo o correo erróneo.")
       );
 
   }
