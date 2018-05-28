@@ -83,4 +83,5 @@ export class AdminUsuarioComponent implements OnInit {
   ActivarCuenta(idUsuario) {
     this._api10.AdministradorActivarCuenta(idUsuario);
   }
+
 }
