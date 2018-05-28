@@ -144,7 +144,7 @@ export class ApiService {
       });
   }
 
-  public VerUsuariosActivos() {
+  public VerUsuariosActivos(): Usuario10[] {
     let listaUsuarios: Usuario10[] = new Array();
 
     this._conexion.Controlador = 'ObtenerUsuariosActivos';
@@ -156,6 +156,8 @@ export class ApiService {
         listaUsuarios[i] = data[i];
       }
     });
+
+    return listaUsuarios;
   }
 
   public VerUsuariosNoActivos() {
