@@ -24,7 +24,7 @@ constructor(private router: Router) {}
 
     console.log('no entro en el if');
 
-    this.router.navigate(['/inicio','login']);
+    this.router.navigate(['/inicio', 'login']);
     return false;
   }
 }
