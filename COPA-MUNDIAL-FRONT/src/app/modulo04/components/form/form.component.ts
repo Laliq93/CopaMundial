@@ -1,52 +1,73 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Equipo } from '../../models/equipo';
+import { Pais } from '../../models/pais';
 import { EquipoService } from '../../services/equipo.service';
-import { HttpClient } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
+
+declare var jQuery: any;
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, AfterViewChecked {
+  @Input() public idEquipo: string = null;
+  public grupos: string[];
+  public banderaSeleccionada: string;
+  public paises: Pais[];
+  public equipo: Equipo;
 
-  public ruta: string = '';
-  public grupos = this.equipoService.getGrupos();
-  public equipo: Equipo = new Equipo();
-  API_ENDPOINT = 'http://localhost:54059/api/M4_GestionEquipo/';
-
-  constructor(private location: Location, private router: Router,
-              private equipoService: EquipoService, private http: HttpClient) { }
+  constructor(
+    private _location: Location,
+    private _router: Router,
+    private _equipoService: EquipoService
+  ) {}
 
   ngOnInit() {
-    this.ruta = this.router.url;
+    this.grupos = this._equipoService.obtenerGrupos();
 
-    // aqui ira el metodo que trae los datos del equipo para setearlos en los inputs
-    this.equipo.nombre = 'Portugal';
-    this.equipo.descripcion = 'esta es la descripcion de portugal';
-    this.equipo.grupo = 'C';
-    this.equipo.status = true;
+    this._equipoService.obtenerPaises().subscribe(data => (this.paises = data));
 
-    // console.log(this.http.get('http://localhost:54059/api/M4_GestionEquipo/prueba'));
-}
+    if (this.idEquipo !== null) {
+      this._equipoService.obtenerEquipo(this.idEquipo).subscribe(data => {
+        this.equipo = data;
+        this.banderaSeleccionada = this.equipo.pais.urlBandera;
+      });
+    } else {
+      this.equipo = new Equipo();
+    }
+  }
 
-enviar() {
-  this.equipoService.editarEquipo(this.equipo)
-    .subscribe((data) => {
+  ngAfterViewChecked() {
+
+    jQuery('.floating-label .custom-select, .floating-label .form-control').floatinglabel();
+
+  }
+
+  enviar() {
+    this._equipoService.editarEquipo(this.equipo).subscribe(data => {
       console.log(data);
     });
-}
+  }
 
-regresar() {
-  this.location.back(); // <-- regresar a la pagina previa al presionar cancelar
-}
+  regresar() {
+    this._location.back(); // <-- regresar a la pagina previa al presionar cancelar
+  }
 
-// metodo que abre ventana emergente para agregar un jugador al equipo que se esta creando
-asociar() {
-  window.open('/jugadores', '_blank', 'toolbar=yes,scrollbars=yes,resizable=yes,top=50,left=150,width=1000,height=600');
-}
+  cambiarEquipo(paisIso: string) {
+    this.banderaSeleccionada = this.paises.find(
+      i => i.iso === paisIso
+    ).urlBandera;
+  }
 
+  // metodo que abre ventana emergente para agregar un jugador al equipo que se esta creando
+  asociar() {
+    window.open(
+      '/jugadores',
+      '_blank',
+      'toolbar=yes,scrollbars=yes,resizable=yes,top=50,left=150,width=1000,height=600'
+    );
+  }
 }

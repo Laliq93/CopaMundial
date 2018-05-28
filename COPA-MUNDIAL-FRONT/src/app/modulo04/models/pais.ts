@@ -6,27 +6,27 @@ export class Pais {
     private _urlBandera: string;
 
     // getters y setters de la clase
-    get getIso(): string {
+    get iso(): string {
         return this._iso;
     }
 
-    get getNombre(): I18nEquipo {
+    get nombre(): I18nEquipo {
         return this._nombre;
     }
 
-    get getUrlBandera(): string {
+    get urlBandera(): string {
         return this._urlBandera;
     }
 
-    set setIso(iso: string) {
+    set iso(iso: string) {
         this._iso = iso;
     }
 
-    set setNombre(nombre: I18nEquipo ) {
+    set nombre(nombre: I18nEquipo ) {
         this._nombre = nombre;
     }
 
-    set setUrlBandera(url: string) {
+    set urlBandera(url: string) {
         this._urlBandera = url;
     }
 }

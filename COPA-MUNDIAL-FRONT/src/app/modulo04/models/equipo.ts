@@ -3,49 +3,60 @@ import { I18nEquipo } from './i18n_equipo';
 
 export class Equipo {
     private _pais: Pais;
-    private _descripcion: I18nEquipo;
+    private _descripcion: I18nEquipo[];
     private _status: boolean;    // el equipo participa aun o no en la competencia
     private _grupo: string;
     private _habilitado: boolean; // atributo para funcionalidad de que no hayan jugadores sin equipo
 
+    constructor() {
+        const descripcionEs = new I18nEquipo();
+        descripcionEs.idioma = 'es';
+        const descripcionEn = new I18nEquipo();
+        descripcionEn.idioma = 'en';
+        this._descripcion = new Array<I18nEquipo>();
+        this._pais = new Pais();
+
+        this._descripcion.push(descripcionEs, descripcionEn);
+    }
+
     // getters y setters de la clase
-    get getPais(): Pais {
+    get pais(): Pais {
         return this._pais;
     }
 
-    get getDescripcion(): I18nEquipo {
+    get descripcion(): I18nEquipo[] {
         return this._descripcion;
     }
 
-    get getStatus(): boolean {
+    get status(): boolean {
         return this._status;
     }
 
-    get getGrupo(): string {
+    get grupo(): string {
         return this._grupo;
     }
 
-    get getHabilitado(): boolean {
+    get habilitado(): boolean {
         return this._habilitado;
     }
 
-    set setPais(pais: Pais) {
+    set pais(pais: Pais) {
         this._pais = pais;
     }
 
-    set setDescripcion(descripcion: I18nEquipo) {
+    set descripcion(descripcion: I18nEquipo[]) {
         this._descripcion = descripcion;
     }
 
-    set setStatus(status: boolean) {
+    set status(status: boolean) {
         this._status = status;
     }
 
-    set setGrupo(grupo: string) {
+    set grupo(grupo: string) {
         this._grupo = grupo;
     }
 
-    set setHabilitado(habilitado: boolean) {
+    set habilitado(habilitado: boolean) {
         this._habilitado = habilitado;
     }
 }
