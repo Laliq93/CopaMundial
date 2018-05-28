@@ -12,7 +12,11 @@
 *.dll.config
 *.cache
 *.suo
+<<<<<<< HEAD
 # Include dlls if they’re in the NuGet packages directory
+=======
+# Include dlls if theyâ€™re in the NuGet packages directory
+>>>>>>> 25363d2398021b2e4b356318ac5e8672ec38d75c
 !/packages/*/lib/*.dll
 # Include dlls if they're in the CommonReferences directory
 !*CommonReferences/*.dll
@@ -38,7 +42,11 @@ TestResults/
 ############
 # Packages #
 ############
+<<<<<<< HEAD
 # it’s better to unpack these files and commit the raw source
+=======
+# itâ€™s better to unpack these files and commit the raw source
+>>>>>>> 25363d2398021b2e4b356318ac5e8672ec38d75c
 # git has its own built in compression methods
 *.7z
 *.dmg
