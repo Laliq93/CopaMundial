@@ -230,15 +230,10 @@
     <Compile Include="Controllers\M5_JugadorController.cs" />
     <Compile Include="Controllers\M1_RegistroLoginRecuperarController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-<<<<<<< HEAD
     <Compile Include="Models\Excepciones\ClaveCorreoNoCoincideException.cs" />
     <Compile Include="Models\Excepciones\ClaveUsuarioNoCoincideException.cs" />
     <Compile Include="Models\Excepciones\CorreoNoExisteException.cs" />
     <Compile Include="Models\Excepciones\NombreUsuarioNoExisteException.cs" />
-=======
-    <Compile Include="Models\Ciudad.cs" />
-    <Compile Include="Models\Excepciones\EstadioNoDisponibleException.cs" />
->>>>>>> 25363d2398021b2e4b356318ac5e8672ec38d75c
     <Compile Include="Models\Excepciones\UsuarioNullException.cs" />
     <Compile Include="Models\Excepciones\ClaveInvalidaException.cs" />
     <Compile Include="Models\Excepciones\CorreoEnUsoException.cs" />
