@@ -35,12 +35,12 @@ namespace WebAPI.Controllers
 
                 return Ok("Usuario registrado exitosamente");
             }
-            catch (CorreoExistenteException e)
+            catch (NombreUsuarioExistenteException e)
             {
                 _database.Desconectar();
                 return BadRequest(e.Message);
             }
-            catch (NombreUsuarioExistenteException e)
+            catch (CorreoExistenteException e)
             {
                 _database.Desconectar();
                 return BadRequest(e.Message);
@@ -382,8 +382,8 @@ namespace WebAPI.Controllers
 
             _contador = _database.GetInt(0, 0);
 
-            if (_contador < 1)
-                throw new CorreoNoExisteException(correo);
+            if (_contador > 0)
+                throw new CorreoExistenteException(correo);
 
 
         }

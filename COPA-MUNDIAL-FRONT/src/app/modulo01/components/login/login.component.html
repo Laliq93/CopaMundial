@@ -1,6 +1,6 @@
 <div class="login-page">
-		<div class="container-fluid">
-		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+	<div class="container-fluid">
+		<!--<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 		  <ol class="carousel-indicators">
 		    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 		    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -38,6 +38,14 @@
 		    <span class="oi oi-chevron-right" aria-hidden="true"></span>
 		    <span class="sr-only">Next</span>
 		  </a>
+		</div>-->
+		<div class="row justify-content-center" style="margin-top: 100px;">
+			<div class="col-3">
+				<button [routerLink]="['/inicio/signup']" type="submit" class="btn btn-primary btn-signin">Registrarse</button>
+			</div>
+			<div class="col-3">
+				<button [routerLink]="['/inicio/signin']" type="submit" class="btn btn-primary btn-signin">Iniciar sesión</button>
+			</div>
 		</div>
 	</div>
 </div>

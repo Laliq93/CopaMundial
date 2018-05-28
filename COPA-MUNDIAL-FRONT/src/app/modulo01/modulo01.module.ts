@@ -12,6 +12,8 @@ import { SigninComponent } from './components/signin/signin.component';
 import { RecoveryComponent } from './components/recovery/recovery.component';
 import { ChangePasswordComponent } from './components/changePassword/changePassword.component';
 import { HttpClientModule } from '@angular/common/http';
+import { Routes, RouterModule } from '@angular/router';
+
 
 @NgModule({
   imports: [
@@ -20,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     Modulo01RoutingModule
   ],
+
   providers: [
     LoggedInGuard,
     NotLoggedInGuard

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { LoggedInGuard } from '../../../guards/logged-in.guard';
 import { NotLoggedInGuard } from '../../../guards/not-logged-in.guard';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Usuario } from '../../models/usuario';
+import { Router } from '@angular/router';
 
 
 const httpOptions = {
@@ -16,6 +17,8 @@ const httpOptions = {
   templateUrl: './changePassword.component.html',
   styleUrls: ['./changePassword.component.css']
 })
+
+@Injectable()
 export class ChangePasswordComponent implements OnInit {
 
   usuario: Usuario;
@@ -25,7 +28,7 @@ export class ChangePasswordComponent implements OnInit {
   private emailResponse;
   handleError (error: any) { console.log(error)};
 
-  constructor(private http: HttpClient) {
+  constructor(private router : Router ,private http: HttpClient) {
     this.usuario = new Usuario();
   }
 
@@ -52,7 +55,8 @@ export class ChangePasswordComponent implements OnInit {
       .post<Usuario>(url, user, httpOptions)
       .subscribe(
         success => {
-          console.log(success)
+          console.log(success);
+          this.router.navigate(['/inicio', 'signin']);
         },
         error => alert("correo no existe")
       );
