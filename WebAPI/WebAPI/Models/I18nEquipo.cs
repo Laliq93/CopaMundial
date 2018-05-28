@@ -35,7 +35,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo id
         /// </summary>
-        public int Id
+        public int id
         {
             get { return _id; }
             set { _id = value; }
@@ -44,7 +44,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo isioma
         /// </summary>
-        public string Idioma
+        public string idioma
         {
             get { return _idioma; }
             set { _idioma = value; }
@@ -53,7 +53,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo pais
         /// </summary>
-        public string Mensaje
+        public string mensaje
         {
             get { return _mensaje; }
             set { _mensaje = value; }
