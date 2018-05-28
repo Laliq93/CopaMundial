@@ -263,5 +263,5 @@ FakesAssemblies/
 *.opt
 
 
-app.config
-Web.config
+*app.config*
+*Web.config*
