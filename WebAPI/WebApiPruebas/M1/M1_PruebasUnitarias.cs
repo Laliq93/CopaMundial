@@ -21,7 +21,7 @@ namespace WebApiPruebas.M1
         public void Init()
         {
         _pruebacontroller = new M1_RegistroLoginRecuperarController();
-     /*   _usuarioprueba = new Usuario
+        _usuarioprueba = new Usuario
        {
         _nombreUsuario = "alefernandez",
         _nombre = "Alejandro"
@@ -29,67 +29,141 @@ namespace WebApiPruebas.M1
         _fechaNacimiento = "14/09/1993",
         _correo = "pedropaff7@gmail.com",
         _genero = "M",
-        _esAdmin = 0;
+        _esAdmin = "false",
         _password "ale12345"
       };
-      */
         }
         [Test]
         public void AgregarUsuarioTest()
         {
-           //valida que el usuario que se esta ingresando ingresando, exista en la bd
-            string _nombreusuario2 = "lauraquinones";
-            _pruebacontroller.AgregarUsuario("lauraquinones","Laura","Quinones","14/09/1993","lvqp.93@gmail.com","F","laliquinones14");
-            _pruebacontroller.ValidarNombreUsuario(_nombreusuario2);
+           //valida que el usuario que se esta ingresando, exista en la bd
+            _pruebacontroller.AgregarUsuario(_usuarioprueba);
+            _pruebacontroller.ValidarNombreUsuario(_usuarioprueba._nombreUsuario);
 
+        }
+        [Test]
+        public void RegistrarUsuarioTest()
+        {
+        // valida que se pudo registrar al usuario
+        // _pruebacontroller.ValidarNombreUsuario(_usuarioprueba._nombreUsuario);
+        Assert.AreEqual(HttpStatusCode.OK, _pruebacontroller.RegistrarUsuario(_usuarioprueba);
         }
 
         [Test]
-        public void EnviarCorreoTest()
+        public void CambiarClave()
         {
-      _pruebacontroller.ValidarNombreUsuario("lauraquinones");
-      Assert.AreEqual(HttpStatusCode.OK, _pruebacontroller.EnviarCorreo("lauraquinones");
+            //_pruebacontroller.AgregarUsuario(_usuarioprueba);
+            //Assert.AreEqual(HttpStatusCode.OK, _pruebacontroller.CambiarClave(_usuarioprueba);
             //valido que envia el correo para recuperar la contrasena
         }
-/* 
+
+        [Test]
+        public void RecuperarClave()
+        {
+            _pruebacontroller.AgregarUsuario(_usuarioprueba);
+            Assert.AreEqual(HttpStatusCode.OK, _pruebacontroller.RecuperarClave(_usuarioprueba);
+            //valido que envia el correo para recuperar la contrasena
+        }
+
+        [Test]
+        public void IniciarSesionTest()
+        {
+            _pruebacontroller.AgregarUsuario(_usuarioprueba);
+            Assert.AreEqual(HttpStatusCode.OK, _pruebacontroller.IniciarSesionUsuario(_usuarioprueba);
+        }
+
         [Test]
         public void IniciarSesionCorreoTest()
         {
-            //valido si el usuario existe y ese es su password
-            int _idprueba = 55;
-            int _id = _prueba.IniciarSesionCorreo("lvqp.93@gmail.com", "laliquinones14");
-            Assert.AreEqual(_idprueba,_id);
+            _pruebacontroller.AgregarUsuario(_usuarioprueba);
+            Assert.AreEqual(HttpStatusCode.OK, _pruebacontroller.IniciarSesionCorreo(_usuarioprueba);
         }
 
         [Test]
-        public void IniciarSesionUsuarioTest()
-        {
-            //valido si el usuario existe y ese es su password
-            int _idprueba = 55;
-            int _id = _prueba.IniciarSesionUsuario("lauraquinones", "laliquinones14");
-            Assert.AreEqual(_idprueba,_id);
-        }
-*/
-        [Test]
         public void CorreoExistenteExceptionTest()
         {
-            //intento insertar persona con iguales correos
-          _pruebacontroller.AgregarUsuario("probando456","Laura","Quinones","14/09/1993","cualquiercosa@gmail.com","F","laliquinones14");
-          Assert.Throws<CorreoExistenteException>(() => _pruebacontroller.AgregarUsuario("probando123","Laura","Quinones","14/09/1993","cualquiercosa@gmail.com","F","laliquinones14"));
+         //inserto a un usuario y luego cambio el usuario para que sale a la excepcion de que el correo existe
+          _pruebacontroller.AgregarUsuario(_usuarioprueba);
+          _usuarioprueba._nombreUsuario = "probando123";
+          //_usuarioprueba._correo = "usuarioprueba@gmail.com";
+          Assert.Throws<CorreoExistenteException>(() => _pruebacontroller.RegistrarUsuario(_usuarioprueba));
         }
- 
+
         [Test]
         public void NombreUsuarioExistenteExceptionTest()
         {
-            //intento insertar personas con iguales nombres de usuario
-         _pruebacontroller.AgregarUsuario("probando123","Laura","Quinones","14/09/1993","cualquiercosa@gmail.com","F","laliquinones14");
-          Assert.Throws<CorreoExistenteException>(() => _pruebacontroller.AgregarUsuario("probando123","Laura","Quinones","14/09/1993","cualquiercosa1@gmail.com","F","laliquinones14"));
+         //inserto a la persona, 
+         _pruebacontroller.AgregarUsuario(_usuarioprueba);
+        // _usuarioprueba._nombreUsuario = "probando123";
+         _usuarioprueba._correo = "usuarioprueba@gmail.com";
+         Assert.Throws<NombreUsuarioExistenteException>(() => _pruebacontroller.RegistrarUsuario(_usuarioprueba));
+        }
+
+        [Test]
+        public void NombreUsuarioNoExisteExceptionTest()
+        {
+         //inicio sesion con el nombre de un usuario que no exista
+          _pruebacontroller.AgregarUsuario(_usuarioprueba);
+          _usuarioprueba._correo = "usuarioprueba@gmail.com";
+          _usuarioprueba._nombreUsuario = "probando123";
+          Assert.Throws<NomnbreUsuarioNoExisteException>(() => _pruebacontroller.IniciarSesionUsuario(_usuarioprueba));
+        }
+
+        [Test]
+        public void UsuarioInactivoExceptionTest()
+        {
+         //inicio sesion con el nombre de un usuario que no exista
+         _pruebacontroller.AgregarUsuario(_usuarioprueba);
+         _usuarioprueba._activo = "false";
+          //_usuarioprueba._nombreUsuario = "probando123";
+          Assert.Throws<UsuarioInactivoException>(() => _pruebacontroller.IniciarSesionUsuario(_usuarioprueba));
+        }
+        [Test]
+        
+        public void ClaveUsuarioNoCoincideExceptionExceptionTest()
+        {
+         //inicio sesion con el nombre de un usuario que no exista
+          _pruebacontroller.AgregarUsuario(_usuarioprueba);
+          _usuarioprueba._password = "estanoeslaquees";
+         // _usuarioprueba._nombreUsuario = "probando123";
+          Assert.Throws<ClaveUsuarioNoCoincideException>(() => _pruebacontroller.IniciarSesionUsuario(_usuarioprueba));
+        }
+
+        [Test]
+        public void CorreoNoExisteExceptionTest()
+        {
+         //inserto al usuario, luego se cambia el correo que no exista para que caiga en la excepcion
+          _pruebacontroller.AgregarUsuario(_usuarioprueba);
+          _usuarioprueba._correo = "usuarioprueba@gmail.com";
+          _usuarioprueba._nombreUsuario = "probando123";
+          Assert.Throws<CorreoNoExisteException>(() => _pruebacontroller.IniciarSesionCorreo(_usuarioprueba));
+        }
+
+        [Test]
+        public void ClaveCorreoNoCoincideExceptionExceptionTest()
+        {
+         //inicio sesion con el nombre de un usuario que no exista
+          _pruebacontroller.AgregarUsuario(_usuarioprueba);
+          _usuarioprueba._password = "estanoeslaquees";
+         // _usuarioprueba._nombreUsuario = "probando123";
+          Assert.Throws<ClaveCorreoNoCoincideException>(() => _pruebacontroller.IniciarSesionCorreo(_usuarioprueba));
+        }
+
+        [Test]
+        public void RecuperarClaveCorreoNoexisteExceptionTest()
+        {
+         //inserto al usuario, luego se cambia el correo que no exista para que caiga en la excepcion
+          _pruebacontroller.AgregarUsuario(_usuarioprueba);
+          _usuarioprueba._correo = "usuarioprueba@gmail.com";
+         // _usuarioprueba._nombreUsuario = "probando123";
+          Assert.Throws<CorreoNoExisteException>(() => _pruebacontroller.RecuperarClave(_usuarioprueba));
         }
 
         [TearDown]
         public void End()
         {
             _pruebacontroller = null;
+            _usuarioprueba = null;
            
         }
 

@@ -1,0 +1,9 @@
+.prueba{
+    align-content:"left";
+};
+.fondo{
+    background: yellow;
+    color: blue;
+    margin-left: 0%;
+    width: 100%;
+}

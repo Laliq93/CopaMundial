@@ -1,0 +1,231 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- <div class="card">
+    <div class="card-header d-flex pr-0">
+      <h5 class="card-title mb-0">Card title</h5>
+      <div class="card-actions ml-auto py-0">
+      
+        <div class="dropdown">
+          <button aria-expanded="false" aria-haspopup="true" class="btn btn-outline my-0" data-toggle="dropdown" id="cardTableDrop2" type="button"><i class="material-icons">more_vert</i></button>
+          <div aria-labelledby="cardTableDrop2" class="dropdown-menu dropdown-menu-right menu">
+            <a class="dropdown-item" (click)="clickedgrupo(1)" >Grupo 1</a>
+            <a class="dropdown-item" (click)="clickedgrupo(2)">Grupo 2</a>
+            <a class="dropdown-item" (click)="clickedgrupo(3)">Grupo 3</a>
+            
+            <a class="dropdown-item" (click)="clickedgrupo(4)">Grupo 4</a>
+            <a class="dropdown-item" (click)="clickedgrupo(5)">Grupo 5</a>
+            <a class="dropdown-item" (click)="clickedgrupo(6)">Grupo 6</a>
+            <a class="dropdown-item" (click)="clickedgrupo(7)">Grupo 7</a>
+            <a class="dropdown-item" (click)="clickedgrupo(8)">Grupo 8</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th scope="col">Equipo</th>
+          <th scope="col">PJ</th>
+          <th scope="col">G</th>
+          <th scope="col">E</th>
+          <th scope="col">P</th>
+          <th scope="col">GF</th>
+          <th scope="col">GC</th>
+          <th scope="col">+/-</th>
+          <th scope="col">PTS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let equipo of equipos" >
+          <tr *ngIf="equipo.grupo == grupoactual" >
+            <td>{{equipo.nombre}}</td>
+            <td>{{equipo.pj}}</td>
+            <td>{{equipo.g}}</td>
+            <td>{{equipo.e}}</td>
+            <td>{{equipo.p}}</td>
+            <td>{{equipo.gf}}</td>
+            <td>{{equipo.gc}}</td>
+            <td>{{equipo.masmenos}}</td>
+            <td>{{equipo.pts}}</td>
+          </tr>
+          </ng-container>
+        </tbody>
+    </table>
+ 
+  </div> -->
+
+  
+  <label for="picker" class="centrar">A basic example:</label>
+  <input class="form-control centrar" id="picker" placeholder="Pick a date" type="text">
+  
+
+<div>
+  <div class="card" style="vertical-align: middle">
+   
+        <ul class="nav nav-tabs nav-fill" role="tablist" >
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" (click)="ClickPartidos()" data-toggle="tab"  role="tab" aria-controls="partidos" aria-selected="true">PARTIDOS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" (click)="ClickEstadisticas()" data-toggle="tab"  role="tab" aria-controls="estadisticas" aria-selected="false">ESTADISTICAS</a>
+          </li>
+        </ul>
+  
+    <table class="table mb-0" [hidden]="partidos"> 
+      <tbody>
+        <tr>
+            <th scope="row" style="vertical-align: middle">1</th>
+          <td style="vertical-align: middle"><img src="../../../assets/banderas/esp.png" class="img-thumbnail" alt="Responsive image"></td>
+          <td style="vertical-align: middle">Venezuela</td>
+          <td style="vertical-align: middle">3 vs 2</td>
+          <td style="vertical-align: middle">España</td>
+          <td style="vertical-align: middle">  <img src="../../../assets/banderas/esp.png" class="img-thumbnail" alt="Responsive image"> </td>
+          <td style="vertical-align: middle"> <a href="/estadisticas/estpartidos">Ver mas</a> </td>
+        </tr>
+        <tr >
+            <th scope="row" style="vertical-align: middle">2</th>
+          <td style="vertical-align: middle"><img src="../../../assets/banderas/uru.png" class="img-thumbnail" alt="Responsive image"></td>
+          <td style="vertical-align: middle">Uruguay</td>
+          <td style="vertical-align: middle">1 vs 2</td>
+          <td style="vertical-align: middle">Argentina</td>
+          <td style="vertical-align: middle">  <img src="../../../assets/banderas/arg.png" class="img-thumbnail" alt="Responsive image"> </td>
+          <td style="vertical-align: middle"> <a href="/estadisticas/estpartidos">Ver mas</a> </td>
+        </tr>
+        <tr>
+            <th scope="row" style="vertical-align: middle">3</th>
+          <td style="vertical-align: middle"><img src="../../../assets/banderas/rus.png" class="img-thumbnail" alt="Responsive image"></td>
+          <td style="vertical-align: middle">Rusia</td>
+          <td style="vertical-align: middle">3 vs 2</td>
+          <td style="vertical-align: middle">Arabia Saudi</td>
+          <td style="vertical-align: middle">  <img src="../../../assets/banderas/ksa.png" class="img-thumbnail" alt="Responsive image"> </td>
+          <td style="vertical-align: middle"> <a href="/estadisticas/estpartidos">Ver mas</a>  </td>
+        </tr>
+      </tbody>
+    </table>
+    
+
+    <div style="text-align: center" [hidden]="estadisticas">
+
+    <div>
+    <div class="card-header d-flex pr-0" >
+    <h5 class="card-title mb-0" >Goles</h5>
+    <div class="card-actions ml-auto py-0" > 
+      </div>
+    </div>
+    
+    <table class="table mb-0" [hidden]="estadisticas">  
+    <thead>
+      <tr>
+        <th style="text-align: center" scope="col">Pos</th>
+        <th style="text-align: center" scope="col">Jugador</th>
+        <th style="text-align: center" scope="col">Goles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let dato of datos; let i = index">
+        <tr>
+          <th style="text-align: center" scope="row">{{dato.pos}}</th>
+          <td>{{dato.jugador}}</td>
+          <td>{{dato.goles}}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+  <hr>
+  <div>
+  <div class="card-header d-flex pr-0">
+      <h5 class="card-title mb-0">Asistencias</h5> 
+      <div class="card-actions ml-auto py-0">
+        </div>
+      </div>
+  <table class="table mb-0" [hidden]="estadisticas">
+    
+    <thead>
+      <tr>
+        <th style="text-align: center"scope="col">Pos</th>
+        <th style="text-align: center" scope="col">Jugador</th>
+        <th style="text-align: center" scope="col">Asistencias</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let dato of datos; let i = index">
+        <tr>
+          <th style="text-align: center" scope="row">{{dato.pos}}</th>
+          <td>{{dato.jugador}}</td>
+          <td>{{dato.asistencias}}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <div class="card-header d-flex pr-0" >
+      <h5 class="card-title mb-0" >Tarjetas Amarillas</h5>
+      <div class="card-actions ml-auto py-0" > 
+        </div>
+      </div>
+
+
+      <table class="table mb-0" [hidden]="estadisticas">
+        
+      <thead>
+        <tr>
+          <th style="text-align: center" scope="col">Pos</th>
+          <th style="text-align: center" scope="col">Jugador</th>
+          <th style="text-align: center" scope="col">Tarjetas Amarillas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let dato of datos; let i = index">
+          <tr>
+            <th style="text-align: center" scope="row">{{dato.pos}}</th>
+            <td>{{dato.jugador}}</td>
+            <td>{{dato.amarillas}}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+    <div>
+    <div class="card-header d-flex pr-0" >
+        <h5 class="card-title mb-0" >Tarjetas rojas</h5>
+        <div class="card-actions ml-auto py-0" > 
+          </div>
+        </div>
+          
+        <table class="table mb-0" [hidden]="estadisticas">  
+        <thead>
+          <tr>
+            <th style="text-align: center" scope="col">Pos</th>
+            <th style="text-align: center" scope="col">Jugador</th>
+            <th style="text-align: center" scope="col">Tarjetas Rojas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let dato of datos; let i = index">
+            <tr>
+              <th style="text-align: center" scope="row">{{dato.pos}}</th>
+              <td>{{dato.jugador}}</td>
+              <td>{{dato.rojas}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+</div>
+
+  </div>
+
+<div class="margen">
+  <a href="estadisticas/genestjug" class="btn btn-signin my-1 margen centrar" style="width: 20%" >Estadisticas Jugador</a>
+  <a href="estadisticas/predjugador" class="btn btn-signin margen centrar " style="width: 20%">Predicciones Jugador</a>
+  <a href="estadisticas/estequipos" class="btn btn-signin my-1 centrar margen" style="width: 20%">Estadisticas Equipo</a>
+  <a href="estadisticas/predequipo" class="btn btn-signin margen centrar " style="width: 20%" >Predicciones Equipo</a>
+</div>
+
+</div>
