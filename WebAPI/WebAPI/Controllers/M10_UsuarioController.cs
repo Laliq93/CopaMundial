@@ -9,6 +9,7 @@ using WebAPI.Models.DataBase;
 using WebAPI.Models.Excepciones;
 using System.Data;
 using System.Web;
+using Npgsql;
 
 namespace WebAPI.Controllers
 {
@@ -37,6 +38,11 @@ namespace WebAPI.Controllers
             {
                 _database.Desconectar();
                 return Request.CreateResponse(HttpStatusCode.OK, exc.Message);
+            }
+            catch(NpgsqlException e)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.OK, "Error en la base de datos.");
             }
             catch (Exception e)
             {
