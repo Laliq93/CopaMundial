@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebAPI.Models.Excepciones
 {
-    public class CodigoNoCoincide : Exception
+    public class CodigoNoCoincideException : Exception
     {
         private readonly string _mensaje = "El código ingresado no coincide.";
         private readonly int _codigoError = 20008;
@@ -14,7 +14,7 @@ namespace WebAPI.Models.Excepciones
         private DateTime _fechaError;
 
 
-        public CodigoNoCoincide(string token)
+        public CodigoNoCoincideException(string token)
         {
             _token = token;
             _fechaError = DateTime.Now;
