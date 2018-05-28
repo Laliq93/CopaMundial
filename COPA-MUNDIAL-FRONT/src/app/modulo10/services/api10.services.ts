@@ -127,7 +127,7 @@ export class ApiService {
           this._usuario10.Message = data.Message;
           this.Error(this._usuario10);
         } else {
-          this.Succes('Cuenta activada con éxito');.
+          this.Succes('Cuenta activada con éxito');
         }
       });
   }
