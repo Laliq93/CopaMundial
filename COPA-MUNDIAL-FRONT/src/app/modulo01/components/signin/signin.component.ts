@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { LoggedInGuard } from '../../../guards/logged-in.guard';
 import { NotLoggedInGuard } from '../../../guards/not-logged-in.guard';
 import { HttpClient, HttpParams, HttpHeaders, HttpHandler } from '@angular/common/http';
 import { FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { catchError, retry } from 'rxjs/operators';
 import { Usuario } from '../../models/usuario';
+import { Routes, RouterModule, Router } from '@angular/router';
 
 
 const httpOptions = {
@@ -19,8 +20,9 @@ const httpOptions = {
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
-export class SigninComponent implements OnInit {
 
+@Injectable()
+export class SigninComponent implements OnInit {
 
   usuario: Usuario;
   readonly rootUrl =  'http://localhost:54059/api';
@@ -30,7 +32,7 @@ export class SigninComponent implements OnInit {
 
   handleError (error: any) { console.log(error)};
 
-  constructor(private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient) {
     this.usuario = new Usuario();
   }
 
@@ -74,6 +76,7 @@ export class SigninComponent implements OnInit {
           console.log(success)
           const id = success.toString();
           localStorage.setItem('userId', id);
+          this.router.navigate(['inicio']);
         },
         error => alert(" usuario o email equivocado")
       );

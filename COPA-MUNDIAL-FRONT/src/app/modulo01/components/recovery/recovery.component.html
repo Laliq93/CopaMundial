@@ -14,7 +14,7 @@
           <input matInput type="email"  #Correo="ngModel" [(ngModel)]="usuario.correo" name="Correo" required [pattern]="emailPattern" class="form-control" id="exampleInputuser" placeholder="correo electrónico">
         </div>
 
-        <button type="submit" class="btn btn-primary btn-signin">Recuperar</button>
+        <button [disabled]="!userRecoveryForm.valid" type="submit" class="btn btn-primary btn-signin">Recuperar</button>
       </form>
     </div>
   </div>
