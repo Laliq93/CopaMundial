@@ -29,6 +29,7 @@ namespace WebApiPruebas.M1
         _fechaNacimiento = "14/09/1993",
         _correo = "pedropaff7@gmail.com",
         _genero = "M",
+        _esAdmin = "false",
         _password "ale12345"
       };
         }
