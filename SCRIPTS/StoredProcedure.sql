@@ -27,62 +27,32 @@ $$ LANGUAGE plpgsql;
 
 -- Consulta un usuario por su nombre de usuario y clave
 -- devuelve los datos del usuario
-CREATE OR REPLACE FUNCTION ConsultarUsuarioPassword(_nombreUsuario varchar, _password varchar)
-RETURNS TABLE
-  (id integer,
-   nombreUsuario varchar,
-   nombre varchar,
-   apellido varchar,
-   fechaNacimiento date,
-   correo varchar,
-   genero varchar,
-   foto varchar)
-AS
-$$
-BEGIN
-	RETURN QUERY SELECT
-	count(us_id)
-	FROM usuario
-	WHERE us_nombreusuario=_nombreUsuario AND md5(_password) = us_password;
-END;
-$$ LANGUAGE plpgsql;
+
 
 CREATE OR REPLACE FUNCTION IniciarSesionUsuario(_nombreUsuario varchar, _password varchar)
 RETURNS TABLE
-  (id integer,
-   nombreUsuario varchar,
-   nombre varchar,
-   apellido varchar,
-   fechaNacimiento date,
-   correo varchar,
-   genero varchar)
+  (id integer)
 AS
 $$
 BEGIN
 	RETURN QUERY SELECT
 	us_id
 	FROM usuario
-	WHERE us_nombreusuario=_nombreUsuario AND md5(_password) = us_password;
+	WHERE us_nombreUsuario=_nombreUsuario AND md5(_password) = us_password AND us_activo = true;
 END;
 $$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION IniciarSesionCorreo(_correo varchar, _password varchar)
 RETURNS TABLE
-  (id integer,
-   nombreUsuario varchar,
-   nombre varchar,
-   apellido varchar,
-   fechaNacimiento date,
-   correo varchar,
-   genero varchar)
+  (id integer)
 AS
 $$
 BEGIN
 	RETURN QUERY SELECT
 	us_id
 	FROM usuario
-	WHERE us_correo=_correo AND md5(_password) = us_password;
+	WHERE us_correo=_correo AND md5(_password) = us_password AND us_activo = true;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -90,14 +60,7 @@ $$ LANGUAGE plpgsql;
 -- devuelve los datos del usuario
 CREATE OR REPLACE FUNCTION ConsultarCorreoPassword(_correo varchar, _password varchar)
 RETURNS TABLE
-  (id integer,
-   nombreUsuario varchar,
-   nombre varchar,
-   apellido varchar,
-   fechaNacimiento date,
-   correo varchar,
-   genero varchar,
-   foto varchar)
+  (contador bigint)
 AS
 $$
 BEGIN
@@ -108,18 +71,24 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION ConsultarUsuarioPassword(_nombreUsuario varchar, _password varchar)
+RETURNS TABLE
+  (contador bigint)
+AS
+$$
+BEGIN
+  RETURN QUERY SELECT
+  count(us_id)
+  FROM usuario
+  WHERE us_nombreUsuario=_nombreUsuario AND  us_password=md5(_password);
+END;
+$$ LANGUAGE plpgsql;
+
 
 --Consulta el usuario por su nombre de usuario sin clave
 CREATE OR REPLACE FUNCTION ConsultarNombreUsuario(_nombreUsuario varchar)
 RETURNS TABLE
-  (id integer,
-   nombreUsuario varchar,
-   nombre varchar,
-   apellido varchar,
-   fechaNacimiento date,
-   correo varchar,
-   genero varchar,
-   foto varchar)
+  (contadorUsuario bigint)
 AS
 $$
 BEGIN
@@ -133,14 +102,7 @@ $$ LANGUAGE plpgsql;
 --Consulta el usuario por su correo sin clave
 CREATE OR REPLACE FUNCTION ConsultarCorreoUsuario(_correo varchar)
 RETURNS TABLE
-  (id integer,
-   nombreUsuario varchar,
-   nombre varchar,
-   apellido varchar,
-   fechaNacimiento date,
-   correo varchar,
-   genero varchar,
-   foto varchar)
+  (contadorCorreo bigint)
 AS
 $$
 BEGIN
@@ -158,7 +120,7 @@ $$ LANGUAGE plpgsql;
 --Cambia la contraseña del usuario, recibe el correo y la nueva contraseña
 
 CREATE OR REPLACE FUNCTION CambiarPassword(_correo varchar, _password varchar)
-RETURNS BOOLEAN
+RETURNS void
 AS $$
 BEGIN
   
