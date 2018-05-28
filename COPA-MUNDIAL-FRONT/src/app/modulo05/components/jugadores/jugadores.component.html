@@ -1,0 +1,53 @@
+<div class="container app">
+    <div class="row">
+        <div class="col">
+          <h2>{{title}}</h2>
+        </div>
+        <div class="col rightAlign">
+          <button *ngIf="esAdmin" type="button" class="btn btn-sm separator" routerLink="/jugadores/detalle">Agregar</button>
+          <button *ngIf="jugadorActual" type="button" class="btn btn-sm separator" routerLink="/jugadores/detalle/{{jugadorActual.id}}">Editar</button>
+          <button *ngIf="jugadorActual" type="button" class="btn btn-sm separator" (click)="fun()">Ver</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-9">
+
+        </div>
+        <div class="col-sm-3">
+          <div class="row">
+            <div class="floating-label floating-label-sm textfield-box separator">
+              <label for="searchFloatingBox">Buscar</label>
+              <input aria-describedby="searchFloatingBox" class="form-control" id="searchFloatingBox" placeholder="" [(ngModel)]="searchTerm" type="search">
+            </div>
+            <div class="separator">
+              <button type="button" class="btn btn-sm" (click)="search()">Buscar</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <table class="table table-hover separator">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Numero</th>
+              <th scope="col">Posicion</th>
+              <th scope="col">Equipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let jugador of jugadores" [class.table-dark]="jugador === jugadorActual" (click)="selectedJugador(jugador)">
+              <td>{{jugador.nombre}}</td>
+              <td>{{jugador.apellido}}</td>
+              <td>{{jugador.numero}}</td>
+              <td>{{jugador.posicion}}</td>
+              <td>{{jugador.equipo}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+</div>
