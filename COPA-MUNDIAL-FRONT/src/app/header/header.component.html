@@ -11,8 +11,17 @@
     <div class="navbar-nav">
 
         <div class="nav-item dropdown">
-            <a class="nav-link" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a #loggedNav class="nav-link" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" />Felix Morales</a>
+            
+            <!--<ul #notLoggedNav class="navbar-nav ml-auto">
+                <li class="nav-item item-border">
+                    <button class="btn btn-nav" href="#" style="box-shadow: none;color: #ffffff; text-transform: none;">Registrarse</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-nav" href="#" style="box-shadow: none;color: #ffffff; text-transform: none;">Iniciar sesión <span class="oi oi-account-login"></span></button>
+                </li>
+            </ul>-->
 
             <ul class="dropdown-menu dropdown-menu-right">
                 <li>
@@ -28,11 +37,15 @@
                         <i class="material-icons">lock</i>Seguridad</a>
                 </li>
                 <li>
+<<<<<<< HEAD
                     <a class="dropdown-item" (click)="setHome()" routerLink="usuario/admin" routerLinkActive="active">
                         <i class="material-icons"> how_to_reg</i>Gestionar Usuarios</a>
                 </li>
                 <li>
                     <a class="dropdown-item" (click)="setHome()" routerLink="">
+=======
+                    <a class="dropdown-item" (click)="logout()">
+>>>>>>> Develop
                         <i class="material-icons">power_settings_new</i>Cerrar Sesión</a>
                 </li>
             </ul>
@@ -82,11 +95,15 @@
                                 <i class="material-icons">lock</i>Seguridad</a>
                             <div class="dropdown-divider"></div>
 
+<<<<<<< HEAD
                             <a (click)="setHome()" routerLink="usuario/admin" routerLinkActive="active" class="dropdown-item">
                             <i class="material-icons"> how_to_reg</i>Gestionar Usuarios</a>
                             <div class="dropdown-divider"></div>
 
                             <a (click)="setHome()" routerLink="" class="dropdown-item">
+=======
+                            <a (click)="logout()" class="dropdown-item">
+>>>>>>> Develop
                                 <i class="material-icons">power_settings_new</i>Cerrar Sesión</a>
 
                         </div>

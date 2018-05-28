@@ -1,0 +1,92 @@
+
+--estadisticas de jugador todos los partidos
+CREATE OR REPLACE FUNCTION GetEstJugador(_idjugador integer)
+RETURNS TABLE(
+	nombre varchar,
+	valor integer,
+	minutojuego integer
+)
+AS
+$$
+BEGIN
+
+    RETURN QUERY select eve_nombre,eve_valor, eve_minuto_juego from eventos_partido where eve_fg_jug=_idjugador;
+   
+END;
+$$ LANGUAGE plpgsql;
+
+
+--estadisticas generales de partido de un equipo
+CREATE OR REPLACE FUNCTION GetEstPartidoEquipo(_idpartido integer,_idequipo integer)
+RETURNS TABLE(
+	nombre varchar,
+	valor integer,
+	minutojuego integer
+)
+AS
+$$
+BEGIN
+
+    RETURN QUERY select ev.eve_nombre, ev.eve_valor, ev.eve_minuto_juego from eventos_partido ev, equipo_partido equ where 
+	ev.eve_fg_equipart = equ.equi_part_id and equ.equi_part_fg_part = _idpartido and
+	equ.equi_part_fg_equipo = _idequipo;
+   
+END;
+$$ LANGUAGE plpgsql;
+
+
+--estadisticas posesion y rendimiento de un equipo en un partido
+CREATE OR REPLACE FUNCTION GetEstPartidoPosEquipo(_idpartido integer,_idequipo integer)
+RETURNS TABLE(
+	posesion integer,
+	rendimiento integer
+)
+AS
+$$
+BEGIN
+
+      RETURN QUERY select posesion, rendimiento from equipo_partido where
+	equi_part_fg_equipo = _idequipo and equi_part_fg_part = _idpartido;
+   
+   
+END;
+$$ LANGUAGE plpgsql;
+
+--estadisticas de un equipo
+
+CREATE OR REPLACE FUNCTION GetEstEquipo(_idequipo integer)
+RETURNS TABLE(
+	nombre varchar,
+	valor integer
+)
+AS
+$$
+BEGIN
+
+  RETURN QUERY select evento.eve_nombre, evento.eve_valor from eventos_partido evento, equipo_partido e where
+	e.equi_part_fg_equipo = _idequipo and evento.eve_fg_equipart = e.equi_part_id;
+   
+END;
+$$ LANGUAGE plpgsql;
+
+
+--estadisticas de equipo rendimiento y posesion
+CREATE OR REPLACE FUNCTION GetEstEquipoPosRed(_idequipo integer)
+RETURNS TABLE(
+	posesion integer,
+	rendimiento integer
+)
+AS
+$$
+BEGIN
+
+     RETURN QUERY select posesion,rendimiento from equipo_partido  where
+	equi_part_fg_equipo = _idequipo;
+   
+   
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+

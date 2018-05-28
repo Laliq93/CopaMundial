@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 Template Name: Copa Mundial
 Author: Desarrollo de Software UCAB
@@ -75,3 +76,15 @@ File: css (style)
 /*******************
 9. Custom Templates
 ******************/
+=======
+    .material-icons {
+    font-size: 22px !important;
+    margin-right: 5px;
+}
+
+@media only screen and (min-width: 992px) {
+    .main-container {
+        margin-left: 280px;
+    }
+}
+>>>>>>> Develop

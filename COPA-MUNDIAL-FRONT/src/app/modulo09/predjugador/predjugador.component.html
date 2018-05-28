@@ -1,0 +1,74 @@
+
+<div class="central">
+
+  
+    <h1>Predicciones de Jugador</h1>
+    <hr/>
+
+  
+      <div class="drop-label-estilo">
+
+        <div style="float: left"><h4>Seleccione Equipo</h4></div>
+      
+
+        <div class="form-group form-estilo">
+          <div >
+            <select id='Pais' class="form-control font-estilo" >
+              <ng-container *ngFor="let pais of paises; let i = index">
+                <option value={{pais}}>{{pais}}</option>
+              </ng-container>
+            </select>
+          </div>
+      </div>
+      </div>
+    <div class="drop-label-estilo" style="margin-top: 2%">
+
+        <div style="float: left"><h4>Seleccione Jugador</h4></div>
+      
+  
+        <div class="form-group form-estilo" >
+            <div>
+              <select id='Pais' class="form-control font-estilo">
+                <ng-container *ngFor="let jugador of jugadores; let i = index">
+                  <ng-container *ngIf="jugador.pais == valor">
+                    <option value={{jugador.nombre}}>{{jugador.nombre}}</option>
+                  </ng-container>
+                </ng-container>
+              </select>
+            </div>
+        </div>
+      </div> 
+
+
+    <div style="margin-left: 35%; width: 30%;margin-top:2%">
+        <label for="picker" class="centrar">A basic example:</label>
+        <input class="form-control centrar" id="picker" placeholder="Pick a date" type="text">
+        </div>
+
+    <div>
+      <table class="table table-hover table-estilo">
+        <thead>
+          <tr>
+            <th scope="col">Predicción</th>
+            <th scope="col">Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let dato of datos; let i = index">
+            <tr>
+              <th scope="row">{{dato.prediccion}}</th>
+              <td>{{dato.porcentaje}}%</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+
+
+    
+    </div>
+
+
+</div>
+
+
+
