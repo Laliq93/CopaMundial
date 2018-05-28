@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 /package-lock.json
 /package.json
 \.DS_Store
 *.lnk
+=======
+/package-lock.json
+/package.json
+\.DS_Store
+*.lnk
+
+*Web.config
+*app.config
+>>>>>>> 67cbe2b50e4c286d309d825c177c9c73bed400fc

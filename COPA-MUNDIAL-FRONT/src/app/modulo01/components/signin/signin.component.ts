@@ -68,15 +68,29 @@ export class SigninComponent implements OnInit {
 
     const userData = isUsername ? username : email;
 
-
       this.http
-      .post<Usuario>(url, userData, httpOptions)
+      .post<any>(url, userData, httpOptions)
       .subscribe(
         success => {
           console.log(success)
-          const id = success.toString();
-          localStorage.setItem('userId', id);
-          this.router.navigate(['inicio']);
+          const id : number = success.Id;
+          const esAdmin : boolean = success.EsAdmin;
+          
+          console.log("ID: " + id);
+          console.log("ESADMIN: " + esAdmin);
+          
+
+          if (esAdmin){
+            localStorage.setItem('userId', id.toString());
+            localStorage.setItem('esAdmin', 'true');
+            console.log('entro un admin ', esAdmin);
+            this.router.navigate(['/inicio', 'admin']);
+            
+           }
+          else{
+            this.router.navigate(['inicio']);
+          }
+          localStorage.setItem('userId', id.toString());
         },
         error => alert(" usuario o email equivocado")
       );

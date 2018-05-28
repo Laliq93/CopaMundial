@@ -6,6 +6,7 @@ import { NotLoggedInGuard } from '../guards/not-logged-in.guard'
 
 import { Modulo01RoutingModule } from './modulo01-routing.module';
 import { HomeComponent } from './components/home/home.component';
+import { HomeAdminComponent } from './components/homeAdmin/homeAdmin.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { SigninComponent } from './components/signin/signin.component';
@@ -27,6 +28,6 @@ import { Routes, RouterModule } from '@angular/router';
     LoggedInGuard,
     NotLoggedInGuard
   ],
-  declarations: [HomeComponent, LoginComponent, SignupComponent, SigninComponent, RecoveryComponent, ChangePasswordComponent]
+  declarations: [HomeComponent, HomeAdminComponent, LoginComponent, SignupComponent, SigninComponent, RecoveryComponent, ChangePasswordComponent]
 })
 export class Modulo01Module { }
