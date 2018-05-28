@@ -14,6 +14,8 @@ namespace WebAPI.Controllers
     public class M4_GestionEquipoController : ApiController
     {
         private DataBase _database = new DataBase();
+        private List<Pais> _listaPaises;
+        private Pais pais;
 
         /// <summary>
         /// Metodo POST para agregar equipos. Realiza una conversion el idPais y pasa los datos a otro metodo.
@@ -34,9 +36,10 @@ namespace WebAPI.Controllers
             }
             catch( Exception e)
             {
-                return BadRequest("Error en el servidor: " + e.Message);
+                return BadRequest("Error en el registro del equipo: " + e.Message);
             }
         }
+
         /// <summary>
         /// Metodo que es llamado cuando se necesita insertar un equipo a la base de datos. Se encarga de
         /// hacer llamados a los metodos respectivos en la base de datos para asi realizar su funcion
@@ -62,14 +65,6 @@ namespace WebAPI.Controllers
             }
         }
 
-        [Route("prueba")]
-        [HttpPut]
-        public HttpResponseMessage prueba(Equipo e)
-        {
-            e.Descripcion = "la descripcion ha cambiado!";
-            return Request.CreateResponse(HttpStatusCode.OK, e);
-        }
-
         /// <summary>
         /// Actualiza la información del perfil de usuario en la base de datos.
         /// </summary>
@@ -93,6 +88,59 @@ namespace WebAPI.Controllers
             catch (NullReferenceException exc)
             {
                 //throw new UsuarioNullException(exc);
+            }
+        }
+
+        /// <summary>
+        /// Metodo GET para obtener los paises registrados en la BD filtrados por un idioma
+        /// </summary>
+        /// <param name="idioma">El idioma por el cual se filtrara la respuesta.</param>
+        [Route("ObtenerPaises/{idioma}")]
+        [HttpGet]
+        public HttpResponseMessage getPaises(string idioma)
+        {
+            try
+            {
+                ObtenerPaises(idioma);
+                return Request.CreateResponse(HttpStatusCode.OK, _listaPaises);
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.BadRequest, 
+                    new HttpError("Error al tratar de obtener los datos de los paises:" + e.Message));
+            }
+            
+        }
+
+        /// <summary>
+        /// Metodo que retorna una lista de paises llamando a un Stored Procedure que se encarga de 
+        /// devolver una tabla filtrada por el idioma con los paises registrados en el sistema.
+        /// </summary>
+        /// <param name="idioma">El idioma por el cual se filtrara la respuesta.</param>
+        public List<Pais> ObtenerPaises(string idioma)
+        {
+            try
+            {
+                _listaPaises = new List<Pais>();
+
+                _database.Conectar();
+                _database.StoredProcedure("m4_traer_pais( @idioma )");
+                _database.AgregarParametro("idioma", idioma);
+                _database.EjecutarReader();
+
+                for (int i = 0; i < _database.cantidadRegistros; i++)
+                {
+                    pais = new Pais(_database.GetString(i, 0), new I18nEquipo(_database.GetInt(i, 3), idioma, _database.GetString(i,1)));
+
+                    _listaPaises.Add(pais);
+                }
+
+                return _listaPaises;
+            }
+            catch (Exception exc)
+            {
+                return null;
             }
         }
     }
