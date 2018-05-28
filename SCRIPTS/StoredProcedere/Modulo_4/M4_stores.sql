@@ -61,7 +61,7 @@ RETURNS RETURNS TABLE(iso VARCHAR(3), nombreES text, nombreEN text, descripcionE
 
 AS$$
 DECLARE
-   var_r;
+   var_r record;
 BEGIN
 	
 	FOR var_r IN ( Select pa_iso, (select i18n_mensaje from pais, i18n_equipo
