@@ -1,17 +1,15 @@
+.main-container-notlogged{
+	margin-left: 0px !important;
+    margin-right: 0px;
+}
+
+.page-content {
+	padding: 15px;
+}
+
 body{
 	overflow: hidden;
 }
-
-/*nav.navbar{
-	background-color: #02588E;
-	color: #ffffff;
-}
-
-.btn-nav{
-	box-shadow: none;
-	color: #ffffff;
-	text-transform: none;
-}*/
 
 .item-border{
 	border-right: 1px solid #ffffff;
