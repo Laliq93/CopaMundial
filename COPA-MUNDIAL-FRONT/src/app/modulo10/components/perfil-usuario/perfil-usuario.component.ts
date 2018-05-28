@@ -22,6 +22,7 @@ export class PerfilUsuarioComponent implements OnInit {
   constructor(private http: HttpClient) {
     this._api10 = new ApiService(http);
     this._usuario = new Usuario10();
+    
   }
 
   ngOnInit() {
