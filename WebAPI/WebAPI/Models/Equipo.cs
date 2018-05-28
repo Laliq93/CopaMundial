@@ -37,7 +37,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo pais
         /// </summary>
-        public Pais Pais
+        public Pais pais
         {
             get { return _pais; }
             set { _pais = value; }
@@ -46,7 +46,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo descripcion
         /// </summary>
-        public List<I18nEquipo> Descripcion
+        public List<I18nEquipo> descripcion
         {
             get { return _descripcion; }
             set { _descripcion = value; }
@@ -55,7 +55,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo status
         /// </summary>
-        public bool Status
+        public bool status
         {
             get { return _status; }
             set { _status = value; }
@@ -64,7 +64,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo grupo
         /// </summary>
-        public string Grupo
+        public string grupo
         {
             get { return _grupo; }
             set { _grupo = value; }
@@ -73,7 +73,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo habilitado
         /// </summary>
-        public bool Habilitado
+        public bool habilitado
         {
             get { return _habilitado; }
             set { _habilitado = value; }

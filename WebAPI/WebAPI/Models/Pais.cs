@@ -33,7 +33,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo iso
         /// </summary>
-        public string Iso
+        public string iso
         {
             get { return _iso; }
             set { _iso = value; }
@@ -42,7 +42,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo nombre
         /// </summary>
-        public I18nEquipo Nombre
+        public I18nEquipo nombre
         {
             get { return _nombre; }
             set { _nombre = value; }
