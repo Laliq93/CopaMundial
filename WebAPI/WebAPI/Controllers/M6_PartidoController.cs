@@ -444,7 +444,7 @@ namespace WebAPI.Controllers
                     {
                         AgregarAlineacion(alineacion.Capitan, alineacion.Posicion, alineacion.Titular,
                                           alineacion.Jugador.Id, alineacion.Equipo, partido.Id);
-
+                        
                     }
                  if(partido.Alineacion2!=null)
                     foreach (var alineacion in partido.Alineacion1)
