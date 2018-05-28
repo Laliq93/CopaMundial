@@ -225,11 +225,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\M09_EstadisticaController.cs" />
     <Compile Include="Controllers\M10_UsuarioController.cs" />
     <Compile Include="Controllers\M4_GestionEquipoController.cs" />
     <Compile Include="Controllers\M5_JugadorController.cs" />
     <Compile Include="Controllers\M1_RegistroLoginRecuperarController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Models\EstEquipo.cs" />
     <Compile Include="Models\Excepciones\ClaveCorreoNoCoincideException.cs" />
     <Compile Include="Models\Excepciones\ClaveUsuarioNoCoincideException.cs" />
     <Compile Include="Models\Excepciones\CodigoNoCoincideException.cs" />
