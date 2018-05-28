@@ -4,27 +4,27 @@ export class I18nEquipo {
     private _mensaje: string;
 
     // getters y setters de la clase
-    get getId(): number {
+    get id(): number {
         return this._id;
     }
 
-    get getIdioma(): string {
+    get idioma(): string {
         return this._idioma;
     }
 
-    get getMensaje(): string {
+    get mensaje(): string {
         return this._mensaje;
     }
 
-    set setId(id: number) {
+    set id(id: number) {
         this._id = id;
     }
 
-    set setIdioma(idioma: string) {
+    set idioma(idioma: string) {
         this._idioma = idioma;
     }
 
-    set setMensaje(mensaje: string) {
+    set mensaje(mensaje: string) {
         this._mensaje = mensaje;
     }
 }

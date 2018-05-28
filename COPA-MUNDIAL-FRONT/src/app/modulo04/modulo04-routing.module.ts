@@ -8,7 +8,7 @@ import { EditarComponent } from './components/editar/editar.component';
 const routes: Routes = [
     { path: '', component: ViewComponent, canActivate: [LoggedInGuard] },
     { path: 'crear', component: CrearComponent, canActivate: [LoggedInGuard] },
-    { path: 'editar', component: EditarComponent, canActivate: [LoggedInGuard] }
+    { path: 'editar/:id', component: EditarComponent, canActivate: [LoggedInGuard] }
 ];
 
 @NgModule({

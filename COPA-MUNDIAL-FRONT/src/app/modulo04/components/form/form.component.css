@@ -1,23 +1,32 @@
-:host { /* :host es para seleccionar el componente en el que te encuentras */
-    text-align: center;
-}
-.col-sm-2, .col-sm-10, textarea {
+.col-sm-2,
+.col-sm-10,
+textarea {
     margin: 1% 0;
 }
+
 .form-group {
     margin-bottom: 3rem;
 }
-.btn {
-    margin: 0 2%;
-    width: 20%;
-}
+
 .importante {
     color: red;
     font-weight: bold;
 }
-.eliminado{
-    margin: 0;
+
+.eliminado {
+    margin-top: 0px;
 }
-label:nth-child(1), label:nth-child(3), label:nth-child(5){
+
+.bandera {
+    margin-top: 18px;
+    width: auto;
+    height: 30px;
+}
+
+.bold {
     font-weight: bold;
+}
+
+.floating-label label {
+    left: auto !important;
 }
