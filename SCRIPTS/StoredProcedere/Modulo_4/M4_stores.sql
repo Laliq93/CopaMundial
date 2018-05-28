@@ -1,3 +1,6 @@
+
+
+
 CREATE OR REPLACE FUNCTION m4_traer_pais(idioma VARCHAR(2))
 RETURNS TABLE (iso VARCHAR(3), nombre text, pk integer, id integer)
 
@@ -52,7 +55,8 @@ $$ LANGUAGE plpgsql;
 
   CREATE OR REPLACE FUNCTION m4_busca_equipo_iso
 (id_pais VARCHAR(3), idioma VARCHAR(2)) 
-RETURNS RETURNS TABLE(iso, _nombre, descripcion, grupo, status, id, pk )
+RETURNS RETURNS TABLE(iso VARCHAR(3), _nombre text, descripcionES VARCHAR(100),
+ descripcionEN VARCHAR(100), grupo VARCHAR(1), status boolean, id integer, pk integer)
 
 AS$$
 DECLARE
@@ -62,16 +66,23 @@ BEGIN
 	FOR var_r IN ( Select pa_iso, (select i18n_mensaje from pais, i18n_equipo
 					where i18n_idioma = idioma and i18n_id = pa_i18n_nombre 
 					and pa_iso = id_pais) as nombre, 
-	i18n_mensaje as Descripcion , eq_grupo, eq_status, i18n_id, i18n_pk
+				(Select i18n_mensaje rom equipo, pais, i18n_equipo
+				where i18n_idioma = 'es' and i18n_id = eq_i18n_descripcion 
+				and pa_iso = id_pais and pa_iso = eq_pa_id) as DescripcionEs, 
+				(Select i18n_mensaje rom equipo, pais, i18n_equipo
+				where i18n_idioma = 'en' and i18n_id = eq_i18n_descripcion 
+				and pa_iso = id_pais and pa_iso = eq_pa_id) as DescripcionEn, 
+	eq_grupo, eq_status, i18n_id, i18n_pk
 	from equipo, pais, i18n_equipo
-	where i18n_idioma = idioma and i18n_id = eq_i18n_descripcion and pa_iso = id_pais 
-	and pa_iso = eq_pa_id)
+	where i18n_id = eq_i18n_descripcion and pa_iso = id_pais 
+	and pa_iso = eq_pa_id and eq_habilitado = true)
 
 	LOOP
 
 	iso = var_r.pa_iso;
 	_nombre = var_r.nombre;
-	descripcion = var_r.Descripcion;
+	descripcionEn = var_r.DescripcionEn;
+	descripcionES = var_r.DescripcionEs;
 	grupo = var_r.eq_grupo;
 	status = var_r.eq_status
 	id = var_r.i18n_id;
