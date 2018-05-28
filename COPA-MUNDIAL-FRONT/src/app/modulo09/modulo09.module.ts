@@ -9,12 +9,17 @@ import { PredequipoComponent } from './predequipo/predequipo.component';
 import { PredjugadorComponent } from './predjugador/predjugador.component';
 import { GenestjugComponent } from './genestjug/genestjug.component';
 import { EstequiposComponent } from './estequipos/estequipos.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    Modulo09RoutingModule
+    Modulo09RoutingModule,
+    HttpClientModule,
+    HttpModule
+    
   ],
   declarations: [EstgeneralComponent, EstpartidoComponent, EstjugadorComponent, PredequipoComponent, PredjugadorComponent, GenestjugComponent, EstequiposComponent]
 })
