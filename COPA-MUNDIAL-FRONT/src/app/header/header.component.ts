@@ -102,7 +102,7 @@ export class HeaderComponent implements AfterViewInit {
 	ngAfterViewInit(): void {
 
 		this._zone.runOutsideAngular(() => {
-			jQuery("#copaNavdrawer").navdrawer("show");
+			//jQuery("").navdrawer("show");
 		});
 
 	}

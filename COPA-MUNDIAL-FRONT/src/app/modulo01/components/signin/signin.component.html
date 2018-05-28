@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-4 col-sm-12">
+      <form #userLoginForm="ngForm" (ngSubmit)="signinUser(userLoginForm)" class="card">
+        <div class="image-logo">
+          <div class="row justify-content-center">
+            <div class="col-3">
+              <img class="img-fluid" src="../../../assets/images/logo.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputuser">Usuario o correo</label>
+          <input matInput type="text" #NombreUsuario="ngModel" [(ngModel)]="usuario.nombreUsuario" name="NombreUsuario" required class="form-control" id="exampleInputuser" placeholder="Usuario o correo">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Contraseña</label>
+          <input matInput type="password" #Password="ngModel" [(ngModel)]="usuario.password" name="Password" required class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+        </div>
+
+        <button (click)="recoveryPassword()" class="btn-forgot-password link-forgot-password btn" href="">¿Olvidaste tu contraseña?</button>
+        <button [disabled]="!userLoginForm.valid" type="submit" class="btn btn-primary btn-signin">Iniciar sesión</button>
+      </form>
+    </div>
+  </div>
+</div>

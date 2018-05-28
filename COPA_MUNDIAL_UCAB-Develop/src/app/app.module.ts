@@ -1,7 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { NgForm, Form, FormGroup, AbstractControl, FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { NgForm, Form, FormGroup, AbstractControl, FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './MODULO1/client/user.service';
 
 
@@ -23,26 +26,23 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 
-
 //servicios
 import { ApiService } from './shared/api.service';
 import { DatosTorneoComponent } from './MODULO9/datos-torneo/datos-torneo.component';
 
 
-
+import { HttpModule } from '@angular/http';
 //angular pipes (directiva)
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AdminComponent,
-    
-    
-   
+    AdminComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     AuthModule,
     CityModule,
@@ -55,11 +55,12 @@ import { DatosTorneoComponent } from './MODULO9/datos-torneo/datos-torneo.compon
     FormsModule,
     ReactiveFormsModule,
     StatisticModule,
-    UserConfigModule
+    UserConfigModule,
+    HttpClientModule
   ],
   providers: [
     ApiService
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
