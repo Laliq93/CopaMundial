@@ -7,6 +7,7 @@ import {
   HttpHeaders,
   HttpErrorResponse
 } from '@angular/common/http';
+import { Usuario } from '../../modulo01/models/usuario';
 
 declare var bootbox, router: any;
 
@@ -111,30 +112,36 @@ export class ApiService {
       });
   }
 
-  public AdministradorActivarCuenta(usuario: Usuario10) {
-    this._usuario10 = usuario;
+  public AdministradorActivarCuenta(idUsuario : number) {
+    let _Usuario : Usuario10;
+    _Usuario = new Usuario10();
+    _Usuario.Id = idUsuario;
+
     this._conexion.Controlador = 'ActivarUsuario';
     let url = this._conexion.RutaApi + this._conexion.Controlador;
 
     this.http
-      .put<IUsuario10>(url, usuario, { responseType: 'json' })
+      .put<IUsuario10>(url, _Usuario, { responseType: 'json' })
       .subscribe(data => {
         if (data != null) {
           this._usuario10.Message = data.Message;
           this.Error(this._usuario10);
         } else {
-          this.Succes('Cuenta activada con éxito');
+          this.Succes('Cuenta activada con éxito');.
         }
       });
   }
 
-  public AdministradorDesactivaCuenta(usuario: Usuario10) {
-    this._usuario10 = usuario;
+  public AdministradorDesactivaCuenta(idUsuario: number) {
+    let _Usuario: Usuario10;
+    _Usuario = new Usuario10();
+    _Usuario.Id = idUsuario;
+
     this._conexion.Controlador = 'AdministradorDesactivaUsuario';
     let url = this._conexion.RutaApi + this._conexion.Controlador;
 
     this.http
-      .put<IUsuario10>(url, usuario, { responseType: 'json' })
+      .put<IUsuario10>(url, _Usuario, { responseType: 'json' })
       .subscribe(data => {
         if (data != null) {
           this._usuario10.Message = data.Message;
@@ -143,36 +150,6 @@ export class ApiService {
           this.Succes('Cuenta desactivada con éxito');
         }
       });
-  }
-
-  public VerUsuariosActivos(): Usuario10[] {
-    let listaUsuarios: Usuario10[] = new Array();
-
-    this._conexion.Controlador = 'ObtenerUsuariosActivos';
-
-    let url = this._conexion.RutaApi + this._conexion.Controlador;
-
-    this.http.get<IUsuario10>(url, { responseType: 'json' }).subscribe(data => {
-      for (let i = 0; i < Object.keys(data).length; i++) {
-        listaUsuarios[i] = data[i];
-      }
-    });
-
-    return listaUsuarios;
-  }
-
-  public VerUsuariosNoActivos() {
-    let listaUsuarios: Usuario10[] = new Array();
-
-    this._conexion.Controlador = 'ObtenerUsuariosNoActivos';
-
-    let url = this._conexion.RutaApi + this._conexion.Controlador;
-
-    this.http.get<IUsuario10>(url, { responseType: 'json' }).subscribe(data => {
-      for (let i = 0; i < Object.keys(data).length; i++) {
-        listaUsuarios[i] = data[i];
-      }
-    });
   }
 
   public CrearUsuarioAdministrador() {}
