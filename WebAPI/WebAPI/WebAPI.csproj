@@ -235,10 +235,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\M10_UsuarioController.cs" />
+    <Compile Include="Controllers\M2_CiudadController.cs" />
     <Compile Include="Controllers\M5_JugadorController.cs" />
     <Compile Include="Controllers\M1_RegistroLoginRecuperarController.cs" />
     <Compile Include="Controllers\M6_PartidoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Models\Ciudad.cs" />
     <Compile Include="Models\Excepciones\EstadioNoDisponibleException.cs" />
     <Compile Include="Models\Excepciones\UsuarioNullException.cs" />
     <Compile Include="Models\Excepciones\ClaveInvalidaException.cs" />
