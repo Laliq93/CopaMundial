@@ -4,7 +4,6 @@ import { Usuario10 } from '../../models/usuario.model';
 import { ApiService } from '../../services/api10.services';
 import { HttpClient } from '@angular/common/http';
 
-declare var jQuery: any;
 declare var bootbox: any;
 
 @Component({
@@ -25,19 +24,17 @@ export class ConfiguracionUsuarioComponent implements OnInit, AfterViewInit {
   public _fechaNew;
   public _FotoNew;
 
-  constructor(private _zone: NgZone, private http: HttpClient) {
+  constructor(private http: HttpClient) {
     this._api10 = new ApiService(http);
     this._usuario = new Usuario10();
-  }
-
-  ngOnInit() {
     this._usuario = this._api10.ObtenerDatos();
   }
 
+  ngOnInit() {
+
+  }
+
   ngAfterViewInit(): void {
-    this._zone.runOutsideAngular(() => {
-      jQuery('#DatePickerDaemonite').pickdate();
-    });
   }
 
   ActualizarPerfil() {
@@ -49,6 +46,9 @@ export class ConfiguracionUsuarioComponent implements OnInit, AfterViewInit {
       this._usuario.Apellido = this._apellidoNew;
     }
     this._usuario.FechaNacimiento = this._fechaNew;
+
+    alert(this._usuario.FechaNacimiento);
+
     this._api10.EditarPerfil(this._usuario);
   }
 }
