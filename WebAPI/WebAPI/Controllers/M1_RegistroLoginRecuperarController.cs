@@ -18,6 +18,16 @@ namespace WebAPI.Controllers
 
         private DataBase _database = new DataBase();
 
+        /// <summary>
+        /// Ingresa dentro de la base de datos del sistema un usuario
+        /// </summary>
+        /// <param Usuario="usuario">Objeto usuario</param>
+        /// <returns>Retorna mensaje de exito</returns>
+        /// <exception cref="NombreUsuarioExistenteException">Excepcion HTTP cuando el nombre de
+        ///  usuario ya existe en el sistema, con su respectivo codigo</exception>
+        /// <exception cref="CorreoExistenteException">Excepcion HTTP cuando el correo 
+        /// ingresado ya existe en el sistema, con su respectivo codigo</exception>
+        /// <exception cref="Exception">Excepcion HTTP que le brinda robustez al metodo</exception>
         [Route("RegistrarUsuario")]
         [System.Web.Http.AcceptVerbs("POST")]
         [System.Web.Http.HttpPost]
@@ -53,6 +63,18 @@ namespace WebAPI.Controllers
 
         }
 
+        /// <summary>
+        /// Inicia sesion dentro del sistema con el nombre de usuario
+        /// </summary>
+        /// <param Usuario="usuario">Objeto usuario</param>
+        /// <returns>Retorna el id del usuario que ingresa en el sistema</returns>
+        /// <exception cref="NombreUsuarioNoExisteException">Excepcion HTTP cuando el nombre de
+        ///  usuario no existe en el sistema, con su respectivo codigo</exception>
+        /// <exception cref="UsuarioInactivoException">Excepcion HTTP cuando el usuario
+        /// se encuentra inactivo en el sistema, con su respectivo codigo</exception>
+        /// <exception cref="ClaveUsuarioNoCoincideException">Excepcion HTTP cuando el nombre del usuario
+        /// no coincide con la clave ingresada, con su respectivo codigo</exception>
+        /// <exception cref="Exception">Excepcion HTTP que le brinda robustez al metodo</exception>
         [Route("IniciarSesionUsuario")]
         [System.Web.Http.AcceptVerbs("POST")]
         [System.Web.Http.HttpPost]
@@ -64,11 +86,18 @@ namespace WebAPI.Controllers
 
                 System.Diagnostics.Debug.WriteLine(usuario);
                 ValidarNombreUsuarioNoExiste(usuario.NombreUsuario);
+                ValidarUsuarioActivo(usuario.NombreUsuario);
                 ValidarUsuarioPassword(usuario.NombreUsuario, usuario.Password);
+     
                 usuario.Id = IniciarSesionUsuario(usuario.NombreUsuario, usuario.Password);
                 return Ok(usuario.Id);
             }
             catch(NombreUsuarioNoExisteException e)
+            {
+                _database.Desconectar();
+                return BadRequest("Error en el servidor: " + e.Message);
+            }
+            catch(UsuarioInactivoException e)
             {
                 _database.Desconectar();
                 return BadRequest("Error en el servidor: " + e.Message);
@@ -95,12 +124,18 @@ namespace WebAPI.Controllers
             {
                 System.Diagnostics.Debug.WriteLine(usuario);
                 ValidarCorreoNoExiste(usuario.Correo);
+                ValidarCorreoActivo(usuario.Correo);
                 ValidarCorreoPassword(usuario.Correo, usuario.Password);
                 usuario.Id = IniciarSesionCorreo(usuario.Correo, usuario.Password);
 
                 return Ok(usuario.Id);
             }
             catch(CorreoNoExisteException e)
+            {
+                _database.Desconectar();
+                return BadRequest("Error en el servidor: " + e.Message);
+            }
+            catch(UsuarioInactivoException e)
             {
                 _database.Desconectar();
                 return BadRequest("Error en el servidor: " + e.Message);
@@ -123,6 +158,7 @@ namespace WebAPI.Controllers
         [System.Web.Http.HttpPost]
         public IHttpActionResult RecuperarClave(Usuario usuario)
         {
+
             try
             {
                     ValidarCorreo(usuario.Correo);
@@ -151,14 +187,19 @@ namespace WebAPI.Controllers
         {
             try
             {
-
+                ValidarToken(usuario.Token);
                 ValidarCorreo(usuario.Correo);
-                CambiarPassword(usuario.Correo, usuario.Password);
+                CambiarPassword(usuario.Token, usuario.Correo, usuario.Password);
+
                 return Ok("clave modificada exitosamente");
 
 
             }
-
+            catch(CodigoNoCoincide e)
+            {
+                _database.Desconectar();
+                return BadRequest("Error en el servidor: " + e.Message);
+            }
             catch(CorreoNoExisteException e)
             {
                 _database.Desconectar();
@@ -181,20 +222,35 @@ namespace WebAPI.Controllers
             MailMessage _email = new MailMessage();
             SmtpClient _smtpServidor = new SmtpClient();
 
-           
+            int _minimo = 1000;
+            int _maximo = 9999;
+            Random _random = new Random();
+            string _token = _random.Next(_minimo, _maximo).ToString();
+
+
             _email.IsBodyHtml = true;
             _email.From = new MailAddress("copamundialucab@gmail.com");
             _email.To.Add(correo);
             _email.Subject = "Recuperar clave copamundial";
-            _email.Body = ("Estimado usuario, recibimos la solicitud para recuperar la contraseña de su cuenta en COPAMUNDIAL con el siguiente correo: "+ correo);
+            _email.Body = ("Estimado usuario, recibimos la solicitud para recuperar la contraseña de su cuenta en COPAMUNDIAL, este es su codigo de recuperación: "+ _token);
 
             _smtpServidor.Host = "smtp.gmail.com";
             _smtpServidor.Port = 587;
             _smtpServidor.Credentials = new System.Net.NetworkCredential("copamundialucab", "copamundial2018");
             _smtpServidor.EnableSsl = true;
+            
 
             _smtpServidor.Send(_email);
-            
+
+            _database.Conectar();
+
+            _database.StoredProcedure("SetearToken(@_token, @correo)");
+
+            _database.AgregarParametro("_token", _token);
+            _database.AgregarParametro("correo", correo);
+
+            _database.EjecutarQuery();
+
         }
 
         private void AgregarUsuario(string nombreUsuario, string nombre, string apellido, 
@@ -252,13 +308,16 @@ namespace WebAPI.Controllers
         }
 
 
-        private void CambiarPassword(string correo, string password)
+        private void CambiarPassword(string token, string correo, string password)
         {
 
             _database.Conectar();
 
-            _database.StoredProcedure("CambiarPassword(@correo, @password)");
 
+
+            _database.StoredProcedure("CambiarPassword(@token, @correo, @password)");
+
+            _database.AgregarParametro("token", token);
             _database.AgregarParametro("correo", correo);
             _database.AgregarParametro("password", password);
 
@@ -382,8 +441,65 @@ namespace WebAPI.Controllers
 
             _contador = _database.GetInt(0, 0);
 
-            if (_contador > 0)
-                throw new CorreoExistenteException(correo);
+            if (_contador < 1)
+                throw new CorreoNoExisteException(correo);
+
+
+        }
+
+        private void ValidarUsuarioActivo(string nombreUsuario)
+        {
+            int _contador; //contador de filas retornadas por la bd
+            _database.Conectar();
+
+            _database.StoredProcedure("ConsultarNombreUsuarioActivo(@nombreUsuario)");
+
+            _database.AgregarParametro("nombreUsuario", nombreUsuario);
+
+            _database.EjecutarReader();
+
+            _contador = _database.GetInt(0, 0);
+
+            if (_contador < 1)
+                throw new UsuarioInactivoException(nombreUsuario);
+
+
+        }
+
+        private void ValidarCorreoActivo(string correo)
+        {
+            int _contador; //contador de filas retornadas por la bd
+            _database.Conectar();
+
+            _database.StoredProcedure("ConsultarCorreoActivo(@correo)");
+
+            _database.AgregarParametro("correo", correo);
+
+            _database.EjecutarReader();
+
+            _contador = _database.GetInt(0, 0);
+
+            if (_contador < 1)
+                throw new UsuarioInactivoException(correo);
+
+
+        }
+
+        private void ValidarToken(string token)
+        {
+            int _contador; //contador de filas retornadas por la bd
+            _database.Conectar();
+
+            _database.StoredProcedure("ConsultarToken(@token)");
+
+            _database.AgregarParametro("token", token);
+
+            _database.EjecutarReader();
+
+            _contador = _database.GetInt(0, 0);
+
+            if (_contador < 1)
+                throw new CodigoNoCoincide(token);
 
 
         }

@@ -25,10 +25,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Consulta un usuario por su nombre de usuario y clave
--- devuelve los datos del usuario
 
-
+--inicia sesion con el nombre del usuario y retorna su id
 CREATE OR REPLACE FUNCTION IniciarSesionUsuario(_nombreUsuario varchar, _password varchar)
 RETURNS TABLE
   (id integer)
@@ -42,7 +40,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
+--inicia sesion con el correo del usuario y retorna su id
 CREATE OR REPLACE FUNCTION IniciarSesionCorreo(_correo varchar, _password varchar)
 RETURNS TABLE
   (id integer)
@@ -57,7 +55,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Consulta un usuario por su correo y clave
--- devuelve los datos del usuario
+-- devuelve un contador de cuantos registros contiene la bd con esos datos
 CREATE OR REPLACE FUNCTION ConsultarCorreoPassword(_correo varchar, _password varchar)
 RETURNS TABLE
   (contador bigint)
@@ -71,6 +69,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- Consulta un usuario por su correo y clave
+-- devuelve un contador de cuantos registros contiene la bd con esos datos
 CREATE OR REPLACE FUNCTION ConsultarUsuarioPassword(_nombreUsuario varchar, _password varchar)
 RETURNS TABLE
   (contador bigint)
@@ -113,18 +113,77 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+--Consulta los usuarios activos por el nombre de usuario
+CREATE OR REPLACE FUNCTION ConsultarNombreUsuarioActivo(_nombreUsuario varchar)
+RETURNS TABLE
+  (contador bigint)
+AS
+$$
+BEGIN
+  RETURN QUERY SELECT
+  count(us_id)
+  FROM usuario
+  WHERE us_nombreUsuario = _nombreUsuario AND us_activo = true;
+END;
+$$ LANGUAGE plpgsql;
+
+
+--Consulta los usuarios activos por el correo
+CREATE OR REPLACE FUNCTION ConsultarCorreoActivo(_correo varchar)
+RETURNS TABLE
+  (contador bigint)
+AS
+$$
+BEGIN
+  RETURN QUERY SELECT
+  count(us_id)
+  FROM usuario
+  WHERE us_correo = _correo AND us_activo = true;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+--Consulta el codigo de recuperacion de contraseña
+CREATE OR REPLACE FUNCTION ConsultarToken(_token varchar)
+RETURNS TABLE
+  (contador bigint)
+AS
+$$
+BEGIN
+  RETURN QUERY SELECT
+  count(us_id)
+  FROM usuario
+  WHERE us_token = _token;
+END;
+$$ LANGUAGE plpgsql;
+
+
 
 /*UPDATES*/
 
 
---Cambia la contraseña del usuario, recibe el correo y la nueva contraseña
+--Cambia la contraseña del usuario, recibe el token(o codigo random), e correo y la nueva contraseña
 
-CREATE OR REPLACE FUNCTION CambiarPassword(_correo varchar, _password varchar)
+CREATE OR REPLACE FUNCTION CambiarPassword(_token varchar, _correo varchar, _password varchar)
 RETURNS void
 AS $$
 BEGIN
   
   UPDATE usuario SET us_password = md5(_password)
+  WHERE us_token = _token AND us_correo = _correo;
+
+END;
+$$ LANGUAGE plpgsql;
+
+--setea el token con el codigo generado para la recuperacion de contrasena
+
+CREATE OR REPLACE FUNCTION SetearToken(_token varchar, _correo varchar)
+RETURNS void
+AS $$
+BEGIN
+  
+  UPDATE usuario SET us_token = _token
   WHERE us_correo = _correo;
 
 END;
