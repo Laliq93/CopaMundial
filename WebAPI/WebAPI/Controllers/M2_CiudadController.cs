@@ -15,7 +15,7 @@ namespace WebAPI.Controllers
     [RoutePrefix("api/M2_Ciudad")]
     public class M2_CiudadController : ApiController
     {
-        private DataBase _database = new DataBase();
+     /*   private DataBase _database = new DataBase();
         private List<Ciudad> _listaCiudades;
         private Ciudad _Ciudad;
 
@@ -99,6 +99,6 @@ namespace WebAPI.Controllers
 
 
 
-
+	*/
     }
 }

@@ -36,29 +36,35 @@
       <table class="table">
           <thead>
             <tr>
-              <th scope="col">Partido VS</th>
               <th scope="col">Goles</th>
               <th scope="col">Asistencias</th>
+              <th scope="col">Faltas cometidas</th>
               <th scope="col">Tarjetas Amarillas</th>
               <th scope="col">Tarjetas Rojas</th>
               <th scope="col">Minutos Jugados</th>
-              <th scope="col">Calificacion</th>
+              <th scope="col">tiros</th>
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let dato of datos; let i = index">
+          <!--  <ng-container *ngFor="let dato of datos; let i = index"> -->
               <tr>
-                <th scope="row">{{dato.pais}}</th>
-                <td>{{dato.goles}}</td>
-                <td>{{dato.asistencias}}</td>
-                <td>{{dato.tamarillas}}</td>
-                <td>{{dato.trojas}}</td>
-                <td>{{dato.mjugados}}</td>
-                <td>{{dato.calificacion}}</td>
+                <th scope="row">{{esta.goles}}</th>
+                <td>{{esta.asistencias}}</td>
+                <td>{{esta.faltasC}}</td>
+                <td>{{esta.tarjetasA}}</td>
+                <td>{{esta.tarjetasR}}</td>
+                <td>{{esta.tiempojugado}}</td>
+                <td>{{esta.tiros}}</td>
               </tr>
-            </ng-container>
+         <!--   </ng-container> -->
           </tbody>
         </table>
       
     </form>
+</div>
+
+<button (click)="getEstadisticas()">button</button>
+<div >
+   {{estadistica | json}}
+ 
 </div>

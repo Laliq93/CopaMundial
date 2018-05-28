@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { estadisticas } from '../estadisticas';
 
 
 
@@ -21,20 +23,41 @@ export class EstjugadorComponent implements OnInit {
   jugador = {peso:60,altura:1.2,edad:38};
 
  param1:string;
+ esta : estadisticas;
+ url : string;
+ player : number;
+ 
 
-  constructor(private route:ActivatedRoute) {
-    this.route.queryParams.subscribe(params => {
-      this.param1 = params['nombre'].split("_").join(" ");
-  });
+  constructor(private route:Router, private http : HttpClient) {
+  //  this.route.queryParams.subscribe(params => {
+   //   this.param1 = params['nombre'].split("_").join(" ");
+     
+     
+  //});
+  this.url = "http://localhost:54059/api/M09_estadisticas"
+  this.player = 1;
    }
 
   ngOnInit() {
+    this.url = "http://localhost:54059/api/M09_estadisticas"
+      this.player = 1;
   }
 
   ngAfterViewInit(){
-
-
   }
+
+  getEstadisticas(){
+    console.log(this.url);
+   this.http.get<estadisticas>(this.url+'/jugador/'+this.player).subscribe(
+     x => {
+       this.esta = x;
+       console.log(this.esta);
+     }
+   )
+   this.route.navigate(['estadisticas/estjugador']);
+  }
+
+
 }
 
 
