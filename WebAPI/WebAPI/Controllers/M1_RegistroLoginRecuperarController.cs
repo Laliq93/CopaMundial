@@ -89,8 +89,8 @@ namespace WebAPI.Controllers
                 ValidarUsuarioActivo(usuario.NombreUsuario);
                 ValidarUsuarioPassword(usuario.NombreUsuario, usuario.Password);
      
-                usuario.Id = IniciarSesionUsuario(usuario.NombreUsuario, usuario.Password);
-                return Ok(usuario.Id);
+                usuario = IniciarSesionUsuario(usuario.NombreUsuario, usuario.Password);
+                return Ok(usuario);
             }
             catch(NombreUsuarioNoExisteException e)
             {
@@ -135,13 +135,14 @@ namespace WebAPI.Controllers
         {
             try
             {
+            
                 System.Diagnostics.Debug.WriteLine(usuario);
                 ValidarCorreoNoExiste(usuario.Correo);
                 ValidarCorreoActivo(usuario.Correo);
                 ValidarCorreoPassword(usuario.Correo, usuario.Password);
-                usuario.Id = IniciarSesionCorreo(usuario.Correo, usuario.Password);
+                usuario = IniciarSesionCorreo(usuario.Correo, usuario.Password);
 
-                return Ok(usuario.Id);
+                return Ok(usuario);
             }
             catch(CorreoNoExisteException e)
             {
@@ -325,10 +326,10 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="correo">correo del usuario</param>
         /// <param name="password">password del usuario</param>
-        private int IniciarSesionCorreo(string correo, string password)
+        private Usuario IniciarSesionCorreo(string correo, string password)
         {
 
-            int _id;
+            Usuario _usuario = new Usuario();
             _database.Conectar();
 
             _database.StoredProcedure("IniciarSesionCorreo(@correo, @password)");
@@ -338,9 +339,11 @@ namespace WebAPI.Controllers
             _database.AgregarParametro("password", password);
 
             _database.EjecutarReader();
-            _id = _database.GetInt(0, 0);
+            _usuario.Id = _database.GetInt(0, 0);
+            _usuario.EsAdmin = _database.GetBool(0, 1);
 
-            return _id;
+
+            return _usuario;
         }
 
         /// <summary>
@@ -348,9 +351,9 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="nombreUsuario">nombre del usuario</param>
         /// <param name="password">password del usuario</param>
-        private int IniciarSesionUsuario(string nombreUsuario, string password)
+        private Usuario IniciarSesionUsuario(string nombreUsuario, string password)
         {
-            int _id;
+            Usuario _usuario = new Usuario();
             _database.Conectar();
 
             _database.StoredProcedure("IniciarSesionUsuario(@nombreUsuario, @password)");
@@ -360,9 +363,11 @@ namespace WebAPI.Controllers
             _database.AgregarParametro("password", password);
 
             _database.EjecutarReader();
-            _id = _database.GetInt(0, 0);
+            _usuario.Id = _database.GetInt(0, 0);
+            _usuario.EsAdmin = _database.GetBool(0, 1);
 
-            return _id;
+
+            return _usuario;
         }
 
 
