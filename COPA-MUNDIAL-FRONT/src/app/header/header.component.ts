@@ -48,7 +48,7 @@ export class HeaderComponent implements AfterViewInit {
 		this.moduleArray = [
 			new Module(MODULES.CIUDADES, "city", false),
 			new Module(MODULES.ESTADIOS, "stadium", false),
-			new Module(MODULES.EQUIPOS, "team", false),
+			new Module(MODULES.EQUIPOS, "equipos", false),
 			new Module(MODULES.JUGADORES, "player", false),
 			new Module(MODULES.PARTIDOS, "match", false),
 			new Module(MODULES.APUESTAS, "bet", false),
