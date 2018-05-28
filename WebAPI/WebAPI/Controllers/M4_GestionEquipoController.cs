@@ -20,18 +20,15 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Metodo POST para agregar equipos. Realiza una conversion el idPais y pasa los datos a otro metodo.
         /// </summary>
-        /// <param name="descripcion">Representa la descripcion del equipo escrita en el cliente.</param>
-        /// <param name="grupo">Representa el grupo al cual pertenece el equipo.</param>
-        /// <param name="idPais">Representa el id del pais al que pertenece el equipo a agregar.</param>
-        /// <returns></returns>
-        [Route("AgregarEquipo/{descripcion}/{grupo}/{idPais}")]
+        /// <param name="equipo">Objeto de tipo equipo que contiene los datos del equipo a ser agregado</param>
+        [Route("AgregarEquipo")]
         [HttpPost]
-        public IHttpActionResult RegistrarEquipo(string descripcion, string grupo, string idPais)
+        public IHttpActionResult RegistrarEquipo([FromBody] Equipo equipo)
         {
             try
             {
-                var id = Convert.ToInt16(idPais);
-                AgregarEquipo(descripcion, grupo, id);
+                //return Ok("lista de equipo " + equipo.Descripcion[0].Idioma.ToString());
+                AgregarEquipo(equipo);
                 return Ok("Equipo registrado exitosamente");
             }
             catch( Exception e)
@@ -44,50 +41,85 @@ namespace WebAPI.Controllers
         /// Metodo que es llamado cuando se necesita insertar un equipo a la base de datos. Se encarga de
         /// hacer llamados a los metodos respectivos en la base de datos para asi realizar su funcion
         /// </summary>
-        /// <param name="descripcion">La descripcion del pais que se va a inserntar.</param>
-        /// <param name="grupo">El grupo al cual pertenece el pais que se va a insertar.</param>
-        /// <param name="idPais">El id del pais al que pertenece el equipo que se va a insertart</param>
-        public void AgregarEquipo( string descripcion, string grupo, int idPais)
+        /// <param name="equipo">Objeto de tipo equipo que contiene los datos del equipo a ser agregado</param>
+        public HttpResponseMessage AgregarEquipo( Equipo equipo )
         {
+            //string descripcionES, string descripcionEN, string grupo, int idPais
             try
             {
                 _database.Conectar();
-                _database.StoredProcedure("m4_agregar_equipo(@descripcion, @grupo, " +
+                _database.StoredProcedure("m4_agregar_equipo(@descripcionES, @descripcionEN, @grupo, " +
                     "@id_pais)");
-                _database.AgregarParametro("descripcion", descripcion);
-                _database.AgregarParametro("grupo", grupo);
-                _database.AgregarParametro("id_pais", idPais);
+                for (int i = 0; i < equipo.Descripcion.Count(); i++)
+                {
+                    if (equipo.Descripcion[i].Idioma.ToString().ToLower() == "es")
+                        _database.AgregarParametro("descripcionES", equipo.Descripcion[i].Mensaje.ToString());
+                    else if (equipo.Descripcion[i].Idioma.ToString().ToLower() == "en")
+                        _database.AgregarParametro("descripcionEN", equipo.Descripcion[i].Mensaje.ToString());
+                }
+                _database.AgregarParametro("grupo", equipo.Grupo.ToString());
+                _database.AgregarParametro("id_pais", equipo.Pais.Iso.ToString());
                 _database.EjecutarQuery();
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch( Exception e)
             {
-                
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.BadRequest,
+                    new HttpError("Error al tratar de agregar equipo:" + e.Message));
             }
         }
 
         /// <summary>
-        /// Actualiza la información del perfil de usuario en la base de datos.
+        /// AEdita la informacion del equipo en la base de datos.
+        /// <param name="equipo">Onjeto de tipo equipo que sirve para guardar los datos en la BD</param>
         /// </summary>
-        public void ActulizarEquipo(Usuario usuario)
+        [Route("ActualizarEquipo")]
+        [HttpPut]
+        public IHttpActionResult ActulizarEquipo([FromBody] Equipo equipo)
+        {
+            try
+            {
+                EditarEquipo(equipo);
+                return Ok("Equipo actualizado exitosamente");
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest("Error en la actualizacion del equipo: " + e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Edita la informacion del equipo en la base de datos.
+        /// <param name="equipo">Onjeto de tipo equipo que sirve para guardar los datos en la BD</param>
+        /// </summary>
+        public HttpResponseMessage EditarEquipo(Equipo equipo)
         {
             try
             {
                 _database.Conectar();
 
-                /*_database.StoredProcedure("editarperfilusuario(@id, @nombre, @apellido, @fechaNacimiento, @genero, @foto)");
+                _database.StoredProcedure("m4_modificar_equipo(@descripcionES, @descripcionEN, @grupo, " +
+                    "@id_pais, @status)");
+                for (int i = 0; i < equipo.Descripcion.Count(); i++)
+                {
+                    if (equipo.Descripcion[i].Idioma.ToString().ToLower() == "es")
+                        _database.AgregarParametro("descripcionES", equipo.Descripcion[i].Mensaje.ToString());
+                    else if (equipo.Descripcion[i].Idioma.ToString().ToLower() == "en")
+                        _database.AgregarParametro("descripcionEN", equipo.Descripcion[i].Mensaje.ToString());
+                }
+                _database.AgregarParametro("grupo", equipo.Grupo.ToString());
+                _database.AgregarParametro("id_pais", equipo.Pais.Iso.ToString());
+                _database.EjecutarQuery();
 
-                _database.AgregarParametro("id", usuario.Id);
-                _database.AgregarParametro("nombre", usuario.Nombre);
-                _database.AgregarParametro("apellido", usuario.Apellido);
-                _database.AgregarParametro("fechaNacimiento", Convert.ToDateTime(usuario.FechaNacimiento).ToShortDateString());
-                _database.AgregarParametro("genero", usuario.Genero.ToString().ToUpper());
-                _database.AgregarParametro("foto", usuario.FotoPath);
-
-                _database.EjecutarQuery();*/
+                return Request.CreateResponse(HttpStatusCode.OK)
             }
-            catch (NullReferenceException exc)
+            catch (NullReferenceException e)
             {
-                //throw new UsuarioNullException(exc);
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.BadRequest,
+                    new HttpError("Error al tratar de agregar equipo:" + e.Message));
             }
         }
 
@@ -131,7 +163,8 @@ namespace WebAPI.Controllers
 
                 for (int i = 0; i < _database.cantidadRegistros; i++)
                 {
-                    pais = new Pais(_database.GetString(i, 0), new I18nEquipo(_database.GetInt(i, 3), idioma, _database.GetString(i,1)));
+                    pais = new Pais(_database.GetString(i, 0).ToLower(), 
+                        new I18nEquipo(_database.GetInt(i, 3), idioma.ToLower(), _database.GetString(i,1).ToLower()));
 
                     _listaPaises.Add(pais);
                 }

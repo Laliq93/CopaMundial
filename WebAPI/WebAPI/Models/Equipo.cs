@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace WebAPI.Models
 {
@@ -8,7 +9,7 @@ namespace WebAPI.Models
     public class Equipo
     {
         private Pais _pais;
-        private I18nEquipo _descripcion ;
+        private List<I18nEquipo> _descripcion ;
         private bool _status;
         private string _grupo;
         private bool _habilitado;
@@ -16,7 +17,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Constructor de la clase Equipo con parametros
         /// </summary>
-        public Equipo(Pais pais, I18nEquipo descripcion, bool status, string grupo, bool habilitado)
+        public Equipo(Pais pais, List<I18nEquipo> descripcion, bool status, string grupo, bool habilitado)
         {
             _pais = pais;
             _descripcion = descripcion;
@@ -45,7 +46,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo descripcion
         /// </summary>
-        public I18nEquipo Descripcion
+        public List<I18nEquipo> Descripcion
         {
             get { return _descripcion; }
             set { _descripcion = value; }
