@@ -50,7 +50,7 @@ export class PerfilUsuarioComponent implements OnInit {
     this._usuario.Password = 'pepe';
     this._usuario.Correo = 'felixd123@hotmail.com';
 
-    this._api10.ActualizarCorreo(this._usuario);
+   // this._api10.ActualizarCorreo(this._usuario);
   }
 
   TestActualizarClave() {
@@ -91,7 +91,6 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   TestVerActivos(){
-    
     this._api10.VerUsuariosNoActivos();
   }
 }

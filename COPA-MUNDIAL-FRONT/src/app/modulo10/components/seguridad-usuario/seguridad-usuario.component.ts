@@ -15,9 +15,12 @@ declare var bootbox: any;
   ]
 })
 export class SeguridadUsuarioComponent implements OnInit {
+  isValid = false;
+
   public _usuario: Usuario10;
   public _api10: ApiService;
 
+  public _correoNuevo;
   public _correoConfirm;
   public _passConfirm;
   public _passConfirm2;
@@ -32,12 +35,8 @@ export class SeguridadUsuarioComponent implements OnInit {
   }
 
   VerificarEmail() {
-    if (
-      this._correoConfirm === this._usuario.Correo &&
-      this._correoConfirm != null &&
-      this._usuario.Correo != null
-    ) {
-      this._api10.ActualizarCorreo(this._usuario);
+    if (this._correoConfirm === this._usuario.Correo && this._correoConfirm != null && this._usuario.Correo != null) {
+      this._api10.ActualizarCorreo(this._usuario, this._correoNuevo);
     } else {
       bootbox.alert('Los correos son distintos');
     }
@@ -53,5 +52,9 @@ export class SeguridadUsuarioComponent implements OnInit {
     } else {
       bootbox.alert('Las contraseñas son distintas');
     }
+  }
+
+  changeValue(valid: boolean) {
+    this.isValid = valid;
   }
 }

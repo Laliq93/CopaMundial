@@ -53,35 +53,49 @@
             <div class="form-group">
               <label class="col-md-12">Nombre</label>
               <div class="col-md-12">
-                <input type="text" placeholder="Felix" class="form-control form-control-line">
+                <input type="text" value="{{_usuario.Nombre}}" class="form-control form-control-line" name="newName" id="newName" pattern="^[a-zA-Z\s]+$"
+                  [(ngModel)]="_nombreNew" #newName="ngModel">
+
+                <div *ngIf="newName.errors &&  (newName.touched || newName.dirty)" class="aler alert-danger">
+                  <div [hidden]="!newName.errors?.pattern">
+                    Ingrese Solo Letras
+                  </div>
+                </div>
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-md-12">Apellido</label>
               <div class="col-md-12">
-                <input type="text" placeholder="Morales" class="form-control form-control-line">
-              </div>
-            </div>
+                <input type="text" value="{{_usuario.Apellido}}" class="form-control form-control-line" name="newApellido" id="newApellido"
+                  pattern="^[a-zA-Z\s]+$" [(ngModel)]="_apellidoNew" #newApellido="ngModel">
 
-            <div class="form-group">
-              <div class="col-md-12">
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                  <label class="form-check-label" for="inlineCheckbox1">Hombre</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                  <label class="form-check-label" for="inlineCheckbox2">Mujer</label>
+                <div *ngIf="newApellido.errors &&  (newApellido.touched || newApellido.dirty)" class="aler alert-danger">
+                  <div [hidden]="!newApellido.errors?.pattern">
+                    Ingrese Solo Letras
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="exampleInputDatePicker1" class="col-md-12">Fecha</label>
               <div class="col-md-12">
-                <input class="form-control" id="exampleInputDatePicker1" placeholder="07/01/1995" type="text">
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                  <label class="custom-control-label" for="customRadioInline1">Hombre</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                  <label class="custom-control-label" for="customRadioInline2">Mujer</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="exampleInputDate">Fecha de nacimiento</label>
+                <input type="date" #FechaNacimiento="ngModel" value="{{_usuario.FechaNacimiento}}" [(ngModel)]="_fechaNew" name="FechaNacimiento" required
+                  class="form-control" id="exampleInputDate" placeholder="Fecha de nacimiento">
               </div>
             </div>
 
@@ -94,7 +108,7 @@
 
             <div class="form-group">
               <div class="col-sm-12">
-                <button class="btn btn-success">Actualizar Perfil</button>
+                <button class="btn btn-success" (click)="ActualizarPerfil()">Actualizar Perfil</button>
               </div>
             </div>
 

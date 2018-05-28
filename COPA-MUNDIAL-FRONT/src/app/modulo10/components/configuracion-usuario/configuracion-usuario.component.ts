@@ -19,6 +19,12 @@ export class ConfiguracionUsuarioComponent implements OnInit, AfterViewInit {
   public _usuario: Usuario10;
   public _api10: ApiService;
 
+  public _nombreNew;
+  public _apellidoNew;
+  public _generoNew;
+  public _fechaNew;
+  public _FotoNew;
+
   constructor(private _zone: NgZone, private http: HttpClient) {
     this._api10 = new ApiService(http);
     this._usuario = new Usuario10();
@@ -30,31 +36,19 @@ export class ConfiguracionUsuarioComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this._zone.runOutsideAngular(() => {
-      jQuery('#exampleInputDatePicker1').pickdate({
-        cancel: 'Borrar',
-        closeOnCancel: false,
-        closeOnSelect: true,
-        container: 'body',
-        containerHidden: 'body',
-        firstDay: 1,
-        formatSubmit: 'dd/mmmm/yyyy',
-        hiddenPrefix: 'prefix_',
-        hiddenSuffix: '_suffix',
-        labelMonthNext: 'Ir al mes siguiente',
-        labelMonthPrev: 'Ir al mes anterior',
-        labelMonthSelect: 'Choose a month from the dropdown menu',
-        labelYearSelect: 'Choose a year from the dropdown menu',
-        ok: 'Cerrar',
-        onClose: function() {
-          console.log('Datepicker closes');
-        },
-        onOpen: function() {
-          console.log('Datepicker opens');
-        },
-        selectMonths: true,
-        selectYears: 100,
-        today: 'Hoy'
-      });
+      jQuery('#DatePickerDaemonite').pickdate();
     });
+  }
+
+  ActualizarPerfil() {
+    if (this._nombreNew != null) {
+      this._usuario.Nombre = this._nombreNew;
+    }
+
+    if (this._apellidoNew != null) {
+      this._usuario.Apellido = this._apellidoNew;
+    }
+    this._usuario.FechaNacimiento = this._fechaNew;
+    this._api10.EditarPerfil(this._usuario);
   }
 }

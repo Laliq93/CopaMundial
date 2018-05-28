@@ -33,6 +33,8 @@ export class ApiService {
       this._usuario10.Correo = data.Correo;
       this._usuario10.FechaNacimiento = data.FechaNacimiento;
       this._usuario10.Activo = data.Activo;
+      this._usuario10.Genero = data.Genero;
+      this._usuario10.EsAdmin = data.EsAdmin;
       // this._usuario10.Message = data.Message;
     });
 
@@ -47,15 +49,17 @@ export class ApiService {
       .put<IUsuario10>(url, usuario, { responseType: 'json' })
       .subscribe(data => {
         if (data != null) {
+          console.log(data);
+        } else {
+          this.Succes('Usuario Editado Corectamente.');
         }
       });
 
     return null;
   }
 
-  public ActualizarCorreo(usuario: Usuario10) {
+  public ActualizarCorreo(usuario: Usuario10, correoNuevo) {
     this._usuario10 = usuario;
-
     this._conexion.Controlador = 'ActualizarCorreoUsuario';
     let url = this._conexion.RutaApi + this._conexion.Controlador;
 
