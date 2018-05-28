@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="row">
+
+    <ng-container *ngFor="let grupo of grupos">
+      <div class="group col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Grupo {{ grupo }}</h5>
+          </div>
+          <ng-container *ngFor="let equipo of equipos; let i = index">
+            <div *ngIf="equipo.grupo === grupo" class="list-group list-group-flush" id="accordion{{ i }}">
+              <div class="expansion-panel list-group-item">
+                <a attr.aria-controls="collapse{{ i }}" aria-expanded="false" class="expansion-panel-toggler collapsed" data-toggle="collapse" href="#collapse{{ i }}"
+                  id="heading{{ i }}">
+                  {{ equipo.pais.nombre.mensaje }}
+                  <div class="expansion-panel-icon ml-3 text-black-secondary">
+                    <a (click)=editarEquipo(equipo.pais.iso) class="editar">
+                      <i class="material-icons">edit</i>
+                    </a>
+                    <i class="collapsed-show material-icons">keyboard_arrow_down</i>
+                    <i class="collapsed-hide material-icons">keyboard_arrow_up</i>
+                  </div>
+                </a>
+                <div attr.aria-labelledby="heading{{  i}}" class="collapse" attr.data-parent="#accordion{{ i }}" id="collapse{{ i }}">
+                  <div class="expansion-panel-body">
+              
+                    <div class="container">
+                      <div class="card">
+                        <div class="card-header d-flex pr-0">
+                          <h5 i18n="Encabezado de los partidos en la tarjeta de ver equipo @@m4TarjetaPartidos" class="card-title mb-0">Partidos</h5>
+                        </div>
+                        <table class="table mb-0">
+                          <thead>
+                            <tr>
+                              <th i18n="Parte de la tabla de partidos @@m4TarjetaEquipos" scope="col">Equipos</th>
+                              <th i18n="Parte de la tabla de partidos @@m4TarjetaEstadio" scope="col">Estadio</th>
+                              <th i18n="Parte de la tabla de partidos @@m4TarjetaFecha" scope="col">Fecha</th>
+                              <th i18n="Parte de la tabla de partidos @@m4TarjetaHora" scope="col">Hora</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Brasil vs Alemania</td>
+                              <td>Estadio random</td>
+                              <td>2 Jul. 2018</td>
+                              <td>7:00 PM</td>
+                            </tr>
+                            <tr>
+                              <td>Brasil vs Alemania</td>
+                              <td>Estadio random</td>
+                              <td>2 Jul. 2018</td>
+                              <td>7:00 PM</td>
+                            </tr>
+                            <tr>
+                              <td>Brasil vs Alemania</td>
+                              <td>Estadio random</td>
+                              <td>2 Jul. 2018</td>
+                              <td>7:00 PM</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <hr class="my-0 w-100">
+                      </div>
+                    </div>
+              
+                    <div class="container description">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 i18n="Descripcion del equipo en la tarjeta de ver equipos @@m4TarjetaDescripcion" class="card-title mb-0 descripcion">Descripción</h5>
+                          {{ equipo.descripcion[0].mensaje }}
+                        </div>
+                      </div>
+                    </div>
+              
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+    </ng-container>
+
+      </div>
+    </div>
