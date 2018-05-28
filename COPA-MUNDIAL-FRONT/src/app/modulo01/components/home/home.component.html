@@ -1,9 +1,6 @@
 <div class="content-page">
-    <div class="row justify-content-end">
-        <h6>08/05/2018</h6>
-    </div>
-    <button routerLink="/equipos/view">Equipos</button>
     <div class="row justify-content-center">
+        <p class="fecha text-center">Hoy es {{today | date}}</p>
         <div class="headline card">
             <h4 class="tittle">Estadísticas</h4>
         </div>
@@ -61,29 +58,34 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">Partido</th>
-                    <th scope="col">logros</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Equipo 1</th>
+                    <th scope="col">Equipo 2</th>
+                    <th scope="col">logro</th>
+                    <th scope="col">Tasa del logro</th>
+                    <th scope="col">Estado del logro</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <td>Brasil</td>
+                    <td>USA</td>
+                    <td>5</td>
+                    <td>Ganado</td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
+                    <td>España</td>
+                    <td>Alemania</td>
+                    <td>10</td>
+                    <td>Perdido</td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
+                    <td>Croacia</td>
+                    <td>Paises bajos</td>
+                    <td>20</td>
+                    <td>Ganado</td>
                 </tr>
             </tbody>
         </table>

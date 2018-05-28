@@ -24,6 +24,7 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+.vs/*
 
 # misc
 /.sass-cache
@@ -37,6 +38,11 @@ testem.log
 
 # e2e
 /e2e/*.js
+/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
 /e2e/*.map
 
 # System Files
