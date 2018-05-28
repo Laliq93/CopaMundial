@@ -15,9 +15,10 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
+
       "styles": [
-        "../node_modules/daemonite-material/css/material.css",
         "../node_modules/open-iconic/font/css/open-iconic-bootstrap.min.css",
+        "../node_modules/daemonite-material/css/material.css",
         "styles.css"
       ],
       "scripts": [

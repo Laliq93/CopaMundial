@@ -1,0 +1,27 @@
+<div class="central">
+
+<div>
+  <h1>Escoger equipo</h1>
+  <hr/>
+
+  <div class="drop-label-estilo">
+
+    <div style="float: left"><h4>Seleccione Equipo</h4></div>
+  
+
+    <div class="form-group form-estilo">
+      <div >
+        <select id='Pais' class="form-control font-estilo" >
+          <ng-container *ngFor="let pais of paises; let i = index">
+            <option value={{pais}}>{{pais}}</option>
+          </ng-container>
+        </select>
+      </div>
+  </div>
+  </div>
+</div>
+<div id="Tabla">
+
+</div>
+
+</div>

@@ -1,0 +1,56 @@
+<div class="central">
+
+  <div>
+    <h1>Escoger equipo</h1>
+    <hr/>
+  
+    <div class="drop-label-estilo">
+  
+      <div style="float: left"><h4>Seleccione Equipo</h4></div>
+    
+  
+      <div class="form-group form-estilo">
+        <div >
+          <select id='Pais' class="form-control font-estilo" >
+            <ng-container *ngFor="let pais of paises; let i = index">
+              <option value={{pais}}>{{pais}}</option>
+            </ng-container>
+          </select>
+        </div>
+    </div>
+    </div>
+  </div>
+  
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Partido VS</th>
+          <th scope="col">Goles</th>
+          <th scope="col">Asistencias</th>
+          <th scope="col">Tarjetas Amarillas</th>
+          <th scope="col">Tarjetas Rojas</th>
+          <th scope="col">Minutos Jugados</th>
+          <th scope="col">Calificacion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let dato of datos; let i = index">
+          <tr>
+            <th scope="row">{{dato.pais}}</th>
+            <td>{{dato.goles}}</td>
+            <td>{{dato.asistencias}}</td>
+            <td>{{dato.tamarillas}}</td>
+            <td>{{dato.trojas}}</td>
+            <td>{{dato.mjugados}}</td>
+            <td>{{dato.calificacion}}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+
+
+  </div>
+
+  
+  </div>

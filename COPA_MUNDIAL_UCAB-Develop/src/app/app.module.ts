@@ -28,6 +28,7 @@ import { AdminComponent } from './admin/admin.component';
 
 //servicios
 import { ApiService } from './shared/api.service';
+import { DatosTorneoComponent } from './MODULO9/datos-torneo/datos-torneo.component';
 
 
 import { HttpModule } from '@angular/http';
