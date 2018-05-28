@@ -53,7 +53,7 @@ $$ LANGUAGE plpgsql;
 
 --estadisticas de un equipo
 
-REATE OR REPLACE FUNCTION GetEstEquipo(_idequipo integer)
+CREATE OR REPLACE FUNCTION GetEstEquipo(_idequipo integer)
 RETURNS TABLE(
 	nombre varchar,
 	valor integer
