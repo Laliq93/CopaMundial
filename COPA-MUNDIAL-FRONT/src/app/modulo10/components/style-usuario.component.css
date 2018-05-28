@@ -26,15 +26,25 @@ File: css (style-usuario)
 /******************* 
 1. Global Styles 
 *******************/
-.btn {
+.btn-danger-table {
+  background-color: #f44336;
+  color: white;
   padding: 0px 0px;
   line-height: 20px;
   min-width: 22px;
   border-radius: 3px;
   text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  font-weight: 400;
+  display: inline-block;
+}
+
+.btn-success-table {
+  background-color: #4caf50;
+  color: white;
+  padding: 0px 0px;
+  line-height: 20px;
+  min-width: 22px;
+  border-radius: 3px;
+  text-align: center;
   display: inline-block;
 }
 

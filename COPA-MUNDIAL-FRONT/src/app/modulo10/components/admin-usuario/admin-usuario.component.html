@@ -26,10 +26,10 @@
           <a class="nav-link active" data-toggle="tab" href="#crear" role="tab">Crear Administrador</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#jugador" role="tab">Usuarios Activos</a>
+          <a class="nav-link" data-toggle="tab" href="#activos" role="tab">Usuarios Activos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#equipo" role="tab">Usuarios Inactivos</a>
+          <a class="nav-link" data-toggle="tab" href="#inactivos" role="tab">Usuarios Inactivos</a>
         </li>
       </ul>
 
@@ -147,7 +147,7 @@
         </div>
 
 
-        <div class="tab-pane active" id="jugador" role="tabpanel">
+        <div class="tab-pane active" id="activos" role="tabpanel1">
           <div class="card-body">
 
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
@@ -167,7 +167,8 @@
                   <td>{{user.NombreUsuario }}</td>
                   <td>{{user.Nombre }}</td>
                   <td>{{user.Apellido }}</td>
-                  <td><button class="btn btn-success" (click)='eliminar(user.Id)'>Crear</button></td>
+                  <td>{{user.Correo }}</td>
+                  <td><button type="button" (click)="DesactivarCuenta(user.Id)" class="btn btn-danger-table" style="margin-right:16px;">x</button></td>
                 </tr>
               </tbody>
             </table>
@@ -175,10 +176,10 @@
           </div>
         </div>
 
-        <div class="tab-pane" id="equipo" role="tabpanel">
+        <div class="tab-pane" id="inactivos" role="tabpanel">
           <div class="card-body">
 
-            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2" class="row-border hover">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -186,15 +187,17 @@
                   <th>Nombre</th>
                   <th>Apellido</th>
                   <th>Correo</th>
+                  <th>Accion</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let user of ListUsuarios">
+                <tr *ngFor="let user of ListUsuarios2">
                   <td>{{user.Id}}</td>
                   <td>{{user.NombreUsuario }}</td>
                   <td>{{user.Nombre }}</td>
                   <td>{{user.Apellido }}</td>
                   <td>{{user.Correo }}</td>
+                  <td> <button type="button"  (click)="ActivarCuenta(user.Id)" class="btn btn-success-table" style="margin-right:16px;">✓</button></td>
                 </tr>
               </tbody>
             </table>

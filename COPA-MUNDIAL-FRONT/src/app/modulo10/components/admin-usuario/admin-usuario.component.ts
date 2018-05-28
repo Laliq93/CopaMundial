@@ -4,9 +4,9 @@ import { Usuario10, Conexion, IUsuario10 } from '../../models/usuario.model';
 import { ApiService } from '../../services/api10.services';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
-import { Response } from '@angular/http';
-import { map } from 'rxjs/operators';
 
+
+declare var bootbox: any;
 @Component({
   selector: 'app-admin-usuario',
   templateUrl: './admin-usuario.component.html',
@@ -16,7 +16,9 @@ export class AdminUsuarioComponent implements OnInit {
   public _usuario: Usuario10;
   public _api10: ApiService;
   public ListUsuarios: Usuario10[] = [];
+  public ListUsuarios2: Usuario10[] = [];
   public dtTrigger: Subject<any> = new Subject();
+  public dtTrigger2: Subject<any> = new Subject();
   public dtOptions: DataTables.Settings = {};
   private _conexion: Conexion;
 
@@ -41,14 +43,11 @@ export class AdminUsuarioComponent implements OnInit {
 
     this.ObtenerDatos();
     this.VerUsuariosActivos();
+    this.VerUsuariosNoActivos();
   }
 
   ObtenerDatos() {
     this._usuario = this._api10.ObtenerDatos();
-  }
-
-  ObtenerUsuariosActivos() {
-    this.ListUsuarios = this._api10.VerUsuariosActivos();
   }
 
   public VerUsuariosActivos() {
@@ -63,12 +62,25 @@ export class AdminUsuarioComponent implements OnInit {
     });
   }
 
-  CrearAdmin() {
+  public VerUsuariosNoActivos() {
+    this._conexion.Controlador = 'ObtenerUsuariosNoActivos';
 
-
+    let url = this._conexion.RutaApi + this._conexion.Controlador;
+    this.http.get<Usuario10>(url, { responseType: 'json' }).subscribe(data => {
+      this.dtTrigger2.next();
+      for (let i = 0; i < Object.keys(data).length; i++) {
+        this.ListUsuarios2[i] = data[i];
+      }
+    });
   }
 
-  eliminar() {
-    
+  CrearAdmin() {}
+
+  DesactivarCuenta(idUsuario) {
+    this._api10.AdministradorDesactivaCuenta(idUsuario);
+  }
+
+  ActivarCuenta(idUsuario) {
+    this._api10.AdministradorActivarCuenta(idUsuario);
   }
 }
