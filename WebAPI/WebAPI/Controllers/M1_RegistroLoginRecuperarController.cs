@@ -25,22 +25,20 @@ namespace WebAPI.Controllers
         {
             try
             {
-                System.Diagnostics.Debug.WriteLine(usuario);
                 //{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}
-
+                ValidarCorreo(usuario.Correo);
                 ValidarNombreUsuario(usuario.NombreUsuario);
-                ValidarCorreoNoExiste(usuario.Correo);
                 AgregarUsuario(usuario.NombreUsuario, usuario.Nombre, usuario.Apellido, usuario.FechaNacimiento,
                   usuario.Correo, usuario.Genero, usuario.Password);
 
                 return Ok("Usuario registrado exitosamente");
             }
-            catch (NombreUsuarioExistenteException e)
+            catch (CorreoExistenteException e)
             {
                 _database.Desconectar();
                 return BadRequest(e.Message);
             }
-            catch (CorreoExistenteException e)
+            catch (NombreUsuarioExistenteException e)
             {
                 _database.Desconectar();
                 return BadRequest(e.Message);
@@ -62,21 +60,8 @@ namespace WebAPI.Controllers
             {
                 //{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}
 
-                System.Diagnostics.Debug.WriteLine(usuario);
-                ValidarNombreUsuarioNoExiste(usuario.NombreUsuario);
-                ValidarUsuarioPassword(usuario.NombreUsuario, usuario.Password);
                 usuario.Id = IniciarSesionUsuario(usuario.NombreUsuario, usuario.Password);
                 return Ok(usuario.Id);
-            }
-            catch(NombreUsuarioNoExisteException e)
-            {
-                _database.Desconectar();
-                return BadRequest("Error en el servidor: " + e.Message);
-            }
-            catch(ClaveUsuarioNoCoincideException e)
-            {
-                _database.Desconectar();
-                return BadRequest("Error en el servidor: " + e.Message);
             }
             catch (Exception e)
             {
@@ -93,22 +78,11 @@ namespace WebAPI.Controllers
         {
             try
             {
-                System.Diagnostics.Debug.WriteLine(usuario);
-                ValidarCorreoNoExiste(usuario.Correo);
-                ValidarCorreoPassword(usuario.Correo, usuario.Password);
+
                 usuario.Id = IniciarSesionCorreo(usuario.Correo, usuario.Password);
 
+
                 return Ok(usuario.Id);
-            }
-            catch(CorreoNoExisteException e)
-            {
-                _database.Desconectar();
-                return BadRequest("Error en el servidor: " + e.Message);
-            }
-            catch( ClaveCorreoNoCoincideException e)
-            {
-                _database.Desconectar();
-                return BadRequest("Error en el servidor: " + e.Message);
             }
             catch (Exception e)
             {
@@ -118,6 +92,29 @@ namespace WebAPI.Controllers
 
         }
 
+        [Route("IngresarUsuario")]
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
+        public int IngresarUsuario(Usuario usuario)
+        {
+            try
+            {
+
+                ValidarNombreUsuario(usuario.NombreUsuario);
+                usuario.Id = IniciarSesionUsuario(usuario.NombreUsuario, usuario.Password);
+
+
+               
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                //return BadRequest("Error en el servidor: " + e.Message);
+            }
+
+            return usuario.Id;
+        }
+
         [Route("RecuperarClave")]
         [System.Web.Http.AcceptVerbs("POST")]
         [System.Web.Http.HttpPost]
@@ -125,17 +122,18 @@ namespace WebAPI.Controllers
         {
             try
             {
-                    ValidarCorreo(usuario.Correo);
+                //if (ValidarCorreo(correo))
+                //{
+
+                    
                     EnviarCorreo(usuario.Correo);
                     return Ok("correo para recuperación enviado");
+                //}
+
+               // return Ok("El correo no existe");
 
             }
 
-            catch(CorreoNoExisteException e)
-            {
-                _database.Desconectar();
-                return BadRequest("Error en el servidor: " + e.Message);
-            }
             catch(Exception e)
             {
                 _database.Desconectar();
@@ -152,17 +150,14 @@ namespace WebAPI.Controllers
             try
             {
 
-                ValidarCorreo(usuario.Correo);
+                // if (ValidarCorreo(correo))
+                //{
                 CambiarPassword(usuario.Correo, usuario.Password);
-                return Ok("clave modificada exitosamente");
+                    return Ok("clave modificada exitosamente");
+                //}
 
+               // return Ok("clave no se pudo modificar");
 
-            }
-
-            catch(CorreoNoExisteException e)
-            {
-                _database.Desconectar();
-                return BadRequest("Error en el servidor: " + e.Message);
             }
 
             catch (Exception e)
@@ -186,7 +181,7 @@ namespace WebAPI.Controllers
             _email.From = new MailAddress("copamundialucab@gmail.com");
             _email.To.Add(correo);
             _email.Subject = "Recuperar clave copamundial";
-            _email.Body = ("Estimado usuario, recibimos la solicitud para recuperar la contraseña de su cuenta en COPAMUNDIAL con el siguiente correo: "+ correo);
+            _email.Body = "Estimado usuario, recibimos la solicitud para recuperar la contraseña de su cuenta en COPAMUNDIAL, acceda a la siguiente dirección <a href='http://www.copamundial.com/changePassword'></a>";
 
             _smtpServidor.Host = "smtp.gmail.com";
             _smtpServidor.Port = 587;
@@ -267,7 +262,7 @@ namespace WebAPI.Controllers
 
         
 
-        private void ValidarUsuarioPassword(string nombreUsuario, string password)
+        private bool ValidarUsuarioPassword(string nombreUsuario, string password)
         {
             int _contador;
             _database.Conectar();
@@ -280,16 +275,18 @@ namespace WebAPI.Controllers
             _database.EjecutarReader();
             _contador = _database.GetInt(0, 0);
 
-            if (_contador < 1)
-            {
-                throw new ClaveUsuarioNoCoincideException(nombreUsuario, password);
-            }
-
             //System.Diagnostics.Debug.WriteLine("------------------------");
 
+
+      if (_contador < 1)
+            {
+                return false;
+            }
+
+            return true;
         }
 
-        private void ValidarCorreoPassword(string correo, string password)
+        private bool ValidarCorreoPassword(string correo, string password)
         {
             int _contador;
             _database.Conectar();
@@ -302,15 +299,17 @@ namespace WebAPI.Controllers
             _database.EjecutarReader();
             _contador = _database.GetInt(0, 0);
 
+
             if (_contador < 1)
             {
-                throw new ClaveCorreoNoCoincideException(correo, password);
+                return false;
             }
 
+            return true;
 
         }
 
-        private void ValidarNombreUsuario(string nombreUsuario)
+        private bool ValidarNombreUsuario(string nombreUsuario)
         {
             int _contador;
             _database.Conectar();
@@ -327,51 +326,13 @@ namespace WebAPI.Controllers
             {
                 throw new NombreUsuarioExistenteException(nombreUsuario);
             }
-        }
 
-        private void ValidarNombreUsuarioNoExiste(string nombreUsuario)
-        {
-            int _contador; //contador de filas retornadas por la bd
-
-            _database.Conectar();
-
-            _database.StoredProcedure("ConsultarNombreUsuario(@nombreUsuario)");
-
-            _database.AgregarParametro("nombreUsuario", nombreUsuario);
-
-            _database.EjecutarReader();
-
-            _contador = _database.GetInt(0, 0);
-
-            if (_contador < 1)
-                throw new NombreUsuarioNoExisteException(nombreUsuario);
-
-
+            return true;
         }
 
         private void ValidarCorreo(string correo)
         {
             int _contador; //contador de filas retornadas por la bd
-            _database.Conectar();
-
-            _database.StoredProcedure("ConsultarCorreoUsuario(@correo)");
-
-            _database.AgregarParametro("correo", correo);
-
-            _database.EjecutarReader();
-
-            _contador = _database.GetInt(0, 0);
-
-            if (_contador < 1)
-                throw new CorreoNoExisteException(correo);
-
-
-        }
-
-        private void ValidarCorreoNoExiste(string correo)
-        {
-            int _contador; //contador de filas retornadas por la bd
-
             _database.Conectar();
 
             _database.StoredProcedure("ConsultarCorreoUsuario(@correo)");
