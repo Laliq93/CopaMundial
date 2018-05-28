@@ -225,20 +225,18 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\M09_EstadisticaController.cs" />
     <Compile Include="Controllers\M10_UsuarioController.cs" />
     <Compile Include="Controllers\M2_CiudadController.cs" />
+    <Compile Include="Controllers\M4_GestionEquipoController.cs" />
     <Compile Include="Controllers\M5_JugadorController.cs" />
     <Compile Include="Controllers\M1_RegistroLoginRecuperarController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-<<<<<<< HEAD
+    <Compile Include="Models\EstEquipo.cs" />
     <Compile Include="Models\Excepciones\ClaveCorreoNoCoincideException.cs" />
     <Compile Include="Models\Excepciones\ClaveUsuarioNoCoincideException.cs" />
     <Compile Include="Models\Excepciones\CorreoNoExisteException.cs" />
     <Compile Include="Models\Excepciones\NombreUsuarioNoExisteException.cs" />
-=======
-    <Compile Include="Models\Ciudad.cs" />
-    <Compile Include="Models\Excepciones\EstadioNoDisponibleException.cs" />
->>>>>>> 25363d2398021b2e4b356318ac5e8672ec38d75c
     <Compile Include="Models\Excepciones\UsuarioNullException.cs" />
     <Compile Include="Models\Excepciones\ClaveInvalidaException.cs" />
     <Compile Include="Models\Excepciones\CorreoEnUsoException.cs" />
@@ -248,10 +246,13 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataBase\DataBase.cs" />
+    <Compile Include="Models\Equipo.cs" />
     <Compile Include="Models\Excepciones\CorreoExistenteException.cs" />
     <Compile Include="Models\Excepciones\NombreUsuarioExistenteException.cs" />
+    <Compile Include="Models\I18nEquipo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Jugador.cs" />
+    <Compile Include="Models\Pais.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
@@ -297,6 +298,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
+    <Folder Include="Views\M1_GestionEquipos\" />
     <Folder Include="Views\M1_RegistroLoginRecuperar\" />
     <Folder Include="Views\M5_Jugador\" />
   </ItemGroup>

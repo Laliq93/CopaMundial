@@ -87,7 +87,10 @@ const routes: Routes = [
       { path: 'achievement' , component: AchievementAdminComponent },
       { path: 'bet' , component: BetAdminComponent },
       { path: 'statistic' , component: StatisticAdminComponent },
-      { path: 'user-panel' , component: UserConfigAdminComponent }
+      { path: 'user-panel' , component: UserConfigAdminComponent },
+      { path: 'team/crear', component: CrearEquipoComponent } ,
+      { path: 'team/editar', component: EditarEquipoComponent },
+      { path: 'team/inhabilitar', component: InhabilitarEquipoComponent }
     ]
   },
 ];
