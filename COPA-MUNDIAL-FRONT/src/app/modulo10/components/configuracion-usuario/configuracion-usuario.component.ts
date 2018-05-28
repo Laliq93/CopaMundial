@@ -38,6 +38,7 @@ export class ConfiguracionUsuarioComponent implements OnInit, AfterViewInit {
   }
 
   ActualizarPerfil() {
+    
     if (this._nombreNew != null) {
       this._usuario.Nombre = this._nombreNew;
     }
@@ -45,9 +46,9 @@ export class ConfiguracionUsuarioComponent implements OnInit, AfterViewInit {
     if (this._apellidoNew != null) {
       this._usuario.Apellido = this._apellidoNew;
     }
-    this._usuario.FechaNacimiento = this._fechaNew;
-
-    alert(this._usuario.FechaNacimiento);
+    
+    if(this._fechaNew != null)
+      this._usuario.FechaNacimiento = this._fechaNew;
 
     this._api10.EditarPerfil(this._usuario);
   }

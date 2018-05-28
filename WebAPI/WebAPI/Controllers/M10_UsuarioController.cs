@@ -37,17 +37,17 @@ namespace WebAPI.Controllers
             catch (UsuarioNullException exc)
             {
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.OK, exc.Message);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));//exc.Message);
             }
             catch(NpgsqlException e)
             {
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.OK, "Error en la base de datos.");
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error en la base de datos"));
             }
             catch (Exception e)
             {
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.OK, "Error General");
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general."));
             }
  
 

@@ -49,7 +49,8 @@ export class ApiService {
       .put<IUsuario10>(url, usuario, { responseType: 'json' })
       .subscribe(data => {
         if (data != null) {
-          console.log(data);
+          usuario.Message = data.Message;
+          this.Error(usuario)
         } else {
           this.Succes('Usuario Editado Corectamente.');
         }
