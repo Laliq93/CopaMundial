@@ -12,9 +12,9 @@ BEGIN
 	LOOP
 
 	iso = var_r.pa_iso;
-	nombre = var_r.i18n_idioma;
+	nombre = var_r.i18n_nombre;
 	pk = var_r.i18n_pk;
-	id = var_r.i18n_id
+	id = var_r.i18n_id;
 	
 
 
