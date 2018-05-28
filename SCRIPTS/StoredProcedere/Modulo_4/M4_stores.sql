@@ -1,6 +1,4 @@
 
-
-
 CREATE OR REPLACE FUNCTION m4_traer_pais(idioma VARCHAR(2))
 RETURNS TABLE (iso VARCHAR(3), nombre text, pk integer, id integer)
 
@@ -33,16 +31,16 @@ END; $$
 RETURNS void AS
 $$
 DECLARE
-ultimo record;
+ultimo integer;
 BEGIN
 	
 	ultimo = (SELECT max (i18n_id) FROM i18n_equipo);
 
 	INSERT INTO I18N_EQUIPO ( i18n_pk, i18n_id, i18n_idioma, i18n_mensaje) VALUES
-    ( nextval('seq_equipo'), ultimo+1 , 'en', descripcionEN );
+    ( nextval('seq_i18N_equipo'), ultimo+1 , 'en', descripcionEN );
 
     INSERT INTO I18N_EQUIPO ( i18n_pk, i18n_id, i18n_idioma, i18n_mensaje) VALUES
-    ( nextval('seq_equipo'), ultimo+1 , 'es', descripcionES );
+    ( nextval('seq_i18N_equipo'), ultimo+1 , 'es', descripcionES );
 
    INSERT INTO equipo ( eq_id, eq_i18n_descripcion, eq_status,
    	eq_grupo, eq_pa_id, eq_habilitado) VALUES
@@ -56,10 +54,10 @@ $$ LANGUAGE plpgsql;
 
   CREATE OR REPLACE FUNCTION m4_busca_equipo_iso
 (id_pais VARCHAR(3)) 
-RETURNS RETURNS TABLE(iso VARCHAR(3), nombreES text, nombreEN text, descripcionES VARCHAR(100),
+RETURNS TABLE(iso VARCHAR(3), nombreES text, nombreEN text, descripcionES VARCHAR(100),
  descripcionEN VARCHAR(100), grupo VARCHAR(1), status boolean, id integer, pk integer)
-
-AS$$
+AS
+$$
 DECLARE
    var_r record;
 BEGIN
@@ -89,7 +87,7 @@ BEGIN
 	descripcionEn = var_r.DescripcionEn;
 	descripcionES = var_r.DescripcionEs;
 	grupo = var_r.eq_grupo;
-	status = var_r.eq_status
+	status = var_r.eq_status;
 	id = var_r.i18n_id;
 	pk = var_r.i18n_pk;
 
@@ -101,26 +99,27 @@ $$ LANGUAGE plpgsql;
 
 
 
-
 CREATE OR REPLACE FUNCTION m4_modificar_equipo
 ( descripcionES VARCHAR(100), descripcionEN VARCHAR(100), 
- grupo VARCHAR(1), id_pais VARCHAR(3), status boolean, grupo VARCHAR(1),
- habilitado boolean) 
+grupo VARCHAR(1), id_pais VARCHAR(3), status boolean, habilitado boolean) 
 RETURNS void AS
 $$
+DECLARE
+id_i18n integer;
+
+
 BEGIN
-	
-	UPDATE I18N_EQUIPO SET (i18n_mensaje = descripcionEN)
-    WHERE (eq_i18n_descripcion = i18n_id and pa_iso = eq_pa_id and eq_pa_id = id_pais
-    and i18n_idioma = 'en');
 
-    UPDATE I18N_EQUIPO SET (i18n_mensaje = descripcionES)
-    WHERE (eq_i18n_descripcion = i18n_id and pa_iso = eq_pa_id and eq_pa_id = id_pais
-    and i18n_idioma = 'es');
+  id_i18n = (select eq_i18n_descripcion from equipo where eq_pa_id = id_pais);
 
-    UPDATE equipo SET (eq_grupo = grupo and eq_status = status and eq_grupo = grupo 
-    and eq_habilitado = habilitado )
-    WHERE (pa_iso = eq_pa_id and eq_pa_id = id_pais);
+  UPDATE I18N_EQUIPO SET i18n_mensaje = descripcionEN
+  WHERE ( i18n_id = id_i18n and i18n_idioma = 'en');
+
+  UPDATE I18N_EQUIPO SET i18n_mensaje = descripcionES
+  WHERE ( i18n_id = id_i18n and i18n_idioma = 'es');
+
+  UPDATE equipo SET eq_status = status, eq_grupo = grupo, eq_habilitado = habilitado
+  WHERE (eq_pa_id = id_pais);
 
 
 END;
