@@ -43,3 +43,23 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 */
+
+
+
+  CREATE OR REPLACE FUNCTION m4_busca_equipo_iso
+(id_pais VARCHAR(3), idioma VARCHAR(2)) 
+RETURNS void AS
+$$
+BEGIN
+	
+	Select pa_iso, (select i18n_mensaje from pais, i18n_equipo
+					where i18n_idioma = idioma and i18n_id = pa_i18n_nombre 
+					and pa_iso = id_pais) as nombre, 
+	i18n_mensaje as Descripcion , eq_grupo, eq_status
+	from equipo, pais, i18n_equipo
+	where i18n_idioma = idioma and i18n_id = eq_i18n_descripcion and pa_iso = id_pais 
+	and pa_iso = eq_pa_id
+
+END;
+$$ LANGUAGE plpgsql;
+*/
