@@ -22,7 +22,6 @@ export class PerfilUsuarioComponent implements OnInit {
   constructor(private http: HttpClient) {
     this._api10 = new ApiService(http);
     this._usuario = new Usuario10();
-    
   }
 
   ngOnInit() {
@@ -33,65 +32,4 @@ export class PerfilUsuarioComponent implements OnInit {
     this._usuario = this._api10.ObtenerDatos();
   }
 
-  TestEditarPerfil() {
-    let errorCode: string;
-
-    this._usuario.Nombre = 'Wilmer';
-    this._usuario.Apellido = 'Pendejo';
-    this._usuario.FechaNacimiento = '10-10-1995';
-    this._usuario.FotoPath = 'C://';
-    this._usuario.Genero = 'M';
-
-    errorCode = this._api10.EditarPerfil(this._usuario);
-
-    console.log(errorCode);
-  }
-
-  TestActualizarCorreo() {
-    this._usuario.Password = 'pepe';
-    this._usuario.Correo = 'felixd123@hotmail.com';
-
-   // this._api10.ActualizarCorreo(this._usuario);
-  }
-
-  TestActualizarClave() {
-    let passwordNueva = 'pepe';
-
-    this._usuario.Password = 'lol123';
-
-    this._api10.ActualizarClave(this._usuario, passwordNueva);
-  }
-
-  TestDesactivarCuentaPropia() {
-    this._usuario.Password = 'pepe';
-
-    this._api10.DesactivarCuentaPropia(this._usuario);
-
-    this._usuario = this._api10.ObtenerDatos();
-  }
-
-  TestDesactivar() {
-    
-    let usuarioNormal : Usuario10;
-    usuarioNormal = new Usuario10();
-    usuarioNormal.Id = 3;
-
-
-    this._api10.AdministradorDesactivaCuenta(usuarioNormal);
-
-  }
-
-  TestActivar() {
-
-    let usuarioNormal : Usuario10;
-    usuarioNormal = new Usuario10();
-    usuarioNormal.Id = 3;
-
-    this._api10.AdministradorActivarCuenta(usuarioNormal);
-
-  }
-
-  TestVerActivos(){
-    this._api10.VerUsuariosNoActivos();
-  }
 }

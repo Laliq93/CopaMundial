@@ -26,6 +26,18 @@ File: css (style-usuario)
 /******************* 
 1. Global Styles 
 *******************/
+.btn {
+  padding: 0px 0px;
+  line-height: 20px;
+  min-width: 22px;
+  border-radius: 3px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  font-weight: 400;
+  display: inline-block;
+}
+
 /*============================================================== 
                         Card
  ============================================================== */

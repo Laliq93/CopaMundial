@@ -20,10 +20,14 @@ export class AdminUsuarioComponent implements OnInit {
   public dtOptions: DataTables.Settings = {};
   private _conexion: Conexion;
 
+  public _nombreUser;
   public _nombreNew;
   public _apellidoNew;
-  public _generoNew;
   public _fechaNew;
+  public _correoNew;
+  public _generoNew;
+  public _pass;
+  public _passConfirm;
   public _FotoNew;
 
   constructor(private http: HttpClient) {
@@ -33,8 +37,7 @@ export class AdminUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dtOptions = {
-    };
+    this.dtOptions = {};
 
     this.ObtenerDatos();
     this.VerUsuariosActivos();
@@ -52,13 +55,20 @@ export class AdminUsuarioComponent implements OnInit {
     this._conexion.Controlador = 'ObtenerUsuariosActivos';
 
     let url = this._conexion.RutaApi + this._conexion.Controlador;
-    this.http
-      .get<Usuario10>(url, { responseType: 'json' })
-      .subscribe(data => {
-        this.dtTrigger.next();
-        for (let i = 0; i < Object.keys(data).length; i++) {
-          this.ListUsuarios[i] = data[i];
-        }
-      });
+    this.http.get<Usuario10>(url, { responseType: 'json' }).subscribe(data => {
+      this.dtTrigger.next();
+      for (let i = 0; i < Object.keys(data).length; i++) {
+        this.ListUsuarios[i] = data[i];
+      }
+    });
+  }
+
+  CrearAdmin() {
+
+
+  }
+
+  eliminar() {
+    
   }
 }
