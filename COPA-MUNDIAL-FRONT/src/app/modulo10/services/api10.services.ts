@@ -9,6 +9,8 @@ import {
 } from '@angular/common/http';
 import { Usuario } from '../../modulo01/models/usuario';
 
+import { Location } from '@angular/common';
+
 declare var bootbox, router: any;
 
 @Injectable()
@@ -158,8 +160,9 @@ export class ApiService {
     bootbox.alert(this._usuario10.Message);
   }
 
-  private Succes(mensaje: string) {
-    bootbox.alert(mensaje);
+  private Succes(mensaje: string) {    
+    bootbox.alert(mensaje, function(){ location.reload(); });
+
   }
 
   private FatalError() {}
