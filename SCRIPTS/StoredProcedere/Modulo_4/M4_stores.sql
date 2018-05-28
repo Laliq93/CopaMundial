@@ -12,7 +12,7 @@ BEGIN
 	LOOP
 
 	iso = var_r.pa_iso;
-	nombre = var_r.i18n_nombre;
+	nombre = var_r.i18n_mensaje;
 	pk = var_r.i18n_pk;
 	id = var_r.i18n_id;
 	
