@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { LoggedInGuard } from '../../../guards/logged-in.guard';
 import { NotLoggedInGuard } from '../../../guards/not-logged-in.guard';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Usuario } from '../../models/usuario';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,6 +17,8 @@ const httpOptions = {
   templateUrl: './recovery.component.html',
   styleUrls: ['./recovery.component.css']
 })
+
+@Injectable()
 export class RecoveryComponent implements OnInit {
 
   usuario: Usuario;
@@ -25,7 +28,7 @@ export class RecoveryComponent implements OnInit {
   private emailResponse;
   handleError (error: any) { console.log(error)};
 
-  constructor(private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient) {
     this.usuario = new Usuario();
   }
 
@@ -51,7 +54,8 @@ export class RecoveryComponent implements OnInit {
       .post<Usuario>(url, user, httpOptions)
       .subscribe(
         success => {
-          console.log(success)
+          console.log(success);
+          this.router.navigate(['/inicio','changePassword']);
         },
         error => alert("correo equivocado")
       );

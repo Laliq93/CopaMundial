@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoggedInGuard } from '../../../guards/logged-in.guard';
 import { NotLoggedInGuard } from '../../../guards/not-logged-in.guard';
@@ -19,6 +19,7 @@ const httpOptions = {
   styleUrls: ['./signup.component.css']
 })
 
+@Injectable()
 export class SignupComponent implements OnInit {
 
   usuario: Usuario;
@@ -28,7 +29,7 @@ export class SignupComponent implements OnInit {
   private emailResponse;
   private truefalse:boolean = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient) {
     this.usuario = new Usuario();
   }
 
@@ -59,20 +60,15 @@ export class SignupComponent implements OnInit {
 
       this.http
       .post<Usuario>(url, user, httpOptions)
-      .subscribe(data => {
-
-
-      
-      /*this.usuario.nombreUsuario = data.NombreUsuario;
-      this.usuario.nombre = data.Nombre;
-      this.usuario.apellido = data.Apellido;
-      this.usuario.fechaNacimiento = data.FechaNacimiento;
-      this.usuario.correo = data.Correo;
-      this.usuario.genero = data.Genero;
-      this.usuario.password = data.Password;*/
-
-      console.log(data);
-    });
+      .subscribe(
+        success => {
+          console.log(success)
+          const id = success.toString();
+          localStorage.setItem('userId', id);
+          this.router.navigate(['/inicio','signin']);
+        },
+        error => alert("usuario o email en uso")
+      );
     
   }
   

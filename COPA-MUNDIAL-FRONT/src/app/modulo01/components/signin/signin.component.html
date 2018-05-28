@@ -18,7 +18,7 @@
           <input matInput type="password" #Password="ngModel" [(ngModel)]="usuario.password" name="Password" required class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
         </div>
 
-        <button (click)="recoveryPassword()" class="btn-forgot-password link-forgot-password btn" href="">¿Olvidaste tu contraseña?</button>
+        <a [routerLink]="['/inicio/recovery']" class="btn-forgot-password link-forgot-password btn">¿Olvidaste tu contraseña?</a>
         <button [disabled]="!userLoginForm.valid" type="submit" class="btn btn-primary btn-signin">Iniciar sesión</button>
       </form>
     </div>
