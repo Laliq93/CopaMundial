@@ -11,6 +11,7 @@ import { GenestjugComponent } from './genestjug/genestjug.component';
 import { EstequiposComponent } from './estequipos/estequipos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { HttpModule } from '@angular/http';
     CommonModule,
     Modulo09RoutingModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    FormsModule
     
   ],
   declarations: [EstgeneralComponent, EstpartidoComponent, EstjugadorComponent, PredequipoComponent, PredjugadorComponent, GenestjugComponent, EstequiposComponent]
