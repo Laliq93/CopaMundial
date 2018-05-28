@@ -1,18 +1,3 @@
-/*CREATE OR REPLACE FUNCTION m4_agregar_equipo
-( descripcionES VARCHAR(100), descripcionEN VARCHAR(100), 
- grupo VARCHAR(1), id_pais VARCHAR(3)) 
-RETURNS void AS
-$$
-BEGIN
-
-   INSERT INTO equipo ( eq_id, eq_descripcion, eq_grupo, eq_pa_id ) VALUES
-    ( nextval('seq_equipo'), descripcion, grupo, id_pais );
-
-END;
-$$ LANGUAGE plpgsql;
-*/
-
-
 CREATE OR REPLACE FUNCTION m4_traer_pais(idioma VARCHAR(2))
 RETURNS TABLE (iso VARCHAR(3), nombre text)
 
@@ -33,3 +18,28 @@ BEGIN
    END LOOP;
 END; $$
   LANGUAGE plpgsql;
+
+
+  CREATE OR REPLACE FUNCTION m4_agregar_equipo
+( descripcionES VARCHAR(100), descripcionEN VARCHAR(100), 
+ grupo VARCHAR(1), id_pais VARCHAR(3)) 
+RETURNS void AS
+$$
+ultimo
+BEGIN
+	
+	ultimo = SELECT max (i18n_id) FROM i18n_equipo
+
+	INSERT INTO I18N_EQUIPO ( i18n_pk, i18n_id, i18n_idioma, i18n_mensaje) VALUES
+    ( nextval('seq_equipo'), ultimo+1 , 'en', descripcionEN );
+
+    INSERT INTO I18N_EQUIPO ( i18n_pk, i18n_id, i18n_idioma, i18n_mensaje) VALUES
+    ( nextval('seq_equipo'), ultimo+1 , 'es', descripcionES );
+
+   INSERT INTO equipo ( eq_id, eq_i18n_descripcion, eq_status,
+   	eq_grupo, eq_pa_id, eq_habilitado) VALUES
+    ( nextval('seq_equipo'), ultimo+1 , true, grupo, id_pais, false);
+
+END;
+$$ LANGUAGE plpgsql;
+*/
