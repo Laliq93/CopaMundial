@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="m4HeaderCrear" datatype="html">
+        <source>Creación de Equipo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modulo04/components/crear/crear.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">Header en la pagina de creacion de equipos </note>
+      </trans-unit>
+      <trans-unit id="m4HeaderEditar" datatype="html">
+        <source>Edición de Equipo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modulo04/components/editar/editar.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">Header en la pagina de edición de equipos </note>
+      </trans-unit>
+      <trans-unit id="m4LabelNombre" datatype="html">
+        <source>Nombre de Equipo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modulo04/components/form/form.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">Label de nombre de equipos en el formulario </note>
+      </trans-unit>
+      <trans-unit id="m4LabelGrupo" datatype="html">
+        <source>Grupo Perteneciente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modulo04/components/form/form.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <note priority="1" from="description">Label del grupo en el formulario </note>
+      </trans-unit>
+      <trans-unit id="m4LabelDescripcion" datatype="html">
+        <source>Descripcion (<x id="INTERPOLATION" equiv-text="{{ desc.idioma }}"/>)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modulo04/components/form/form.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <note priority="1" from="description">Label con la descripcion de equipos en los forms </note>
+      </trans-unit>
+      <trans-unit id="m4LabelParticipando" datatype="html">
+        <source>El equipo aún participa en la copa</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modulo04/components/form/form.component.ts</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <note priority="1" from="description">Opción que indica que el equipo aun participa en la copa </note>
+      </trans-unit>
+      <trans-unit id="m4LabelEliminado" datatype="html">
+        <source>El equipo fué eliminado de la copa</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modulo04/components/form/form.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <note priority="1" from="description">Opción que indica que el equipo fue eliminado </note>
+      </trans-unit>
+      <trans-unit id="m4BtnGuardar" datatype="html">
+        <source>Guardar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modulo04/components/form/form.component.ts</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <note priority="1" from="description">Boton para guardar </note>
+      </trans-unit>
+      <trans-unit id="m4BtnCancelar" datatype="html">
+        <source>Cancelar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modulo04/components/form/form.component.ts</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+        <note priority="1" from="description">Boton para cancelar </note>
+      </trans-unit>
+      <trans-unit id="m4TarjetaPartidos" datatype="html">
+        <source>Partidos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modulo04/components/equipo/equipo.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <note priority="1" from="description">Encabezado de los partidos en la tarjeta de ver equipo </note>
+      </trans-unit>
+      <trans-unit id="m4TarjetaEquipos" datatype="html">
+        <source>Equipos</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modulo04/components/equipo/equipo.component.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <note priority="1" from="description">Parte de la tabla de partidos </note>
+      </trans-unit>
+      <trans-unit id="m4TarjetaEstadio" datatype="html">
+        <source>Estadio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modulo04/components/equipo/equipo.component.ts</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <note priority="1" from="description">Parte de la tabla de partidos </note>
+      </trans-unit>
+      <trans-unit id="m4TarjetaFecha" datatype="html">
+        <source>Fecha</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modulo04/components/equipo/equipo.component.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <note priority="1" from="description">Parte de la tabla de partidos </note>
+      </trans-unit>
+      <trans-unit id="m4TarjetaHora" datatype="html">
+        <source>Hora</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modulo04/components/equipo/equipo.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <note priority="1" from="description">Parte de la tabla de partidos </note>
+      </trans-unit>
+      <trans-unit id="m4TarjetaDescripcion" datatype="html">
+        <source>Descripción</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modulo04/components/equipo/equipo.component.ts</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+        <note priority="1" from="description">Descripcion del equipo en la tarjeta de ver equipos </note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

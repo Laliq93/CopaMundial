@@ -348,7 +348,7 @@ namespace WebAPI.Controllers
 
                 for (int i = 0; i < _database.cantidadRegistros; i++)
                 {
-                    I18nEquipo i18nPais = new I18nEquipo(_database.GetInt(i, 3), idioma.ToLower(), _database.GetString(i, 1).ToLower());
+                    I18nEquipo i18nPais = new I18nEquipo(_database.GetInt(i, 3), idioma.ToLower(), _database.GetString(i, 1));
                     List<I18nEquipo> listaI18nPais = new List<I18nEquipo>();
                     listaI18nPais.Add(i18nPais);
 
