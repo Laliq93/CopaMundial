@@ -39,7 +39,7 @@ export class ApiService {
       this._usuario10.Genero = data.Genero;
       this._usuario10.EsAdmin = data.EsAdmin;
       // this._usuario10.Message = data.Message;
-    });
+    }, Error => {this.FatalError();});
 
     return this._usuario10;
   }
@@ -57,7 +57,7 @@ export class ApiService {
         } else {
           this.Succes('Usuario Editado Corectamente.');
         }
-      });
+      }, Error => {this.FatalError();});
 
     return null;
   }
@@ -76,7 +76,7 @@ export class ApiService {
           this.Succes('Correo editado con éxito');
         }
       },
-      Error => {}
+      Error => {this.FatalError();}
     );
   }
 
@@ -94,7 +94,7 @@ export class ApiService {
         } else {
           this.Succes('Clave editada con éxito');
         }
-      });
+      }, Error => {this.FatalError();});
   }
 
   public DesactivarCuentaPropia(usuario: Usuario10) {
@@ -111,7 +111,7 @@ export class ApiService {
         } else {
           this.Succes('Cuenta desactivada con éxito');
         }
-      });
+      }, Error => {this.FatalError();});
   }
 
   public AdministradorActivarCuenta(idUsuario : number) {
@@ -131,7 +131,7 @@ export class ApiService {
         } else {
           this.Succes('Cuenta activada con éxito');
         }
-      });
+      }, Error => {this.FatalError();});
   }
 
   public AdministradorDesactivaCuenta(idUsuario: number) {
@@ -151,7 +151,7 @@ export class ApiService {
         } else {
           this.Succes('Cuenta desactivada con éxito');
         }
-      });
+      }, Error => {this.FatalError();});
   }
 
   public CrearUsuarioAdministrador(Usuario : Usuario10) {
@@ -168,7 +168,7 @@ export class ApiService {
         } else {
           this.Succes('Administrador creado con éxito');
         }
-      });
+      }, Error => {this.FatalError();});
 
   }
 
@@ -181,5 +181,7 @@ export class ApiService {
 
   }
 
-  private FatalError() {}
+  private FatalError() {
+    bootbox.alert('Problema al establecer la conexión con el servidor');
+  }
 }

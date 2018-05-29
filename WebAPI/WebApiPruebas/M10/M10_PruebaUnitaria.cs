@@ -106,7 +106,7 @@ namespace WebApiPruebas.M10
         public void EditarCorreoUsuarioTest()
         {
             string correo_viejo;
-            string correo_nuevo = "Felix2_@hotmail.es"; //Este correo debe ser nuevo por cada Test
+            string correo_nuevo = "noexisteocrred@hotmail.es"; //Este correo debe ser nuevo por cada Test
 
             _usuario = _controller.GetUsuario(idUsuarioTest);
             correo_viejo = _usuario.Correo;
