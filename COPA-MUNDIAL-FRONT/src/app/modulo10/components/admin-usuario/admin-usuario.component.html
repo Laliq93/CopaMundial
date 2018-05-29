@@ -18,7 +18,7 @@
 <div class="row">
   <!-- Column -->
 
-  <div class="col-lg-12 col-xlg-10 col-md-12">
+  <div class="col-lg-12 col-xlg-12 col-md-12">
     <div class="card">
 
       <ul class="nav nav-tabs profile-tab" role="tablist">
@@ -26,10 +26,10 @@
           <a class="nav-link active" data-toggle="tab" href="#crear" role="tab">Crear Administrador</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#activos" role="tab">Usuarios Activos</a>
+          <a class="nav-link" data-toggle="tab" href="#activos" role="tab">Activos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#inactivos" role="tab">Usuarios Inactivos</a>
+          <a class="nav-link" data-toggle="tab" href="#inactivos" role="tab">Inactivos</a>
         </li>
       </ul>
 
@@ -150,57 +150,105 @@
         <div class="tab-pane" id="activos" role="tabpanel">
           <div class="card-body">
 
-            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Usuario</th>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>Correo</th>
-                  <th>Accion</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let user of ListUsuarios">
-                  <td>{{user.Id}}</td>
-                  <td>{{user.NombreUsuario }}</td>
-                  <td>{{user.Nombre }}</td>
-                  <td>{{user.Apellido }}</td>
-                  <td>{{user.Correo }}</td>
-                  <td><button type="button" (click)="DesactivarCuenta(user.Id)" class="btn btn-danger-table" style="margin-right:16px;">x</button></td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="d-none d-sm-block">
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of ListUsuarios">
+                    <td>{{user.Id}}</td>
+                    <td>{{user.NombreUsuario }}</td>
+                    <td>{{user.Nombre }}</td>
+                    <td>{{user.Apellido }}</td>
+                    <td>{{user.Correo }}</td>
+                    <td>
+                      <button type="button" (click)="DesactivarCuenta(user.Id)" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
+            <div class='d-sm-none d-lg-none'>
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of ListUsuarios">
+                    <td>{{user.Id}}</td>
+                    <td>{{user.NombreUsuario }}</td>
+                    <td>
+                      <button type="button" (click)="DesactivarCuenta(user.Id)" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
         <div class="tab-pane" id="inactivos" role="tabpanel">
           <div class="card-body">
+            <div class='d-sm-none d-lg-none'>
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2" class="row-border hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of ListUsuarios2">
+                    <td>{{user.Id}}</td>
+                    <td>{{user.NombreUsuario }}</td>
+                    <td>
+                      <button type="button" (click)="ActivarCuenta(user.Id)" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2" class="row-border hover">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Usuario</th>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>Correo</th>
-                  <th>Accion</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let user of ListUsuarios2">
-                  <td>{{user.Id}}</td>
-                  <td>{{user.NombreUsuario }}</td>
-                  <td>{{user.Nombre }}</td>
-                  <td>{{user.Apellido }}</td>
-                  <td>{{user.Correo }}</td>
-                  <td> <button type="button"  (click)="ActivarCuenta(user.Id)" class="btn btn-success-table" style="margin-right:16px;">✓</button></td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="d-none d-sm-block">
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2" class="row-border hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of ListUsuarios2">
+                    <td>{{user.Id}}</td>
+                    <td>{{user.NombreUsuario }}</td>
+                    <td>{{user.Nombre }}</td>
+                    <td>{{user.Apellido }}</td>
+                    <td>{{user.Correo }}</td>
+                    <td>
+                      <button type="button" (click)="ActivarCuenta(user.Id)" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
           </div>
         </div>
