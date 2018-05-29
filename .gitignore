@@ -6,8 +6,4 @@
 *Web.config
 *app.config
 
-\.vs/
-
-WebAPI/WebAPI/obj/
-
-WebAPI/WebApiPruebas/obj/
+WebAPI/\.vs/

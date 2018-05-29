@@ -30,15 +30,11 @@ export class ConfiguracionUsuarioComponent implements OnInit, AfterViewInit {
     this._usuario = this._api10.ObtenerDatos();
   }
 
-  ngOnInit() {
+  ngOnInit() {}
 
-  }
-
-  ngAfterViewInit(): void {
-  }
+  ngAfterViewInit(): void {}
 
   ActualizarPerfil() {
-    
     if (this._nombreNew != null) {
       this._usuario.Nombre = this._nombreNew;
     }
@@ -46,9 +42,8 @@ export class ConfiguracionUsuarioComponent implements OnInit, AfterViewInit {
     if (this._apellidoNew != null) {
       this._usuario.Apellido = this._apellidoNew;
     }
-    
-    if(this._fechaNew != null)
-      this._usuario.FechaNacimiento = this._fechaNew;
+
+    if (this._fechaNew != null) this._usuario.FechaNacimiento = this._fechaNew;
 
     this._api10.EditarPerfil(this._usuario);
   }

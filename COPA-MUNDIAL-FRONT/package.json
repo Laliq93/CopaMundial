@@ -29,6 +29,8 @@
     "daemonite-material": "^4.1.1",
     "datatables.net": "^1.10.16",
     "datatables.net-dt": "^1.10.16",
+    "datatables.net-responsive": "^2.2.1",
+    "datatables.net-responsive-dt": "^2.2.1",
     "jquery": "^3.3.1",
     "ngbootbox": "^0.2.0",
     "open-iconic": "^1.1.1",

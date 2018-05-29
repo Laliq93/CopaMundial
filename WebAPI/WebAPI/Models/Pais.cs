@@ -11,12 +11,12 @@ namespace WebAPI.Models
     public class Pais
     {
         private string _iso;
-        private List<I18nEquipo> _nombre;
+        private I18nEquipo _nombre;
 
         /// <summary>
         /// Constructor de la clase Pais con parametros
         /// </summary>
-        public Pais(string iso, List<I18nEquipo> nombre)
+        public Pais(string iso, I18nEquipo nombre)
         {
             _iso = iso;
             _nombre = nombre;
@@ -42,7 +42,7 @@ namespace WebAPI.Models
         /// <summary>
         /// Getters y Setters del atributo nombre
         /// </summary>
-        public List<I18nEquipo> nombre
+        public I18nEquipo nombre
         {
             get { return _nombre; }
             set { _nombre = value; }
