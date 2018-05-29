@@ -386,3 +386,125 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+----Procedimientos Modulo 5
+-- Camilo Perez
+-- Dario Loyo
+--
+----------
+CREATE OR REPLACE FUNCTION public.crearjugador(
+  _nombre character varying,
+  _apellido character varying,
+  _fechanacimiento character varying,
+  _lugarnacimiento character varying,
+  _peso double precision,
+  _altura double precision,
+  _club character varying,
+  _equipo integer,
+  _numero integer,
+  _posicion character varying,
+  _capitan boolean)
+    RETURNS void
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIn
+
+   INSERT INTO jugador(ju_id,ju_nombre, ju_apellido, ju_fechaNacimiento, ju_lugarNacimiento, ju_peso, 
+             ju_altura, ju_club, eq_id, ju_numero, ju_posicion, ju_capitan) 
+   VALUES (nextval('seq_jugador'),_nombre, _apellido, _fechaNacimiento, _lugarNacimiento, _peso, _altura, _club, _equipo, _numero,
+      _posicion, _capitan);
+
+END;
+
+$BODY$;
+---------------------
+CREATE OR REPLACE FUNCTION public.buscarequipo(
+  _equipo integer)
+    RETURNS TABLE(idju integer, nombre character varying, apellido character varying, fechanacimiento character varying, lugarnacimiento character varying, peso double precision, altura double precision, club character varying, equipo integer, numero integer, posicion character varying, capitan boolean) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN
+  RETURN QUERY SELECT
+  ju_id, ju_nombre, ju_apellido, ju_fechanacimiento, ju_lugarnacimiento, ju_peso, ju_altura, ju_club, eq_id, ju_numero, ju_posicion, ju_capitan
+  FROM jugador
+  WHERE eq_id = _equipo;
+END;
+
+$BODY$;
+---------------------
+CREATE OR REPLACE FUNCTION public.editarjugador(
+  _id integer,
+  _nombre character varying,
+  _apellido character varying,
+  _fechanacimiento character varying,
+  _lugarnacimiento character varying,
+  _peso double precision,
+  _altura double precision,
+  _club character varying,
+  _equipo integer,
+  _numero integer,
+  _posicion character varying,
+  _capitan boolean)
+    RETURNS void
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+  UPDATE jugador SET ju_nombre = _nombre, ju_apellido = _apellido, ju_fechaNacimiento = _fechanacimiento, ju_lugarNacimiento = _lugarNacimiento,
+  ju_peso = _peso, ju_altura = _altura, ju_club = _club, eq_id = _equipo, ju_numero = _numero, ju_posicion = _posicion, ju_capitan = _capitan
+  WHERE ju_id= _id;
+   
+END;
+
+$BODY$;
+---------------------
+CREATE OR REPLACE FUNCTION public.buscarjugador(
+  _id integer)
+    RETURNS TABLE(idju integer, nombre character varying, apellido character varying, fechanacimiento character varying, lugarnacimiento character varying, peso double precision, altura double precision, club character varying, equipo integer, numero integer, posicion character varying, capitan boolean) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN
+  RETURN QUERY SELECT
+  ju_id, ju_nombre, ju_apellido, ju_fechanacimiento, ju_lugarnacimiento, ju_peso, ju_altura, ju_club, eq_id, ju_numero, ju_posicion, ju_capitan
+  FROM jugador
+  WHERE ju_id = _id;
+END;
+
+$BODY$;
+---------------------
+CREATE OR REPLACE FUNCTION public.buscartodos(
+  )
+    RETURNS TABLE(idju integer, nombre character varying, apellido character varying, fechanacimiento character varying, lugarnacimiento character varying, peso double precision, altura double precision, club character varying, equipo integer, numero integer, posicion character varying, capitan boolean) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN
+  RETURN QUERY SELECT
+  ju_id, ju_nombre, ju_apellido, ju_fechanacimiento, ju_lugarnacimiento, ju_peso, ju_altura, ju_club, eq_id, ju_numero, ju_posicion, ju_capitan
+  FROM jugador;
+END;
+
+$BODY$;
+-------
+----Fin Procedimientos Modulo 5

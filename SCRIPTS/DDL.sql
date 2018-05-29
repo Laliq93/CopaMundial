@@ -17,6 +17,10 @@ Drop SEQUENCE SEQ_Pais;
 Drop table i18n_equipo;
 Drop SEQUENCE SEQ_i18n_Equipo;
 
+--Modulo 5
+--DROPS
+DROP TABLE public.jugador
+DROP SEQUENCE public.seq_jugador;
 
 --Modulo 6
 --DROPS
@@ -77,6 +81,28 @@ CREATE TABLE EQUIPO (
     CONSTRAINT eq_pa_id FOREIGN KEY (eq_pa_id) REFERENCES pais (pa_iso)
 );
 --Fin de modulo 4
+
+--Modulo 5
+CREATE TABLE public.jugador
+(
+    ju_id integer NOT NULL,
+    ju_nombre character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    ju_apellido character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    ju_fechanacimiento character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    ju_lugarnacimiento character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    ju_peso double precision NOT NULL,
+    ju_altura double precision NOT NULL,
+    ju_club character varying COLLATE pg_catalog."default",
+    eq_id integer,
+    ju_numero integer,
+    ju_posicion character varying COLLATE pg_catalog."default" NOT NULL,
+    ju_capitan boolean DEFAULT false,
+    CONSTRAINT jugador_pkey PRIMARY KEY (ju_id),
+    CONSTRAINT jugador_numero_check CHECK (ju_numero > 0 AND ju_numero < 24),
+    CONSTRAINT jugador_posicion_check CHECK (ju_posicion::text = 'ME'::text OR ju_posicion::text = 'AR'::text OR ju_posicion::text = 'DF'::text OR ju_posicion::text = 'DL'::text)
+);
+--Fin de Modulo 5
+
 --Modulo 6
 CREATE TABLE PARTIDO(
 	pa_id integer,
@@ -227,6 +253,14 @@ CREATE SEQUENCE SEQ_Equipo
   CACHE 1;
 --Fin de modulo 4
 
+--Modulo 5
+CREATE SEQUENCE public.seq_jugador
+  START WITH 1
+  INCREMENT BY 1
+  NO MINVALUE
+  NO MAXVALUE
+  CACHE 1;
+--Fin de Modulo 5
 
 --Modulo 6
 CREATE SEQUENCE SEQ_Partido
