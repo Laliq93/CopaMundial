@@ -3,7 +3,7 @@
 <!-- ============================================================== -->
 
 <div class="row page-titles">
-  <div class="col-md-5 col-8 align-self-center">
+  <div class="col-md-12 col-12 align-self-center">
     <h2 class="text-themecolor m-b-0 m-t-0">Perfil</h2>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
@@ -25,7 +25,8 @@
           <img src="../assets/images/users/1.jpg" alt="user" />
         </div>
         <h3 class="m-b-0">{{_usuario.Nombre+' '+_usuario.Apellido}}</h3>
-        <p>Cumpleaños: {{_usuario.FechaNacimiento}} Correo: {{_usuario.Correo}}</p>
+        <p>Cumpleaños: {{_usuario.FechaNacimiento}} </p>
+        <p>Correo: {{_usuario.Correo}}</p>
         <div class="row text-center m-t-20">
           <div class="col-lg-4 col-md-4 m-t-20">
             <h3 class="m-b-0 font-light">1099</h3>
@@ -69,8 +70,7 @@
               <div class="form-group">
                 <label class="col-md-12">Contraseña</label>
                 <div class="col-md-12">
-                  <input type="password" placeholder="" class="form-control form-control-line" name="password0"
-                   id="password0" [(ngModel)]="_usuario.Password">
+                  <input type="password" placeholder="" class="form-control form-control-line" name="password0" id="password0" [(ngModel)]="_usuario.Password">
                 </div>
               </div>
 
@@ -80,8 +80,8 @@
               <div class="form-group">
                 <label for="email" class="col-md-12">Introduzca Nuevo Email</label>
                 <div class="col-md-12">
-                  <input type="email" placeholder="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" 
-                  class="form-control form-control-line" name="email" id="email" [(ngModel)]="_usuario.Correo" #email="ngModel">
+                  <input type="email" placeholder="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control form-control-line"
+                    name="email" id="email" [(ngModel)]="_usuario.Correo" #email="ngModel">
 
                   <div *ngIf="email.errors &&  (email.touched || email.dirty)" class="aler alert-danger">
                     <div [hidden]="!email.errors?.pattern">
@@ -95,12 +95,12 @@
               <div class="form-group">
                 <label for="emailConfirm" class="col-md-12">Confirmar</label>
                 <div class="col-md-12">
-                  <input type="email" placeholder="" pattern="{{_usuario.Correo}}" class="form-control form-control-line"
-                    name="emailConfirm" id="emailConfirm" [(ngModel)]="_correoConfirm" #emailConfirm="ngModel">
+                  <input type="email" placeholder="" pattern="{{_usuario.Correo}}" class="form-control form-control-line" name="emailConfirm"
+                    id="emailConfirm" [(ngModel)]="_correoConfirm" #emailConfirm="ngModel">
 
                   <div *ngIf="emailConfirm.errors && (emailConfirm.touched || emailConfirm.dirty)" class="aler alert-danger">
                     <div [hidden]="!emailConfirm.errors?.pattern">
-                       Los correos son distintos
+                      Los correos son distintos
                     </div>
                   </div>
 
@@ -127,8 +127,7 @@
               <div class="form-group">
                 <label class="col-md-12">Contraseña Actual</label>
                 <div class="col-md-12">
-                  <input type="password" placeholder="" class="form-control form-control-line"
-                   name="password" id="password" [(ngModel)]="_usuario.Password">
+                  <input type="password" placeholder="" class="form-control form-control-line" name="password" id="password" [(ngModel)]="_usuario.Password">
                 </div>
               </div>
               <br>
@@ -136,20 +135,19 @@
               <div class="form-group">
                 <label class="col-md-12">Contraseña Nueva</label>
                 <div class="col-md-12">
-                  <input type="password" placeholder="" class="form-control form-control-line"
-                   name="password1" id="password1" [(ngModel)]="_passConfirm">
+                  <input type="password" placeholder="" class="form-control form-control-line" name="password1" id="password1" [(ngModel)]="_passConfirm">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-md-12">Confirmar Contraseña</label>
                 <div class="col-md-12">
-                  <input type="password" placeholder="" class="form-control form-control-line" 
-                  name="password2" id="password2" [(ngModel)]="_passConfirm2" pattern="{{_passConfirm}}"  #password2="ngModel">
+                  <input type="password" placeholder="" class="form-control form-control-line" name="password2" id="password2" [(ngModel)]="_passConfirm2"
+                    pattern="{{_passConfirm}}" #password2="ngModel">
 
-                    <div *ngIf="password2.errors && (password2.touched || password2.dirty)" class="aler alert-danger">
+                  <div *ngIf="password2.errors && (password2.touched || password2.dirty)" class="aler alert-danger">
                     <div [hidden]="!password2.errors?.pattern">
-                       Las contraseñas son distintas
+                      Las contraseñas son distintas
                     </div>
                   </div>
                 </div>
@@ -171,8 +169,7 @@
             <div class="form-group">
               <label class="col-md-12">Contraseña</label>
               <div class="col-md-12">
-                <input type="password" placeholder="" class="form-control form-control-line" name="password3" id="password3"
-                 [(ngModel)]="_usuario.Password">
+                <input type="password" placeholder="" class="form-control form-control-line" name="password3" id="password3" [(ngModel)]="_usuario.Password">
               </div>
             </div>
 
@@ -184,7 +181,7 @@
           </div>
 
         </div>
-        
+
       </div>
     </div>
   </div>
