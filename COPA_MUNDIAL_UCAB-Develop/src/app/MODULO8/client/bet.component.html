@@ -1,0 +1,131 @@
+<script>
+	$('[data-toggle=offcanvas]').click(function() {
+		$('.row-offcanvas').toggleClass('active');
+		$('.collapse').toggleClass('in').toggleClass('hidden-xs').toggleClass('visible-xs');
+	});
+</script>
+
+
+<div class="container-fluid">
+	<div class="row row-offcanvas row-offcanvas-right">
+		<div class="col-xs-6 col-sm-3 col-sm-pull-9 sidebar-offcanvas" id="sidebar">
+			<div class="list-group ">
+				<a href="#" class="list-group-item active fondo">JUEGOS</a>
+				<a (click)="goMybets()" class="list-group-item fondo">MIS APUESTAS</a>
+			</div>
+		</div><!--/.sidebar-offcanvas-->	
+
+		<div class="col-xs-12 col-sm-9 col-sm-push-3">
+			<table class="table table-hover table-condensed">				
+				<thead class="thead-dark" class= "fondo" >
+					<tr >
+						<th>Fecha</th>
+						<th>Hora</th>
+						<th>Equipos a enfrentarse</th>
+						<th>Estadio</th>
+						<th>Ciudad</th>
+						<th><p>Opciones</p></th>        
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>23/4/2018</td>
+						<td>12:00 am</td>
+						<td>Equipo 1 VS Equipo 2</td>
+						<td>SPARTAK STADIUM</td>
+						<td>Moscú</td>
+						<!-- BOTON CON PRUEBA DEL MODAL-->
+						<td><button type="button" class="btn btn-primary btn-info btn-lg">Ver partido</button></td>      
+					</tr>
+					<tr>
+						<td>23/4/2018</td>
+						<td>12:00 am</td>
+						<td>Equipo 1 VS Equipo 2</td>
+						<td>SPARTAK STADIUM</td>
+						<td>Moscú</td>
+						<!--BOTON CON PRUEBA DEL COLLAPSE-->
+						<td><button type="button" class="btn btn-primary btn-info btn-lg" data-toggle="collapse" data-target="#CollapseExample" aria-expanded="false" aria-controls="CollapseExample">Ver partido</button></td>      
+					</tr>
+					<tr>
+						<div class="collapse" id="CollapseExample">
+							<div class="card card-body">
+								Aqui van todos los logros
+							</div>
+						</div>
+					</tr>
+					<tr>
+						<td>23/4/2018</td>
+						<td>12:00 am</td>
+						<td>Equipo 1 VS Equipo 2</td>
+						<td>SPARTAK STADIUM</td>
+						<td>Moscú</td>
+						<td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" rget="#myModal">Ver partido</button></td>      
+					</tr>
+				</tbody>	
+			</table>	
+		</div><!--/.col-xs-12.col-sm-9-->
+
+			<!-- MODAL -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+
+					<!-- MODAL CONTENT-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<div class="modal-body">
+							<p>Some text in the modal</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--
+		<div class="col-xs-6 col-sm-3 col-sm-pull-9 sidebar-offcanvas" id="sidebar">
+
+			
+			<nav class="navbar-default navbar-side" role="navigation">
+				<div class="sidebar-collapse">
+						<a href="#" class="list-group-item active fondo">JUEGOS</a>
+						<a href="#" class="list-group-item fondo">MIS APUESTAS</a>
+		
+				!
+				<div class="list-group ">
+
+					<button (click)="mybets()" class="btn btn-nav fondo" href="#"> MIS APUESTAS <span class="oi oi-account-bet"></span></button>
+					
+					<li class="nav-item">
+							<button (click)="mybets()" class="btn btn-nav fondo" href="#">MIS APUESTAS </button>
+					</li>
+
+					<ul class="list-group" >
+						<li class="list-group-item item-sidebar">
+							<a (click)="mybets()" routerLink="mybets" routerLinkActive="active"><span class="fondo"></span> MIS APUESTAS </a>
+						</li>
+					</ul>
+				!
+				</div>
+			</nav>
+		</div><!.sidebar-offcanvas>
+		-->
+	</div><!--/row-->
+
+	<hr>
+
+
+</div><!--/.container-->
+
+
+
+
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+

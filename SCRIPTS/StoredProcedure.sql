@@ -29,12 +29,12 @@ $$ LANGUAGE plpgsql;
 --inicia sesion con el nombre del usuario y retorna su id
 CREATE OR REPLACE FUNCTION IniciarSesionUsuario(_nombreUsuario varchar, _password varchar)
 RETURNS TABLE
-  (id integer, activo boolean)
+  (id integer)
 AS
 $$
 BEGIN
 	RETURN QUERY SELECT
-	us_id, us_esAdmin
+	us_id
 	FROM usuario
 	WHERE us_nombreUsuario=_nombreUsuario AND md5(_password) = us_password AND us_activo = true;
 END;
@@ -43,12 +43,12 @@ $$ LANGUAGE plpgsql;
 --inicia sesion con el correo del usuario y retorna su id
 CREATE OR REPLACE FUNCTION IniciarSesionCorreo(_correo varchar, _password varchar)
 RETURNS TABLE
-  (id integer, activo boolean)
+  (id integer)
 AS
 $$
 BEGIN
 	RETURN QUERY SELECT
-	us_id, us_esAdmin
+	us_id
 	FROM usuario
 	WHERE us_correo=_correo AND md5(_password) = us_password AND us_activo = true;
 END;

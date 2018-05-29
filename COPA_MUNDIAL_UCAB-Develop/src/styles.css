@@ -1,0 +1,200 @@
+/*
+Template Name: Copa Mundial
+Author: Desarrollo de Software UCAB
+Email: wjoseperez20@gmail.com
+File: css
+*/
+
+/**
+ * Contenidos
+ *
+ * 	1. Globales
+ *	2. Headers
+ *	3. Nav | Side
+ *	4. Banners
+ *	5. Footers
+ *	6. app
+ *	7. Widgets
+ *	8. Media's
+ *	9. Custom Templates
+ */
+
+@import url(../src/assets/ccs/cropper.min.css);
+@import url(../src/assets/ccs/animate.css);
+@import url(../src/assets/ccs/flag-icon.min.css);
+/******************* 
+1. Global Styles 
+*******************/
+
+/*******************
+2. Headers
+*******************/	
+
+/*******************
+3. Nav | Side
+******************/
+
+.dropdown-toggle::after {
+	display: none;
+}
+
+/********Nav*********/
+
+.nav-link-home {
+	color: black;
+}
+
+.navbar-nav>.nav-item>.nav-link {
+	padding-left: .75rem;
+	padding-right: .75rem;
+	font-size: 19px;
+	line-height: 0px;
+}
+
+.nav-item.show {
+	background: rgba(0, 0, 0, 0.05);
+}
+
+.img-logo-nav {
+	height: 40px;
+}
+
+.bg-color {
+	background-color: #0B486B;
+}
+
+.profile-pic {
+	width: 30px;
+	border-radius: 100%;
+	margin-right: 10px;
+}
+
+/********Side*********/
+
+.oi-caret-bottom {
+	position: relative;
+	left: 20px;
+}
+
+.user-profile {
+	position: relative;
+	background-size: cover;
+}
+
+.user-profile .profile-img {
+	width: 50px;
+	margin-left: 30px;
+	padding: 35px 0;
+	border-radius: 100%;
+}
+
+.user-profile .profile-img::before {
+	-webkit-animation: 2.5s blow 0s linear infinite;
+	animation: 2.5s blow 0s linear infinite;
+	position: absolute;
+	content: '';
+	width: 50px;
+	height: 50px;
+	left: 30px;
+	top: 35px;
+	margin: 0 auto;
+	border-radius: 50%;
+	z-index: 0;
+}
+
+@-webkit-keyframes blow {
+	0% {
+		-webkit-box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.1);
+		opacity: 1;
+		-webkit-transform: scale3d(1, 1, 0.5);
+		transform: scale3d(1, 1, 0.5);
+	}
+	50% {
+		-webkit-box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
+		opacity: 1;
+		-webkit-transform: scale3d(1, 1, 0.5);
+		transform: scale3d(1, 1, 0.5);
+	}
+	100% {
+		-webkit-box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.1);
+		opacity: 0;
+		-webkit-transform: scale3d(1, 1, 0.5);
+		transform: scale3d(1, 1, 0.5);
+	}
+}
+
+@keyframes blow {
+	0% {
+		-webkit-box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.1);
+		opacity: 1;
+		-webkit-transform: scale3d(1, 1, 0.5);
+		transform: scale3d(1, 1, 0.5);
+	}
+	50% {
+		-webkit-box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
+		opacity: 1;
+		-webkit-transform: scale3d(1, 1, 0.5);
+		transform: scale3d(1, 1, 0.5);
+	}
+	100% {
+		-webkit-box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.1);
+		opacity: 0;
+		-webkit-transform: scale3d(1, 1, 0.5);
+		transform: scale3d(1, 1, 0.5);
+	}
+}
+
+.user-profile .profile-img img {
+	width: 100%;
+	border-radius: 100%;
+}
+
+.user-profile .profile-text {
+	padding: 5px 0px;
+	position: relative;
+}
+
+.user-profile .profile-text>a {
+	color: #ffffff !important;
+	width: 100%;
+	padding: 6px 30px;
+	background: rgba(0, 0, 0, 0.5);
+	display: block;
+}
+
+.user-profile .dropdown-menu {
+	left: 0px;
+	right: 0px;
+	width: 180px;
+	margin: 0 auto;
+}
+
+/*******************
+4. Banners
+******************/
+
+/*******************
+5. Footers
+******************/
+
+/*******************
+6. app
+******************/
+
+/*******************
+7. Footers
+******************/
+
+/*******************
+8. Media's
+******************/
+
+/*******************
+9. Custom Templates
+******************/
