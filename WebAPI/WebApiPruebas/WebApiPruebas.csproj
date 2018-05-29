@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="M10\M10_PruebaUnitaria.cs" />
     <Compile Include="M1\M1_PruebasUnitarias.cs" />
+    <Compile Include="M6\PartidoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

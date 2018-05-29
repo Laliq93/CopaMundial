@@ -291,7 +291,7 @@ BEGIN
     pa_horaInicio= _horaInicio,  pa_arbitro= _arbitro, pa_eq1_id =_equipo1,
     pa_eq2_id =_equipo2, pa_es_id = _estadio
 	WHERE (pa_id = _idPartido);
-   RETURN currval('seq_Partido');
+   RETURN currval(_idPartido);
 
 END;
 $$ LANGUAGE plpgsql;
