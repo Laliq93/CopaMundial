@@ -5,7 +5,7 @@
         </div>
         <div class="col rightAlign">
           <button *ngIf="esAdmin" type="button" class="btn btn-sm separator" routerLink="/jugadores/detalle">Agregar</button>
-          <button *ngIf="jugadorActual" type="button" class="btn btn-sm separator" routerLink="/jugadores/detalle/{{jugadorActual.id}}">Editar</button>
+          <button *ngIf="jugadorActual" type="button" class="btn btn-sm separator" routerLink="/jugadores/detalle/{{jugadorActual.Id}}">Editar</button>
           <button *ngIf="jugadorActual" type="button" class="btn btn-sm separator" (click)="fun()">Ver</button>
         </div>
       </div>
@@ -40,11 +40,11 @@
           </thead>
           <tbody>
             <tr *ngFor="let jugador of jugadores" [class.table-dark]="jugador === jugadorActual" (click)="selectedJugador(jugador)">
-              <td>{{jugador.nombre}}</td>
-              <td>{{jugador.apellido}}</td>
-              <td>{{jugador.numero}}</td>
-              <td>{{jugador.posicion}}</td>
-              <td>{{jugador.equipo}}</td>
+              <td>{{jugador.Nombre}}</td>
+              <td>{{jugador.Apellido}}</td>
+              <td>{{jugador.Numero}}</td>
+              <td>{{jugador.Posicion}}</td>
+              <td>{{jugador.Equipo}}</td>
             </tr>
           </tbody>
         </table>

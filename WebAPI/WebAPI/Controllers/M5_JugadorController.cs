@@ -17,6 +17,7 @@ namespace WebAPI.Controllers
         private List<Jugador> _listaJugadores;
 
         [Route("CrearJugador/{nombre}/{apellido}/{fechaNacimiento}/{lugarNacimiento}/{peso}/{altura}/{club}/{equipo}/{numero}/{posicion}/{capitan}")]
+        [System.Web.Http.AcceptVerbs("GET", "POST")]
         [HttpPost, HttpGet]
         public IHttpActionResult CrearJugador(string nombre, string apellido, string fechaNacimiento, string lugarNacimiento, 
             double peso, double altura, string club, int equipo, int numero, string posicion, bool capitan)
@@ -39,6 +40,7 @@ namespace WebAPI.Controllers
         }
 
         [Route("EditarJugador/{id}/{nombre}/{apellido}/{fechaNacimiento}/{lugarNacimiento}/{peso}/{altura}/{club}/{equipo}/{numero}/{posicion}/{capitan}")]
+        [System.Web.Http.AcceptVerbs("GET", "POST")]
         [HttpPost, HttpGet]
         public IHttpActionResult EditarJugador(int id, string nombre, string apellido, string fechaNacimiento, string lugarNacimiento,
             double peso, double altura, string club, int equipo, int numero, string posicion, bool capitan)
@@ -61,7 +63,8 @@ namespace WebAPI.Controllers
         }
 
         [Route("ListarJugador/{equipo}")]
-        [HttpPost, HttpGet]
+        [System.Web.Http.AcceptVerbs("GET")]
+        [System.Web.Http.HttpGet]
         public HttpResponseMessage ListarJugador(int equipo)
         {
             

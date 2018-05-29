@@ -14,7 +14,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class JugadorService {
-  jugadoresUrl = 'http://localhost:63088/api/jugadores';
+  jugadoresUrl = 'http://localhost:54059/api/M5_Jugador';
 
   constructor(
     private http: HttpClient
@@ -22,14 +22,15 @@ export class JugadorService {
 
   getJugadores(): Observable<Jugador[]> {
     // return of(JUGADORES);
-    return this.http.get<Jugador[]>(this.jugadoresUrl).pipe(
-      catchError(this.handleError('getHeroes', []))
+    const url = `${this.jugadoresUrl}/ListarJugador/-1`;
+    return this.http.get<Jugador[]>(url).pipe(
+      catchError(this.handleError('getJugadores', []))
     );
   }
 
   getJugador(id: number): Observable<Jugador> {
     // return of(JUGADORES.find(jugador => jugador.id === id));
-    const url = `${this.jugadoresUrl}/${id}`;
+    const url = `${this.jugadoresUrl}/BuscarJugador/${id}`;
     return this.http.get<Jugador>(url).pipe(
       tap(_ => this.log(`fetched jugador id=${id}`)),
       catchError(this.handleError<Jugador>(`getJugador id=${id}`))
@@ -37,16 +38,18 @@ export class JugadorService {
   }
 
   updateJugador(jugador: Jugador): Observable<any> {
-
-    return this.http.put(this.jugadoresUrl, jugador, httpOptions).pipe(
-      tap(_ => this.log(`updated jugador id=${jugador.id}`)),
-      catchError(this.handleError<any>('updateHero'))
+    console.log(jugador.FechaNacimiento);
+    const url = `${this.jugadoresUrl}/EditarJugador`;
+    return this.http.put(url, jugador, httpOptions).pipe(
+      tap(_ => this.log(`updated jugador id=${jugador.Id}`)),
+      catchError(this.handleError<any>('updateJugador'))
     );
   }
 
-  addJugador(jugador: Jugador): Observable<Jugador> {
-    return this.http.post<Jugador>(this.jugadoresUrl, jugador, httpOptions).pipe(
-      tap(_ => this.log(`added jugador w/ id=${jugador.id}`)),
+  addJugador(jugador: Jugador): Observable<any> {
+    const url = `${this.jugadoresUrl}/CrearJugador`;
+    return this.http.post<Jugador>(url, jugador, httpOptions).pipe(
+      tap(_ => this.log(`added jugador w/ id=${jugador.Id}`)),
       catchError(this.handleError<Jugador>('addJugador'))
     );
   }
@@ -56,9 +59,14 @@ export class JugadorService {
       // if not search term, return empty hero array.
       return this.getJugadores();
     }
-    return this.http.get<Jugador[]>(`${this.jugadoresUrl}/eq/${equipo}`).pipe(
+
+    // falta logica de busqueda de id de equipo por ISO
+
+    const number: number = parseInt(equipo, 10);
+    const url = `${this.jugadoresUrl}/ListarJugador/${number}`;
+    return this.http.get<Jugador[]>(url).pipe(
       tap(_ => this.log(`found jugadores matching "${equipo}"`)),
-      catchError(this.handleError<Jugador[]>('searchHeroes', []))
+      catchError(this.handleError<Jugador[]>('searchJugadores', []))
     );
   }
 

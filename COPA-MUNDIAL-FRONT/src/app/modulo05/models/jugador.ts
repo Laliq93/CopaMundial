@@ -1,34 +1,32 @@
 export class Jugador {
-  id: number;
-  nombre: string;
-  apellido: string;
-  fecha_nac: Date;
-  lugar_nac: string;
-  peso: number;
-  altura: number;
-  numero: number;
-  posicion: string;
-  capitan: boolean;
-  club?: string;
-  equipo?: string;
+  Id: number;
+  Nombre: string;
+  Apellido: string;
+  FechaNacimiento: string;
+  LugarNacimiento: string;
+  Peso: number;
+  Altura: number;
+  Numero: number;
+  Posicion: string;
+  Capitan: boolean;
+  Club: string;
+  Equipo?: number;
 
   constructor(data?) {
     if (data) {
-      this.id = data.id;
-      this.nombre = data.nombre;
-      this.apellido = data.apellido;
-      this.fecha_nac = data.fecha_nac;
-      this.lugar_nac = data.lugar_nac;
-      this.peso = data.peso;
-      this.altura = data.altura;
-      this.numero = data.numero;
-      this.posicion = data.posicion;
-      this.capitan = data.capitan;
-      if (data.club) {
-        this.club = data.club;
-      }
+      this.Id = data.id;
+      this.Nombre = data.nombre;
+      this.Apellido = data.apellido;
+      this.FechaNacimiento = data.fecha_nac;
+      this.LugarNacimiento = data.lugar_nac;
+      this.Peso = data.peso;
+      this.Altura = data.altura;
+      this.Numero = data.numero;
+      this.Posicion = data.posicion;
+      this.Capitan = data.capitan;
+      this.Club = data.club;
       if (data.equipo) {
-        this.equipo = data.equipo;
+        this.Equipo = data.equipo;
       }
     }
   }

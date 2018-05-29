@@ -45,16 +45,18 @@ export class JugadorDetalleComponent implements OnInit {
       this.jugadorService.getJugador(this.id)
         .subscribe(jugador => {
           env.jugador = jugador;
-          // this.temporal = this.datePipe.transform(this.jugador_temp.fecha_nac.toISOString(), 'yyyy-MM-dd');
-          // conversion a ISO y split
-          const test = env.jugador.fecha_nac.toString().split('T');
-          // const x = env.jugador.fecha_nac.toISOString().split('T');
-          env.temporal = test[0];
+
+          // env.temporal = env.convertDateToString(env.jugador.FechaNacimiento);
         });
     }
   }
 
-  loadJugador() {
+  convertDateToString(date: Date): string {
+    // this.temporal = this.datePipe.transform(this.jugador_temp.fecha_nac.toISOString(), 'yyyy-MM-dd');
+    // conversion a ISO y split
+    const test = date.toISOString().split('T');
+    return test[0];
+    // const x = env.jugador.fecha_nac.toISOString().split('T');
   }
 
   goBack(): void {
@@ -63,8 +65,8 @@ export class JugadorDetalleComponent implements OnInit {
 
   saveChanges(): void {
     // const temp_date = this.temporal + 'T00:00:00Z';
-    const date: Date = new Date(Date.parse(this.temporal));
-    this.jugador.fecha_nac = date;
+    // const date: Date = new Date(Date.parse(this.temporal));
+    // this.jugador.FechaNacimiento = date;
 
     if (this.id !== 0) {
       this.jugadorService.updateJugador(this.jugador)
