@@ -402,3 +402,4 @@ C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Web.Cors.dll
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.dll
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.xml
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\Npgsql.xml
