@@ -16,6 +16,7 @@ namespace WebAPI.Controllers
         private DataBase _database = new DataBase();
         private List<Pais> _listaPaises;
         private Pais pais;
+        private EstructuraRespuesta er;
 
         /// <summary>
         /// Metodo POST para agregar equipos. Realiza una conversion el idPais y pasa los datos a otro metodo.
@@ -23,17 +24,25 @@ namespace WebAPI.Controllers
         /// <param name="equipo">Objeto de tipo equipo que contiene los datos del equipo a ser agregado</param>
         [Route("AgregarEquipo")]
         [HttpPost]
-        public IHttpActionResult RegistrarEquipo([FromBody] Equipo equipo)
+        public HttpResponseMessage RegistrarEquipo([FromBody] Equipo equipo)
         {
             try
             {
-                //return Ok("lista de equipo " + equipo.Descripcion[0].Idioma.ToString());
                 AgregarEquipo(equipo);
-                return Ok("Equipo registrado exitosamente");
+
+                er = new EstructuraRespuesta();
+                er.codigo = 200;
+                er.mensaje = "Equipo agregado satisfactoriamente";
+                return Request.CreateResponse(HttpStatusCode.OK, er);
             }
             catch( Exception e)
             {
-                return BadRequest("Error en el registro del equipo: " + e.Message);
+                er = new EstructuraRespuesta();
+                er.codigo = 410;
+                er.mensaje = "";
+                er.error = "Error al tratar de agregar a un equipo:" + e.Message;
+                return Request.CreateResponse(HttpStatusCode.BadRequest,
+                    new HttpError("Error al tratar de agregar a un equipo:" + er));
             }
         }
 
@@ -42,7 +51,7 @@ namespace WebAPI.Controllers
         /// hacer llamados a los metodos respectivos en la base de datos para asi realizar su funcion
         /// </summary>
         /// <param name="equipo">Objeto de tipo equipo que contiene los datos del equipo a ser agregado</param>
-        public HttpResponseMessage AgregarEquipo( Equipo equipo )
+        public void AgregarEquipo( Equipo equipo )
         {
             //string descripcionES, string descripcionEN, string grupo, int idPais
             try
@@ -50,23 +59,22 @@ namespace WebAPI.Controllers
                 _database.Conectar();
                 _database.StoredProcedure("m4_agregar_equipo(@descripcionES, @descripcionEN, @grupo, " +
                     "@id_pais)");
-                for (int i = 0; i < equipo.Descripcion.Count(); i++)
+                for (int i = 0; i < equipo.descripcion.Count(); i++)
                 {
-                    if (equipo.Descripcion[i].Idioma.ToString().ToLower() == "es")
-                        _database.AgregarParametro("descripcionES", equipo.Descripcion[i].Mensaje.ToString());
-                    else if (equipo.Descripcion[i].Idioma.ToString().ToLower() == "en")
-                        _database.AgregarParametro("descripcionEN", equipo.Descripcion[i].Mensaje.ToString());
+                    if (equipo.descripcion[i].idioma.ToString().ToLower() == "es")
+                        _database.AgregarParametro("descripcionES", equipo.descripcion[i].mensaje.ToString());
+                    else if (equipo.descripcion[i].idioma.ToString().ToLower() == "en")
+                        _database.AgregarParametro("descripcionEN", equipo.descripcion[i].mensaje.ToString());
                 }
-                _database.AgregarParametro("grupo", equipo.Grupo.ToString());
-                _database.AgregarParametro("id_pais", equipo.Pais.Iso.ToString());
+                _database.AgregarParametro("grupo", equipo.grupo.ToString());
+                _database.AgregarParametro("id_pais", equipo.pais.iso.ToString());
                 _database.EjecutarQuery();
-                return Request.CreateResponse(HttpStatusCode.OK);
+                
             }
             catch( Exception e)
             {
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.BadRequest,
-                    new HttpError("Error al tratar de agregar equipo:" + e.Message));
+                throw new Exception("Error al agregar un equipo. Mas informacion del error: " + e);
             }
         }
 
@@ -85,7 +93,6 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-
                 return BadRequest("Error en la actualizacion del equipo: " + e.Message);
             }
         }
@@ -94,7 +101,7 @@ namespace WebAPI.Controllers
         /// Edita la informacion del equipo en la base de datos.
         /// <param name="equipo">Onjeto de tipo equipo que sirve para guardar los datos en la BD</param>
         /// </summary>
-        public HttpResponseMessage EditarEquipo(Equipo equipo)
+        public void EditarEquipo(Equipo equipo)
         {
             try
             {
@@ -102,24 +109,22 @@ namespace WebAPI.Controllers
 
                 _database.StoredProcedure("m4_modificar_equipo(@descripcionES, @descripcionEN, @grupo, " +
                     "@id_pais, @status)");
-                for (int i = 0; i < equipo.Descripcion.Count(); i++)
+                for (int i = 0; i < equipo.descripcion.Count(); i++)
                 {
-                    if (equipo.Descripcion[i].Idioma.ToString().ToLower() == "es")
-                        _database.AgregarParametro("descripcionES", equipo.Descripcion[i].Mensaje.ToString());
-                    else if (equipo.Descripcion[i].Idioma.ToString().ToLower() == "en")
-                        _database.AgregarParametro("descripcionEN", equipo.Descripcion[i].Mensaje.ToString());
+                    if (equipo.descripcion[i].idioma.ToString().ToLower() == "es")
+                        _database.AgregarParametro("descripcionES", equipo.descripcion[i].mensaje.ToString());
+                    else if (equipo.descripcion[i].idioma.ToString().ToLower() == "en")
+                        _database.AgregarParametro("descripcionEN", equipo.descripcion[i].mensaje.ToString());
                 }
-                _database.AgregarParametro("grupo", equipo.Grupo.ToString());
-                _database.AgregarParametro("id_pais", equipo.Pais.Iso.ToString());
+                _database.AgregarParametro("grupo", equipo.grupo.ToString());
+                _database.AgregarParametro("id_pais", equipo.pais.iso.ToString());
                 _database.EjecutarQuery();
-
-                return Request.CreateResponse(HttpStatusCode.OK);
+                
             }
             catch (NullReferenceException e)
             {
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.BadRequest,
-                    new HttpError("Error al tratar de agregar equipo:" + e.Message));
+                throw new Exception("Error al actualizar un equipo. Mas informacion del error: " + e);
             }
         }
 
@@ -134,13 +139,19 @@ namespace WebAPI.Controllers
             try
             {
                 ObtenerPaises(idioma);
-                return Request.CreateResponse(HttpStatusCode.OK, _listaPaises);
+                er = new EstructuraRespuesta();
+                er.codigo = 200;
+                er.mensaje = _listaPaises;
+                return Request.CreateResponse(HttpStatusCode.OK, er);
             }
             catch (Exception e)
             {
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.BadRequest, 
-                    new HttpError("Error al tratar de obtener los datos de los paises:" + e.Message));
+                er = new EstructuraRespuesta();
+                er.codigo = 410;
+                er.mensaje = "";
+                er.error = "Error al tratar de obtener los datos de los paises:" + e.Message;
+                return Request.CreateResponse(HttpStatusCode.BadRequest, er);
             }
             
         }
@@ -171,9 +182,9 @@ namespace WebAPI.Controllers
 
                 return _listaPaises;
             }
-            catch (Exception exc)
+            catch (Exception e)
             {
-                return null;
+                throw new Exception("Error al obtener la lista de paises. Mas informacion del error: " + e);
             }
         }
     }

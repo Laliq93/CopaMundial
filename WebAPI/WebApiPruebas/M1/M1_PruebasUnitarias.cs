@@ -7,7 +7,7 @@ using NUnit.Framework;
 using WebAPI.Models.Excepciones;
 using WebAPI.Models;
 using WebAPI.Controllers;
-
+using System.Net;
 
 namespace WebApiPruebas.M1
 {

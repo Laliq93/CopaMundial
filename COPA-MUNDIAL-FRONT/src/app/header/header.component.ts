@@ -54,7 +54,7 @@ export class HeaderComponent implements AfterViewInit {
 			new Module(MODULES.JUGADORES, "player", false),
 			new Module(MODULES.PARTIDOS, "match", false),
 			new Module(MODULES.APUESTAS, "bet", false),
-			new Module(MODULES.ESTADISTICAS, "statistic", false),
+			new Module(MODULES.ESTADISTICAS, "estadisticas", false),
 			new Module(MODULES.LOGROS, "logros", false)
 		];
 
@@ -112,7 +112,7 @@ export class HeaderComponent implements AfterViewInit {
 	ngAfterViewInit(): void {
 
 		this._zone.runOutsideAngular(() => {
-			//jQuery("").navdrawer("show");
+			jQuery("#copaNavdrawer").navdrawer("show");
 		});
 
 	}

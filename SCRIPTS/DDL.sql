@@ -17,6 +17,10 @@ Drop SEQUENCE SEQ_Pais;
 Drop table i18n_equipo;
 Drop SEQUENCE SEQ_i18n_Equipo;
 
+--Modulo 5
+--DROPS
+DROP TABLE public.jugador
+DROP SEQUENCE public.seq_jugador;
 
 --Modulo 6
 --DROPS
@@ -77,6 +81,28 @@ CREATE TABLE EQUIPO (
     CONSTRAINT eq_pa_id FOREIGN KEY (eq_pa_id) REFERENCES pais (pa_iso)
 );
 --Fin de modulo 4
+
+--Modulo 5
+CREATE TABLE public.jugador
+(
+    ju_id integer NOT NULL,
+    ju_nombre character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    ju_apellido character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    ju_fechanacimiento character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    ju_lugarnacimiento character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    ju_peso double precision NOT NULL,
+    ju_altura double precision NOT NULL,
+    ju_club character varying COLLATE pg_catalog."default",
+    eq_id integer,
+    ju_numero integer,
+    ju_posicion character varying COLLATE pg_catalog."default" NOT NULL,
+    ju_capitan boolean DEFAULT false,
+    CONSTRAINT jugador_pkey PRIMARY KEY (ju_id),
+    CONSTRAINT jugador_numero_check CHECK (ju_numero > 0 AND ju_numero < 24),
+    CONSTRAINT jugador_posicion_check CHECK (ju_posicion::text = 'ME'::text OR ju_posicion::text = 'AR'::text OR ju_posicion::text = 'DF'::text OR ju_posicion::text = 'DL'::text)
+);
+--Fin de Modulo 5
+
 --Modulo 6
 CREATE TABLE PARTIDO(
 	pa_id integer,
@@ -91,9 +117,40 @@ CREATE TABLE PARTIDO(
     
     CONSTRAINT pk_partido PRIMARY KEY(pa_id),
     CONSTRAINT pa_eq1_id FOREIGN KEY (pa_eq1_id) REFERENCES EQUIPO(eq_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT pa_eq2_id FOREIGN KEY (pa_eq2_id) REFERENCES EQUIPO(eq_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT pa_es_id FOREIGN KEY (pa_es_id) REFERENCES ESTADIO(es_id) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT pa_eq2_id FOREIGN KEY (pa_eq2_id) REFERENCES EQUIPO(eq_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+--Modulo 6
+CREATE TABLE PARTIDO(
+	pa_id integer,
+    pa_fecha varchar(25) NOT NULL,
+    pa_horaInicio varchar(25) NOT NULL,
+    pa_horaFin varchar(25),
+    pa_arbitro varchar(30) NOT NULL,
+    pa_status boolean NOT NULL,
+    pa_eq1_id integer NOT NULL, 
+    pa_eq2_id integer NOT NULL, 
+    pa_es_id integer NOT NULL,
+    
+    CONSTRAINT pk_partido PRIMARY KEY(pa_id),
+    CONSTRAINT pa_eq1_id FOREIGN KEY (pa_eq1_id) REFERENCES EQUIPO(eq_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT pa_eq2_id FOREIGN KEY (pa_eq2_id) REFERENCES EQUIPO(eq_id) ON DELETE CASCADE ON UPDATE CASCADE
+  --  CONSTRAINT pa_es_id FOREIGN KEY (pa_es_id) REFERENCES ESTADIO(es_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE JUGADOR (
+	ju_id serial,
+	ju_nombre varchar(40) NOT NULL,
+	ju_apellido varchar(40) NOT NULL,
+	ju_estatura integer NOT NULL,
+	ju_fotoPath varchar(100) NOT NULL,
+	ju_arquero boolean default false not null,
+	ju_eq_id integer,
+	CONSTRAINT primaria_jugadores PRIMARY KEY(ju_id),
+	CONSTRAINT ju_eq_id FOREIGN KEY (ju_eq_id) REFERENCES equipo (eq_id)
+	
+);
+
 
 CREATE TABLE ALINEACION(
 	al_id integer,
@@ -104,7 +161,9 @@ CREATE TABLE ALINEACION(
     al_eq_id integer NOT NULL,
     al_pa_id integer NOT NULL,
     CONSTRAINT pk_alineacion PRIMARY KEY(al_id),
+
     CONSTRAINT al_ju_id FOREIGN KEY (al_ju_id) REFERENCES JUGADOR(ju_id) ON DELETE CASCADE ON UPDATE CASCADE,
+
     CONSTRAINT al_eq_id FOREIGN KEY (al_eq_id) REFERENCES EQUIPO(eq_id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT al_pa_id FOREIGN KEY (al_pa_id) REFERENCES PARTIDO(pa_id) ON DELETE CASCADE ON UPDATE CASCADE
 
@@ -112,6 +171,42 @@ CREATE TABLE ALINEACION(
 );
 
 --Fin de modulo 6
+
+--tablas modulo 9 que necesitamos y no se han subido
+
+
+create table equipo_partido(
+	equi_part_id serial,
+	equi_part_posesion integer check (equi_part_posesion >= 0 and equi_part_posesion <= 100),
+	equi_part_rendimiento integer check (equi_part_rendimiento >= 0 and equi_part_rendimiento <= 10),
+	equi_part_fg_part integer,
+	equi_part_fg_equipo integer,
+	constraint primaria_equipo_partido PRIMARY KEY (equi_part_id),
+	constraint equi_part_fg_part foreign key(equi_part_fg_part) references partido(pa_id),
+	constraint equi_part_fg_equipo foreign key(equi_part_fg_equipo) references equipo(eq_id)
+
+);
+
+create table eventos_partido(
+	eve_id serial,
+	eve_nombre varchar(35) check (eve_nombre = 'GOL' OR eve_nombre = 'ASISTENCIA' OR eve_nombre = 'FALTACOMETIDA' OR eve_nombre = 'TIROESQUINA'  OR  eve_nombre = 'FALTARECIBIDA'  OR  eve_nombre = 'TARJETAA'  OR eve_nombre = 'TARJETAR'  OR  eve_nombre = 'OFFSIDE'  OR  eve_nombre = 'TIEMPOJUGADO'  OR  eve_nombre = 'TIROS'  OR  eve_nombre = 'GOLESREC'  OR  eve_nombre = 'PENALESATAJADOS'),
+	eve_valor integer check(eve_valor >=0),
+	--eve_minutosjugados integer check (eve_minutosjugados >=0 and eve_minutosjugados <=90),
+	eve_minuto_juego integer check (eve_minuto_juego > 0 and eve_minuto_juego <=90),
+	eve_fg_equipart integer,
+	eve_fg_jug integer,
+	constraint primaria_eventos_partido PRIMARY KEY (eve_id),
+	constraint eve_fg_equipart foreign key (eve_fg_equipart) references equipo_partido(equi_part_id),
+	constraint eve_fg_jug foreign key (eve_fg_jug) references jugador(ju_id)
+);
+
+-- fin tablas modulo 9
+
+
+
+
+
+
 --ALTERS
 --Modulo 1
 --Fin de modulo
@@ -119,6 +214,11 @@ CREATE TABLE ALINEACION(
 --ALTERS
 --Modulo 4
 --Fin de modulo 4
+
+--ALTERS
+--Modulo 6
+ALTER TABLE ALINEACION ADD CONSTRAINT al_ju_id FOREIGN KEY (al_ju_id) REFERENCES JUGADOR(ju_id) ON DELETE CASCADE ON UPDATE CASCADE;
+--Fin de modulo 6
 
 --SEQUENCES
 --Modulo 1
@@ -153,6 +253,14 @@ CREATE SEQUENCE SEQ_Equipo
   CACHE 1;
 --Fin de modulo 4
 
+--Modulo 5
+CREATE SEQUENCE public.seq_jugador
+  START WITH 1
+  INCREMENT BY 1
+  NO MINVALUE
+  NO MAXVALUE
+  CACHE 1;
+--Fin de Modulo 5
 
 --Modulo 6
 CREATE SEQUENCE SEQ_Partido
@@ -175,10 +283,32 @@ CREATE SEQUENCE SEQ_Alineacion
 --Modulo 4
 --Fin de modulo 4
 
+--Modulo 6
+CREATE SEQUENCE SEQ_Partido
+  START WITH 1
+  INCREMENT BY 1
+  NO MINVALUE
+  NO MAXVALUE
+  CACHE 1;
+
+CREATE SEQUENCE SEQ_Alineacion
+  START WITH 1
+  INCREMENT BY 1
+  NO MINVALUE
+  NO MAXVALUE
+  CACHE 1;
+--Fin de modulo 6
+
+
+
 GRANT ALL PRIVILEGES ON TABLE usuario TO admin_copamundial;
 GRANT ALL PRIVILEGES ON TABLE equipo TO admin_copamundial;
 GRANT ALL PRIVILEGES ON TABLE partido TO admin_copamundial;
 GRANT ALL PRIVILEGES ON TABLE alineacion TO admin_copamundial;
+
+GRANT ALL PRIVILEGES ON TABLE jugador TO admin_copamundial;
+GRANT ALL PRIVILEGES ON TABLE equipo_partido TO admin_copamundial;
+GRANT ALL PRIVILEGES ON TABLE eventos_partido TO admin_copamundial;
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO admin_copamundial;
 
 --Fin Creates tables

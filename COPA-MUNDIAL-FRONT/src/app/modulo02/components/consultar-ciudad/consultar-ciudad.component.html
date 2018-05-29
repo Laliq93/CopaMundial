@@ -1,0 +1,71 @@
+<div class="input-group mb-3 espacio">
+  
+  <div class="input-group-prepend">
+  
+    <button type="button" class="btn btn-raised btn-secondary btnBuscar">Buscar</button>
+  
+  </div>
+  
+  <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+  
+  <div class="input-group-prepend">
+  
+    <a href="ciudades/agregarCiudad" class="btn btnAgregar">Agregar Ciudad</a>
+  
+  </div>
+
+</div>
+
+<div class = "span3">    
+
+  <table class="table table-bordered ">
+
+    <thead class="thead-dark" class = "fondo">
+
+      <tr>
+
+        <th scope="col">#</th>
+
+        <th  scope="col">Nombre</th>
+        
+        <th scope="col">Accion</th>
+        
+    </tr>
+    
+  </thead>
+   
+    <tbody>
+    
+    <tr *ngFor="let ciudad of nombreCiudades">
+  
+      <th scope="row">1</th>
+  
+      <td>{{ciudad}}</td>
+  
+      <td><a href="ciudades/editarCiudad">
+  
+        <span class="oi oi-pencil"></span>
+  
+      </a>
+  
+      <a href="ciudades/detalleCiudad">
+  
+        <span class="oi oi-eye"></span>
+  
+      </a>
+  
+      <a href="#">
+  
+        <span class="oi oi-trash "></span>
+  
+      </a>
+      
+        </td>
+    
+      </tr>
+  
+    </tbody>
+  
+  </table>
+ 
+</div>

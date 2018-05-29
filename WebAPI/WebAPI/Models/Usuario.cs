@@ -58,7 +58,7 @@ namespace WebAPI.Models
             _token = token;
         }
 
-        public Usuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo)
+        public Usuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, bool activo)
         {
             _id = id;
             _nombreUsuario = nombreUsuario;
@@ -66,6 +66,7 @@ namespace WebAPI.Models
             _apellido = apellido;
             _fechaNacimiento = fechaNacimiento;
             _correo = correo;
+            _activo = activo;
         }
 
         public Usuario(string correo, string token)

@@ -9,6 +9,7 @@ using WebAPI.Models.DataBase;
 using WebAPI.Models.Excepciones;
 using System.Data;
 using System.Web;
+using Npgsql;
 
 namespace WebAPI.Controllers
 {
@@ -20,27 +21,33 @@ namespace WebAPI.Controllers
         private List<Usuario> _listaUsuarios;
         private Usuario _usuario;
 
+
         [Route("ActualizarPerfil")]
         [System.Web.Http.AcceptVerbs("GET", "PUT")]
         [System.Web.Http.HttpPut]
-        public IHttpActionResult ActualizarPerfil(Usuario usuario)
+        public HttpResponseMessage ActualizarPerfil(Usuario usuario)
         {
             try
             {
 
                 EditarPerfil(usuario);
 
-                return Ok(usuario.Nombre);
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (UsuarioNullException exc)
             {
                 _database.Desconectar();
-                return BadRequest(exc.Message);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));//exc.Message);
+            }
+            catch(NpgsqlException e)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error en la base de datos"));
             }
             catch (Exception e)
             {
                 _database.Desconectar();
-                return BadRequest("Error en el servidor: "+e.GetType().FullName);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general."));
             }
  
 
@@ -80,41 +87,81 @@ namespace WebAPI.Controllers
 
         }
 
-
-        [Route("DesactivarUsuario/{idUsuario:int}")]
+        [Route("AdministradorDesactivaUsuario")]
         [System.Web.Http.AcceptVerbs("GET", "PUT")]
         [System.Web.Http.HttpPut]
-        public IHttpActionResult DesactivarUsuario(int idUsuario)
+        public HttpResponseMessage AdministradorDesactivaUsuario(Usuario usuario)
         {
             try
             {
-                GestionarActivo(idUsuario, false);
+                GestionarActivo(usuario, false);
 
-                return Ok();
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (UsuarioNullException exc)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
             }
             catch (Exception e)
             {
                 _database.Desconectar();
-                return BadRequest("Error en el servidor: " + e.Message);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
             }
 
         }
 
-        [Route("ActivarUsuario/{idUsuario:int}")]
+        [Route("DesactivarUsuarioPropio")]
         [System.Web.Http.AcceptVerbs("GET", "PUT")]
         [System.Web.Http.HttpPut]
-        public IHttpActionResult ActivarUsuario(int idUsuario)
+        public HttpResponseMessage DesactivarUsuarioPropio(Usuario usuario)
         {
             try
             {
-                GestionarActivo(idUsuario,true);
+                VerificarClaveUsuario(usuario);
 
-                return Ok();
+                GestionarActivo(usuario, false);
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch(UsuarioNullException exc)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
+            }
+            catch (ClaveInvalidaException exc)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
             }
             catch (Exception e)
             {
                 _database.Desconectar();
-                return BadRequest("Error en el servidor: " + e.Message);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
+            }
+
+        }
+
+        [Route("ActivarUsuario")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage ActivarUsuario(Usuario usuario)
+        {
+            try
+            {
+                GestionarActivo(usuario,true);
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch(UsuarioNullException exc)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
             }
 
         }
@@ -122,7 +169,7 @@ namespace WebAPI.Controllers
         [Route("ActualizarClaveUsuario/{passwordNuevo}")]
         [System.Web.Http.AcceptVerbs("GET", "PUT")]
         [System.Web.Http.HttpPut]
-        public IHttpActionResult ActualizarClaveUsuario(Usuario usuario, string passwordNuevo)
+        public HttpResponseMessage ActualizarClaveUsuario(Usuario usuario, string passwordNuevo)
         {
             try
             {
@@ -132,39 +179,69 @@ namespace WebAPI.Controllers
 
                 EditarPassword(usuario);
 
-                return Ok();
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (UsuarioNullException exc)
             {
                 _database.Desconectar();
-                return BadRequest(exc.Message);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
             }
             catch (ClaveInvalidaException exc)
             {
-                return BadRequest(exc.Message);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
             }
             catch (Exception e)
             {
                 _database.Desconectar();
-                return BadRequest("Error en el servidor: " + e.Message);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
             }
 
         }
 
-        [Route("ActualizarCorreoUsuario/{idUsuario:int}/{correo}/{clave}")]
+        [Route("ActualizarCorreoUsuario")]
         [System.Web.Http.AcceptVerbs("GET", "PUT")]
         [System.Web.Http.HttpPut]
-        public IHttpActionResult ActualizarCorreoUsuario(Usuario usuario)
+        public HttpResponseMessage ActualizarCorreoUsuario(Usuario usuario)
         {
             try
             {
-                
+
                 VerificarClaveUsuario(usuario);
 
                 VerificarCorreoExiste(usuario);
 
                 EditarCorreo(usuario);
 
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (UsuarioNullException exc)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
+            }
+            catch (ClaveInvalidaException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
+            }
+            catch(CorreoEnUsoException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
+            }
+
+        }
+
+        [Route("AgregarJugadorFavorito/{idUsuario:int}/{idJugador:int}")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public IHttpActionResult AgregarJugadorFavorito(int idUsuario, int idJugador)
+        {
+            try
+            {
 
                 return Ok();
             }
@@ -177,7 +254,7 @@ namespace WebAPI.Controllers
             {
                 return BadRequest(exc.Message);
             }
-            catch(CorreoEnUsoException exc)
+            catch (CorreoEnUsoException exc)
             {
 
                 return BadRequest(exc.Message);
@@ -189,6 +266,7 @@ namespace WebAPI.Controllers
             }
 
         }
+
 
         [System.Web.Http.AcceptVerbs("GET")]
         [System.Web.Http.HttpGet]
@@ -203,7 +281,7 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new HttpError("Error en el servidor:" + e.Message));
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new HttpError("Error general"));
             }
         }
 
@@ -220,7 +298,7 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new HttpError("Error en el servidor:" + e.Message));
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new HttpError("Error general"));
             }
         }
         [Route("ObtenerUsuario/{idUsuario:int}")]
@@ -234,10 +312,15 @@ namespace WebAPI.Controllers
 
                 return Request.CreateResponse(HttpStatusCode.OK, _usuario);
             }
+            catch(UsuarioNullException exc)
+            {
+                _database.Desconectar();
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
+            }
             catch (Exception e)
             {
                 _database.Desconectar();
-                return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error en el servidor:" + e.Message));
+                return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error general"));
             }
         }
 
@@ -262,7 +345,7 @@ namespace WebAPI.Controllers
             for(int i = 0; i < _database.cantidadRegistros; i++)
             {
                 usuarioLista = new Usuario(_database.GetInt(i, 0), _database.GetString(i, 1), _database.GetString(i, 2), 
-                    _database.GetString(i, 3), Convert.ToDateTime(_database.GetString(i, 4)).ToShortDateString(), _database.GetString(i, 5));
+                    _database.GetString(i, 3), Convert.ToDateTime(_database.GetString(i, 4)).ToShortDateString(), _database.GetString(i, 5), activo);
 
                 _listaUsuarios.Add(usuarioLista);
             }
@@ -298,16 +381,23 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Activa/Desactiva la cuenta del usuario, true = activa ; false = desactiva.
         /// </summary>
-        public void GestionarActivo(int idUsuario, bool activo)
+        public void GestionarActivo(Usuario usuario, bool activo)
         {
-            _database.Conectar();
+            try
+            {
+                _database.Conectar();
 
-            _database.StoredProcedure("gestionaractivocuentausuario(@id, @activo)");
+                _database.StoredProcedure("gestionaractivocuentausuario(@id, @activo)");
 
-            _database.AgregarParametro("id", idUsuario);
-            _database.AgregarParametro("activo", activo);
+                _database.AgregarParametro("id", usuario.Id);
+                _database.AgregarParametro("activo", activo);
 
-            _database.EjecutarQuery();
+                _database.EjecutarQuery();
+            }
+            catch(NullReferenceException exc)
+            {
+                throw new UsuarioNullException(exc);
+            }
         }
 
 
@@ -395,7 +485,7 @@ namespace WebAPI.Controllers
 
                 _database.StoredProcedure("verificarclaveusuario(@clave, @idUsuario)");
 
-                _database.AgregarParametro("clave", usuario.Password);
+                _database.AgregarParametro("clave", usuario.Password.Trim());
                 _database.AgregarParametro("idUsuario", usuario.Id);
 
                 _database.EjecutarReader();
@@ -439,20 +529,30 @@ namespace WebAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Extrae la información usuario de la base de datos ingresado por su id.
+        /// </summary>
         public Usuario GetUsuario(int idUsuario)
         {
-            _database.Conectar();
+            try
+            {
+                _database.Conectar();
 
-            _database.StoredProcedure("ObtenerUsuario(@id)");
+                _database.StoredProcedure("ObtenerUsuario(@id)");
 
-            _database.AgregarParametro("id", idUsuario);
+                _database.AgregarParametro("id", idUsuario);
 
-            _database.EjecutarReader();
+                _database.EjecutarReader();
 
-            _usuario = new Usuario(idUsuario,_database.GetString(0, 0), _database.GetString(0, 1), _database.GetString(0, 2), Convert.ToDateTime(_database.GetString(0, 3)).ToShortDateString(),
-                _database.GetString(0, 4), _database.GetChar(0, 5),_database.GetString(0,6) ,_database.GetString(0, 7),false ,_database.GetBool(0,8), "");
+                _usuario = new Usuario(idUsuario, _database.GetString(0, 0), _database.GetString(0, 1), _database.GetString(0, 2), Convert.ToDateTime(_database.GetString(0, 3)).ToShortDateString(),
+                    _database.GetString(0, 4), _database.GetChar(0, 5), _database.GetString(0, 6), _database.GetString(0, 7), _database.GetBool(0, 8), _database.GetBool(0, 9), "");
 
-            return _usuario;
+                return _usuario;
+            }
+            catch (IndexOutOfRangeException exc)
+            {
+                throw new UsuarioNoExisteException(exc, idUsuario);
+            }
 
         }
 
