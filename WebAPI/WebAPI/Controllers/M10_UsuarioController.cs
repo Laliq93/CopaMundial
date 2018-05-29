@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
         [Route("CrearUsuarioAdministrador")]
         [System.Web.Http.AcceptVerbs("GET", "POST")]
         [System.Web.Http.HttpPost]
-        public IHttpActionResult CrearUsuarioAdministrador(Usuario usuario)
+        public HttpResponseMessage CrearUsuarioAdministrador(Usuario usuario)
         {
             try
             {
@@ -67,22 +67,22 @@ namespace WebAPI.Controllers
 
                 InsertarAdministrador(usuario);
 
-                return Ok();
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (UsuarioNullException exc)
             {
                 _database.Desconectar();
-                return BadRequest(exc.Message);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
             }
             catch (CorreoEnUsoException exc)
             {
                 _database.Desconectar();
-                return BadRequest(exc.Message);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
             }
             catch (Exception e)
             {
                 _database.Desconectar();
-                return BadRequest("Error en el servidor: " + e.Message);
+                return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
             }
 
         }

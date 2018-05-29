@@ -154,7 +154,23 @@ export class ApiService {
       });
   }
 
-  public CrearUsuarioAdministrador() {}
+  public CrearUsuarioAdministrador(Usuario : Usuario10) {
+
+    this._conexion.Controlador = 'CrearUsuarioAdministrador';
+    let url = this._conexion.RutaApi + this._conexion.Controlador;
+
+    this.http
+      .post<IUsuario10>(url, Usuario, { responseType: 'json' })
+      .subscribe(data => {
+        if (data != null) {
+          this._usuario10.Message = data.Message;
+          this.Error(this._usuario10);
+        } else {
+          this.Succes('Administrador creado con éxito');
+        }
+      });
+
+  }
 
   private Error(usuario: Usuario10) {
     bootbox.alert(this._usuario10.Message);
