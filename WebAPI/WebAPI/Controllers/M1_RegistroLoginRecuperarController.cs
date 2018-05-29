@@ -89,8 +89,8 @@ namespace WebAPI.Controllers
                 ValidarUsuarioActivo(usuario.NombreUsuario);
                 ValidarUsuarioPassword(usuario.NombreUsuario, usuario.Password);
      
-                usuario.Id = IniciarSesionUsuario(usuario.NombreUsuario, usuario.Password);
-                return Ok(usuario.Id);
+                usuario = IniciarSesionUsuario(usuario.NombreUsuario, usuario.Password);
+                return Ok(usuario);
             }
             catch(NombreUsuarioNoExisteException e)
             {
@@ -135,13 +135,14 @@ namespace WebAPI.Controllers
         {
             try
             {
+            
                 System.Diagnostics.Debug.WriteLine(usuario);
                 ValidarCorreoNoExiste(usuario.Correo);
                 ValidarCorreoActivo(usuario.Correo);
                 ValidarCorreoPassword(usuario.Correo, usuario.Password);
-                usuario.Id = IniciarSesionCorreo(usuario.Correo, usuario.Password);
+                usuario = IniciarSesionCorreo(usuario.Correo, usuario.Password);
 
-                return Ok(usuario.Id);
+                return Ok(usuario);
             }
             catch(CorreoNoExisteException e)
             {
@@ -301,7 +302,7 @@ namespace WebAPI.Controllers
         /// <param name="correo">correo del usuario</param>
         /// <param name="genero">genero del usuario</param>   
         /// <param name="password">password del usuario</param>
-        private void AgregarUsuario(string nombreUsuario, string nombre, string apellido, 
+        public void AgregarUsuario(string nombreUsuario, string nombre, string apellido, 
             string fechaNacimiento, string correo, char genero, string password)
         {
             _database.Conectar();
@@ -325,10 +326,10 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="correo">correo del usuario</param>
         /// <param name="password">password del usuario</param>
-        private int IniciarSesionCorreo(string correo, string password)
+        public Usuario IniciarSesionCorreo(string correo, string password)
         {
 
-            int _id;
+            Usuario _usuario = new Usuario();
             _database.Conectar();
 
             _database.StoredProcedure("IniciarSesionCorreo(@correo, @password)");
@@ -338,9 +339,11 @@ namespace WebAPI.Controllers
             _database.AgregarParametro("password", password);
 
             _database.EjecutarReader();
-            _id = _database.GetInt(0, 0);
+            _usuario.Id = _database.GetInt(0, 0);
+            _usuario.EsAdmin = _database.GetBool(0, 1);
 
-            return _id;
+
+            return _usuario;
         }
 
         /// <summary>
@@ -348,9 +351,9 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="nombreUsuario">nombre del usuario</param>
         /// <param name="password">password del usuario</param>
-        private int IniciarSesionUsuario(string nombreUsuario, string password)
+        public Usuario IniciarSesionUsuario(string nombreUsuario, string password)
         {
-            int _id;
+            Usuario _usuario = new Usuario();
             _database.Conectar();
 
             _database.StoredProcedure("IniciarSesionUsuario(@nombreUsuario, @password)");
@@ -360,9 +363,11 @@ namespace WebAPI.Controllers
             _database.AgregarParametro("password", password);
 
             _database.EjecutarReader();
-            _id = _database.GetInt(0, 0);
+            _usuario.Id = _database.GetInt(0, 0);
+            _usuario.EsAdmin = _database.GetBool(0, 1);
 
-            return _id;
+
+            return _usuario;
         }
 
 
@@ -372,7 +377,7 @@ namespace WebAPI.Controllers
         /// <param name="token">codigo de recuperacion del usuario</param>
         /// <param name="correo">correo del usuario</param>
         /// <param name="password">password del usuario</param>
-        private void CambiarPassword(string token, string correo, string password)
+        public void CambiarPassword(string token, string correo, string password)
         {
 
             _database.Conectar();
@@ -394,7 +399,7 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="nombreUsuario">nombre del usuario</param>
         /// <param name="password">password del usuario</param>
-        private void ValidarUsuarioPassword(string nombreUsuario, string password)
+        public void ValidarUsuarioPassword(string nombreUsuario, string password)
         {
             int _contador;
             _database.Conectar();
@@ -422,7 +427,7 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="correo">correo del usuario</param>
         /// <param name="password">password del usuario</param>
-        private void ValidarCorreoPassword(string correo, string password)
+        public void ValidarCorreoPassword(string correo, string password)
         {
             int _contador;
             _database.Conectar();
@@ -448,7 +453,7 @@ namespace WebAPI.Controllers
         /// validar que el nombre de usuario exista en la bd
         /// </summary>
         /// <param name="nombreUsuario">nombre del usuario</param>
-        private void ValidarNombreUsuario(string nombreUsuario)
+        public void ValidarNombreUsuario(string nombreUsuario)
         {
             int _contador;
             _database.Conectar();
@@ -472,7 +477,7 @@ namespace WebAPI.Controllers
         /// validar que el nombre de usuario no exista en la bd
         /// </summary>
         /// <param name="nombreUsuario">nombre del usuario</param>
-        private void ValidarNombreUsuarioNoExiste(string nombreUsuario)
+        public void ValidarNombreUsuarioNoExiste(string nombreUsuario)
         {
             int _contador; //contador de filas retornadas por la bd
 
@@ -497,7 +502,7 @@ namespace WebAPI.Controllers
         /// validar que el correo de usuario exista en la bd
         /// </summary>
         /// <param name="correo">correo del usuario</param>
-        private void ValidarCorreo(string correo)
+        public void ValidarCorreo(string correo)
         {
             int _contador; //contador de filas retornadas por la bd
             _database.Conectar();
@@ -521,7 +526,7 @@ namespace WebAPI.Controllers
         /// validar que el correo de usuario no exista en la bd
         /// </summary>
         /// <param name="correo">correo del usuario</param>
-        private void ValidarCorreoNoExiste(string correo)
+        public void ValidarCorreoNoExiste(string correo)
         {
             int _contador; //contador de filas retornadas por la bd
 
@@ -546,7 +551,7 @@ namespace WebAPI.Controllers
         /// validar que el usuario se encuentre activo
         /// </summary>
         /// <param name="nombreUsuario">nombre del usuario</param>
-        private void ValidarUsuarioActivo(string nombreUsuario)
+        public void ValidarUsuarioActivo(string nombreUsuario)
         {
             int _contador; //contador de filas retornadas por la bd
             _database.Conectar();
@@ -570,7 +575,7 @@ namespace WebAPI.Controllers
         /// validar que el usuario se encuentre activo
         /// </summary>
         /// <param name="correo">correo del usuario</param>
-        private void ValidarCorreoActivo(string correo)
+        public void ValidarCorreoActivo(string correo)
         {
             int _contador; //contador de filas retornadas por la bd
             _database.Conectar();
@@ -595,7 +600,7 @@ namespace WebAPI.Controllers
         /// validar que el codigo de recuperacion de contraseña coincida 
         /// </summary>
         /// <param name="nombreUsuario">nombre del usuario</param>
-        private void ValidarToken(string token)
+        public void ValidarToken(string token)
         {
             int _contador; //contador de filas retornadas por la bd
             _database.Conectar();

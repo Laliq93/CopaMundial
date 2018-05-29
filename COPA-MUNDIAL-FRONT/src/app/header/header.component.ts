@@ -91,6 +91,8 @@ export class HeaderComponent implements AfterViewInit {
 	logout(){
 		localStorage.removeItem('userId');
 		localStorage.clear();
+		localStorage.removeItem('esAdmin');
+		localStorage.clear();
 		this.router.navigate(['/inicio', 'login']);
 	}
 
@@ -110,7 +112,7 @@ export class HeaderComponent implements AfterViewInit {
 	ngAfterViewInit(): void {
 
 		this._zone.runOutsideAngular(() => {
-			//jQuery("").navdrawer("show");
+			jQuery("#copaNavdrawer").navdrawer("show");
 		});
 
 	}

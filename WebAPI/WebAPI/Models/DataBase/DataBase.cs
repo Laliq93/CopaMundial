@@ -147,13 +147,13 @@ namespace WebAPI.Models.DataBase
                 
                 _command = new NpgsqlCommand("select * from "+sp, _con);
             }
-            catch (NpgsqlException)
+            catch (NpgsqlException e)
             {
-                throw;
+                throw e;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                throw e;
             }
 
             return _command;
@@ -166,9 +166,9 @@ namespace WebAPI.Models.DataBase
             {
                 _command.Parameters.AddWithValue("@" + nombre, valor);
             }
-            catch (NpgsqlException)
+            catch (NpgsqlException e)
             {
-                throw;
+                throw e;
             }
             catch (NullReferenceException)
             {
