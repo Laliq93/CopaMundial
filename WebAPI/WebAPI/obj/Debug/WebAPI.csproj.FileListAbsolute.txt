@@ -399,6 +399,7 @@ C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\es\System.Web.Http.WebHost.resources.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.pdb
-C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\bin\System.Web.Cors.dll
-C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.dll
-C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.xml
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Web.Cors.dll
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.dll
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.xml
+C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\Npgsql.xml

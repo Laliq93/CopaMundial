@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
                 //{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}
 
                 ValidarNombreUsuario(usuario.NombreUsuario);
-                ValidarCorreoNoExiste(usuario.Correo);
+                ValidarCorreo(usuario.Correo);
                 AgregarUsuario(usuario.NombreUsuario, usuario.Nombre, usuario.Apellido, usuario.FechaNacimiento,
                   usuario.Correo, usuario.Genero, usuario.Password);
 
@@ -184,7 +184,7 @@ namespace WebAPI.Controllers
 
             try
             {
-                    ValidarCorreo(usuario.Correo);
+                    ValidarCorreoNoExiste(usuario.Correo);
                     EnviarCorreo(usuario.Correo);
                     return Ok("correo para recuperación enviado");
 
@@ -222,7 +222,7 @@ namespace WebAPI.Controllers
             try
             {
                 ValidarToken(usuario.Token);
-                ValidarCorreo(usuario.Correo);
+                ValidarCorreoNoExiste(usuario.Correo);
                 CambiarPassword(usuario.Token, usuario.Correo, usuario.Password);
 
                 return Ok("clave modificada exitosamente");
@@ -515,8 +515,8 @@ namespace WebAPI.Controllers
 
             _contador = _database.GetInt(0, 0);
 
-            if (_contador < 1)
-                throw new CorreoNoExisteException(correo);
+            if (_contador > 0)
+                throw new CorreoExistenteException(correo);
 
 
         }
