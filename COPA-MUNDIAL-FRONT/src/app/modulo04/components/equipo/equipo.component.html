@@ -12,7 +12,7 @@
               <div class="expansion-panel list-group-item">
                 <a attr.aria-controls="collapse{{ i }}" aria-expanded="false" class="expansion-panel-toggler collapsed" data-toggle="collapse" href="#collapse{{ i }}"
                   id="heading{{ i }}">
-                  {{ equipo.pais.nombre.mensaje }}
+                  {{ equipo.pais.nombre[0].mensaje }}
                   <div class="expansion-panel-icon ml-3 text-black-secondary">
                     <a (click)=editarEquipo(equipo.pais.iso) class="editar">
                       <i class="material-icons">edit</i>

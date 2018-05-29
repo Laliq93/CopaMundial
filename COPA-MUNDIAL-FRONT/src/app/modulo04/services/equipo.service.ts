@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit, Inject, LOCALE_ID } from '@angular/core';
 import {
   HttpClient,
   HttpParams,
@@ -17,9 +17,16 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class EquipoService {
-  API_ENDPOINT = 'https://f730ed04-2345-4437-a430-f8dabfa7e5be.mock.pstmn.io/api/M4_GestionEquipo/';
+  private API_ENDPOINT = 'http://localhost:54072/api/M4_GestionEquipo/';
+  public idioma: string;
 
-  constructor(private _http: HttpClient, private _router: Router) {}
+  constructor(
+    private _http: HttpClient,
+    private _router: Router,
+    @Inject(LOCALE_ID) locale: string
+  ) {
+    this.idioma = locale.split('-')[0];
+  }
 
   public obtenerGrupos() {
     return ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
@@ -27,18 +34,21 @@ export class EquipoService {
 
   public obtenerEquipos(): Observable<Equipo[]> {
     return this._http
-      .get<RespuestaApi<Equipo[]>>(this.API_ENDPOINT)
+      .get<RespuestaApi<Equipo[]>>(
+        this.API_ENDPOINT + 'listaEquipos/' + this.idioma
+      )
       .pipe(
-        map(data => this.crearUrlBanderasParaEquipos(this.handleResponse(data))),
+        map(data =>
+          this.crearUrlBanderasParaEquipos(this.handleResponse(data))
+        ),
         retry(2),
         catchError(this.handleError)
       );
   }
 
   public obtenerEquipo(equipo: string): Observable<Equipo> {
-    // const params = new HttpParams().set('equipo', equipo);
     return this._http
-      .get<RespuestaApi<Equipo>>(this.API_ENDPOINT + 'obtenerUno')
+      .get<RespuestaApi<Equipo>>(this.API_ENDPOINT + 'equipo/' + equipo)
       .pipe(
         map(data => this.crearUrlBanderaParaEquipo(this.handleResponse(data))),
         retry(2),
@@ -48,7 +58,7 @@ export class EquipoService {
 
   public editarEquipo(equipo: Equipo): Observable<Equipo> {
     return this._http
-      .put<RespuestaApi<Equipo>>(this.API_ENDPOINT + 'actualizar', equipo)
+      .put<RespuestaApi<Equipo>>(this.API_ENDPOINT + 'ActualizarEquipo', equipo)
       .pipe(
         map(data => this.handleResponse(data)),
         retry(2),
@@ -58,7 +68,7 @@ export class EquipoService {
 
   public crearEquipo(equipo: Equipo): Observable<Equipo> {
     return this._http
-      .post<RespuestaApi<Equipo>>(this.API_ENDPOINT + 'crear', equipo)
+      .post<RespuestaApi<Equipo>>(this.API_ENDPOINT + 'AgregarEquipo', equipo)
       .pipe(
         map(data => this.handleResponse(data)),
         retry(2),
@@ -68,7 +78,9 @@ export class EquipoService {
 
   public obtenerPaises(): Observable<Pais[]> {
     return this._http
-      .get<RespuestaApi<Pais[]>>(this.API_ENDPOINT + 'pais')
+      .get<RespuestaApi<Pais[]>>(
+        this.API_ENDPOINT + 'ObtenerPaises/' + this.idioma
+      )
       .pipe(
         map(data => this.crearUrlBanderas(this.handleResponse(data))),
         retry(2),
@@ -77,6 +89,7 @@ export class EquipoService {
   }
 
   private handleError(error: HttpErrorResponse) {
+    console.log(error);
     if (error.error instanceof ErrorEvent) {
       console.error(
         'Ocurrio un error del lado del cliente:',
@@ -84,7 +97,7 @@ export class EquipoService {
       );
     } else {
       console.error(
-        `Backend retorno el codigo ${error.error.message.code}, ` +
+        `Backend retorno error` +
           `el cuerpo de la peticion fue: ${error.error}`
       );
     }

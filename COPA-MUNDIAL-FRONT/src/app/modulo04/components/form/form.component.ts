@@ -47,9 +47,15 @@ export class FormComponent implements OnInit, AfterViewChecked {
   }
 
   enviar() {
-    this._equipoService.editarEquipo(this.equipo).subscribe(data => {
-      console.log(data);
-    });
+    if (this.idEquipo != null) {
+      this._equipoService.editarEquipo(this.equipo).subscribe(data => {
+        console.log(data);
+      });
+    } else {
+      this._equipoService.crearEquipo(this.equipo).subscribe(data => {
+        console.log(data);
+      });
+    }
   }
 
   regresar() {
