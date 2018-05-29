@@ -34,16 +34,16 @@ namespace WebAPI.Controllers
         [HttpPut, HttpGet]
         public IHttpActionResult RegistrarPartido(Partido partido)
         {
-            
+
             try
             {
                 ConsultarDisponibilidadEstadio(partido.Fecha, partido.HoraInicio, partido.Estadio);
                 AgregarPartido(partido.Arbitro, partido.Fecha, partido.HoraInicio,
                                     partido.Equipo1, partido.Equipo2, partido.Estadio);
-                    return Ok("Partido registrado exitosamente.");
-                
+                return Ok("Partido registrado exitosamente.");
+
             }
-            catch(EstadioNoDisponibleException e)
+            catch (EstadioNoDisponibleException e)
             {
                 return BadRequest("Error, el estadio se encuentra en ese tiempo: " + e.ERROR_MSG);
             }
@@ -69,12 +69,16 @@ namespace WebAPI.Controllers
         [HttpPut, HttpGet]
         public IHttpActionResult ModificarPartido(Partido partido)
         {
-            
+
             try
             {
-                ActualizarPartido(partido.Id, partido.Arbitro, partido.Fecha, partido.HoraInicio,
-                                partido.Equipo1, partido.Equipo2, partido.Estadio);
+                ActualizarPartido(partido.Id, partido.Arbitro, partido.Fecha, partido.HoraInicio, partido.Equipo1, partido.Equipo2, partido.Estadio);
                 return Ok("Partido actualizado exitosamente.");
+            }
+            catch (PartidoNotFoundException e)
+            {
+
+                return BadRequest(e.ERROR_CODE + " : " + e.ERROR_MSG);
             }
             catch (Exception e)
             {
@@ -107,13 +111,14 @@ namespace WebAPI.Controllers
                 _partido = ObtenerPartido(id);
                 return Request.CreateResponse(HttpStatusCode.OK, _partido);
             }
-            catch(PartidoNotFoundException e)
+            catch (PartidoNotFoundException e)
             {
-                return Request.CreateResponse(e.ERROR_CODE+" : "+ e.ERROR_MSG );
+
+                return Request.CreateResponse(e.ERROR_CODE + " : " + e.ERROR_MSG);
             }
             catch (Exception e)
             {
-                
+
                 return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error en el servidor:" + e.Message));
             }
             finally
@@ -122,7 +127,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        
+
         /// <summary>
         /// Metodo para consultar a la bd la informacion de un partido
         /// segun su id
@@ -138,9 +143,9 @@ namespace WebAPI.Controllers
                 _database.Conectar();
                 _database.StoredProcedure("ConsultarPartido(@idPartido)");
                 _database.AgregarParametro("idPartido", idPartido);
-                _database.EjecutarReader();
+                //  _database.EjecutarReader();
                 if (_database.EjecutarReader() != null)
-                { 
+                {
                     partido.Id = _database.GetInt(0, 0);
                     partido.Fecha = _database.GetString(0, 1);
                     partido.HoraInicio = _database.GetString(0, 2);
@@ -149,25 +154,18 @@ namespace WebAPI.Controllers
                     partido.Equipo2 = _database.GetInt(0, 5);
                     partido.Estadio = _database.GetInt(0, 6);
                 }
+                else
+                {
+                    throw new PartidoNotFoundException("M6_PartidoController", "ObtenerPartido");
+                }
 
-            }
-            catch (FormatException)
-            {
-                throw new FormatException("Error en el formato al obtener la fecha del partido");
-            }
-            catch (ArgumentNullException e)
-            {
-                throw new PartidoNotFoundException(e, "M6_PartidoController", "ObtenerPartido", idPartido);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            
-           
                 return partido;
-            
-           
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                throw new PartidoNotFoundException("M6_PartidoController", "ObtenerPartido");
+            }
+
         }
 
 
@@ -180,8 +178,8 @@ namespace WebAPI.Controllers
         /// <param name="equipo1"></param>
         /// <param name="equipo2"></param>
         /// <param name="estadio"></param>
-        public void AgregarPartido(string arbitro, string fecha, string horaInicio, 
-                                    int equipo1,int equipo2, int estadio)
+        public void AgregarPartido(string arbitro, string fecha, string horaInicio,
+                                    int equipo1, int equipo2, int estadio)
         {
             _partido = new Partido();
 
@@ -290,42 +288,33 @@ namespace WebAPI.Controllers
         {
 
             int i = 0;
-            try
+
+            _database.Conectar();
+            _database.StoredProcedure("ConsultarPartidos()");
+            _database.EjecutarReader();
+
+            while (_database.cantidadRegistros > i)
             {
-                _database.Conectar();
-                _database.StoredProcedure("ConsultarPartidos()");
-                _database.EjecutarReader();
-            
-                    while (_database.cantidadRegistros > i)
-                    {
-                        Partido partido = new Partido();
-                        partido.Id = _database.GetInt(i, 0);
-                        partido.Fecha = _database.GetString(i, 1);
-                        partido.HoraInicio = _database.GetString(i, 2);
-                        partido.Arbitro = _database.GetString(i, 3);
-                        partido.Equipo1 = _database.GetInt(i, 4);
-                        partido.Equipo2 = _database.GetInt(i, 5);
-                        partido.Estadio = _database.GetInt(i, 6);
-                        _listaPartido.Add(partido);
-                         i++;
-                        
-                    }
-                
-          
+                Partido partido = new Partido();
+                partido.Id = _database.GetInt(i, 0);
+                partido.Fecha = _database.GetString(i, 1);
+                partido.HoraInicio = _database.GetString(i, 2);
+                partido.Arbitro = _database.GetString(i, 3);
+                partido.Equipo1 = _database.GetInt(i, 4);
+                partido.Equipo2 = _database.GetInt(i, 5);
+                partido.Estadio = _database.GetInt(i, 6);
+                _listaPartido.Add(partido);
+                i++;
 
             }
-            catch (ArgumentNullException e)
+
+            if (_database.EjecutarReader() == null)
             {
-                throw new ArgumentNullException(e.Message);
+                throw new PartidoNotFoundException("M6_PartidoController", "ObtenerPartidos");
             }
-            catch (Exception e)
-            {
-                throw new Exception (e.Message);
-            }
-            finally
-            {
-                _database.Desconectar();
-            }
+
+            _database.Desconectar();
+
 
 
 
@@ -356,28 +345,17 @@ namespace WebAPI.Controllers
         public int ConsultarDisponibilidadEstadio(string fecha, string horaInicio, int estadio)
         {
             int check = -1; //variable que indica si se encontro un partido al mismo momento
-            try
+
+            _database.Conectar();
+            _database.StoredProcedure("ConsultarDisponibilidadEstadio(@fecha, @horaInicio, @estadio)");
+            _database.AgregarParametro("fecha", fecha);
+            _database.AgregarParametro("horaInicio", horaInicio);
+            _database.AgregarParametro("estadio", estadio);
+            _database.EjecutarReader();
+            check = _database.GetInt(0, 0);
+            if (check > 0)
             {
-                _database.Conectar();
-                _database.StoredProcedure("ConsultarDisponibilidadEstadio(@fecha, @horaInicio, @estadio)");
-                _database.AgregarParametro("fecha", fecha);
-                _database.AgregarParametro("horaInicio", horaInicio);
-                _database.AgregarParametro("estadio", estadio);
-                _database.EjecutarReader();
-                 check= _database.GetInt(0, 0);
-                if (check >0)
-                {
-                    throw new EstadioNoDisponibleException("M6_PartidoController", "ConsultarDisponibilidadEstadio", fecha, horaInicio, estadio);
-                }
-             
-            }
-            catch (FormatException)
-            {
-                throw new FormatException("Error en el formato al obtener la fecha del partido");
-            }
-            catch (Exception e)
-            {
-                throw e;
+                throw new EstadioNoDisponibleException("M6_PartidoController", "ConsultarDisponibilidadEstadio", fecha, horaInicio, estadio);
             }
 
             return check;
@@ -439,20 +417,20 @@ namespace WebAPI.Controllers
 
             try
             {
-                if(partido.Alineacion1!= null)
-                    foreach(var alineacion in partido.Alineacion1)
+                if (partido.Alineacion1 != null)
+                    foreach (var alineacion in partido.Alineacion1)
                     {
                         AgregarAlineacion(alineacion.Capitan, alineacion.Posicion, alineacion.Titular,
                                           alineacion.Jugador.Id, alineacion.Equipo, partido.Id);
-                        
+
                     }
-                 if(partido.Alineacion2!=null)
+                if (partido.Alineacion2 != null)
                     foreach (var alineacion in partido.Alineacion1)
                     {
-                         AgregarAlineacion(alineacion.Capitan, alineacion.Posicion, alineacion.Titular,
-                                           alineacion.Jugador.Id, alineacion.Equipo, partido.Id);
+                        AgregarAlineacion(alineacion.Capitan, alineacion.Posicion, alineacion.Titular,
+                                          alineacion.Jugador.Id, alineacion.Equipo, partido.Id);
 
-                     }
+                    }
 
                 return Ok("Alineacion registradas exitosamente.");
 
@@ -475,7 +453,7 @@ namespace WebAPI.Controllers
 
 
 
-        
+
         /// <summary>
         /// Metodo para Agregar una alineacion
         /// </summary>
@@ -492,7 +470,7 @@ namespace WebAPI.Controllers
                 if (partido.Alineacion1 != null)
                     foreach (var alineacion in partido.Alineacion1)
                     {
-                        ModificarAlineacion(alineacion.Id,alineacion.Capitan, alineacion.Posicion, alineacion.Titular,
+                        ModificarAlineacion(alineacion.Id, alineacion.Capitan, alineacion.Posicion, alineacion.Titular,
                                           alineacion.Jugador.Id, alineacion.Equipo, partido.Id);
 
                     }
@@ -539,7 +517,7 @@ namespace WebAPI.Controllers
         public void ModificarAlineacion(int idAlineacion, bool capitan, string posicion, bool titular,
                                     int jugador, int equipo, int partido)
         {
-            
+
 
             try
             {
@@ -563,42 +541,42 @@ namespace WebAPI.Controllers
         }
 
 
-        
+
         /// <summary>
         /// Metodo que obtiene la alineacion del partido
         /// </summary>
         /// <param name="partido"></param>
         public void ObtenerAlineacion(Partido partido, int equipoIndex)
         {
-            
+
             int cantidadJugadores = 0;
             try
             {
                 _database.Conectar();
                 _database.StoredProcedure("ConsultarAlineacion(@idPartido, @equipo)");
                 _database.AgregarParametro("idPartido", partido.Id);
-                if(equipoIndex == 1)
-                     _database.AgregarParametro("equipo",partido.Equipo1);
+                if (equipoIndex == 1)
+                    _database.AgregarParametro("equipo", partido.Equipo1);
                 else
                     _database.AgregarParametro("equipo", partido.Equipo2);
                 _database.EjecutarReader();
-          
+
                 while (_database.cantidadRegistros > cantidadJugadores)
                 {
                     Alineacion alineacion = new Alineacion();
                     Jugador jugador = new Jugador();
                     alineacion.Jugador = jugador;
                     alineacion.Id = _database.GetInt(0, 0);
-                     alineacion.Capitan= _database.GetBool(0, 1);
+                    alineacion.Capitan = _database.GetBool(0, 1);
                     alineacion.Posicion = _database.GetString(0, 2);
                     alineacion.Titular = _database.GetBool(0, 3);
                     alineacion.Jugador.Id = _database.GetInt(0, 4);
                     alineacion.Equipo = _database.GetInt(0, 5);
-                    
-                    if(equipoIndex ==1)
-                      partido.Alineacion1.Add(alineacion);
+
+                    if (equipoIndex == 1)
+                        partido.Alineacion1.Add(alineacion);
                     else
-                     partido.Alineacion2.Add(alineacion);
+                        partido.Alineacion2.Add(alineacion);
                     cantidadJugadores++;
                 }
 
@@ -634,7 +612,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                ObtenerAlineacion(partido,1);
+                ObtenerAlineacion(partido, 1);
                 ObtenerAlineacion(partido, 2);
                 return Request.CreateResponse(HttpStatusCode.OK, _partido);
             }

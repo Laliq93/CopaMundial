@@ -53,6 +53,8 @@ namespace WebAPI.Models
             _capitan = capitan;
         }
 
+        public Jugador() { }
+
         public Jugador(int equipo)
         {
             _equipo = equipo;

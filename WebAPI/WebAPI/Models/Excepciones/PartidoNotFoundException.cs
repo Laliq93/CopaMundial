@@ -5,51 +5,65 @@ using System.Text;
 using System.Web;
 
 namespace WebAPI.Models.Excepciones
-{   
+{
 
     /// <summary>
     /// Clase excepcion cuando no se encuentra un partido
     /// consultado en la base de datos
     /// </summary>
     [Serializable()]
-    public class PartidoNotFoundException: Exception
+    public class PartidoNotFoundException : Exception
     {
 
-       
-            public readonly int ERROR_CODE = 600;
-            public readonly String ERROR_MSG = "Ha ocurrido un error, el partido no existe ";
-            private String _clase;  //indica la clase c# en la que se produjo la excepcion
-            private String _metodo; //indica el metodo que produjo la excepcion
-            private int _idPartido; //indica el id del partido que fue consultado
 
-            /// <summary>
-            /// Constructor de la excepcion PartidoNotFoundException
-            /// </summary>
-            /// <param name="error"></param>
-            /// <param name="clase"></param>
-            /// <param name="metodo"></param>
-            /// <param name="idPartido"></param>
-            public PartidoNotFoundException(Exception error, String clase, String metodo, int idPartido)
-            {
-                base.Equals(error);
-                _clase = clase;
-                _metodo = metodo;
-                _idPartido = idPartido;
-            }
+        public readonly int ERROR_CODE = 600;
+        public readonly String ERROR_MSG = "Ha ocurrido un error, el partido no existe ";
+        private String _clase;  //indica la clase c# en la que se produjo la excepcion
+        private String _metodo; //indica el metodo que produjo la excepcion
+        private int _idPartido; //indica el id del partido que fue consultado
+
+        /// <summary>
+        /// Constructor de la excepcion PartidoNotFoundException
+        /// </summary>
+        /// <param name="error"></param>
+        /// <param name="clase"></param>
+        /// <param name="metodo"></param>
+        /// <param name="idPartido"></param>
+        public PartidoNotFoundException(Exception error, String clase, String metodo, int idPartido)
+        {
+            base.Equals(error);
+            _clase = clase;
+            _metodo = metodo;
+            _idPartido = idPartido;
+        }
+
+        /// <summary>
+        /// Constructor para cuando se pregunte por mas de un partido
+        /// </summary>
+        /// <param name="clase"></param>
+        /// <param name="metodo"></param>
+        /// <param name="mensaje"></param>
+        public PartidoNotFoundException(String clase, String metodo)
+        {
+
+            _clase = clase;
+            _metodo = metodo;
 
 
-
-            public virtual String toString()
-            {
-                StringBuilder str = null;
+        }
 
 
-                str = new StringBuilder(ERROR_CODE + "\n");
-                str.Append(ERROR_MSG + "\n");
-                str.Append(base.ToString());
+        public virtual String toString()
+        {
+            StringBuilder str = null;
 
-                return str.ToString();
-            }
-        
+
+            str = new StringBuilder(ERROR_CODE + "\n");
+            str.Append(ERROR_MSG + "\n");
+            str.Append(base.ToString());
+
+            return str.ToString();
+        }
+
     }
 }
