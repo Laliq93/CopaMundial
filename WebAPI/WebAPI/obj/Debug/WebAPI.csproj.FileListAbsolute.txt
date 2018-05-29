@@ -290,6 +290,9 @@ C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\bin\es\System.
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.csprojResolveAssemblyReference.cache
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.dll
 C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.pdb
+C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Cors.dll
+C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.dll
+C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.xml
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\NUnit3.TestAdapter.dll
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\NUnit3.TestAdapter.pdb
 C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\nunit.engine.dll
@@ -345,9 +348,7 @@ C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\nunit.framework.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\Owin.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Net.Http.Formatting.dll
-C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Cors.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Helpers.dll
-C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Owin.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.WebHost.dll
@@ -368,7 +369,6 @@ C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\nunit.framework.xml
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Net.Http.Formatting.xml
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.xml
-C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.xml
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\Newtonsoft.Json.xml
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Helpers.xml
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.WebHost.xml
@@ -399,6 +399,6 @@ C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\bin\es\System.Web.Http.WebHost.resources.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.dll
 C:\Users\Felix\Documents\A Desarrollo\Proyecto github\CopaMundial\WebAPI\WebAPI\obj\Debug\WebAPI.pdb
-C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Web.Cors.dll
-C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.dll
-C:\Users\usuario\Documents\Repositorios\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.xml
+C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\bin\System.Web.Cors.dll
+C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.dll
+C:\Users\Wjose\UCAB\Desarrollo\Proyecto\CopaMundial\WebAPI\WebAPI\bin\System.Web.Http.Cors.xml

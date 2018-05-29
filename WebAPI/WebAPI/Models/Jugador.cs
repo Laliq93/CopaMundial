@@ -60,6 +60,7 @@ namespace WebAPI.Models
         public int Id
         {
             get { return _id; }
+            set { _id = value; }
         }
 
         public string Nombre

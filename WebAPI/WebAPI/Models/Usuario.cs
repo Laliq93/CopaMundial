@@ -58,7 +58,7 @@ namespace WebAPI.Models
             _token = token;
         }
 
-        public Usuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo)
+        public Usuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, bool activo)
         {
             _id = id;
             _nombreUsuario = nombreUsuario;
@@ -66,6 +66,13 @@ namespace WebAPI.Models
             _apellido = apellido;
             _fechaNacimiento = fechaNacimiento;
             _correo = correo;
+            _activo = activo;
+        }
+
+        public Usuario(string correo, string token)
+        {
+            _correo = correo;
+            _token = token;
         }
 
         public Usuario(int id, string nombre, string apellido, string fechaNacimiento, char genero, string fotoPath)
@@ -169,12 +176,21 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        /// Getters y Setters del atributo Token
+        /// Getters y Setters del atributo activo
         /// </summary>
         public bool Activo
         {
             get { return _activo; }
             set { _activo = value; }
+        }
+
+        /// <summary>
+        /// Getters y Setters del atributo Token
+        /// </summary>
+        public string Token
+        {
+            get { return _token; }
+            set { _token = value; }
         }
     }
 }

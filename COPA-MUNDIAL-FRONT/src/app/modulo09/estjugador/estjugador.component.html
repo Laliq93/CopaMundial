@@ -1,0 +1,69 @@
+<div class="central" >
+
+    <form class="card" style="text-align: center">
+    
+      <h1 style="color: black; font-size: 30px; text-align: center;">Perfil del Jugador </h1>
+    
+      <div class="form-group">
+    
+        <h1>{{param1}}</h1>
+    
+      </div>
+    
+      <div class="form-group">
+
+        <img src="../../../assets/images/jugadores/jugador1.jpg" class="img-rounded" >
+      
+      </div>
+
+      <table width="100%" border="0" cellpadding="2">
+          <tr>
+              <td>
+                  <p>Edad</p>
+                  <p>{{jugador.edad}} años</p>
+              </td>
+              <td>
+                  <p>Peso</p>
+                  <p>{{jugador.peso}} kg</p>
+              </td>
+              <td>
+                  <p>Altura</p>
+                  <p>{{jugador.altura}} mts</p>
+              </td>
+          </tr>
+      </table>
+
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Goles</th>
+              <th scope="col">Asistencias</th>
+              <th scope="col">Faltas cometidas</th>
+              <th scope="col">Tarjetas Amarillas</th>
+              <th scope="col">Tarjetas Rojas</th>
+              <th scope="col">Minutos Jugados</th>
+              <th scope="col">tiros</th>
+            </tr>
+          </thead>
+          <tbody>
+          <!--  <ng-container *ngFor="let dato of datos; let i = index"> -->
+              <tr>
+                <th scope="row">{{esta.goles}}</th>
+                <td>{{esta.asistencias}}</td>
+                <td>{{esta.faltasC}}</td>
+                <td>{{esta.tarjetasA}}</td>
+                <td>{{esta.tarjetasR}}</td>
+                <td>{{esta.tiempojugado}}</td>
+                <td>{{esta.tiros}}</td>
+              </tr>
+         <!--   </ng-container> -->
+          </tbody>
+        </table>
+      
+    </form>
+</div>
+
+<h5>Ingrese el id del jugador y de click al boton para visualizar las estadisticas</h5>
+
+<input  [(ngModel)] = "variable">
+<button (click)="getEstadisticas()">Consultar</button>
