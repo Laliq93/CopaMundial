@@ -18,6 +18,159 @@ namespace WebAPI.Controllers
         private Pais pais;
         private EstructuraRespuesta er;
 
+
+        /// <summary>
+        /// Metodo para obtener todos los equipos
+        /// </summary>
+        /// <param name="idioma">Idioma para el filtrado</param>
+        [Route("listaEquipos/{idioma}")]
+        [HttpGet]
+        public HttpResponseMessage ListaEquipos(string idioma)
+        {
+            try
+            {
+                List<Equipo> equipos;
+
+                equipos = ObtenerEquipos(idioma);
+
+                er = new EstructuraRespuesta
+                {
+                    codigo = 200,
+                    mensaje = equipos
+                };
+                return Request.CreateResponse(HttpStatusCode.OK, er);
+            }
+            catch (Exception e)
+            {
+                er = new EstructuraRespuesta
+                {
+                    codigo = 414,
+                    mensaje = "",
+                    error = "Error al tratar de obtener equipos:" + e.Message
+                };
+                return Request.CreateResponse(HttpStatusCode.BadRequest, er);
+            }
+        }
+
+        /// <summary>
+        /// Llama a un SP para obtener una list de todos los equipos filtrados por idioma
+        /// </summary>
+        /// <param name="idioma">Idioma para el filtrado de equipos</param>
+        private List<Equipo> ObtenerEquipos(string idioma)
+        {
+            List<Equipo> equipos = new List<Equipo>();
+
+            try
+            {
+                _database.Conectar();
+                _database.StoredProcedure("m4_busca_equipos(@idioma)");
+                _database.AgregarParametro("idioma", idioma);
+                _database.EjecutarReader();
+
+                for (int i = 0; i < _database.cantidadRegistros; i++)
+                {
+                    List<I18nEquipo> listaI18nPais = new List<I18nEquipo>();
+
+                    I18nEquipo paisI18n = new I18nEquipo(_database.GetInt(i, 5), idioma, _database.GetString(i, 1));
+                    listaI18nPais.Add(paisI18n);
+                    Pais pais = new Pais(_database.GetString(i, 0), listaI18nPais);
+
+                    List<I18nEquipo> listaI18nEquipo = new List<I18nEquipo>();
+
+                    I18nEquipo descI18n = new I18nEquipo(_database.GetInt(i, 6), idioma, _database.GetString(i, 2));
+                    listaI18nEquipo.Add(descI18n);
+                    Equipo equipo = new Equipo(pais, listaI18nEquipo, _database.GetBool(i, 4), 
+                                               _database.GetString(i, 3), _database.GetBool(i, 7));
+
+                    equipos.Add(equipo);
+                }
+
+                return equipos;
+
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                throw new Exception("Error al obtener los equipos. Mas informacion del error: " + e);
+            }
+        }
+
+        /// <summary>
+        /// Metodo para obtener un equipo usando el codigo ISO
+        /// </summary>
+        /// <param name="iso">Codigo ISO del pais</param>
+        [Route("equipo/{iso}")]
+        [HttpGet]
+        public HttpResponseMessage ConsultarEquipo(string iso)
+        {
+            try
+            {
+                Equipo equipo;
+
+                equipo = ObtenerEquipo(iso);
+
+                er = new EstructuraRespuesta
+                {
+                    codigo = 200,
+                    mensaje = equipo,
+                };
+                return Request.CreateResponse(HttpStatusCode.OK, er);
+            }
+            catch (Exception e)
+            {
+                er = new EstructuraRespuesta
+                {
+                    codigo = 416,
+                    mensaje = "",
+                    error = "Error al tratar de consultar el equipo: " + iso + ":" + e.Message
+                };
+                return Request.CreateResponse(HttpStatusCode.BadRequest, er);
+            }
+        }
+
+        /// <summary>
+        /// Llama a un SP para obtener la informacion de un país
+        /// </summary>
+        /// <param name="iso">Codigo ISO del equipo a buscar</param>
+        private Equipo ObtenerEquipo(string iso)
+        {
+
+            try
+            {
+                _database.Conectar();
+                _database.StoredProcedure("m4_busca_equipo_iso(@iso)");
+                _database.AgregarParametro("iso", iso);
+                _database.EjecutarReader();
+
+                List<I18nEquipo> listaI18nPais = new List<I18nEquipo>();
+                I18nEquipo paisI18nEs = new I18nEquipo(_database.GetInt(0, 8), "es", _database.GetString(0, 1));
+                I18nEquipo paisI18nEn = new I18nEquipo(_database.GetInt(0, 8), "en", _database.GetString(0, 2));
+
+                listaI18nPais.Add(paisI18nEs);
+                listaI18nPais.Add(paisI18nEn);
+
+                Pais pais = new Pais(_database.GetString(0, 0), listaI18nPais);
+
+                List<I18nEquipo> listaI18nDesc = new List<I18nEquipo>();
+                I18nEquipo descI18nEs = new I18nEquipo(_database.GetInt(0, 7), "es", _database.GetString(0, 3));
+                I18nEquipo descI18nEn = new I18nEquipo(_database.GetInt(0, 7), "es", _database.GetString(0, 4));
+
+                listaI18nDesc.Add(descI18nEs);
+                listaI18nDesc.Add(descI18nEn);
+
+                Equipo equipo = new Equipo(pais, listaI18nDesc, _database.GetBool(0, 6),
+                                           _database.GetString(0, 5), true);
+
+                return equipo;
+
+            }
+            catch (Exception e)
+            {
+                _database.Desconectar();
+                throw new Exception("Error al obtener un equipo. Mas informacion del error: " + e);
+            }
+        }
+
         /// <summary>
         /// Metodo POST para agregar equipos. Realiza una conversion el idPais y pasa los datos a otro metodo.
         /// </summary>
@@ -30,19 +183,22 @@ namespace WebAPI.Controllers
             {
                 AgregarEquipo(equipo);
 
-                er = new EstructuraRespuesta();
-                er.codigo = 200;
-                er.mensaje = "Equipo agregado satisfactoriamente";
+                er = new EstructuraRespuesta
+                {
+                    codigo = 200,
+                    mensaje = "Equipo agregado satisfactoriamente"
+                };
                 return Request.CreateResponse(HttpStatusCode.OK, er);
             }
             catch( Exception e)
             {
-                er = new EstructuraRespuesta();
-                er.codigo = 410;
-                er.mensaje = "";
-                er.error = "Error al tratar de agregar a un equipo:" + e.Message;
-                return Request.CreateResponse(HttpStatusCode.BadRequest,
-                    new HttpError("Error al tratar de agregar a un equipo:" + er));
+                er = new EstructuraRespuesta
+                {
+                    codigo = 415,
+                    mensaje = "",
+                    error = "Error al tratar de agregar a un equipo:" + e.Message
+                };
+                return Request.CreateResponse(HttpStatusCode.BadRequest, er);
             }
         }
 
@@ -51,7 +207,7 @@ namespace WebAPI.Controllers
         /// hacer llamados a los metodos respectivos en la base de datos para asi realizar su funcion
         /// </summary>
         /// <param name="equipo">Objeto de tipo equipo que contiene los datos del equipo a ser agregado</param>
-        public void AgregarEquipo( Equipo equipo )
+        private void AgregarEquipo( Equipo equipo )
         {
             //string descripcionES, string descripcionEN, string grupo, int idPais
             try
@@ -84,16 +240,28 @@ namespace WebAPI.Controllers
         /// </summary>
         [Route("ActualizarEquipo")]
         [HttpPut]
-        public IHttpActionResult ActulizarEquipo([FromBody] Equipo equipo)
+        public HttpResponseMessage ActulizarEquipo([FromBody] Equipo equipo)
         {
             try
             {
                 EditarEquipo(equipo);
-                return Ok("Equipo actualizado exitosamente");
+                er = new EstructuraRespuesta
+                {
+                    codigo = 200,
+                    mensaje = "Equipo actualizado exitosamente",
+                    error = ""
+                };
+                return Request.CreateResponse(HttpStatusCode.OK, er);
             }
             catch (Exception e)
             {
-                return BadRequest("Error en la actualizacion del equipo: " + e.Message);
+                er = new EstructuraRespuesta
+                {
+                    codigo = 413,
+                    mensaje = "",
+                    error = "Error en la actualizacion del equipo: " + e.Message
+                };
+                return Request.CreateResponse(HttpStatusCode.BadRequest, er);
             }
         }
 
@@ -101,14 +269,14 @@ namespace WebAPI.Controllers
         /// Edita la informacion del equipo en la base de datos.
         /// <param name="equipo">Onjeto de tipo equipo que sirve para guardar los datos en la BD</param>
         /// </summary>
-        public void EditarEquipo(Equipo equipo)
+        private void EditarEquipo(Equipo equipo)
         {
             try
             {
                 _database.Conectar();
 
                 _database.StoredProcedure("m4_modificar_equipo(@descripcionES, @descripcionEN, @grupo, " +
-                    "@id_pais, @status)");
+                    "@id_pais, @status, @habilitado)");
                 for (int i = 0; i < equipo.descripcion.Count(); i++)
                 {
                     if (equipo.descripcion[i].idioma.ToString().ToLower() == "es")
@@ -118,6 +286,8 @@ namespace WebAPI.Controllers
                 }
                 _database.AgregarParametro("grupo", equipo.grupo.ToString());
                 _database.AgregarParametro("id_pais", equipo.pais.iso.ToString());
+                _database.AgregarParametro("status", equipo.status);
+                _database.AgregarParametro("habilitado", equipo.habilitado);
                 _database.EjecutarQuery();
                 
             }
@@ -139,18 +309,22 @@ namespace WebAPI.Controllers
             try
             {
                 ObtenerPaises(idioma);
-                er = new EstructuraRespuesta();
-                er.codigo = 200;
-                er.mensaje = _listaPaises;
+                er = new EstructuraRespuesta
+                {
+                    codigo = 200,
+                    mensaje = _listaPaises
+                };
                 return Request.CreateResponse(HttpStatusCode.OK, er);
             }
             catch (Exception e)
             {
                 _database.Desconectar();
-                er = new EstructuraRespuesta();
-                er.codigo = 410;
-                er.mensaje = "";
-                er.error = "Error al tratar de obtener los datos de los paises:" + e.Message;
+                er = new EstructuraRespuesta
+                {
+                    codigo = 410,
+                    mensaje = "",
+                    error = "Error al tratar de obtener los datos de los paises:" + e.Message
+                };
                 return Request.CreateResponse(HttpStatusCode.BadRequest, er);
             }
             
@@ -161,7 +335,7 @@ namespace WebAPI.Controllers
         /// devolver una tabla filtrada por el idioma con los paises registrados en el sistema.
         /// </summary>
         /// <param name="idioma">El idioma por el cual se filtrara la respuesta.</param>
-        public List<Pais> ObtenerPaises(string idioma)
+        private List<Pais> ObtenerPaises(string idioma)
         {
             try
             {
@@ -174,8 +348,11 @@ namespace WebAPI.Controllers
 
                 for (int i = 0; i < _database.cantidadRegistros; i++)
                 {
-                    pais = new Pais(_database.GetString(i, 0).ToLower(), 
-                        new I18nEquipo(_database.GetInt(i, 3), idioma.ToLower(), _database.GetString(i,1).ToLower()));
+                    I18nEquipo i18nPais = new I18nEquipo(_database.GetInt(i, 3), idioma.ToLower(), _database.GetString(i, 1).ToLower());
+                    List<I18nEquipo> listaI18nPais = new List<I18nEquipo>();
+                    listaI18nPais.Add(i18nPais);
+
+                    pais = new Pais(_database.GetString(i, 0).ToLower(), listaI18nPais);
 
                     _listaPaises.Add(pais);
                 }

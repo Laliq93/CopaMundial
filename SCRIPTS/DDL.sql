@@ -65,17 +65,19 @@ CREATE TABLE PAIS (
 );
 
 CREATE TABLE EQUIPO (
-
-  eq_id   integer,
-  eq_i18n_descripcion integer NOT NULL,
-  eq_status boolean default true NOT NULL,
-  eq_grupo varchar(1) CHECK (eq_grupo ='A' OR eq_grupo ='B' OR eq_grupo ='C' OR eq_grupo ='D' OR eq_grupo ='E' OR eq_grupo ='F' OR eq_grupo ='G' OR eq_grupo ='H'),
-  eq_pa_id  varchar(3),
-  eq_habilitado boolean,
-
-    CONSTRAINT primaria_equipo PRIMARY KEY(eq_id),
-    CONSTRAINT eq_pa_id FOREIGN KEY (eq_pa_id) REFERENCES pais (pa_iso)
+	eq_id int4 NOT NULL,
+	eq_i18n_descripcion int4 NOT NULL,
+	eq_status bool NOT NULL DEFAULT true,
+	eq_grupo varchar(1) NULL,
+	eq_pa_id varchar(3) NULL,
+	eq_habilitado bool NULL,
+	CONSTRAINT equipo_eq_grupo_check CHECK ((((((((((eq_grupo)::text = 'A'::text) OR ((eq_grupo)::text = 'B'::text)) OR ((eq_grupo)::text = 'C'::text)) OR ((eq_grupo)::text = 'D'::text)) OR ((eq_grupo)::text = 'E'::text)) OR ((eq_grupo)::text = 'F'::text)) OR ((eq_grupo)::text = 'G'::text)) OR ((eq_grupo)::text = 'H'::text))),
+	CONSTRAINT equipo_pa_id_uq UNIQUE (eq_pa_id),
+	CONSTRAINT primaria_equipo PRIMARY KEY (eq_id),
+	CONSTRAINT eq_pa_id FOREIGN KEY (eq_pa_id) REFERENCES pais(pa_iso)
 );
+
+
 --Fin de modulo 4
 --Modulo 6
 CREATE TABLE PARTIDO(
