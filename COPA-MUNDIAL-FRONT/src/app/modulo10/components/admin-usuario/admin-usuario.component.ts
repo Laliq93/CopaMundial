@@ -5,7 +5,6 @@ import { ApiService } from '../../services/api10.services';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
-
 declare var bootbox: any;
 
 @Component({
@@ -76,21 +75,23 @@ export class AdminUsuarioComponent implements OnInit {
   }
 
   CrearAdmin() {
-  
     let usuarioAdmin = new Usuario10();
 
-    if(this._nombreNew == null || this._apellidoNew == null
-    || this._correoNew == null || this._fechaNew == null
-    || this._generoNew == null || this._nombreUser == null
-    || this._pass == null){
-
-      bootbox.alert("Debes llenar todos los campos");
+    if (
+      this._nombreNew == null ||
+      this._apellidoNew == null ||
+      this._correoNew == null ||
+      this._fechaNew == null ||
+      this._generoNew == null ||
+      this._nombreUser == null ||
+      this._pass == null
+    ) {
+      bootbox.alert('Debes llenar todos los campos');
       return;
     }
 
-
-    if(this._pass != this._passConfirm){
-      bootbox.alert("Las contraseñas no coinciden");
+    if (this._pass !== this._passConfirm) {
+      bootbox.alert('Las contraseñas no coinciden');
       return;
     }
 
@@ -103,7 +104,6 @@ export class AdminUsuarioComponent implements OnInit {
     usuarioAdmin.Password = this._pass;
 
     this._api10.CrearUsuarioAdministrador(usuarioAdmin);
-
   }
 
   DesactivarCuenta(idUsuario) {
@@ -113,5 +113,4 @@ export class AdminUsuarioComponent implements OnInit {
   ActivarCuenta(idUsuario) {
     this._api10.AdministradorActivarCuenta(idUsuario);
   }
-
 }
