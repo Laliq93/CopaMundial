@@ -21,6 +21,7 @@ namespace WebApiPruebas.M1
         public void Init()
         {
             _pruebacontroller = new M1_RegistroLoginRecuperarController();
+            _usuarioprueba = new Usuario();
 
             _usuarioprueba.Id = 355;
             _usuarioprueba.NombreUsuario = "alefernandez";

@@ -48,6 +48,13 @@ File: css (style-usuario)
   display: inline-block;
 }
 
+.nav-tabs .nav-link.active {
+    color: #1e88e5;
+}
+
+.nav-tabs .nav-link.active::before{
+  background-color: #1e88e5;
+}
 /*============================================================== 
                         Card
  ============================================================== */
