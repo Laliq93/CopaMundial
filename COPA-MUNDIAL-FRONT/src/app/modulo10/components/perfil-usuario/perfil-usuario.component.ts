@@ -1,57 +1,35 @@
 import { Component, NgModule, OnInit } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { RouterModule, Router } from '@angular/router';
+import { Usuario10 } from '../../models/usuario.model';
+import { ApiService } from '../../services/api10.services';
+import { HttpClient } from '@angular/common/http';
+// import { Usuario } from '../../../modulo01/models/usuario';
 
-export interface IUsuario {
-  id: number;
-  Nombre: string;
-  Apellido: string;
-  FechaNacimiento: string;
-  Correo: string;
-}
-
-class Usuario {
-  public nombre = '';
-  public apellido = '';
-  public correo = '';
-  public fechaNacimiento = '';
-}
+declare var bootbox: any;
 
 @Component({
   selector: 'app-perfil-usuario',
   templateUrl: './perfil-usuario.component.html',
-  styleUrls: ['./perfil-usuario.component.css', '../style-usuario.component.css']
+  styleUrls: [
+    './perfil-usuario.component.css',
+    '../style-usuario.component.css'
+  ]
 })
 export class PerfilUsuarioComponent implements OnInit {
-  apiRoot = 'http://192.168.15.108:54059/api/';
-  usuario: Usuario;
+  public _usuario: Usuario10;
+  public _api10: ApiService;
 
   constructor(private http: HttpClient) {
-    this.usuario = new Usuario();
+    this._api10 = new ApiService(http);
+    this._usuario = new Usuario10();
   }
-  ngOnInit() {}
 
-  Test_Get() {
-    const url = `${this.apiRoot}/M10_Usuario/ObtenerUsuario/2`;
-    const httpHeaders = new HttpHeaders().set('Accept', 'application/json');
-
-    this.http
-      .get<IUsuario>(url, { responseType: 'json' })
-      .subscribe(data => {
-        this.usuario.nombre = data.Nombre;
-        this.usuario.apellido = data.Apellido;
-        this.usuario.correo = data.Correo;
-        this.usuario.fechaNacimiento = data.FechaNacimiento;
-
-        console.log(data);
-      });
-
-    /*this.http.get(url,{search}).map(res => { return res.json()}) << usando HttpModule y Http
-      .subscribe(data => { 
-        this.nombre = data.nombre;
-        this.apellido = data.apellido;
-        this.correo = data.correo;
-        this.fechaNacimiento = data.fechaNacimiento;
-    });*/
+  ngOnInit() {
+    this.ObtenerDatos();
   }
+
+  ObtenerDatos() {
+    this._usuario = this._api10.ObtenerDatos();
+  }
+
 }

@@ -227,7 +227,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\M09_EstadisticaController.cs" />
     <Compile Include="Controllers\M10_UsuarioController.cs" />
-    <Compile Include="Controllers\M2_CiudadController.cs" />
     <Compile Include="Controllers\M4_GestionEquipoController.cs" />
     <Compile Include="Controllers\M5_JugadorController.cs" />
     <Compile Include="Controllers\M1_RegistroLoginRecuperarController.cs" />
@@ -240,6 +239,9 @@
     <Compile Include="Models\Excepciones\UsuarioNullException.cs" />
     <Compile Include="Models\Excepciones\ClaveInvalidaException.cs" />
     <Compile Include="Models\Excepciones\CorreoEnUsoException.cs" />
+    <Compile Include="Models\Excepciones\UsuarioNoExisteException.cs" />
+    <Compile Include="Models\Excepciones\CodigoNoCoincideException.cs" />
+    <Compile Include="Models\Excepciones\UsuarioInactivoException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -254,6 +256,7 @@
     <Compile Include="Models\Jugador.cs" />
     <Compile Include="Models\Pais.cs" />
     <Compile Include="Models\Usuario.cs" />
+	    <Compile Include="Models\EstructuraRespuesta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -328,11 +331,10 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54059</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54059/</IISUrl>
+          <IISUrl>http://localhost:54072/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl>http://192.168.15.108:54059/</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
