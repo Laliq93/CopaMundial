@@ -26,6 +26,7 @@ export class EstjugadorComponent implements OnInit {
  esta : estadisticas;
  url : string;
  player : number;
+ variable : number;
  
 
   constructor(private route:Router, private http : HttpClient) {
@@ -36,6 +37,7 @@ export class EstjugadorComponent implements OnInit {
   //});
   this.url = "http://localhost:54059/api/M09_estadisticas"
   this.player = 1;
+  this.variable = 0;
    }
 
   ngOnInit() {
@@ -48,12 +50,16 @@ export class EstjugadorComponent implements OnInit {
 
   getEstadisticas(){
     console.log(this.url);
+    if (this.variable != 0) {
+      this.player = this.variable;
+    }
    this.http.get<estadisticas>(this.url+'/jugador/'+this.player).subscribe(
      x => {
        this.esta = x;
        console.log(this.esta);
      }
    )
+   console.log(this.variable);
    this.route.navigate(['estadisticas/estjugador']);
   }
 

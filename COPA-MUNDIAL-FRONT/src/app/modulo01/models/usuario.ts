@@ -1,5 +1,5 @@
 export class Usuario {
-    //id: number;
+    id: number;
     nombreUsuario   : string;
     nombre          : string;
     apellido        : string;
@@ -8,4 +8,5 @@ export class Usuario {
     genero          : string;
     password        : string; 
     token           : string; 
+    esAdmin         : boolean;
   }

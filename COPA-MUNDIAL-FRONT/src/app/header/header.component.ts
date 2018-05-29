@@ -91,6 +91,8 @@ export class HeaderComponent implements AfterViewInit {
 	logout(){
 		localStorage.removeItem('userId');
 		localStorage.clear();
+		localStorage.removeItem('esAdmin');
+		localStorage.clear();
 		this.router.navigate(['/inicio', 'login']);
 	}
 
