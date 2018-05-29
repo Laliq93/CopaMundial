@@ -1,0 +1,102 @@
+<div class="container app">
+  <div class="media">
+    <div class="col-sm-2 text-center">
+      <img class="mr-3" src="../../assets/img/default.svg" alt="Generic placeholder image">
+    </div>
+    <div class="media-body">
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="form-group">
+            <div class=" floating-label-sm textfield-box">
+              <label for="nombreFloatingBox">Nombre</label>
+              <input aria-describedby="nombreFloatingBox" class="form-control" id="nombreFloatingBox" [(ngModel)]="jugador.Nombre" placeholder=""
+                type="text">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="floating-label-sm textfield-box">
+              <label for="apellidoFloatingBox">Apellido</label>
+              <input aria-describedby="apellidoFloatingBox" class="form-control" id="apellidoFloatingBox" [(ngModel)]="jugador.Apellido"
+                placeholder="" type="text">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="floating-label-sm textfield-box">
+              <label for="fechaNacFloatingBox">Fecha Nacimiento</label>
+              <input aria-describedby="fechaNacFloatingBox" class="form-control" id="fechaNacFloatingBox" [(ngModel)]="jugador.FechaNacimiento" placeholder=""
+                type="text">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="floating-label-sm textfield-box">
+              <label for="lugarNacFloatingBox">Lugar Nacimiento</label>
+              <input aria-describedby="lugarNacFloatingBox" class="form-control" id="lugarNacFloatingBox" [(ngModel)]="jugador.LugarNacimiento"
+                placeholder="" type="text">
+            </div>
+          </div>
+          <div class="form-row">
+
+            <div class="form-group col">
+              <div class="floating-label-sm textfield-box">
+                <label for="pesoFloatingBox">Peso</label>
+                <input aria-describedby="pesoFloatingBox" class="form-control" id="pesoFloatingBox" [(ngModel)]="jugador.Peso" placeholder=""
+                  type="number">
+              </div>
+            </div>
+            <div class="form-group col">
+              <div class="floating-label-sm textfield-box">
+                <label for="alturaFloatingBox">Altura</label>
+                <input aria-describedby="alturaFloatingBox" class="form-control" id="alturaFloatingBox" [(ngModel)]="jugador.Altura" placeholder=""
+                  type="number">
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- end first col -->
+        <div class="col-sm-5">
+          <div class="form-group">
+            <div class="floating-label-sm textfield-box">
+              <label for="clubFloatingBox">Club</label>
+              <input aria-describedby="clubFloatingBox" class="form-control" id="clubFloatingBox" [(ngModel)]="jugador.Club" placeholder=""
+                type="text">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="floating-label-sm textfield-box">
+              <label for="equipoFloatingBox">Equipo</label>
+              <input aria-describedby="equipoFloatingBox" class="form-control" id="equipoFloatingBox" [(ngModel)]="jugador.Equipo" placeholder=""
+                type="text">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="floating-label-sm textfield-box">
+              <label for="numeroFloatingBox">Numero</label>
+              <input aria-describedby="numeroFloatingBox" class="form-control" id="numeroFloatingBox" [(ngModel)]="jugador.Numero" placeholder=""
+                type="number">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="floating-label-sm textfield-box">
+              <label for="posicionFloatingBox">Posicion</label>
+              <input aria-describedby="equipoFloatingBox" class="form-control" id="equipoFloatingBox" [(ngModel)]="jugador.Posicion" placeholder=""
+                type="text">
+            </div>
+          </div>
+          <div class="custom-control custom-switch form-group">
+            <input class="custom-control-input" id="customSwitch" [(ngModel)]="jugador.Capitan" type="checkbox">
+            <span class="custom-control-track"></span>
+            <label class="custom-control-label" for="customSwitch">Capitan</label>
+          </div>
+        </div>
+        <!-- end second col -->
+
+      </div>
+      <!-- end row -->
+      <div class="row">
+        <button type="button" class="btn btn-sm separator" (click)="saveChanges()">Guardar</button>
+        <button type="button" class="btn btn-sm separator" (click)="goBack()">Cancelar</button>
+      </div>
+    </div>
+
+  </div>
