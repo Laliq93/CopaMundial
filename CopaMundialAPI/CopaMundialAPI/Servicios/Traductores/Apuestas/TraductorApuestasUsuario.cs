@@ -18,6 +18,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
             //dto.IdUsuario = entidad.Usuario.Id;
             dto.Contenido = entidad.Contenido;
             dto.Resultado = entidad.Resultado;
+            dto.FechaApuesta = entidad.Fecha.ToShortDateString();
 
             return dto;
         }
