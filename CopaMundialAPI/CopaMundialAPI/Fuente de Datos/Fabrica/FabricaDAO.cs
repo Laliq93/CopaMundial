@@ -20,5 +20,14 @@ namespace CopaMundialAPI.Fuente_de_Datos.Fabrica
         {
             return new DAOCiudad ( );
         }
+
+        /// <summary>
+        /// Devuelve una nueva instancia de DAOApuesta
+        /// </summary>
+        /// <returns>DAOApuesta</returns>
+        public static DAOApuesta CrearDAOApuesta()
+        {
+            return new DAOApuesta();
+        }
     }
 }

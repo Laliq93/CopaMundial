@@ -16,9 +16,9 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         private string _cadena;
         private int _cantidadRegistros;
 
-        public DAO ( )
+        public DAO()
         {
-            CrearStringConexion ( );
+            CrearStringConexion();
         }
 
         public int cantidadRegistros
@@ -26,36 +26,31 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             get { return _cantidadRegistros; }
         }
 
-        public NpgsqlCommand Command { get => _command; set => _command = value; }
-        public NpgsqlConnection Con { get => _con; set => _con = value; }
-        public DataTable DataTable { get => _dataTable; set => _dataTable = value; }
-        public string Cadena { get => _cadena; set => _cadena = value; }
-
         /// <summary>
         ///  Busca el string de conexión a la base de datos en el archivo web.config, dicho string se llama "postgrestring"
         /// </summary>
-        private void CrearStringConexion ( )
+        private void CrearStringConexion()
         {
-            Cadena = ConfigurationManager.ConnectionStrings [ "postgrestring" ].ConnectionString;
+            _cadena = ConfigurationManager.ConnectionStrings["postgrestring"].ConnectionString;
         }
 
-        private bool IsConnected ( )
+        private bool IsConnected()
         {
-            if (Con == null)
+            if (_con == null)
                 return false;
 
-            if (Con.State == System.Data.ConnectionState.Open)
+            if (_con.State == System.Data.ConnectionState.Open)
                 return true;
 
             return false;
         }
 
-        public bool Conectar ( )
+        public bool Conectar()
         {
             try
             {
-                Con = new NpgsqlConnection ( Cadena );
-                Con.Open ( );
+                _con = new NpgsqlConnection(_cadena);
+                _con.Open();
                 return true;
             }
             catch (NpgsqlException e)
@@ -68,44 +63,44 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
         }
 
-        public void Desconectar ( )
+        public void Desconectar()
         {
-            if (Con != null && IsConnected ( ))
-                Con.Close ( );
+            if (_con != null && IsConnected())
+                _con.Close();
         }
 
         /// <summary>
         /// Ejecutar el StoredProcedure con un valor de retorno (ResultSet), habilita el uso de las funciones "GetInt, GetString, etc" y devuelve un objeto DataTable.
         /// </summary>
-        public DataTable EjecutarReader ( )
+        public DataTable EjecutarReader()
         {
 
             try
             {
-                if (!IsConnected ( ))
+                if (!IsConnected())
                     return null;
 
-                DataTable = new DataTable ( );
+                _dataTable = new DataTable();
 
-                DataTable.Load ( Command.ExecuteReader ( ) );
+                _dataTable.Load(_command.ExecuteReader());
 
-                Desconectar ( );
+                Desconectar();
 
-                _cantidadRegistros = DataTable.Rows.Count;
+                _cantidadRegistros = _dataTable.Rows.Count;
 
             }
             catch (NpgsqlException exc)
             {
-                Desconectar ( );
-                throw new ArgumentNullException ( "Error al ejecutar el StoredProcedure " + exc );
+                Desconectar();
+                throw new ArgumentNullException("Error al ejecutar el StoredProcedure " + exc);
             }
             catch (Exception)
             {
-                Desconectar ( );
+                Desconectar();
                 throw;
             }
 
-            return DataTable;
+            return _dataTable;
 
         }
 
@@ -113,27 +108,27 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// <summary>
         /// Ejecutar el StoredProcedure sin valor de retorno (ResultSet), devuelve el número de filas afectadas.
         /// </summary>
-        public int EjecutarQuery ( )
+        public int EjecutarQuery()
         {
             try
             {
-                if (!IsConnected ( ))
+                if (!IsConnected())
                     return 0;
 
-                int filasAfectadas = Command.ExecuteNonQuery ( );
+                int filasAfectadas = _command.ExecuteNonQuery();
 
-                Desconectar ( );
+                Desconectar();
 
                 return filasAfectadas;
             }
             catch (NpgsqlException exc)
             {
-                Desconectar ( );
-                throw new ArgumentNullException ( "Error al ejecutar el StoredProcedure " + exc );
+                Desconectar();
+                throw new ArgumentNullException("Error al ejecutar el StoredProcedure " + exc);
             }
             catch (Exception)
             {
-                Desconectar ( );
+                Desconectar();
                 throw;
             }
         }
@@ -141,15 +136,15 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// <summary>
         /// Crea el comando para ejecutar el StoredProcedure, Ejemplo: StoredProcedure("nombreSP(@param)")
         /// </summary>
-        public NpgsqlCommand StoredProcedure ( string sp )
+        public NpgsqlCommand StoredProcedure(string sp)
         {
             try
             {
-                if (!IsConnected ( ))
+                if (!IsConnected())
                     return null;
 
 
-                Command = new NpgsqlCommand ( "select * from " + sp, Con );
+                _command = new NpgsqlCommand("select * from " + sp, _con);
             }
             catch (NpgsqlException e)
             {
@@ -160,15 +155,15 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 throw e;
             }
 
-            return Command;
+            return _command;
         }
 
 
-        public void AgregarParametro ( string nombre, object valor )
+        public void AgregarParametro(string nombre, object valor)
         {
             try
             {
-                Command.Parameters.AddWithValue ( "@" + nombre, valor );
+                _command.Parameters.AddWithValue("@" + nombre, valor);
             }
             catch (NpgsqlException e)
             {
@@ -176,187 +171,184 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
             catch (NullReferenceException)
             {
-                throw new NullReferenceException ( );
+                throw new NullReferenceException();
             }
             catch (Exception)
             {
-                throw new Exception ( );
+                throw new Exception();
             }
         }
-        public int GetInt ( int fila, int columna )
+        public int GetInt(int fila, int columna)
         {
             try
             {
-                int intItem = Convert.ToInt32 ( DataTable.Rows [ fila ] [ columna ] );
+                int intItem = Convert.ToInt32(_dataTable.Rows[fila][columna]);
 
                 return intItem;
             }
             catch (IndexOutOfRangeException)
             {
-                throw new IndexOutOfRangeException ( );
+                throw new IndexOutOfRangeException();
             }
             catch (FormatException)
             {
-                throw new FormatException ( );
+                throw new FormatException();
             }
             catch (OverflowException)
             {
-                throw new OverflowException ( );
+                throw new OverflowException();
             }
             catch (NullReferenceException)
             {
-                throw new NullReferenceException ( );
+                throw new NullReferenceException();
             }
             catch (Exception)
             {
-                throw new Exception ( );
+                throw new Exception();
             }
         }
 
-        public char GetChar ( int fila, int columna )
+        public char GetChar(int fila, int columna)
         {
             try
             {
-                char charItem = Convert.ToChar ( DataTable.Rows [ fila ] [ columna ] );
+                char charItem = Convert.ToChar(_dataTable.Rows[fila][columna]);
 
                 return charItem;
             }
             catch (IndexOutOfRangeException)
             {
-                throw new IndexOutOfRangeException ( );
+                throw new IndexOutOfRangeException();
             }
             catch (FormatException)
             {
-                throw new FormatException ( );
+                throw new FormatException();
             }
             catch (ArgumentNullException)
             {
-                throw new ArgumentNullException ( );
+                throw new ArgumentNullException();
             }
             catch (NullReferenceException)
             {
-                throw new NullReferenceException ( );
+                throw new NullReferenceException();
             }
             catch (Exception)
             {
-                throw new Exception ( );
+                throw new Exception();
             }
         }
 
-        public string GetString ( int fila, int columna )
+        public string GetString(int fila, int columna)
         {
             try
             {
-                string stringItem = Convert.ToString ( DataTable.Rows [ fila ] [ columna ] );
+                string stringItem = Convert.ToString(_dataTable.Rows[fila][columna]);
 
                 return stringItem;
             }
             catch (IndexOutOfRangeException)
             {
-                throw new IndexOutOfRangeException ( );
+                throw new IndexOutOfRangeException();
             }
             catch (FormatException)
             {
-                throw new FormatException ( );
+                throw new FormatException();
             }
             catch (ArgumentNullException)
             {
-                throw new ArgumentNullException ( );
+                throw new ArgumentNullException();
             }
             catch (NullReferenceException)
             {
-                throw new NullReferenceException ( );
+                throw new NullReferenceException();
             }
             catch (Exception)
             {
-                throw new Exception ( );
+                throw new Exception();
             }
         }
 
-        public double GetDouble ( int fila, int columna )
+        public double GetDouble(int fila, int columna)
         {
             try
             {
-                double doubleItem = Convert.ToDouble ( DataTable.Rows [ fila ] [ columna ] );
+                double doubleItem = Convert.ToDouble(_dataTable.Rows[fila][columna]);
 
                 return doubleItem;
             }
             catch (IndexOutOfRangeException)
             {
-                throw new IndexOutOfRangeException ( );
+                throw new IndexOutOfRangeException();
             }
             catch (FormatException)
             {
-                throw new FormatException ( );
+                throw new FormatException();
             }
             catch (OverflowException)
             {
-                throw new OverflowException ( );
+                throw new OverflowException();
             }
             catch (NullReferenceException)
             {
-                throw new NullReferenceException ( );
+                throw new NullReferenceException();
             }
             catch (Exception)
             {
-                throw new Exception ( );
+                throw new Exception();
             }
         }
 
-        public bool GetBool ( int fila, int columna )
+        public bool GetBool(int fila, int columna)
         {
             try
             {
-                bool boolItem = Convert.ToBoolean ( DataTable.Rows [ fila ] [ columna ] );
+                bool boolItem = Convert.ToBoolean(_dataTable.Rows[fila][columna]);
 
                 return boolItem;
             }
             catch (IndexOutOfRangeException)
             {
-                throw new IndexOutOfRangeException ( );
+                throw new IndexOutOfRangeException();
             }
             catch (FormatException)
             {
-                throw new FormatException ( );
+                throw new FormatException();
             }
             catch (NullReferenceException)
             {
-                throw new NullReferenceException ( );
+                throw new NullReferenceException();
             }
             catch (Exception)
             {
-                throw new Exception ( );
+                throw new Exception();
             }
         }
 
-        public DateTime GetDateTime ( int fila, int columna )
+        public DateTime GetDateTime(int fila, int columna)
         {
             try
             {
-                DateTime dateItem = Convert.ToDateTime ( DataTable.Rows [ fila ] [ columna ] );
+                DateTime dateItem = Convert.ToDateTime(_dataTable.Rows[fila][columna]);
 
                 return dateItem;
             }
             catch (IndexOutOfRangeException)
             {
-                throw new IndexOutOfRangeException ( );
+                throw new IndexOutOfRangeException();
             }
             catch (FormatException)
             {
-                throw new FormatException ( );
+                throw new FormatException();
             }
             catch (NullReferenceException)
             {
-                throw new NullReferenceException ( );
+                throw new NullReferenceException();
             }
             catch (Exception)
             {
-                throw new Exception ( );
+                throw new Exception();
             }
         }
-
-
-
 
     }
 }
