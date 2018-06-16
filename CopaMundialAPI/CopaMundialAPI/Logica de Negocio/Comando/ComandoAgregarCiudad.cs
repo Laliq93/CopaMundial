@@ -12,15 +12,15 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando
     {
         private Ciudad _ciudad;
 
-        public ComandoAgregarCiudad ( Ciudad ciudad )
+        public ComandoAgregarCiudad(Ciudad ciudad)
         {
             this._ciudad = ciudad;
         }
 
-        public override void Ejecutar ( )
+        public override void Ejecutar()
         {
-            DAOCiudad dao = FabricaDAO.CrearDAOCiudad ( );
-            dao.InsertarCiudad ( _ciudad );
+            DAOCiudad dao = FabricaDAO.CrearDAOCiudad();
+            dao.InsertarCiudad(_ciudad);
 
         }
     }
