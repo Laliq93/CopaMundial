@@ -1,0 +1,194 @@
+/*
+Template Name: Copa Mundial
+Author: Desarrollo de Software UCAB | Modulo_08
+Email: wjoseperez20@gmail.com
+File: css (style-apuesta)
+*/
+
+/**
+ * Contenido
+ *
+ * 	1. Globales
+ *	2. Headers
+ *	3. Nav | Side
+ *	4. Banners
+ *	5. Footers
+ *	6. app
+ *	7. Widgets
+ *	8. Media's
+ *	9. Custom Templates
+ */
+
+/******************* 
+1. Global Styles 
+*******************/
+.btn-danger-table {
+  background-color: #f44336;
+  color: white;
+  padding: 0px 0px;
+  line-height: 20px;
+  min-width: 22px;
+  border-radius: 3px;
+  text-align: center;
+  display: inline-block;
+}
+
+.btn-success-table {
+  background-color: #4caf50;
+  color: white;
+  padding: 0px 0px;
+  line-height: 20px;
+  min-width: 22px;
+  border-radius: 3px;
+  text-align: center;
+  display: inline-block;
+}
+
+.nav-tabs .nav-link.active {
+    color: #1e88e5;
+}
+
+.nav-tabs .nav-link.active::before{
+  background-color: #1e88e5;
+}
+/*============================================================== 
+                        Card
+ ============================================================== */
+
+.card {
+  margin-bottom: 30px;
+}
+
+.card .card-subtitle {
+  font-weight: 300;
+  margin-bottom: 15px;
+  color: #99abb4;
+}
+
+.card-inverse .card-blockquote .blockquote-footer,
+.card-inverse .card-link,
+.card-inverse .card-subtitle,
+.card-inverse .card-text {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.card-success {
+  background: #26c6da;
+  border-color: #26c6da;
+}
+
+.card-danger {
+  background: #fc4b6c;
+  border-color: #fc4b6c;
+}
+
+.card-warning {
+  background: #ffb22b;
+  border-color: #ffb22b;
+}
+
+.card-info {
+  background: #1e88e5;
+  border-color: #1e88e5;
+}
+
+.card-primary {
+  background: #7460ee;
+  border-color: #7460ee;
+}
+
+.card-dark {
+  background: #2f3d4a;
+  border-color: #2f3d4a;
+}
+
+.card-megna {
+  background: #00897b;
+  border-color: #00897b;
+}
+
+.card-block {
+  padding: 15px 0px;
+}
+
+/*============================================================== 
+                        Litte Profile
+ ============================================================== */
+
+.little-profile .pro-img {
+  margin-top: -80px;
+  margin-bottom: 20px;
+}
+
+.little-profile .pro-img img {
+  width: 128px;
+  height: 128px;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 100%;
+}
+
+/*============================================================== 
+                        Title
+ ============================================================== */
+
+.page-titles {
+  background: #ffffff;
+  margin: 0 -30px 30px;
+  padding: 15px;
+  padding-bottom: 20px;
+  -webkit-box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.page-titles h2 {
+  margin-bottom: 0px;
+  margin-top: 8px;
+}
+
+.page-titles .breadcrumb {
+  padding: 0px;
+  background: transparent;
+  font-size: 14px;
+}
+
+.page-titles .breadcrumb li {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.page-titles .breadcrumb .breadcrumb-item.active {
+  color: #2491c7;
+}
+
+/*******************
+2. Headers
+*******************/
+
+/*******************
+3. Nav | Side
+******************/
+
+/*******************
+4. Banners
+******************/
+
+/*******************
+5. Footers
+******************/
+
+/*******************
+6. app
+******************/
+
+/*******************
+7. Footers
+******************/
+
+/*******************
+8. Media's
+******************/
+
+/*******************
+9. Custom Templates
+******************/
