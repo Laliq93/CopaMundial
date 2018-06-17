@@ -22,9 +22,24 @@ namespace CopaMundialAPI.Comun.Entidades.Fabrica
             return new Ciudad (nombre,habitantes,descripcion);
         }
 
-        public static Apuesta CrearApuesta()
+        public static ApuestaCantidad CrearApuestaCantidad()
         {
-            return new Apuesta();
+            return new ApuestaCantidad();
+        }
+
+        public static ApuestaEquipo CrearApuestaEquipo()
+        {
+            return new ApuestaEquipo();
+        }
+
+        public static ApuestaJugador CrearApuestaJugador()
+        {
+            return new ApuestaJugador();
+        }
+
+        public static ApuestaVoF CrearApuestaVoF()
+        {
+            return new ApuestaVoF();
         }
     }
 }

@@ -17,14 +17,16 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
 
         public override Apuesta CrearEntidad(DTOApuesta dto)
         {
-            Apuesta apuesta = FabricaEntidades.CrearApuesta();
+            //Apuesta apuesta = FabricaEntidades.CrearApuesta();
 
             //apuesta.Usuario.Id = dto.IdUsuario;
             //apuesta.Logro.Id = dto.IdLogro;
-            apuesta.Contenido = dto.Contenido;
-            apuesta.Fecha = DateTime.Now;
+            //apuesta.Contenido = dto.Contenido;
+            //apuesta.Fecha = DateTime.Now;
 
-            return apuesta;
+            //return apuesta;
+
+            return null;
         }
 
         public override List<DTOApuesta> CrearListaDto(List<Apuesta> entidades)

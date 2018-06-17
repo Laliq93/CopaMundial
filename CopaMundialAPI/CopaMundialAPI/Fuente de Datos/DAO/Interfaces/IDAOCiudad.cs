@@ -6,7 +6,7 @@ using CopaMundialAPI.Comun.Entidades;
 
 namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
 {
-    public interface IDAOCiudad
+    public interface IDAOCiudad : IDAO
     {
         /// <summary>
         /// Metodo Insertar,inserta el objeto ciudad de tipo Ciudad enviado por parametro.

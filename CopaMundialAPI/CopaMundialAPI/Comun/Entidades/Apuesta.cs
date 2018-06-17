@@ -7,10 +7,9 @@ namespace CopaMundialAPI.Comun.Entidades
 {
     public class Apuesta : Entidad
     {
-        //private Usuario _usuario;
-        //private Logro _logro;
+        private Usuario _usuario;
+        private LogroPartido _logro;
         private DateTime _fecha;
-        private string _contenido;
         private string _resultado;
 
         public Apuesta()
@@ -19,10 +18,9 @@ namespace CopaMundialAPI.Comun.Entidades
         }
 
 
-        //public Usuario Usuario { get => _usuario; set => _usuario = value; }
-        //public Logro Logro { get => _logro; set => _logro = value; }
+        public Usuario Usuario { get => _usuario; set => _usuario = value; }
+        public LogroPartido Logro { get => _logro; set => _logro = value; }
         public DateTime Fecha { get => _fecha; set => _fecha = value; }
-        public string Contenido { get => _contenido; set => _contenido = value; }
         public string Resultado { get => _resultado; set => _resultado = value; }
     }
 }
