@@ -7,7 +7,6 @@ namespace CopaMundialAPI.Comun.Entidades
 {
     public class Jugador : Entidad
     {
-        private int _id;
         private string _nombre;
         private string _apellido;
         private string _fechaNacimiento;
@@ -23,7 +22,6 @@ namespace CopaMundialAPI.Comun.Entidades
 
         public Jugador() { }
 
-        public int Id { get => _id; set => _id = value; }
         public string Nombre { get => _nombre; set => _nombre = value; }
         public string Apellido { get => _apellido; set => _apellido = value; }
         public string FechaNacimiento { get => _fechaNacimiento; set => _fechaNacimiento = value; }
