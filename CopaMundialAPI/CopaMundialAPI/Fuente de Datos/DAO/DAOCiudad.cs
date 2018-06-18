@@ -10,40 +10,70 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
     /// <summary>
     /// DAO de la entidad Ciudad. En esta clase se encapsula el acceso a la fuente de datos.
     /// </summary>
-    public class DAOCiudad : DAO,IDAOCiudad
+    public class DAOCiudad : DAO, IDAOCiudad
     {
-        public Ciudad ConsultarCiudadPorId ( Ciudad ciudad )
+        public void Actualizar(Entidad entidad)
         {
-            throw new NotImplementedException ( );
+            throw new NotImplementedException();
         }
 
-        public List<Ciudad> ConsultarListaCiudades ( Ciudad ciudad )
+        public void Agregar(Entidad entidad)
         {
-            throw new NotImplementedException ( );
+            Ciudad ciudad = entidad as Ciudad;
+
+            Conectar();
+
+            StoredProcedure("insertarciudad(@_nombre,@_capacidad,@_descripcion)");
+
+            AgregarParametro("_nombre", ciudad.Nombre);
+            AgregarParametro("_capacidad", ciudad.Habitantes);
+            AgregarParametro("_descripcion", ciudad.Descripcion);
+
+            EjecutarQuery();
         }
 
-        public void EliminarCiudad ( Ciudad ciudad )
+        public Ciudad ConsultarCiudadPorId(Ciudad ciudad)
         {
-            throw new NotImplementedException ( );
+            throw new NotImplementedException();
+        }
+
+        public List<Ciudad> ConsultarListaCiudades(Ciudad ciudad)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Eliminar(Entidad entidad)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EliminarCiudad(Ciudad ciudad)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
         /// Metodo InsertarCiudad , inserta objeto de tipo Ciudad en la base de datos
         /// </summary>
         /// <param name="objeto">Ciudad que se desea insertar</param>
-        public void InsertarCiudad ( Ciudad ciudad )
+        public void InsertarCiudad(Ciudad ciudad)
         {
-            StoredProcedure ( "insertarciudad" );
-            Command.Parameters.AddWithValue ( "_nombre", ciudad.Nombre );
-            Command.Parameters.AddWithValue ( "_capacidad", ciudad.Habitantes );
-            Command.Parameters.AddWithValue ( "_descripcion", ciudad.Descripcion );
-            Command.ExecuteNonQuery ( );
-            Desconectar ( );
+            Conectar();
+            StoredProcedure("insertarciudad(@_nombre,@_capacidad,@_descripcion)");
+            AgregarParametro("_nombre", ciudad.Nombre);
+            AgregarParametro("_capacidad", ciudad.Habitantes);
+            AgregarParametro("_descripcion", ciudad.Descripcion);
+            EjecutarQuery();
         }
 
-        public void ModificarCiudad ( Ciudad ciudad )
+        public void ModificarCiudad(Ciudad ciudad)
         {
-            throw new NotImplementedException ( );
+            throw new NotImplementedException();
+        }
+
+        public List<Entidad> ObtenerTodos()
+        {
+            throw new NotImplementedException();
         }
     }
 }
