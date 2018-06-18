@@ -22,33 +22,18 @@ CREATE SEQUENCE SEQ_Jugador
   NO MAXVALUE
   CACHE 1;
 
-CREATE SEQUENCE SEQ_Equipo
-  START WITH 1
-  INCREMENT BY 1
-  NO MINVALUE
-  NO MAXVALUE
-  CACHE 1;
-
-CREATE SEQUENCE SEQ_Pais
-  START WITH 1
-  INCREMENT BY 1
-  NO MINVALUE
-  NO MAXVALUE
-  CACHE 1;
-
-
 -- Agrega al jugador en la base de datos
 
 CREATE OR REPLACE FUNCTION AgregarJugador
-(_nombre VARCHAR(40),
- _apellido VARCHAR(20),
+(_nombre varchar,
+ _apellido varchar,
  _fechaNacimiento date,
- _lugarNacimiento VARCHAR(40), 
+ _lugarNacimiento varchar, 
  _peso decimal(5,2),
  _altura decimal(5,2), 
- _posicion varchar(20), 
+ _posicion varchar, 
  _numero decimal(2),
- _equipo integer)
+ _equipo varchar)
 RETURNS integer AS
 $$
 BEGIN
@@ -88,13 +73,14 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION consultarJugadorId(_id integer)
 RETURNS TABLE
   (id integer, nombre varchar, apellido varchar, fechaNacimiento date, 
-    lugarNacimiento varchar, peso decimal, altura decimal, posicion varchar, numero decimal, capitan boolean)
+    lugarNacimiento varchar, peso decimal, altura decimal, posicion varchar, numero decimal, 
+    capitan boolean, equipo varchar)
 AS
 $$
 BEGIN
     RETURN QUERY SELECT
     ju_id, ju_nombre, ju_apellido, ju_fechaNacimiento, ju_lugarNacimiento, ju_peso, ju_altura,
-    ju_posicion, ju_numero, ju_capitan
+    ju_posicion, ju_numero, ju_capitan, ju_equipo
     FROM jugador
     WHERE ju_id=_id;
 END;
@@ -103,13 +89,14 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION consultarJugadores()
 RETURNS TABLE
   (id integer, nombre varchar, apellido varchar, fechaNacimiento date, 
-    lugarNacimiento varchar, peso decimal, altura decimal, posicion varchar, numero decimal)
+    lugarNacimiento varchar, peso decimal, altura decimal, posicion varchar, numero decimal,
+    capitan boolean, equipo varchar)
 AS
 $$
 BEGIN
     RETURN QUERY SELECT
     ju_id, ju_nombre, ju_apellido, ju_fechaNacimiento, ju_lugarNacimiento, ju_peso, ju_altura,
-    ju_posicion, ju_numero
+    ju_posicion, ju_numero, ju_capitan, ju_equipo
     FROM jugador;
 END;
 $$ LANGUAGE plpgsql;
@@ -117,13 +104,14 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION consultarJugadorNombre(_nombre varchar)
 RETURNS TABLE
   (id integer, nombre varchar, apellido varchar, fechaNacimiento date, 
-    lugarNacimiento varchar, peso decimal, altura decimal, posicion varchar, numero decimal)
+    lugarNacimiento varchar, peso decimal, altura decimal, posicion varchar, numero decimal,
+    capitan boolean, equipo varchar)
 AS
 $$
 BEGIN
     RETURN QUERY SELECT
     ju_id, ju_nombre, ju_apellido, ju_fechaNacimiento, ju_lugarNacimiento, ju_peso, ju_altura,
-    ju_posicion, ju_numero
+    ju_posicion, ju_numero, ju_capitan, ju_equipo
     FROM jugador
     WHERE ju_nombre = _nombre;
 END;
@@ -132,13 +120,14 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION consultarJugadorPosicion(_posicion varchar)
 RETURNS TABLE
   (id integer, nombre varchar, apellido varchar, fechaNacimiento date, 
-    lugarNacimiento varchar, peso decimal, altura decimal, posicion varchar, numero decimal)
+    lugarNacimiento varchar, peso decimal, altura decimal, posicion varchar, numero decimal,
+    capitan boolean, equipo varchar)
 AS
 $$
 BEGIN
     RETURN QUERY SELECT
     ju_id, ju_nombre, ju_apellido, ju_fechaNacimiento, ju_lugarNacimiento, ju_peso, ju_altura,
-    ju_posicion, ju_numero
+    ju_posicion, ju_numero, ju_capitan, ju_equipo
     FROM jugador
     WHERE ju_posicion = _posicion;
 END;
