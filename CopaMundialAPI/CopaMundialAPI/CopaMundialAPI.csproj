@@ -104,13 +104,11 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Comun\Entidades\Apuesta.cs" />
-    <Compile Include="Comun\Entidades\ApuestaEquipo.cs" />
     <Compile Include="Comun\Entidades\ApuestaJugador.cs" />
     <Compile Include="Comun\Entidades\ApuestaCantidad.cs" />
     <Compile Include="Comun\Entidades\ApuestaVoF.cs" />
     <Compile Include="Comun\Entidades\Ciudad.cs" />
     <Compile Include="Comun\Entidades\Entidad.cs" />
-    <Compile Include="Comun\Entidades\Equipo.cs" />
     <Compile Include="Comun\Entidades\Fabrica\FabricaEntidades.cs" />
     <Compile Include="Comun\Entidades\Jugador.cs" />
     <Compile Include="Comun\Entidades\LogroPartido.cs" />
@@ -118,7 +116,6 @@
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Fuente de Datos\DAO\DAO.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaJugador.cs" />
-    <Compile Include="Fuente de Datos\DAO\DAOApuestaEquipo.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaCantidad.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaVoF.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOCiudad.cs" />

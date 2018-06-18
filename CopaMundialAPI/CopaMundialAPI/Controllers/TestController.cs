@@ -16,7 +16,6 @@ namespace CopaMundialAPI.Controllers
         [System.Web.Http.HttpPut]
         public HttpResponseMessage Testing ( string hola )
         {
-
             return Request.CreateResponse ( HttpStatusCode.OK, "String: " + hola );
         }
     }
