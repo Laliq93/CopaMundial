@@ -1,0 +1,8 @@
+CREATE TABLE CIUDAD (
+   	ci_id		serial,
+    ci_nombre 	  varchar(70) not null,
+    ci_poblacion  integer,
+    ci_descripcion  varchar(250),
+    CONSTRAINT pk_ciudad PRIMARY KEY(ci_id)
+
+);
