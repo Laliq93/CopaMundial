@@ -130,13 +130,13 @@
     <Compile Include="Logica de Negocio\Comando\ComandoAgregarCiudad.cs" />
     <Compile Include="Logica de Negocio\Fabrica\FabricaComando.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Servicios\DTO\Apuestas\DTOApuesta.cs" />
-    <Compile Include="Servicios\DTO\Apuestas\DTOApuestasUsuario.cs" />
-    <Compile Include="Servicios\DTO\Apuestas\DTOListarLogros.cs" />
+    <Compile Include="Servicios\DTO\Apuestas\DTOApuestaJugador.cs" />
+    <Compile Include="Servicios\DTO\Apuestas\DTOApuestaCantidad.cs" />
+    <Compile Include="Servicios\DTO\Apuestas\DTOApuestaVOF.cs" />
     <Compile Include="Servicios\Fabrica\FabricaDTO.cs" />
-    <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestasUsuario.cs" />
-    <Compile Include="Servicios\Traductores\Apuestas\TraductorCrearApuesta.cs" />
-    <Compile Include="Servicios\Traductores\Apuestas\TraductorMostrarLogrosPartido.cs" />
+    <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaCantidad.cs" />
+    <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaJugador.cs" />
+    <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaVOF.cs" />
     <Compile Include="Servicios\Traductores\TraductorGenerico.cs" />
   </ItemGroup>
   <ItemGroup>
