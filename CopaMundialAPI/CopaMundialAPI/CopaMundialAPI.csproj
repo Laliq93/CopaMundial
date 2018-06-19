@@ -112,6 +112,7 @@
     <Compile Include="Comun\Entidades\Fabrica\FabricaEntidades.cs" />
     <Compile Include="Comun\Entidades\Jugador.cs" />
     <Compile Include="Comun\Entidades\LogroPartido.cs" />
+    <Compile Include="Comun\Entidades\Partido.cs" />
     <Compile Include="Comun\Entidades\Usuario.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Fuente de Datos\DAO\DAO.cs" />
