@@ -6,7 +6,7 @@ using CopaMundialAPI.Comun.Entidades;
 
 namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
 {
-    public interface IDAOCiudad : IDAO
+    public interface IDAOJugador : IDAO
     {
         /// <summary>
         /// Metodo Insertar,inserta el objeto jugador de tipo jugador enviado por parametro.
@@ -44,7 +44,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
         /// </summary>
         /// <param name="jugador">jugador de tipo jugador el cual se desea consultar.</param>
         /// <returns>Lista de jugadores referenciados a la consulta</returns>
-        List<Ciudad> ConsultarListaJugadores ( Jugador jugador );
+        List<Jugador> ConsultarListaJugadores ( Jugador jugador );
 
     }
 }
