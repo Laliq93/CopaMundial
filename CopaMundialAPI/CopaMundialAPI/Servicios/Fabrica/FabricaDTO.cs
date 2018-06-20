@@ -8,19 +8,19 @@ namespace CopaMundialAPI.Servicios.Fabrica
 {
     public class FabricaDTO
     {
-        public static DTOApuesta CrearDtoApuesta()
+        public static DTOApuestaVOF CrearDtoApuestaVOF()
         {
-            return new DTOApuesta();
+            return new DTOApuestaVOF();
         }
 
-        public static DTO.Apuestas.DTOListarLogros CrearDtoListarLogros()
+        public static DTOApuestaCantidad CrearDtoApuestaCantidad()
         {
-            return new DTO.Apuestas.DTOListarLogros();
+            return new DTOApuestaCantidad();
         }
 
-        public static DTOApuestasUsuario CrearDtoApuestasUsuario()
+        public static DTOApuestaJugador CrearDtoApuestaJugador()
         {
-            return new DTOApuestasUsuario();
+            return new DTOApuestaJugador();
         }
     }
 }

@@ -6,12 +6,12 @@ using CopaMundialAPI.Comun.Entidades;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando
 {
-    public abstract class Comando<Type>
+    public abstract class Comando
     {
         public abstract void Ejecutar ( );
 
-        public abstract Type GetEntidad();
+        public abstract Entidad GetEntidad();
 
-        public abstract List<Type> GetEntidades();
+        public abstract List<Entidad> GetEntidades();
     }
 }
