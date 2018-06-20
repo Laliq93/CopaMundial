@@ -9,21 +9,24 @@ using CopaMundialAPI.Servicios.Fabrica;
 
 namespace CopaMundialAPI.Servicios.Traductores.Apuestas
 {
-    public class TraductorApuestaCantidad : TraductorGenerico<DTOApuestaCantidad, ApuestaCantidad>
+    public class TraductorApuestaCantidad : TraductorGenerico<DTOApuestaCantidad>
     {
-        public override DTOApuestaCantidad CrearDto(ApuestaCantidad entidad)
+        public override DTOApuestaCantidad CrearDto(Entidad entidad)
         {
             DTOApuestaCantidad dto = FabricaDTO.CrearDtoApuestaCantidad();
 
-            dto.IdLogro = entidad.Logro.Id;
-            dto.IdUsuario = entidad.Usuario.Id;
-            dto.ApuestaUsuario = entidad.Respuesta;
-            dto.Estado = entidad.Estado;
+            ApuestaCantidad apuesta = entidad as ApuestaCantidad;
+
+            dto.IdLogro = apuesta.Logro.Id;
+            dto.IdUsuario = apuesta.Usuario.Id;
+            dto.ApuestaUsuario = apuesta.Respuesta;
+            dto.Estado = apuesta.Estado;
+            dto.Logro = apuesta.Logro.Logro;
 
             return dto;
         }
 
-        public override ApuestaCantidad CrearEntidad(DTOApuestaCantidad dto)
+        public override Entidad CrearEntidad(DTOApuestaCantidad dto)
         {
             ApuestaCantidad entidad = FabricaEntidades.CrearApuestaCantidad();
 
@@ -35,7 +38,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
             return entidad;
         }
 
-        public override List<DTOApuestaCantidad> CrearListaDto(List<ApuestaCantidad> entidades)
+        public override List<DTOApuestaCantidad> CrearListaDto(List<Entidad> entidades)
         {
             List<DTOApuestaCantidad> dtos = new List<DTOApuestaCantidad>();
 
@@ -47,7 +50,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
             return dtos;
         }
 
-        public override List<ApuestaCantidad> CrearListaEntidades(List<DTOApuestaCantidad> dtos)
+        public override List<Entidad> CrearListaEntidades(List<DTOApuestaCantidad> dtos)
         {
             throw new NotImplementedException();
         }

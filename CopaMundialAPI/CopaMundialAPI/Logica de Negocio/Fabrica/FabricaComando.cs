@@ -19,5 +19,10 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoAgregarApuestaVOF(apuesta);
         }
 
+        public static ComandoObtenerApuestasVoFEnCurso CrearComandoObtenerApuestasVoFEnCurso(Entidad usuario)
+        {
+            return new ComandoObtenerApuestasVoFEnCurso(usuario);
+        }
+
     }
 }

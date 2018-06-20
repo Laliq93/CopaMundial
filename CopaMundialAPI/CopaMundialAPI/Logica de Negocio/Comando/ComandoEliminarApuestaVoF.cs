@@ -11,9 +11,9 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando
 {
     public class ComandoEliminarApuestaVoF : Comando
     {
-        private ApuestaVoF _apuesta;
+        private Entidad _apuesta;
 
-        public ComandoEliminarApuestaVoF(ApuestaVoF apuesta)
+        public ComandoEliminarApuestaVoF(Entidad apuesta)
         {
             _apuesta = apuesta;
         }

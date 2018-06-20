@@ -114,6 +114,7 @@
     <Compile Include="Comun\Entidades\LogroPartido.cs" />
     <Compile Include="Comun\Entidades\Partido.cs" />
     <Compile Include="Comun\Entidades\Usuario.cs" />
+    <Compile Include="Controllers\ApuestaController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Fuente de Datos\DAO\DAO.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaJugador.cs" />
@@ -139,7 +140,6 @@
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaJugador.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaCantidad.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaVOF.cs" />
-    <Compile Include="Servicios\DTO\Apuestas\DTOMostrarApuesta.cs" />
     <Compile Include="Servicios\Fabrica\FabricaDTO.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaCantidad.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaJugador.cs" />

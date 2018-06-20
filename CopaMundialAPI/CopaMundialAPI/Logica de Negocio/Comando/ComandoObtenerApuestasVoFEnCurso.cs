@@ -11,10 +11,10 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando
 {
     public class ComandoObtenerApuestasVoFEnCurso : Comando
     {
-        private Usuario _usuario;
+        private Entidad _usuario;
         private List<Entidad> _apuestas;
 
-        public ComandoObtenerApuestasVoFEnCurso(Usuario usuario)
+        public ComandoObtenerApuestasVoFEnCurso(Entidad usuario)
         {
             _usuario = usuario;
             _apuestas = new List<Entidad>();
