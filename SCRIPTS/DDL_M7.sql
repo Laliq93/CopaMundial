@@ -22,7 +22,7 @@ CREATE TABLE LOGRO_PARTIDO(
         lo_status bool,
         lo_fg_tipoLogro integer,
 	lo_resultado_pa integer,
-        lo_resultado_eq varchar(20),
+        lo_resultado_eq integer,
 	lo_resultado_ju integer,
 	constraint primaria_logros_partido PRIMARY KEY (lo_id)
 );
