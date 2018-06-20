@@ -17,12 +17,12 @@ CREATE TABLE TIPO_LOGRO(
 CREATE TABLE LOGRO_PARTIDO(
 	lo_id integer,
 	lo_nombre varchar(100) not null,
-    lo_cantidad integer check(lo_cantidad >=0),
+        lo_cantidad integer check(lo_cantidad >=0),
 	lo_minuto_juego integer check (lo_minuto_juego > 0 and lo_minuto_juego <=90),
-    lo_status bool,
-    lo_fg_tipoLogro integer,
+        lo_status bool,
+        lo_fg_tipoLogro integer,
 	lo_resultado_pa integer,
-    lo_resultado_eq integer,
+        lo_resultado_eq varchar(20),
 	lo_resultado_ju integer,
 	constraint primaria_logros_partido PRIMARY KEY (lo_id)
 );
@@ -31,8 +31,6 @@ CREATE TABLE LOGRO_PARTIDO(
 ALTER TABLE LOGRO_PARTIDO ADD CONSTRAINT lo_fg_tipoLogro foreign key (lo_fg_tipoLogro) references TIPO_LOGRO(ti_id);
 ALTER TABLE LOGRO_PARTIDO ADD CONSTRAINT lo_resultado_pa foreign key (lo_resultado_pa) references PARTIDO(pa_id);
 ALTER TABLE LOGRO_PARTIDO ADD CONSTRAINT lo_resultado_jug foreign key (lo_resultado_ju) references JUGADOR(ju_id);
-ALTER TABLE LOGRO_PARTIDO ADD CONSTRAINT lo_resultado_eq foreign key (lo_resultado_eq) references EQUIPO(eq_id);
-
 
 --================================================SECUENCIAS=====================================================
 CREATE SEQUENCE SEQ_TipoLogro
@@ -48,5 +46,8 @@ CREATE SEQUENCE SEQ_LogroPartido
   NO MINVALUE
   NO MAXVALUE
   CACHE 1;
+
+
+
 
 
