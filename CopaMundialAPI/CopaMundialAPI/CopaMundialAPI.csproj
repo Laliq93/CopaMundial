@@ -120,6 +120,7 @@
     <Compile Include="Fuente de Datos\DAO\DAOApuestaCantidad.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaVoF.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOCiudad.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOJugador.cs" />
     <Compile Include="Fuente de Datos\DAO\Interfaces\IDAO.cs" />
     <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOApuesta.cs" />
     <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOJugador.cs" />
