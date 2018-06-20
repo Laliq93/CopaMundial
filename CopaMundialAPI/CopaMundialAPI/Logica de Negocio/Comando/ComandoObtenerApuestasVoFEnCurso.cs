@@ -9,33 +9,33 @@ using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando
 {
-    public class ComandoObtenerApuestasVoFEnCurso : Comando<ApuestaVoF>
+    public class ComandoObtenerApuestasVoFEnCurso : Comando
     {
         private Usuario _usuario;
-        private List<ApuestaVoF> _apuestas;
+        private List<Entidad> _apuestas;
 
         public ComandoObtenerApuestasVoFEnCurso(Usuario usuario)
         {
             _usuario = usuario;
-            _apuestas = new List<ApuestaVoF>();
+            _apuestas = new List<Entidad>();
         }
 
         public override void Ejecutar()
         {
             DAOApuestaVoF dao = FabricaDAO.CrearDAOApuestaVoF();
 
-            _apuestas = dao.ObtenerApuestasEnCurso(_usuario).OfType<ApuestaVoF>().ToList();
+            _apuestas = dao.ObtenerApuestasEnCurso(_usuario);
             
         }
 
-        public override ApuestaVoF GetEntidad()
+        public override Entidad GetEntidad()
         {
             throw new NotImplementedException();
         }
 
-        public override List<ApuestaVoF> GetEntidades()
+        public override List<Entidad> GetEntidades()
         {
-            throw new NotImplementedException();
+            return _apuestas;
         }
     }
 }

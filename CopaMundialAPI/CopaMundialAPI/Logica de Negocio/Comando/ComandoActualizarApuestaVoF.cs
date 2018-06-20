@@ -9,7 +9,7 @@ using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando
 {
-    public class ComandoActualizarApuestaVoF : Comando<ApuestaVoF>
+    public class ComandoActualizarApuestaVoF : Comando
     {
         private ApuestaVoF _apuesta;
 
@@ -25,12 +25,12 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando
             dao.Actualizar(_apuesta);
         }
 
-        public override ApuestaVoF GetEntidad()
+        public override Entidad GetEntidad()
         {
             throw new NotImplementedException();
         }
 
-        public override List<ApuestaVoF> GetEntidades()
+        public override List<Entidad> GetEntidades()
         {
             throw new NotImplementedException();
         }

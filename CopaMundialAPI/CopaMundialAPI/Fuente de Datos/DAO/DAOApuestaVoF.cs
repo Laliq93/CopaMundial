@@ -50,9 +50,9 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             EjecutarQuery();
         }
 
-        public List<Apuesta> ObtenerApuestasEnCurso(Entidad usuario)
+        public List<Entidad> ObtenerApuestasEnCurso(Usuario usuario)
         {
-            List<Apuesta> apuestasEnCurso = new List<Apuesta>();
+            List<Entidad> apuestasEnCurso = new List<Entidad>();
 
             StoredProcedure("obtenerapuestasvofencurso(@idusuario)");
 
@@ -79,7 +79,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             return apuestasEnCurso;
         }
 
-        public List<Apuesta> ObtenerApuestasFinalizadas(Entidad usuario)
+        public List<Entidad> ObtenerApuestasFinalizadas(Usuario usuario)
         {
             throw new NotImplementedException();
         }

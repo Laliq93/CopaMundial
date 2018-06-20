@@ -8,7 +8,7 @@ using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando
 {
-    public class ComandoAgregarCiudad : Comando<Ciudad>
+    public class ComandoAgregarCiudad : Comando
     {
         private Ciudad _ciudad;
 
@@ -24,12 +24,12 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando
 
         }
 
-        public override Ciudad GetEntidad()
+        public override Entidad GetEntidad()
         {
             throw new NotImplementedException();
         }
 
-        public override List<Ciudad> GetEntidades()
+        public override List<Entidad> GetEntidades()
         {
             throw new NotImplementedException();
         }

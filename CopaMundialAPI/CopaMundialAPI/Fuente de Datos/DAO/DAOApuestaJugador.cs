@@ -49,12 +49,12 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             EjecutarQuery();
         }
 
-        public List<Apuesta> ObtenerApuestasEnCurso(Entidad usuario)
+        public List<Entidad> ObtenerApuestasEnCurso(Usuario usuario)
         {
             throw new NotImplementedException();
         }
 
-        public List<Apuesta> ObtenerApuestasFinalizadas(Entidad usuario)
+        public List<Entidad> ObtenerApuestasFinalizadas(Usuario usuario)
         {
             throw new NotImplementedException();
         }
