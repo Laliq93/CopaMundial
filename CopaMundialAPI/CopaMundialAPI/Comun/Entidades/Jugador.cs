@@ -30,8 +30,8 @@ namespace CopaMundialAPI.Comun.Entidades
         public double Altura { get => _altura; set => _altura = value; }
         public string Posicion { get => _posicion; set => _posicion = value; }
         public int Numero { get => _numero; set => _numero = value; }
-        public boolean Capitan { get => _capitan; set => _capitan = value; }
-        public boolean Activo { get => _activo; set => _activo = value; }
+        public Boolean Capitan { get => _capitan; set => _capitan = value; }
+        public Boolean Activo { get => _activo; set => _activo = value; }
         public string Equipo { get => _equipo; set => _equipo = value; }
     }
 }
