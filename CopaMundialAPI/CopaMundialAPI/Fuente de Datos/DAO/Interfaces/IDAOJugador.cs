@@ -44,7 +44,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
         /// </summary>
         /// <param name="jugador">jugador de tipo jugador el cual se desea consultar.</param>
         /// <returns>Lista de jugadores referenciados a la consulta</returns>
-        List<Ciudad> ConsultarListaJugadores ( Jugador jugador );
+        List<Jugador> ConsultarListaJugadores ( Jugador jugador );
 
     }
 }
