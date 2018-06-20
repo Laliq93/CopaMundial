@@ -130,5 +130,50 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             return jugadores;
         }
+
+        public void AgregarJugador(Jugador jugador)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ModificarJugador(Jugador jugador)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ActivarJugador(Jugador jugador)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DesactivarJugador(Jugador jugador)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Jugador ObtenerJugadores(Jugador jugador)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Agregar(Entidad entidad)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Actualizar(Entidad entidad)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Eliminar(Entidad entidad)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Entidad> ObtenerTodos()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

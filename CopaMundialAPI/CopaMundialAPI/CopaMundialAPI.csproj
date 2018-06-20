@@ -129,12 +129,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logica de Negocio\Comando\ComandoActivarJugador.cs" />
     <Compile Include="Logica de Negocio\Comando\Comando.cs" />
+    <Compile Include="Logica de Negocio\Comando\ComandoAgregarJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\ComandoDesactivarJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\ComandoModificarJugador.cs" />
     <Compile Include="Logica de Negocio\Comando\ComandoObtenerApuestasVoFEnCurso.cs" />
     <Compile Include="Logica de Negocio\Comando\ComandoEliminarApuestaVoF.cs" />
     <Compile Include="Logica de Negocio\Comando\ComandoActualizarApuestaVoF.cs" />
     <Compile Include="Logica de Negocio\Comando\ComandoAgregarApuestaVOF.cs" />
     <Compile Include="Logica de Negocio\Comando\ComandoAgregarCiudad.cs" />
+    <Compile Include="Logica de Negocio\Comando\ComandoObtenerJugadores.cs" />
     <Compile Include="Logica de Negocio\Fabrica\FabricaComando.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaJugador.cs" />
