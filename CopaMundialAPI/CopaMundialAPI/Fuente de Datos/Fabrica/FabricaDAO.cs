@@ -48,5 +48,14 @@ namespace CopaMundialAPI.Fuente_de_Datos.Fabrica
             return new DAOApuestaCantidad();
         }
 
+        /// <summary>
+        /// Devuelve una nueva instancia de DAOJugador
+        /// </summary>
+        /// <returns>DAOJugador</returns>
+        public static DAOJugador CrearDAOJugador()
+        {
+            return new DAOJugador();
+        }
+
     }
 }
