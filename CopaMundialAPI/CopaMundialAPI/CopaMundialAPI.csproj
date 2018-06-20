@@ -161,6 +161,8 @@
     <Folder Include="Logica de Negocio\Compuesto\" />
     <Folder Include="Logica de Negocio\Singleton\" />
     <Folder Include="Models\" />
+    <Folder Include="Servicios\DTO\Jugadores\" />
+    <Folder Include="Servicios\Traductores\Jugadores\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
