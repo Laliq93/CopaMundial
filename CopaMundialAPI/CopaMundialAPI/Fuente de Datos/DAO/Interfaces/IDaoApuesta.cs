@@ -9,6 +9,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
     public interface IDAOApuesta : IDAO
     {
 
-        List<Apuesta> ObtenerApuestasUsuario(Entidad usuario);
+        List<Apuesta> ObtenerApuestasEnCurso(Entidad usuario);
+
+        List<Apuesta> ObtenerApuestasFinalizadas(Entidad usuario);
     }
 }

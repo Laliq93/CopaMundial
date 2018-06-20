@@ -42,7 +42,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         {
             ApuestaVoF apuesta = entidad as ApuestaVoF;
 
-            StoredProcedure("eliminarapuestavof(@idlogro, @idusuario)");
+            StoredProcedure("eliminarapuesta(@idlogro, @idusuario)");
 
             AgregarParametro("idlogro", apuesta.Logro.Id);
             AgregarParametro("idusuario", apuesta.Usuario.Id);
@@ -50,7 +50,36 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             EjecutarQuery();
         }
 
-        public List<Apuesta> ObtenerApuestasUsuario(Entidad usuario)
+        public List<Apuesta> ObtenerApuestasEnCurso(Entidad usuario)
+        {
+            List<Apuesta> apuestasEnCurso = new List<Apuesta>();
+
+            StoredProcedure("obtenerapuestasvofencurso(@idusuario)");
+
+            AgregarParametro("idusuario", usuario.Id);
+
+            EjecutarReader();
+
+            for(int i = 0; i < cantidadRegistros; i++)
+            {
+                ApuestaVoF apuesta = FabricaEntidades.CrearApuestaVoF();
+
+                apuesta.Usuario.Id = usuario.Id;
+                apuesta.Logro.Id = GetInt(i, 0);
+                apuesta.Logro.Logro = GetString(i, 1);
+                apuesta.Respuesta = GetBool(i, 2);
+                apuesta.Estado = GetString(i, 3);
+                apuesta.Fecha = GetString(i, 4);
+                //apuesta.Logro.Partido = GetString(i, 5);
+
+                apuestasEnCurso.Add(apuesta);
+     
+            }
+
+            return apuestasEnCurso;
+        }
+
+        public List<Apuesta> ObtenerApuestasFinalizadas(Entidad usuario)
         {
             throw new NotImplementedException();
         }
