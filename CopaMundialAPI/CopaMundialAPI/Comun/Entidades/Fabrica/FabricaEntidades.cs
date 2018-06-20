@@ -36,5 +36,10 @@ namespace CopaMundialAPI.Comun.Entidades.Fabrica
         {
             return new ApuestaVoF();
         }
+
+        public static Jugador CrearJugador()
+        {
+            return new Jugador();
+        }
     }
 }

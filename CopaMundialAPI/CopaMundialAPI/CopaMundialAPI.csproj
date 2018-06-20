@@ -121,6 +121,7 @@
     <Compile Include="Fuente de Datos\DAO\DAOCiudad.cs" />
     <Compile Include="Fuente de Datos\DAO\Interfaces\IDAO.cs" />
     <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOApuesta.cs" />
+    <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOJugador.cs" />
     <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOCiudad.cs" />
     <Compile Include="Fuente de Datos\Fabrica\FabricaDAO.cs" />
     <Compile Include="Global.asax.cs">
