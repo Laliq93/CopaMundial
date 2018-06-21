@@ -8,20 +8,19 @@ using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando
 {
-    public class ComandoAgregarCiudad : Comando
+    public class ComandoDesactivarJugador : Comando
     {
-        private Ciudad _ciudad;
+        private Jugador _jugador;
 
-        public ComandoAgregarCiudad(Ciudad ciudad)
+        public ComandoDesactivarJugador(Jugador jugador)
         {
-            this._ciudad = ciudad;
+            _jugador = jugador;
         }
 
         public override void Ejecutar()
         {
-            DAOCiudad dao = FabricaDAO.CrearDAOCiudad();
-            dao.InsertarCiudad(_ciudad);
-
+            DAOJugador dao = FabricaDAO.CrearDAOJugador();
+            dao.DesactivarJugador(_jugador);
         }
 
         public override Entidad GetEntidad()

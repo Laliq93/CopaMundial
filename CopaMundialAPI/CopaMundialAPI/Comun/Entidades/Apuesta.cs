@@ -5,22 +5,16 @@ using System.Web;
 
 namespace CopaMundialAPI.Comun.Entidades
 {
-    public class Apuesta : Entidad
+    public abstract class Apuesta : Entidad
     {
         private Usuario _usuario;
         private LogroPartido _logro;
-        private DateTime _fecha;
-        private string _resultado;
-
-        public Apuesta()
-        {
-
-        }
-
+        private string _fecha;
+        private string _estado;
 
         public Usuario Usuario { get => _usuario; set => _usuario = value; }
         public LogroPartido Logro { get => _logro; set => _logro = value; }
-        public DateTime Fecha { get => _fecha; set => _fecha = value; }
-        public string Resultado { get => _resultado; set => _resultado = value; }
+        public string Fecha { get => _fecha; set => _fecha = value; }
+        public string Estado { get => _estado; set => _estado = value; }
     }
 }

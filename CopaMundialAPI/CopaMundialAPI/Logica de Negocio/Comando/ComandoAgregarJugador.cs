@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CopaMundialAPI.Comun.Entidades;
-using CopaMundialAPI.Fuente_de_Datos.DAO;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
+using CopaMundialAPI.Fuente_de_Datos.DAO;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando
 {
-    public class ComandoAgregarCiudad : Comando
+    public class ComandoAgregarJugador : Comando
     {
-        private Ciudad _ciudad;
+        private Jugador _jugador;
 
-        public ComandoAgregarCiudad(Ciudad ciudad)
+        public ComandoAgregarJugador(Jugador jugador)
         {
-            this._ciudad = ciudad;
+            _jugador = jugador;
         }
 
         public override void Ejecutar()
         {
-            DAOCiudad dao = FabricaDAO.CrearDAOCiudad();
-            dao.InsertarCiudad(_ciudad);
-
+            DAOJugador dao = FabricaDAO.CrearDAOJugador();
+            dao.AgregarJugador(_jugador);
+            
         }
 
         public override Entidad GetEntidad()
