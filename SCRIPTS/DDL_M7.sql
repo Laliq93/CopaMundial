@@ -24,6 +24,7 @@ CREATE TABLE LOGRO_PARTIDO(
 	lo_resultado_pa integer,
         lo_resultado_eq integer,
 	lo_resultado_ju integer,
+	lo_resultado_vf bool,
 	constraint primaria_logros_partido PRIMARY KEY (lo_id)
 );
 --================================================ALTER TABLE====================================================
