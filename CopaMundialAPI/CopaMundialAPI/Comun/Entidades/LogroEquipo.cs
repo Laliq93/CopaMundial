@@ -11,11 +11,11 @@ namespace CopaMundialAPI.Comun.Entidades
     /// </summary>
     public class LogroEquipo: LogroPartido
     {
-        private string _equipo;//equipo que realiza el logro
+        private Equipo _equipo;//equipo que realiza el logro
 
         /// <summary>
         /// Get y Set del nombre del equipo que realizo el logro
         /// </summary>
-        public string Equipo { get => _equipo; set => _equipo = value; }
+        public Equipo Equipo { get => _equipo; set => _equipo = value; }
     }
 }
