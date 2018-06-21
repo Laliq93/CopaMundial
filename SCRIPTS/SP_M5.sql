@@ -1,6 +1,6 @@
 -- Agrega al jugador en la base de datos
 
-CREATE OR REPLACE FUNCTION AgregarJugador
+CREATE OR REPLACE FUNCTION insertarJugador
 (_nombre varchar,
  _apellido varchar,
  _fechaNacimiento date,
@@ -16,7 +16,7 @@ BEGIN
     INSERT INTO jugador
     VALUES
         (nextval('seq_Jugador'), _nombre, _apellido, _fechaNacimiento, _lugarNacimiento, _peso, _altura, 
-            _posicion, _numero, false, true, _equipo);
+            _posicion, _numero,  _equipo, false, true);
     RETURN currval('seq_Jugador');
 END;
 $$ LANGUAGE plpgsql;
