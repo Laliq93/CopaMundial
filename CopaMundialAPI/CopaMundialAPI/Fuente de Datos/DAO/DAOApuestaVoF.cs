@@ -60,7 +60,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             {
                 ApuestaVoF apuesta = FabricaEntidades.CrearApuestaVoF();
 
-                LogroPartido logro = new LogroPartido();
+                LogroPartido logro = FabricaEntidades.CrearLogroVoF();
+
 
                 logro.Id = 10;
                 logro.Logro = "¿Argentina ganará sobre brasil?";
