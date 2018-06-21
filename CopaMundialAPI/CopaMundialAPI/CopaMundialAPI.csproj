@@ -109,6 +109,8 @@
     <Compile Include="Comun\Entidades\ApuestaVoF.cs" />
     <Compile Include="Comun\Entidades\Ciudad.cs" />
     <Compile Include="Comun\Entidades\Entidad.cs" />
+    <Compile Include="Comun\Entidades\Equipo.cs" />
+    <Compile Include="Comun\Entidades\Equipos.cs" />
     <Compile Include="Comun\Entidades\Fabrica\FabricaEntidades.cs" />
     <Compile Include="Comun\Entidades\Jugador.cs" />
     <Compile Include="Comun\Entidades\LogroCantidad.cs" />
