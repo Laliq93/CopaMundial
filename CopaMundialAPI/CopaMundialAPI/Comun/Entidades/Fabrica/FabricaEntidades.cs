@@ -41,5 +41,26 @@ namespace CopaMundialAPI.Comun.Entidades.Fabrica
         {
             return new Jugador();
         }
+
+        public static LogroCantidad CrearLogroCantidad()
+        {
+            return new LogroCantidad();
+        }
+
+        public static LogroEquipo CrearLogroEquipo()
+        {
+            return new LogroEquipo();
+        }
+
+        public static LogroJugador CrearLogroJugador()
+        {
+            return new LogroJugador();
+        }
+
+        public static LogroVoF CrearLogroVoF()
+        {
+            return new LogroVoF();
+        }
     }
+
 }
