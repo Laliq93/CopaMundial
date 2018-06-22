@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CopaMundialAPI.Servicios.DTO.Apuestas;
+using CopaMundialAPI.Servicios.DTO.Ciudades;
+
 
 namespace CopaMundialAPI.Servicios.Fabrica
 {
@@ -21,6 +23,11 @@ namespace CopaMundialAPI.Servicios.Fabrica
         public static DTOApuestaJugador CrearDtoApuestaJugador()
         {
             return new DTOApuestaJugador();
+        }
+
+        public static DTOCiudad CrearDTOCiudad (string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
+        {
+            return new DTOCiudad (nombre,habitantes,descripcion,nombreIngles,descripcionIngles);
         }
     }
 }
