@@ -144,7 +144,7 @@
     <Compile Include="Logica de Negocio\Comando\ComandoEliminarApuestaVoF.cs" />
     <Compile Include="Logica de Negocio\Comando\ComandoActualizarApuestaVoF.cs" />
     <Compile Include="Logica de Negocio\Comando\ComandoAgregarApuestaVOF.cs" />
-    <Compile Include="Logica de Negocio\Comando\ComandoAgregarCiudad.cs" />
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoAgregarCiudad.cs" />
     <Compile Include="Logica de Negocio\Comando\ComandoObtenerJugadores.cs" />
     <Compile Include="Logica de Negocio\Fabrica\FabricaComando.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -152,10 +152,13 @@
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaCantidad.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaVOF.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOMostrarApuesta.cs" />
+    <Compile Include="Servicios\DTO\Ciudades\DTOCiudad.cs" />
+    <Compile Include="Servicios\DTO\Ciudades\DTOCiudadID.cs" />
     <Compile Include="Servicios\Fabrica\FabricaDTO.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaCantidad.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaJugador.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaVOF.cs" />
+    <Compile Include="Servicios\Traductores\TraductorCiudad.cs" />
     <Compile Include="Servicios\Traductores\TraductorGenerico.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +173,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Comun\Excepciones\" />
+    <Folder Include="Logica de Negocio\Comando\Apuestas\" />
+    <Folder Include="Logica de Negocio\Comando\Jugadores\" />
+    <Folder Include="Logica de Negocio\Comando\Logros\" />
+    <Folder Include="Logica de Negocio\Comando\Partidos\" />
+    <Folder Include="Logica de Negocio\Comando\Usuarios\" />
     <Folder Include="Logica de Negocio\Compuesto\" />
     <Folder Include="Logica de Negocio\Singleton\" />
     <Folder Include="Models\" />
