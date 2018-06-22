@@ -31,7 +31,11 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// </summary>
         private void CrearStringConexion()
         {
-            _cadena = ConfigurationManager.ConnectionStrings["postgrestring"].ConnectionString;
+			_cadena = "Host = localhost; Port = 5432; " +
+				"Username = admin_copamundial; " +
+				"Password = copamundial; " +
+				"Database = copamundial";
+			//_cadena = ConfigurationManager.ConnectionStrings["postgrestring"].ConnectionString;
         }
 
         private bool IsConnected()

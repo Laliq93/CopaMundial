@@ -23,11 +23,12 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             Conectar();
 
-            StoredProcedure("insertarciudad(@_nombre,@_capacidad,@_descripcion)");
+            StoredProcedure("insertarciudad(@ci_nombre,@ci_poblacion,@_descripcion,@_imagen)");
 
             AgregarParametro("_nombre", ciudad.Nombre);
             AgregarParametro("_capacidad", ciudad.Habitantes);
             AgregarParametro("_descripcion", ciudad.Descripcion);
+			AgregarParametro("_imagen", ciudad.Imagen);
 
             EjecutarQuery();
         }
@@ -59,11 +60,13 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         public void InsertarCiudad(Ciudad ciudad)
         {
             Conectar();
-            StoredProcedure("insertarciudad(@_nombre,@_capacidad,@_descripcion)");
-            AgregarParametro("_nombre", ciudad.Nombre);
-            AgregarParametro("_capacidad", ciudad.Habitantes);
-            AgregarParametro("_descripcion", ciudad.Descripcion);
-            EjecutarQuery();
+			StoredProcedure("insertarciudad(@ci_nombre,@ci_poblacion,@_descripcion,@_imagen)");
+
+			AgregarParametro("ci_nombre", ciudad.Nombre);
+			AgregarParametro("ci_poblacion", ciudad.Habitantes);
+			AgregarParametro("_descripcion", ciudad.Descripcion);
+			AgregarParametro("_imagen", ciudad.Imagen);
+			EjecutarQuery();
         }
 
         public void ModificarCiudad(Ciudad ciudad)
