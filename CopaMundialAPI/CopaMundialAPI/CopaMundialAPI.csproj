@@ -156,12 +156,14 @@
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaVOF.cs" />
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudad.cs" />
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudadID.cs" />
+    <Compile Include="Servicios\DTO\Partidos\DTOListarProximosPartidos.cs" />
     <Compile Include="Servicios\Fabrica\FabricaDTO.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaCantidad.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaJugador.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaVOF.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaEquipo.cs" />
     <Compile Include="Servicios\Traductores\Fabrica\FabricaTraductor.cs" />
+    <Compile Include="Servicios\Traductores\Partidos\TraductorListarProximosPartidos.cs" />
     <Compile Include="Servicios\Traductores\TraductorGenerico.cs" />
   </ItemGroup>
   <ItemGroup>
