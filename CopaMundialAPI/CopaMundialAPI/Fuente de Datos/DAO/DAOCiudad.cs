@@ -12,38 +12,41 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
     /// </summary>
     public class DAOCiudad : DAO, IDAOCiudad
     {
-        public Ciudad ConsultarCiudadPorId(Ciudad ciudad)
+        public void Actualizar ( Entidad entidad )
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException ( );
         }
 
-        public List<Ciudad> ConsultarListaCiudades(Ciudad ciudad)
+        public void Agregar ( Entidad entidad )
         {
-            throw new NotImplementedException();
+
+            Ciudad ciudad = entidad as Ciudad;
+
+            Conectar ( );
+
+            StoredProcedure ( "insertarciudad(@_nombre,@_capacidad,@_descripcion)" );
+
+            AgregarParametro ( "_nombre", ciudad.Nombre );
+            AgregarParametro ( "_capacidad", ciudad.Habitantes );
+            AgregarParametro ( "_descripcion", ciudad.Descripcion );
+
+            EjecutarQuery ( );
         }
 
-        public void EliminarCiudad(Ciudad ciudad)
+        public Ciudad ConsultarCiudadPorId ( Ciudad ciudad )
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException ( );
         }
 
-        /// <summary>
-        /// Metodo InsertarCiudad , inserta objeto de tipo Ciudad en la base de datos
-        /// </summary>
-        /// <param name="objeto">Ciudad que se desea insertar</param>
-        public void InsertarCiudad(Ciudad ciudad)
+        public void Eliminar ( Entidad entidad )
         {
-            Conectar();
-            StoredProcedure("insertarciudad(@_nombre,@_capacidad,@_descripcion)");
-            AgregarParametro("_nombre", ciudad.Nombre);
-            AgregarParametro("_capacidad", ciudad.Habitantes);
-            AgregarParametro("_descripcion", ciudad.Descripcion);
-            EjecutarQuery();
+            throw new NotImplementedException ( );
         }
 
-        public void ModificarCiudad(Ciudad ciudad)
+        public List<Entidad> ObtenerTodos ( )
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException ( );
         }
+
     }
 }
