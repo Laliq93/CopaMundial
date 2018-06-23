@@ -6,30 +6,31 @@ using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Fuente_de_Datos.DAO;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
-namespace CopaMundialAPI.Logica_de_Negocio.Comando
-{
-    public class ComandoAgregarCiudad : Comando<Ciudad>
-    {
-        private Ciudad _ciudad;
 
-        public ComandoAgregarCiudad(Ciudad ciudad)
+namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
+{
+    public class ComandoEliminarApuestaVoF : Comando
+    {
+        private Entidad _apuesta;
+
+        public ComandoEliminarApuestaVoF(Entidad apuesta)
         {
-            this._ciudad = ciudad;
+            _apuesta = apuesta;
         }
 
         public override void Ejecutar()
         {
-            DAOCiudad dao = FabricaDAO.CrearDAOCiudad();
-            dao.InsertarCiudad(_ciudad);
+            DAOApuestaVoF dao = FabricaDAO.CrearDAOApuestaVoF();
 
+            dao.Eliminar(_apuesta);
         }
 
-        public override Ciudad GetEntidad()
+        public override Entidad GetEntidad()
         {
             throw new NotImplementedException();
         }
 
-        public override List<Ciudad> GetEntidades()
+        public override List<Entidad> GetEntidades()
         {
             throw new NotImplementedException();
         }
