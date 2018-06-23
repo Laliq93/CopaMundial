@@ -7,13 +7,13 @@ using CopaMundialAPI.Fuente_de_Datos.DAO;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 
-namespace CopaMundialAPI.Logica_de_Negocio.Comando
+namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 {
     public class ComandoActualizarApuestaVoF : Comando
     {
-        private ApuestaVoF _apuesta;
+        private Entidad _apuesta;
 
-        public ComandoActualizarApuestaVoF(ApuestaVoF apuesta)
+        public ComandoActualizarApuestaVoF(Entidad apuesta)
         {
             _apuesta = apuesta;
         }
