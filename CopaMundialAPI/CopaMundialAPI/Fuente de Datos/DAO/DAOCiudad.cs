@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CopaMundialAPI.Comun.Entidades;
+using CopaMundialAPI.Comun.Entidades.Fabrica;
 using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
 
 namespace CopaMundialAPI.Fuente_de_Datos.DAO
@@ -12,13 +13,14 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
     /// </summary>
     public class DAOCiudad : DAO, IDAOCiudad
     {
-        public void Actualizar(Entidad entidad)
+        public void Actualizar ( Entidad entidad )
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException ( );
         }
 
-        public void Agregar(Entidad entidad)
+        public void Agregar ( Entidad entidad )
         {
+
             Ciudad ciudad = entidad as Ciudad;
 
             Conectar();
@@ -30,53 +32,54 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             AgregarParametro("_descripcion", ciudad.Descripcion);
 			AgregarParametro("_imagen", ciudad.Imagen);
 
-            EjecutarQuery();
+
+            EjecutarQuery ( );
         }
 
-        public Ciudad ConsultarCiudadPorId(Ciudad ciudad)
+        public Ciudad ConsultarCiudadPorId ( Ciudad ciudad )
         {
-            throw new NotImplementedException();
-        }
+			
+			Conectar();
+			StoredProcedure("obtenerciudad(@id)");
+			AgregarParametro("id", ciudad.Id);
+			EjecutarReader();
+			for (int i = 0; i < cantidadRegistros; i++)
+			{
+				ciudad = FabricaEntidades.CrearCiudad(GetString(i,0),GetInt(i,1),GetString(i,2),GetString(i,3),GetString(i,4),GetByte(i,5));
+			}
+			return ciudad;
+			/*for (int i = 0; i < cantidadRegistros; i++)
+			{
+				Jugador jugador = FabricaEntidades.CrearJugador();
 
-        public List<Ciudad> ConsultarListaCiudades(Ciudad ciudad)
+				jugador.Id = GetInt(i, 0);
+				jugador.Nombre = GetString(i, 1);
+				jugador.Apellido = GetString(i, 2);
+				jugador.FechaNacimiento = GetString(i, 3);
+				jugador.LugarNacimiento = GetString(i, 4);
+				jugador.Peso = GetDouble(i, 5);
+				jugador.Altura = GetDouble(i, 6);
+				jugador.Posicion = GetString(i, 7);
+				jugador.Numero = GetInt(i, 8);
+				jugador.Equipo = GetString(i, 9);
+				jugador.Capitan = GetBool(i, 10);
+
+				jugadores.Add(jugador);
+
+			}*/
+		}
+
+        public void Eliminar ( Entidad entidad )
         {
-            throw new NotImplementedException();
+
+            throw new NotImplementedException ( );
+
         }
 
-        public void Eliminar(Entidad entidad)
+        public List<Entidad> ObtenerTodos ( )
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException ( );
         }
 
-        public void EliminarCiudad(Ciudad ciudad)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Metodo InsertarCiudad , inserta objeto de tipo Ciudad en la base de datos
-        /// </summary>
-        /// <param name="objeto">Ciudad que se desea insertar</param>
-        public void InsertarCiudad(Ciudad ciudad)
-        {
-            Conectar();
-			StoredProcedure("insertarciudad(@ci_nombre,@ci_poblacion,@_descripcion,@_imagen)");
-
-			AgregarParametro("ci_nombre", ciudad.Nombre);
-			AgregarParametro("ci_poblacion", ciudad.Habitantes);
-			AgregarParametro("_descripcion", ciudad.Descripcion);
-			AgregarParametro("_imagen", ciudad.Imagen);
-			EjecutarQuery();
-        }
-
-        public void ModificarCiudad(Ciudad ciudad)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Entidad> ObtenerTodos()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -12,20 +12,49 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
     {
         public void Actualizar(Entidad entidad)
         {
-            throw new NotImplementedException();
+            ApuestaJugador apuesta = entidad as ApuestaJugador;
+
+            StoredProcedure("editarapuestajugador(@idlogro, @idusuario, @apuesta)");
+
+            AgregarParametro("idlogro", apuesta.Logro.Id);
+            AgregarParametro("idusuario", apuesta.Usuario.Id);
+            AgregarParametro("apuesta", apuesta.Respuesta.Id);
+
+            EjecutarQuery();
         }
 
         public void Agregar(Entidad entidad)
         {
-            throw new NotImplementedException();
+            ApuestaJugador apuesta = entidad as ApuestaJugador;
+
+            StoredProcedure("crearapuestajugador(@idlogro, @idusuario, @fecha, @apuesta)");
+
+            AgregarParametro("idlogro", apuesta.Logro.Id);
+            AgregarParametro("idusuario", apuesta.Usuario.Id);
+            AgregarParametro("fecha", apuesta.Fecha);
+            AgregarParametro("apuesta", apuesta.Respuesta.Id);
+
+            EjecutarQuery();
         }
 
         public void Eliminar(Entidad entidad)
         {
+            ApuestaJugador apuesta = entidad as ApuestaJugador;
+
+            StoredProcedure("eliminarapuesta(@idlogro, @idusuario)");
+
+            AgregarParametro("idlogro", apuesta.Logro.Id);
+            AgregarParametro("idusuario", apuesta.Usuario.Id);
+
+            EjecutarQuery();
+        }
+
+        public List<Entidad> ObtenerApuestasEnCurso(Usuario usuario)
+        {
             throw new NotImplementedException();
         }
 
-        public List<Apuesta> ObtenerApuestasUsuario(Entidad usuario)
+        public List<Entidad> ObtenerApuestasFinalizadas(Usuario usuario)
         {
             throw new NotImplementedException();
         }

@@ -353,6 +353,31 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 throw new Exception();
             }
         }
+		public byte[] GetByte(int fila, int columna)
+		{
+			try
+			{
+				byte[] dateItem = (byte[])_dataTable.Rows[fila][columna];
 
-    }
+				return dateItem;
+			}
+			catch (IndexOutOfRangeException)
+			{
+				throw new IndexOutOfRangeException();
+			}
+			catch (FormatException)
+			{
+				throw new FormatException();
+			}
+			catch (NullReferenceException)
+			{
+				throw new NullReferenceException();
+			}
+			catch (Exception)
+			{
+				throw new Exception();
+			}
+		}
+
+	}
 }

@@ -2,5 +2,7 @@
 /package.json
 \.DS_Store
 *.lnk
-
+
+*Web.config
+*app.config
 WebAPI/\.vs/

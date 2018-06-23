@@ -8,28 +8,28 @@ using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando
 {
-    public class ComandoAgregarCiudad : Comando<Ciudad>
+    public class ComandoActivarJugador : Comando
     {
-        private Ciudad _ciudad;
 
-        public ComandoAgregarCiudad(Ciudad ciudad)
+        private Jugador _jugador;
+
+        public ComandoActivarJugador(Jugador jugador)
         {
-            this._ciudad = ciudad;
+            _jugador = jugador;
         }
 
         public override void Ejecutar()
         {
-            DAOCiudad dao = FabricaDAO.CrearDAOCiudad();
-            dao.InsertarCiudad(_ciudad);
-
+            DAOJugador dao = FabricaDAO.CrearDAOJugador();
+            dao.ActivarJugador(_jugador);
         }
 
-        public override Ciudad GetEntidad()
+        public override Entidad GetEntidad()
         {
             throw new NotImplementedException();
         }
 
-        public override List<Ciudad> GetEntidades()
+        public override List<Entidad> GetEntidades()
         {
             throw new NotImplementedException();
         }
