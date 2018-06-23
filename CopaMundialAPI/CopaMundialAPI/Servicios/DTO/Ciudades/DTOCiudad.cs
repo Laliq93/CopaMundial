@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CopaMundialAPI.Comun.Entidades
+namespace CopaMundialAPI.Servicios.DTO.Ciudades
 {
     /// <summary>
-    /// Clase de la entidad Ciudad
+    /// Clase que representa el DTOCiudad
     /// </summary>
-    public class Ciudad : Entidad
+    public class DTOCiudad
     {
+        private int _id;//Id de la ciudad
         private string _nombre;//Nombre de la ciudad en español
         private int _habitantes;//Numero de habitantes de la ciudad
         private string _descripcion;//Descripcion de la ciudad en español
@@ -17,14 +18,14 @@ namespace CopaMundialAPI.Comun.Entidades
         private string _descripcionIngles;//Descripcion de la ciudad en ingles
 
         /// <summary>
-        /// Constructor de la entidad Ciudad
+        /// Constructor de la entidad DTOCiudad
         /// </summary>
         /// <param name="nombre">Nombre de la ciudad en español</param>
         /// <param name="habitantes">Numero de habitantes de la ciudad</param>
         /// <param name="descripcion">Descripcion de la ciudad en español</param>
         /// <param name="nombreIngles">Nombre de la ciudad en ingles</param>
         /// <param name="descripcionIngles">Descripcion de la ciudad en ingles</param>
-        public Ciudad ( string nombre, int habitantes, string descripcion,string nombreIngles, string descripcionIngles )
+        public DTOCiudad ( string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles )
         {
             Nombre = nombre;
             Habitantes = habitantes;
@@ -53,5 +54,9 @@ namespace CopaMundialAPI.Comun.Entidades
         /// Getters y Setters del atributo _descripcionIngles
         /// </summary>
         public string DescripcionIngles { get => _descripcionIngles; set => _descripcionIngles = value; }
+        /// <summary>
+        /// Getters y Setters del atributo _id
+        /// </summary>
+        public int Id { get => _id; set => _id = value; }
     }
 }

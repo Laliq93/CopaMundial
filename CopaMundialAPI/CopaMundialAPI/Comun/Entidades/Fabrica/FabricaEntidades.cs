@@ -16,10 +16,12 @@ namespace CopaMundialAPI.Comun.Entidades.Fabrica
         /// <param name="nombre">Nombre de la ciudad a crear</param>
         /// <param name="habitantes">Cantidad de habitantes</param>
         /// <param name="descripcion">Descripcion de la ciudad</param>
+        /// <param name="nombreIngles">Descripcion de la ciudad</param>
+        /// <param name="descripcionIngles">Descripcion de la ciudad</param>
         /// <returns></returns>
-        public static Ciudad CrearCiudad ( string nombre, int habitantes , string descripcion )
+        public static Ciudad CrearCiudad ( string nombre, int habitantes , string descripcion , string nombreIngles , string descripcionIngles)
         {
-            return new Ciudad (nombre,habitantes,descripcion);
+            return new Ciudad (nombre,habitantes,descripcion,nombreIngles,descripcionIngles);
         }
 
         public static ApuestaCantidad CrearApuestaCantidad()
