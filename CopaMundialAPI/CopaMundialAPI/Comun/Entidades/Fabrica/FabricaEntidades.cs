@@ -63,6 +63,11 @@ namespace CopaMundialAPI.Comun.Entidades.Fabrica
         {
             return new LogroVoF();
         }
+
+        public static ApuestaEquipo CrearApuestaEquipo()
+        {
+            return new ApuestaEquipo();
+        }
     }
 
 }

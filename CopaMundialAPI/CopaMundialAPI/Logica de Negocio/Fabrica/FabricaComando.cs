@@ -1,6 +1,7 @@
 ﻿using CopaMundialAPI.Comun.Entidades;
-using CopaMundialAPI.Logica_de_Negocio.Comando;
+using CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Ciudades;
+using CopaMundialAPI.Logica_de_Negocio.Comando;
 using System;
 using System.Collections.Generic;
 using System.Linq;
