@@ -9,27 +9,38 @@ using CopaMundialAPI.Servicios.Fabrica;
 
 namespace CopaMundialAPI.Servicios.Traductores.Apuestas
 {
-    public class TraductorApuestaVOF : TraductorGenerico<DTOApuestaVOF, ApuestaVoF>
+    public class TraductorApuestaVOF : TraductorGenerico<DTOApuestaVOF>
     {
-        public override DTOApuestaVOF CrearDto(ApuestaVoF entidad)
+        public override DTOApuestaVOF CrearDto(Entidad entidad)
         {
             DTOApuestaVOF dto = FabricaDTO.CrearDtoApuestaVOF();
 
-            dto.IdLogro = entidad.Logro.Id;
-            dto.IdUsuario = entidad.Usuario.Id;
-            dto.ApuestaUsuario = entidad.Respuesta;
-            dto.Estado = entidad.Estado;
+            ApuestaVoF apuesta = entidad as ApuestaVoF;
+
+            dto.IdLogro = apuesta.Logro.Id;
+            dto.IdUsuario = apuesta.Usuario.Id;
+            dto.ApuestaUsuario = apuesta.Respuesta;
+            dto.Estado = apuesta.Estado;
+            dto.Logro = apuesta.Logro.Logro;
 
             return dto;
 
         }
 
-        public override ApuestaVoF CrearEntidad(DTOApuestaVOF dto)
+        public override Entidad CrearEntidad(DTOApuestaVOF dto)
         {
             ApuestaVoF entidad = FabricaEntidades.CrearApuestaVoF();
 
-            entidad.Logro.Id = dto.IdLogro;
-            entidad.Usuario.Id = dto.IdUsuario;
+            Usuario apostador = new Usuario();
+
+            apostador.Id = dto.IdUsuario;
+
+            LogroPartido logro = FabricaEntidades.CrearLogroVoF();
+
+            logro.Id = dto.IdLogro;
+
+            entidad.Logro = logro;
+            entidad.Usuario = apostador;
             entidad.Respuesta = dto.ApuestaUsuario;
             entidad.Fecha = DateTime.Now.ToShortDateString();
 
@@ -37,7 +48,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
 
         }
 
-        public override List<DTOApuestaVOF> CrearListaDto(List<ApuestaVoF> entidades)
+        public override List<DTOApuestaVOF> CrearListaDto(List<Entidad> entidades)
         {
             List<DTOApuestaVOF> dtos = new List<DTOApuestaVOF>();
 
@@ -49,7 +60,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
             return dtos;
         }
 
-        public override List<ApuestaVoF> CrearListaEntidades(List<DTOApuestaVOF> dtos)
+        public override List<Entidad> CrearListaEntidades(List<DTOApuestaVOF> dtos)
         {
             throw new NotImplementedException();
         }
