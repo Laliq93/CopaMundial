@@ -22,10 +22,26 @@ namespace CopaMundialAPI.Presentacion.Controllers
     [RoutePrefix("api/Apuesta")]
     public class ApuestaController : ApiController
     {
-        [Route("Testing")]
+        [Route("obtenerproximospartidos")]
+        [System.Web.Http.AcceptVerbs("GET")]
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage ObtenerProximosPartidos()
+        {
+            TraductorListarProximosPartidos traductor = FabricaTraductor.CrearTraductorListarProximosPartidos();
+
+            Comando comando = FabricaComando.CrearComandoObtenerProximosPartidos();
+
+            comando.Ejecutar();
+
+            List<DTOListarProximosPartidos> dtos = traductor.CrearListaDto(comando.GetEntidades());
+
+            return Request.CreateResponse(HttpStatusCode.OK, dtos);
+        }
+
+        [Route("obtenerlogrosvofpartido")]
         [System.Web.Http.AcceptVerbs("GET", "PUT")]
         [System.Web.Http.HttpPut]
-        public HttpResponseMessage Testing()
+        public HttpResponseMessage obtenerlogrosvofpartido(DTORecibirIdPartido dto)
         {
             TraductorListarProximosPartidos traductor = FabricaTraductor.CrearTraductorListarProximosPartidos();
 
