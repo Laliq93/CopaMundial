@@ -7,11 +7,15 @@ import { AgregarCiudadComponent } from './components/agregar-ciudad/agregar-ciud
 import { EliminarCiudadComponent } from './components/eliminar-ciudad/eliminar-ciudad.component';
 import { ConsultarCiudadComponent } from './components/consultar-ciudad/consultar-ciudad.component';
 import { ModificarCiudadComponent } from './components/modificar-ciudad/modificar-ciudad.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 @NgModule({
   imports: [
     CommonModule,
     Modulo02RoutingModule,
     FormsModule,
+    HttpClientModule,
+    HttpModule,
     AgmCoreModule.forRoot({
 
       apiKey:'AIzaSyCpRHl0N5ctxRWIGL-7TcqYSq-T9WMailY'

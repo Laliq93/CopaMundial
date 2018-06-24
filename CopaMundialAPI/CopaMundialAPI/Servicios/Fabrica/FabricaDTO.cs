@@ -25,9 +25,9 @@ namespace CopaMundialAPI.Servicios.Fabrica
             return new DTOApuestaJugador();
         }
 
-        public static DTOCiudad CrearDTOCiudad (string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
+        public static DTOCiudad CrearDTOCiudad (string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles, byte[] imagen)
         {
-            return new DTOCiudad (nombre,habitantes,descripcion,nombreIngles,descripcionIngles);
+            return new DTOCiudad (nombre,habitantes,descripcion,nombreIngles,descripcionIngles,imagen);
         }
 
         public static DTOListarProximosPartidos CrearDTOListarProximosPartidos()
