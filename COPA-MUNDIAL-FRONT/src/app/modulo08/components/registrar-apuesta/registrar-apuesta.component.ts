@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DTOMostrarPartido, Conexion } from '../../models/index';
 import { Api08Service } from '../../services/api08.service';
 import { HttpClient } from '@angular/common/http';
@@ -16,14 +17,15 @@ declare var bootbox: any;
 })
 export class RegistrarApuestaComponent implements OnInit {
   public MostrarPartido: DTOMostrarPartido;
-  public api08: Api08Service;
   public ListMostrarPartido: DTOMostrarPartido[] = [];
+  public api08: Api08Service;
+
   public connect: Conexion;
 
   public dtTrigger: Subject<any> = new Subject();
   public dtOptions: DataTables.Settings = {};
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.api08 = new Api08Service(http);
     this.MostrarPartido = new DTOMostrarPartido();
     this.connect = new Conexion();
@@ -61,7 +63,7 @@ export class RegistrarApuestaComponent implements OnInit {
     );
   }
 
-  VerApuestasPartido(IdPartido) {
-    this.api08.EnviarIdApuestaPartido(IdPartido);
+  public LlamarApuestas(idPartido, Equipo1, Equipo2) {
+    this.router.navigate(['/apuestas/mostrar', idPartido]);
   }
 }
