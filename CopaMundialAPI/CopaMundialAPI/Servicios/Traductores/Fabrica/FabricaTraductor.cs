@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CopaMundialAPI.Servicios.Traductores.Apuestas;
+using CopaMundialAPI.Servicios.Traductores.Jugadores;
 
 namespace CopaMundialAPI.Servicios.Traductores.Fabrica
 {
@@ -26,6 +27,11 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
         public static TraductorApuestaEquipo CrearTraductorApuestaEquipo()
         {
             return new TraductorApuestaEquipo();
+        }
+
+        public static TraductorJugador CrearTraductorJugador()
+        {
+            return new TraductorJugador();
         }
     }
 }

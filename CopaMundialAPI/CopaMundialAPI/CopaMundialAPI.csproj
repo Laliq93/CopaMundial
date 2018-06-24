@@ -156,6 +156,8 @@
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaVOF.cs" />
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudad.cs" />
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudadID.cs" />
+    <Compile Include="Servicios\DTO\Jugadores\DTOJugador.cs" />
+    <Compile Include="Servicios\DTO\Jugadores\DTOJugadorId.cs" />
     <Compile Include="Servicios\DTO\Partidos\DTOListarProximosPartidos.cs" />
     <Compile Include="Servicios\Fabrica\FabricaDTO.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaCantidad.cs" />
@@ -184,7 +186,6 @@
     <Folder Include="Logica de Negocio\Compuesto\" />
     <Folder Include="Logica de Negocio\Singleton\" />
     <Folder Include="Models\" />
-    <Folder Include="Servicios\DTO\Jugadores\" />
     <Folder Include="Servicios\DTO\Logros\" />
     <Folder Include="Servicios\Traductores\Ciudades\" />
     <Folder Include="Servicios\Traductores\Jugadores\" />
