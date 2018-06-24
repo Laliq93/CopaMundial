@@ -28,7 +28,12 @@ namespace CopaMundialAPI
 
             config.EnableCors ( enableCorsAttribute );
 
-            config.Formatters.JsonFormatter.SupportedMediaTypes.Add ( new MediaTypeHeaderValue ( "text/html" ) );
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add ( new MediaTypeHeaderValue ( "application/json" ) );
+
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("multipart/form-data"));
+
+            //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+
         }
     }
 }

@@ -99,7 +99,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -122,8 +124,9 @@
     <Compile Include="Comun\Entidades\Partido.cs" />
     <Compile Include="Comun\Entidades\TipoLogro.cs" />
     <Compile Include="Comun\Entidades\Usuario.cs" />
-    <Compile Include="Controllers\ApuestaController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Presentacion\Controllers\CiudadController.cs" />
+    <Compile Include="Presentacion\Controllers\ApuestaController.cs" />
+    <Compile Include="Presentacion\Controllers\TestController.cs" />
     <Compile Include="Fuente de Datos\DAO\DAO.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuesta.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaJugador.cs" />
@@ -140,6 +143,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerProximosPartidos.cs" />
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoActualizarCiudad.cs" />
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoEliminarCiudad.cs" />
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoListarCiudades.cs" />
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoObtenerCiudad.cs" />
     <Compile Include="Logica de Negocio\Comando\ComandoActivarJugador.cs" />
     <Compile Include="Logica de Negocio\Comando\Comando.cs" />
     <Compile Include="Logica de Negocio\Comando\ComandoAgregarJugador.cs" />

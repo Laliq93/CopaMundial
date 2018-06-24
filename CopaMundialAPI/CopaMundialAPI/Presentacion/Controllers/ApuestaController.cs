@@ -17,7 +17,7 @@ using CopaMundialAPI.Servicios.Traductores.Partidos;
 using CopaMundialAPI.Servicios.Traductores.Fabrica;
 using CopaMundialAPI.Servicios.DTO.Partidos;
 
-namespace CopaMundialAPI.Controllers
+namespace CopaMundialAPI.Presentacion.Controllers
 {
     [RoutePrefix("api/Apuesta")]
     public class ApuestaController : ApiController
