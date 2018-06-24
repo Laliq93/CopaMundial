@@ -16,7 +16,6 @@ namespace CopaMundialAPI.Servicios.DTO.Ciudades
         private string _descripcion;//Descripcion de la ciudad en español
         private string _nombreIngles;//Nombre de la ciudad en ingles
         private string _descripcionIngles;//Descripcion de la ciudad en ingles
-		private byte[] _imagen; // Imagen de la ciudad en bytes
 
         /// <summary>
         /// Constructor de la entidad DTOCiudad
@@ -26,45 +25,44 @@ namespace CopaMundialAPI.Servicios.DTO.Ciudades
         /// <param name="descripcion">Descripcion de la ciudad en español</param>
         /// <param name="nombreIngles">Nombre de la ciudad en ingles</param>
         /// <param name="descripcionIngles">Descripcion de la ciudad en ingles</param>
-		/// <param name="imagen">Array de Bytes de la imagen de la ciudad</param>
-        public DTOCiudad ( string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles, byte[] imagen )
+        public DTOCiudad ( string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
         {
             Nombre = nombre;
             Habitantes = habitantes;
             Descripcion = descripcion;
             NombreIngles = nombreIngles;
             DescripcionIngles = descripcionIngles;
-			Imagen = imagen;
         }
 
         /// <summary>
         /// Getters y Setters del atributo _nombre
         /// </summary>
         public string Nombre { get => _nombre; set => _nombre = value; }
+        
         /// <summary>
         /// Getters y Setters del atributo _habitantes
         /// </summary>
         public int Habitantes { get => _habitantes; set => _habitantes = value; }
+        
         /// <summary>
         /// Getters y Setters del atributo _descripcion
         /// </summary>
         public string Descripcion { get => _descripcion; set => _descripcion = value; }
+        
         /// <summary>
         /// Getters y Setters del atributo _nombreIngles
         /// </summary>
         public string NombreIngles { get => _nombreIngles; set => _nombreIngles = value; }
+        
         /// <summary>
         /// Getters y Setters del atributo _descripcionIngles
         /// </summary>
         public string DescripcionIngles { get => _descripcionIngles; set => _descripcionIngles = value; }
+        
         /// <summary>
         /// Getters y Setters del atributo _id
         /// </summary>
         public int Id { get => _id; set => _id = value; }
-		/// <summary>
-		/// Gettes y settes del atributo _imagen
-		/// </summary>
-		public byte[] Imagen { get => _imagen; set => _imagen = value; }
 
     }
 }

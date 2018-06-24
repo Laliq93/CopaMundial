@@ -6,18 +6,28 @@ using System.Web;
 namespace CopaMundialAPI.Comun.Entidades.Fabrica
 {
     /// <summary>
-    /// Fabrica que instancia todas las entidades
+    /// Fabrica que instancia todas las Entidades
     /// </summary>
     public static class FabricaEntidades
     {
+        /// <summary>
+        /// Metodo que realiza una instancia de tipo Ciudad solo con su nombre
+        /// </summary>
+        /// <param name="nombre">Nombre de la ciudad</param>
+        /// <returns></returns>
+        public static Ciudad CrearCiudadNombre(string nombre )
+        {
+            return new Ciudad ( nombre );
+        }
+
 		/// <summary>
 		/// Metodo que realiza una instancia de tipo Ciudad
 		/// </summary>
 		/// <param name="nombre">Nombre de la ciudad a crear</param>
 		/// <param name="habitantes">Cantidad de habitantes</param>
 		/// <param name="descripcion">Descripcion de la ciudad</param>
-		/// <param name="nombreIngles">Descripcion de la ciudad</param>
-		/// <param name="descripcionIngles">Descripcion de la ciudad</param>
+		/// <param name="nombreIngles">Nombre de la ciudad en ingles</param>
+		/// <param name="descripcionIngles">Descripcion de la ciudad en ingles</param>
 		/// <returns></returns>
 
 		public static Ciudad CrearCiudad(string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
