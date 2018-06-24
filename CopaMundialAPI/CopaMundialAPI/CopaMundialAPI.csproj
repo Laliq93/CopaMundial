@@ -124,6 +124,7 @@
     <Compile Include="Comun\Entidades\Partido.cs" />
     <Compile Include="Comun\Entidades\TipoLogro.cs" />
     <Compile Include="Comun\Entidades\Usuario.cs" />
+    <Compile Include="Comun\Excepciones\ExcepcionGeneral.cs" />
     <Compile Include="Presentacion\Controllers\CiudadController.cs" />
     <Compile Include="Presentacion\Controllers\ApuestaController.cs" />
     <Compile Include="Presentacion\Controllers\TestController.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaJugador.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaVOF.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaEquipo.cs" />
+    <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudad.cs" />
     <Compile Include="Servicios\Traductores\Fabrica\FabricaTraductor.cs" />
     <Compile Include="Servicios\Traductores\Partidos\TraductorListarProximosPartidos.cs" />
     <Compile Include="Servicios\Traductores\TraductorGenerico.cs" />
@@ -187,7 +189,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Comun\Excepciones\" />
     <Folder Include="Logica de Negocio\Comando\Jugadores\" />
     <Folder Include="Logica de Negocio\Comando\Logros\" />
     <Folder Include="Logica de Negocio\Comando\Partidos\" />
@@ -197,7 +198,6 @@
     <Folder Include="Models\" />
     <Folder Include="Servicios\DTO\Jugadores\" />
     <Folder Include="Servicios\DTO\Logros\" />
-    <Folder Include="Servicios\Traductores\Ciudades\" />
     <Folder Include="Servicios\Traductores\Jugadores\" />
     <Folder Include="Servicios\Traductores\Logros\" />
   </ItemGroup>

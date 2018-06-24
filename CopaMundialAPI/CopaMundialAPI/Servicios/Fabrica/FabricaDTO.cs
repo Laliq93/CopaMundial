@@ -8,6 +8,9 @@ using CopaMundialAPI.Servicios.DTO.Partidos;
 
 namespace CopaMundialAPI.Servicios.Fabrica
 {
+    /// <summary>
+    /// Fabrica que instancia todos los DTO
+    /// </summary>
     public class FabricaDTO
     {
         public static DTOApuestaVOF CrearDtoApuestaVOF()
@@ -25,9 +28,18 @@ namespace CopaMundialAPI.Servicios.Fabrica
             return new DTOApuestaJugador();
         }
 
-        public static DTOCiudad CrearDTOCiudad (string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles, byte[] imagen)
+        /// <summary>
+        /// Metodo que instancia un objeto de tipo DTOCiudad
+        /// </summary>
+        /// <param name="nombre">Nombre de la ciudad</param>
+        /// <param name="habitantes">Numero de habitantes de la ciudad</param>
+        /// <param name="descripcion">Descripcion de la ciudad</param>
+        /// <param name="nombreIngles">Nombre de la ciudad en ingles</param>
+        /// <param name="descripcionIngles">Descripcion de la ciudad en ingles</param>
+        /// <returns></returns>
+        public static DTOCiudad CrearDTOCiudad (string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
         {
-            return new DTOCiudad (nombre,habitantes,descripcion,nombreIngles,descripcionIngles,imagen);
+            return new DTOCiudad (nombre,habitantes,descripcion,nombreIngles,descripcionIngles);
         }
 
         public static DTOListarProximosPartidos CrearDTOListarProximosPartidos()
