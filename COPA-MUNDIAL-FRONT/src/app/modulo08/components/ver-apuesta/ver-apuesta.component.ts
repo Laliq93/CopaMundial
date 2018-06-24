@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+declare var bootbox: any;
+
 @Component({
   selector: 'app-ver-apuesta',
   templateUrl: './ver-apuesta.component.html',

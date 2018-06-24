@@ -8,6 +8,7 @@ import { Modulo08RoutingModule } from './modulo08-routing.module';
 import { RegistrarApuestaComponent } from './components/registrar-apuesta/registrar-apuesta.component';
 import { GestionarApuestaComponent } from './components/gestionar-apuesta/gestionar-apuesta.component';
 import { VerApuestaComponent } from './components/ver-apuesta/ver-apuesta.component';
+import { NavButtonsComponent } from './components/shared/nav-buttons/nav-buttons.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { VerApuestaComponent } from './components/ver-apuesta/ver-apuesta.compon
   declarations: [
     RegistrarApuestaComponent,
     GestionarApuestaComponent,
-    VerApuestaComponent
+    VerApuestaComponent,
+    NavButtonsComponent
   ]
 })
 export class Modulo08Module {}
