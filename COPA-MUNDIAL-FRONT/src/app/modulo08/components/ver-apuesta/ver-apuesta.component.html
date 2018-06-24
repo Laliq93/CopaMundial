@@ -9,7 +9,7 @@
       <li class="breadcrumb-item">
         <a href="">Inicio</a>
       </li>
-      <li class="breadcrumb-item active">Mis Apuestas</li>
+      <li class="breadcrumb-item active">Logros Por Apuesta</li>
     </ol>
   </div>
   <app-nav-buttons></app-nav-buttons>
@@ -23,16 +23,22 @@
 
       <ul class="nav nav-tabs profile-tab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#Ganadas" role="tab">Ganadas</a>
+          <a class="nav-link active" data-toggle="tab" href="#vf" role="tab">V o F</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#Perdidas" role="tab">Perdidas</a>
+          <a class="nav-link" data-toggle="tab" href="#aciertos" role="tab">Aciertos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#jugadores" role="tab">Jugadores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#equipos" role="tab">Equipos</a>
         </li>
       </ul>
 
       <div class="tab-content">
 
-        <div class="tab-pane active" id="Ganadas" role="tabpanel">
+        <div class="tab-pane active" id="vf" role="tabpanel">
           <div class="card-body">
 
             <div class="d-none d-sm-block">
@@ -42,6 +48,7 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
+                    <th>Opcion</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -49,6 +56,9 @@
                     <td>1</td>
                     <td>Leo</td>
                     <td>Messi </td>
+                    <td>
+                      <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -57,7 +67,7 @@
           </div>
         </div>
 
-        <div class="tab-pane" id="Perdidas" role="tabpanel">
+        <div class="tab-pane" id="aciertos" role="tabpanel">
           <div class="card-body">
 
             <div class="d-none d-sm-block">
@@ -67,6 +77,7 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
+                    <th>Opcion</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -74,6 +85,67 @@
                     <td>1</td>
                     <td>Cristiana</td>
                     <td>Ronalda </td>
+                    <td>
+                      <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="tab-pane" id="jugadores" role="tabpanel">
+          <div class="card-body">
+
+            <div class="d-none d-sm-block">
+              <table datatable class="row-border hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Opcion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Cristiana</td>
+                    <td>Ronalda </td>
+                    <td>
+                      <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="tab-pane" id="equipos" role="tabpanel">
+          <div class="card-body">
+
+            <div class="d-none d-sm-block">
+              <table datatable class="row-border hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Opcion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Cristiana</td>
+                    <td>Ronalda </td>
+                    <td>
+                      <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
