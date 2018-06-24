@@ -10,6 +10,16 @@ namespace CopaMundialAPI.Comun.Entidades.Fabrica
     /// </summary>
     public static class FabricaEntidades
     {
+        /// <summary>
+        /// Metodo que realiza una instancia de tipo Ciudad solo con su nombre
+        /// </summary>
+        /// <param name="nombre">Nombre de la ciudad</param>
+        /// <returns></returns>
+        public static Ciudad CrearCiudadNombre(string nombre )
+        {
+            return new Ciudad ( nombre );
+        }
+
 		/// <summary>
 		/// Metodo que realiza una instancia de tipo Ciudad
 		/// </summary>

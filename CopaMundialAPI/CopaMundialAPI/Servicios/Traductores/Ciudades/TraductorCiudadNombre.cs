@@ -7,35 +7,41 @@ using System;
 
 namespace CopaMundialAPI.Servicios.Traductores.Ciudades
 {
-    public class TraductorCiudadID : TraductorGenerico<DTOCiudadID>
+    public class TraductorCiudadNombre : TraductorGenerico<DTOCiudadNombre>
     {
         /// <summary>
-        /// Metodo con el cual se transforma una entidad en un DTOCiudadID
+        /// Metodo con el cual se transforma una entidad en un DTOCiudadNombre
         /// </summary>
         /// <param name="entidad">Entidad que se desea transformar</param>
         /// <returns></returns>
-        public override DTOCiudadID CrearDto ( Entidad entidad )
+        public override DTOCiudadNombre CrearDto ( Entidad entidad )
         {
             try
             {
                 Ciudad ciudad = entidad as Ciudad;
 
-                DTOCiudadID dto = FabricaDTO.CrearDTOCiudadID(ciudad.Id);
+                DTOCiudadNombre dto = FabricaDTO.CrearDTOCiudadNombre(ciudad.Nombre);
 
                 return dto;
             }
+            catch(InvalidCastException e)
+            {
+               
+                throw e;
+            }
             catch (Exception e)
             {
                 throw e;
             }
         }
 
-        public override Entidad CrearEntidad ( DTOCiudadID dto )
+        public override Entidad CrearEntidad ( DTOCiudadNombre dto )
         {
             try
             {
+                Entidad ciudad = FabricaEntidades.CrearCiudadNombre ( dto.Nombre );
 
-                return null;
+                return ciudad;
             }
             catch (Exception e)
             {
@@ -43,12 +49,12 @@ namespace CopaMundialAPI.Servicios.Traductores.Ciudades
             }
         }
 
-        public override List<DTOCiudadID> CrearListaDto ( List<Entidad> entidades )
+        public override List<DTOCiudadNombre> CrearListaDto ( List<Entidad> entidades )
         {
             throw new System.NotImplementedException ( );
         }
 
-        public override List<Entidad> CrearListaEntidades ( List<DTOCiudadID> dtos )
+        public override List<Entidad> CrearListaEntidades ( List<DTOCiudadNombre> dtos )
         {
             throw new System.NotImplementedException ( );
         }

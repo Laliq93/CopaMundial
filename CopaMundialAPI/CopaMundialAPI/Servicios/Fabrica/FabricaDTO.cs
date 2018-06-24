@@ -46,13 +46,13 @@ namespace CopaMundialAPI.Servicios.Fabrica
         }
 
         /// <summary>
-        /// Metodo que instancia un objeto de tipo DTOCiudadID
+        /// Metodo que instancia un objeto de tipo DTOCiudadNombre
         /// </summary>
-        /// <param name="id">Id de la ciudad</param>
+        /// <param name="nombre">Nombre de la ciudad</param>
         /// <returns></returns>
-        public static DTOCiudadID CrearDTOCiudadID (int id)
+        public static DTOCiudadNombre CrearDTOCiudadNombre (string nombre)
         {
-            return new DTOCiudadID ( id );
+            return new DTOCiudadNombre ( nombre );
         }
 
         public static DTOListarProximosPartidos CrearDTOListarProximosPartidos()

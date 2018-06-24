@@ -14,6 +14,13 @@ namespace CopaMundialAPI.Comun.Excepciones
         private DateTime _fechaHora;   //Hora y fecha de cuando se genero la excepción.
         private string _mensaje;       //Breve descripción de la excepción genereda.
 
+        public ExcepcionGeneral ( Exception excepcion, DateTime fechaHora)
+        {
+            _excepcion = excepcion;
+            _fechaHora = fechaHora;
+            _mensaje = "Error general";
+        }
+
         /// <summary>
         /// Getters y Setters del atributo _excepcion
         /// </summary>
@@ -28,6 +35,8 @@ namespace CopaMundialAPI.Comun.Excepciones
         /// Getters y Setters del atributo _mensaje
         /// </summary>
         public string Mensaje { get => _mensaje; set => _mensaje = value; }
+
+
 
 
     }
