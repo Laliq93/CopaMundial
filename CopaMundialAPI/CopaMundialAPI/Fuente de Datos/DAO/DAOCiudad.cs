@@ -25,12 +25,11 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             Conectar();
 
-            StoredProcedure("insertarciudad(@ci_nombre,@ci_poblacion,@_descripcion,@_imagen)");
+            StoredProcedure("insertarciudad(@ci_nombre,@ci_poblacion,@_descripcion)");
 
             AgregarParametro("_nombre", ciudad.Nombre);
             AgregarParametro("_capacidad", ciudad.Habitantes);
             AgregarParametro("_descripcion", ciudad.Descripcion);
-			AgregarParametro("_imagen", ciudad.Imagen);
 
 
             EjecutarQuery ( );
@@ -45,7 +44,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 			EjecutarReader();
 			for (int i = 0; i < cantidadRegistros; i++)
 			{
-				ciudad = FabricaEntidades.CrearCiudad(GetString(i,0),GetInt(i,1),GetString(i,2),GetString(i,3),GetString(i,4),GetByte(i,5));
+				ciudad = FabricaEntidades.CrearCiudad(GetString(i,0),GetInt(i,1),GetString(i,2),GetString(i,3),GetString(i,4));
 			}
 			return ciudad;
 			/*for (int i = 0; i < cantidadRegistros; i++)

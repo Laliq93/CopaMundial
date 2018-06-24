@@ -123,9 +123,9 @@
     <Compile Include="Comun\Entidades\LogroVoF.cs" />
     <Compile Include="Comun\Entidades\Partido.cs" />
     <Compile Include="Comun\Entidades\Usuario.cs" />
-    <Compile Include="Controllers\CiudadController.cs" />
-    <Compile Include="Controllers\ApuestaController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Presentacion\Controllers\CiudadController.cs" />
+    <Compile Include="Presentacion\Controllers\ApuestaController.cs" />
+    <Compile Include="Presentacion\Controllers\TestController.cs" />
     <Compile Include="Fuente de Datos\DAO\DAO.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaJugador.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaCantidad.cs" />
