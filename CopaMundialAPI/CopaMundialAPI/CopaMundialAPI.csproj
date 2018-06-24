@@ -122,11 +122,13 @@
     <Compile Include="Comun\Entidades\LogroPartido.cs" />
     <Compile Include="Comun\Entidades\LogroVoF.cs" />
     <Compile Include="Comun\Entidades\Partido.cs" />
+    <Compile Include="Comun\Entidades\TipoLogro.cs" />
     <Compile Include="Comun\Entidades\Usuario.cs" />
     <Compile Include="Presentacion\Controllers\CiudadController.cs" />
     <Compile Include="Presentacion\Controllers\ApuestaController.cs" />
     <Compile Include="Presentacion\Controllers\TestController.cs" />
     <Compile Include="Fuente de Datos\DAO\DAO.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOApuesta.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaJugador.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaCantidad.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaVoF.cs" />
@@ -141,6 +143,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoActivarJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerProximosPartidos.cs" />
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoActualizarCiudad.cs" />
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoEliminarCiudad.cs" />
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoListarCiudades.cs" />
