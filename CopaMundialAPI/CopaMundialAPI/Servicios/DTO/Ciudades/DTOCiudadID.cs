@@ -22,7 +22,7 @@ namespace CopaMundialAPI.Servicios.DTO.Ciudades
         }
 
         /// <summary>
-        /// Getters y Setters del atributo id
+        /// Getters y Setters del atributo _id
         /// </summary>
         public int Id { get => _id; set => _id = value; }
     }

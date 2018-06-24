@@ -39,11 +39,6 @@ namespace CopaMundialAPI.Presentacion.Controllers
 		public HttpResponseMessage Insertarimagen(HttpPostedFile dato)
 			{
 
-
-			 
-
-            HttpResponseMessage result = null;
-
             var httpRequest = HttpContext.Current.Request;
 				string file = httpRequest.Files.Get(0).ToString();
 
