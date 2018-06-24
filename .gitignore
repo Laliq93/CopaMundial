@@ -4,5 +4,8 @@
 *.lnk
 
 *Web.config
-*app.config
-WebAPI/\.vs/
+*app.config
+
+WebAPI/\.vs/
+/WebAPI*
+
