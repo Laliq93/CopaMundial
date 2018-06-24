@@ -13,6 +13,9 @@ using CopaMundialAPI.Logica_de_Negocio.Comando;
 using CopaMundialAPI.Servicios.DTO.Apuestas;
 using CopaMundialAPI.Servicios.Fabrica;
 using CopaMundialAPI.Servicios.Traductores.Apuestas;
+using CopaMundialAPI.Servicios.Traductores.Partidos;
+using CopaMundialAPI.Servicios.Traductores.Fabrica;
+using CopaMundialAPI.Servicios.DTO.Partidos;
 
 namespace CopaMundialAPI.Presentacion.Controllers
 {
@@ -24,19 +27,17 @@ namespace CopaMundialAPI.Presentacion.Controllers
         [System.Web.Http.HttpPut]
         public HttpResponseMessage Testing()
         {
-            TraductorApuestaVOF traductor = new TraductorApuestaVOF();
+            TraductorListarProximosPartidos traductor = FabricaTraductor.CrearTraductorListarProximosPartidos();
 
-            Entidad apostador = new Usuario();
-
-            apostador.Id = 1;
-
-            Comando comando = FabricaComando.CrearComandoObtenerApuestasVoFEnCurso(apostador);
+            Comando comando = FabricaComando.CrearComandoObtenerProximosPartidos();
 
             comando.Ejecutar();
-           
-            List<DTOApuestaVOF> dtos = traductor.CrearListaDto(comando.GetEntidades());
+
+            List<DTOListarProximosPartidos> dtos = traductor.CrearListaDto(comando.GetEntidades());
 
             return Request.CreateResponse(HttpStatusCode.OK, dtos);
         }
+
+
     }
 }

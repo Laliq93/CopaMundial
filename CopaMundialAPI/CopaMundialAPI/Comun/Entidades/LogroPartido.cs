@@ -11,17 +11,11 @@ namespace CopaMundialAPI.Comun.Entidades
     /// </summary>
     public abstract class LogroPartido : Entidad
     {
-        private int _idTipo; //id del tipo de logro (Cantidad,VOF, Equipo, Jugador)
         private Partido _partido; //Partido al cual se le asigna el logro
         private string _nombreTipo;//Nombre del tipo de logro  (Cantidad,VOF, Equipo, Jugador)
         private string _logro;//Nombre del logro
         private bool _status;//Status del logro (activo o no)
 
-
-        /// <summary>
-        /// Get y Set del IdTipo
-        /// </summary>
-        public int IdTipo { get => _idTipo; set => _idTipo = value; }
 
         /// <summary>
         /// Get y Set del Partido
