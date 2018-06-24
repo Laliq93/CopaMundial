@@ -16,6 +16,7 @@ namespace CopaMundialAPI.Servicios.DTO.Ciudades
         private string _descripcion;//Descripcion de la ciudad en español
         private string _nombreIngles;//Nombre de la ciudad en ingles
         private string _descripcionIngles;//Descripcion de la ciudad en ingles
+		private byte[] _imagen; // Imagen de la ciudad en bytes
 
         /// <summary>
         /// Constructor de la entidad DTOCiudad
@@ -25,13 +26,15 @@ namespace CopaMundialAPI.Servicios.DTO.Ciudades
         /// <param name="descripcion">Descripcion de la ciudad en español</param>
         /// <param name="nombreIngles">Nombre de la ciudad en ingles</param>
         /// <param name="descripcionIngles">Descripcion de la ciudad en ingles</param>
-        public DTOCiudad ( string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles )
+		/// <param name="imagen">Array de Bytes de la imagen de la ciudad</param>
+        public DTOCiudad ( string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles, byte[] imagen )
         {
             Nombre = nombre;
             Habitantes = habitantes;
             Descripcion = descripcion;
             NombreIngles = nombreIngles;
             DescripcionIngles = descripcionIngles;
+			Imagen = imagen;
         }
 
         /// <summary>
@@ -58,5 +61,10 @@ namespace CopaMundialAPI.Servicios.DTO.Ciudades
         /// Getters y Setters del atributo _id
         /// </summary>
         public int Id { get => _id; set => _id = value; }
+		/// <summary>
+		/// Gettes y settes del atributo _imagen
+		/// </summary>
+		public byte[] Imagen { get => _imagen; set => _imagen = value; }
+
     }
 }

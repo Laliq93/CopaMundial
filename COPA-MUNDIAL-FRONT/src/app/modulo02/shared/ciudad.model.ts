@@ -4,5 +4,5 @@ export class Ciudad {
      poblacion :   number;
      descripcion : string;
      localizacion: string;
-     imagen :      string;
+     imagen :      Blob;
 }
