@@ -13,6 +13,8 @@ namespace CopaMundialAPI.Servicios.DTO.Jugadores
 
         private int _id;
 
+        public DTOJugadorId() { }
+
         public int Id { get => _id; set => _id = value; }
 
     }

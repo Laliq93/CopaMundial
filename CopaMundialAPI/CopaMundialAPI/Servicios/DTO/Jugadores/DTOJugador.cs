@@ -19,6 +19,8 @@ namespace CopaMundialAPI.Servicios.DTO.Jugadores
         private bool _capitan;
         private bool _activo;
 
+        public DTOJugador() { }
+
         public string Nombre { get => _nombre; set => _nombre = value; }
         public string Apellido { get => _apellido; set => _apellido = value; }
         public string FechaNacimiento { get => _fechaNacimiento; set => _fechaNacimiento = value; }
@@ -32,4 +34,6 @@ namespace CopaMundialAPI.Servicios.DTO.Jugadores
         public bool Activo { get => _activo; set => _activo = value; }
 
     }
+
+    
 }
