@@ -10,9 +10,9 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando
 {
     public class ComandoDesactivarJugador : Comando
     {
-        private Jugador _jugador;
+        private Entidad _jugador;
 
-        public ComandoDesactivarJugador(Jugador jugador)
+        public ComandoDesactivarJugador(Entidad jugador)
         {
             _jugador = jugador;
         }
