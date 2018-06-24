@@ -124,6 +124,7 @@
     <Compile Include="Comun\Entidades\Partido.cs" />
     <Compile Include="Comun\Entidades\TipoLogro.cs" />
     <Compile Include="Comun\Entidades\Usuario.cs" />
+    <Compile Include="Comun\Excepciones\ExcepcionGeneral.cs" />
     <Compile Include="Presentacion\Controllers\CiudadController.cs" />
     <Compile Include="Presentacion\Controllers\ApuestaController.cs" />
     <Compile Include="Presentacion\Controllers\TestController.cs" />
@@ -165,7 +166,7 @@
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaCantidad.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaVOF.cs" />
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudad.cs" />
-    <Compile Include="Servicios\DTO\Ciudades\DTOCiudadID.cs" />
+    <Compile Include="Servicios\DTO\Ciudades\DTOCiudadNombre.cs" />
     <Compile Include="Servicios\DTO\Jugadores\DTOJugador.cs" />
     <Compile Include="Servicios\DTO\Jugadores\DTOJugadorId.cs" />
     <Compile Include="Servicios\DTO\Partidos\DTOListarProximosPartidos.cs" />
@@ -174,6 +175,8 @@
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaJugador.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaVOF.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaEquipo.cs" />
+    <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudad.cs" />
+    <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudadNombre.cs" />
     <Compile Include="Servicios\Traductores\Fabrica\FabricaTraductor.cs" />
     <Compile Include="Servicios\Traductores\Jugadores\TraductorJugador.cs" />
     <Compile Include="Servicios\Traductores\Partidos\TraductorListarProximosPartidos.cs" />
@@ -190,7 +193,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Comun\Excepciones\" />
     <Folder Include="Logica de Negocio\Comando\Logros\" />
     <Folder Include="Logica de Negocio\Comando\Partidos\" />
     <Folder Include="Logica de Negocio\Comando\Usuarios\" />
@@ -198,7 +200,6 @@
     <Folder Include="Logica de Negocio\Singleton\" />
     <Folder Include="Models\" />
     <Folder Include="Servicios\DTO\Logros\" />
-    <Folder Include="Servicios\Traductores\Ciudades\" />
     <Folder Include="Servicios\Traductores\Logros\" />
   </ItemGroup>
   <PropertyGroup>

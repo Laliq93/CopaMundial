@@ -16,15 +16,25 @@ namespace CopaMundialAPI.Comun.Entidades
         private string _nombreIngles;//Nombre de la ciudad en ingles
         private string _descripcionIngles;//Descripcion de la ciudad en ingles
 
-		/// <summary>
-		/// Constructor de la entidad Ciudad
-		/// </summary>
-		/// <param name="nombre">Nombre de la ciudad en español</param>
-		/// <param name="habitantes">Numero de habitantes de la ciudad</param>
-		/// <param name="descripcion">Descripcion de la ciudad en español</param>
-		/// <param name="nombreIngles">Nombre de la ciudad en ingles</param>
-		/// <param name="descripcionIngles">Descripcion de la ciudad en ingles</param>
-		public Ciudad(string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
+        /// <summary>
+        /// Constructor con un parametro entidad Ciudad
+        /// </summary>
+        /// <param name="nombre">Nombre de la ciudad a crear</param>
+        public Ciudad ( string nombre )
+        {
+            _nombre = nombre;
+        }
+
+
+        /// <summary>
+        /// Constructor de la entidad Ciudad
+        /// </summary>
+        /// <param name="nombre">Nombre de la ciudad en español</param>
+        /// <param name="habitantes">Numero de habitantes de la ciudad</param>
+        /// <param name="descripcion">Descripcion de la ciudad en español</param>
+        /// <param name="nombreIngles">Nombre de la ciudad en ingles</param>
+        /// <param name="descripcionIngles">Descripcion de la ciudad en ingles</param>
+        public Ciudad(string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
 
 		{
 			Nombre = nombre;
