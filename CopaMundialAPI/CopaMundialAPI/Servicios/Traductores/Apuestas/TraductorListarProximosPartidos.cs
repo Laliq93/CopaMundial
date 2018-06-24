@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CopaMundialAPI.Comun.Entidades;
-using CopaMundialAPI.Servicios.DTO.Partidos;
+using CopaMundialAPI.Servicios.DTO.Apuestas;
 using CopaMundialAPI.Servicios.Fabrica;
 
-namespace CopaMundialAPI.Servicios.Traductores.Partidos
+namespace CopaMundialAPI.Servicios.Traductores.Apuestas
 {
     public class TraductorListarProximosPartidos : TraductorGenerico<DTOListarProximosPartidos>
     {
@@ -16,7 +16,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Partidos
 
             DTOListarProximosPartidos dto = FabricaDTO.CrearDTOListarProximosPartidos();
 
-            dto.IdParitdo = partido.Id;
+            dto.IdPartido = partido.Id;
             dto.Equipo1 = partido.Equipo1.Pais;
             dto.Equipo2 = partido.Equipo2.Pais;
             dto.Fecha = partido.FechaPartido.ToShortDateString();

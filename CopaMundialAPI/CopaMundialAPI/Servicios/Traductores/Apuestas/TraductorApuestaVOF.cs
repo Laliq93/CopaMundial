@@ -35,7 +35,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
 
             apostador.Id = dto.IdUsuario;
 
-            LogroPartido logro = FabricaEntidades.CrearLogroVoF();
+            LogroVoF logro = FabricaEntidades.CrearLogroVoF();
 
             logro.Id = dto.IdLogro;
 
