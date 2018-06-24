@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CopaMundialAPI.Comun.Entidades
+namespace CopaMundialAPI.Servicios.DTO.Jugadores
 {
-    public class Jugador : Entidad
+    public class DTOJugador
     {
         private string _nombre;
         private string _apellido;
@@ -19,8 +19,7 @@ namespace CopaMundialAPI.Comun.Entidades
         private bool _capitan;
         private bool _activo;
 
-
-        public Jugador() { }
+        public DTOJugador() { }
 
         public string Nombre { get => _nombre; set => _nombre = value; }
         public string Apellido { get => _apellido; set => _apellido = value; }
@@ -33,5 +32,8 @@ namespace CopaMundialAPI.Comun.Entidades
         public string Equipo { get => _equipo; set => _equipo = value; }
         public bool Capitan { get => _capitan; set => _capitan = value; }
         public bool Activo { get => _activo; set => _activo = value; }
+
     }
+
+    
 }

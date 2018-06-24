@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using CopaMundialAPI.Servicios.DTO.Apuestas;
 using CopaMundialAPI.Servicios.DTO.Ciudades;
+using CopaMundialAPI.Servicios.DTO.Jugadores;
+
+
 using CopaMundialAPI.Servicios.DTO.Partidos;
 
 namespace CopaMundialAPI.Servicios.Fabrica
@@ -33,6 +36,11 @@ namespace CopaMundialAPI.Servicios.Fabrica
         public static DTOListarProximosPartidos CrearDTOListarProximosPartidos()
         {
             return new DTOListarProximosPartidos();
+        }
+
+        public static DTOJugador CrearDTOJugador()
+        {
+            return new DTOJugador();
         }
     }
 }
