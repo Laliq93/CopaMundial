@@ -26,16 +26,23 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         public void Agregar(Entidad entidad)
         {
-            ApuestaVoF apuesta = entidad as ApuestaVoF;
+            try
+            {
+                ApuestaVoF apuesta = entidad as ApuestaVoF;
 
-            StoredProcedure("crearapuestavof(@idlogro, @idusuario, @fecha, @apuesta)");
+                StoredProcedure("crearapuestavof(@idlogro, @idusuario, @fecha, @apuesta)");
 
-            AgregarParametro("idlogro", apuesta.Logro.Id);
-            AgregarParametro("idusuario", apuesta.Usuario.Id);
-            AgregarParametro("fecha", apuesta.Fecha);
-            AgregarParametro("apuesta", apuesta.Respuesta);
+                AgregarParametro("idlogro", apuesta.Logro.Id);
+                AgregarParametro("idusuario", apuesta.Usuario.Id);
+                AgregarParametro("fecha", apuesta.Fecha);
+                AgregarParametro("apuesta", apuesta.Respuesta);
 
-            EjecutarQuery();
+                EjecutarQuery();
+            }
+            catch (InvalidCastException exc)
+            {
+                throw exc;
+            }
         }
 
         public void Eliminar(Entidad entidad)
