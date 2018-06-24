@@ -1,0 +1,31 @@
+DROP TABLE IF EXISTS apuesta CASCADE;
+
+CREATE TABLE public.apuesta
+(
+    "idLogro" integer NOT NULL,
+    "idUsuario" integer NOT NULL,
+    "fechaCreacion" date NOT NULL,
+    estado character varying(30) COLLATE pg_catalog."default" DEFAULT 'en curso'::character varying,
+    "respuestaCantidad" integer,
+    "respuestaJugador" integer,
+    "respuestaEquipo" integer,
+    "respuestaVOF" boolean,
+    CONSTRAINT "Apuesta_pkey" PRIMARY KEY ("idLogro", "idUsuario"),
+    CONSTRAINT fk_idjugador FOREIGN KEY ("respuestaJugador")
+        REFERENCES public.jugador (ju_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_idlogro FOREIGN KEY ("idLogro")
+        REFERENCES public.logro_partido (lo_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_idusuario FOREIGN KEY ("idUsuario")
+        REFERENCES public.usuario (us_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT "Apuesta_estado_check" CHECK (estado::text = ANY (ARRAY['ganada'::character varying, 'perdida'::character varying, 'en curso'::character varying]::text[]))
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;

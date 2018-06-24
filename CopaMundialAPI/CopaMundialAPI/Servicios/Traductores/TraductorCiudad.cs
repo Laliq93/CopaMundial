@@ -18,8 +18,9 @@ namespace CopaMundialAPI.Servicios.Traductores
 
         public override Ciudad CrearEntidad ( DTOCiudad dto )
         {
-            throw new NotImplementedException ( );
-        }
+			Ciudad ciudad = FabricaEntidades.CrearCiudad(dto.Nombre, dto.Habitantes, dto.Descripcion, dto.NombreIngles, dto.DescripcionIngles, dto.Imagen);
+			return ciudad;
+		}
 
         public override List<DTOCiudad> CrearListaDto ( List<Ciudad> entidades )
         {

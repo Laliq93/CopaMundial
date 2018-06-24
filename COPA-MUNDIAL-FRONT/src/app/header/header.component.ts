@@ -48,12 +48,12 @@ export class HeaderComponent implements AfterViewInit {
 	constructor(private router: Router, private _zone: NgZone) {
 
 		this.moduleArray = [
-			new Module(MODULES.CIUDADES, "city", false),
-			new Module(MODULES.ESTADIOS, "stadium", false),
+			new Module(MODULES.CIUDADES, "ciudades", false),
+			new Module(MODULES.ESTADIOS, "estadios", false),
 			new Module(MODULES.EQUIPOS, "equipos", false),
-			new Module(MODULES.JUGADORES, "player", false),
-			new Module(MODULES.PARTIDOS, "match", false),
-			new Module(MODULES.APUESTAS, "bet", false),
+			new Module(MODULES.JUGADORES, "jugadores", false),
+			new Module(MODULES.PARTIDOS, "partidos", false),
+			new Module(MODULES.APUESTAS, "apuestas", false),
 			new Module(MODULES.ESTADISTICAS, "estadisticas", false),
 			new Module(MODULES.LOGROS, "logros", false)
 		];

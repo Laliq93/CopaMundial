@@ -31,7 +31,11 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// </summary>
         private void CrearStringConexion()
         {
-            _cadena = ConfigurationManager.ConnectionStrings["postgrestring"].ConnectionString;
+			_cadena = "Host = localhost; Port = 5432; " +
+				"Username = admin_copamundial; " +
+				"Password = copamundial; " +
+				"Database = copamundial";
+			//_cadena = ConfigurationManager.ConnectionStrings["postgrestring"].ConnectionString;
         }
 
         private bool IsConnected()
@@ -349,6 +353,31 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 throw new Exception();
             }
         }
+		public byte[] GetByte(int fila, int columna)
+		{
+			try
+			{
+				byte[] dateItem = (byte[])_dataTable.Rows[fila][columna];
 
-    }
+				return dateItem;
+			}
+			catch (IndexOutOfRangeException)
+			{
+				throw new IndexOutOfRangeException();
+			}
+			catch (FormatException)
+			{
+				throw new FormatException();
+			}
+			catch (NullReferenceException)
+			{
+				throw new NullReferenceException();
+			}
+			catch (Exception)
+			{
+				throw new Exception();
+			}
+		}
+
+	}
 }
