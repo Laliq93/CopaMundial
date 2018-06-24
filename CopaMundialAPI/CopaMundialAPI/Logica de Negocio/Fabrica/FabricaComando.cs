@@ -51,9 +51,9 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoDesactivarJugador(jugador);
         }
 
-        public static ComandoObtenerJugadores CrearComandoObtenerJugadores(Jugador jugador)
+        public static ComandoObtenerJugadores CrearComandoObtenerJugadores()
         {
-            return new ComandoObtenerJugadores(jugador);
+            return new ComandoObtenerJugadores();
         }
 
         public static ComandoObtenerProximosPartidos CrearComandoObtenerProximosPartidos()

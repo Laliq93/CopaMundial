@@ -45,7 +45,6 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
                 apuesta.Logro = logro;
                 apuesta.Usuario = apostador;
                 apuesta.Respuesta = dto.ApuestaUsuario;
-                apuesta.Fecha = DateTime.Now.ToShortDateString();
 
                 return apuesta;
             }

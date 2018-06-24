@@ -192,7 +192,9 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 Entidad apuesta = traductor.CrearEntidad(dto);
 
-                Comando comando = FabricaComando.CrearComandoAgregarApuestaVoF(apuesta);
+                Comando comando;
+
+                comando = FabricaComando.CrearComandoAgregarApuestaVoF(apuesta);
 
                 comando.Ejecutar();
 
@@ -206,7 +208,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.ToString());
             }
 
         }
