@@ -9,21 +9,24 @@ using CopaMundialAPI.Servicios.Fabrica;
 
 namespace CopaMundialAPI.Servicios.Traductores.Apuestas
 {
-    public class TraductorApuestaJugador : TraductorGenerico<DTOApuestaJugador, ApuestaJugador>
+    public class TraductorApuestaJugador : TraductorGenerico<DTOApuestaJugador>
     {
-        public override DTOApuestaJugador CrearDto(ApuestaJugador entidad)
+        public override DTOApuestaJugador CrearDto(Entidad entidad)
         {
             DTOApuestaJugador dto = FabricaDTO.CrearDtoApuestaJugador();
 
-            dto.IdLogro = entidad.Logro.Id;
-            dto.IdUsuario = entidad.Usuario.Id;
-            dto.IdJugador = entidad.Respuesta.Id;
-            dto.Estado = entidad.Estado;
+            ApuestaJugador apuesta = entidad as ApuestaJugador;
+
+            dto.IdLogro = apuesta.Logro.Id;
+            dto.IdUsuario = apuesta.Usuario.Id;
+            dto.IdJugador = apuesta.Respuesta.Id;
+            dto.Estado = apuesta.Estado;
+            dto.Logro = apuesta.Logro.Logro;
 
             return dto;
         }
 
-        public override ApuestaJugador CrearEntidad(DTOApuestaJugador dto)
+        public override Entidad CrearEntidad(DTOApuestaJugador dto)
         {
             ApuestaJugador entidad = FabricaEntidades.CrearApuestaJugador();
 
@@ -38,7 +41,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
             return entidad;
         }
 
-        public override List<DTOApuestaJugador> CrearListaDto(List<ApuestaJugador> entidades)
+        public override List<DTOApuestaJugador> CrearListaDto(List<Entidad> entidades)
         {
             List<DTOApuestaJugador> dtos = new List<DTOApuestaJugador>();
 
@@ -50,7 +53,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
             return dtos;
         }
 
-        public override List<ApuestaJugador> CrearListaEntidades(List<DTOApuestaJugador> dtos)
+        public override List<Entidad> CrearListaEntidades(List<DTOApuestaJugador> dtos)
         {
             throw new NotImplementedException();
         }

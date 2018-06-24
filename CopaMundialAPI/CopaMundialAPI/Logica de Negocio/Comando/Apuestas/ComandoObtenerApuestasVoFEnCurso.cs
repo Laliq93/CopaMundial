@@ -7,14 +7,14 @@ using CopaMundialAPI.Fuente_de_Datos.DAO;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 
-namespace CopaMundialAPI.Logica_de_Negocio.Comando
+namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 {
     public class ComandoObtenerApuestasVoFEnCurso : Comando
     {
-        private Usuario _usuario;
+        private Entidad _usuario;
         private List<Entidad> _apuestas;
 
-        public ComandoObtenerApuestasVoFEnCurso(Usuario usuario)
+        public ComandoObtenerApuestasVoFEnCurso(Entidad usuario)
         {
             _usuario = usuario;
             _apuestas = new List<Entidad>();

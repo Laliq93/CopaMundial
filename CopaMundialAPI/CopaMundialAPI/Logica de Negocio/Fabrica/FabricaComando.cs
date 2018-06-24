@@ -1,6 +1,7 @@
 ﻿using CopaMundialAPI.Comun.Entidades;
-using CopaMundialAPI.Logica_de_Negocio.Comando;
+using CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Ciudades;
+using CopaMundialAPI.Logica_de_Negocio.Comando;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,11 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
         public static ComandoAgregarApuestaVOF CrearComandoAgregarApuestaVoF(ApuestaVoF apuesta)
         {
             return new ComandoAgregarApuestaVOF(apuesta);
+        }
+
+        public static ComandoObtenerApuestasVoFEnCurso CrearComandoObtenerApuestasVoFEnCurso(Entidad usuario)
+        {
+            return new ComandoObtenerApuestasVoFEnCurso(usuario);
         }
 
         public static ComandoAgregarJugador CrearComandoAgregarJugador(Jugador jugador)
