@@ -1,7 +1,7 @@
 
-<h1 style="color: black; font-size: 30px; text-align: center;">Modificar Ciudad</h1>
+<h1 i18n="Encabezado Modificar Ciudad en la tarjeta Modificar Ciudad @@m2H1ModificarCiudad"style="color: black; font-size: 30px; text-align: center;">Modificar Ciudad</h1>
 
-<div class="central" style="margin-left: 10%">
+<div class="central" style="margin-left: 50%">
   <form class="card">
   <div class="form-group">
     <select id='Ciudad' class="form-control font-estilo">
@@ -9,25 +9,27 @@
         <option value={{ciudad.nombre}}>{{ciudad.nombre}}</option>
       </ng-container>
     </select>
-    <button (click)="mostrarInformacion();" type="submit" class="btn btn-primary btn-signin">Buscar</button>
+  </div>
+    <button i18n="Boton buscar en la tarjeta Modificar Ciudad @@m2BotonBuscarModificar" (click)="mostrarInformacion();" type="submit" class="btn btn-primary btn-signin">Buscar</button>
+  </form>
   </div>
 
 
 <div id="modificarform" class="central" style="margin-left: 5%">
   <form class="card">
   <div class="form-group">
-    <label for="InputNombre">Nombre</label>
+    <label i18n="Label nombre en la tarjeta Modificar Ciudad @@m2LabelNombreModificar" for="InputNombre">Nombre</label>
     <input id="nombre" type="text" class="form-control" id="InputNombre" placeholder="Ciudad">
   </div>
   <div class="form-group">
-    <label for="InputPoblacion">Habitantes</label>
+    <label i18n="Label habitantes en la tarjeta Modificar Ciudad @@m2LabelHabitantesModificar" for="InputPoblacion">Habitantes</label>
     <input id="habitantes" type="number" class="form-control" id="InputPoblacion" placeholder="Poblacion">
   </div>
   <div class="form-group">
-      <label for="InputDescripcion">Descripción</label>
+      <label i18n="Label descripcion en la tarjeta Modificar Ciudad @@m2LabelDescripcionModificar" for="InputDescripcion">Descripción</label>
       <input id="descripcion" type="text" class="form-control" id="InputDescripcion" placeholder="Descripcion">
     </div>
-  <button (click)="volver()" type="submit" class="btn btn-primary btn-signin">Agregar Ciudad</button>
-  <button i18n="Traduccion de b agregar ciudad" (click)="volver()" type="submit" class="btn btn-primary btn-signin">Cancelar</button>
+  <button i18n="Boton agregar ciudad en la tarjeta Modificar Ciudad @@m2BotonAgregarModificar" (click)="volver()" type="submit" class="btn btn-primary btn-signin">Agregar Ciudad</button>
+  <button i18n="Boton cancelar en la tarjeta Modificar Ciudad @@m2BotonCancelarModificar"  (click)="volver()" type="submit" class="btn btn-primary btn-signin">Cancelar</button>
   </form>
 </div>

@@ -1,6 +1,6 @@
 
- <img [src}="data:image/png;base64,{{ima}}">
-<button (click)="imprimirimagen()">hola</button>
+ <!--<img [src}="data:image/png;base64,{{ima}}">
+<button (click)="imprimirimagen()">hola</button>-->
 <!-- <label for="exampleFormControlFile2">Example file input</label>
 <input type="file" [(ngModel)]="archivo" (change)="handleFileInput($event.target.files)" class="form-control-file" name="category_banner" id="category_banner">
     -->
@@ -8,24 +8,37 @@
   
   <form class="card">
   
-    <h1 i18n="Traduccion de  agregar ciudad " style="color: black; font-size: 30px; text-align: center;">Agregar Ciudad </h1>
+    <h1 i18n="Encabezado Agregar Ciudad en el formulario @@m2H1AgregarCiudad" style="color: black; font-size: 30px; text-align: center;">Agregar Ciudad </h1>
   
     <div class="form-group">
   
-      <label for="InputNombre">Nombre</label>
+      <label i18n="Label del nombre en español en el formulario @@m2LabelNombreES" for="InputNombre">Nombre (ES)</label>
       <input type="text" 
             class="form-control" 
-            id="InputNombre" 
+            id="InputNombreES" 
             placeholder="Ciudad" 
-            name="nombre" 
+            name="nombreES" 
             #nombre="ngModel" 
-            [(ngModel)]="formulario.nombre">
-      <label> nombre </label>
+            [(ngModel)]="formulario.nombreES">
+      
     </div>
+
+    <div class="form-group">
+  
+        <label i18n="Label del nombre en el formulario @@m2LabelNombreEN" for="InputNombre">Nombre (EN)</label>
+        <input type="text" 
+              class="form-control" 
+              id="InputNombreEN" 
+              placeholder="Ciudad" 
+              name="nombreEN" 
+              #nombre="ngModel" 
+              [(ngModel)]="formulario.nombreEN">
+        
+      </div>
   
     <div class="form-group">
   
-      <label for="InputPoblacion">Habitantes</label>
+      <label i18n="Label de los habitantes en el formulario @@m2Labelhabitantes" for="InputPoblacion">Habitantes</label>
   
       <input type="number" 
             class="form-control" 
@@ -34,29 +47,37 @@
             name="habitantes" 
             #habitantes="ngModel" 
             [(ngModel)]="formulario.habitantes">
-      <label> Habitantes </label>
+      
     </div>
   
     <div class="form-group">
        
-      <label for="exampleFormControlTextarea1">Descripción</label>
+      <label i18n="Label de la descripcion en español en el formulario @@m2LabelDescripcionES" for="exampleFormControlTextarea1">Descripción (ES)</label>
       
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="descripcion" #descripcion="ngModel" [(ngModel)]="formulario.descripcion"></textarea>
-      <label> descripcion </label>
+      <textarea class="form-control" id="InputDescES" rows="3" name="descripcionES" #descripcion="ngModel" [(ngModel)]="formulario.descripcionES"></textarea>
+    
     </div>
+
+    <div class="form-group">
+       
+        <label i18n="Label de la descripcion en ingles en el formulario @@m2LabelDescripcionEN" for="exampleFormControlTextarea1">Descripción (EN)</label>
+        
+        <textarea class="form-control" id="InputDesEN" rows="3" name="descripcionEN" #descripcion="ngModel" [(ngModel)]="formulario.descripcionEN"></textarea>
+      
+      </div>
   
   
-      <button i18n="Traduccion de b agregar ciudad" (click)="agregarciudad();" type="submit" class="btn btn-primary btn-signin">Agregar Ciudad</button>
+      <button i18n="Boton de agregar en el formulario @@m2BotonAgregar" (click)="agregarciudad();" type="submit" class="btn btn-primary btn-signin">Agregar Ciudad</button>
   
-      <button i18n="Traduccion de b agregar ciudad" (click)="volver()" type="submit" class="btn btn-primary btn-signin">Cancelar</button>
+      <button i18n="Boton de cancelar en el formulario @@m2BotonCancelarAgregacion" (click)="volver()" type="submit" class="btn btn-primary btn-signin">Cancelar</button>
   
     </form>
 
      
-      <div class="form-group">
+    <!--  <div class="form-group">
         <label for="exampleFormControlFile1">Example file inputtttttttt</label>
         <input type="file" [(ngModel)] = "archivo" (change)="saveImagen($event.target.files)"  class="form-control-file" id="exampleFormControlFile1">
-          </div>
+          </div>-->
      
          
           

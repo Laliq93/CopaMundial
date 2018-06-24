@@ -56,13 +56,13 @@ export class AgregarCiudadComponent implements OnInit {
     return this.http.post(this.url+'agregarciudad',params,{headers:headers})
 
 };*/
- agregarciudad(){
+ /*agregarciudad(){
   let ciudad = new Ciudad();
   
   ciudad.nombre = this.formulario.nombre;
   ciudad.poblacion = this.formulario.habitantes;
   ciudad.descripcion = this.formulario.descripcion;
-  ciudad.imagen = this.imagen;
+  //ciudad.imagen = this.imagen;
   //console.log(`Nombre ${this.formulario.nombre} Habitantes ${this.formulario.habitantes} Descripcion ${this.formulario.descripcion}`)
  // console.log(ciudad);
    this.ciudadservice.agregarciudad(ciudad).subscribe(
@@ -76,7 +76,7 @@ export class AgregarCiudadComponent implements OnInit {
      }
      
    )
- }
+ }*/
 
   resetForm(Form? : NgForm){
     if(Form != null)

@@ -10,12 +10,12 @@ export class ModificarCiudadComponent implements OnInit {
 
   
   ciudades: any = [
-    {nombre: 'Moscú',habitantes: 50, descripcion: 'hola'},
-      {nombre: 'San Petersburgo', habitantes: 1, descripcion: 'como'},
-      {nombre: 'Kaliningrado', habitantes: 5, descripcion: 'estas'},
-      {nombre: 'Nizhny Nóvgorod', habitantes: 2, descripcion: 'bien'},
-      {nombre: 'Volgogrado',habitantes: 1000, descripcion: 'chevere'}
-  ]  
+    {id:"1",nombre: 'Moscú',habitantes: 50, descripcion: 'hola', nomIngles:"Moscow",descIngles:"hello"},
+    {id:"2",nombre: 'San Petersburgo', habitantes: 1, descripcion: 'como', nomIngles:"Saint Petersburg",descIngles:"how"},
+    {id:"3",nombre: 'Kaliningrado', habitantes: 5, descripcion: 'estas', nomIngles:"Kaliningrad",descIngles:"are you"},
+    {id:"4",nombre: 'Nizhny Nóvgorod', habitantes: 2, descripcion: 'bien', nomIngles:"Nizhny Novgorod",descIngles:"good"},
+    {id:"5",nombre: 'Volgogrado',habitantes: 1000, descripcion: 'chevere', nomIngles:"Volgograd",descIngles:"thanks"}
+]  
   
   //constructor(private router: Router){}
 
