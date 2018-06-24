@@ -5,6 +5,7 @@ using System.Web;
 using CopaMundialAPI.Servicios.Traductores.Apuestas;
 using CopaMundialAPI.Servicios.Traductores.Jugadores;
 using CopaMundialAPI.Servicios.Traductores.Partidos;
+using CopaMundialAPI.Servicios.Traductores.Ciudades;
 
 namespace CopaMundialAPI.Servicios.Traductores.Fabrica
 {
@@ -37,6 +38,15 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
         public static TraductorListarProximosPartidos CrearTraductorListarProximosPartidos()
         {
             return new TraductorListarProximosPartidos();
+        }
+
+        /// <summary>
+        /// Metodo con el cual se instancia un objeto de tipo TraductorCiudad
+        /// </summary>
+        /// <returns></returns>
+        public static TraductorCiudad CrearTraductorCiudad ( )
+        {
+            return new TraductorCiudad ( );
         }
        
     }
