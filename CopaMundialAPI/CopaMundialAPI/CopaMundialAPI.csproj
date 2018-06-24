@@ -165,6 +165,7 @@
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaVOF.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaEquipo.cs" />
     <Compile Include="Servicios\Traductores\Fabrica\FabricaTraductor.cs" />
+    <Compile Include="Servicios\Traductores\Jugadores\TraductorJugador.cs" />
     <Compile Include="Servicios\Traductores\Partidos\TraductorListarProximosPartidos.cs" />
     <Compile Include="Servicios\Traductores\TraductorGenerico.cs" />
   </ItemGroup>
@@ -188,7 +189,6 @@
     <Folder Include="Models\" />
     <Folder Include="Servicios\DTO\Logros\" />
     <Folder Include="Servicios\Traductores\Ciudades\" />
-    <Folder Include="Servicios\Traductores\Jugadores\" />
     <Folder Include="Servicios\Traductores\Logros\" />
   </ItemGroup>
   <PropertyGroup>
