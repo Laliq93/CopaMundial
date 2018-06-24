@@ -6,6 +6,7 @@ using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
 using CopaMundialAPI.Servicios.DTO.Apuestas;
 using CopaMundialAPI.Servicios.Fabrica;
+using CopaMundialAPI.Comun.Excepciones;
 
 namespace CopaMundialAPI.Servicios.Traductores.Apuestas
 {
@@ -29,22 +30,29 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
 
         public override Entidad CrearEntidad(DTOApuestaVOF dto)
         {
-            ApuestaVoF entidad = FabricaEntidades.CrearApuestaVoF();
+            try
+            {
+                ApuestaVoF apuesta = FabricaEntidades.CrearApuestaVoF();
 
-            Usuario apostador = new Usuario();
+                Usuario apostador = new Usuario();
 
-            apostador.Id = dto.IdUsuario;
+                apostador.Id = dto.IdUsuario;
 
-            LogroVoF logro = FabricaEntidades.CrearLogroVoF();
+                LogroVoF logro = FabricaEntidades.CrearLogroVoF();
 
-            logro.Id = dto.IdLogro;
+                logro.Id = dto.IdLogro;
 
-            entidad.Logro = logro;
-            entidad.Usuario = apostador;
-            entidad.Respuesta = dto.ApuestaUsuario;
-            entidad.Fecha = DateTime.Now.ToShortDateString();
+                apuesta.Logro = logro;
+                apuesta.Usuario = apostador;
+                apuesta.Respuesta = dto.ApuestaUsuario;
+                apuesta.Fecha = DateTime.Now.ToShortDateString();
 
-            return entidad;
+                return apuesta;
+            }
+            catch (NullReferenceException exc)
+            {
+                throw new ObjetoNullException(exc, "Error al recibir la información de la apuesta");
+            }
 
         }
 
