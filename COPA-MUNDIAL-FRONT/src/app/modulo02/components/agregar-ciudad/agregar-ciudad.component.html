@@ -1,4 +1,9 @@
 
+ <img [src}="data:image/png;base64,{{ima}}">
+<button (click)="imprimirimagen()">hola</button>
+<!-- <label for="exampleFormControlFile2">Example file input</label>
+<input type="file" [(ngModel)]="archivo" (change)="handleFileInput($event.target.files)" class="form-control-file" name="category_banner" id="category_banner">
+    -->
 <div class="central">
   
   <form class="card">
@@ -46,8 +51,16 @@
       <button i18n="Traduccion de b agregar ciudad" (click)="volver()" type="submit" class="btn btn-primary btn-signin">Cancelar</button>
   
     </form>
-  
+
+     
+      <div class="form-group">
+        <label for="exampleFormControlFile1">Example file inputtttttttt</label>
+        <input type="file" [(ngModel)] = "archivo" (change)="saveImagen($event.target.files)"  class="form-control-file" id="exampleFormControlFile1">
+          </div>
+     
+         
+          
   </div>
   
-  
+
   
