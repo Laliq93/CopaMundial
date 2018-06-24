@@ -7,25 +7,56 @@ namespace CopaMundialAPI.Comun.Entidades
 {
     public class Usuario : Entidad
     {
-        /// <summary>
-        /// Clase de la entidad Usuario
-        /// </summary>
-        private string _nombreUsuario; //nombre de Usuario para iniciar la sesion
-        private string _nombre; //nombre del usuario
-        private string _apellido; //apellido del usuario
-        private string _fechaNacimiento; //fecha de nacimiento del usuario
-        private string _correo; //correo del usuario
-        private char _genero; //genero del usuario 
-        private string _password; //contrasena del usuario
-        private string _fotoPath; //foto del usuario
-        private bool _esAdmin; //para el usuario administrador o no
-        private bool _activo; //para conocer el usuario activo
-        private string _token; //token para el usuario
-
             /// <summary>
-            /// Getters y Setters del atributo _nombreUsuario
+            /// Clase de la entidad Usuario
             /// </summary>
-            public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
+            private string _nombreUsuario; //nombre de Usuario para iniciar la sesion
+            private string _nombre; //nombre del usuario
+            private string _apellido; //apellido del usuario
+            private string _fechaNacimiento; //fecha de nacimiento del usuario
+            private string _correo; //correo del usuario
+            private char _genero; //genero del usuario 
+            private string _password; //contrasena del usuario
+            private string _fotoPath; //foto del usuario
+            private bool _esAdmin; //para el usuario administrador o no
+            private bool _activo; //para conocer el usuario activo
+            private string _token; //token para el usuario
+
+             public Usuario()
+                {
+
+                }
+
+
+            public Usuario(string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
+            string correo, char genero, string password, string fotoPath, bool esAdmin, bool activo, string token)
+            {
+                _nombreUsuario = nombreUsuario;
+                _nombre = nombre;
+                _apellido = apellido;
+                _fechaNacimiento = fechaNacimiento;
+                _correo = correo;
+                _genero = genero;
+                _password = password;
+                _fotoPath = fotoPath;
+                _esAdmin = esAdmin;
+                _activo = activo;
+                _token = token;
+            }
+
+            public Usuario(string nombre, string apellido, string fechaNacimiento, char genero, string fotoPath)
+            {
+                _nombre = nombre;
+                _apellido = apellido;
+                _fechaNacimiento = fechaNacimiento;
+                _genero = genero;
+                _fotoPath = fotoPath;
+            }
+
+        /// <summary>
+        /// Getters y Setters del atributo _nombreUsuario
+        /// </summary>
+        public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
 
 
             /// <summary>
