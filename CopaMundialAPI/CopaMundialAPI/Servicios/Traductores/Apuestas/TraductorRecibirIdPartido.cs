@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CopaMundialAPI.Comun.Entidades;
-using CopaMundialAPI.Servicios.DTO.Partidos;
+using CopaMundialAPI.Servicios.DTO.Apuestas;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
+using CopaMundialAPI.Comun.Excepciones;
 
-namespace CopaMundialAPI.Servicios.Traductores.Partidos
+namespace CopaMundialAPI.Servicios.Traductores.Apuestas
 {
     public class TraductorRecibirIdPartido : TraductorGenerico<DTORecibirIdPartido>
     {
@@ -17,11 +18,18 @@ namespace CopaMundialAPI.Servicios.Traductores.Partidos
 
         public override Entidad CrearEntidad(DTORecibirIdPartido dto)
         {
-            Partido partido = new Partido();
+            try
+            {
+                Partido partido = new Partido();
 
-            partido.Id = dto.IdPartido;
+                partido.Id = dto.IdPartido;
 
-            return partido;
+                return partido;
+            }
+            catch (NullReferenceException exc)
+            {
+                throw new ObjetoNullException(exc, "Ha ocurrido un error al recibir la información del partido");
+            }
         }
 
         public override List<DTORecibirIdPartido> CrearListaDto(List<Entidad> entidades)
