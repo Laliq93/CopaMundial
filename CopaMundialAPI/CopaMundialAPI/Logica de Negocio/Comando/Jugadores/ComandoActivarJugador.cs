@@ -1,18 +1,19 @@
-﻿using CopaMundialAPI.Comun.Entidades;
-using CopaMundialAPI.Fuente_de_Datos.DAO;
-using CopaMundialAPI.Fuente_de_Datos.Fabrica;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CopaMundialAPI.Comun.Entidades;
+using CopaMundialAPI.Fuente_de_Datos.DAO;
+using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando
 {
-    public class ComandoModificarJugador : Comando
+    public class ComandoActivarJugador : Comando
     {
-        private Jugador _jugador;
 
-        public ComandoModificarJugador(Jugador jugador)
+        private Entidad _jugador;
+
+        public ComandoActivarJugador(Entidad jugador)
         {
             _jugador = jugador;
         }
@@ -20,7 +21,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando
         public override void Ejecutar()
         {
             DAOJugador dao = FabricaDAO.CrearDAOJugador();
-            dao.ModificarJugador(_jugador);
+            dao.ActivarJugador(_jugador);
         }
 
         public override Entidad GetEntidad()
