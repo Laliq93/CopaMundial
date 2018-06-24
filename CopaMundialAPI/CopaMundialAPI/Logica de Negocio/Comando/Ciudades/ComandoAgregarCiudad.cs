@@ -11,7 +11,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Ciudades
     public class ComandoAgregarCiudad : Comando
     {
 
-        public ComandoAgregarCiudad(Ciudad ciudad)
+        public ComandoAgregarCiudad(Entidad ciudad)
         {
             Entidad = ciudad;
         }
