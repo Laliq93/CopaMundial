@@ -51,5 +51,10 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoObtenerJugadores(jugador);
         }
 
+        public static ComandoObtenerProximosPartidos CrearComandoObtenerProximosPartidos()
+        {
+            return new ComandoObtenerProximosPartidos();
+        }
+
     }
 }

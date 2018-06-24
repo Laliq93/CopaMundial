@@ -120,10 +120,12 @@
     <Compile Include="Comun\Entidades\LogroPartido.cs" />
     <Compile Include="Comun\Entidades\LogroVoF.cs" />
     <Compile Include="Comun\Entidades\Partido.cs" />
+    <Compile Include="Comun\Entidades\TipoLogro.cs" />
     <Compile Include="Comun\Entidades\Usuario.cs" />
     <Compile Include="Controllers\ApuestaController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Fuente de Datos\DAO\DAO.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOApuesta.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaJugador.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaCantidad.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaVoF.cs" />
@@ -137,6 +139,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerProximosPartidos.cs" />
     <Compile Include="Logica de Negocio\Comando\ComandoActivarJugador.cs" />
     <Compile Include="Logica de Negocio\Comando\Comando.cs" />
     <Compile Include="Logica de Negocio\Comando\ComandoAgregarJugador.cs" />
