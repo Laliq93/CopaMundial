@@ -11,9 +11,9 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando
     public class ComandoObtenerJugadores : Comando
     {
 
-        private Jugador _jugador;
+        private Entidad _jugador;
 
-        public ComandoObtenerJugadores(Jugador jugador)
+        public ComandoObtenerJugadores(Entidad jugador)
         {
             _jugador = jugador;
         }

@@ -124,6 +124,12 @@
     <Compile Include="Comun\Entidades\Partido.cs" />
     <Compile Include="Comun\Entidades\TipoLogro.cs" />
     <Compile Include="Comun\Entidades\Usuario.cs" />
+    <Compile Include="Comun\Excepciones\ObjetoNullException.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosJugadorPartido.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosEquipoPartido.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosCantidadPartido.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosVofPartido.cs" />
+    <Compile Include="Comun\Excepciones\ExcepcionGeneral.cs" />
     <Compile Include="Presentacion\Controllers\CiudadController.cs" />
     <Compile Include="Presentacion\Controllers\ApuestaController.cs" />
     <Compile Include="Presentacion\Controllers\TestController.cs" />
@@ -142,22 +148,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoActivarJugador.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerProximosPartidos.cs" />
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoActualizarCiudad.cs" />
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoEliminarCiudad.cs" />
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoListarCiudades.cs" />
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoObtenerCiudad.cs" />
-    <Compile Include="Logica de Negocio\Comando\ComandoActivarJugador.cs" />
     <Compile Include="Logica de Negocio\Comando\Comando.cs" />
-    <Compile Include="Logica de Negocio\Comando\ComandoAgregarJugador.cs" />
-    <Compile Include="Logica de Negocio\Comando\ComandoDesactivarJugador.cs" />
-    <Compile Include="Logica de Negocio\Comando\ComandoModificarJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoAgregarJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoDesactivarJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoModificarJugador.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasVoFEnCurso.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoEliminarApuestaVoF.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoActualizarApuestaVoF.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoAgregarApuestaVOF.cs" />
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoAgregarCiudad.cs" />
-    <Compile Include="Logica de Negocio\Comando\ComandoObtenerJugadores.cs" />
+    <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadores.cs" />
     <Compile Include="Logica de Negocio\Fabrica\FabricaComando.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaEquipo.cs" />
@@ -165,15 +171,24 @@
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaCantidad.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaVOF.cs" />
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudad.cs" />
-    <Compile Include="Servicios\DTO\Ciudades\DTOCiudadID.cs" />
-    <Compile Include="Servicios\DTO\Partidos\DTOListarProximosPartidos.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOMostrarLogrosPartido.cs" />
+    <Compile Include="Servicios\DTO\Apuestas\DTORecibirIdPartido.cs" />
+    <Compile Include="Servicios\DTO\Ciudades\DTOCiudadNombre.cs" />
+    <Compile Include="Servicios\DTO\Jugadores\DTOJugador.cs" />
+    <Compile Include="Servicios\DTO\Jugadores\DTOJugadorId.cs" />
+    <Compile Include="Servicios\DTO\Apuestas\DTOListarProximosPartidos.cs" />
     <Compile Include="Servicios\Fabrica\FabricaDTO.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaCantidad.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaJugador.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaVOF.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaEquipo.cs" />
+    <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudad.cs" />
+    <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudadNombre.cs" />
     <Compile Include="Servicios\Traductores\Fabrica\FabricaTraductor.cs" />
-    <Compile Include="Servicios\Traductores\Partidos\TraductorListarProximosPartidos.cs" />
+    <Compile Include="Servicios\Traductores\Jugadores\TraductorJugador.cs" />
+    <Compile Include="Servicios\Traductores\Logros\TraductorMostrarLogrosPartido.cs" />
+    <Compile Include="Servicios\Traductores\Apuestas\TraductorListarProximosPartidos.cs" />
+    <Compile Include="Servicios\Traductores\Apuestas\TraductorRecibirIdPartido.cs" />
     <Compile Include="Servicios\Traductores\TraductorGenerico.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -187,19 +202,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Comun\Excepciones\" />
-    <Folder Include="Logica de Negocio\Comando\Jugadores\" />
     <Folder Include="Logica de Negocio\Comando\Logros\" />
     <Folder Include="Logica de Negocio\Comando\Partidos\" />
     <Folder Include="Logica de Negocio\Comando\Usuarios\" />
     <Folder Include="Logica de Negocio\Compuesto\" />
     <Folder Include="Logica de Negocio\Singleton\" />
     <Folder Include="Models\" />
-    <Folder Include="Servicios\DTO\Jugadores\" />
-    <Folder Include="Servicios\DTO\Logros\" />
-    <Folder Include="Servicios\Traductores\Ciudades\" />
-    <Folder Include="Servicios\Traductores\Jugadores\" />
-    <Folder Include="Servicios\Traductores\Logros\" />
+    <Folder Include="Servicios\DTO\Partidos\" />
+    <Folder Include="Servicios\Traductores\Partidos\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
