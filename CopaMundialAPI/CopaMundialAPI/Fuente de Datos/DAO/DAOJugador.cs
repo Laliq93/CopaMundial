@@ -111,6 +111,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             for (int i = 0; i < cantidadRegistros; i++)
             {
                 Jugador jugador = FabricaEntidades.CrearJugador();
+                int idEquipo;
 
                 jugador.Id = GetInt(i, 0);
                 jugador.Nombre = GetString(i, 1);
@@ -121,7 +122,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 jugador.Altura = GetDouble(i, 6);
                 jugador.Posicion = GetString(i, 7);
                 jugador.Numero = GetInt(i, 8);
-                jugador.Equipo = GetString(i, 9);
+                idEquipo = GetInt(i, 9);
                 jugador.Capitan = GetBool(i, 10);
 
                 jugadores.Add(jugador);
