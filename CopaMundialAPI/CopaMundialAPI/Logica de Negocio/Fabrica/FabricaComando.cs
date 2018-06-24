@@ -11,10 +11,15 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
 {
     public static class FabricaComando
     {
-        public static ComandoAgregarCiudad CrearComandoAgregarEstadio ( Ciudad ciudad )
+        public static ComandoAgregarCiudad CrearComandoAgregarCiudad ( Ciudad ciudad )
         {
             return new ComandoAgregarCiudad ( ciudad );
         }
+
+		public static ComandoObtenerCiudad CrearComandoObtenerCiudad (int id)
+		{
+			return new ComandoObtenerCiudad(id);
+		}
 
         public static ComandoAgregarApuestaVOF CrearComandoAgregarApuestaVoF(ApuestaVoF apuesta)
         {
