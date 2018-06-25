@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import {
   DTOEnviarIdPartido,
   DTOMostrarLogros,
+  DTOMostrarJugador,
   Conexion
 } from '../../models/index';
 import { Api08Service } from '../../services/api08.service';
@@ -22,6 +23,7 @@ declare var bootbox: any;
 export class VerApuestaComponent implements OnInit {
   public EnviarIdPartido: DTOEnviarIdPartido;
   public MostrarLogros: DTOMostrarLogros;
+  public MostrarJugadores: DTOMostrarJugador;
 
   public api08: Api08Service;
   public connect: Conexion;
@@ -30,16 +32,19 @@ export class VerApuestaComponent implements OnInit {
   public ListMostrarlogrocantidad: DTOMostrarLogros[] = [];
   public ListMostrarlogrojugadores: DTOMostrarLogros[] = [];
   public ListMostrarlogroequipos: DTOMostrarLogros[] = [];
+  public ListMostrarJugadores: DTOMostrarJugador[] = [];
 
   public dtTriggerVof: Subject<any> = new Subject();
   public dtTriggerCantidad: Subject<any> = new Subject();
   public dtTriggerJugadores: Subject<any> = new Subject();
   public dtTriggerEquipos: Subject<any> = new Subject();
+  public dtTriggerMostrarJugadores: Subject<any> = new Subject();
 
   public dtOptionsVof: DataTables.Settings = {};
   public dtOptionsCantidad: DataTables.Settings = {};
   public dtOptionsJugadores: DataTables.Settings = {};
   public dtOptionsEquipos: DataTables.Settings = {};
+  public dtOptionsMostrarJugadores: DataTables.Settings = {};
 
   public idPartido: number;
   public opcionVof: boolean[] = [];
@@ -47,12 +52,13 @@ export class VerApuestaComponent implements OnInit {
   public opcionJugador: number;
   public opcionEquipo: number;
 
-  display = 'none';
+  public display = 'none';
 
   constructor(private http: HttpClient, private router: ActivatedRoute) {
     this.api08 = new Api08Service(http);
     this.EnviarIdPartido = new DTOEnviarIdPartido();
     this.MostrarLogros = new DTOMostrarLogros();
+    this.MostrarJugadores = new DTOMostrarJugador();
     this.connect = new Conexion();
   }
 
@@ -61,6 +67,7 @@ export class VerApuestaComponent implements OnInit {
     this.dtOptionsCantidad = {};
     this.dtOptionsJugadores = {};
     this.dtOptionsEquipos = {};
+    this.dtOptionsMostrarJugadores = {};
 
     this.idPartido = parseInt(
       this.router.snapshot.paramMap.get('idPartido'),
@@ -185,6 +192,34 @@ export class VerApuestaComponent implements OnInit {
       );
   }
 
+  public ObtenerListaJugadoresPartido() {
+    this.connect.Controlador = 'obtenerlistajugadorespartido';
+    const url = this.connect.RutaApi + this.connect.Controlador;
+
+    this.http
+      .put<DTOMostrarJugador>(url, {
+        responseType: 'json'
+      })
+      .subscribe(
+        data => {
+          this.dtTriggerMostrarJugadores.next();
+          for (let i = 0; i < Object.keys(data).length; i++) {
+            let listaJugadores: DTOMostrarJugador;
+            listaJugadores = new DTOMostrarJugador();
+
+            listaJugadores.IdJugador = data[i].IdLogro;
+            listaJugadores.Nombre = data[i].Logro;
+            listaJugadores.Apellido = data[i].Logro;
+
+            this.ListMostrarJugadores[i] = listaJugadores;
+          }
+        },
+        Error => {
+          this.api08.FatalError();
+        }
+      );
+  }
+
   public ApostarVof(IdLogro, opcionVof) {
     this.api08.AgregarApuestaVof(IdLogro, opcionVof);
   }
@@ -194,15 +229,15 @@ export class VerApuestaComponent implements OnInit {
     this.api08.AgregarApuestaCantidad(IdLogro, opcionCantidad);
   }
 
-  public postarJugador() {}
+  public ApostarJugador(IdJugador) {}
 
   public ApostarEquipo() {}
 
-  public openModalDialog() {
+  public openModaljugadores() {
     this.display = 'block';
   }
 
-  public closeModalDialog() {
+  public closeModalJuagdores() {
     this.display = 'none';
   }
 }

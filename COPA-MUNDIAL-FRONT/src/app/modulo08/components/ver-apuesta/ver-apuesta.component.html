@@ -118,7 +118,6 @@
                   <th>ID</th>
                   <th>Apuesta</th>
                   <th>Opción</th>
-                  <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
@@ -126,18 +125,12 @@
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
                   <td>
-                    <button type="button" class="btn btn-success-table" style="margin-right:16px;">Ver Jugadores</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                    <button type="button" class="btn btn-success-table"  (click)="openModaljugadores()" style="margin-right:16px;">Ver Jugadores</button>
+                  <div class="backdrop" [ngStyle]="{'display':display}"></div>
                   </td>
                 </tr>
               </tbody>
             </table>
-
-            <!-- After clicking the button open the modal dialog using open/close event binding methods -->
-            <button type="button" class="btn btn-info btn-lg" (click)="openModalDialog()">Open Login Modal Dialog!</button>
-            <div class="backdrop" [ngStyle]="{'display':display}"></div>
           </div>
 
         </div>
@@ -200,7 +193,7 @@
       <div class="modal-content">
         <!-- modal-header -->
         <div class="modal-header">
-          <button type="button" class="close" aria-label="Close" (click)="closeModalDialog()">
+          <button type="button" class="close" aria-label="Close" (click)="closeModalJuagdores()">
             <span aria-hidden="true">&times;</span>
           </button>
           <!-- <h4 class="modal-title">Login</h4> -->
@@ -208,7 +201,7 @@
 
         <!-- modal-body -->
         <div class="modal-body">
-          <table datatable [dtOptions]="dtOptionsJugadores" [dtTrigger]="dtTriggerJugadores" class="row-border hover">
+          <table datatable [dtOptions]="dtOptionsMostrarJugadores" [dtTrigger]="dtTriggerMostrarJugadores" class="row-border hover">
             <thead>
               <tr>
                 <th>ID</th>
@@ -218,14 +211,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let MostrarLogros of ListMostrarlogrojugadores">
-                <td>{{MostrarLogros.IdLogro}}</td>
-                <td>{{MostrarLogros.Logro}}</td>
+              <tr *ngFor="let MostrarJugadores of ListMostrarJugadores">
+                <td>{{MostrarJugadores.IdJugador}}</td>
+                <td>{{MostrarJugadores.Nombre}}</td>
+                <td>{{MostrarJugadores.Apellido}}</td>
                 <td>
-                  <button type="button" class="btn btn-success-table" style="margin-right:16px;">Ver Jugadores</button>
-                </td>
-                <td>
-                  <button type="button" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                  <button type="button" class="btn btn-success-table" (click)="closeModalJuagdores()" style="margin-right:16px;">✓</button>
                 </td>
               </tr>
             </tbody>
@@ -234,7 +225,7 @@
 
         <!-- modal-footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" (click)="closeModalDialog()">Close</button>
+          <button type="button" class="btn btn-default" (click)="closeModalJuagdores()">Close</button>
         </div>
 
       </div>
