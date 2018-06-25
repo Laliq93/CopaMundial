@@ -51,17 +51,17 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MostrarLogros of ListMostrarlogrovof">
+                <tr *ngFor="let MostrarLogros of ListMostrarlogrovof; let i = index">
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
                   <td>
-                    <select [(ngModel)]="opcionVof" name="opcion" id="opcion">
+                    <select [(ngModel)]="opcionVof[i]" name="opcion" id="opcion">
                       <option value="true">Si</option>
                       <option value="false">No</option>
                     </select>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                    <button type="button" (click)="ApostarVof(MostrarLogros.IdLogro, opcionVof[i])" class="btn btn-success-table" style="margin-right:16px;">✓</button>
                   </td>
                 </tr>
               </tbody>
@@ -83,13 +83,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MostrarLogros of ListMostrarlogrocantidad">
+                <tr *ngFor="let MostrarLogros of ListMostrarlogrocantidad; let i = index">
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
 
                   <td>
                     <div class="col-md-8">
-                      <input type="text" class="form-control form-control-line" name="newCantidad" id="newCantidad" pattern="^[0-9\s]+$" [(ngModel)]="opcionCantidad"
+                      <input type="text" class="form-control form-control-line" name="newCantidad" id="newCantidad" pattern="^[0-9\s]+$" [(ngModel)]="opcionCantidad[i]"
                         #newCantidad="ngModel">
 
                       <div *ngIf="newCantidad.errors &&  (newCantidad.touched || newCantidad.dirty)" class="aler alert-danger">
@@ -100,7 +100,7 @@
                     </div>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                    <button type="button" (click)="ApostarCantidad(MostrarLogros.IdLogro, opcionCantidad[i])" class="btn btn-success-table" style="margin-right:16px;">✓</button>
                   </td>
                 </tr>
               </tbody>

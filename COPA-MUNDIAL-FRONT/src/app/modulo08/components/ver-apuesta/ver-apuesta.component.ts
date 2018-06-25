@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import {
   DTOEnviarIdPartido,
   DTOMostrarLogros,
-  DTOApuestaVOF,
   Conexion
 } from '../../models/index';
 import { Api08Service } from '../../services/api08.service';
@@ -23,7 +22,6 @@ declare var bootbox: any;
 export class VerApuestaComponent implements OnInit {
   public EnviarIdPartido: DTOEnviarIdPartido;
   public MostrarLogros: DTOMostrarLogros;
-  public TipoLogro: DTOApuestaVOF;
 
   public api08: Api08Service;
   public connect: Conexion;
@@ -44,8 +42,8 @@ export class VerApuestaComponent implements OnInit {
   public dtOptionsEquipos: DataTables.Settings = {};
 
   public idPartido: number;
-  public opcionVof: boolean;
-  public opcionCantidad: number;
+  public opcionVof: boolean[] = [];
+  public opcionCantidad: number[] = [];
   public opcionJugador: number;
   public opcionEquipo: number;
 
@@ -53,7 +51,6 @@ export class VerApuestaComponent implements OnInit {
     this.api08 = new Api08Service(http);
     this.EnviarIdPartido = new DTOEnviarIdPartido();
     this.MostrarLogros = new DTOMostrarLogros();
-
     this.connect = new Conexion();
   }
 
@@ -76,7 +73,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosVOF() {
     this.connect.Controlador = 'obtenerlogrosvofpartido';
-    let url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.RutaApi + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -104,7 +101,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosCantidad() {
     this.connect.Controlador = 'obtenerlogroscantidadpartido';
-    let url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.RutaApi + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -132,7 +129,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosJugadores() {
     this.connect.Controlador = 'obtenerlogrosjugadorpartido';
-    let url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.RutaApi + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -160,7 +157,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosEquipos() {
     this.connect.Controlador = 'obtenerlogrosequipopartido';
-    let url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.RutaApi + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -185,4 +182,17 @@ export class VerApuestaComponent implements OnInit {
         }
       );
   }
+
+  public ApostarVof(IdLogro, opcionVof) {
+    this.api08.AgregarApuestaVof(IdLogro, opcionVof);
+  }
+
+  public ApostarCantidad(IdLogro, opcionCantidad: number) {
+    alert(opcionCantidad);
+    this.api08.AgregarApuestaCantidad(IdLogro, opcionCantidad);
+  }
+
+  ApostarJugador() {}
+
+  ApostarEquipo() {}
 }
