@@ -16,7 +16,7 @@ import { NavButtonsComponent } from './components/shared/nav-buttons/nav-buttons
      FormsModule,
      HttpClientModule,
      DataTablesModule,
-     Modulo08RoutingModule
+     Modulo08RoutingModule,
     ],
   declarations: [
     RegistrarApuestaComponent,

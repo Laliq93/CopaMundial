@@ -47,6 +47,8 @@ export class VerApuestaComponent implements OnInit {
   public opcionJugador: number;
   public opcionEquipo: number;
 
+  display = 'none';
+
   constructor(private http: HttpClient, private router: ActivatedRoute) {
     this.api08 = new Api08Service(http);
     this.EnviarIdPartido = new DTOEnviarIdPartido();
@@ -192,7 +194,15 @@ export class VerApuestaComponent implements OnInit {
     this.api08.AgregarApuestaCantidad(IdLogro, opcionCantidad);
   }
 
-  ApostarJugador() {}
+  public postarJugador() {}
 
-  ApostarEquipo() {}
+  public ApostarEquipo() {}
+
+  public openModalDialog() {
+    this.display = 'block';
+  }
+
+  public closeModalDialog() {
+    this.display = 'none';
+  }
 }
