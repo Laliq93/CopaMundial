@@ -16,10 +16,10 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             ApuestaVoF apuestavof = apuesta as ApuestaVoF;
 
-            StoredProcedure("verificarapuestaexiste(@idlogro, @idusuario)");
+            StoredProcedure("verificarapuestaexiste(@idusuario, @idlogro)");
 
-            AgregarParametro("idlogro", apuestavof.Logro.Id);
             AgregarParametro("idusuario", apuestavof.Usuario.Id);
+            AgregarParametro("idlogro", apuestavof.Logro.Id);
 
             EjecutarReader();
 

@@ -81,5 +81,10 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoObtenerLogrosJugadorPartido(partido);
         }
 
+        public static ComandoVerificarApuestaExiste CrearComandoVerificarApuestaExiste(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaExiste(apuesta);
+        }
+
     }
 }
