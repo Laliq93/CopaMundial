@@ -4,46 +4,37 @@ using System.Linq;
 using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
-using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
 using CopaMundialAPI.Comun.Excepciones;
+using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
 using Npgsql;
 
 namespace CopaMundialAPI.Fuente_de_Datos.DAO
 {
-    public class DAOApuestaVoF : DAO, IDAOApuesta
+    public class DAOApuestaEquipo : DAO, IDAOApuesta
     {
         public void Actualizar(Entidad entidad)
         {
-            ApuestaVoF apuesta = entidad as ApuestaVoF;
-
-            StoredProcedure("editarapuestavof(@idlogro, @idusuario, @apuesta)");
-
-            AgregarParametro("idlogro", apuesta.Logro.Id);
-            AgregarParametro("idusuario", apuesta.Usuario.Id);
-            AgregarParametro("apuesta", apuesta.Respuesta);
-
-            EjecutarQuery();
-
+            throw new NotImplementedException();
         }
 
         public void Agregar(Entidad entidad)
         {
-            ApuestaVoF apuesta = entidad as ApuestaVoF;
-
             Conectar();
 
-            StoredProcedure("agregarapuestavof(@idlogro, @idusuario, @apuesta)");
+            ApuestaEquipo apuesta = entidad as ApuestaEquipo;
+
+            StoredProcedure("agregarapuestaequipo(@idlogro, @idusuario, @apuesta)");
 
             AgregarParametro("idlogro", apuesta.Logro.Id);
             AgregarParametro("idusuario", apuesta.Usuario.Id);
-            AgregarParametro("apuesta", apuesta.Respuesta);
+            AgregarParametro("apuesta", apuesta.Respuesta.Id);
 
             EjecutarQuery();
         }
 
         public void Eliminar(Entidad entidad)
         {
-            ApuestaVoF apuesta = entidad as ApuestaVoF;
+            ApuestaEquipo apuesta = entidad as ApuestaEquipo;
 
             StoredProcedure("eliminarapuesta(@idlogro, @idusuario)");
 
@@ -55,12 +46,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         public List<Entidad> ObtenerApuestasEnCurso(Entidad usuario)
         {
-            Usuario apostador = usuario as Usuario;
-
-            List<Entidad> apuestasEnCurso = new List<Entidad>();
-            
-
-            return apuestasEnCurso;
+            throw new NotImplementedException();
         }
 
         public List<Entidad> ObtenerApuestasFinalizadas(Entidad usuario)
@@ -77,12 +63,12 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         {
             Conectar();
 
-            ApuestaVoF apuestavof = apuesta as ApuestaVoF;
+            ApuestaEquipo apuestaequipo = apuesta as ApuestaEquipo;
 
             StoredProcedure("verificarapuestaexiste(@idusuario, @idlogro)");
 
-            AgregarParametro("idusuario", apuestavof.Usuario.Id);
-            AgregarParametro("idlogro", apuestavof.Logro.Id);
+            AgregarParametro("idusuario", apuestaequipo.Usuario.Id);
+            AgregarParametro("idlogro", apuestaequipo.Logro.Id);
 
             EjecutarReader();
 
@@ -91,5 +77,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             if (count > 0)
                 throw new ApuestaRepetidaException();
         }
+    
     }
 }

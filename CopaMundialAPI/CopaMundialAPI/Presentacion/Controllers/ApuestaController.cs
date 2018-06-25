@@ -188,13 +188,14 @@ namespace CopaMundialAPI.Presentacion.Controllers
         {
             try
             {
+
                 TraductorApuestaVOF traductor = FabricaTraductor.CrearTraductorApuestaVoF();
 
                 Entidad apuesta = traductor.CrearEntidad(dto);
 
                 Comando comando;
 
-                comando = FabricaComando.CrearComandoVerificarApuestaExiste(apuesta);
+                comando = FabricaComando.CrearComandoVerificarApuestaVoFExiste(apuesta);
 
                 comando.Ejecutar();
 
@@ -234,11 +235,91 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 Comando comando;
 
-                comando = FabricaComando.CrearComandoVerificarApuestaExiste(apuesta);
+                comando = FabricaComando.CrearComandoVerificarApuestaCantidadExiste(apuesta);
 
                 comando.Ejecutar();
 
-                comando = FabricaComando.CrearComandoAgregarApuestaVoF(apuesta);
+                comando = FabricaComando.CrearComandoAgregarApuestaCantidad(apuesta);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (ApuestaRepetidaException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.ToString());
+            }
+
+        }
+
+        [Route("registrarapuestajugador")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage RegistrarApuestaJugador(DTOApuestaJugador dto)
+        {
+            try
+            {
+                TraductorApuestaJugador traductor = FabricaTraductor.CrearTraductorApuestaJugador();
+
+                Entidad apuesta = traductor.CrearEntidad(dto);
+
+                Comando comando;
+
+                comando = FabricaComando.CrearComandoVerificaApuestaJugadorExiste(apuesta);
+
+                comando.Ejecutar();
+
+                comando = FabricaComando.CrearComandoAgregarApuestaJugador(apuesta);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (ApuestaRepetidaException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.ToString());
+            }
+
+        }
+
+        [Route("registrarapuestaequipo")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage RegistrarApuestaEquipo(DTOApuestaEquipo dto)
+        {
+            try
+            {
+                TraductorApuestaEquipo traductor = FabricaTraductor.CrearTraductorApuestaEquipo();
+
+                Entidad apuesta = traductor.CrearEntidad(dto);
+
+                Comando comando;
+
+                comando = FabricaComando.CrearComandoVerificaApuestaEquipoExiste(apuesta);
+
+                comando.Ejecutar();
+
+                comando = FabricaComando.CrearComandoAgregarApuestaEquipo(apuesta);
 
                 comando.Ejecutar();
 
