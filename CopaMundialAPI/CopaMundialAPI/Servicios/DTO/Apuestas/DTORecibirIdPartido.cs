@@ -10,5 +10,10 @@ namespace CopaMundialAPI.Servicios.DTO.Apuestas
         private int idPartido;
 
         public int IdPartido { get => idPartido; set => idPartido = value; }
+
+        public DTORecibirIdPartido()
+        {
+
+        }
     }
 }

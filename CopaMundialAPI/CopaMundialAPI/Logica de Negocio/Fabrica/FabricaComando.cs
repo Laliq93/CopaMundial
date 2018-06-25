@@ -21,7 +21,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
 			return new ComandoObtenerCiudad(id);
 		}
 
-        public static ComandoAgregarApuestaVOF CrearComandoAgregarApuestaVoF(ApuestaVoF apuesta)
+        public static ComandoAgregarApuestaVOF CrearComandoAgregarApuestaVoF(Entidad apuesta)
         {
             return new ComandoAgregarApuestaVOF(apuesta);
         }
@@ -31,7 +31,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoObtenerApuestasVoFEnCurso(usuario);
         }
 
-        public static ComandoAgregarJugador CrearComandoAgregarJugador(Jugador jugador)
+        public static ComandoAgregarJugador CrearComandoAgregarJugador(Entidad jugador)
         {
             return new ComandoAgregarJugador(jugador);
         }
@@ -51,9 +51,9 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoDesactivarJugador(jugador);
         }
 
-        public static ComandoObtenerJugadores CrearComandoObtenerJugadores(Jugador jugador)
+        public static ComandoObtenerJugadores CrearComandoObtenerJugadores()
         {
-            return new ComandoObtenerJugadores(jugador);
+            return new ComandoObtenerJugadores();
         }
 
         public static ComandoObtenerProximosPartidos CrearComandoObtenerProximosPartidos()
@@ -79,6 +79,11 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
         public static ComandoObtenerLogrosJugadorPartido CrearComandoObtenerLogrosJugadorPartido(Entidad partido)
         {
             return new ComandoObtenerLogrosJugadorPartido(partido);
+        }
+
+        public static ComandoVerificarApuestaExiste CrearComandoVerificarApuestaExiste(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaExiste(apuesta);
         }
 
     }

@@ -3,15 +3,16 @@
 <!-- ============================================================== -->
 
 <div class="row page-titles">
-  <div class="col-md-12 col-12 align-self-center">
+  <div class="col-md-6 col-6 align-self-center">
     <h2 class="text-themecolor m-b-0 m-t-0">Apuestas</h2>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="">Inicio</a>
       </li>
-      <li class="breadcrumb-item active">Mis Apuestas</li>
+      <li class="breadcrumb-item active">Logros Por Apuesta</li>
     </ol>
   </div>
+  <app-nav-buttons></app-nav-buttons>
 </div>
 
 <div class="row">
@@ -22,61 +23,163 @@
 
       <ul class="nav nav-tabs profile-tab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#Ganadas" role="tab">Ganadas</a>
+          <a class="nav-link active" data-toggle="tab" href="#vf" role="tab">V o F</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#Perdidas" role="tab">Perdidas</a>
+          <a class="nav-link" data-toggle="tab" href="#aciertos" role="tab">Cantidad</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#jugadores" role="tab">Jugadores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#equipos" role="tab">Equipos</a>
         </li>
       </ul>
 
       <div class="tab-content">
 
-        <div class="tab-pane active" id="Ganadas" role="tabpanel">
+        <div class="tab-pane active" id="vf" role="tabpanel">
           <div class="card-body">
 
-            <div class="d-none d-sm-block">
-              <table datatable class="row-border hover">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Leo</td>
-                    <td>Messi </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <table datatable [dtOptions]="dtOptionsVof" [dtTrigger]="dtTriggerVof" class="row-border hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Apuesta</th>
+                  <th>Opción</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let MostrarLogros of ListMostrarlogrovof">
+                  <td>{{MostrarLogros.IdLogro}}</td>
+                  <td>{{MostrarLogros.Logro}}</td>
+                  <td>
+                    <select [(ngModel)]="opcionVof" name="opcion" id="opcion">
+                      <option value="true">Si</option>
+                      <option value="false">No</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 
           </div>
         </div>
 
-        <div class="tab-pane" id="Perdidas" role="tabpanel">
+        <div class="tab-pane" id="aciertos" role="tabpanel">
           <div class="card-body">
 
-            <div class="d-none d-sm-block">
-              <table datatable class="row-border hover">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Cristiana</td>
-                    <td>Ronalda </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <table datatable [dtOptions]="dtOptionsCantidad" [dtTrigger]="dtTriggerCantidad" class="row-border hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Apuesta</th>
+                  <th>Opción</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let MostrarLogros of ListMostrarlogrocantidad">
+                  <td>{{MostrarLogros.IdLogro}}</td>
+                  <td>{{MostrarLogros.Logro}}</td>
+
+                  <td>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control form-control-line" name="newCantidad" id="newCantidad" pattern="^[0-9\s]+$" [(ngModel)]="opcionCantidad"
+                        #newCantidad="ngModel">
+
+                      <div *ngIf="newCantidad.errors &&  (newCantidad.touched || newCantidad.dirty)" class="aler alert-danger">
+                        <div [hidden]="!newCantidad.errors?.pattern">
+                          Ingrese Solo Numeros
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+        <div class="tab-pane" id="jugadores" role="tabpanel">
+          <div class="card-body">
+
+            <table datatable [dtOptions]="dtOptionsJugadores" [dtTrigger]="dtTriggerJugadores" class="row-border hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Apuesta</th>
+                  <th>Opción</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let MostrarLogros of ListMostrarlogrojugadores">
+                  <td>{{MostrarLogros.IdLogro}}</td>
+                  <td>{{MostrarLogros.Logro}}</td>
+                  <td>
+                    <button type="button" class="btn btn-success-table" style="margin-right:16px;">Ver Jugadores</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+
+        <div class="tab-pane" id="equipos" role="tabpanel">
+          <div class="card-body">
+
+            <table datatable [dtOptions]="dtOptionsEquipos" [dtTrigger]="dtTriggerEquipos" class="row-border hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Apuesta</th>
+                  <th>Opción</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let MostrarLogros of ListMostrarlogroequipos">
+                  <td>{{MostrarLogros.IdLogro}}</td>
+                  <td>{{MostrarLogros.Logro}}</td>
+                  <td>
+                    <select [(ngModel)]="opcionEquipo" name="opcion" id="opcion">
+                      <option value="1">Argentina</option>
+                      <option value="2">Brasil</option>
+                      <option value="3">España</option>
+                      <option value="4">Islandia</option>
+                      <option value="5">Irán</option>
+                      <option value="6">Inglaterra</option>
+                      <option value="7">Colombia</option>
+                      <option value="8">Mexico</option>
+                      <option value="9">Rusia</option>
+                      <option value="10">Alemania</option>
+                      <option value="11">Portugal</option>
+                      <option value="12">Perú</option>
+                      <option value="13">Arabia Saudita</option>
+                      <option value="14">Francia</option>
+                      <option value="15">Uruguay</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 
           </div>
         </div>

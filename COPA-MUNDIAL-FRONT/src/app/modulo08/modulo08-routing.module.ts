@@ -10,7 +10,7 @@ import { VerApuestaComponent } from './components/ver-apuesta/ver-apuesta.compon
 const routes: Routes = [
   { path: '', component: RegistrarApuestaComponent },
   { path: 'gestionar', component: GestionarApuestaComponent },
-  { path: 'mostrar', component: VerApuestaComponent }
+  { path: 'mostrar/:idPartido', component: VerApuestaComponent }
 ];
 
 @NgModule({
