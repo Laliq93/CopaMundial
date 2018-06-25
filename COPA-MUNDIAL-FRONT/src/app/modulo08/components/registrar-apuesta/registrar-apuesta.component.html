@@ -4,13 +4,16 @@
 
 <div class="row page-titles">
   <div class="col-md-12 col-12 align-self-center">
-    <h2 class="text-themecolor m-b-0 m-t-0">Apuestas</h2>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="">Inicio</a>
-      </li>
-      <li class="breadcrumb-item active">Apostar</li>
-    </ol>
+    <div class="col-md-6 col-6">
+      <h2 class="text-themecolor m-b-0 m-t-0">Apuestas</h2>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="">Inicio</a>
+        </li>
+        <li class="breadcrumb-item active">Apostar</li>
+      </ol>
+    </div>
+    <app-nav-buttons></app-nav-buttons>
   </div>
 </div>
 
@@ -31,29 +34,28 @@
         <div class="tab-pane active" id="Partidos" role="tabpanel">
           <div class="card-body">
 
-            <div class="d-none d-sm-block">
-              <table datatable class="row-border hover">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Opcion</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Leo</td>
-                    <td>Messi </td>
-                    <td>
-                      <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Equipo 1</th>
+                  <th>Equipo 2</th>
+                  <th>Fecha</th>
+                  <th>Accion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let MostrarPartido of ListMostrarPartido">
+                  <td>{{MostrarPartido.Id}}</td>
+                  <td>{{MostrarPartido.Equipo1}}</td>
+                  <td>{{MostrarPartido.Equipo2}}</td>
+                  <td>{{MostrarPartido.FechaPartido}}</td>
+                  <td>
+                    <button type="button" (click)="LlamarApuestas(MostrarPartido.Id)" class="btn btn-danger-table" style="margin-right:16px;">Ver Apuestas</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

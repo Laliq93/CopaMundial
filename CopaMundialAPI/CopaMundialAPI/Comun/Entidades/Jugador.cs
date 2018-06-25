@@ -15,7 +15,7 @@ namespace CopaMundialAPI.Comun.Entidades
         private double _altura;
         private string _posicion;
         private int _numero;
-        private string _equipo;
+        private Equipo _equipo;
         private bool _capitan;
         private bool _activo;
 
@@ -30,7 +30,7 @@ namespace CopaMundialAPI.Comun.Entidades
         public double Altura { get => _altura; set => _altura = value; }
         public string Posicion { get => _posicion; set => _posicion = value; }
         public int Numero { get => _numero; set => _numero = value; }
-        public string Equipo { get => _equipo; set => _equipo = value; }
+        public Equipo Equipo { get => _equipo; set => _equipo = value; }
         public bool Capitan { get => _capitan; set => _capitan = value; }
         public bool Activo { get => _activo; set => _activo = value; }
     }

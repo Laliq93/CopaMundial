@@ -36,7 +36,6 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
             entidad.Logro.Id = dto.IdLogro;
             entidad.Usuario.Id = dto.IdUsuario;
             entidad.Respuesta.Id = dto.IdJugador;
-            entidad.Fecha = DateTime.Now.ToShortDateString();
 
             return entidad;
         }

@@ -11,17 +11,17 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando
     public class ComandoObtenerJugadores : Comando
     {
 
-        private Entidad _jugador;
+        private List<Entidad> _jugadores;
 
-        public ComandoObtenerJugadores(Entidad jugador)
+        public ComandoObtenerJugadores()
         {
-            _jugador = jugador;
+            _jugadores = new List<Entidad>();
         }
 
         public override void Ejecutar()
         {
             DAOJugador dao = FabricaDAO.CrearDAOJugador();
-            dao.ObtenerJugadores();
+            _jugadores = dao.ObtenerJugadores();
         }
 
         public override Entidad GetEntidad()
@@ -31,7 +31,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando
 
         public override List<Entidad> GetEntidades()
         {
-            throw new NotImplementedException();
+            return _jugadores;
         }
     }
 }
