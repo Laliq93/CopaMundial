@@ -12,5 +12,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
         List<Entidad> ObtenerApuestasEnCurso(Entidad usuario);
 
         List<Entidad> ObtenerApuestasFinalizadas(Entidad usuario);
+
+        void VerificarApuestaExiste(Entidad apuesta);
     }
 }
