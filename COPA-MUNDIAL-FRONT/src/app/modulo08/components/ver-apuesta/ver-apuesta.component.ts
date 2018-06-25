@@ -23,16 +23,31 @@ declare var bootbox: any;
 export class VerApuestaComponent implements OnInit {
   public EnviarIdPartido: DTOEnviarIdPartido;
   public MostrarLogros: DTOMostrarLogros;
-  public ListMostrarlogro: DTOMostrarLogros[] = [];
-  public MostrarTipoLogro: DTOApuestaVOF;
-  public api08: Api08Service;
+  public TipoLogro: DTOApuestaVOF;
 
+  public api08: Api08Service;
   public connect: Conexion;
 
-  public dtTrigger: Subject<any> = new Subject();
-  public dtOptions: DataTables.Settings = {};
+  public ListMostrarlogrovof: DTOMostrarLogros[] = [];
+  public ListMostrarlogrocantidad: DTOMostrarLogros[] = [];
+  public ListMostrarlogrojugadores: DTOMostrarLogros[] = [];
+  public ListMostrarlogroequipos: DTOMostrarLogros[] = [];
+
+  public dtTriggerVof: Subject<any> = new Subject();
+  public dtTriggerCantidad: Subject<any> = new Subject();
+  public dtTriggerJugadores: Subject<any> = new Subject();
+  public dtTriggerEquipos: Subject<any> = new Subject();
+
+  public dtOptionsVof: DataTables.Settings = {};
+  public dtOptionsCantidad: DataTables.Settings = {};
+  public dtOptionsJugadores: DataTables.Settings = {};
+  public dtOptionsEquipos: DataTables.Settings = {};
 
   public idPartido: number;
+  public opcionVof: boolean;
+  public opcionCantidad: number;
+  public opcionJugador: number;
+  public opcionEquipo: number;
 
   constructor(private http: HttpClient, private router: ActivatedRoute) {
     this.api08 = new Api08Service(http);
@@ -43,8 +58,15 @@ export class VerApuestaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dtOptions = {};
-    this.idPartido = parseInt(this.router.snapshot.paramMap.get('idPartido'), 10);
+    this.dtOptionsVof = {};
+    this.dtOptionsCantidad = {};
+    this.dtOptionsJugadores = {};
+    this.dtOptionsEquipos = {};
+
+    this.idPartido = parseInt(
+      this.router.snapshot.paramMap.get('idPartido'),
+      10
+    );
 
     this.ObtenerLogrosVOF();
     this.ObtenerLogrosCantidad();
@@ -62,7 +84,18 @@ export class VerApuestaComponent implements OnInit {
         responseType: 'json'
       })
       .subscribe(
-        data => {},
+        data => {
+          this.dtTriggerVof.next();
+          for (let i = 0; i < Object.keys(data).length; i++) {
+            let logrosVOF: DTOMostrarLogros;
+            logrosVOF = new DTOMostrarLogros();
+
+            logrosVOF.IdLogro = data[i].IdLogro;
+            logrosVOF.Logro = data[i].Logro;
+
+            this.ListMostrarlogrovof[i] = logrosVOF;
+          }
+        },
         Error => {
           this.api08.FatalError();
         }
@@ -79,7 +112,18 @@ export class VerApuestaComponent implements OnInit {
         responseType: 'json'
       })
       .subscribe(
-        data => {},
+        data => {
+          this.dtTriggerCantidad.next();
+          for (let i = 0; i < Object.keys(data).length; i++) {
+            let logrosCantidad: DTOMostrarLogros;
+            logrosCantidad = new DTOMostrarLogros();
+
+            logrosCantidad.IdLogro = data[i].IdLogro;
+            logrosCantidad.Logro = data[i].Logro;
+
+            this.ListMostrarlogrocantidad[i] = logrosCantidad;
+          }
+        },
         Error => {
           this.api08.FatalError();
         }
@@ -87,7 +131,7 @@ export class VerApuestaComponent implements OnInit {
   }
 
   public ObtenerLogrosJugadores() {
-    this.connect.Controlador = 'obtenerlogrosjugadorespartido';
+    this.connect.Controlador = 'obtenerlogrosjugadorpartido';
     let url = this.connect.RutaApi + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
@@ -96,7 +140,18 @@ export class VerApuestaComponent implements OnInit {
         responseType: 'json'
       })
       .subscribe(
-        data => {},
+        data => {
+          this.dtTriggerJugadores.next();
+          for (let i = 0; i < Object.keys(data).length; i++) {
+            let logrosJugador: DTOMostrarLogros;
+            logrosJugador = new DTOMostrarLogros();
+
+            logrosJugador.IdLogro = data[i].IdLogro;
+            logrosJugador.Logro = data[i].Logro;
+
+            this.ListMostrarlogrojugadores[i] = logrosJugador;
+          }
+        },
         Error => {
           this.api08.FatalError();
         }
@@ -104,7 +159,7 @@ export class VerApuestaComponent implements OnInit {
   }
 
   public ObtenerLogrosEquipos() {
-    this.connect.Controlador = 'obtenerlogrosequipospartido';
+    this.connect.Controlador = 'obtenerlogrosequipopartido';
     let url = this.connect.RutaApi + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
@@ -113,7 +168,18 @@ export class VerApuestaComponent implements OnInit {
         responseType: 'json'
       })
       .subscribe(
-        data => {},
+        data => {
+          this.dtTriggerEquipos.next();
+          for (let i = 0; i < Object.keys(data).length; i++) {
+            let logrosEquipo: DTOMostrarLogros;
+            logrosEquipo = new DTOMostrarLogros();
+
+            logrosEquipo.IdLogro = data[i].IdLogro;
+            logrosEquipo.Logro = data[i].Logro;
+
+            this.ListMostrarlogroequipos[i] = logrosEquipo;
+          }
+        },
         Error => {
           this.api08.FatalError();
         }

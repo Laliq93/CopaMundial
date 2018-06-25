@@ -63,7 +63,7 @@ export class RegistrarApuestaComponent implements OnInit {
     );
   }
 
-  public LlamarApuestas(idPartido, Equipo1, Equipo2) {
+  public LlamarApuestas(idPartido) {
     this.router.navigate(['/apuestas/mostrar', idPartido]);
   }
 }
