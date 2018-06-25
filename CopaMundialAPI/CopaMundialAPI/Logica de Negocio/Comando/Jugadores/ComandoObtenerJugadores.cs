@@ -21,7 +21,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando
         public override void Ejecutar()
         {
             DAOJugador dao = FabricaDAO.CrearDAOJugador();
-            _jugadores = dao.ObtenerTodosJugadores();
+            _jugadores = dao.ObtenerJugadores();
         }
 
         public override Entidad GetEntidad()

@@ -9,7 +9,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
     public interface IDAOJugador : IDAO
     {
         
-        List<Entidad> ObtenerJugadores(Entidad jugador);
-        void AgregarJugador(Entidad jugador);
+        List<Entidad> ObtenerJugadores();
+        void Agregar(Entidad jugador);
     }
 }
