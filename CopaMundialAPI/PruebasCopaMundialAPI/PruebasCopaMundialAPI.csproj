@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Modulo 2\Class1.cs" />
+    <Compile Include="Modulo 7\PruebasLogroCantidad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,7 +80,6 @@
     <Folder Include="Modulo 4\" />
     <Folder Include="Modulo 5\" />
     <Folder Include="Modulo 6\" />
-    <Folder Include="Modulo 7\" />
     <Folder Include="Modulo 8\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
