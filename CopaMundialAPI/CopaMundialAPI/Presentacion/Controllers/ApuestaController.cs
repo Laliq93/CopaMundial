@@ -192,7 +192,13 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 Entidad apuesta = traductor.CrearEntidad(dto);
 
-                Comando comando = FabricaComando.CrearComandoAgregarApuestaVoF(apuesta);
+                Comando comando;
+
+                comando = FabricaComando.CrearComandoVerificarApuestaExiste(apuesta);
+
+                comando.Ejecutar();
+
+                comando = FabricaComando.CrearComandoAgregarApuestaVoF(apuesta);
 
                 comando.Ejecutar();
 
@@ -202,11 +208,55 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
+            catch (ApuestaRepetidaException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
             catch (Exception exc)
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.ToString());
+            }
+
+        }
+
+        [Route("registrarapuestacantidad")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage RegistrarApuestaCantidad(DTOApuestaCantidad dto)
+        {
+            try
+            {
+                TraductorApuestaCantidad traductor = FabricaTraductor.CrearTraductorApuestaCantidad();
+
+                Entidad apuesta = traductor.CrearEntidad(dto);
+
+                Comando comando;
+
+                comando = FabricaComando.CrearComandoVerificarApuestaExiste(apuesta);
+
+                comando.Ejecutar();
+
+                comando = FabricaComando.CrearComandoAgregarApuestaVoF(apuesta);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (ApuestaRepetidaException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.ToString());
             }
 
         }

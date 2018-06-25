@@ -27,11 +27,10 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         {
             ApuestaJugador apuesta = entidad as ApuestaJugador;
 
-            StoredProcedure("crearapuestajugador(@idlogro, @idusuario, @fecha, @apuesta)");
+            StoredProcedure("agregarapuestajugador(@idlogro, @idusuario, @apuesta)");
 
             AgregarParametro("idlogro", apuesta.Logro.Id);
             AgregarParametro("idusuario", apuesta.Usuario.Id);
-            AgregarParametro("fecha", apuesta.Fecha);
             AgregarParametro("apuesta", apuesta.Respuesta.Id);
 
             EjecutarQuery();

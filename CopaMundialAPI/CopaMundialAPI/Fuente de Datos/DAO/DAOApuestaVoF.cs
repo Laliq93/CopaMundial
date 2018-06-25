@@ -5,6 +5,7 @@ using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
 using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
+using CopaMundialAPI.Comun.Excepciones;
 
 namespace CopaMundialAPI.Fuente_de_Datos.DAO
 {
@@ -28,13 +29,14 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         {
             try
             {
+                Conectar();
+
                 ApuestaVoF apuesta = entidad as ApuestaVoF;
 
-                StoredProcedure("crearapuestavof(@idlogro, @idusuario, @fecha, @apuesta)");
+                StoredProcedure("agregarapuestavof(@idlogro, @idusuario, @apuesta)");
 
                 AgregarParametro("idlogro", apuesta.Logro.Id);
                 AgregarParametro("idusuario", apuesta.Usuario.Id);
-                AgregarParametro("fecha", apuesta.Fecha);
                 AgregarParametro("apuesta", apuesta.Respuesta);
 
                 EjecutarQuery();
@@ -97,5 +99,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         {
             throw new NotImplementedException();
         }
+
     }
 }
