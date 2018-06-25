@@ -15,6 +15,7 @@ namespace CopaMundialAPI.Comun.Entidades
         private bool _respuesta;//Respuesta para identificar si ocurrio o no el logro
         private TipoLogro _idTipo; //id del tipo de logro (Cantidad,VOF, Equipo, Jugador)
 
+        public LogroVoF() { }
         /// <summary>
         /// Get y Set para asignar la respuesta si ocurrio o no el logro 
         /// </summary>
