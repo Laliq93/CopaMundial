@@ -122,7 +122,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 jugador.Altura = GetDouble(i, 6);
                 jugador.Posicion = GetString(i, 7);
                 jugador.Numero = GetInt(i, 8);
-                jugador.Equipo = GetString(i, 9);
+                jugador.Equipo.Pais = GetString(i, 9);
                 jugador.Capitan = GetBool(i, 10);
 
                 jugadores.Add(jugador);
