@@ -10,6 +10,5 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
     {
         
         List<Entidad> ObtenerJugadores();
-        void Agregar(Entidad jugador);
     }
 }

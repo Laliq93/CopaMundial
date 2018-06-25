@@ -41,7 +41,6 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (Exception exc)
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
         }
