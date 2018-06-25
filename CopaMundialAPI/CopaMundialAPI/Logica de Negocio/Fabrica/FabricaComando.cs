@@ -31,7 +31,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoObtenerApuestasVoFEnCurso(usuario);
         }
 
-        public static ComandoAgregarJugador CrearComandoAgregarJugador(Jugador jugador)
+        public static ComandoAgregarJugador CrearComandoAgregarJugador(Entidad jugador)
         {
             return new ComandoAgregarJugador(jugador);
         }
