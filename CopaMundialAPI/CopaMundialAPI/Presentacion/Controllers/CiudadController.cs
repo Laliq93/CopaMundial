@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -13,7 +12,7 @@ using CopaMundialAPI.Logica_de_Negocio.Comando;
 using System.Threading.Tasks;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Ciudades;
 
-namespace CopaMundialAPI.Controllers
+namespace CopaMundialAPI.Presentacion.Controllers
 {
 	[RoutePrefix("api/ciudad")]
 	public class CiudadController : ApiController
@@ -27,7 +26,7 @@ namespace CopaMundialAPI.Controllers
 			String hola;
 			hola = (string)dato["nombre"];
 			Console.WriteLine(hola);
-			Ciudad ciudad = new Ciudad((string)dato["nombre"], (int)dato["poblacion"], (string)dato["descripcion"], (string)dato["nombreingles"], (string)dato["descripcioningles"], (byte[])dato["imagen"]);
+			Ciudad ciudad = new Ciudad((string)dato["nombre"], (int)dato["poblacion"], (string)dato["descripcion"], (string)dato["nombreingles"], (string)dato["descripcioningles"]);
 
 			ComandoAgregarCiudad comando = FabricaComando.CrearComandoAgregarCiudad(ciudad);
 			comando.Ejecutar();
@@ -40,11 +39,6 @@ namespace CopaMundialAPI.Controllers
 		public HttpResponseMessage Insertarimagen(HttpPostedFile dato)
 			{
 
-
-			 
-
-            HttpResponseMessage result = null;
-
             var httpRequest = HttpContext.Current.Request;
 				string file = httpRequest.Files.Get(0).ToString();
 
@@ -52,7 +46,7 @@ namespace CopaMundialAPI.Controllers
 			//byte[] f = Integerdato.InputStream.ReadByte();
 			
 			
-				Ciudad ciudad = new Ciudad("guatire", 4500,"gg","a","a", null);
+				Ciudad ciudad = new Ciudad("guatire", 4500,"gg","a","a");
 				FabricaComando.CrearComandoAgregarCiudad(ciudad);
 				return Request.CreateResponse(HttpStatusCode.OK, ciudad);
 			}
@@ -63,7 +57,7 @@ namespace CopaMundialAPI.Controllers
 			{
 			//Ciudad ciudad = new Ciudad((string)dato["nombre"], (int)dato["habitantes"], (string)dato["descripcion"], (byte[])dato["imagen"]);
 			//FabricaComando.CrearComandoAgregarCiudad(ciudad);
-			Ciudad ciudad = new Ciudad("hola", 1, "h","a","a", null);
+			Ciudad ciudad = new Ciudad("hola", 1, "h","a","a");
 
 				return Request.CreateResponse(HttpStatusCode.OK, ciudad);
 			}
@@ -84,7 +78,7 @@ namespace CopaMundialAPI.Controllers
 				buffer = await file.ReadAsByteArrayAsync();
 				//Do whatever you want with filename and its binaray data.
 			}
-			Ciudad ciudad = new Ciudad("guatire", 100, "a","aa","bb", buffer);
+			Ciudad ciudad = new Ciudad("guatire", 100, "a","aa","bb");
 			ComandoAgregarCiudad comando = FabricaComando.CrearComandoAgregarCiudad(ciudad);
 			comando.Ejecutar();
 			return Ok(ciudad);
