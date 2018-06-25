@@ -51,6 +51,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             AgregarParametro("_nombre", jugador.Nombre);
             AgregarParametro("_apellido", jugador.Apellido);
             AgregarParametro("_fechaNacimiento", jugador.FechaNacimiento);
+            AgregarParametro("_lugarNacimiento", jugador.LugarNacimiento);
             AgregarParametro("_peso", jugador.Peso);
             AgregarParametro("_altura", jugador.Altura);
             AgregarParametro("_posicion", jugador.Posicion);
@@ -100,7 +101,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// Metodo DesactivarJugador , desactiva jugador
         /// </summary>
         /// <param name="objeto">El objeto que se desea desactivar</param>
-        public List<Entidad> ObtenerJugadores()
+        public List<Entidad> ObtenerTodosJugadores()
         {
             List<Entidad> jugadores = new List<Entidad>();
 
@@ -111,6 +112,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             for (int i = 0; i < cantidadRegistros; i++)
             {
                 Jugador jugador = FabricaEntidades.CrearJugador();
+                int idEquipo;
 
                 jugador.Id = GetInt(i, 0);
                 jugador.Nombre = GetString(i, 1);
@@ -121,7 +123,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 jugador.Altura = GetDouble(i, 6);
                 jugador.Posicion = GetString(i, 7);
                 jugador.Numero = GetInt(i, 8);
-                jugador.Equipo = GetString(i, 9);
+                idEquipo = GetInt(i, 9);
                 jugador.Capitan = GetBool(i, 10);
 
                 jugadores.Add(jugador);
@@ -129,36 +131,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
 
             return jugadores;
-        }
-
-        public void AgregarJugador(Jugador jugador)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ModificarJugador(Jugador jugador)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ActivarJugador(Jugador jugador)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DesactivarJugador(Jugador jugador)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Jugador ObtenerJugadores(Jugador jugador)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Agregar(Entidad entidad)
-        {
-            throw new NotImplementedException();
         }
 
         public void Actualizar(Entidad entidad)
@@ -172,6 +144,16 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         }
 
         public List<Entidad> ObtenerTodos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Entidad> ObtenerJugadores(Entidad jugador)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Agregar(Entidad entidad)
         {
             throw new NotImplementedException();
         }
