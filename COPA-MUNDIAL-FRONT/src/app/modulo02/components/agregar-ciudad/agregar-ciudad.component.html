@@ -1,0 +1,66 @@
+
+ <img [src}="data:image/png;base64,{{ima}}">
+<button (click)="imprimirimagen()">hola</button>
+<!-- <label for="exampleFormControlFile2">Example file input</label>
+<input type="file" [(ngModel)]="archivo" (change)="handleFileInput($event.target.files)" class="form-control-file" name="category_banner" id="category_banner">
+    -->
+<div class="central">
+  
+  <form class="card">
+  
+    <h1 i18n="Traduccion de  agregar ciudad " style="color: black; font-size: 30px; text-align: center;">Agregar Ciudad </h1>
+  
+    <div class="form-group">
+  
+      <label for="InputNombre">Nombre</label>
+      <input type="text" 
+            class="form-control" 
+            id="InputNombre" 
+            placeholder="Ciudad" 
+            name="nombre" 
+            #nombre="ngModel" 
+            [(ngModel)]="formulario.nombre">
+      <label> nombre </label>
+    </div>
+  
+    <div class="form-group">
+  
+      <label for="InputPoblacion">Habitantes</label>
+  
+      <input type="number" 
+            class="form-control" 
+            id="InputHabitantes" 
+            placeholder="Habitantes" 
+            name="habitantes" 
+            #habitantes="ngModel" 
+            [(ngModel)]="formulario.habitantes">
+      <label> Habitantes </label>
+    </div>
+  
+    <div class="form-group">
+       
+      <label for="exampleFormControlTextarea1">Descripción</label>
+      
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="descripcion" #descripcion="ngModel" [(ngModel)]="formulario.descripcion"></textarea>
+      <label> descripcion </label>
+    </div>
+  
+  
+      <button i18n="Traduccion de b agregar ciudad" (click)="agregarciudad();" type="submit" class="btn btn-primary btn-signin">Agregar Ciudad</button>
+  
+      <button i18n="Traduccion de b agregar ciudad" (click)="volver()" type="submit" class="btn btn-primary btn-signin">Cancelar</button>
+  
+    </form>
+
+     
+      <div class="form-group">
+        <label for="exampleFormControlFile1">Example file inputtttttttt</label>
+        <input type="file" [(ngModel)] = "archivo" (change)="saveImagen($event.target.files)"  class="form-control-file" id="exampleFormControlFile1">
+          </div>
+     
+         
+          
+  </div>
+  
+
+  
