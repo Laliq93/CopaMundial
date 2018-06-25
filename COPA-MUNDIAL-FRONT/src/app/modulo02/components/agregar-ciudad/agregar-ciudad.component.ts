@@ -36,6 +36,27 @@ export class AgregarCiudadComponent implements OnInit {
     this.resetForm();
   }
 
+  subirciudad(){
+    let ciudad = new Ciudad();
+    ciudad.Id = 2;
+    ciudad.Nombre = "a";
+    ciudad.Descripcion = "a";
+    ciudad.Habitantes = 5
+    ciudad.DescripcionIngles = "b"
+    ciudad.NombreIngles = "b"
+    this.ciudadservice.agregarciudad(ciudad).subscribe(
+      result => {
+      
+        console.log(result);
+       
+      },
+      error =>{
+         console.log(<any>error)
+      }
+      
+    )
+  }
+
   /*agregarciudad():Observable<any>{
     let ciudad = new Ciudad();
     ciudad.nombre = this.formulario.nombre;

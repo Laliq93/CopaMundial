@@ -11,7 +11,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
 {
     public static class FabricaComando
     {
-        public static ComandoAgregarCiudad CrearComandoAgregarCiudad ( Ciudad ciudad )
+        public static ComandoAgregarCiudad CrearComandoAgregarCiudad ( Entidad ciudad )
         {
             return new ComandoAgregarCiudad ( ciudad );
         }
@@ -19,6 +19,25 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
 		public static ComandoObtenerCiudad CrearComandoObtenerCiudad (int id)
 		{
 			return new ComandoObtenerCiudad(id);
+		}
+
+		public static ComandoActualizarCiudad CrearComandoActualizarCiudad(Entidad ciudad)
+		{
+			return new ComandoActualizarCiudad(ciudad);
+		}
+
+		public static ComandoEliminarCiudad CrearComandoEliminarCiudad(Entidad ciudad)
+		{
+			return new ComandoEliminarCiudad(ciudad);
+		}
+
+		public static ComandoListarCiudades CrearComandoListarCiudades()
+		{
+			return new ComandoListarCiudades();
+		}
+		public static ComandoObtenerCiudadPorNombre CrearComandoObtenerCiudadPorNombre(Entidad ciudad)
+		{
+			return new ComandoObtenerCiudadPorNombre(ciudad);
 		}
 
         public static ComandoAgregarApuestaVOF CrearComandoAgregarApuestaVoF(Entidad apuesta)

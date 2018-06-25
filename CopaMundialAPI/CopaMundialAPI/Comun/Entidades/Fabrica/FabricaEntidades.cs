@@ -35,7 +35,20 @@ namespace CopaMundialAPI.Comun.Entidades.Fabrica
 			return new Ciudad(nombre, habitantes, descripcion, nombreIngles, descripcionIngles);
 
 		}
-        public static ApuestaCantidad CrearApuestaCantidad()
+		public static Ciudad CrearCiudadID(int id)
+		{
+			return new Ciudad(id);
+
+		}
+
+		public static Ciudad CrearCiudad(int id,string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
+		{
+			return new Ciudad(id,nombre, habitantes, descripcion, nombreIngles, descripcionIngles);
+
+		}
+
+
+		public static ApuestaCantidad CrearApuestaCantidad()
         {
             return new ApuestaCantidad();
         }

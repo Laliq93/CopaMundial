@@ -132,6 +132,7 @@
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosVofPartido.cs" />
     <Compile Include="Comun\Excepciones\ExcepcionGeneral.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarApuestaExiste.cs" />
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoObtenerCiudadPorNombre.cs" />
     <Compile Include="Presentacion\Controllers\CiudadController.cs" />
     <Compile Include="Presentacion\Controllers\ApuestaController.cs" />
     <Compile Include="Presentacion\Controllers\TestController.cs" />
@@ -173,6 +174,8 @@
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaCantidad.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaVOF.cs" />
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudad.cs" />
+    <Compile Include="Servicios\DTO\Ciudades\DTOCiudad2.cs" />
+    <Compile Include="Servicios\DTO\Ciudades\DTOCiudadID.cs" />
     <Compile Include="Servicios\DTO\Logros\DTOMostrarLogrosPartido.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTORecibirIdPartido.cs" />
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudadNombre.cs" />
@@ -185,6 +188,8 @@
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaVOF.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaEquipo.cs" />
     <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudad.cs" />
+    <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudad2.cs" />
+    <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudadID.cs" />
     <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudadNombre.cs" />
     <Compile Include="Servicios\Traductores\Fabrica\FabricaTraductor.cs" />
     <Compile Include="Servicios\Traductores\Jugadores\TraductorJugador.cs" />

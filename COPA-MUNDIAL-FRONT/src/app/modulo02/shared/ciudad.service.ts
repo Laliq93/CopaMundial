@@ -7,7 +7,7 @@ import { toBase64String } from '@angular/compiler/src/output/source_map';
 export class CiudadService {
 
   selectedCiudad : Ciudad;
-  url:String = "http://localhost:51543/api/ciudad/";
+  url:string = "http://localhost:51543/api/ciudad/";
 
   constructor(public http: HttpClient) { }
 
@@ -17,8 +17,8 @@ export class CiudadService {
     //console.log(`Nombre ${this.formulario.nombre} Habitantes ${this.formulario.habitantes} Descripcion ${this.formulario.descripcion}`)
     //console.log(ciudad);
    // console.log(ciudad.imagen);
-    let formData = new FormData();
-    formData.append('dato', ciudad.imagen);
+    //let formData = new FormData();
+   // formData.append('dato', ciudad.imagen);
     //ciudad.imagen;
     //String.toString(ciudad.imagen);
     
@@ -30,13 +30,13 @@ export class CiudadService {
                           poblacion:this.formulario.habitantes,
                           descripcion:this.formulario.descripcion,
                           imagen:this.imagen  }*/
-   /// let json = JSON.stringify(ciudad);
-    //let params = "json="+json;
+    let json = JSON.stringify(ciudad);
+    let params = json;
    // formData.append(json);
   // headers.append();
-    let headers = new HttpHeaders().set('Content-Type','application/undefined');
+    let headers = new HttpHeaders().set('Content-Type','application/json');
          
-    return this.http.post<Ciudad>(this.url+'api/upload',formData/*{headers:headers}*/)
+    return this.http.post<Ciudad>(this.url,params,{headers: headers});
 
      };
 }

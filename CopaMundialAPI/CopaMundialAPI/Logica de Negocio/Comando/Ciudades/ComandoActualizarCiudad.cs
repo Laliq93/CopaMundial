@@ -10,7 +10,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Ciudades
 {
     public class ComandoActualizarCiudad : Comando
     {
-        protected ComandoActualizarCiudad ( Entidad ciudad )
+        public ComandoActualizarCiudad ( Entidad ciudad )
         {
             Entidad = ciudad;
         }

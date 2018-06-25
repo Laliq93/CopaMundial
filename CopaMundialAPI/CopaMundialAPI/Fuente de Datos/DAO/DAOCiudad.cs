@@ -15,8 +15,21 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
     {
         public void Actualizar ( Entidad entidad )
         {
-            throw new NotImplementedException ( );
-        }
+			Ciudad ciudad = entidad as Ciudad;
+
+			Conectar();
+
+			StoredProcedure("updateciudad(@_id,@_nombre,@_poblacion,@_descripcion,@_nombreingles,@_descripcioningles)");
+
+			AgregarParametro("_id", ciudad.Id);
+			AgregarParametro("_nombre", ciudad.Nombre);
+			AgregarParametro("_poblacion", ciudad.Habitantes);
+			AgregarParametro("_descripcion", ciudad.Descripcion);
+			AgregarParametro("_nombreingles", ciudad.NombreIngles);
+			AgregarParametro("_descripcioningles", ciudad.DescripcionIngles);
+
+			EjecutarQuery();
+		}
 
         public void Agregar ( Entidad entidad )
         {
@@ -25,19 +38,20 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             Conectar();
 
-            StoredProcedure("insertarciudad(@ci_nombre,@ci_poblacion,@_descripcion)");
+            StoredProcedure("insertarciudad(@_nombre,@_poblacion,@_descripcion,@_nombreingles,@_descripcioningles)");
 
             AgregarParametro("_nombre", ciudad.Nombre);
-            AgregarParametro("_capacidad", ciudad.Habitantes);
+            AgregarParametro("_poblacion", ciudad.Habitantes);
             AgregarParametro("_descripcion", ciudad.Descripcion);
-
+			AgregarParametro("_nombreingles", ciudad.NombreIngles);
+			AgregarParametro("_descripcioningles", ciudad.DescripcionIngles);
 
             EjecutarQuery ( );
         }
 
-        public Ciudad ConsultarCiudadPorId ( Ciudad ciudad )
+        public Entidad ConsultarCiudadPorId ( Entidad entidad )
         {
-			
+			Ciudad ciudad = entidad as Ciudad;
 			Conectar();
 			StoredProcedure("obtenerciudad(@id)");
 			AgregarParametro("id", ciudad.Id);
@@ -47,38 +61,64 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 				ciudad = FabricaEntidades.CrearCiudad(GetString(i,0),GetInt(i,1),GetString(i,2),GetString(i,3),GetString(i,4));
 			}
 			return ciudad;
-			/*for (int i = 0; i < cantidadRegistros; i++)
-			{
-				Jugador jugador = FabricaEntidades.CrearJugador();
-
-				jugador.Id = GetInt(i, 0);
-				jugador.Nombre = GetString(i, 1);
-				jugador.Apellido = GetString(i, 2);
-				jugador.FechaNacimiento = GetString(i, 3);
-				jugador.LugarNacimiento = GetString(i, 4);
-				jugador.Peso = GetDouble(i, 5);
-				jugador.Altura = GetDouble(i, 6);
-				jugador.Posicion = GetString(i, 7);
-				jugador.Numero = GetInt(i, 8);
-				jugador.Equipo = GetString(i, 9);
-				jugador.Capitan = GetBool(i, 10);
-
-				jugadores.Add(jugador);
-
-			}*/
+			
 		}
 
-        public void Eliminar ( Entidad entidad )
+		public List<Entidad> ConsultarCiudadPorNombre(Entidad entidad)
+		{
+			Ciudad ciudad = entidad as Ciudad;
+			List<Entidad> _ciudades = new List<Entidad>();
+			Conectar();
+			StoredProcedure("getciudadbyname(@nombre)");
+			AgregarParametro("nombre", ciudad.Nombre);
+			EjecutarReader();
+			for (int i = 0; i < cantidadRegistros; i++)
+			{
+				_ciudades.Add(FabricaEntidades.CrearCiudad(GetInt(i,0),GetString(i, 1), GetInt(i, 3), GetString(i, 2), GetString(i, 4), GetString(i, 5)));
+			}
+			return _ciudades;
+		}
+
+		public List<Entidad> ConsultarCiudadPorNombreIngles(Entidad entidad)
+		{
+			Ciudad ciudad = entidad as Ciudad;
+			List<Entidad> _ciudades = new List<Entidad>();
+			Conectar();
+			StoredProcedure("getciudadbynameingles(@nombre)");
+			AgregarParametro("nombre", ciudad.Nombre);
+			EjecutarReader();
+			for (int i = 0; i < cantidadRegistros; i++)
+			{
+				_ciudades.Add(FabricaEntidades.CrearCiudad(GetString(i, 0), GetInt(i, 1), GetString(i, 2), GetString(i, 3), GetString(i, 4)));
+			}
+			return _ciudades;
+		}
+
+		public void Eliminar ( Entidad entidad )
         {
 
-            throw new NotImplementedException ( );
+			Ciudad ciudad = entidad as Ciudad;
+			Conectar();
+			StoredProcedure("eliminarciudad(@id)");
+			AgregarParametro("id", ciudad.Id);
+			EjecutarQuery();
+			
 
-        }
+		}
 
         public List<Entidad> ObtenerTodos ( )
         {
-            throw new NotImplementedException ( );
-        }
+
+			Conectar();
+			StoredProcedure("getallciudad()");
+			EjecutarReader();
+			List<Entidad> _ciudades = new List<Entidad>();
+			for (int i = 0; i < cantidadRegistros; i++)
+			{
+				_ciudades.Add(FabricaEntidades.CrearCiudad(GetInt(i,0),GetString(i, 1), GetInt(i, 3), GetString(i, 2), GetString(i, 4), GetString(i, 5)));
+			}
+			return _ciudades;
+		}
 
     }
 }
