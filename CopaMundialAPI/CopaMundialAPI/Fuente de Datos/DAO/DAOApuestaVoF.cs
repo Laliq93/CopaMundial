@@ -5,6 +5,7 @@ using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
 using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
+using CopaMundialAPI.Comun.Excepciones;
 
 namespace CopaMundialAPI.Fuente_de_Datos.DAO
 {
@@ -26,16 +27,24 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         public void Agregar(Entidad entidad)
         {
-            ApuestaVoF apuesta = entidad as ApuestaVoF;
+            try
+            {
+                Conectar();
 
-            StoredProcedure("crearapuestavof(@idlogro, @idusuario, @fecha, @apuesta)");
+                ApuestaVoF apuesta = entidad as ApuestaVoF;
 
-            AgregarParametro("idlogro", apuesta.Logro.Id);
-            AgregarParametro("idusuario", apuesta.Usuario.Id);
-            AgregarParametro("fecha", apuesta.Fecha);
-            AgregarParametro("apuesta", apuesta.Respuesta);
+                StoredProcedure("agregarapuestavof(@idlogro, @idusuario, @apuesta)");
 
-            EjecutarQuery();
+                AgregarParametro("idlogro", apuesta.Logro.Id);
+                AgregarParametro("idusuario", apuesta.Usuario.Id);
+                AgregarParametro("apuesta", apuesta.Respuesta);
+
+                EjecutarQuery();
+            }
+            catch (InvalidCastException exc)
+            {
+                throw exc;
+            }
         }
 
         public void Eliminar(Entidad entidad)
@@ -90,5 +99,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         {
             throw new NotImplementedException();
         }
+
     }
 }

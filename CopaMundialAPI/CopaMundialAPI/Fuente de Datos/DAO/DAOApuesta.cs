@@ -4,11 +4,31 @@ using System.Linq;
 using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
+using CopaMundialAPI.Comun.Excepciones;
 
 namespace CopaMundialAPI.Fuente_de_Datos.DAO
 {
     public class DAOApuesta : DAO
     {
+        public void VerificarApuestaExiste(Entidad apuesta)
+        {
+            Conectar();
+
+            ApuestaVoF apuestavof = apuesta as ApuestaVoF;
+
+            StoredProcedure("verificarapuestaexiste(@idusuario, @idlogro)");
+
+            AgregarParametro("idusuario", apuestavof.Usuario.Id);
+            AgregarParametro("idlogro", apuestavof.Logro.Id);
+
+            EjecutarReader();
+
+            int count = GetInt(0, 0);
+
+            if (count > 0)
+                throw new ApuestaRepetidaException();
+        }
+
         public List<Entidad> ObtenerProximosPartidos()
         {
             Equipos equiposEstaticos = new Equipos();
