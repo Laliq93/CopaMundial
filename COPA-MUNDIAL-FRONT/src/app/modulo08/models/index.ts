@@ -1,6 +1,7 @@
 // Entrada
 export * from './Entrada/dtomostrar-partido';
 export * from './Entrada/dtomostrar-logros';
+export * from './Entrada/dtomostrar-jugador';
 
 // Salida
 export * from './Salida/dtoenviar-id-partido';
