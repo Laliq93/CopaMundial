@@ -3,11 +3,9 @@
   <form class="card">
   <h1 i18n="Encabezado de consultar en la tarjeta Consultar Ciudad @@m2H1Consultar" style="color: black; font-size: 30px; text-align: center;">Consultar Ciudad</h1>
   <div class="form-group">
-    <select id='Ciudad' class="form-control font-estilo">
-      <ng-container *ngFor="let ciudad of ciudades; let i = index">
-        <option value={{ciudad.nombre}}>{{ciudad.nombre}}</option>
-      </ng-container>
-    </select>
+      <select (ngModelChange)="selectChange($event)" [(ngModel)]="id" [ngModelOptions]="{standalone: true}" id='Ciudad' class="form-control font-estilo"   >
+          <option  *ngFor = "let ciudad of ciudades; let i = index"  [value]="i">{{ciudad.Nombre}} </option>
+      </select>
   </div>
   
   <button i18n="Boton de consultar en la tarjeta Consultar Ciudad @@m2BotonConsultar" (click)="mostrarInformacion();" type="submit" class="btn btn-primary btn-signin">Consultar Ciudad</button>
@@ -21,11 +19,11 @@
      <h2 id='nombreCiudad'></h2>
     </div>
     <div class="card-body">
-      <h5 i18n="Encabezado nombre en la tarjeta Consultar Ciudad @@m2H5NombreConsulta" class="card-title" >Nombre</h5>
+      <h5 i18n="Encabezado nombre en la tarjeta Consultar Ciudad @@m2H5NombreConsulta" class="card-title" >{{ciudadselected.Nombre}}</h5>
       <p class="card-text" id="nombre"></p>
-      <h5 i18n="Encabezado habitantes en la tarjeta Consultar Ciudad @@m2H5HabitantesConsulta" class="card-title" >Habitantes</h5>
+      <h5 i18n="Encabezado habitantes en la tarjeta Consultar Ciudad @@m2H5HabitantesConsulta" class="card-title" >{{ciudadselected.Habitantes}}</h5>
       <p class="card-text" id="habitantes"></p>
-      <h5 i18n="Encabezado descripcion en la tarjeta Consultar Ciudad @@m2H5DescripcionConsulta" class="card-title">Descripción</h5>
+      <h5 i18n="Encabezado descripcion en la tarjeta Consultar Ciudad @@m2H5DescripcionConsulta" class="card-title">{{ciudadselected.Descripcion}}</h5>
       <p class="card-text" id="descripcion"></p>
     </div>
   </div>

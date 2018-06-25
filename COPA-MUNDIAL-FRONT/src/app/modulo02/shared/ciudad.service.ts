@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import {Ciudad} from './ciudad.model';
-import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
+import { RequestOptions } from '@angular/http';
+
 @Injectable()
 export class CiudadService {
 
@@ -14,29 +16,33 @@ export class CiudadService {
 
   agregarciudad(ciudad : Ciudad):Observable<any>{
   
-    //console.log(`Nombre ${this.formulario.nombre} Habitantes ${this.formulario.habitantes} Descripcion ${this.formulario.descripcion}`)
-    //console.log(ciudad);
-   // console.log(ciudad.imagen);
-    //let formData = new FormData();
-   // formData.append('dato', ciudad.imagen);
-    //ciudad.imagen;
-    //String.toString(ciudad.imagen);
-    
-    
-    
-   // formData.append('nombre',ciudad.nombre);
-    //formData.append('poblacion',ciudad.poblacion);
-    /*let ciudad : Object ={nombre:this.formulario.nombre,
-                          poblacion:this.formulario.habitantes,
-                          descripcion:this.formulario.descripcion,
-                          imagen:this.imagen  }*/
+   
     let json = JSON.stringify(ciudad);
     let params = json;
-   // formData.append(json);
-  // headers.append();
+ 
     let headers = new HttpHeaders().set('Content-Type','application/json');
          
     return this.http.post<Ciudad>(this.url,params,{headers: headers});
 
      };
+
+     ObtenerListaCiudades() : Observable<Ciudad[]>{
+        let headers = new HttpHeaders().set('Content-Type','application/json');
+        return this.http.get<Ciudad[]>(this.url,{headers: headers});
+     }
+
+     EliminarCiudad(id:number):Observable<any>{
+     // let headers = new HttpHeaders().set('Content-Type','application/json');
+      return this.http
+      .request('DELETE', this.url, { body: {id: id}})
+      
+      }
+
+      ActualizarCiudad(ciudad:Ciudad):Observable<any>{
+
+        let json = JSON.stringify(ciudad);
+        let headers = new HttpHeaders().set('Content-Type','application/json');
+        return this.http.put(this.url,json,{headers:headers})
+      }
 }
+ 

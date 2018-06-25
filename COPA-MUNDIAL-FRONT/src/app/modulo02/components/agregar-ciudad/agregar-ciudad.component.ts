@@ -18,9 +18,11 @@ import { Observable } from 'rxjs';
 export class AgregarCiudadComponent implements OnInit {
 
   formulario = {
-    nombre : "",
+    nombreES : "",
     habitantes : 0,
-    descripcion : ""
+    descripcion : "",
+    nombreEN :"",
+    descripcionEN : ""
   }
   imagen: Blob;
   ima : Blob;
@@ -38,12 +40,12 @@ export class AgregarCiudadComponent implements OnInit {
 
   subirciudad(){
     let ciudad = new Ciudad();
-    ciudad.Id = 2;
-    ciudad.Nombre = "a";
-    ciudad.Descripcion = "a";
-    ciudad.Habitantes = 5
-    ciudad.DescripcionIngles = "b"
-    ciudad.NombreIngles = "b"
+    
+    ciudad.Nombre = this.formulario.nombreES
+    ciudad.Descripcion = this.formulario.descripcion;
+    ciudad.Habitantes = this.formulario.habitantes
+    ciudad.DescripcionIngles = this.formulario.descripcionEN
+    ciudad.NombreIngles = this.formulario.nombreEN
     this.ciudadservice.agregarciudad(ciudad).subscribe(
       result => {
       
@@ -103,9 +105,11 @@ export class AgregarCiudadComponent implements OnInit {
     if(Form != null)
       Form.reset();
       this.formulario = {
-        nombre:'',
+        nombreES:'',
         habitantes: 0,
-        descripcion:''
+        descripcion:'',
+        nombreEN:'',
+        descripcionEN :''
       
       }
     }
