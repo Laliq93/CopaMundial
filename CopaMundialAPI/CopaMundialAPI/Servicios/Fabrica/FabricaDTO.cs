@@ -77,5 +77,15 @@ namespace CopaMundialAPI.Servicios.Fabrica
         {
             return new DTOMostrarLogrosPartido();
         }
+
+        public static DTOJugadorId CrearDTOJugadorId()
+        {
+            return new DTOJugadorId();
+        }
+
+        public static DTOObtenerJugadores CrearDTOObtenerJugadores()
+        {
+            return new DTOObtenerJugadores();
+        }
     }
 }
