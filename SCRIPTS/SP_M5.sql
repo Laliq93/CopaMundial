@@ -8,7 +8,7 @@ CREATE OR REPLACE FUNCTION insertarJugador
  _peso decimal(5,2),
  _altura decimal(5,2), 
  _posicion varchar, 
- _numero decimal(2),
+ _numero decimal,
  _equipo varchar)
 RETURNS integer AS
 $$
