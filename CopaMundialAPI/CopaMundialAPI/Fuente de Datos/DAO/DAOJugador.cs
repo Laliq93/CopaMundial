@@ -108,10 +108,10 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 jugador.Apellido = GetString(i, 2);
                 jugador.FechaNacimiento = GetString(i, 3);
                 jugador.LugarNacimiento = GetString(i, 4);
-                jugador.Peso = GetDouble(i, 5);
-                jugador.Altura = GetDouble(i, 6);
+                jugador.Peso = GetDecimal(i, 5);
+                jugador.Altura = GetDecimal(i, 6);
                 jugador.Posicion = GetString(i, 7);
-                jugador.Numero = GetInt(i, 8);
+                jugador.Numero = GetDecimal(i, 8);
                 jugador.Equipo.Pais = GetString(i, 9);
                 jugador.Capitan = GetBool(i, 10);
 
@@ -127,16 +127,17 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             Conectar();
 
-            StoredProcedure("insertarJugador(@_nombre,@_apellido,@_fechaNacimiento,@_lugarNacimiento,@_peso,@_altura,@_posicion,@_numero,@_equipo)");
+            StoredProcedure("insertarJugador(@_nombre,@_apellido,to_date(@_fechaNacimiento, 'DD-MM-YY'),@_lugarNacimiento,@_peso,@_altura,@_posicion,@_numero,@_equipo)");
 
             AgregarParametro("_nombre", jugador.Nombre);
             AgregarParametro("_apellido", jugador.Apellido);
             AgregarParametro("_fechaNacimiento", jugador.FechaNacimiento);
+            AgregarParametro("_lugarNacimiento", jugador.LugarNacimiento);
             AgregarParametro("_peso", jugador.Peso);
             AgregarParametro("_altura", jugador.Altura);
             AgregarParametro("_posicion", jugador.Posicion);
             AgregarParametro("_numero", jugador.Numero);
-            AgregarParametro("_equipo", jugador.Equipo);
+            AgregarParametro("_equipo", jugador.Equipo.Pais);
 
             EjecutarQuery();
         }
