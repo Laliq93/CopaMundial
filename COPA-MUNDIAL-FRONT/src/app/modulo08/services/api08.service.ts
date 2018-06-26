@@ -1,14 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Apuesta, Conexion } from '../models/apuesta.model';
-import { RouterModule, Router } from '@angular/router';
-import {
-  HttpClient,
-  HttpParams,
-  HttpHeaders,
-  HttpErrorResponse
-} from '@angular/common/http';
-import { Usuario } from '../../modulo01/models/usuario';
-import { Location } from '@angular/common';
+import { Conexion } from '../models/index';
+import { HttpClient } from '@angular/common/http';
 
 declare var bootbox, router: any;
 
@@ -16,11 +8,23 @@ declare var bootbox, router: any;
   providedIn: 'root'
 })
 export class Api08Service {
-  private _conexion: Conexion;
-  private _apuesta: Apuesta;
+  public connect: Conexion;
 
   constructor(private http: HttpClient) {
-    this._conexion = new Conexion();
-    this._apuesta = new Apuesta();
+    this.connect = new Conexion();
+  }
+
+  private Error() {
+    bootbox.alert();
+  }
+
+  private Succes(mensaje: string) {
+    bootbox.alert(mensaje, function() {
+      location.reload();
+    });
+  }
+
+  public FatalError() {
+    bootbox.alert('Problema al establecer la conexión con el servidor');
   }
 }

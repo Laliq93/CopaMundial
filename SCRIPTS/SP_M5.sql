@@ -1,6 +1,6 @@
 -- Agrega al jugador en la base de datos
 
-CREATE OR REPLACE FUNCTION AgregarJugador
+CREATE OR REPLACE FUNCTION insertarJugador
 (_nombre varchar,
  _apellido varchar,
  _fechaNacimiento date,
@@ -16,7 +16,7 @@ BEGIN
     INSERT INTO jugador
     VALUES
         (nextval('seq_Jugador'), _nombre, _apellido, _fechaNacimiento, _lugarNacimiento, _peso, _altura, 
-            _posicion, _numero, false, true, _equipo);
+            _posicion, _numero,  _equipo, false, true);
     RETURN currval('seq_Jugador');
 END;
 $$ LANGUAGE plpgsql;
@@ -66,13 +66,13 @@ CREATE OR REPLACE FUNCTION consultarJugadores()
 RETURNS TABLE
   (id integer, nombre varchar, apellido varchar, fechaNacimiento date, 
     lugarNacimiento varchar, peso decimal, altura decimal, posicion varchar, numero decimal,
-    capitan boolean, equipo varchar)
+    equipo varchar, capitan boolean)
 AS
 $$
 BEGIN
     RETURN QUERY SELECT
     ju_id, ju_nombre, ju_apellido, ju_fechaNacimiento, ju_lugarNacimiento, ju_peso, ju_altura,
-    ju_posicion, ju_numero, ju_capitan, ju_equipo
+    ju_posicion, ju_numero, ju_equipo, ju_capitan
     FROM jugador;
 END;
 $$ LANGUAGE plpgsql;
