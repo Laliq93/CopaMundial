@@ -42,7 +42,7 @@ RETURNS table(
 	ci_id integer,
 	ci_nombre varchar,
 	ci_descripcion varchar,
-	ci_poblacion varchar,
+	ci_poblacion integer,
 	ci_nombreingles varchar,
 	ci_descripcioningles varchar
 )
@@ -50,8 +50,8 @@ AS
 $$
 BEGIN
 
-	return query select ci_id, ci_nombre, ci_descripcion, ci_poblacion, ci_nombreingles,ci_descripcioningles from ciudad
-	where ci_id = _id; 
+	return query select ciudad.ci_id, ciudad.ci_nombre, ciudad.ci_descripcion, ciudad.ci_poblacion, ciudad.ci_nombreingles,ciudad.ci_descripcioningles from ciudad
+	where ciudad.ci_id = _id; 
 	
 	
 	
@@ -64,7 +64,7 @@ RETURNS table(
 	ci_id integer,
 	ci_nombre varchar,
 	ci_descripcion varchar,
-	ci_poblacion varchar,
+	ci_poblacion integer,
 	ci_nombreingles varchar,
 	ci_descripcioningles varchar
 )
@@ -72,7 +72,7 @@ AS
 $$
 BEGIN
 
-	return query select ci_id, ci_nombre, ci_descripcion, ci_poblacion, ci_nombreingles,ci_descripcioningles from ciudad; 
+	return query select ciudad.ci_id, ciudad.ci_nombre, ciudad.ci_descripcion, ciudad.ci_poblacion, ciudad.ci_nombreingles,ciudad.ci_descripcioningles from ciudad; 
 	
 	
 	
