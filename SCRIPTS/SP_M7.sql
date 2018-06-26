@@ -13,7 +13,15 @@ DROP FUNCTION IF EXISTS ConsultarLogrosJugadorPendiente;
 DROP FUNCTION IF EXISTS ConsultarLogrosEquipoPendiente;
 DROP FUNCTION IF EXISTS ConsultarLogrosVoFPendiente;
 DROP FUNCTION IF EXISTS ConsultarLogrosPentientes;
-
+DROP FUNCTION IF EXISTS ConsultarLogroCantidad;
+DROP FUNCTION IF EXISTS ConsultarLogroJugador;
+DROP FUNCTION IF EXISTS ConsultarLogroEquipo;
+DROP FUNCTION IF EXISTS ConsultarLogroVF;
+DROP FUNCTION IF EXISTS ConsultarLogrosCantidadResultados;
+DROP FUNCTION IF EXISTS ConsultarLogrosJugadorResultados;
+DROP FUNCTION IF EXISTS ConsultarLogrosEquipoResultados;
+DROP FUNCTION IF EXISTS ConsultarLogrosVFResultados;
+DROP FUNCTION IF EXISTS AsignarLogroPU;
 
 
 
@@ -190,6 +198,142 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+--------------------------CONSULTAR LOGROS CANTIDAD RESULTADOS--------------------
+CREATE OR REPLACE FUNCTION ConsultarLogrosCantidadResultados(_idPartido integer)
+RETURNS TABLE
+  (id integer,
+   tipo integer,
+   nombre varchar, 
+   cantidad integer
+  )
+AS
+$$
+BEGIN
+	RETURN QUERY SELECT
+	lo_id,lo_fg_tipologro,lo_nombre, lo_cantidad
+	FROM LOGRO_PARTIDO WHERE lo_resultado_pa = _idPartido and lo_fg_tipologro = 1 and lo_cantidad is not null;
+END;
+$$ LANGUAGE plpgsql;
+
+--------------------------CONSULTAR LOGROS JUGADOR RESULTADOS--------------------
+CREATE OR REPLACE FUNCTION ConsultarLogrosJugadorResultados(_idPartido integer)
+RETURNS TABLE
+  (id integer,
+   tipo integer,
+   nombre varchar,
+   jugador integer
+  )
+AS
+$$
+BEGIN
+	RETURN QUERY SELECT
+	lo_id,lo_fg_tipologro,lo_nombre, lo_resultado_ju
+	FROM LOGRO_PARTIDO WHERE lo_resultado_pa = _idPartido and lo_fg_tipologro = 2 and lo_resultado_ju is not null;
+END;
+$$ LANGUAGE plpgsql;
+--------------------------CONSULTAR LOGROS EQUIPO RESULTADOS--------------------
+CREATE OR REPLACE FUNCTION ConsultarLogrosEquipoResultados(_idPartido integer)
+RETURNS TABLE
+  (id integer,
+   tipo integer,
+   nombre varchar,
+   equipo integer
+  )
+AS
+$$
+BEGIN
+	RETURN QUERY SELECT
+	lo_id,lo_fg_tipologro,lo_nombre, lo_resultado_eq
+	FROM LOGRO_PARTIDO WHERE lo_resultado_pa = _idPartido and lo_fg_tipologro = 3 and lo_resultado_eq is not null;
+END;
+$$ LANGUAGE plpgsql;
+--------------------------CONSULTAR LOGROS VF RESULTADOS--------------------
+CREATE OR REPLACE FUNCTION ConsultarLogrosVFResultados(_idPartido integer)
+RETURNS TABLE
+  (id integer,
+   tipo integer,
+   nombre varchar,
+   vf bool
+  )
+AS
+$$
+BEGIN
+	RETURN QUERY SELECT
+	lo_id,lo_fg_tipologro,lo_nombre, lo_resultado_vf
+	FROM LOGRO_PARTIDO WHERE lo_resultado_pa = _idPartido and lo_fg_tipologro = 4 and lo_resultado_vf is not null;
+END;
+$$ LANGUAGE plpgsql;
+--------------------------CONSULTAR LOGRO CANTIDAD --------------------
+CREATE OR REPLACE FUNCTION ConsultarLogroCantidad(_idLogro integer)
+RETURNS TABLE
+  (id integer,
+   tipo integer,
+   nombre varchar,
+   cantidad integer,
+   status bool
+  )
+AS
+$$
+BEGIN
+	RETURN QUERY SELECT
+	lo_id,lo_fg_tipologro,lo_nombre,lo_cantidad,lo_status
+	FROM LOGRO_PARTIDO WHERE lo_id = _idLogro and lo_status is true and lo_fg_tipologro=1;
+END;
+$$ LANGUAGE plpgsql;
+
+--------------------------CONSULTAR LOGRO JUGADOR --------------------
+CREATE OR REPLACE FUNCTION ConsultarLogroJugador(_idLogro integer)
+RETURNS TABLE
+  (id integer,
+   tipo integer,
+   nombre varchar,
+   jugador integer,
+   status bool
+  )
+AS
+$$
+BEGIN
+	RETURN QUERY SELECT
+	lo_id,lo_fg_tipologro,lo_nombre,lo_resultado_ju,lo_status
+	FROM LOGRO_PARTIDO WHERE lo_id = _idLogro and lo_status is true and lo_fg_tipologro=2;
+END;
+$$ LANGUAGE plpgsql;
+
+--------------------------CONSULTAR LOGRO EQUIPO --------------------
+CREATE OR REPLACE FUNCTION ConsultarLogroEquipo(_idLogro integer)
+RETURNS TABLE
+  (id integer,
+   tipo integer,
+   nombre varchar,
+   equipo integer,
+   status bool
+  )
+AS
+$$
+BEGIN
+	RETURN QUERY SELECT
+	lo_id,lo_fg_tipologro,lo_nombre,lo_resultado_eq,lo_status
+	FROM LOGRO_PARTIDO WHERE lo_id = _idLogro and lo_status is true and lo_fg_tipologro=3;
+END;
+$$ LANGUAGE plpgsql;
+
+--------------------------CONSULTAR LOGRO VF --------------------
+CREATE OR REPLACE FUNCTION ConsultarLogroVF(_idLogro integer)
+RETURNS TABLE
+  (id integer,
+   tipo integer,
+   nombre varchar,
+   vf bool,
+   status bool
+  )
+AS
+$$
+BEGIN
+	RETURN QUERY SELECT
+	lo_id,lo_fg_tipologro,lo_nombre,lo_resultado_vf,lo_status
+	FROM LOGRO_PARTIDO WHERE lo_id = _idLogro and lo_status is true and lo_fg_tipologro=4;
+END;
+$$ LANGUAGE plpgsql;
 
 ---------------------------CONSULTAR TODOS LOS LOGROS PENDIENTES DE UN PARTIDO----------------
 /*
@@ -209,6 +353,20 @@ BEGIN
 	lo_id, lo_nombre, lo_status, lo_fg_tipoLogro, lo_resultado_pa
 	FROM LOGRO_PARTIDO WHERE lo_resultado_pa = _idPartido and lo_status = true and lo_cantidad is null
     and lo_resultado_eq is null and lo_resultado_ju is null and  lo_resultado_vf is null;
+END;
+$$ LANGUAGE plpgsql;
+
+
+--**************************************SP PARA PU***************************************
+CREATE OR REPLACE FUNCTION AsignarLogroPU
+(_idLogro integer, _nombre VARCHAR, _idTipoLogro integer, _idPartido integer)
+RETURNS integer AS
+$$
+BEGIN
+
+   INSERT INTO LOGRO_PARTIDO(lo_id, lo_nombre, lo_status, lo_fg_tipoLogro, lo_resultado_pa) VALUES
+    (_idLogro, _nombre, true, _idTipoLogro, _idPartido);
+   RETURN _idLogro;
 END;
 $$ LANGUAGE plpgsql;
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
+using CopaMundialAPI.Comun.Excepciones;
 using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
 
 namespace CopaMundialAPI.Fuente_de_Datos.DAO
@@ -42,6 +43,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// Metodo para obtener logro su id 
         /// </summary>
         /// <param name="entidad"></param>
+        /// <exception cref="LogroNoExisteException">Excepcion que indica 
+        /// que el logro no existe</exception>
         /// <returns></returns>
         public Entidad ObtenerLogroPorId(Entidad entidad)
         {
@@ -60,7 +63,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 logro.Cantidad = GetInt(i, 3);
                 logro.Status = GetBool(i, 4);
             }
-            
+            if (logro == null)
+                throw new LogroNoExisteException(logro.Id, "cantidad");
             return logro;
         }
 
@@ -70,10 +74,43 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             throw new NotImplementedException();
         }
 
-     
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="partido"></param>
+        /// <exception cref="LogrosPendientesNoExisteException">Excepcion que 
+        /// ocurre cuando un partido no tiene logros pendientes por asignar
+        /// resultado</exception>
+        /// <returns></returns>
         public List<Entidad> ObtenerLogrosPendientes(Entidad partido)
         {
-            throw new NotImplementedException();
+            List<Entidad> logroscantidad = new List<Entidad>();
+            LogroCantidad logro;
+
+            Conectar();
+
+            StoredProcedure("ConsultarLogrosCantidadPendiente(@idpartido)");
+
+            AgregarParametro("idpartido", partido.Id);
+
+            EjecutarReader();
+
+            for (int i = 0; i < cantidadRegistros; i++)
+            {
+                logro = FabricaEntidades.CrearLogroCantidad();
+
+                logro.Id = GetInt(i, 0);
+                logro.IdTipo = TipoLogro.cantidad;
+                logro.Logro = GetString(i, 2);
+                
+
+                logroscantidad.Add(logro);
+            }
+            if (logroscantidad.Count ==0 )
+                throw new LogrosPendientesNoExisteException(partido.Id,"cantidad");
+
+            return logroscantidad;
+           
         }
 
        
