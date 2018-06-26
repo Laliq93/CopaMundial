@@ -27,7 +27,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             StoredProcedure("AsignarLogro(@logro,@idTipo,@idPartido)");
             AgregarParametro("logro", logro.Logro);
-            AgregarParametro("idTipo", logro.IdTipo);
+            AgregarParametro("idTipo", (int)logro.IdTipo);
             AgregarParametro("idPartido", logro.Partido.Id);
 
             EjecutarQuery();
@@ -38,13 +38,17 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             throw new NotImplementedException();
         }
 
-
+        /// <summary>
+        /// Metodo para obtener logro su id 
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
         public Entidad ObtenerLogroPorId(Entidad entidad)
         {
             LogroCantidad logro = entidad as LogroCantidad;
             Conectar();
             StoredProcedure("ConsultarLogroCantidad(@idLogro)");
-            AgregarParametro("@idLogro", logro.Id);
+            AgregarParametro("idLogro", logro.Id);
             EjecutarReader();
             for (int i = 0; i < cantidadRegistros; i++)
             {

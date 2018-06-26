@@ -31,13 +31,20 @@ namespace PruebasCopaMundialAPI.Modulo_7
         [Test]
         public void PruebaDaoLogroCantidadAgregar()
         {
+            
             LogroCantidad logro = FabricaEntidades.CrearLogroCantidad();
-            logro.Id = 500;
+            Partido partido = new Partido();
+            partido.Id = 14;
+            logro.Partido = partido;
+            logro.Id = 501;
             logro.IdTipo = TipoLogro.cantidad;
             logro.Logro = "Logro Prueba Agregar";
             logro.Cantidad = 1;
+           // logro.Partido.Id = 1;
+            
 
             ((DAOLogroCantidad)dao).Agregar(logro);
+            respuesta = FabricaEntidades.CrearLogroCantidad();
             respuesta = ((DAOLogroCantidad)dao).ObtenerLogroPorId(logro);
             Assert.AreEqual(logro.Id, respuesta.Id);
 
@@ -47,10 +54,11 @@ namespace PruebasCopaMundialAPI.Modulo_7
         [TearDown]
         public void TearDown()
         {
+            dao.Desconectar();
             logro = null;
             dao = null;
             respuesta = null;
-            dao.Desconectar();
+            
         }
 
     }
