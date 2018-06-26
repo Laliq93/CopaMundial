@@ -65,11 +65,8 @@ CREATE OR REPLACE FUNCTION ConsultarPartidosSiguientes(fecha timestamp)
 RETURNS TABLE
   (id integer,
    horaInicio timestamp,
-   horafin timestamp,
-   arbitro varchar,
    equipo1 integer,
-   equipo2 integer,
-   estadio integer)
+   equipo2 integer)
 AS
 $$
 BEGIN
