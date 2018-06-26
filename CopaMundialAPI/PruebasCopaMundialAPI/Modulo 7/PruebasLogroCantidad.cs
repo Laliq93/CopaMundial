@@ -33,14 +33,13 @@ namespace PruebasCopaMundialAPI.Modulo_7
         {
             
             LogroCantidad logro = FabricaEntidades.CrearLogroCantidad();
-            Partido partido = new Partido();
-            partido.Id = 14;
+            Partido partido = new Partido();//modificar a fabrica 
+            partido.Id = 14;//modificar por id 1
             logro.Partido = partido;
             logro.Id = 501;
             logro.IdTipo = TipoLogro.cantidad;
             logro.Logro = "Logro Prueba Agregar";
             logro.Cantidad = 1;
-           // logro.Partido.Id = 1;
             
 
             ((DAOLogroCantidad)dao).Agregar(logro);

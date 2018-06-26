@@ -1,0 +1,83 @@
+CREATE OR REPLACE FUNCTION AgregarPartido
+(_horaInicio timestamp, _horaFin timestamp, _arbitro VARCHAR(30),
+ _equipo1 integer, _equipo2 integer, _estadio integer)
+RETURNS integer AS
+$$
+BEGIN
+
+   INSERT INTO PARTIDO(pa_id, pa_fecha, 
+    pa_horaInicio, pa_arbitro, pa_status, pa_eq1_id, pa_eq2_id, pa_es_id) VALUES
+    (nextval('seq_Partido'), _horaInicio, _horaFin , _arbitro,
+     true, _equipo1, _equipo2, _estadio);
+
+   RETURN currval('seq_Partido');
+
+END;
+$$ LANGUAGE plpgsql;
+
+# select * from agregarpartido('2018/02/12 1:00:00', '2018/02/12 1:00:00' , 'pedro',1, 2, 3);
+
+CREATE OR REPLACE FUNCTION ConsultarPartido(_idPartido integer)
+RETURNS TABLE
+  (id integer,
+   horaInicio timestamp,
+   horafin timestamp,
+   arbitro varchar,
+   equipo1 integer,
+   equipo2 integer,
+   estadio integer)
+AS
+$$
+BEGIN
+	RETURN QUERY SELECT
+	pa_id, pa_horaInicio, pa_horafin, pa_arbitro, pa_eq1_id, pa_eq2_id, pa_es_id
+	FROM Partido
+	WHERE pa_id=_idPartido;
+END;
+$$ LANGUAGE plpgsql;
+
+
+#select * from consultarpartido(2)
+
+
+
+   CREATE OR REPLACE FUNCTION ConsultarPartidos()
+RETURNS TABLE
+  (id integer,
+   horaInicio timestamp,
+   horafin timestamp,
+   arbitro varchar,
+   equipo1 integer,
+   equipo2 integer,
+   estadio integer)
+AS
+$$
+BEGIN
+	RETURN QUERY SELECT
+	pa_id, pa_horaInicio, pa_horafin, pa_arbitro, pa_eq1_id, pa_eq2_id, pa_es_id
+	FROM Partido;
+END;
+$$ LANGUAGE plpgsql
+
+#select * from consultarpartidos()
+
+CREATE OR REPLACE FUNCTION ConsultarPartidosSiguientes(fecha timestamp)
+RETURNS TABLE
+  (id integer,
+   horaInicio timestamp,
+   horafin timestamp,
+   arbitro varchar,
+   equipo1 integer,
+   equipo2 integer,
+   estadio integer)
+AS
+$$
+BEGIN
+	RETURN QUERY SELECT
+	pa_id, pa_horaInicio, pa_eq1_id, pa_eq2_id
+	FROM Partido
+	WHERE pa_horainicio > fecha;
+END;
+$$ LANGUAGE plpgsql
+
+#select * from ConsultarPartidosSiguientes('2018-02-13 01:00:00')
