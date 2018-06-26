@@ -8,14 +8,15 @@ using CopaMundialAPI.Servicios.Fabrica;
 
 namespace CopaMundialAPI.Servicios.Traductores.Jugadores
 {
-    public class TraductorJugador : TraductorGenerico<DTOJugador>
+    public class TraductorObtenerJugadores : TraductorGenerico<DTOObtenerJugadores>
     {
-        public override DTOJugador CrearDto(Entidad entidad)
+        public override DTOObtenerJugadores CrearDto(Entidad entidad)
         {
-            DTOJugador dto = FabricaDTO.CrearDTOJugador();
-
             Jugador jugador = entidad as Jugador;
 
+            DTOObtenerJugadores dto = FabricaDTO.CrearDTOObtenerJugadores();
+
+            dto.Id = jugador.Id;
             dto.Nombre = jugador.Nombre;
             dto.Apellido = jugador.Apellido;
             dto.FechaNacimiento = jugador.FechaNacimiento;
@@ -26,24 +27,28 @@ namespace CopaMundialAPI.Servicios.Traductores.Jugadores
             dto.Numero = jugador.Numero;
             dto.Equipo = jugador.Equipo.Pais;
             dto.Capitan = jugador.Capitan;
-            dto.Activo = jugador.Activo;
-
-
 
             return dto;
         }
 
-        public override Entidad CrearEntidad(DTOJugador dto)
+        public override Entidad CrearEntidad(DTOObtenerJugadores dto)
         {
             throw new NotImplementedException();
         }
 
-        public override List<DTOJugador> CrearListaDto(List<Entidad> entidades)
+        public override List<DTOObtenerJugadores> CrearListaDto(List<Entidad> entidades)
         {
-            throw new NotImplementedException();
+            List<DTOObtenerJugadores> dtos = new List<DTOObtenerJugadores>();
+
+            foreach (Entidad jugador in entidades)
+            {
+                dtos.Add(CrearDto(jugador));
+            }
+
+            return dtos;
         }
 
-        public override List<Entidad> CrearListaEntidades(List<DTOJugador> dtos)
+        public override List<Entidad> CrearListaEntidades(List<DTOObtenerJugadores> dtos)
         {
             throw new NotImplementedException();
         }
