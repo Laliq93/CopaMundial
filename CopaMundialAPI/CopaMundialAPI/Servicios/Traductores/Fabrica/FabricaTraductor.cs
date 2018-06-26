@@ -68,5 +68,10 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
         {
             return new TraductorObtenerJugadores();
         }
+
+        public static TraductorLogroCantidad CrearTraductorLogroCantidad()
+        {
+            return new TraductorLogroCantidad();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Ciudades;
+using CopaMundialAPI.Logica_de_Negocio.Comando.Logros;
 using CopaMundialAPI.Logica_de_Negocio.Comando;
 using System;
 using System.Collections.Generic;
@@ -84,6 +85,16 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
         public static ComandoVerificarApuestaExiste CrearComandoVerificarApuestaExiste(Entidad apuesta)
         {
             return new ComandoVerificarApuestaExiste(apuesta);
+        }
+
+       public static ComandoAgregarLogroCantidad CrearComandoAgregarLogroCantidad(Entidad logroPartido)
+        {
+            return new ComandoAgregarLogroCantidad(logroPartido);
+        }
+
+        public static ComandoObtenerLogrosCantidadPendientes CrearComandoObtenerLogrosCantidadPendientes(Entidad partido)
+        {
+            return new ComandoObtenerLogrosCantidadPendientes(partido);
         }
 
     }
