@@ -50,7 +50,7 @@ export class VerApuestaComponent implements OnInit {
   public opcionVof: boolean[] = [];
   public opcionCantidad: number[] = [];
   public opcionJugador: number;
-  public opcionEquipo: number;
+  public opcionEquipo: number[] = [];
 
   public display = 'none';
 
@@ -220,20 +220,41 @@ export class VerApuestaComponent implements OnInit {
       );
   }
 
-  public ApostarVof(IdLogro, opcionVof) {
-    this.api08.AgregarApuestaVof(IdLogro, opcionVof);
+  public ApostarVof(IdLogro, opcionVof: boolean) {
+    if (opcionVof) {
+      this.api08.AgregarApuestaVof(IdLogro, opcionVof);
+    } else {
+      bootbox.alert('Debes seleccionar una opción Valida');
+    }
   }
 
   public ApostarCantidad(IdLogro, opcionCantidad: number) {
-    alert(opcionCantidad);
-    this.api08.AgregarApuestaCantidad(IdLogro, opcionCantidad);
+    if (opcionCantidad) {
+      this.api08.AgregarApuestaCantidad(IdLogro, opcionCantidad);
+    } else {
+      bootbox.alert('Debes Ingresar una Cantidad Valida');
+    }
   }
 
-  public ApostarJugador(IdJugador) {}
+  public ApostarJugador(IdLogro, IdJugador: number) {
+    if (IdJugador) {
+      this.api08.AgregarApuestaJugador(IdLogro, IdJugador);
+      this.closeModalJuagdores();
+    } else {
+      bootbox.alert('Debes escoger un jugador Valido');
+    }
+  }
 
-  public ApostarEquipo() {}
+  public ApostarEquipo(IdLogro, IdEquipo: number) {
+    if (IdEquipo) {
+      this.api08.AgregarApuestaEquipo(IdLogro, IdEquipo);
+    } else {
+      bootbox.alert('Debes escoger un equipo Valido');
+    }
+  }
 
   public openModaljugadores() {
+    this.ObtenerListaJugadoresPartido();
     this.display = 'block';
   }
 
