@@ -125,6 +125,9 @@
     <Compile Include="Comun\Entidades\TipoLogro.cs" />
     <Compile Include="Comun\Entidades\Usuario.cs" />
     <Compile Include="Comun\Excepciones\ApuestaRepetidaException.cs" />
+    <Compile Include="Comun\Excepciones\BaseDeDatosException.cs" />
+    <Compile Include="Comun\Excepciones\CasteoNoCorrectoException.cs" />
+    <Compile Include="Comun\Excepciones\CiudadNoEncontradaException.cs" />
     <Compile Include="Comun\Excepciones\ObjetoNullException.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosJugadorPartido.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosEquipoPartido.cs" />
