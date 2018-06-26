@@ -8,7 +8,7 @@ namespace CopaMundialAPI.Comun.Entidades
     /// <summary>
     /// Almacena las alineaciones asociadas a los partidos.
     /// </summary>
-    public class Alineacion: Entidad
+    public class Alineacion : Entidad
     {
         // al_capitan
         private Boolean _esCapitan;
@@ -20,16 +20,16 @@ namespace CopaMundialAPI.Comun.Entidades
         // al_ju_id
         private Jugador _jugador;
         // al_eq_id
-        private Int32 _equipo;
+        private Equipo _equipo;
         // al_pa_id
         private Partido _partido;
 
-        public bool EsCapitan { get => _esCapitan; set => _esCapitan = value; }
+        public Boolean EsCapitan { get => _esCapitan; set => _esCapitan = value; }
         public string Posicion { get => _posicion; set => _posicion = value; }
-        public bool EsTitular { get => _esTitular; set => _esTitular = value; }
+        public Boolean EsTitular { get => _esTitular; set => _esTitular = value; }
 
         public Jugador Jugador { get => _jugador; set => _jugador = value; }
-        public int Equipo { get => _equipo; set => _equipo = value; }
+        public Equipo Equipo { get => _equipo; set => _equipo = value; }
         public Partido Partido { get => _partido; set => _partido = value; }
     }
 }

@@ -20,11 +20,11 @@ namespace CopaMundialAPI.Comun.Entidades
         private Boolean _estatus;
 
         // pa_eq1_id
-        private Int32 _equipo1;
+        private Equipo _equipo1;
         // pa_eq2_id
-        private Int32 _equipo2;
+        private Equipo _equipo2;
         // pa_es_id
-        private Int32 _estadio;
+        private Estadio _estadio;
 
         private List<Alineacion> _alineaciones;
 
@@ -33,9 +33,9 @@ namespace CopaMundialAPI.Comun.Entidades
         public string Arbitro { get => _arbitro; set => _arbitro = value; }
         public bool Estatus { get => _estatus; set => _estatus = value; }
 
-        public Int32 Equipo1 { get => _equipo1; set => _equipo1 = value; }
-        public Int32 Equipo2 { get => _equipo2; set => _equipo2 = value; }
-        public int Estadio { get => _estadio; set => _estadio = value; }
+        public Equipo Equipo1 { get => _equipo1; set => _equipo1 = value; }
+        public Equipo Equipo2 { get => _equipo2; set => _equipo2 = value; }
+        public Estadio Estadio { get => _estadio; set => _estadio = value; }
 
         public List<Alineacion> Alineaciones { get => _alineaciones; set => _alineaciones = value; }
     }
