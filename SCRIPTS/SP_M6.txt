@@ -74,7 +74,7 @@ AS
 $$
 BEGIN
 	RETURN QUERY SELECT
-	pa_id, pa_horaInicio, pa_horafin, pa_arbitro, pa_eq1_id, pa_eq2_id, pa_es_id
+	pa_id, pa_horaInicio, pa_eq1_id, pa_eq2_id
 	FROM Partido
 	WHERE pa_horainicio > fecha;
 END;
