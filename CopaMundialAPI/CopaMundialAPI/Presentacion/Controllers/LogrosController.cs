@@ -49,5 +49,61 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
         }
 
+
+
+        [Route("agregarLogroJugador")]
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
+        public HttpResponseMessage AgregarLogroJugador(DTOLogroJugador dto)
+        {
+            try
+            {
+                TraductorLogroJugador traductor = FabricaTraductor.CrearTraductorLogroJugador();
+
+                Entidad logroJugador = traductor.CrearEntidad(dto);
+
+                Comando comando;
+
+                comando = FabricaComando.CrearComandoAgregarLogroJugador(logroJugador);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+
+        [Route("agregarLogroEquipo")]
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
+        public HttpResponseMessage AgregarLogroEquipo(DTOLogroEquipo dto)
+        {
+            try
+            {
+                TraductorLogroEquipo traductor = FabricaTraductor.CrearTraductorLogroEquipo();
+
+                Entidad logroEquipo = traductor.CrearEntidad(dto);
+
+                Comando comando;
+
+                comando = FabricaComando.CrearComandoAgregarLogroEquipo(logroEquipo);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
     }
 }
