@@ -6,7 +6,7 @@
     -->
 <div class="central">
   
-  <form class="card">
+  <form class="card" name="formagregar">
   
     <h1 i18n="Encabezado Agregar Ciudad en el formulario @@m2H1AgregarCiudad" style="color: black; font-size: 30px; text-align: center;">Agregar Ciudad </h1>
   
@@ -19,7 +19,8 @@
             placeholder="Ciudad" 
             name="nombreES" 
             #nombre="ngModel" 
-            [(ngModel)]="formulario.nombreES">
+            [(ngModel)]="formulario.nombreES" required>
+            <span ng-show="!formagregar.$dirty && formagregar.nombreES.$error.required">El nombre en español es requerido</span>
       
     </div>
 
@@ -32,7 +33,8 @@
               placeholder="Ciudad" 
               name="nombreEN" 
               #nombre="ngModel" 
-              [(ngModel)]="formulario.nombreEN">
+              [(ngModel)]="formulario.nombreEN" required>
+              <span ng-show="!formagregar.$dirty && formagregar.nombreEN.$error.required">El nombre en ingles es requerido</span>
         
       </div>
   
@@ -46,7 +48,7 @@
             placeholder="Habitantes" 
             name="habitantes" 
             #habitantes="ngModel" 
-            [(ngModel)]="formulario.habitantes">
+            [(ngModel)]="formulario.habitantes" required>
       
     </div>
   
@@ -54,7 +56,7 @@
        
       <label i18n="Label de la descripcion en español en el formulario @@m2LabelDescripcionES" for="exampleFormControlTextarea1">Descripción (ES)</label>
       
-      <textarea class="form-control" id="InputDescES" rows="3" name="descripcionES" #descripcion="ngModel" [(ngModel)]="formulario.descripcionES"></textarea>
+      <textarea class="form-control" id="InputDescES" rows="3" name="descripcionES" #descripcion="ngModel" [(ngModel)]="formulario.descripcionES" required></textarea>
     
     </div>
 
@@ -62,14 +64,14 @@
        
         <label i18n="Label de la descripcion en ingles en el formulario @@m2LabelDescripcionEN" for="exampleFormControlTextarea1">Descripción (EN)</label>
         
-        <textarea class="form-control" id="InputDesEN" rows="3" name="descripcionEN" #descripcion="ngModel" [(ngModel)]="formulario.descripcionEN"></textarea>
+        <textarea class="form-control" id="InputDesEN" rows="3" name="descripcionEN" #descripcion="ngModel" [(ngModel)]="formulario.descripcionEN" required></textarea>
       
       </div>
   
   
       <button i18n="Boton de agregar en el formulario @@m2BotonAgregar" (click)="subirciudad();" type="submit" class="btn btn-primary btn-signin">Agregar Ciudad</button>
   
-      <button i18n="Boton de cancelar en el formulario @@m2BotonCancelarAgregacion" (click)="volver()" type="submit" class="btn btn-primary btn-signin">Cancelar</button>
+      <button i18n="Boton de cancelar en el formulario @@m2BotonCancelarAgregacion" (click)="regresar()" type="submit" class="btn btn-primary btn-signin">Cancelar</button>
   
     </form>
 

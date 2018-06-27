@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {RouterModule, Router } from '@angular/router';
 import { Ciudad } from '../../shared/ciudad.model';
 import { CiudadService } from '../../shared/ciudad.service';
+import { Location } from '@angular/common';
 declare var jquery:any;
 declare var $ :any;
 
@@ -27,7 +28,7 @@ ciudades :Ciudad[] = new Array<Ciudad>()
   id :number;
 
 
-  constructor(private route:Router, private ciudadservice: CiudadService){}
+  constructor(private _location: Location,private route:Router, private ciudadservice: CiudadService){}
  // constructor(private router: Router){}
 
   ngOnInit() {
@@ -79,8 +80,9 @@ selectChange($event){
   this.id =$event
   this.ciudadselected = this.ciudades[this.id];
 }
-  //volver(): void {
-		//this.router.navigate(['admin/city']);
-  //}
+ 
+regresar() {
+  this._location.back(); // <-- regresar a la pagina previa al presionar cancelar
+}
 
 }
