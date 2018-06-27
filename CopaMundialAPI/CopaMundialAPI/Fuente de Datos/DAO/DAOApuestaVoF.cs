@@ -55,10 +55,43 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         public List<Entidad> ObtenerApuestasEnCurso(Entidad usuario)
         {
+            List<Entidad> apuestasEnCurso = new List<Entidad>();
+
+            ApuestaVoF apuesta;
+
+            LogroVoF logro;
+
             Usuario apostador = usuario as Usuario;
 
-            List<Entidad> apuestasEnCurso = new List<Entidad>();
-            
+            Conectar();
+
+            StoredProcedure("obtenerapuestasvofencurso(@idusuario)");
+
+            AgregarParametro("idusuario", usuario.Id);
+
+            EjecutarReader();
+
+            for(int i = 0; i < cantidadRegistros; i++)
+            {
+                apuesta = FabricaEntidades.CrearApuestaVoF();
+
+                logro = FabricaEntidades.CrearLogroVoF();
+
+                logro.Id = GetInt(i, 0);
+
+                logro.Logro = GetString(i, 1);
+
+                apuesta.Respuesta = GetBool(i, 2);
+
+                apuesta.Estado = GetString(i, 3);
+
+                apuesta.Logro = logro;
+
+                apuesta.Usuario = apostador;
+
+                apuestasEnCurso.Add(apuesta);
+
+            }
 
             return apuestasEnCurso;
         }

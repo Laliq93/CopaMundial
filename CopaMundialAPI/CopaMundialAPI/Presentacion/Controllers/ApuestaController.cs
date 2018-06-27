@@ -15,6 +15,8 @@ using CopaMundialAPI.Servicios.Fabrica;
 using CopaMundialAPI.Servicios.Traductores.Apuestas;
 using CopaMundialAPI.Servicios.Traductores.Fabrica;
 using CopaMundialAPI.Servicios.Traductores.Logros;
+using CopaMundialAPI.Servicios.Traductores.Usuarios;
+using CopaMundialAPI.Servicios.DTO.Usuario;
 using CopaMundialAPI.Servicios.DTO.Logros;
 using CopaMundialAPI.Comun.Excepciones;
 
@@ -69,7 +71,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 return Request.CreateResponse(HttpStatusCode.OK, dtos);
             }
-            catch(ObjetoNullException exc)
+            catch (ObjetoNullException exc)
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
@@ -107,7 +109,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
@@ -341,6 +343,36 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
 
         }
+        [Route("obtenerapuestasvofencurso")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage ObtenerApuestasVoFEnCurso (DTOUsuarioId dto)
+        {
+            try
+            {
+                TraductorUsuarioId traductor = FabricaTraductor.CrearTraductorUsuarioId();
+
+                Entidad usuario = traductor.CrearEntidad(dto);
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (ApuestaRepetidaException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.ToString());
+            }
+        }
+
+
 
     }
 }
