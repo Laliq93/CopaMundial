@@ -4,4 +4,5 @@ export class DTOApuestaJugador {
   public IdJugador: number;
   public Estado: string;
   public Logro: String;
+  public Fecha: String;
 }

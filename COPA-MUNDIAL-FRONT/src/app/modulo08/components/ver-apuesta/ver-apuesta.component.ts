@@ -47,6 +47,7 @@ export class VerApuestaComponent implements OnInit {
   public dtOptionsMostrarJugadores: DataTables.Settings = {};
 
   public idPartido: number;
+  public idLogroJugador: number;
   public opcionVof: boolean[] = [];
   public opcionCantidad: number[] = [];
   public opcionJugador: number;
@@ -82,7 +83,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosVOF() {
     this.connect.Controlador = 'obtenerlogrosvofpartido';
-    const url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -110,7 +111,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosCantidad() {
     this.connect.Controlador = 'obtenerlogroscantidadpartido';
-    const url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -138,7 +139,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosJugadores() {
     this.connect.Controlador = 'obtenerlogrosjugadorpartido';
-    const url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -166,7 +167,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosEquipos() {
     this.connect.Controlador = 'obtenerlogrosequipopartido';
-    const url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -193,11 +194,11 @@ export class VerApuestaComponent implements OnInit {
   }
 
   public ObtenerListaJugadoresPartido() {
-    this.connect.Controlador = 'obtenerlistajugadorespartido';
-    const url = this.connect.RutaApi + this.connect.Controlador;
+    this.connect.Controlador = 'obtenerJugadores';
+    const url = this.connect.GetApiJugador() + this.connect.Controlador;
 
     this.http
-      .put<DTOMostrarJugador>(url, {
+      .get<DTOMostrarJugador>(url, {
         responseType: 'json'
       })
       .subscribe(
@@ -207,9 +208,9 @@ export class VerApuestaComponent implements OnInit {
             let listaJugadores: DTOMostrarJugador;
             listaJugadores = new DTOMostrarJugador();
 
-            listaJugadores.IdJugador = data[i].IdLogro;
-            listaJugadores.Nombre = data[i].Logro;
-            listaJugadores.Apellido = data[i].Logro;
+            listaJugadores.Id = data[i].Id;
+            listaJugadores.Nombre = data[i].Nombre;
+            listaJugadores.Apellido = data[i].Apellido;
 
             this.ListMostrarJugadores[i] = listaJugadores;
           }
@@ -236,9 +237,9 @@ export class VerApuestaComponent implements OnInit {
     }
   }
 
-  public ApostarJugador(IdLogro, IdJugador: number) {
+  public ApostarJugador(IdJugador: number) {
     if (IdJugador) {
-      this.api08.AgregarApuestaJugador(IdLogro, IdJugador);
+      this.api08.AgregarApuestaJugador(this.idLogroJugador, IdJugador);
       this.closeModalJuagdores();
     } else {
       bootbox.alert('Debes escoger un jugador Valido');
@@ -253,7 +254,8 @@ export class VerApuestaComponent implements OnInit {
     }
   }
 
-  public openModaljugadores() {
+  public openModaljugadores(idLogro) {
+    this.idLogroJugador = idLogro;
     this.ObtenerListaJugadoresPartido();
     this.display = 'block';
   }
