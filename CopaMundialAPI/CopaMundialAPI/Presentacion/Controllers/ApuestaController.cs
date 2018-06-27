@@ -219,7 +219,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
 
         }
@@ -259,7 +259,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
 
         }
@@ -299,7 +299,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
 
         }
@@ -339,7 +339,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
 
         }
@@ -350,17 +350,24 @@ namespace CopaMundialAPI.Presentacion.Controllers
         {
             try
             {
+                DTOUsuarioId dto2 = new DTOUsuarioId();
+                dto2.IdUsuario = 2;
+
                 TraductorUsuarioId traductor = FabricaTraductor.CrearTraductorUsuarioId();
 
-                Entidad usuario = traductor.CrearEntidad(dto);
+                Entidad usuario = traductor.CrearEntidad(dto2);
 
-                return Request.CreateResponse(HttpStatusCode.OK);
+                Comando comando = FabricaComando.CrearComandoObtenerApuestasVoFEnCurso(usuario);
+
+                comando.Ejecutar();
+
+                TraductorApuestaVOF traductorApuesta = FabricaTraductor.CrearTraductorApuestaVoF();
+
+                List<DTOApuestaVOF> dtos = traductorApuesta.CrearListaDto(comando.GetEntidades());
+
+                return Request.CreateResponse(HttpStatusCode.OK, dtos);
             }
             catch (ObjetoNullException exc)
-            {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
-            }
-            catch (ApuestaRepetidaException exc)
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
