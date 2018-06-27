@@ -1,0 +1,15 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Ciudad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let ciudad of ciudades; let i = index">
+      <tr>
+        <th scope="row">{{ciudad}}</th>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+

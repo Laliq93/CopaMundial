@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import {CiudadService} from '../../shared/ciudad.service';
 import { Ciudad } from '../../shared/ciudad.model';
 import { Binary } from '@angular/compiler';
-
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -18,9 +18,11 @@ import { Observable } from 'rxjs';
 export class AgregarCiudadComponent implements OnInit {
 
   formulario = {
-    nombre : "",
+    nombreES : "",
     habitantes : 0,
-    descripcion : ""
+    descripcion : "",
+    nombreEN :"",
+    descripcionEN : ""
   }
   imagen: Blob;
   ima : Blob;
@@ -29,11 +31,37 @@ export class AgregarCiudadComponent implements OnInit {
   url:String = "http://localhost:51543/api/ciudad/"
   
 
-  constructor( private route:Router, private ciudadservice: CiudadService){}
+  constructor(  private _location: Location, private route:Router, private ciudadservice: CiudadService){}
   //constructor(private ciudadService : CiudadService) { }
 
   ngOnInit() {
     this.resetForm();
+  }
+
+  subirciudad(){
+    let ciudad = new Ciudad();
+    
+    ciudad.Nombre = this.formulario.nombreES
+    ciudad.Descripcion = this.formulario.descripcion;
+    ciudad.Habitantes = this.formulario.habitantes
+    ciudad.DescripcionIngles = this.formulario.descripcionEN
+    ciudad.NombreIngles = this.formulario.nombreEN
+    this.ciudadservice.agregarciudad(ciudad).subscribe(
+      result => {
+      
+        console.log(result);
+       
+      },
+      error =>{
+         console.log(<any>error)
+      }
+      
+    )
+    
+  }
+
+  regresar() {
+    this._location.back(); // <-- regresar a la pagina previa al presionar cancelar
   }
 
   /*agregarciudad():Observable<any>{
@@ -56,13 +84,13 @@ export class AgregarCiudadComponent implements OnInit {
     return this.http.post(this.url+'agregarciudad',params,{headers:headers})
 
 };*/
- agregarciudad(){
+ /*agregarciudad(){
   let ciudad = new Ciudad();
   
   ciudad.nombre = this.formulario.nombre;
   ciudad.poblacion = this.formulario.habitantes;
   ciudad.descripcion = this.formulario.descripcion;
-  ciudad.imagen = this.imagen;
+  //ciudad.imagen = this.imagen;
   //console.log(`Nombre ${this.formulario.nombre} Habitantes ${this.formulario.habitantes} Descripcion ${this.formulario.descripcion}`)
  // console.log(ciudad);
    this.ciudadservice.agregarciudad(ciudad).subscribe(
@@ -76,15 +104,17 @@ export class AgregarCiudadComponent implements OnInit {
      }
      
    )
- }
+ }*/
 
   resetForm(Form? : NgForm){
     if(Form != null)
       Form.reset();
       this.formulario = {
-        nombre:'',
+        nombreES:'',
         habitantes: 0,
-        descripcion:''
+        descripcion:'',
+        nombreEN:'',
+        descripcionEN :''
       
       }
     }

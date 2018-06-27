@@ -14,6 +14,7 @@ namespace CopaMundialAPI.Comun.Entidades
         private Equipo _equipo;//equipo que realiza el logro
         private TipoLogro _idTipo; //id del tipo de logro (Cantidad,VOF, Equipo, Jugador)
 
+        public LogroEquipo(){ }
         /// <summary>
         /// Get y Set del nombre del equipo que realizo el logro
         /// </summary>

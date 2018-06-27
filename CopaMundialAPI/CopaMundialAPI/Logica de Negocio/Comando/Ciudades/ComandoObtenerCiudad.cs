@@ -20,6 +20,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Ciudades
 		public override void Ejecutar()
 		{			
 			DAOCiudad dao = FabricaDAO.CrearDAOCiudad();
+			//dao.ConsultarCiudadPorId()
 			
 		}
 

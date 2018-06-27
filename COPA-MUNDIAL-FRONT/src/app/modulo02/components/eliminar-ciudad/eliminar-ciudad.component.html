@@ -1,15 +1,20 @@
 <div class="central">
   <form class="card">
-  <h1 style="color: black; font-size: 30px; text-align: center;">Eliminar Ciudad</h1>
+  <h1 i18n="Encabezado Eliminar Ciudad en la tarjeta Eliminar Ciudad @@m2H1EliminarCiudad" style="color: black; font-size: 30px; text-align: center;">Eliminar Ciudad</h1>
   <div class="form-group">
-    <select id='Ciudad' class="form-control font-estilo">
-      <ng-container *ngFor="let ciudad of ciudades; let i = index">
-        <option value={{ciudad.nombre}}>{{ciudad.nombre}}</option>
-      </ng-container>
+    <select (ngModelChange)="selectChange($event)" [(ngModel)]="id" [ngModelOptions]="{standalone: true}" id='Ciudad' class="form-control font-estilo"   >
+        <option  *ngFor = "let ciudad of ciudades; let i = index"  [value]="ciudad.Id">{{ciudad.Nombre}} </option>
     </select>
   </div>
   
-  <button (click)="eliminarElemento();" type="submit" class="btn btn-primary btn-signin">Eliminar Ciudad</button>
-  <button i18n="Traduccion de b agregar ciudad" (click)="volver()" type="submit" class="btn btn-primary btn-signin">Cancelar</button>
+  <button i18n="Boton eliminar en la tarjeta Eliminar Ciudad @@m2BotonEliminar" (click)="eliminarElemento();" type="submit" class="btn btn-primary btn-signin">Eliminar Ciudad</button>
+  <button i18n="Boton cancelar en la tarjeta Eliminar Ciudad @@m2BotonCancelarEliminar" (click)="regresar()" type="submit" class="btn btn-primary btn-signin">Cancelar</button>
   </form>
 </div> 
+
+<!-- <select [(ngModel)]="selectedValue">
+    <option *ngFor="#c of countries" [value]="c.id">{{c.name}}</option>
+</select> -->
+
+<!-- <ng-container *ngFor="let ciudad of ciudades; let i = index"  [(ngModel)]="ciudadselected"  [ngModelOptions]="{standalone: true}"> -->
+        <!-- </ng-container> -->    
