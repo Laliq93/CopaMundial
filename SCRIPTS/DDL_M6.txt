@@ -1,6 +1,5 @@
 CREATE TABLE PARTIDO(
     pa_id integer,
-    pa_fecha timestamp NOT NULL,
     pa_horaInicio timestamp  NOT NULL,
     pa_horaFin timestamp default null,
     pa_arbitro varchar(30) NOT NULL,

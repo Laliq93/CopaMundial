@@ -1,3 +1,4 @@
+
 CREATE OR REPLACE FUNCTION AgregarPartido
 (_horaInicio timestamp, _horaFin timestamp, _arbitro VARCHAR(30),
  _equipo1 integer, _equipo2 integer, _estadio integer)
@@ -5,8 +6,8 @@ RETURNS integer AS
 $$
 BEGIN
 
-   INSERT INTO PARTIDO(pa_id, pa_fecha, 
-    pa_horaInicio, pa_arbitro, pa_status, pa_eq1_id, pa_eq2_id, pa_es_id) VALUES
+   INSERT INTO PARTIDO(pa_id, pa_horainicio,pa_horafin, 
+    pa_arbitro, pa_status, pa_eq1_id, pa_eq2_id, pa_es_id) VALUES
     (nextval('seq_Partido'), _horaInicio, _horaFin , _arbitro,
      true, _equipo1, _equipo2, _estadio);
 
@@ -14,8 +15,7 @@ BEGIN
 
 END;
 $$ LANGUAGE plpgsql;
-
-# select * from agregarpartido('2018/02/12 1:00:00', '2018/02/12 1:00:00' , 'pedro',1, 2, 3);
+--select * from agregarpartido('2018/02/12 1:00:00', '2018/02/12 1:00:00' , 'pedro',1, 2, 3);
 
 CREATE OR REPLACE FUNCTION ConsultarPartido(_idPartido integer)
 RETURNS TABLE
@@ -29,16 +29,15 @@ RETURNS TABLE
 AS
 $$
 BEGIN
-	RETURN QUERY SELECT
-	pa_id, pa_horaInicio, pa_horafin, pa_arbitro, pa_eq1_id, pa_eq2_id, pa_es_id
-	FROM Partido
-	WHERE pa_id=_idPartido;
+  RETURN QUERY SELECT
+  pa_id, pa_horaInicio, pa_horafin, pa_arbitro, pa_eq1_id, pa_eq2_id, pa_es_id
+  FROM Partido
+  WHERE pa_id=_idPartido;
 END;
 $$ LANGUAGE plpgsql;
 
 
-#select * from consultarpartido(2)
-
+--select * from consultarpartido(2)
 
 
    CREATE OR REPLACE FUNCTION ConsultarPartidos()
@@ -53,28 +52,147 @@ RETURNS TABLE
 AS
 $$
 BEGIN
-	RETURN QUERY SELECT
-	pa_id, pa_horaInicio, pa_horafin, pa_arbitro, pa_eq1_id, pa_eq2_id, pa_es_id
-	FROM Partido;
+  RETURN QUERY SELECT
+  pa_id, pa_horaInicio, pa_horafin, pa_arbitro, pa_eq1_id, pa_eq2_id, pa_es_id
+  FROM Partido;
 END;
-$$ LANGUAGE plpgsql
+$$ LANGUAGE plpgsql;
 
-#select * from consultarpartidos()
+--select * from consultarpartidos()
 
-CREATE OR REPLACE FUNCTION ConsultarPartidosSiguientes(fecha timestamp)
+CREATE OR REPLACE FUNCTION ConsultarPartidosSiguientesFecha(fecha timestamp)
 RETURNS TABLE
   (id integer,
    horaInicio timestamp,
+   horafin timestamp,
+   arbitro varchar,
    equipo1 integer,
-   equipo2 integer)
+   equipo2 integer,
+   estadio integer)
 AS
 $$
 BEGIN
-	RETURN QUERY SELECT
-	pa_id, pa_horaInicio, pa_eq1_id, pa_eq2_id
-	FROM Partido
-	WHERE pa_horainicio > fecha;
+  RETURN QUERY SELECT
+  pa_id, pa_horaInicio, pa_horafin, pa_arbitro, pa_eq1_id, pa_eq2_id, pa_es_id
+  FROM Partido
+  WHERE pa_horainicio > fecha;
+END;
+$$ LANGUAGE plpgsql;
+
+--select * from ConsultarPartidosSiguientes('2018-02-13 01:00:00')
+
+CREATE OR REPLACE FUNCTION ConsultarPartidosSiguientes()
+RETURNS TABLE
+  (id integer,
+   horaInicio timestamp,
+   horafin timestamp,
+   arbitro varchar,
+   equipo1 integer,
+   equipo2 integer,
+   estadio integer)
+AS
+$$
+BEGIN
+  RETURN QUERY SELECT
+  pa_id, pa_horaInicio, pa_horafin, pa_arbitro, pa_eq1_id, pa_eq2_id, pa_es_id
+  FROM Partido
+  WHERE pa_horainicio > now();
 END;
 $$ LANGUAGE plpgsql
+--select * from ConsultarPartidosSiguientes()
 
-#select * from ConsultarPartidosSiguientes('2018-02-13 01:00:00')
+CREATE OR REPLACE FUNCTION ModificarPartido
+(_idPartido integer, _horaInicio timestamp, _horaFin timestamp, _arbitro VARCHAR(30), _status boolean,
+ _equipo1 integer, _equipo2 integer, _estadio integer)
+RETURNS void AS
+$$
+BEGIN
+
+   UPDATE PARTIDO SET pa_horainicio= _horaInicio, pa_horafin = _horafin,  pa_arbitro= _arbitro, pa_status = _status,
+    pa_eq1_id =_equipo1,  pa_eq2_id =_equipo2, pa_es_id = _estadio
+  WHERE (pa_id = _idPartido);
+
+END;
+$$ LANGUAGE plpgsql;
+
+
+--select * from Modificarpartido(1,'2018/06/27 1:00:00', '2018/06/27 3:00:00', 'pedro',true, 1, 2, 3)
+
+CREATE OR REPLACE FUNCTION AgregarAlineacion
+(_capitan boolean, _posicion VARCHAR(30), _titular boolean,
+ _jugador integer, _equipo integer, _partido integer)
+RETURNS integer AS
+$$
+BEGIN
+
+   INSERT INTO ALINEACION(al_id, al_capitan, 
+    al_posicion, al_titular, al_ju_id, al_eq_id, al_pa_id) VALUES
+    (nextval('seq_Alineacion'), _capitan, _posicion, _titular,
+     _jugador, _equipo, _partido);
+
+   RETURN currval('seq_Alineacion');
+
+END;
+$$ LANGUAGE plpgsql;
+--select * from agregaralineacion(true, 'delantero', true, 1, 1, 1)
+
+
+CREATE OR REPLACE FUNCTION ConsultarAlineacion(idPartido integer, idEquipo integer)
+RETURNS TABLE
+  (id integer,
+   _capitan boolean,
+   _posicion varchar(30),
+   _titular boolean,
+   _jugador integer,
+   _equipo integer,
+   _partido integer)
+AS
+$$
+BEGIN
+  RETURN QUERY SELECT
+  al_id, al_capitan, al_posicion, al_titular, al_ju_id, al_eq_id, al_pa_id
+  FROM Alineacion
+  WHERE al_pa_id = idPartido and al_eq_id = idEquipo;
+END;
+$$ LANGUAGE plpgsql;
+
+--select * from consultaralineacion(1,1)
+
+CREATE OR REPLACE FUNCTION ConsultarJugadorAlineacion(idPartido integer, idEquipo integer, idJugador integer)
+RETURNS TABLE
+  (id integer,
+   _capitan boolean,
+   _posicion varchar(30),
+   _titular boolean,
+   _jugador integer,
+   _equipo integer,
+   _partido integer)
+AS
+$$
+BEGIN
+  RETURN QUERY SELECT
+  al_id, al_capitan, al_posicion, al_titular, al_ju_id, al_eq_id, al_pa_id
+  FROM Alineacion
+  WHERE al_pa_id = idPartido and al_eq_id = idEquipo and al_ju_id= idJugador;
+END;
+$$ LANGUAGE plpgsql;
+
+--select * from consultarjugadoralineacion(1,1,1)
+
+CREATE OR REPLACE FUNCTION ModificarAlineacion
+(_idAlineacion integer, _capitan boolean, _posicion VARCHAR(30), _titular boolean,
+ _jugador integer, _equipo integer, _partido integer)
+RETURNS integer AS
+$$
+BEGIN
+
+     UPDATE ALINEACION SET  al_capitan = _capitan, 
+    al_posicion= _posicion, al_titular= _titular, al_ju_id= _jugador, al_eq_id= _equipo, al_pa_id= _partido
+    WHERE (al_id= _idAlineacion);
+
+   RETURN _idAlineacion;
+
+END;
+$$ LANGUAGE plpgsql;
+
+--select * from modificaralineacion(1, false, 'defensa', true, 1,1,1)
