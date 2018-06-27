@@ -133,6 +133,9 @@
     <Compile Include="Comun\Excepciones\AlineacionJugadorNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\AlineacionMasDeUnCapitanException.cs" />
     <Compile Include="Comun\Excepciones\ApuestaRepetidaException.cs" />
+    <Compile Include="Comun\Excepciones\BaseDeDatosException.cs" />
+    <Compile Include="Comun\Excepciones\CasteoNoCorrectoException.cs" />
+    <Compile Include="Comun\Excepciones\CiudadNoEncontradaException.cs" />
     <Compile Include="Comun\Excepciones\FechaPasadaPartidoException.cs" />
     <Compile Include="Comun\Excepciones\LogroNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\LogrosPendientesNoExisteException.cs" />
@@ -155,6 +158,7 @@
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarJugadorApuestaExiste.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarVoFApuestaExiste.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarEquipoApuestaExiste.cs" />
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoObtenerCiudadPorNombre.cs" />
     <Compile Include="Logica de Negocio\Comando\Logros\ComandoAgregarLogroCantidad.cs" />
     <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogrosCantidadPendientes.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoActualizarAlineacion.cs" />
@@ -211,6 +215,8 @@
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaCantidad.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaVOF.cs" />
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudad.cs" />
+    <Compile Include="Servicios\DTO\Ciudades\DTOCiudad2.cs" />
+    <Compile Include="Servicios\DTO\Ciudades\DTOCiudadID.cs" />
     <Compile Include="Servicios\DTO\Jugadores\DTOObtenerJugadores.cs" />
     <Compile Include="Servicios\DTO\Logros\DTOLogroCantidad.cs" />
     <Compile Include="Servicios\DTO\Logros\DTOLogroCantidadResultado.cs" />
@@ -234,6 +240,8 @@
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaVOF.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaEquipo.cs" />
     <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudad.cs" />
+    <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudad2.cs" />
+    <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudadID.cs" />
     <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudadNombre.cs" />
     <Compile Include="Servicios\Traductores\Fabrica\FabricaTraductor.cs" />
     <Compile Include="Servicios\Traductores\Jugadores\TraductorJugador.cs" />

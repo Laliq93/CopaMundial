@@ -5,16 +5,13 @@ using System.Web;
 
 namespace CopaMundialAPI.Comun.Excepciones
 {
-    /// <summary>
-    /// Exception generada por argumentos nulos
-    /// </summary>
-    public class ObjetoNullException : Exception
+    public class CasteoNoCorrectoException:Exception
     {
         private DateTime _fecha; //Hora y fecha de cuando se genero la excepción.
         private string _mensaje; //Breve descripción de la excepción genereda.
-        private NullReferenceException _excepcion; //Tipo de excepcion que se genero.
+        private InvalidCastException _excepcion; //Tipo de excepcion que se genero.
 
-        public ObjetoNullException(NullReferenceException excepcion, string mensaje)
+        public CasteoNoCorrectoException ( InvalidCastException excepcion, string mensaje )
         {
             _fecha = DateTime.Now;
             _mensaje = mensaje;
@@ -34,7 +31,7 @@ namespace CopaMundialAPI.Comun.Excepciones
         /// <summary>
         /// Getters y Setters del atributo _excepcion
         /// </summary>
-        public NullReferenceException Excepcion { get => _excepcion; set => _excepcion = value; }
+        public InvalidCastException Excepcion { get => _excepcion; set => _excepcion = value; }
 
     }
 }
