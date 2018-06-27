@@ -30,6 +30,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
         /// </summary>
         /// <param name="apuesta"></param>
         /// <returns></returns>
-        void VerificarApuestaExiste(Entidad apuesta);
+        int VerificarApuestaExiste(Entidad apuesta);
     }
 }

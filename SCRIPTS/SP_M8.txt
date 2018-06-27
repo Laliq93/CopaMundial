@@ -137,7 +137,8 @@ $BODY$;
 
 CREATE OR REPLACE FUNCTION public.obtenerapuestasjugadorencurso(
 	_idusuario integer)
-    RETURNS TABLE(logroid integer, logroenunciado character varying, respuestausuario integer, estadoapuesta character varying, fechaapuesta date) 
+    RETURNS TABLE(logroid integer, logroenunciado character varying, idjugador integer, nombrejugador character varying, 
+				  apellidojugador character varying, estadoapuesta character varying, fechaapuesta date) 
     LANGUAGE 'plpgsql'
 
     COST 100
@@ -146,12 +147,13 @@ CREATE OR REPLACE FUNCTION public.obtenerapuestasjugadorencurso(
 AS $BODY$
 
 BEGIN
-	RETURN QUERY SELECT lo.lo_id, lo.lo_nombre, ap.respuestajugador, ap.estado, ap.fechacreacion FROM logro_partido lo 
-	INNER JOIN apuesta ap ON lo.lo_id = ap.idlogro WHERE lo.lo_fg_tipologro = 2 AND ap.estado = 'en curso' 
+	RETURN QUERY SELECT lo.lo_id, lo.lo_nombre, ap.respuestajugador,ju.ju_nombre, ju.ju_apellido ,ap.estado, ap.fechacreacion FROM logro_partido lo 
+	INNER JOIN apuesta ap ON lo.lo_id = ap.idlogro INNER JOIN jugador ju ON ju.ju_id = ap.respuestajugador WHERE lo.lo_fg_tipologro = 2 AND ap.estado = 'en curso' 
 	AND ap.idusuario = _idusuario;
 END;
 
 $BODY$;
+
 
 CREATE OR REPLACE FUNCTION public.obtenerapuestasvofencurso(
 	_idusuario integer)

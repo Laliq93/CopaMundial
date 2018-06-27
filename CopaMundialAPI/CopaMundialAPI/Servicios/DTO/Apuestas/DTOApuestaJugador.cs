@@ -10,6 +10,8 @@ namespace CopaMundialAPI.Servicios.DTO.Apuestas
         private int _idUsuario;
         private int _idLogro;
         private int _idJugador;
+        private string _nombreJugador;
+        private string _apellidoJugador;
         private string _estado;
         private string _logro;
         private string _fecha;
@@ -20,5 +22,7 @@ namespace CopaMundialAPI.Servicios.DTO.Apuestas
         public string Estado { get => _estado; set => _estado = value; }
         public string Logro { get => _logro; set => _logro = value; }
         public string Fecha { get => _fecha; set => _fecha = value; }
+        public string NombreJugador { get => _nombreJugador; set => _nombreJugador = value; }
+        public string ApellidoJugador { get => _apellidoJugador; set => _apellidoJugador = value; }
     }
 }

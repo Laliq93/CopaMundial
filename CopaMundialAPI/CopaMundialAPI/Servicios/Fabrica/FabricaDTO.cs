@@ -92,5 +92,10 @@ namespace CopaMundialAPI.Servicios.Fabrica
         {
             return new DTOLogroCantidad();
         }
+
+        public static DTOApuestaEquipo CrearDTOApuestaEquipo()
+        {
+            return new DTOApuestaEquipo();
+        }
     }
 }

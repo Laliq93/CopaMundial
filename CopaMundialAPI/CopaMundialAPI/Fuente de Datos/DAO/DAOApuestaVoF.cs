@@ -61,41 +61,49 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             LogroVoF logro;
 
-            Usuario apostador = usuario as Usuario;
-
-            Conectar();
-
-            StoredProcedure("obtenerapuestasvofencurso(@idusuario)");
-
-            AgregarParametro("idusuario", usuario.Id);
-
-            EjecutarReader();
-
-            for(int i = 0; i < cantidadRegistros; i++)
+            try
             {
-                apuesta = FabricaEntidades.CrearApuestaVoF();
+                Usuario apostador = usuario as Usuario;
 
-                logro = FabricaEntidades.CrearLogroVoF();
+                Conectar();
 
-                logro.Id = GetInt(i, 0);
+                StoredProcedure("obtenerapuestasvofencurso(@idusuario)");
 
-                logro.Logro = GetString(i, 1);
+                AgregarParametro("idusuario", usuario.Id);
 
-                apuesta.Respuesta = GetBool(i, 2);
+                EjecutarReader();
 
-                apuesta.Estado = GetString(i, 3);
+                for (int i = 0; i < cantidadRegistros; i++)
+                {
+                    apuesta = FabricaEntidades.CrearApuestaVoF();
 
-                apuesta.Fecha = GetDateTime(i, 4);
+                    logro = FabricaEntidades.CrearLogroVoF();
 
-                apuesta.Logro = logro;
+                    logro.Id = GetInt(i, 0);
 
-                apuesta.Usuario = apostador;
+                    logro.Logro = GetString(i, 1);
 
-                apuestasEnCurso.Add(apuesta);
+                    apuesta.Respuesta = GetBool(i, 2);
 
+                    apuesta.Estado = GetString(i, 3);
+
+                    apuesta.Fecha = GetDateTime(i, 4);
+
+                    apuesta.Logro = logro;
+
+                    apuesta.Usuario = apostador;
+
+                    apuestasEnCurso.Add(apuesta);
+
+                }
+
+                return apuestasEnCurso;
             }
-
-            return apuestasEnCurso;
+            catch (InvalidCastException exc)
+            {
+                Desconectar();
+                throw exc;
+            }
         }
 
         public List<Entidad> ObtenerApuestasFinalizadas(Entidad usuario)
@@ -108,7 +116,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             throw new NotImplementedException();
         }
 
-        public void VerificarApuestaExiste(Entidad apuesta)
+        public int VerificarApuestaExiste(Entidad apuesta)
         {
             Conectar();
 
@@ -123,8 +131,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             int count = GetInt(0, 0);
 
-            if (count > 0)
-                throw new ApuestaRepetidaException();
+
+            return count;
         }
     }
 }
