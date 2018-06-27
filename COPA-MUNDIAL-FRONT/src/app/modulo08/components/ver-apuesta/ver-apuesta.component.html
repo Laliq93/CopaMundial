@@ -125,7 +125,7 @@
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
                   <td>
-                    <button type="button" class="btn btn-success-table"  (click)="openModaljugadores()" style="margin-right:16px;">Ver Jugadores</button>
+                    <button type="button" class="btn btn-success-table"  (click)="openModaljugadores(MostrarLogros.IdLogro)" style="margin-right:16px;">Ver Jugadores</button>
                   <div class="backdrop" [ngStyle]="{'display':display}"></div>
                   </td>
                 </tr>
@@ -212,11 +212,11 @@
             </thead>
             <tbody>
               <tr *ngFor="let MostrarJugadores of ListMostrarJugadores">
-                <td>{{MostrarJugadores.IdJugador}}</td>
+                <td>{{MostrarJugadores.Id}}</td>
                 <td>{{MostrarJugadores.Nombre}}</td>
                 <td>{{MostrarJugadores.Apellido}}</td>
                 <td>
-                  <button type="button" class="btn btn-success-table" (click)="ApostarJugador(MostrarLogros.IdLogro, MostrarJugadores.IdJugador)" style="margin-right:16px;">✓</button>
+                  <button type="button" class="btn btn-success-table" (click)="ApostarJugador(MostrarJugadores.Id)" style="margin-right:16px;">✓</button>
                 </td>
               </tr>
             </tbody>
