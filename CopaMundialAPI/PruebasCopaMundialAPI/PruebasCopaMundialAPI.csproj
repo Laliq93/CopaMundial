@@ -73,12 +73,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CopaMundialAPI\CopaMundialAPI.csproj">
-      <Project>{156e0b9d-6454-4416-9e33-b171a16d01af}</Project>
-      <Name>CopaMundialAPI</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Modulo 10\" />
     <Folder Include="Modulo 1\" />
     <Folder Include="Modulo 4\" />
@@ -87,6 +81,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CopaMundialAPI\CopaMundialAPI.csproj">
+      <Project>{156E0B9D-6454-4416-9E33-B171A16D01AF}</Project>
+      <Name>CopaMundialAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

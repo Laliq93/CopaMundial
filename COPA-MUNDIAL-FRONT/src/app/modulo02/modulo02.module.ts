@@ -9,6 +9,7 @@ import { ConsultarCiudadComponent } from './components/consultar-ciudad/consulta
 import { ModificarCiudadComponent } from './components/modificar-ciudad/modificar-ciudad.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { PrincipalCiudadComponent } from './components/principal-ciudad/principal-ciudad.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -22,7 +23,7 @@ import { HttpModule } from '@angular/http';
 
     })
   ],
-  declarations: [AgregarCiudadComponent, EliminarCiudadComponent, ConsultarCiudadComponent, ModificarCiudadComponent]
+  declarations: [AgregarCiudadComponent, EliminarCiudadComponent, ConsultarCiudadComponent, ModificarCiudadComponent, PrincipalCiudadComponent]
  
 })
 export class Modulo02Module { }

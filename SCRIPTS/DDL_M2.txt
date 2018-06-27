@@ -3,6 +3,10 @@ CREATE TABLE CIUDAD (
     ci_nombre 	  varchar(70) not null,
     ci_poblacion  integer,
     ci_descripcion  varchar(250),
+	ci_nombreingles varchar(70),
+	ci_descripcioningles varchar(250),
     CONSTRAINT pk_ciudad PRIMARY KEY(ci_id)
 
 );
+GRANT ALL PRIVILEGES ON TABLE ciudad TO admin_copamundial;
+GRANT ALL PRIVILEGES ON sequence ciudad_ci_id_seq TO admin_copamundial;
