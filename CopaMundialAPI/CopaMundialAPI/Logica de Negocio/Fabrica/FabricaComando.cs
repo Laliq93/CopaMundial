@@ -12,7 +12,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
 {
     public static class FabricaComando
     {
-        public static ComandoAgregarCiudad CrearComandoAgregarCiudad ( Ciudad ciudad )
+        public static ComandoAgregarCiudad CrearComandoAgregarCiudad ( Entidad ciudad )
         {
             return new ComandoAgregarCiudad ( ciudad );
         }
@@ -20,6 +20,25 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
 		public static ComandoObtenerCiudad CrearComandoObtenerCiudad (int id)
 		{
 			return new ComandoObtenerCiudad(id);
+		}
+
+		public static ComandoActualizarCiudad CrearComandoActualizarCiudad(Entidad ciudad)
+		{
+			return new ComandoActualizarCiudad(ciudad);
+		}
+
+		public static ComandoEliminarCiudad CrearComandoEliminarCiudad(Entidad ciudad)
+		{
+			return new ComandoEliminarCiudad(ciudad);
+		}
+
+		public static ComandoListarCiudades CrearComandoListarCiudades()
+		{
+			return new ComandoListarCiudades();
+		}
+		public static ComandoObtenerCiudadPorNombre CrearComandoObtenerCiudadPorNombre(Entidad ciudad)
+		{
+			return new ComandoObtenerCiudadPorNombre(ciudad);
 		}
 
         public static ComandoAgregarApuestaVOF CrearComandoAgregarApuestaVoF(Entidad apuesta)
@@ -82,9 +101,39 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoObtenerLogrosJugadorPartido(partido);
         }
 
-        public static ComandoVerificarApuestaExiste CrearComandoVerificarApuestaExiste(Entidad apuesta)
+        public static ComandoVerificarApuestaVoFExiste CrearComandoVerificarApuestaVoFExiste(Entidad apuesta)
         {
-            return new ComandoVerificarApuestaExiste(apuesta);
+            return new ComandoVerificarApuestaVoFExiste(apuesta);
+        }
+
+        public static ComandoVerificarApuestaCantidadExiste CrearComandoVerificarApuestaCantidadExiste(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaCantidadExiste(apuesta);
+        }
+
+        public static ComandoAgregarApuestaCantidad CrearComandoAgregarApuestaCantidad(Entidad apuesta)
+        {
+            return new ComandoAgregarApuestaCantidad(apuesta);
+        }
+
+        public static ComandoVerificarApuestaJugadorExiste CrearComandoVerificaApuestaJugadorExiste(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaJugadorExiste(apuesta);
+        }
+
+        public static ComandoAgregarApuestaJugador CrearComandoAgregarApuestaJugador(Entidad apuesta)
+        {
+            return new ComandoAgregarApuestaJugador(apuesta);
+        }
+
+        public static ComandoAgregarApuestaEquipo CrearComandoAgregarApuestaEquipo(Entidad apuesta)
+        {
+            return new ComandoAgregarApuestaEquipo(apuesta);
+        }
+
+        public static ComandoVerificarApuestaEquipoExiste CrearComandoVerificaApuestaEquipoExiste(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaEquipoExiste(apuesta);
         }
 
        public static ComandoAgregarLogroCantidad CrearComandoAgregarLogroCantidad(Entidad logroPartido)

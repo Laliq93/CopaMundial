@@ -6,6 +6,7 @@ using CopaMundialAPI.Servicios.Traductores.Apuestas;
 using CopaMundialAPI.Servicios.Traductores.Jugadores;
 using CopaMundialAPI.Servicios.Traductores.Logros;
 using CopaMundialAPI.Servicios.Traductores.Ciudades;
+using CopaMundialAPI.Servicios.Traductores.Usuarios;
 
 namespace CopaMundialAPI.Servicios.Traductores.Fabrica
 {
@@ -45,6 +46,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
         {
             return new TraductorRecibirIdPartido();
         }
+
         /// <summary>
         /// Metodo con el cual se instancia un objeto de tipo TraductorCiudad
         /// </summary>
@@ -53,6 +55,20 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
         {
             return new TraductorCiudad ( );
         }
+		public static TraductorCiudad2 CrearTraductorCiudad2()
+		{
+			return new TraductorCiudad2();
+		}
+
+		public static TraductorCiudadNombre CrearTraductorCiudadNombre()
+		{
+			return new TraductorCiudadNombre();
+		}
+
+		public static TraductorCiudadID CrearTraductorCiudadID()
+		{
+			return new TraductorCiudadID();
+		}
        
         public static TraductorMostrarLogrosPartido CrearTraductorMostrarLogrosPartidos()
         {
@@ -94,5 +110,9 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
             return new TraductorLogroPartidoId();
         }
         
+        public static TraductorUsuarioId CrearTraductorUsuarioId()
+        {
+            return new TraductorUsuarioId();
+        }
     }
 }

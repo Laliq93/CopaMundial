@@ -5,6 +5,9 @@ using System.Web;
 
 namespace CopaMundialAPI.Comun.Excepciones
 {
+    /// <summary>
+    /// Exception generada por argumentos nulos
+    /// </summary>
     public class ObjetoNullException : Exception
     {
         private DateTime _fecha; //Hora y fecha de cuando se genero la excepción.

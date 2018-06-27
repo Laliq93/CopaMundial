@@ -51,17 +51,17 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MostrarLogros of ListMostrarlogrovof">
+                <tr *ngFor="let MostrarLogros of ListMostrarlogrovof; let i = index">
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
                   <td>
-                    <select [(ngModel)]="opcionVof" name="opcion" id="opcion">
+                    <select [(ngModel)]="opcionVof[i]" name="opcion" id="opcion">
                       <option value="true">Si</option>
                       <option value="false">No</option>
                     </select>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                    <button type="button" (click)="ApostarVof(MostrarLogros.IdLogro, opcionVof[i])" class="btn btn-success-table" style="margin-right:16px;">✓</button>
                   </td>
                 </tr>
               </tbody>
@@ -83,13 +83,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MostrarLogros of ListMostrarlogrocantidad">
+                <tr *ngFor="let MostrarLogros of ListMostrarlogrocantidad; let i = index">
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
 
                   <td>
-                    <div class="col-md-8">
-                      <input type="text" class="form-control form-control-line" name="newCantidad" id="newCantidad" pattern="^[0-9\s]+$" [(ngModel)]="opcionCantidad"
+                    <div class="col-4">
+                      <input type="number" class="form-control form-control-line" name="newCantidad" id="newCantidad" pattern="^[0-9\s]+$" [(ngModel)]="opcionCantidad[i]"
                         #newCantidad="ngModel">
 
                       <div *ngIf="newCantidad.errors &&  (newCantidad.touched || newCantidad.dirty)" class="aler alert-danger">
@@ -100,7 +100,7 @@
                     </div>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                    <button type="button" (click)="ApostarCantidad(MostrarLogros.IdLogro, opcionCantidad[i])" class="btn btn-success-table" style="margin-right:16px;">✓</button>
                   </td>
                 </tr>
               </tbody>
@@ -118,7 +118,6 @@
                   <th>ID</th>
                   <th>Apuesta</th>
                   <th>Opción</th>
-                  <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
@@ -126,16 +125,14 @@
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
                   <td>
-                    <button type="button" class="btn btn-success-table" style="margin-right:16px;">Ver Jugadores</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                    <button type="button" class="btn btn-success-table"  (click)="openModaljugadores()" style="margin-right:16px;">Ver Jugadores</button>
+                  <div class="backdrop" [ngStyle]="{'display':display}"></div>
                   </td>
                 </tr>
               </tbody>
             </table>
-
           </div>
+
         </div>
 
 
@@ -152,11 +149,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MostrarLogros of ListMostrarlogroequipos">
+                <tr *ngFor="let MostrarLogros of ListMostrarlogroequipos; let i = index">
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
                   <td>
-                    <select [(ngModel)]="opcionEquipo" name="opcion" id="opcion">
+                    <select [(ngModel)]="opcionEquipo[i]" name="opcionEquipo" id="opcionEquipo">
                       <option value="1">Argentina</option>
                       <option value="2">Brasil</option>
                       <option value="3">España</option>
@@ -175,7 +172,7 @@
                     </select>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                    <button type="button" (click)="ApostarEquipo(MostrarLogros.IdLogro, opcionEquipo[i])" class="btn btn-success-table" style="margin-right:16px;">✓</button>
                   </td>
                 </tr>
               </tbody>
@@ -187,6 +184,54 @@
       </div>
     </div>
   </div>
+
+  <!-- modal -->
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+    <!-- modal-dialog -->
+    <div class="modal-dialog" role="document">
+      <!-- modal-content -->
+      <div class="modal-content">
+        <!-- modal-header -->
+        <div class="modal-header">
+          <button type="button" class="close" aria-label="Close" (click)="closeModalJuagdores()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <!-- <h4 class="modal-title">Login</h4> -->
+        </div>
+
+        <!-- modal-body -->
+        <div class="modal-body">
+          <table datatable [dtOptions]="dtOptionsMostrarJugadores" [dtTrigger]="dtTriggerMostrarJugadores" class="row-border hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let MostrarJugadores of ListMostrarJugadores">
+                <td>{{MostrarJugadores.IdJugador}}</td>
+                <td>{{MostrarJugadores.Nombre}}</td>
+                <td>{{MostrarJugadores.Apellido}}</td>
+                <td>
+                  <button type="button" class="btn btn-success-table" (click)="ApostarJugador(MostrarLogros.IdLogro, MostrarJugadores.IdJugador)" style="margin-right:16px;">✓</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- modal-footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="closeModalJuagdores()">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>
 <!-- ============================================================== -->
 <!-- /Mostrar Apuestas -->

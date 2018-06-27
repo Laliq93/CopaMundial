@@ -1,5 +1,3 @@
 export class DTOEnviarIdPartido {
-
-    public IdPartido: number = null;
-
+  public IdPartido: number = null;
 }
