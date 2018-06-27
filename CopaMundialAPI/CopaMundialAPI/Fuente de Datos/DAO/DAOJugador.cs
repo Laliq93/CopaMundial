@@ -121,6 +121,31 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             return jugadores;
         }
 
+        public List<Entidad> ObtenerJugadorId(Entidad entidad)
+        {
+            List<Entidad> jugadores = new List<Entidad>();
+            Jugador jugador = entidad as Jugador;
+
+            Conectar();
+
+            StoredProcedure("consultarJugadorId(@_id)");
+
+            AgregarParametro("_id", jugador.Id);
+
+            EjecutarReader();
+
+            for (int i = 0; i < cantidadRegistros; i++)
+            {
+                jugador = FabricaEntidades.CrearJugador();
+
+                jugador.Id = GetInt(i, 0);
+                
+                jugadores.Add(jugador);
+            }
+
+            return jugadores;
+        }
+
         public void Agregar(Entidad entidad)
         {
             Jugador jugador = entidad as Jugador;
