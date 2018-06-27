@@ -1,5 +1,4 @@
-
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -36,6 +35,76 @@ namespace CopaMundialAPI.Comun.Entidades.Fabrica
 			return new Ciudad(nombre, habitantes, descripcion, nombreIngles, descripcionIngles);
 
 		}
+
+        public static ApuestaCantidad CrearApuestaCantidad()
+        {
+            return new ApuestaCantidad();
+        }
+
+        public static ApuestaJugador CrearApuestaJugador()
+        {
+            return new ApuestaJugador();
+        }
+
+        public static ApuestaVoF CrearApuestaVoF()
+        {
+            return new ApuestaVoF();
+        }
+
+        public static Jugador CrearJugador()
+        {
+            return new Jugador();
+        }
+
+        public static LogroCantidad CrearLogroCantidad()
+        {
+            return new LogroCantidad();
+        }
+
+        public static LogroEquipo CrearLogroEquipo()
+        {
+            return new LogroEquipo();
+        }
+
+        public static LogroJugador CrearLogroJugador()
+        {
+            return new LogroJugador();
+        }
+
+        public static LogroVoF CrearLogroVoF()
+        {
+            return new LogroVoF();
+        }
+
+        public static ApuestaEquipo CrearApuestaEquipo()
+        {
+            return new ApuestaEquipo();
+        }
+        public static Usuario CrearUsuarioVacio()
+        {
+            return new Usuario();
+        }
+        public static Usuario CrearUsuario(string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
+            string correo, char genero, string password, string fotoPath, bool esAdmin, bool activo, string token)
+        {
+            return new Usuario(nombreUsuario, nombre, apellido, fechaNacimiento, correo, genero, password, fotoPath, esAdmin, activo, token);
+        }
+        public static Usuario CrearConfigurarUsuario( string nombre, string apellido, string fechaNacimiento,
+         char genero, string fotoPath)
+        {
+            return new Usuario(nombre, apellido, fechaNacimiento, genero, fotoPath);
+        }
+
+        public static Alineacion CrearAlineacion()
+        {
+            return new Alineacion();
+        }
+
+        public static Partido CrearPartido()
+        {
+            return new Partido();
+        }
+
 		public static Ciudad CrearCiudadID(int id)
 		{
 			return new Ciudad(id);
@@ -48,73 +117,5 @@ namespace CopaMundialAPI.Comun.Entidades.Fabrica
 
 		}
 
-		public static ApuestaCantidad CrearApuestaCantidad()
-		{
-			return new ApuestaCantidad();
-		}
-
-		public static ApuestaJugador CrearApuestaJugador()
-		{
-			return new ApuestaJugador();
-		}
-
-		public static ApuestaVoF CrearApuestaVoF()
-		{
-			return new ApuestaVoF();
-		}
-
-		public static Jugador CrearJugador()
-		{
-			return new Jugador();
-		}
-
-		public static LogroCantidad CrearLogroCantidad()
-		{
-			return new LogroCantidad();
-		}
-
-		public static LogroEquipo CrearLogroEquipo()
-		{
-			return new LogroEquipo();
-		}
-
-		public static LogroJugador CrearLogroJugador()
-		{
-			return new LogroJugador();
-		}
-
-		public static LogroVoF CrearLogroVoF()
-		{
-			return new LogroVoF();
-		}
-
-		public static ApuestaEquipo CrearApuestaEquipo()
-		{
-			return new ApuestaEquipo();
-		}
-		public static Usuario CrearUsuarioVacio()
-		{
-			return new Usuario();
-		}
-		public static Usuario CrearUsuario(string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
-			string correo, char genero, string password, string fotoPath, bool esAdmin, bool activo, string token)
-		{
-			return new Usuario(nombreUsuario, nombre, apellido, fechaNacimiento, correo, genero, password, fotoPath, esAdmin, activo, token);
-		}
-		public static Usuario CrearConfigurarUsuario(string nombre, string apellido, string fechaNacimiento,
-		 char genero, string fotoPath)
-		{
-			return new Usuario(nombre, apellido, fechaNacimiento, genero, fotoPath);
-		}
-
-		public static Alineacion CrearAlineacion()
-		{
-			return new Alineacion();
-		}
-
-		public static Partido CrearPartido()
-		{
-			return new Partido();
-		}
 	}
 }

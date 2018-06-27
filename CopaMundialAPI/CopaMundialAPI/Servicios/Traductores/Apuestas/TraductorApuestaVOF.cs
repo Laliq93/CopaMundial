@@ -34,7 +34,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
             {
                 ApuestaVoF apuesta = FabricaEntidades.CrearApuestaVoF();
 
-                Usuario apostador = new Usuario();
+                Usuario apostador = FabricaEntidades.CrearUsuarioVacio();
 
                 apostador.Id = dto.IdUsuario;
 
