@@ -149,6 +149,7 @@
     <Compile Include="Fuente de Datos\DAO\DAOPartido.cs" />
     <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOPartido.cs" />
     <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOAlineacion.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasCantidadEnCurso.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosJugadorPartido.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosEquipoPartido.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosCantidadPartido.cs" />
