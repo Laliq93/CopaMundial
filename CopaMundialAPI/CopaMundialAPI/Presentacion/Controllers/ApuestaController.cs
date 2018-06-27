@@ -500,13 +500,9 @@ namespace CopaMundialAPI.Presentacion.Controllers
         {
             try
             {
-                DTOUsuarioId dto2 = new DTOUsuarioId();
-
-                dto2.IdUsuario = 3;
-
                 TraductorUsuarioId traductor = FabricaTraductor.CrearTraductorUsuarioId();
 
-                Entidad usuario = traductor.CrearEntidad(dto2);
+                Entidad usuario = traductor.CrearEntidad(dto);
 
                 Comando comando = FabricaComando.CrearComandoObtenerApuestasEquipoEnCurso(usuario);
 
