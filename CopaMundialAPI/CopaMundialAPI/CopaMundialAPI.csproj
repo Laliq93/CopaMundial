@@ -218,6 +218,7 @@
     <Compile Include="Servicios\DTO\Logros\DTOLogroEquipoResultado.cs" />
     <Compile Include="Servicios\DTO\Logros\DTOLogroJugador.cs" />
     <Compile Include="Servicios\DTO\Logros\DTOLogroJugadorResultado.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOLogroPartidoId.cs" />
     <Compile Include="Servicios\DTO\Logros\DTOLogroVF.cs" />
     <Compile Include="Servicios\DTO\Logros\DTOLogroVFResultado.cs" />
     <Compile Include="Servicios\DTO\Logros\DTOMostrarLogrosPartido.cs" />
@@ -247,6 +248,7 @@
     <Compile Include="Servicios\Traductores\Logros\TraductorLogroCantidad.cs" />
     <Compile Include="Servicios\Traductores\Logros\TraductorLogroEquipo.cs" />
     <Compile Include="Servicios\Traductores\Logros\TraductorLogroJugador.cs" />
+    <Compile Include="Servicios\Traductores\Logros\TraductorLogroPartidoId.cs" />
     <Compile Include="Servicios\Traductores\Logros\TraductorLogroVF.cs" />
     <Compile Include="Servicios\Traductores\Logros\TraductorMostrarLogrosPartido.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorListarProximosPartidos.cs" />

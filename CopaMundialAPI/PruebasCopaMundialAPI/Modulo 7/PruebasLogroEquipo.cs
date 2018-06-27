@@ -14,6 +14,7 @@ using CopaMundialAPI.Presentacion.Controllers;
 using NUnit.Framework;
 using System.Net.Http;
 using System.Net;
+using System.Web.Http;
 
 namespace PruebasCopaMundialAPI.Modulo_7
 {
@@ -37,6 +38,7 @@ namespace PruebasCopaMundialAPI.Modulo_7
             dao.Conectar();
             controller = new LogrosController();
             controller.Request = new HttpRequestMessage();
+            controller.Configuration = new HttpConfiguration();
 
         }
 
@@ -213,6 +215,17 @@ namespace PruebasCopaMundialAPI.Modulo_7
             comando = FabricaComando.CrearComandoObtenerLogrosEquipoPendientes(partido);
             Assert.Throws<LogrosPendientesNoExisteException>(() => comando.Ejecutar());
             
+        }
+
+
+        [Test]
+        public void PruebaControllerObtenerLogrosEquipoPendiente()
+        {
+            DTOLogroPartidoId dtoLogroPartidoId = FabricaDTO.CrearDTOLogroPartidoId();
+            dtoLogroPartidoId.IdPartido = 14;//Cambiar
+
+            Assert.AreEqual(HttpStatusCode.OK, controller.ObtenerLogrosEquipoPendientes(dtoLogroPartidoId).StatusCode);
+
         }
 
         [TearDown]

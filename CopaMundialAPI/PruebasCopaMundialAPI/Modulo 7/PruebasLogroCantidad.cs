@@ -17,6 +17,7 @@ using CopaMundialAPI.Servicios.Traductores.Fabrica;
 using CopaMundialAPI.Presentacion.Controllers;
 using NUnit.Framework;
 using System.Net.Http;
+using System.Web.Http;
 using System.Net;
 
 
@@ -40,7 +41,8 @@ namespace PruebasCopaMundialAPI.Modulo_7
             dao.EjecutarQuery();
             dao.Conectar();
             controller = new LogrosController();
-           controller.Request = new HttpRequestMessage();
+            controller.Request = new HttpRequestMessage();
+            controller.Configuration = new HttpConfiguration();
 
         }
 
@@ -216,6 +218,18 @@ namespace PruebasCopaMundialAPI.Modulo_7
 
             comando = FabricaComando.CrearComandoObtenerLogrosCantidadPendientes(partido);
             Assert.Throws<LogrosPendientesNoExisteException>(() => comando.Ejecutar());
+        }
+
+        
+
+        [Test]
+        public void PruebaControllerObtenerLogrosCantidadPendiente()
+        {
+            DTOLogroPartidoId dtoLogroPartidoId = FabricaDTO.CrearDTOLogroPartidoId();
+            dtoLogroPartidoId.IdPartido = 14;//Cambiar
+
+            Assert.AreEqual(HttpStatusCode.OK, controller.ObtenerLogrosCantidadPendientes(dtoLogroPartidoId).StatusCode);
+            
         }
 
         [TearDown]

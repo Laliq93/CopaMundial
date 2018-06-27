@@ -88,5 +88,11 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
         {
             return new TraductorLogroVF();
         }
+
+        public static TraductorLogroPartidoId CrearTraductorLogroPartidoId()
+        {
+            return new TraductorLogroPartidoId();
+        }
+        
     }
 }
