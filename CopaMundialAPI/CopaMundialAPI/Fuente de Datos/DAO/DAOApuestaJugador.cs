@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
+using CopaMundialAPI.Comun.Excepciones;
 using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
+using Npgsql;
 
 namespace CopaMundialAPI.Fuente_de_Datos.DAO
 {
@@ -25,13 +27,14 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         public void Agregar(Entidad entidad)
         {
+            Conectar();
+
             ApuestaJugador apuesta = entidad as ApuestaJugador;
 
-            StoredProcedure("crearapuestajugador(@idlogro, @idusuario, @fecha, @apuesta)");
+            StoredProcedure("agregarapuestajugador(@idlogro, @idusuario, @apuesta)");
 
             AgregarParametro("idlogro", apuesta.Logro.Id);
             AgregarParametro("idusuario", apuesta.Usuario.Id);
-            AgregarParametro("fecha", apuesta.Fecha);
             AgregarParametro("apuesta", apuesta.Respuesta.Id);
 
             EjecutarQuery();
@@ -63,5 +66,25 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         {
             throw new NotImplementedException();
         }
+
+        public void VerificarApuestaExiste(Entidad apuesta)
+        {
+            Conectar();
+
+            ApuestaJugador apuestajugador = apuesta as ApuestaJugador;
+
+            StoredProcedure("verificarapuestaexiste(@idusuario, @idlogro)");
+
+            AgregarParametro("idusuario", apuestajugador.Usuario.Id);
+            AgregarParametro("idlogro", apuestajugador.Logro.Id);
+
+            EjecutarReader();
+
+            int count = GetInt(0, 0);
+
+            if (count > 0)
+                throw new ApuestaRepetidaException();
+        }
+    
     }
 }

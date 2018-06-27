@@ -5,6 +5,8 @@ using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
 using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
+using CopaMundialAPI.Comun.Excepciones;
+using Npgsql;
 
 namespace CopaMundialAPI.Fuente_de_Datos.DAO
 {
@@ -28,11 +30,12 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         {
             ApuestaVoF apuesta = entidad as ApuestaVoF;
 
-            StoredProcedure("crearapuestavof(@idlogro, @idusuario, @fecha, @apuesta)");
+            Conectar();
+
+            StoredProcedure("agregarapuestavof(@idlogro, @idusuario, @apuesta)");
 
             AgregarParametro("idlogro", apuesta.Logro.Id);
             AgregarParametro("idusuario", apuesta.Usuario.Id);
-            AgregarParametro("fecha", apuesta.Fecha);
             AgregarParametro("apuesta", apuesta.Respuesta);
 
             EjecutarQuery();
@@ -52,29 +55,17 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         public List<Entidad> ObtenerApuestasEnCurso(Entidad usuario)
         {
-            Usuario apostador = usuario as Usuario;
-
             List<Entidad> apuestasEnCurso = new List<Entidad>();
 
-            for(int i = 1; i < 5; i++)
-            {
-                ApuestaVoF apuesta = FabricaEntidades.CrearApuestaVoF();
+            ApuestaVoF apuesta;
 
-                LogroPartido logro = FabricaEntidades.CrearLogroVoF();
+            LogroVoF logro;
 
+            Usuario apostador = usuario as Usuario;
 
-                logro.Id = 10;
-                logro.Logro = "¿Argentina ganará sobre brasil?";
+            Conectar();
 
-                apuesta.Usuario = apostador;
-                apuesta.Logro = logro;
-                apuesta.Respuesta = true;
-                apuesta.Estado = "en curso";
-
-                apuestasEnCurso.Add(apuesta);
-            }
-
-            /*StoredProcedure("obtenerapuestasvofencurso(@idusuario)");
+            StoredProcedure("obtenerapuestasvofencurso(@idusuario)");
 
             AgregarParametro("idusuario", usuario.Id);
 
@@ -82,19 +73,25 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             for(int i = 0; i < cantidadRegistros; i++)
             {
-                ApuestaVoF apuesta = FabricaEntidades.CrearApuestaVoF();
+                apuesta = FabricaEntidades.CrearApuestaVoF();
 
-                apuesta.Usuario.Id = usuario.Id;
-                apuesta.Logro.Id = GetInt(i, 0);
-                apuesta.Logro.Logro = GetString(i, 1);
+                logro = FabricaEntidades.CrearLogroVoF();
+
+                logro.Id = GetInt(i, 0);
+
+                logro.Logro = GetString(i, 1);
+
                 apuesta.Respuesta = GetBool(i, 2);
+
                 apuesta.Estado = GetString(i, 3);
-                apuesta.Fecha = GetString(i, 4);
-                //apuesta.Logro.Partido = GetString(i, 5);
+
+                apuesta.Logro = logro;
+
+                apuesta.Usuario = apostador;
 
                 apuestasEnCurso.Add(apuesta);
-     
-            }*/
+
+            }
 
             return apuestasEnCurso;
         }
@@ -107,6 +104,25 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         public List<Entidad> ObtenerTodos()
         {
             throw new NotImplementedException();
+        }
+
+        public void VerificarApuestaExiste(Entidad apuesta)
+        {
+            Conectar();
+
+            ApuestaVoF apuestavof = apuesta as ApuestaVoF;
+
+            StoredProcedure("verificarapuestaexiste(@idusuario, @idlogro)");
+
+            AgregarParametro("idusuario", apuestavof.Usuario.Id);
+            AgregarParametro("idlogro", apuestavof.Logro.Id);
+
+            EjecutarReader();
+
+            int count = GetInt(0, 0);
+
+            if (count > 0)
+                throw new ApuestaRepetidaException();
         }
     }
 }

@@ -4,10 +4,14 @@ using System.Linq;
 using System.Web;
 using CopaMundialAPI.Servicios.DTO.Apuestas;
 using CopaMundialAPI.Servicios.DTO.Ciudades;
-using CopaMundialAPI.Servicios.DTO.Partidos;
+using CopaMundialAPI.Servicios.DTO.Jugadores;
+using CopaMundialAPI.Servicios.DTO.Logros;
 
 namespace CopaMundialAPI.Servicios.Fabrica
 {
+    /// <summary>
+    /// Fabrica que instancia todos los DTO
+    /// </summary>
     public class FabricaDTO
     {
         public static DTOApuestaVOF CrearDtoApuestaVOF()
@@ -25,14 +29,68 @@ namespace CopaMundialAPI.Servicios.Fabrica
             return new DTOApuestaJugador();
         }
 
-        public static DTOCiudad CrearDTOCiudad (string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles, byte[] imagen)
+        /// <summary>
+        /// Metodo que instancia un objeto de tipo DTOCiudad
+        /// </summary>
+        /// <param name="nombre">Nombre de la ciudad</param>
+        /// <param name="habitantes">Numero de habitantes de la ciudad</param>
+        /// <param name="descripcion">Descripcion de la ciudad</param>
+        /// <param name="nombreIngles">Nombre de la ciudad en ingles</param>
+        /// <param name="descripcionIngles">Descripcion de la ciudad en ingles</param>
+        /// <returns></returns>
+        public static DTOCiudad2 CrearDTOCiudad (string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
         {
-            return new DTOCiudad (nombre,habitantes,descripcion,nombreIngles,descripcionIngles,imagen);
+            return new DTOCiudad2 (nombre,habitantes,descripcion,nombreIngles,descripcionIngles);
         }
+
+
+		public static DTOCiudad CrearDTOCiudad(int id,string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
+		{
+			return new DTOCiudad(id,nombre, habitantes, descripcion, nombreIngles, descripcionIngles);
+		}
+		/// <summary>
+		/// Metodo que instancia un objeto de tipo DTOCiudadNombre
+		/// </summary>
+		/// <param name="nombre">Nombre de la ciudad</param>
+		/// <returns></returns>
+		public static DTOCiudadNombre CrearDTOCiudadNombre (string nombre)
+        {
+            return new DTOCiudadNombre ( nombre );
+        }
+
+		public static DTOCiudadID CrearDTOCiudadId (int id)
+		{
+			return new DTOCiudadID(id);
+		}
 
         public static DTOListarProximosPartidos CrearDTOListarProximosPartidos()
         {
             return new DTOListarProximosPartidos();
+        }
+
+        public static DTOJugador CrearDTOJugador()
+        {
+            return new DTOJugador();
+        }
+
+        public static DTOMostrarLogrosPartido CrearDTOMostrarLogrosPartido()
+        {
+            return new DTOMostrarLogrosPartido();
+        }
+
+        public static DTOJugadorId CrearDTOJugadorId()
+        {
+            return new DTOJugadorId();
+        }
+
+        public static DTOObtenerJugadores CrearDTOObtenerJugadores()
+        {
+            return new DTOObtenerJugadores();
+        }
+
+        public static DTOLogroCantidad CrearDTOLogroCantidad()
+        {
+            return new DTOLogroCantidad();
         }
     }
 }

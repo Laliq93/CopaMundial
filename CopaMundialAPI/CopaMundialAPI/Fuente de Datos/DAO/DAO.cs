@@ -31,11 +31,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// </summary>
         private void CrearStringConexion()
         {
-			_cadena = "Host = localhost; Port = 5432; " +
-				"Username = admin_copamundial; " +
-				"Password = copamundial; " +
-				"Database = copamundial";
-			//_cadena = ConfigurationManager.ConnectionStrings["postgrestring"].ConnectionString;
+			_cadena = ConfigurationManager.ConnectionStrings["postgrestring"].ConnectionString;
         }
 
         private bool IsConnected()
@@ -279,6 +275,36 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 double doubleItem = Convert.ToDouble(_dataTable.Rows[fila][columna]);
 
                 return doubleItem;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
+            catch (OverflowException)
+            {
+                throw new OverflowException();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public decimal GetDecimal(int fila, int columna)
+        {
+            try
+            {
+                decimal decimalItem = Convert.ToDecimal(_dataTable.Rows[fila][columna]);
+
+                return decimalItem;
             }
             catch (IndexOutOfRangeException)
             {

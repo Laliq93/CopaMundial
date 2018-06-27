@@ -1,6 +1,4 @@
 export class Conexion {
-
-  RutaApi = 'http://192.168.15.108:54059/api/M08_Apuesta/';
+  RutaApi = 'http://192.168.15.111:51543/api/Apuesta/';
   Controlador: string;
-
 }
