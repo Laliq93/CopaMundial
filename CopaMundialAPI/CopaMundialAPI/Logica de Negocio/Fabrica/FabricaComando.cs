@@ -175,5 +175,11 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
         {
             return new ComandoObtenerLogrosVFPendientes(partido);
         }
+        public static ComandoObtenerApuestasCantidadEnCurso CrearComandoObtenerApuestasCantidadEnCurso(Entidad usuario)
+        {
+            return new ComandoObtenerApuestasCantidadEnCurso(usuario);
+        }
+
+
     }
 }

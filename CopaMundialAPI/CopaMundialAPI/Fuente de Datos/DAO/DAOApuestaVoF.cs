@@ -85,6 +85,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
                 apuesta.Estado = GetString(i, 3);
 
+                apuesta.Fecha = GetDateTime(i, 4);
+
                 apuesta.Logro = logro;
 
                 apuesta.Usuario = apostador;
