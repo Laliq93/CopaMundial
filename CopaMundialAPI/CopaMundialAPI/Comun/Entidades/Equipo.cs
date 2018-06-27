@@ -15,6 +15,11 @@ namespace CopaMundialAPI.Comun.Entidades
             _pais = pais.ToLower();
         }
 
+        public Equipo()
+        {
+
+        }
+
         public string Pais { get => _pais; set => _pais = value; }
     }
 }

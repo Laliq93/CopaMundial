@@ -62,7 +62,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 comando.Ejecutar();
 
-                return Request.CreateResponse(HttpStatusCode.OK);
+                return new HttpResponseMessage(HttpStatusCode.OK);
             }
             catch (Exception exc)
             {

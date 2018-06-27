@@ -131,7 +131,15 @@
     <Compile Include="Comun\Excepciones\AlineacionJugadorNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\AlineacionMasDeUnCapitanException.cs" />
     <Compile Include="Comun\Excepciones\ApuestaRepetidaException.cs" />
+
+    <Compile Include="Comun\Excepciones\BaseDeDatosException.cs" />
+    <Compile Include="Comun\Excepciones\CasteoNoCorrectoException.cs" />
+    <Compile Include="Comun\Excepciones\CiudadNoEncontradaException.cs" />
+
     <Compile Include="Comun\Excepciones\FechaPasadaPartidoException.cs" />
+    <Compile Include="Comun\Excepciones\LogroNoExisteException.cs" />
+    <Compile Include="Comun\Excepciones\LogrosPendientesNoExisteException.cs" />
+
     <Compile Include="Comun\Excepciones\ObjetoNullException.cs" />
     <Compile Include="Comun\Excepciones\PartidoNoExisteException.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOAlineacion.cs" />
@@ -144,6 +152,11 @@
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosVofPartido.cs" />
     <Compile Include="Comun\Excepciones\ExcepcionGeneral.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarApuestaExiste.cs" />
+
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoObtenerCiudadPorNombre.cs" />
+
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoAgregarLogroCantidad.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogrosCantidadPendientes.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoActualizarAlineacion.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoActualizarPartido.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoCrearAlineacion.cs" />
@@ -151,11 +164,13 @@
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerListaPartidos.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerPartido.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoPosponerPartido.cs" />
+
     <Compile Include="Presentacion\Controllers\JugadorController.cs" />
     <Compile Include="Presentacion\Controllers\CiudadController.cs" />
     <Compile Include="Presentacion\Controllers\ApuestaController.cs" />
     <Compile Include="Presentacion\Controllers\AlineacionController.cs" />
     <Compile Include="Presentacion\Controllers\PartidoController.cs" />
+    <Compile Include="Presentacion\Controllers\LogrosController.cs" />
     <Compile Include="Presentacion\Controllers\TestController.cs" />
     <Compile Include="Fuente de Datos\DAO\DAO.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuesta.cs" />
@@ -164,10 +179,12 @@
     <Compile Include="Fuente de Datos\DAO\DAOApuestaVoF.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOCiudad.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOJugador.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOLogroCantidad.cs" />
     <Compile Include="Fuente de Datos\DAO\Interfaces\IDAO.cs" />
     <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOApuesta.cs" />
     <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOJugador.cs" />
     <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOCiudad.cs" />
+    <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOLogro.cs" />
     <Compile Include="Fuente de Datos\Fabrica\FabricaDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,7 +212,11 @@
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaCantidad.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaVOF.cs" />
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudad.cs" />
+    <Compile Include="Servicios\DTO\Ciudades\DTOCiudad2.cs" />
+    <Compile Include="Servicios\DTO\Ciudades\DTOCiudadID.cs" />
     <Compile Include="Servicios\DTO\Jugadores\DTOObtenerJugadores.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOLogroCantidad.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOLogroCantidadResultado.cs" />
     <Compile Include="Servicios\DTO\Logros\DTOMostrarLogrosPartido.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTORecibirIdPartido.cs" />
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudadNombre.cs" />
@@ -215,11 +236,14 @@
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaVOF.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaEquipo.cs" />
     <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudad.cs" />
+    <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudad2.cs" />
+    <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudadID.cs" />
     <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudadNombre.cs" />
     <Compile Include="Servicios\Traductores\Fabrica\FabricaTraductor.cs" />
     <Compile Include="Servicios\Traductores\Jugadores\TraductorJugador.cs" />
     <Compile Include="Servicios\Traductores\Jugadores\TraductorJugadorId.cs" />
     <Compile Include="Servicios\Traductores\Jugadores\TraductorObtenerJugadores.cs" />
+    <Compile Include="Servicios\Traductores\Logros\TraductorLogroCantidad.cs" />
     <Compile Include="Servicios\Traductores\Logros\TraductorMostrarLogrosPartido.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorListarProximosPartidos.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorRecibirIdPartido.cs" />
@@ -236,7 +260,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Logica de Negocio\Comando\Logros\" />
     <Folder Include="Logica de Negocio\Comando\Usuarios\" />
     <Folder Include="Logica de Negocio\Compuesto\" />
     <Folder Include="Logica de Negocio\Singleton\" />
