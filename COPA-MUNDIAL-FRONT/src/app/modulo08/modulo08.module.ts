@@ -9,6 +9,7 @@ import { RegistrarApuestaComponent } from './components/registrar-apuesta/regist
 import { GestionarApuestaComponent } from './components/gestionar-apuesta/gestionar-apuesta.component';
 import { VerApuestaComponent } from './components/ver-apuesta/ver-apuesta.component';
 import { NavButtonsComponent } from './components/shared/nav-buttons/nav-buttons.component';
+import { AdminApuestaComponent } from './components/admin-apuesta/admin-apuesta.component';
 
 @NgModule({
   imports: [
@@ -16,13 +17,14 @@ import { NavButtonsComponent } from './components/shared/nav-buttons/nav-buttons
      FormsModule,
      HttpClientModule,
      DataTablesModule,
-     Modulo08RoutingModule
+     Modulo08RoutingModule,
     ],
   declarations: [
     RegistrarApuestaComponent,
     GestionarApuestaComponent,
     VerApuestaComponent,
-    NavButtonsComponent
+    NavButtonsComponent,
+    AdminApuestaComponent
   ]
 })
 export class Modulo08Module {}

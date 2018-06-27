@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import {
   DTOEnviarIdPartido,
   DTOMostrarLogros,
-  DTOApuestaVOF,
+  DTOMostrarJugador,
   Conexion
 } from '../../models/index';
 import { Api08Service } from '../../services/api08.service';
@@ -23,7 +23,7 @@ declare var bootbox: any;
 export class VerApuestaComponent implements OnInit {
   public EnviarIdPartido: DTOEnviarIdPartido;
   public MostrarLogros: DTOMostrarLogros;
-  public TipoLogro: DTOApuestaVOF;
+  public MostrarJugadores: DTOMostrarJugador;
 
   public api08: Api08Service;
   public connect: Conexion;
@@ -32,28 +32,34 @@ export class VerApuestaComponent implements OnInit {
   public ListMostrarlogrocantidad: DTOMostrarLogros[] = [];
   public ListMostrarlogrojugadores: DTOMostrarLogros[] = [];
   public ListMostrarlogroequipos: DTOMostrarLogros[] = [];
+  public ListMostrarJugadores: DTOMostrarJugador[] = [];
 
   public dtTriggerVof: Subject<any> = new Subject();
   public dtTriggerCantidad: Subject<any> = new Subject();
   public dtTriggerJugadores: Subject<any> = new Subject();
   public dtTriggerEquipos: Subject<any> = new Subject();
+  public dtTriggerMostrarJugadores: Subject<any> = new Subject();
 
   public dtOptionsVof: DataTables.Settings = {};
   public dtOptionsCantidad: DataTables.Settings = {};
   public dtOptionsJugadores: DataTables.Settings = {};
   public dtOptionsEquipos: DataTables.Settings = {};
+  public dtOptionsMostrarJugadores: DataTables.Settings = {};
 
   public idPartido: number;
-  public opcionVof: boolean;
-  public opcionCantidad: number;
+  public idLogroJugador: number;
+  public opcionVof: boolean[] = [];
+  public opcionCantidad: number[] = [];
   public opcionJugador: number;
-  public opcionEquipo: number;
+  public opcionEquipo: number[] = [];
+
+  public display = 'none';
 
   constructor(private http: HttpClient, private router: ActivatedRoute) {
     this.api08 = new Api08Service(http);
     this.EnviarIdPartido = new DTOEnviarIdPartido();
     this.MostrarLogros = new DTOMostrarLogros();
-
+    this.MostrarJugadores = new DTOMostrarJugador();
     this.connect = new Conexion();
   }
 
@@ -62,6 +68,7 @@ export class VerApuestaComponent implements OnInit {
     this.dtOptionsCantidad = {};
     this.dtOptionsJugadores = {};
     this.dtOptionsEquipos = {};
+    this.dtOptionsMostrarJugadores = {};
 
     this.idPartido = parseInt(
       this.router.snapshot.paramMap.get('idPartido'),
@@ -76,7 +83,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosVOF() {
     this.connect.Controlador = 'obtenerlogrosvofpartido';
-    let url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -104,7 +111,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosCantidad() {
     this.connect.Controlador = 'obtenerlogroscantidadpartido';
-    let url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -132,7 +139,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosJugadores() {
     this.connect.Controlador = 'obtenerlogrosjugadorpartido';
-    let url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -160,7 +167,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosEquipos() {
     this.connect.Controlador = 'obtenerlogrosequipopartido';
-    let url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -184,5 +191,76 @@ export class VerApuestaComponent implements OnInit {
           this.api08.FatalError();
         }
       );
+  }
+
+  public ObtenerListaJugadoresPartido() {
+    this.connect.Controlador = 'obtenerJugadores';
+    const url = this.connect.GetApiJugador() + this.connect.Controlador;
+
+    this.http
+      .get<DTOMostrarJugador>(url, {
+        responseType: 'json'
+      })
+      .subscribe(
+        data => {
+          this.dtTriggerMostrarJugadores.next();
+          for (let i = 0; i < Object.keys(data).length; i++) {
+            let listaJugadores: DTOMostrarJugador;
+            listaJugadores = new DTOMostrarJugador();
+
+            listaJugadores.Id = data[i].Id;
+            listaJugadores.Nombre = data[i].Nombre;
+            listaJugadores.Apellido = data[i].Apellido;
+
+            this.ListMostrarJugadores[i] = listaJugadores;
+          }
+        },
+        Error => {
+          this.api08.FatalError();
+        }
+      );
+  }
+
+  public ApostarVof(IdLogro, opcionVof: boolean) {
+    if (opcionVof) {
+      this.api08.AgregarApuestaVof(IdLogro, opcionVof);
+    } else {
+      bootbox.alert('Debes seleccionar una opción Valida');
+    }
+  }
+
+  public ApostarCantidad(IdLogro, opcionCantidad: number) {
+    if (opcionCantidad) {
+      this.api08.AgregarApuestaCantidad(IdLogro, opcionCantidad);
+    } else {
+      bootbox.alert('Debes Ingresar una Cantidad Valida');
+    }
+  }
+
+  public ApostarJugador(IdJugador: number) {
+    if (IdJugador) {
+      this.api08.AgregarApuestaJugador(this.idLogroJugador, IdJugador);
+      this.closeModalJuagdores();
+    } else {
+      bootbox.alert('Debes escoger un jugador Valido');
+    }
+  }
+
+  public ApostarEquipo(IdLogro, IdEquipo: number) {
+    if (IdEquipo) {
+      this.api08.AgregarApuestaEquipo(IdLogro, IdEquipo);
+    } else {
+      bootbox.alert('Debes escoger un equipo Valido');
+    }
+  }
+
+  public openModaljugadores(idLogro) {
+    this.idLogroJugador = idLogro;
+    this.ObtenerListaJugadoresPartido();
+    this.display = 'block';
+  }
+
+  public closeModalJuagdores() {
+    this.display = 'none';
   }
 }
