@@ -93,6 +93,16 @@ namespace CopaMundialAPI.Comun.Entidades.Fabrica
         {
             return new Usuario(nombre, apellido, fechaNacimiento, genero, fotoPath);
         }
+
+        public static Alineacion CrearAlineacion()
+        {
+            return new Alineacion();
+        }
+
+        public static Partido CrearPartido()
+        {
+            return new Partido();
+        }
     }
 
 }

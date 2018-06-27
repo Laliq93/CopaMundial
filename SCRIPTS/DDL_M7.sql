@@ -18,7 +18,6 @@ CREATE TABLE LOGRO_PARTIDO(
 	lo_id integer,
 	lo_nombre varchar(100) not null,
         lo_cantidad integer check(lo_cantidad >=0),
-	lo_minuto_juego integer check (lo_minuto_juego > 0 and lo_minuto_juego <=90),
         lo_status bool,
         lo_fg_tipoLogro integer,
 	lo_resultado_pa integer,

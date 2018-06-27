@@ -298,6 +298,36 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
         }
 
+        public decimal GetDecimal(int fila, int columna)
+        {
+            try
+            {
+                decimal decimalItem = Convert.ToDecimal(_dataTable.Rows[fila][columna]);
+
+                return decimalItem;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
+            catch (OverflowException)
+            {
+                throw new OverflowException();
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
         public bool GetBool(int fila, int columna)
         {
             try

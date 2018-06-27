@@ -75,5 +75,14 @@ namespace CopaMundialAPI.Fuente_de_Datos.Fabrica
             return new DAOApuestaEquipo();
         }
 
+        /// Devuelve una nueva instancia de DAOLogroCantidad
+        /// </summary>
+        /// <returns></returns>
+        public static DAOLogroCantidad CrearDAOLogroCantidad()
+        {
+            return new DAOLogroCantidad();
+
+        }
+
     }
 }

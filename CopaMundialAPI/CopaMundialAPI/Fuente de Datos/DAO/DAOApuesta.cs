@@ -30,7 +30,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 int idequipo1, idequipo2;
 
                 partido.Id = GetInt(i, 0);
-                partido.FechaPartido = GetDateTime(i, 1);
+                partido.FechaInicioPartido = GetDateTime(i, 1);
                 idequipo1 = GetInt(i, 2);
                 idequipo2 = GetInt(i, 3);
                 partido.Equipo1 = equiposEstaticos.GetEquipo(idequipo1);
