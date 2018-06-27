@@ -56,17 +56,17 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoAgregarJugador(jugador);
         }
 
-        public static ComandoModificarJugador CrearComandoModificarJugador(Jugador jugador)
+        public static ComandoModificarJugador CrearComandoModificarJugador(Entidad jugador)
         {
             return new ComandoModificarJugador(jugador);
         }
 
-        public static ComandoActivarJugador CrearComandoActivarJugador(Jugador jugador)
+        public static ComandoActivarJugador CrearComandoActivarJugador(Entidad jugador)
         {
             return new ComandoActivarJugador(jugador);
         }
 
-        public static ComandoDesactivarJugador CrearComandoDesactivarJugador(Jugador jugador)
+        public static ComandoDesactivarJugador CrearComandoDesactivarJugador(Entidad jugador)
         {
             return new ComandoDesactivarJugador(jugador);
         }

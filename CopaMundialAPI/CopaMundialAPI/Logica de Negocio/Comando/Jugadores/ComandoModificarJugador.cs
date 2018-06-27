@@ -20,7 +20,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando
         public override void Ejecutar()
         {
             DAOJugador dao = FabricaDAO.CrearDAOJugador();
-            dao.ModificarJugador(_jugador);
+            dao.Actualizar(_jugador);
         }
 
         public override Entidad GetEntidad()

@@ -10,33 +10,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 {
     public class DAOJugador : DAO, IDAOJugador
     {
-
-        /// <summary>
-        /// Metodo ModificarJugador , modifica objeto de tipo Jugador en la base de datos
-        /// </summary>
-        /// <param name="objeto">El objeto que se desea modificar</param>
-        public void ModificarJugador(Entidad entidad)
-        {
-            Jugador jugador = entidad as Jugador;
-
-            Conectar();
-
-            StoredProcedure("editarJugador(@_id,@_nombre,@_apellido,@_fechaNacimiento,@_lugarNacimiento,@_peso,@_altura,@_posicion,@_numero,@_capitan)");
-
-            AgregarParametro("_id", jugador.Id);
-            AgregarParametro("_nombre", jugador.Nombre);
-            AgregarParametro("_apellido", jugador.Apellido);
-            AgregarParametro("_fechaNacimiento", jugador.FechaNacimiento);
-            AgregarParametro("_lugarNacimiento", jugador.LugarNacimiento);
-            AgregarParametro("_peso", jugador.Peso);
-            AgregarParametro("_altura", jugador.Altura);
-            AgregarParametro("_posicion", jugador.Posicion);
-            AgregarParametro("_numero", jugador.Numero);
-            AgregarParametro("_capitan", jugador.Equipo);
-
-            EjecutarQuery();
-        }
-
         /// <summary>
         /// Metodo ActivarJugador , activa jugador
         /// </summary>
@@ -75,7 +48,22 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         public void Actualizar(Entidad entidad)
         {
-            throw new NotImplementedException();
+            Jugador jugador = entidad as Jugador;
+
+            StoredProcedure("editarJugador(@_id,@_nombre,@_apellido,@_fechaNacimiento,@_lugarNacimiento,@_peso,@_altura,@_posicion,@_numero,@_capitan)");
+
+            AgregarParametro("_id", jugador.Id);
+            AgregarParametro("_nombre", jugador.Nombre);
+            AgregarParametro("_apellido", jugador.Apellido);
+            AgregarParametro("_fechaNacimiento", jugador.FechaNacimiento);
+            AgregarParametro("_lugarNacimiento", jugador.LugarNacimiento);
+            AgregarParametro("_peso", jugador.Peso);
+            AgregarParametro("_altura", jugador.Altura);
+            AgregarParametro("_posicion", jugador.Posicion);
+            AgregarParametro("_numero", jugador.Numero);
+            AgregarParametro("_capitan", jugador.Equipo);
+
+            EjecutarQuery();
         }
 
         public void Eliminar(Entidad entidad)
