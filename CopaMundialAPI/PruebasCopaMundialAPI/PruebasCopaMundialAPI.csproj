@@ -68,6 +68,7 @@
     <Compile Include="Modulo 5\PUJugador.cs" />
     <Compile Include="Modulo 7\PruebasLogroEquipo.cs" />
     <Compile Include="Modulo 7\PruebasLogroJugador.cs" />
+    <Compile Include="Modulo 7\PruebasLogroVF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

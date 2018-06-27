@@ -107,5 +107,15 @@ namespace CopaMundialAPI.Servicios.Fabrica
         {
             return new DTOLogroEquipoResultado();
         }
+
+        public static DTOLogroVF CrearDTOLogroVF()
+        {
+            return new DTOLogroVF();
+        }
+
+        public static DTOLogroVFResultado CrearDTOLogroVFResultado()
+        {
+            return new DTOLogroVFResultado();
+        }
     }
 }

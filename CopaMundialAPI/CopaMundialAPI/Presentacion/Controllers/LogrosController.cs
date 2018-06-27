@@ -105,5 +105,33 @@ namespace CopaMundialAPI.Presentacion.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
         }
+
+
+        [Route("agregarLogroVF")]
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
+        public HttpResponseMessage AgregarLogroVF(DTOLogroVF dto)
+        {
+            try
+            {
+                TraductorLogroVF traductor = FabricaTraductor.CrearTraductorLogroVF();
+
+                Entidad logroEquipo = traductor.CrearEntidad(dto);
+
+                Comando comando;
+
+                comando = FabricaComando.CrearComandoAgregarLogroVF(logroEquipo);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
     }
 }

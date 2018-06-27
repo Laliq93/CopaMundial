@@ -5,9 +5,10 @@ using CopaMundialAPI.Comun.Entidades.Fabrica;
 using CopaMundialAPI.Comun.Excepciones;
 using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
 
+
 namespace CopaMundialAPI.Fuente_de_Datos.DAO
 {
-    public class DAOLogroEquipo: DAO, IDAOLogro 
+    public class DAOLogroVF: DAO, IDAOLogro
     {
 
 
@@ -17,12 +18,12 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         }
 
         /// <summary>
-        /// Metodo para agregar un logro por equipo
+        /// Metodo para agregar un logro verdadero o falso
         /// </summary>
         /// <param name="entidad"></param>
         public void Agregar(Entidad entidad)
         {
-            LogroEquipo logro = entidad as LogroEquipo;
+            LogroVoF logro = entidad as LogroVoF;
 
             Conectar();
 
@@ -48,22 +49,22 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// <returns></returns>
         public Entidad ObtenerLogroPorId(Entidad entidad)
         {
-            LogroEquipo logro = entidad as LogroEquipo;
+            LogroVoF logro = entidad as LogroVoF;
             Conectar();
-            StoredProcedure("ConsultarLogroEquipo(@idLogro)");
+            StoredProcedure("ConsultarLogroVF(@idLogro)");
             AgregarParametro("idLogro", logro.Id);
             EjecutarReader();
             for (int i = 0; i < cantidadRegistros; i++)
             {
-                logro = FabricaEntidades.CrearLogroEquipo();
+                logro = FabricaEntidades.CrearLogroVoF();
                 logro.Id = GetInt(i, 0);
-                logro.IdTipo = TipoLogro.equipo;
+                logro.IdTipo = TipoLogro.vof;
                 logro.Logro = GetString(i, 2);
-                logro.Equipo.Id = GetInt(i, 3);
+                logro.Respuesta = GetBool(i, 3);
                 logro.Status = GetBool(i, 4);
             }
             if (logro == null)
-                throw new LogroNoExisteException(logro.Id, "equipo");
+                throw new LogroNoExisteException(logro.Id, "vof");
             return logro;
         }
 
@@ -83,12 +84,12 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// <returns></returns>
         public List<Entidad> ObtenerLogrosPendientes(Entidad partido)
         {
-            List<Entidad> logrosEquipo = new List<Entidad>();
-            LogroEquipo logro;
+            List<Entidad> logrosVf = new List<Entidad>();
+            LogroVoF logro;
 
             Conectar();
 
-            StoredProcedure("ConsultarLogrosEquipoPendiente(@idpartido)");
+            StoredProcedure("ConsultarLogrosVoFPendiente(@idpartido)");
 
             AgregarParametro("idpartido", partido.Id);
 
@@ -96,19 +97,19 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             for (int i = 0; i < cantidadRegistros; i++)
             {
-                logro = FabricaEntidades.CrearLogroEquipo();
+                logro = FabricaEntidades.CrearLogroVoF();
 
                 logro.Id = GetInt(i, 0);
-                logro.IdTipo = TipoLogro.equipo;
+                logro.IdTipo = TipoLogro.vof;
                 logro.Logro = GetString(i, 2);
 
 
-                logrosEquipo.Add(logro);
+                logrosVf.Add(logro);
             }
-            if (logrosEquipo.Count == 0)
-                throw new LogrosPendientesNoExisteException(partido.Id, "equipo");
+            if (logrosVf.Count == 0)
+                throw new LogrosPendientesNoExisteException(partido.Id, "vf");
 
-            return logrosEquipo;
+            return logrosVf;
 
         }
 

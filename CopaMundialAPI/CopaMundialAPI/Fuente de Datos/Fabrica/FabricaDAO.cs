@@ -93,5 +93,14 @@ namespace CopaMundialAPI.Fuente_de_Datos.Fabrica
             return new DAOLogroEquipo();
         }
 
+
+        /// <summary>
+        /// Devuelve una nueva instancia de DAOLogroVF
+        /// </summary>
+        /// <returns></returns>
+        public static DAOLogroVF CrearDAOLogroVF()
+        {
+            return new DAOLogroVF();
+        }
     }
 }
