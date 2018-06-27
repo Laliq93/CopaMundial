@@ -15,6 +15,7 @@ namespace CopaMundialAPI.Comun.Entidades
         private int _cantidad;//Registra la cantidad obtenida dentro de un logro
         private TipoLogro _idTipo; //id del tipo de logro (Cantidad,VOF, Equipo, Jugador)
 
+        public LogroCantidad() { }
         /// <summary>
         /// Get y Set de la cantidad asignada a un logro
         /// </summary>
