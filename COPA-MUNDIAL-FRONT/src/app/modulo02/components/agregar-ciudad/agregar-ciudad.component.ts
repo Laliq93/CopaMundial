@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import {CiudadService} from '../../shared/ciudad.service';
 import { Ciudad } from '../../shared/ciudad.model';
 import { Binary } from '@angular/compiler';
-
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -31,7 +31,7 @@ export class AgregarCiudadComponent implements OnInit {
   url:String = "http://localhost:51543/api/ciudad/"
   
 
-  constructor( private route:Router, private ciudadservice: CiudadService){}
+  constructor(  private _location: Location, private route:Router, private ciudadservice: CiudadService){}
   //constructor(private ciudadService : CiudadService) { }
 
   ngOnInit() {
@@ -57,6 +57,11 @@ export class AgregarCiudadComponent implements OnInit {
       }
       
     )
+    
+  }
+
+  regresar() {
+    this._location.back(); // <-- regresar a la pagina previa al presionar cancelar
   }
 
   /*agregarciudad():Observable<any>{
