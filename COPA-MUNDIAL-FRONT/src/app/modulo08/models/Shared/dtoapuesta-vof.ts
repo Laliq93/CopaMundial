@@ -4,5 +4,5 @@ export class DTOApuestaVOF {
   public ApuestaUsuario: boolean;
   public Estado: String;
   public Logro: String;
-  public Fehca: String;
+  public Fecha: String;
 }

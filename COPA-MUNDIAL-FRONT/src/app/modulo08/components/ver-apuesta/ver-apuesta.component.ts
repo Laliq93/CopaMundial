@@ -82,7 +82,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosVOF() {
     this.connect.Controlador = 'obtenerlogrosvofpartido';
-    const url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -110,7 +110,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosCantidad() {
     this.connect.Controlador = 'obtenerlogroscantidadpartido';
-    const url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -138,7 +138,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosJugadores() {
     this.connect.Controlador = 'obtenerlogrosjugadorpartido';
-    const url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -166,7 +166,7 @@ export class VerApuestaComponent implements OnInit {
 
   public ObtenerLogrosEquipos() {
     this.connect.Controlador = 'obtenerlogrosequipopartido';
-    const url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -193,8 +193,8 @@ export class VerApuestaComponent implements OnInit {
   }
 
   public ObtenerListaJugadoresPartido() {
-    this.connect.Controlador = 'obtenerlistajugadorespartido';
-    const url = this.connect.RutaApi + this.connect.Controlador;
+    this.connect.Controlador = 'obtenerJugadores';
+    const url = this.connect.GetApiJugador() + this.connect.Controlador;
 
     this.http
       .put<DTOMostrarJugador>(url, {
