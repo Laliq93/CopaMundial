@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {RouterModule, Router } from '@angular/router';
 import { Ciudad } from '../../shared/ciudad.model';
 import { CiudadService } from '../../shared/ciudad.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-modificar-ciudad',
@@ -26,7 +27,7 @@ export class ModificarCiudadComponent implements OnInit {
     {id:"5",nombre: 'Volgogrado',habitantes: 1000, descripcion: 'chevere', nomIngles:"Volgograd",descIngles:"thanks"}
 ]  
   
-  constructor(private route:Router, private ciudadservice: CiudadService){}
+  constructor( private _location: Location, private route:Router, private ciudadservice: CiudadService){}
 
   ngOnInit() {
 
@@ -124,10 +125,9 @@ export class ModificarCiudadComponent implements OnInit {
   }
 
 
-
-  //volver(): void {
-	//	this.router.navigate(['admin/city']);
-  //}
+  regresar() {
+    this._location.back(); // <-- regresar a la pagina previa al presionar cancelar
+  }
 
 
 }

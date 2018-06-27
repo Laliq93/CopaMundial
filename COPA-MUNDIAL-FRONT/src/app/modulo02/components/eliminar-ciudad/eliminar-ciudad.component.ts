@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {RouterModule, Router } from '@angular/router';
 import { CiudadService } from '../../shared/ciudad.service';
 import { Ciudad } from '../../shared/ciudad.model';
+import { Location } from '@angular/common';
 declare var jquery:any;
 declare var $ :any;
 
@@ -26,7 +27,7 @@ export class EliminarCiudadComponent implements OnInit {
   id :number;
   //ciudades: any;
 
-  constructor( private route:Router, private ciudadservice: CiudadService){
+  constructor(private _location: Location, private route:Router, private ciudadservice: CiudadService){
 
   }
  // constructor(private router: Router){}
@@ -67,8 +68,8 @@ export class EliminarCiudadComponent implements OnInit {
     this.id =$event
   }
 
-  //volver(): void {
-		//this.router.navigate(['admin/city']);
-  //}
+  regresar() {
+    this._location.back(); // <-- regresar a la pagina previa al presionar cancelar
+  }
 
 }
