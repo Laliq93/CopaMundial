@@ -264,6 +264,39 @@ export class GestionarApuestaComponent implements OnInit {
     }
   }
 
+  public EliminarApuestaVof(IdLogro) {
+    if (IdLogro) {
+      this.api08.EliminarApuestaVof(IdLogro);
+    } else {
+      bootbox.alert('No hemos podido Realizar tu Solicitud');
+    }
+  }
+
+  public EliminarApuestaCantidad(IdLogro) {
+    if (IdLogro) {
+      this.api08.EliminarApuestaCantidad(IdLogro);
+    } else {
+      bootbox.alert('No hemos podido Realizar tu Solicitud');
+    }
+  }
+
+  public EliminarApuestaJugador(IdLogro) {
+    if (IdLogro) {
+      this.api08.EliminarApuestaJugador(IdLogro);
+      this.closeModalJuagdores();
+    } else {
+      bootbox.alert('No hemos podido Realizar tu Solicitud');
+    }
+  }
+
+  public EliminarApuestaEquipo(IdLogro) {
+    if (IdLogro) {
+      this.api08.EliminarApuestaEquipo(IdLogro);
+    } else {
+      bootbox.alert('No hemos podido Realizar tu Solicitud');
+    }
+  }
+
   public openModaljugadores(idLogro) {
     this.idLogroJugador = idLogro;
     this.ObtenerListaJugadoresPartido();

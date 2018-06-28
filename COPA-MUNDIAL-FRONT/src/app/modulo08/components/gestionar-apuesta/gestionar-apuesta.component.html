@@ -68,6 +68,7 @@
                                     <td>
                                         <button type="button" (click)="ActualizarApuestaVof(ApuestaVof.IdLogro, actualizarOpcionVof[i])" class="btn btn-success-table"
                                             style="margin-right:16px;">✓</button>
+                                        <button type="button" (click)="EliminarApuestaVof(ApuestaVof.IdLogro)" class="btn btn-danger-table" style="margin-right:16px;">x</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -113,6 +114,7 @@
                                     <td>
                                         <button type="button" (click)="ActualizarApuestaCantidad(ApuestaCantidad.IdLogro, actualizarOpcionCantidad[i])" class="btn btn-success-table"
                                             style="margin-right:16px;">✓</button>
+                                        <button type="button" (click)="EliminarApuestaCantidad(ApuestaCantidad.IdLogro)" class="btn btn-danger-table" style="margin-right:16px;">x</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -144,6 +146,7 @@
                                     <td>
                                         <button type="button" class="btn btn-success-table" (click)="openModaljugadores(ApuestaJugador.IdLogro)" style="margin-right:16px;">Ver Jugadores</button>
                                         <div class="backdrop" [ngStyle]="{'display':display}"></div>
+                                        <button type="button" (click)="EliminarApuestaJugador(ApuestaJugador.IdLogro)" class="btn btn-danger-table" style="margin-right:16px;">x</button>
                                     </td>
                                     <td>{{ApuestaJugador.Estado}}</td>
                                     <td>{{ApuestaJugador.Fecha}}</td>
@@ -200,6 +203,7 @@
                                     <td>
                                         <button type="button" (click)="ActualizarApuestaEquipo(ApuestaEquipo.IdLogro, actualizarOpcionEquipo[i])" class="btn btn-success-table"
                                             style="margin-right:16px;">✓</button>
+                                        <button type="button" (click)="EliminarApuestaEquipo(ApuestaEquipo.IdLogro)" class="btn btn-danger-table" style="margin-right:16px;">x</button>
                                     </td>
                                 </tr>
                             </tbody>

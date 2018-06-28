@@ -156,7 +156,7 @@ export class Api08Service {
           if (data != null) {
             console.log(data);
           } else {
-            this.Succes('Apuesta Agregada Corectamente.');
+            this.Succes('Se Actualizo tu Apuesta Corectamente.');
           }
         },
         Error => {
@@ -184,7 +184,7 @@ export class Api08Service {
           if (data != null) {
             console.log(data);
           } else {
-            this.Succes('Apuesta Agregada Corectamente.');
+            this.Succes('Se Actualizo tu Apuesta Corectamente.');
           }
         },
         Error => {
@@ -212,7 +212,7 @@ export class Api08Service {
           if (data != null) {
             console.log(data);
           } else {
-            this.Succes('Apuesta Agregada Corectamente.');
+            this.Succes('Se Actualizo tu Apuesta Corectamente.');
           }
         },
         Error => {
@@ -240,7 +240,113 @@ export class Api08Service {
           if (data != null) {
             console.log(data);
           } else {
-            this.Succes('Apuesta Agregada Corectamente.');
+            this.Succes('Se Actualizo tu Apuesta Corectamente.');
+          }
+        },
+        Error => {
+          this.FatalError();
+        }
+      );
+
+    return null;
+  }
+
+  public EliminarApuestaVof(IdLogro: number) {
+    this.connect.Controlador = 'eliminarapuestavof';
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
+
+    this.ApuestaVof.IdLogro = IdLogro;
+    this.ApuestaVof.IdUsuario = this.connect.IdUsuario;
+
+    this.http
+      .put<DTOApuestaVOF>(url, this.ApuestaVof, { responseType: 'json' })
+      .subscribe(
+        data => {
+          if (data != null) {
+            console.log(data);
+          } else {
+            this.Succes('Apuesta Eliminada Corectamente.');
+          }
+        },
+        Error => {
+          this.FatalError();
+        }
+      );
+
+    return null;
+  }
+
+  public EliminarApuestaCantidad(IdLogro: number) {
+    this.connect.Controlador = 'eliminarapuestacantidad';
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
+
+    this.ApuestaCantidad.IdLogro = IdLogro;
+    this.ApuestaCantidad.IdUsuario = this.connect.IdUsuario;
+
+    this.http
+      .put<DTOApuestaCantidad>(url, this.ApuestaCantidad, {
+        responseType: 'json'
+      })
+      .subscribe(
+        data => {
+          if (data != null) {
+            console.log(data);
+          } else {
+            this.Succes('Apuesta Eliminada Corectamente.');
+          }
+        },
+        Error => {
+          this.FatalError();
+        }
+      );
+
+    return null;
+  }
+
+  public EliminarApuestaJugador(IdLogro: number) {
+    this.connect.Controlador = 'eliminarapuestajugador';
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
+
+    this.ApuestaJugador.IdLogro = IdLogro;
+    this.ApuestaJugador.IdUsuario = this.connect.IdUsuario;
+
+    this.http
+      .put<DTOApuestaJugador>(url, this.ApuestaJugador, {
+        responseType: 'json'
+      })
+      .subscribe(
+        data => {
+          if (data != null) {
+            console.log(data);
+          } else {
+            this.Succes('Apuesta Eliminada Corectamente.');
+          }
+        },
+        Error => {
+          this.FatalError();
+        }
+      );
+
+    return null;
+  }
+
+  public EliminarApuestaEquipo(IdLogro: number) {
+    this.connect.Controlador = 'eliminarapuestaequipo';
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
+
+    this.ApuestaEquipo.IdLogro = IdLogro;
+    this.ApuestaEquipo.IdUsuario = this.connect.IdUsuario;
+
+    this.http
+      .put<DTOApuestaEquipo>(url, this.ApuestaEquipo, {
+        responseType: 'json'
+      })
+      .subscribe(
+        data => {
+          if (data != null) {
+            console.log(data);
+          } else {
+            this.Succes('Apuesta Eliminada Corectamente.');
           }
         },
         Error => {
