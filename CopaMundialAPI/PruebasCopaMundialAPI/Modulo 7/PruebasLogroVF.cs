@@ -237,6 +237,21 @@ namespace PruebasCopaMundialAPI.Modulo_7
 
         }
 
+        /// <summary>
+        /// Metodo que prueba la excepcion Logros
+        /// pendientes not found exception del metodo 
+        /// ObtenerLogrosVFPendientes de
+        /// LogrosController
+        /// </summary>
+        [Test]
+        public void PruebaControllerObtenerLogrosVFPendienteExc()
+        {
+            DTOLogroPartidoId dtoLogroPartidoId = FabricaDTO.CrearDTOLogroPartidoId();
+            dtoLogroPartidoId.IdPartido = 16;//Cambiar
+            Assert.AreEqual(HttpStatusCode.InternalServerError, controller.ObtenerLogrosVFPendientes(dtoLogroPartidoId).StatusCode);
+
+        }
+
         [TearDown]
         public void TearDown()
         {

@@ -218,6 +218,12 @@ namespace PruebasCopaMundialAPI.Modulo_7
         }
 
 
+
+        /// <summary>
+        /// Metodo que prueba la respuesta exitosa del
+        /// metodo ObtenerLogrosEquipoPendiente del 
+        /// LogroController
+        /// </summary>
         [Test]
         public void PruebaControllerObtenerLogrosEquipoPendiente()
         {
@@ -225,6 +231,22 @@ namespace PruebasCopaMundialAPI.Modulo_7
             dtoLogroPartidoId.IdPartido = 14;//Cambiar
 
             Assert.AreEqual(HttpStatusCode.OK, controller.ObtenerLogrosEquipoPendientes(dtoLogroPartidoId).StatusCode);
+
+        }
+
+
+        /// <summary>
+        /// Metodo que prueba la excepcion Logros
+        /// pendientes not found exception del metodo 
+        /// ObtenerLogrosEquipoPendientes de
+        /// LogrosController
+        /// </summary>
+        [Test]
+        public void PruebaControllerObtenerLogrosEquipoPendienteExc()
+        {
+            DTOLogroPartidoId dtoLogroPartidoId = FabricaDTO.CrearDTOLogroPartidoId();
+            dtoLogroPartidoId.IdPartido = 16;//Cambiar
+            Assert.AreEqual(HttpStatusCode.InternalServerError, controller.ObtenerLogrosEquipoPendientes(dtoLogroPartidoId).StatusCode);
 
         }
 

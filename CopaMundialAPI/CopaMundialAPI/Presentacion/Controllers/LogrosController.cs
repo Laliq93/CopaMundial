@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
-using CopaMundialAPI.Fuente_de_Datos.DAO;
-using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 using CopaMundialAPI.Logica_de_Negocio.Fabrica;
 using CopaMundialAPI.Logica_de_Negocio.Comando;
 using CopaMundialAPI.Servicios.DTO.Logros;
@@ -15,12 +12,14 @@ using CopaMundialAPI.Servicios.Fabrica;
 using CopaMundialAPI.Comun.Excepciones;
 using CopaMundialAPI.Servicios.Traductores.Logros;
 using CopaMundialAPI.Servicios.Traductores.Fabrica;
+using NLog;
 
 namespace CopaMundialAPI.Presentacion.Controllers
 {
     [RoutePrefix ( "api/logros" )]
     public class LogrosController : ApiController
     {
+        Logger logger = LogManager.GetLogger("fileLogger");
 
         [Route("agregarLogroCantidad")]
         [System.Web.Http.AcceptVerbs("POST")]
@@ -44,7 +43,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (Exception exc)
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
+                logger.Error(exc, exc.Message);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
         }
@@ -73,7 +72,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (Exception exc)
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
+                logger.Error(exc, exc.Message);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
         }
@@ -101,7 +100,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (Exception exc)
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
+                logger.Error(exc, exc.Message);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
         }
@@ -129,7 +128,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (Exception exc)
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
+                logger.Error(exc, exc.Message);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
         }
@@ -155,15 +154,22 @@ namespace CopaMundialAPI.Presentacion.Controllers
           
                 return Request.CreateResponse(HttpStatusCode.OK, dtos);
             }
+            catch(LogrosPendientesNoExisteException exc)
+            {  
+                logger.Error(exc, exc.Message);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Message);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
+                logger.Error(exc, exc.Message);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            
             }
 
         }
@@ -193,16 +199,24 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Message);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (LogrosPendientesNoExisteException exc)
+            {
+                logger.Error(exc, exc.Message);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
+                logger.Error(exc, exc.Message);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
 
         }
+
+
 
 
         [Route("obtenerLogrosEquipoPendiente")]
@@ -230,10 +244,15 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
+            catch (LogrosPendientesNoExisteException exc)
+            {
+                logger.Error(exc, exc.Message);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
             catch (Exception exc)
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
+                logger.Error(exc, exc.Message);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
 
@@ -264,10 +283,15 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
+            catch (LogrosPendientesNoExisteException exc)
+            {
+                logger.Error(exc, exc.Message);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
             catch (Exception exc)
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
+                logger.Error(exc, exc.Message);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
 
