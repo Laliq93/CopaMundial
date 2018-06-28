@@ -75,11 +75,11 @@ namespace CopaMundialAPI.Presentacion.Controllers
         [Route("modificarJugador")]
         [System.Web.Http.AcceptVerbs("PUT")]
         [System.Web.Http.HttpPut]
-        public HttpResponseMessage ModificarJugador(DTOJugador dto)
+        public HttpResponseMessage ModificarJugador(DTOModificarJugador dto)
         {
             try
             {
-                TraductorJugador traductor = FabricaTraductor.CrearTraductorJugador();
+                TraductorModificarJugador traductor = FabricaTraductor.CrearTraductorModificarJugador();
 
                 Entidad jugador = traductor.CrearEntidad(dto);
 

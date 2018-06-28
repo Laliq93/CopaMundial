@@ -30,10 +30,10 @@ CREATE OR REPLACE FUNCTION editarJugador(
     _apellido varchar,
     _fechaNacimiento date,
     _lugarNacimiento varchar,  
-    _peso decimal(5,2),
-    _altura decimal(5,2), 
+    _peso decimal,
+    _altura decimal, 
     _posicion varchar, 
-    _numero decimal(2),
+    _numero decimal,
     _capitan boolean)
 
 RETURNS void
