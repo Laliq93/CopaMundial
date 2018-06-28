@@ -1,26 +1,30 @@
 
-    <ul class="nav nav-justified nav-tabs" id="justifiedTab" role="tablist">
-      <li class="nav-item">
-        <a aria-controls="groups" aria-selected="false" class="nav-link" (click)="matchList()"  data-toggle="tab" id="groups-tab" role="tab">Partidos</a>
-      </li>
-      <li class="nav-item">
-        <a aria-controls="Create" aria-selected="true" class="nav-link" (click)="matchUpdate()" data-toggle="tab" id="create-tab" role="tab">Modificar Partido</a>
-      </li>
-      <li class="nav-item">
-          <a aria-controls="Create" aria-selected="true" class="nav-link active" (click)="matchLineup()" data-toggle="tab" id="create-tab" role="tab">Alineación del partido</a>
-        </li>
-    </ul>
+<ul class="nav nav-justified nav-tabs" id="justifiedTab" role="tablist">
+    <li class="nav-item">
+    <a aria-controls="groups" aria-selected="false" class="nav-link" (click)="matchList()"  data-toggle="tab" id="groups-tab" role="tab">Partidos</a>
+    </li>
+    <li class="nav-item">
+    <a aria-controls="Create" aria-selected="true" class="nav-link" (click)="matchUpdate()" data-toggle="tab" id="create-tab" role="tab">Modificar Partido</a>
+    </li>
+    <li class="nav-item">
+        <a aria-controls="Create" aria-selected="true" class="nav-link active" (click)="matchLineup()" data-toggle="tab" id="create-tab" role="tab">Alineación del partido</a>
+    </li>
+</ul>
 <div class="container-fluid">
 <div class="row">
   <div class="col-sm-6">
-      <div class="d-block">Formación en cancha</div>
+    <div class="d-block">
+        <h4 class="title-formacion">Formación en cancha</h4>
+        <br/>
+    </div>
     <div class="card" id="cardFormacion">
       <div class="card-body">
           <ng-container *ngFor="let partido of listmatch">
               <ng-container *ngFor="let match of listAlineacion1">
               <div class="match-lineup">
                   <div class="row justify-content-md-center" id="row-equipo">
-                      <img src="{{partido.bandera1}}" alt="{{partido.equipo1}" class="img-team"><h4><strong>{{partido.equipo1}}</strong></h4>
+                      <img src="{{partido.bandera1}}" alt="{{partido.equipo1}" class="img-team">
+                      <h4><strong>{{partido.equipo1}}</strong></h4>
                   </div>
                   <ng-container *ngFor="let player of match.players">
                       <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='arquero'">
@@ -35,7 +39,7 @@
                   <div class="row justify-content-md-center">
                       <ng-container *ngFor="let player of match.players">
                       <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='defensor1'">
-                          <div class="col">
+                          <div class="col col-jugador">
                               <img src="../../../../assets/images/player.png" class="img-lineup">
                               <label class="player-name">{{player.numero}}</label>
                           </div>
@@ -43,7 +47,7 @@
                       </ng-container>
                       <ng-container *ngFor="let player of match.players">
                           <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='defensor2'">
-                              <div class="col">
+                              <div class="col col-jugador">
                                   <img src="../../../../assets/images/player.png" class="img-lineup">
                                   <label class="player-name">{{player.numero}}</label>
                               </div>
@@ -51,7 +55,7 @@
                       </ng-container>
                       <ng-container *ngFor="let player of match.players">
                           <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='defensor3'">
-                              <div class="col">
+                              <div class="col col-jugador">
                                   <img src="../../../../assets/images/player.png" class="img-lineup">
                                   <label class="player-name">{{player.numero}}</label>
                               </div>
@@ -59,7 +63,7 @@
                       </ng-container>
                       <ng-container *ngFor="let player of match.players">
                           <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='defensor4'">
-                              <div class="col">
+                              <div class="col col-jugador">
                                   <img src="../../../../assets/images/player.png" class="img-lineup">
                                   <label class="player-name">{{player.numero}}</label>
                               </div>
@@ -69,7 +73,7 @@
                   <div class="row justify-content-md-center">
                       <ng-container *ngFor="let player of match.players">
                           <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='medio campista1'">
-                              <div class="col">
+                              <div class="col col-jugador">
                                   <img src="../../../../assets/images/player.png" class="img-lineup">
                                   <label class="player-name">{{player.numero}}</label>
                               </div>
@@ -77,7 +81,7 @@
                           </ng-container>
                           <ng-container *ngFor="let player of match.players">
                               <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='medio campista2'">
-                                  <div class="col">
+                                  <div class="col col-jugador">
                                       <img src="../../../../assets/images/player.png" class="img-lineup">
                                       <label class="player-name">{{player.numero}}</label>
                                   </div>
@@ -85,7 +89,7 @@
                           </ng-container>
                           <ng-container *ngFor="let player of match.players">
                               <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='medio campista3'">
-                                  <div class="col">
+                                  <div class="col col-jugador">
                                       <img src="../../../../assets/images/player.png" class="img-lineup">
                                       <label class="player-name">{{player.numero}}</label>
                                   </div>
@@ -95,7 +99,7 @@
                   <div class="row justify-content-md-center">
                       <ng-container *ngFor="let player of match.players">
                           <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='delantero1'">
-                              <div class="col">
+                              <div class="col col-jugador">
                                   <img src="../../../../assets/images/player.png" class="img-lineup">
                                   <label class="player-name">{{player.numero}}</label>
                               </div>
@@ -103,7 +107,7 @@
                           </ng-container>
                           <ng-container *ngFor="let player of match.players">
                               <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='delantero2'">
-                                  <div class="col">
+                                  <div class="col col-jugador">
                                       <img src="../../../../assets/images/player.png" class="img-lineup">
                                       <label class="player-name">{{player.numero}}</label>
                                   </div>
@@ -111,7 +115,7 @@
                           </ng-container>
                           <ng-container *ngFor="let player of match.players">
                               <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='delantero3'">
-                                  <div class="col">
+                                  <div class="col col-jugador">
                                       <img src="../../../../assets/images/player.png" class="img-lineup">
                                       <label class="player-name">{{player.numero}}</label>
                                   </div>
@@ -135,7 +139,7 @@
         <form>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="inputJugador">1. Seleccione el jugador</label>
+              <label for="inputJugador" class="label-pasos">1. Seleccione el jugador</label>
               <select id="inputJugador" class="form-control">
                 <option selected>Elegir...</option>
                 <ng-container *ngFor="let match of listAlineacion1">
@@ -144,7 +148,7 @@
               </select>
             </div>
             <div class="form-group col-md-6">
-              <label for="inputPosicion">2. Seleccione la posición a jugar</label>
+              <label for="inputPosicion" class="label-pasos">2. Seleccione su posición</label>
               <select id="inputPosicion" class="form-control">
                 <option selected>Elegir...</option>
                 <option>Arquero</option>
@@ -155,25 +159,27 @@
             </div>
           </div>
           <div class="form-group">
-            <label for id="rbTitular">3. Seleccione Titular ó Suplente</label>
+            <label for id="rbTitular">3. Seleccione si será <strong>Titular</strong> ó <strong>Suplente</strong></label>
             <br>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbTitular" value="titular">
-              <label class="form-check-label" for="rbTitutar">Titular</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbSuplente" value="suplente">
-              <label class="form-check-label" for="rbSuplente">Suplente</label>
+            <div class="estatus-container">
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbTitular" value="titular">
+                <label class="form-check-label" for="rbTitutar">Titular</label>
+                </div>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbSuplente" value="suplente">
+                <label class="form-check-label" for="rbSuplente">Suplente</label>
+                </div>
             </div>
           </div>
           <div class="form-row">
             <a class="btn btn-primary btn-agregar" (click)="agregarJugador1()">Agregar Jugador</a>
           </div>
           <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
               <label for="inputState">4. Capitán</label>
               <select id="inputState" class="form-control">
-                <option selected>Elegir...</option>
+                <option selected disabled>Elegir...</option>
                 <ng-container *ngFor="let match of listAlineacion1">
                     <option *ngFor="let player of match.players">{{player.nombre}}</option>
                 </ng-container>
@@ -181,10 +187,10 @@
             </div>
           </div>
           <div class="form-row col-md-12">
-            <div class="col-md-6">
+            <div class="col">
             <button type="submit" class="btn btn-primary">Salir</button>
           </div>
-          <div class="col-md-6">
+          <div class="col">
             <button type="submit" class="btn btn-primary">Guardar Alineación</button>
           </div>
           </div>
@@ -195,7 +201,10 @@
 </div>
 <div class="row"> <!---Alineacion 2do Equipo-->
     <div class="col-sm-6">
-        <div class="d-block">Formación en cancha</div>
+      <div class="d-block">
+         <h4 class="title-formacion">Formación en cancha</h4>
+         <br/>
+      </div>
       <div class="card" id="cardFormacion">
         <div class="card-body">
             <ng-container *ngFor="let partido of listmatch">
@@ -217,7 +226,7 @@
                     <div class="row justify-content-md-center">
                         <ng-container *ngFor="let player of match.players">
                         <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='defensor1'">
-                            <div class="col">
+                            <div class="col col-jugador">
                                 <img src="../../../../assets/images/player.png" class="img-lineup">
                                 <label class="player-name">{{player.numero}}</label>
                             </div>
@@ -225,7 +234,7 @@
                         </ng-container>
                         <ng-container *ngFor="let player of match.players">
                             <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='defensor2'">
-                                <div class="col">
+                                <div class="col col-jugador">
                                     <img src="../../../../assets/images/player.png" class="img-lineup">
                                     <label class="player-name">{{player.numero}}</label>
                                 </div>
@@ -233,7 +242,7 @@
                         </ng-container>
                         <ng-container *ngFor="let player of match.players">
                             <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='defensor3'">
-                                <div class="col">
+                                <div class="col col-jugador">
                                     <img src="../../../../assets/images/player.png" class="img-lineup">
                                     <label class="player-name">{{player.numero}}</label>
                                 </div>
@@ -241,7 +250,7 @@
                         </ng-container>
                         <ng-container *ngFor="let player of match.players">
                             <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='defensor4'">
-                                <div class="col">
+                                <div class="col col-jugador">
                                     <img src="../../../../assets/images/player.png" class="img-lineup">
                                     <label class="player-name">{{player.numero}}</label>
                                 </div>
@@ -251,7 +260,7 @@
                     <div class="row justify-content-md-center">
                         <ng-container *ngFor="let player of match.players">
                             <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='medio campista1'">
-                                <div class="col">
+                                <div class="col col-jugador">
                                     <img src="../../../../assets/images/player.png" class="img-lineup">
                                     <label class="player-name">{{player.numero}}</label>
                                 </div>
@@ -259,7 +268,7 @@
                             </ng-container>
                             <ng-container *ngFor="let player of match.players">
                                 <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='medio campista2'">
-                                    <div class="col">
+                                    <div class="col col-jugador">
                                         <img src="../../../../assets/images/player.png" class="img-lineup">
                                         <label class="player-name">{{player.numero}}</label>
                                     </div>
@@ -267,7 +276,7 @@
                             </ng-container>
                             <ng-container *ngFor="let player of match.players">
                                 <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='medio campista3'">
-                                    <div class="col">
+                                    <div class="col col-jugador">
                                         <img src="../../../../assets/images/player.png" class="img-lineup">
                                         <label class="player-name">{{player.numero}}</label>
                                     </div>
@@ -277,7 +286,7 @@
                     <div class="row justify-content-md-center">
                         <ng-container *ngFor="let player of match.players">
                             <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='delantero1'">
-                                <div class="col">
+                                <div class="col col-jugador">
                                     <img src="../../../../assets/images/player.png" class="img-lineup">
                                     <label class="player-name">{{player.numero}}</label>
                                 </div>
@@ -285,7 +294,7 @@
                             </ng-container>
                             <ng-container *ngFor="let player of match.players">
                                 <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='delantero2'">
-                                    <div class="col">
+                                    <div class="col col-jugador">
                                         <img src="../../../../assets/images/player.png" class="img-lineup">
                                         <label class="player-name">{{player.numero}}</label>
                                     </div>
@@ -293,7 +302,7 @@
                             </ng-container>
                             <ng-container *ngFor="let player of match.players">
                                 <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='delantero3'">
-                                    <div class="col">
+                                    <div class="col col-jugador">
                                         <img src="../../../../assets/images/player.png" class="img-lineup">
                                         <label class="player-name">{{player.numero}}</label>
                                     </div>
@@ -317,7 +326,7 @@
           <form>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="inputJugador">1. Seleccione el jugador</label>
+                <label for="inputJugador" class="label-pasos">1. Seleccione el jugador</label>
                 <select id="inputJugador" class="form-control">
                   <option selected>Elegir...</option>
                   <ng-container *ngFor="let match of listAlineacion2">
@@ -326,7 +335,7 @@
                 </select>
               </div>
               <div class="form-group col-md-6">
-                <label for="inputPosicion">2. Seleccione la posición a jugar</label>
+                <label for="inputPosicion" class="label-pasos">2. Seleccione su posición</label>
                 <select id="inputPosicion" class="form-control">
                   <option selected>Elegir...</option>
                   <option>Arquero</option>
@@ -336,37 +345,40 @@
                 </select>
               </div>
             </div>
-            <div class="form-group">
-              <label for id="rbTitular">3. Seleccione Titular ó Suplente</label>
-              <br>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbTitular" value="titular">
-                <label class="form-check-label" for="rbTitutar">Titular</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbSuplente" value="suplente">
-                <label class="form-check-label" for="rbSuplente">Suplente</label>
-              </div>
+
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label class="label-pasos">3. Seleccione si será <strong>Titular</strong> ó <strong>Suplente</strong></label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbTitular" value="titular">
+                        <label class="form-check-label" for="rbTitutar">Titular</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="rbSuplente" value="suplente">
+                        <label class="form-check-label" for="rbSuplente">Suplente</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="label-pasos">4. Seleccione si será Capitan</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="siCapitan" value="siCapitan">
+                        <label class="form-check-label" for="siCapitan">Si</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="noCapitan" value="noCapitan">
+                        <label class="form-check-label" for="noCapitan">No</label>
+                    </div>
+                </div>
             </div>
+
             <div class="form-row">
                 <a class="btn btn-primary btn-agregar" (click)="agregarJugador2()">Agregar Jugador</a>
             </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputState">4. Capitán</label>
-                <select id="inputState" class="form-control">
-                  <option selected>Elegir...</option>
-                  <ng-container *ngFor="let match of listAlineacion2">
-                      <option *ngFor="let player of match.players">{{player.nombre}}</option>
-                  </ng-container>
-                </select>
-              </div>
-            </div>
             <div class="form-row col-md-12">
-              <div class="col-md-6">
+              <div class="col">
               <button type="submit" class="btn btn-primary">Salir</button>
             </div>
-            <div class="col-md-6">
+            <div class="col">
               <button type="submit" class="btn btn-primary">Guardar Alineación</button>
             </div>
             </div>

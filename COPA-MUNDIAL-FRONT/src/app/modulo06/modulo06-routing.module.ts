@@ -11,17 +11,18 @@ import { ClientePartidoComponent } from './components/cliente-partido/cliente-pa
 import { IsAdminGuard } from '../guards/is-admin.guard';
 
 
-const routes: Routes = [ 
-  
-{ path: 'partidos', component: AdminCalineacionComponent, canActivate: [NotLoggedInGuard] },//admin/alineacion
-{ path: 'crearPartido', component: AdminCpartidoComponent, canActivate: [IsAdminGuard] },
-{ path: 'modificarPartido', component: AdminMpartidoComponent, canActivate: [NotLoggedInGuard] },
-{ path: 'listaPartidos', component: AdminPartidoComponent, canActivate: [NotLoggedInGuard] },
-{ path: 'listaPartidos', component: ClientePartidoComponent, canActivate: [LoggedInGuard] },
-{ path: 'detallePartido', component: ClienteDetallesComponent, canActivate: [LoggedInGuard]}];
+const routes: Routes = [
+  { path: '', component: AdminCalineacionComponent, canActivate: [NotLoggedInGuard] }, // admin/alineacion
+  { path: 'crearPartido', component: AdminCpartidoComponent, canActivate: [IsAdminGuard] },
+  { path: 'modificarPartido', component: AdminMpartidoComponent, canActivate: [NotLoggedInGuard] },
+  { path: 'listaPartidos', component: AdminPartidoComponent, canActivate: [NotLoggedInGuard] },
+  { path: 'listaPartidos', component: ClientePartidoComponent, canActivate: [LoggedInGuard] },
+  { path: 'detallePartido', component: ClienteDetallesComponent, canActivate: [LoggedInGuard]},
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
+
 export class Modulo06RoutingModule { }
