@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CopaMundialAPI.Comun.Entidades;
-using CopaMundialAPI.Comun.Excepciones;
 using CopaMundialAPI.Fuente_de_Datos.DAO;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
+
 namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 {
-    public class ComandoVerificarApuestaVoFExiste : Comando
+    public class ComandoObtenerApuestasJugadorEnCurso : Comando
     {
-        DAOApuestaVoF _dao;
-        Entidad _apuesta;
+        private Entidad _usuario;
+        private List<Entidad> _apuestas;
 
-        public ComandoVerificarApuestaVoFExiste(Entidad apuesta)
+        public ComandoObtenerApuestasJugadorEnCurso(Entidad usuario)
         {
-            _apuesta = apuesta;
-            _dao = FabricaDAO.CrearDAOApuestaVoF();
+            _usuario = usuario;
+            _apuestas = new List<Entidad>();
         }
 
         public override void Ejecutar()
         {
-            int count = _dao.VerificarApuestaExiste(_apuesta);
+            DAOApuestaJugador dao = FabricaDAO.CrearDAOApuestaJugador();
 
-            if (count > 0)
-                throw new ApuestaRepetidaException();
+            _apuestas = dao.ObtenerApuestasEnCurso(_usuario);
+            
         }
 
         public override Entidad GetEntidad()
@@ -35,7 +35,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 
         public override List<Entidad> GetEntidades()
         {
-            throw new NotImplementedException();
+            return _apuestas;
         }
     }
 }

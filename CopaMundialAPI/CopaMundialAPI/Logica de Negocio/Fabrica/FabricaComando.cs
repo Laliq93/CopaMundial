@@ -81,26 +81,6 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoObtenerProximosPartidos();
         }
 
-        public static ComandoObtenerLogrosVofPartido CrearComandoObtenerLogrosVofPartido(Entidad partido)
-        {
-            return new ComandoObtenerLogrosVofPartido(partido);
-        }
-
-        public static ComandoObtenerLogrosCantidadPartido CrearComandoObtenerLogrosCantidadPartido(Entidad partido)
-        {
-            return new ComandoObtenerLogrosCantidadPartido(partido);
-        }
-
-        public static ComandoObtenerLogrosEquipoPartido CrearComandoObtenerLogrosEquipoPartido(Entidad partido)
-        {
-            return new ComandoObtenerLogrosEquipoPartido(partido);
-        }
-
-        public static ComandoObtenerLogrosJugadorPartido CrearComandoObtenerLogrosJugadorPartido(Entidad partido)
-        {
-            return new ComandoObtenerLogrosJugadorPartido(partido);
-        }
-
         public static ComandoVerificarApuestaVoFExiste CrearComandoVerificarApuestaVoFExiste(Entidad apuesta)
         {
             return new ComandoVerificarApuestaVoFExiste(apuesta);
@@ -146,11 +126,69 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoObtenerLogrosCantidadPendientes(partido);
         }
 
+        public static ComandoAgregarLogroJugador CrearComandoAgregarLogroJugador(Entidad logroPartido)
+        {
+            return new ComandoAgregarLogroJugador(logroPartido);
+        }
+
+        public static ComandoObtenerLogrosJugadorPendientes CrearComandoObtenerLogrosJugadorPendientes(Entidad partido)
+        {
+            return new ComandoObtenerLogrosJugadorPendientes(partido);
+        }
+
+        public static ComandoAgregarLogroEquipo CrearComandoAgregarLogroEquipo(Entidad logroPartido)
+        {
+            return new ComandoAgregarLogroEquipo(logroPartido);
+        }
+
+        public static ComandoObtenerLogrosEquipoPendientes CrearComandoObtenerLogrosEquipoPendientes(Entidad partido)
+        {
+            return new ComandoObtenerLogrosEquipoPendientes(partido);
+        }
+
+        public static ComandoAgregarLogroVF CrearComandoAgregarLogroVF(Entidad partido)
+        {
+            return new ComandoAgregarLogroVF(partido);
+        }
+
+        public static ComandoObtenerLogrosVFPendientes CrearComandoObtenerLogrosVFPendientes(Entidad partido)
+        {
+            return new ComandoObtenerLogrosVFPendientes(partido);
+        }
         public static ComandoObtenerApuestasCantidadEnCurso CrearComandoObtenerApuestasCantidadEnCurso(Entidad usuario)
         {
             return new ComandoObtenerApuestasCantidadEnCurso(usuario);
         }
 
+        public static ComandoObtenerApuestasJugadorEnCurso CrearComandoObtenerApuestasJugadorEnCurso(Entidad usuario)
+        {
+            return new ComandoObtenerApuestasJugadorEnCurso(usuario);
+        }
+
+        public static ComandoObtenerApuestasEquipoEnCurso CrearComandoObtenerApuestasEquipoEnCurso(Entidad usuario)
+        {
+            return new ComandoObtenerApuestasEquipoEnCurso(usuario);
+        }
+
+        public static ComandoVerificarApuestaVoFValida CrearComandoVerificarApuestaVoFValida(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaVoFValida(apuesta);
+        }
+
+        public static ComandoVerificarApuestaCantidadValida CrearComandoVerificarApuestaCantidadValida(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaCantidadValida(apuesta);
+        }
+
+        public static ComandoVerificarApuestaJugadorValida CrearComandoVerificarApuestaJugadorValida(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaJugadorValida(apuesta);
+        }
+
+        public static ComandoVerificarApuestaEquipoValida CrearComandoVerificarApuestaEquipoValida(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaEquipoValida(apuesta);
+        }
 
     }
 }

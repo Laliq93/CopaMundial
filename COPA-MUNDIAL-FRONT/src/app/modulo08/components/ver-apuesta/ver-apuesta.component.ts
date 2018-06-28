@@ -82,8 +82,8 @@ export class VerApuestaComponent implements OnInit {
   }
 
   public ObtenerLogrosVOF() {
-    this.connect.Controlador = 'obtenerlogrosvofpartido';
-    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
+    this.connect.Controlador = 'obtenerLogrosVFPendiente';
+    const url = this.connect.GetApiLogro() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -110,8 +110,8 @@ export class VerApuestaComponent implements OnInit {
   }
 
   public ObtenerLogrosCantidad() {
-    this.connect.Controlador = 'obtenerlogroscantidadpartido';
-    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
+    this.connect.Controlador = 'obtenerLogrosCantidadPendiente';
+    const url = this.connect.GetApiLogro() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -138,8 +138,8 @@ export class VerApuestaComponent implements OnInit {
   }
 
   public ObtenerLogrosJugadores() {
-    this.connect.Controlador = 'obtenerlogrosjugadorpartido';
-    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
+    this.connect.Controlador = 'obtenerLogrosJugadorPendiente';
+    const url = this.connect.GetApiLogro() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http
@@ -166,8 +166,8 @@ export class VerApuestaComponent implements OnInit {
   }
 
   public ObtenerLogrosEquipos() {
-    this.connect.Controlador = 'obtenerlogrosequipopartido';
-    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
+    this.connect.Controlador = 'obtenerLogrosEquipoPendiente';
+    const url = this.connect.GetApiLogro() + this.connect.Controlador;
     this.EnviarIdPartido.IdPartido = this.idPartido;
 
     this.http

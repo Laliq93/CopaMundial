@@ -9,23 +9,23 @@ using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 {
-    public class ComandoVerificarApuestaVoFExiste : Comando
+    public class ComandoVerificarApuestaEquipoValida : Comando
     {
-        DAOApuestaVoF _dao;
+        DAOApuestaEquipo _dao;
         Entidad _apuesta;
 
-        public ComandoVerificarApuestaVoFExiste(Entidad apuesta)
+        public ComandoVerificarApuestaEquipoValida(Entidad apuesta)
         {
             _apuesta = apuesta;
-            _dao = FabricaDAO.CrearDAOApuestaVoF();
+            _dao = FabricaDAO.CrearDAOApuestaEquipo();
         }
 
         public override void Ejecutar()
         {
-            int count = _dao.VerificarApuestaExiste(_apuesta);
+            int count = _dao.VerificarApuestaValidaParaEditar(_apuesta);
 
-            if (count > 0)
-                throw new ApuestaRepetidaException();
+            if (count < 1)
+                throw new ApuestaInvalidaException();
         }
 
         public override Entidad GetEntidad()

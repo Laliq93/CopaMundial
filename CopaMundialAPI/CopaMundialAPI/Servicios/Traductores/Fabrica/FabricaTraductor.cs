@@ -42,11 +42,6 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
             return new TraductorListarProximosPartidos();
         }
 
-        public static TraductorRecibirIdPartido CrearTraductorRecibirIdPartido()
-        {
-            return new TraductorRecibirIdPartido();
-        }
-
         /// <summary>
         /// Metodo con el cual se instancia un objeto de tipo TraductorCiudad
         /// </summary>
@@ -90,6 +85,26 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
             return new TraductorLogroCantidad();
         }
 
+        public static TraductorLogroJugador CrearTraductorLogroJugador()
+        {
+            return new TraductorLogroJugador();
+        }
+
+        public static TraductorLogroEquipo CrearTraductorLogroEquipo()
+        {
+            return new TraductorLogroEquipo();
+        }
+
+        public static TraductorLogroVF CrearTraductorLogroVF()
+        {
+            return new TraductorLogroVF();
+        }
+
+        public static TraductorLogroPartidoId CrearTraductorLogroPartidoId()
+        {
+            return new TraductorLogroPartidoId();
+        }
+        
         public static TraductorUsuarioId CrearTraductorUsuarioId()
         {
             return new TraductorUsuarioId();
