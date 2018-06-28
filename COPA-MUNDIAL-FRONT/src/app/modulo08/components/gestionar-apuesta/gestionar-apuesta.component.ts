@@ -33,10 +33,10 @@ export class GestionarApuestaComponent implements OnInit {
   public ApuestaJugador: DTOApuestaJugador;
   public ApuestaEquipo: DTOApuestaEquipo;
 
-  public ListApuestaApuestavof: DTOApuestaVOF[] = [];
-  public ListApuestaApuestacantidad: DTOApuestaCantidad[] = [];
-  public ListApuestaApuestajugadores: DTOApuestaJugador[] = [];
-  public ListApuestaApuestaequipos: DTOApuestaEquipo[] = [];
+  public ListApuestavof: DTOApuestaVOF[] = [];
+  public ListApuestacantidad: DTOApuestaCantidad[] = [];
+  public ListApuestajugadores: DTOApuestaJugador[] = [];
+  public ListApuestaequipos: DTOApuestaEquipo[] = [];
   public ListMostrarJugadores: DTOMostrarJugador[] = [];
 
   public dtTriggerApuestaVof: Subject<any> = new Subject();
@@ -102,7 +102,7 @@ export class GestionarApuestaComponent implements OnInit {
             apuestasVOF.Estado = data[i].Estado;
             apuestasVOF.Fecha = data[i].Fecha;
 
-            this.ListApuestaApuestavof[i] = apuestasVOF;
+            this.ListApuestavof[i] = apuestasVOF;
           }
         },
         Error => {
@@ -133,7 +133,7 @@ export class GestionarApuestaComponent implements OnInit {
             apuestasCantidad.Estado = data[i].Estado;
             apuestasCantidad.Fecha = data[i].Fecha;
 
-            this.ListApuestaApuestacantidad[i] = apuestasCantidad;
+            this.ListApuestacantidad[i] = apuestasCantidad;
           }
         },
         Error => {
@@ -165,7 +165,7 @@ export class GestionarApuestaComponent implements OnInit {
             apuestasJugador.Estado = data[i].Estado;
             apuestasJugador.Fecha = data[i].Fecha;
 
-            this.ListApuestaApuestajugadores[i] = apuestasJugador;
+            this.ListApuestajugadores[i] = apuestasJugador;
           }
         },
         Error => {
@@ -194,7 +194,7 @@ export class GestionarApuestaComponent implements OnInit {
             logrosEquipo.Estado = data[i].Estado;
             logrosEquipo.Fecha = data[i].Fecha;
 
-            this.ListApuestaApuestaequipos[i] = logrosEquipo;
+            this.ListApuestaequipos[i] = logrosEquipo;
           }
         },
         Error => {
