@@ -22,8 +22,6 @@ export class Api08Service {
   public ApuestaJugador: DTOApuestaJugador;
   public ApuestaEquipo: DTOApuestaEquipo;
 
-  private _usuarioId: number;
-
   constructor(private http: HttpClient) {
     this.connect = new Conexion();
 
@@ -31,8 +29,6 @@ export class Api08Service {
     this.ApuestaCantidad = new DTOApuestaCantidad();
     this.ApuestaJugador = new DTOApuestaJugador();
     this.ApuestaEquipo = new DTOApuestaEquipo();
-
-    this._usuarioId = 3;
   }
 
   public AgregarApuestaVof(IdLogro: number, opcionVof: boolean) {
@@ -41,7 +37,7 @@ export class Api08Service {
 
     this.ApuestaVof.IdLogro = IdLogro;
     this.ApuestaVof.ApuestaUsuario = opcionVof;
-    this.ApuestaVof.IdUsuario = this._usuarioId;
+    this.ApuestaVof.IdUsuario = this.connect.IdUsuario;
 
     this.http
       .put<DTOApuestaVOF>(url, this.ApuestaVof, { responseType: 'json' })
@@ -67,7 +63,7 @@ export class Api08Service {
 
     this.ApuestaCantidad.IdLogro = IdLogro;
     this.ApuestaCantidad.ApuestaUsuario = opcionCantidad;
-    this.ApuestaCantidad.IdUsuario = this._usuarioId;
+    this.ApuestaCantidad.IdUsuario = this.connect.IdUsuario;
 
     this.http
       .put<DTOApuestaCantidad>(url, this.ApuestaCantidad, {
@@ -95,7 +91,7 @@ export class Api08Service {
 
     this.ApuestaJugador.IdLogro = IdLogro;
     this.ApuestaJugador.IdJugador = IdJugador;
-    this.ApuestaJugador.IdUsuario = this._usuarioId;
+    this.ApuestaJugador.IdUsuario = this.connect.IdUsuario;
 
     this.http
       .put<DTOApuestaJugador>(url, this.ApuestaJugador, {
@@ -123,7 +119,117 @@ export class Api08Service {
 
     this.ApuestaEquipo.IdLogro = IdLogro;
     this.ApuestaEquipo.IdEquipo = IdEquipo;
-    this.ApuestaEquipo.IdUsuario = this._usuarioId;
+    this.ApuestaEquipo.IdUsuario = this.connect.IdUsuario;
+
+    this.http
+      .put<DTOApuestaEquipo>(url, this.ApuestaEquipo, {
+        responseType: 'json'
+      })
+      .subscribe(
+        data => {
+          if (data != null) {
+            console.log(data);
+          } else {
+            this.Succes('Apuesta Agregada Corectamente.');
+          }
+        },
+        Error => {
+          this.FatalError();
+        }
+      );
+
+    return null;
+  }
+
+  public ActualizarApuestaVof(IdLogro: number, opcionVof: boolean) {
+    this.connect.Controlador = 'actualizarapuestavof';
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
+
+    this.ApuestaVof.IdLogro = IdLogro;
+    this.ApuestaVof.ApuestaUsuario = opcionVof;
+    this.ApuestaVof.IdUsuario = this.connect.IdUsuario;
+
+    this.http
+      .put<DTOApuestaVOF>(url, this.ApuestaVof, { responseType: 'json' })
+      .subscribe(
+        data => {
+          if (data != null) {
+            console.log(data);
+          } else {
+            this.Succes('Apuesta Agregada Corectamente.');
+          }
+        },
+        Error => {
+          this.FatalError();
+        }
+      );
+
+    return null;
+  }
+
+  public ActualizarApuestaCantidad(IdLogro: number, opcionCantidad: number) {
+    this.connect.Controlador = 'actualizarapuestacantidad';
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
+
+    this.ApuestaCantidad.IdLogro = IdLogro;
+    this.ApuestaCantidad.ApuestaUsuario = opcionCantidad;
+    this.ApuestaCantidad.IdUsuario = this.connect.IdUsuario;
+
+    this.http
+      .put<DTOApuestaCantidad>(url, this.ApuestaCantidad, {
+        responseType: 'json'
+      })
+      .subscribe(
+        data => {
+          if (data != null) {
+            console.log(data);
+          } else {
+            this.Succes('Apuesta Agregada Corectamente.');
+          }
+        },
+        Error => {
+          this.FatalError();
+        }
+      );
+
+    return null;
+  }
+
+  public ActualizarApuestaJugador(IdLogro: number, IdJugador: number) {
+    this.connect.Controlador = 'actualizarapuestajugador';
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
+
+    this.ApuestaJugador.IdLogro = IdLogro;
+    this.ApuestaJugador.IdJugador = IdJugador;
+    this.ApuestaJugador.IdUsuario = this.connect.IdUsuario;
+
+    this.http
+      .put<DTOApuestaJugador>(url, this.ApuestaJugador, {
+        responseType: 'json'
+      })
+      .subscribe(
+        data => {
+          if (data != null) {
+            console.log(data);
+          } else {
+            this.Succes('Apuesta Agregada Corectamente.');
+          }
+        },
+        Error => {
+          this.FatalError();
+        }
+      );
+
+    return null;
+  }
+
+  public ActualizarApuestaEquipo(IdLogro: number, IdEquipo: number) {
+    this.connect.Controlador = 'actualizarapuestaequipo';
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
+
+    this.ApuestaEquipo.IdLogro = IdLogro;
+    this.ApuestaEquipo.IdEquipo = IdEquipo;
+    this.ApuestaEquipo.IdUsuario = this.connect.IdUsuario;
 
     this.http
       .put<DTOApuestaEquipo>(url, this.ApuestaEquipo, {

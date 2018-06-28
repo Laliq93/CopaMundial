@@ -5,6 +5,8 @@ export * from './Entrada/dtomostrar-jugador';
 
 // Salida
 export * from './Salida/dtoenviar-id-partido';
+export * from './Salida/dtoenviar-id-jugador';
+export * from './Salida/dtoenviar-id-usuario';
 
 // Shared
 export * from './Shared/conexion';

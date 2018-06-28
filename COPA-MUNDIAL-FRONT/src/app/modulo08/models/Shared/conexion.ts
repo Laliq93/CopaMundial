@@ -1,5 +1,6 @@
 export class Conexion {
   Controlador: string;
+  IdUsuario: number = 3;
   RutaApi = 'http://192.168.15.100:51543/api/';
 
   public GetApiJugador() {
@@ -10,7 +11,7 @@ export class Conexion {
     return this.RutaApi + 'Apuesta/';
   }
 
-  public GetApiLogro(){
+  public GetApiLogro() {
     return this.RutaApi + 'Logros/';
   }
 }
