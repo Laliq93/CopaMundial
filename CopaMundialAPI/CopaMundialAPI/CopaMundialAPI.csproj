@@ -186,11 +186,13 @@
     <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogrosVFPendientes.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoActualizarAlineacion.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoActualizarPartido.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoAlineacionPorPartido.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoCrearAlineacion.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoCrearPartido.cs" />
-    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerListaPartidos.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoEliminarAlineacion.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerListaPartidosPorFecha.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerPartido.cs" />
-    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoPosponerPartido.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerPartidos.cs" />
     <Compile Include="Presentacion\Controllers\JugadorController.cs" />
     <Compile Include="Presentacion\Controllers\CiudadController.cs" />
     <Compile Include="Presentacion\Controllers\ApuestaController.cs" />
@@ -226,6 +228,7 @@
     <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoDesactivarJugador.cs" />
     <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoModificarJugador.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasVoFEnCurso.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoEliminarApuestaVoF.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoActualizarApuestaVoF.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoAgregarApuestaVOF.cs" />
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoAgregarCiudad.cs" />

@@ -109,9 +109,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             return jugadores;
         }
 
-        public List<Entidad> ObtenerJugadorId(Entidad entidad)
+        public Entidad ObtenerJugadorId(Entidad entidad)
         {
-            List<Entidad> jugadores = new List<Entidad>();
             Jugador jugador = entidad as Jugador;
 
             Conectar();
@@ -122,16 +121,21 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             EjecutarReader();
 
-            for (int i = 0; i < cantidadRegistros; i++)
-            {
-                jugador = FabricaEntidades.CrearJugador();
+            jugador = FabricaEntidades.CrearJugador();
 
-                jugador.Id = GetInt(i, 0);
-                
-                jugadores.Add(jugador);
-            }
+            jugador.Id = GetInt(0, 0);
+            jugador.Nombre = GetString(0, 1);
+            jugador.Apellido = GetString(0, 2);
+            jugador.FechaNacimiento = GetString(0, 3);
+            jugador.LugarNacimiento = GetString(0, 4);
+            jugador.Peso = GetDecimal(0, 5);
+            jugador.Altura = GetDecimal(0, 6);
+            jugador.Posicion = GetString(0, 7);
+            jugador.Numero = GetDecimal(0, 8);
+            jugador.Equipo.Pais = GetString(0, 9);
+            jugador.Capitan = GetBool(0, 10);
 
-            return jugadores;
+            return jugador;
         }
 
         public void Agregar(Entidad entidad)
