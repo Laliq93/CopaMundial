@@ -54,7 +54,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Jugadores
             }
             catch (NullReferenceException exc)
             {
-                throw new ObjetoNullException(exc, "Error al recibir la información de la apuesta");
+                throw new ObjetoNullException(exc, "Error al recibir la información del jugador");
             }            
         }
 
