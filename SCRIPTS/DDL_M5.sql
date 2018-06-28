@@ -21,3 +21,6 @@ CREATE SEQUENCE SEQ_Jugador
   NO MINVALUE
   NO MAXVALUE
   CACHE 1;
+
+Drop table jugador;
+Drop SEQUENCE SEQ_Jugador;

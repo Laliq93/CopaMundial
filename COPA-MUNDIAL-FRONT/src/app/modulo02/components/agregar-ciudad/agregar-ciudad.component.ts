@@ -39,6 +39,8 @@ export class AgregarCiudadComponent implements OnInit {
   }
 
   subirciudad(){
+
+    
     let ciudad = new Ciudad();
     
     ciudad.Nombre = this.formulario.nombreES
@@ -46,18 +48,31 @@ export class AgregarCiudadComponent implements OnInit {
     ciudad.Habitantes = this.formulario.habitantes
     ciudad.DescripcionIngles = this.formulario.descripcionEN
     ciudad.NombreIngles = this.formulario.nombreEN
-    this.ciudadservice.agregarciudad(ciudad).subscribe(
-      result => {
-      
-        console.log(result);
-       
-      },
-      error =>{
-         console.log(<any>error)
-      }
-      
-    )
+    if(ciudad.Habitantes > 0){
+      if(ciudad.Nombre!=""){
+      this.ciudadservice.agregarciudad(ciudad).subscribe(
+        
+        result => {
+          alert("Sus datos han sido procesados satisfactoriamente");
+          this.resetForm();
+          console.log(result);
+        
+        },
+        error =>{
+          console.log(<any>error)
+        }
     
+        
+    )
+    }
+  
+    else{
+     $("#idnombre").append("<span style='color: red'>Campo obligatorio</span>")
+    }
+  }
+    else{
+      alert("Sus datos no han sido procesados satisfactoriamente, habitantes tiene que ser > 0")
+    }
   }
 
   regresar() {
