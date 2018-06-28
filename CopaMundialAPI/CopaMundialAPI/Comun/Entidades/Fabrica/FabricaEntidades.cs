@@ -104,7 +104,40 @@ namespace CopaMundialAPI.Comun.Entidades.Fabrica
             return new Partido();
         }
 
-		public static Ciudad CrearCiudadID(int id)
+        /// <summary>
+        /// Genera una clase de la entidad Alineacion
+        /// </summary>
+        /// <param name="id">Id de la alineacion</param>
+        /// <param name="esCapitan">Indica si el jugador es Capitan</param>
+        /// <param name="posicion">Posicion en la juega el jugador</param>
+        /// <param name="esTitular">Si es titular o suplente</param>
+        /// <param name="jugador">Entidad jugador correspondiente</param>
+        /// <param name="equipo">Entidad equipo asociada al jugador</param>
+        /// <param name="partido">Entidad partido asociada a la alineacion</param>
+        public static Alineacion CrearAlineacion(int id, bool esCapitan, string posicion, bool esTitular, Jugador jugador,
+                                                 Equipo equipo, Partido partido)
+        {
+            return new Alineacion(id, esCapitan, posicion, esTitular, jugador, equipo, partido);
+        }
+
+        /// <summary>
+        /// Genera una clase de la entidad Alineacion Partido
+        /// </summary>
+        /// <param name="id">Id del partido</param>
+        /// <param name="fechaInicioPartido">Fecha de inicio del partido</param>
+        /// <param name="fechaFinPartido">Fecha de fin del partido</param>
+        /// <param name="arbitro">Arbitro principal del partido</param>
+        /// <param name="equipo1">Primer equipo que participara en el partido</param>
+        /// <param name="equipo2">Segundo equipo que participara en el partido</param>
+        /// <param name="estadio">Estadio donde se jugara</param>
+
+        public static Partido CrearPartido(int id, DateTime fechaInicioPartido, DateTime fechaFinPartido, string arbitro,
+                                           Equipo equipo1, Equipo equipo2, Estadio estadio)
+        {
+            return new Partido(id, fechaInicioPartido, fechaFinPartido, arbitro, equipo1, equipo2, estadio);
+        }
+
+        public static Ciudad CrearCiudadID(int id)
 		{
 			return new Ciudad(id);
 
@@ -115,6 +148,16 @@ namespace CopaMundialAPI.Comun.Entidades.Fabrica
 			return new Ciudad(id, nombre, habitantes, descripcion, nombreIngles, descripcionIngles);
 
 		}
+
+        public static Equipo CrearEquipo()
+        {
+            return new Equipo();
+        }
+
+        public static Estadio CrearEstadio()
+        {
+            return new Estadio();
+        }
 
 	}
 }

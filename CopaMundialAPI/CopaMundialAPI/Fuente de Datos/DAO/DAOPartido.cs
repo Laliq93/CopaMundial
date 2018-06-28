@@ -1,5 +1,7 @@
 ﻿using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
+using CopaMundialAPI.Comun.Entidades.Fabrica;
+using CopaMundialAPI.Comun.Excepciones;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,39 +13,43 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
     {
         public void Actualizar(Entidad entidad)
         {
-            Partido partido = entidad as Partido;
+            if (!(entidad is Partido partido))
+            {
+                throw new CasteoInvalidoException();
+            }
 
             Conectar();
 
-            StoredProcedure("modificarpartido(@_idpartido,@_horainicio,@_horafin,@_arbitro,@_estatus,@_equipo1,@_equipo2,@_estadio)");
+            StoredProcedure("modificarpartido(@_idpartido, @_fechaInicio, @_fechaFin, @_arbitro, @_equipo1, @_equipo2, @_estadio)");
 
-            //AgregarParametro("_idpartido", partido.Id);
-            AgregarParametro("_horainicio", partido.FechaInicioPartido);
-            AgregarParametro("_horafin", partido.FechaFinPartido);
+            AgregarParametro("_idpartido", partido.Id);
+            AgregarParametro("_fechaInicio", partido.FechaInicioPartido);
+            AgregarParametro("_fechaFin", partido.FechaFinPartido);
             AgregarParametro("_arbitro", partido.Arbitro);
-            AgregarParametro("_estatus", partido.Estatus);
-            AgregarParametro("_equipo1", partido.Equipo1);
-            AgregarParametro("_equipo2", partido.Equipo2);
-            AgregarParametro("_estadio", partido.Estadio);
+            AgregarParametro("_equipo1", partido.Equipo1.Id);
+            AgregarParametro("_equipo2", partido.Equipo2.Id);
+            AgregarParametro("_estadio", partido.Estadio.Id);
        
             EjecutarQuery ( );
         }
 
         public void Agregar(Entidad entidad)
         {
-                
-            Partido partido = entidad as Partido;
+            if (!(entidad is Partido partido))
+            {
+                throw new CasteoInvalidoException();
+            }
 
             Conectar();
 
-            StoredProcedure("agregarpartido(@_horainicio,@_horafin,@_arbitro,@_equipo1,@_equipo2,@_estadio)");
+            StoredProcedure("agregarpartido(@_fechaInicio, @_fechaFin, @_arbitro, @_equipo1, @_equipo2, @_estadio)");
 
-            AgregarParametro("_horainicio", partido.FechaInicioPartido);
-            AgregarParametro("_horafin", partido.FechaFinPartido);
+            AgregarParametro("_fechaInicio", partido.FechaInicioPartido);
+            AgregarParametro("_fechaFin", partido.FechaFinPartido);
             AgregarParametro("_arbitro", partido.Arbitro);
-            AgregarParametro("_equipo1", partido.Equipo1);
-            AgregarParametro("_equipo2", partido.Equipo2);
-            AgregarParametro("_estadio", partido.Estadio);
+            AgregarParametro("_equipo1", partido.Equipo1.Id);
+            AgregarParametro("_equipo2", partido.Equipo2.Id);
+            AgregarParametro("_estadio", partido.Estadio.Id);
 
             EjecutarQuery ( );
 
@@ -54,39 +60,69 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             throw new NotImplementedException();
         }
 
-        public List<Entidad> ObtenerProximosPartidos()
+        public List<Entidad> ObtenerTodos()
         {
-            Equipos = equiposEstaticos = new Equipos();
+            Conectar();
+            StoredProcedure("ConsultarPartidos()");
+            EjecutarReader();
 
-            List<Entidad> _partidos = new List<Entidad>();
+            return ConstruirListaEntidades();
+        }
 
-            Partido partido;
+        public List<Entidad> ObtenerPartidosPosterioresA(DateTime fecha)
+        {
+            Conectar();
+            StoredProcedure("ConsultarPartidosSiguientes(@_fecha)");
+            AgregarParametro("_fecha", fecha);
+            EjecutarReader();
+
+            return ConstruirListaEntidades();
+        }
+
+        public Entidad ObtenerPorId(Entidad entidad)
+        {
+            if (!(entidad is Partido partido))
+            {
+                throw new CasteoInvalidoException();
+            }
 
             Conectar();
-
-            StoredProcedure("consultarpartidossiguientes()");
+            StoredProcedure("ConsultarPartido(@_idpartido)");
+            AgregarParametro("_idpartido", partido.Id);
 
             EjecutarReader();
 
+            return ConstruirEntidad();
+        }
+
+        public List<Entidad> ConstruirListaEntidades()
+        {
+            List<Entidad> _partidos = new List<Entidad>();
+
             for (int i = 0; i < cantidadRegistros; i++)
             {
-                partido = FabricaEntidades.CrearPartido();
-
-                int idEquipo1, idEquipo2;
-
-                partido.FechaInicioPartido = GetDateTime(i, 1);
-                partido.FechaFinPartido = GetDateTime(i, 2);
-                partido.Arbitro = GetString(i, 3);
-                idEquipo1 = GetInt(i, 4);
-                idEquipo2 = GetInt(i, 5);
-                partido.Estadio = GetInt(i, 6);
-                partido.Equipo1 = equiposEstaticos.GetEquipo(idEquipo1);
-                partido.Equipo2 = equiposEstaticos.GetEquipo(idEquipo2);
-
-                _partidosAdd(partido);
+                _partidos.Add(this.ConstruirEntidad(i));
             }
 
             return _partidos;
         }
+
+        public Entidad ConstruirEntidad(int i = 0)
+        {
+            Equipo equipo1 = FabricaEntidades.CrearEquipo();
+            equipo1.Id = GetInt(i, 4);
+
+            Equipo equipo2 = FabricaEntidades.CrearEquipo();
+            equipo1.Id = GetInt(i, 5);
+
+            Estadio estadio = FabricaEntidades.CrearEstadio();
+            estadio.Id = GetInt(i, 6);
+
+            Partido partido = FabricaEntidades.CrearPartido(GetInt(i, 0), GetDateTime(i, 1), GetDateTime(i, 2),
+                                                            GetString(i, 3), equipo1, equipo2, estadio);
+
+            return partido;
+        }
+
     }
 }

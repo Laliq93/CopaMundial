@@ -141,6 +141,7 @@
     <Compile Include="Comun\Excepciones\AlineacionMasDeUnCapitanException.cs" />
     <Compile Include="Comun\Excepciones\ApuestaRepetidaException.cs" />
     <Compile Include="Comun\Excepciones\BaseDeDatosException.cs" />
+    <Compile Include="Comun\Excepciones\CasteoInvalidoException.cs" />
     <Compile Include="Comun\Excepciones\CasteoNoCorrectoException.cs" />
     <Compile Include="Comun\Excepciones\CiudadNoEncontradaException.cs" />
     <Compile Include="Comun\Excepciones\FechaPasadaPartidoException.cs" />
