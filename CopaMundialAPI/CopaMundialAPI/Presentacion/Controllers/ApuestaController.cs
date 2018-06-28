@@ -19,12 +19,15 @@ using CopaMundialAPI.Servicios.Traductores.Usuarios;
 using CopaMundialAPI.Servicios.DTO.Usuario;
 using CopaMundialAPI.Servicios.DTO.Logros;
 using CopaMundialAPI.Comun.Excepciones;
+using NLog;
 
 namespace CopaMundialAPI.Presentacion.Controllers
 {
     [RoutePrefix("api/Apuesta")]
     public class ApuestaController : ApiController
     {
+        Logger logger = LogManager.GetLogger("fileLogger");
+
         /// <summary>
         /// Proceso para obtener todos los partidos con una fecha de inicio estrictamente mayor a la fecha actual del sistema.
         /// </summary>
@@ -47,9 +50,11 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -82,17 +87,23 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaRepetidaException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
 
         }
@@ -126,17 +137,23 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaRepetidaException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
 
         }
@@ -170,17 +187,23 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaRepetidaException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
 
         }
@@ -214,17 +237,23 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaRepetidaException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
 
         }
@@ -256,13 +285,17 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -293,13 +326,17 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -330,13 +367,17 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -367,13 +408,17 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -404,17 +449,23 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch(ApuestaInvalidaException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -445,17 +496,23 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaInvalidaException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -486,17 +543,23 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaInvalidaException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -527,17 +590,23 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaInvalidaException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
 
         }
@@ -569,17 +638,23 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaInvalidaException exc)
             {
+                logger.Error(exc, exc.Mensaje);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -610,17 +685,21 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaInvalidaException exc)
             {
+                logger.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -651,17 +730,21 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaInvalidaException exc)
             {
+                logger.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -692,17 +775,21 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaInvalidaException exc)
             {
+                logger.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
 
         }
@@ -734,13 +821,16 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -771,13 +861,16 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -808,13 +901,16 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -845,13 +941,16 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
+                logger.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
