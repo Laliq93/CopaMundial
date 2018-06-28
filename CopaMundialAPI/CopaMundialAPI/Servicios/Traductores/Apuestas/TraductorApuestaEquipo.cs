@@ -6,6 +6,7 @@ using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
 using CopaMundialAPI.Comun.Excepciones;
 using CopaMundialAPI.Servicios.DTO.Apuestas;
+using CopaMundialAPI.Servicios.Fabrica;
 
 namespace CopaMundialAPI.Servicios.Traductores.Apuestas
 {
@@ -13,7 +14,19 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
     {
         public override DTOApuestaEquipo CrearDto(Entidad entidad)
         {
-            throw new NotImplementedException();
+            DTOApuestaEquipo dto = FabricaDTO.CrearDTOApuestaEquipo();
+
+            ApuestaEquipo apuesta = entidad as ApuestaEquipo;
+
+            dto.IdLogro = apuesta.Logro.Id;
+            dto.IdUsuario = apuesta.Usuario.Id;
+            dto.IdEquipo = apuesta.Respuesta.Id;
+            dto.NombreEquipo = apuesta.Respuesta.Pais;
+            dto.Estado = apuesta.Estado;
+            dto.Logro = apuesta.Logro.Logro;
+            dto.Fecha = apuesta.Fecha.ToShortDateString();
+
+            return dto;
         }
 
         public override Entidad CrearEntidad(DTOApuestaEquipo dto)
@@ -43,7 +56,14 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
 
         public override List<DTOApuestaEquipo> CrearListaDto(List<Entidad> entidades)
         {
-            throw new NotImplementedException();
+            List<DTOApuestaEquipo> dtos = new List<DTOApuestaEquipo>();
+
+            foreach (ApuestaEquipo entidad in entidades)
+            {
+                dtos.Add(CrearDto(entidad));
+            }
+
+            return dtos;
         }
 
         public override List<Entidad> CrearListaEntidades(List<DTOApuestaEquipo> dtos)

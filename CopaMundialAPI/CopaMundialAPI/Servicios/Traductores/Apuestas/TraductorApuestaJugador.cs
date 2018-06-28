@@ -21,8 +21,11 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
             dto.IdLogro = apuesta.Logro.Id;
             dto.IdUsuario = apuesta.Usuario.Id;
             dto.IdJugador = apuesta.Respuesta.Id;
+            dto.NombreJugador = apuesta.Respuesta.Nombre;
+            dto.ApellidoJugador = apuesta.Respuesta.Apellido;
             dto.Estado = apuesta.Estado;
             dto.Logro = apuesta.Logro.Logro;
+            dto.Fecha = apuesta.Fecha.ToShortDateString();
 
             return dto;
         }

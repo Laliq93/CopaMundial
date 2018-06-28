@@ -37,7 +37,7 @@ export class Api08Service {
 
   public AgregarApuestaVof(IdLogro: number, opcionVof: boolean) {
     this.connect.Controlador = 'registrarapuestavof';
-    const url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
 
     this.ApuestaVof.IdLogro = IdLogro;
     this.ApuestaVof.ApuestaUsuario = opcionVof;
@@ -63,7 +63,7 @@ export class Api08Service {
 
   public AgregarApuestaCantidad(IdLogro: number, opcionCantidad: number) {
     this.connect.Controlador = 'registrarapuestacantidad';
-    const url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
 
     this.ApuestaCantidad.IdLogro = IdLogro;
     this.ApuestaCantidad.ApuestaUsuario = opcionCantidad;
@@ -91,7 +91,7 @@ export class Api08Service {
 
   public AgregarApuestaJugador(IdLogro: number, IdJugador: number) {
     this.connect.Controlador = 'registrarapuestajugador';
-    const url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
 
     this.ApuestaJugador.IdLogro = IdLogro;
     this.ApuestaJugador.IdJugador = IdJugador;
@@ -119,7 +119,7 @@ export class Api08Service {
 
   public AgregarApuestaEquipo(IdLogro: number, IdEquipo: number) {
     this.connect.Controlador = 'registrarapuestaequipo';
-    const url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
 
     this.ApuestaEquipo.IdLogro = IdLogro;
     this.ApuestaEquipo.IdEquipo = IdEquipo;
