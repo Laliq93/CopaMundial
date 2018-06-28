@@ -41,158 +41,9 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 comando.Ejecutar();
 
-                List<DTOListarProximosPartidos> dtos = traductor.CrearListaDto(comando.GetEntidades());
+                List<DTOListarProximosPartidos> Listadtos = traductor.CrearListaDto(comando.GetEntidades());
 
-                return Request.CreateResponse(HttpStatusCode.OK, dtos);
-            }
-            catch (Exception exc)
-            {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
-            }
-        }
-
-        /// <summary>
-        /// Proceso para obtener los logros de tipo verdadero/falso de un partido especifico
-        /// </summary>
-        /// <param name="DTORecibirIdPartido">Partido</param>
-        [Route("obtenerlogrosvofpartido")]
-        [System.Web.Http.AcceptVerbs("GET", "PUT")]
-        [System.Web.Http.HttpPut, System.Web.Http.HttpGet]
-        public HttpResponseMessage ObtenerLogrosvofPartido(DTORecibirIdPartido dto)
-        {
-            try
-            {
-                TraductorRecibirIdPartido traductorPartido = FabricaTraductor.CrearTraductorRecibirIdPartido();
-
-                Entidad partido = traductorPartido.CrearEntidad(dto);
-
-                Comando comando = FabricaComando.CrearComandoObtenerLogrosVofPartido(partido);
-
-                comando.Ejecutar();
-
-                TraductorMostrarLogrosPartido traductorLogros = FabricaTraductor.CrearTraductorMostrarLogrosPartidos();
-
-                List<DTOMostrarLogrosPartido> dtos = traductorLogros.CrearListaDto(comando.GetEntidades());
-
-                return Request.CreateResponse(HttpStatusCode.OK, dtos);
-            }
-            catch (ObjetoNullException exc)
-            {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
-            }
-            catch (Exception exc)
-            {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
-            }
-
-        }
-
-        /// <summary>
-        /// Proceso para obtener los logros de tipo cuantificativo de un partido especifico
-        /// </summary>
-        /// <param name="DTORecibirIdPartido">Partido</param>
-        [Route("obtenerlogroscantidadpartido")]
-        [System.Web.Http.AcceptVerbs("GET", "PUT")]
-        [System.Web.Http.HttpPut]
-        public HttpResponseMessage ObtenerLogrosCantidadPartido(DTORecibirIdPartido dto)
-        {
-            try
-            {
-                TraductorRecibirIdPartido traductorPartido = FabricaTraductor.CrearTraductorRecibirIdPartido();
-
-                Entidad partido = traductorPartido.CrearEntidad(dto);
-
-                Comando comando = FabricaComando.CrearComandoObtenerLogrosCantidadPartido(partido);
-
-                comando.Ejecutar();
-
-                TraductorMostrarLogrosPartido traductorLogros = FabricaTraductor.CrearTraductorMostrarLogrosPartidos();
-
-                List<DTOMostrarLogrosPartido> dtos = traductorLogros.CrearListaDto(comando.GetEntidades());
-
-                return Request.CreateResponse(HttpStatusCode.OK, dtos);
-            }
-            catch (ObjetoNullException exc)
-            {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
-            }
-            catch (Exception exc)
-            {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
-            }
-        }
-
-        /// <summary>
-        /// Proceso para obtener los logros de tipo Equipo de un partido especifico
-        /// </summary>
-        /// <param name="DTORecibirIdPartido">Partido</param>
-        [Route("obtenerlogrosequipopartido")]
-        [System.Web.Http.AcceptVerbs("GET", "PUT")]
-        [System.Web.Http.HttpPut]
-        public HttpResponseMessage ObtenerLogrosEquipoPartido(DTORecibirIdPartido dto)
-        {
-            try
-            {
-                TraductorRecibirIdPartido traductorPartido = FabricaTraductor.CrearTraductorRecibirIdPartido();
-
-                Entidad partido = traductorPartido.CrearEntidad(dto);
-
-                Comando comando = FabricaComando.CrearComandoObtenerLogrosEquipoPartido(partido);
-
-                comando.Ejecutar();
-
-                TraductorMostrarLogrosPartido traductorLogros = FabricaTraductor.CrearTraductorMostrarLogrosPartidos();
-
-                List<DTOMostrarLogrosPartido> dtos = traductorLogros.CrearListaDto(comando.GetEntidades());
-
-                return Request.CreateResponse(HttpStatusCode.OK, dtos);
-            }
-            catch (ObjetoNullException exc)
-            {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
-            }
-            catch (Exception exc)
-            {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
-            }
-        }
-
-        /// <summary>
-        /// Proceso para obtener los logros de tipo Jugador de un partido especifico
-        /// </summary>
-        /// <param name="DTORecibirIdPartido">Partido</param>
-        [Route("obtenerlogrosjugadorpartido")]
-        [System.Web.Http.AcceptVerbs("GET", "PUT")]
-        [System.Web.Http.HttpPut]
-        public HttpResponseMessage ObtenerLogrosJugadorPartido(DTORecibirIdPartido dto)
-        {
-            try
-            {
-                TraductorRecibirIdPartido traductorPartido = FabricaTraductor.CrearTraductorRecibirIdPartido();
-
-                Entidad partido = traductorPartido.CrearEntidad(dto);
-
-                Comando comando = FabricaComando.CrearComandoObtenerLogrosJugadorPartido(partido);
-
-                comando.Ejecutar();
-
-                TraductorMostrarLogrosPartido traductorLogros = FabricaTraductor.CrearTraductorMostrarLogrosPartidos();
-
-                List<DTOMostrarLogrosPartido> dtos = traductorLogros.CrearListaDto(comando.GetEntidades());
-
-                return Request.CreateResponse(HttpStatusCode.OK, dtos);
-            }
-            catch (ObjetoNullException exc)
-            {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateResponse(HttpStatusCode.OK, Listadtos);
             }
             catch (Exception exc)
             {
@@ -399,9 +250,9 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 TraductorApuestaVOF traductorApuesta = FabricaTraductor.CrearTraductorApuestaVoF();
 
-                List<DTOApuestaVOF> dtos = traductorApuesta.CrearListaDto(comando.GetEntidades());
+                List<DTOApuestaVOF> Listadtos = traductorApuesta.CrearListaDto(comando.GetEntidades());
 
-                return Request.CreateResponse(HttpStatusCode.OK, dtos);
+                return Request.CreateResponse(HttpStatusCode.OK, Listadtos);
             }
             catch (ObjetoNullException exc)
             {
@@ -411,7 +262,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
         }
 
@@ -436,9 +287,9 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 TraductorApuestaCantidad traductorApuesta = FabricaTraductor.CrearTraductorApuestaCantidad();
 
-                List<DTOApuestaCantidad> dtos = traductorApuesta.CrearListaDto(comando.GetEntidades());
+                List<DTOApuestaCantidad> Listadtos = traductorApuesta.CrearListaDto(comando.GetEntidades());
 
-                return Request.CreateResponse(HttpStatusCode.OK, dtos);
+                return Request.CreateResponse(HttpStatusCode.OK, Listadtos);
             }
             catch (ObjetoNullException exc)
             {
@@ -448,7 +299,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
         }
 
@@ -463,20 +314,19 @@ namespace CopaMundialAPI.Presentacion.Controllers
         {
             try
             {
-                //terminar
                 TraductorUsuarioId traductor = FabricaTraductor.CrearTraductorUsuarioId();
 
                 Entidad usuario = traductor.CrearEntidad(dto);
 
-                Comando comando = FabricaComando.CrearComandoObtenerApuestasCantidadEnCurso(usuario);
+                Comando comando = FabricaComando.CrearComandoObtenerApuestasJugadorEnCurso(usuario);
 
                 comando.Ejecutar();
 
-                TraductorApuestaCantidad traductorApuesta = FabricaTraductor.CrearTraductorApuestaCantidad();
+                TraductorApuestaJugador traductorApuesta = FabricaTraductor.CrearTraductorApuestaJugador();
 
-                List<DTOApuestaCantidad> dtos = traductorApuesta.CrearListaDto(comando.GetEntidades());
+                List<DTOApuestaJugador> Listadtos = traductorApuesta.CrearListaDto(comando.GetEntidades());
 
-                return Request.CreateResponse(HttpStatusCode.OK, dtos);
+                return Request.CreateResponse(HttpStatusCode.OK, Listadtos);
             }
             catch (ObjetoNullException exc)
             {
@@ -486,10 +336,83 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
         }
 
+        /// <summary>
+        /// Proceso para obtener las apuestas de tipo equipo en curso de un usuario especifico.
+        /// </summary>
+        /// <param name="DTOUsuarioId">Usuario</param>
+        [Route("obtenerapuestasequipoencurso")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage ObtenerApuestasEquipoEnCurso(DTOUsuarioId dto)
+        {
+            try
+            {
+                TraductorUsuarioId traductor = FabricaTraductor.CrearTraductorUsuarioId();
+
+                Entidad usuario = traductor.CrearEntidad(dto);
+
+                Comando comando = FabricaComando.CrearComandoObtenerApuestasEquipoEnCurso(usuario);
+
+                comando.Ejecutar();
+
+                TraductorApuestaEquipo traductorApuesta = FabricaTraductor.CrearTraductorApuestaEquipo();
+
+                List<DTOApuestaEquipo> Listadtos = traductorApuesta.CrearListaDto(comando.GetEntidades());
+
+                return Request.CreateResponse(HttpStatusCode.OK, Listadtos);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+        /// <summary>
+        /// Proceso para editar las apuestas de tipo verdadero/falso de un usuario específico.
+        /// </summary>
+        /// <param name="DTOUsuarioId">Usuario</param>
+        [Route("actualizarapuestasvof")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage ActualizarApuestasVoF(DTOApuestaVOF dto)
+        {
+            try
+            {
+                TraductorApuestaVOF traductor = FabricaTraductor.CrearTraductorApuestaVoF();
+
+                Entidad apuesta = traductor.CrearEntidad(dto);
+
+                Comando comando = FabricaComando.CrearComandoVerificarApuestaVoFValida(apuesta);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch(ApuestaInvalidaException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
 
     }
 }

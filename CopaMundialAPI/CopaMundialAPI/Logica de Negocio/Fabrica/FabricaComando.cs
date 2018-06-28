@@ -81,26 +81,6 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoObtenerProximosPartidos();
         }
 
-        public static ComandoObtenerLogrosVofPartido CrearComandoObtenerLogrosVofPartido(Entidad partido)
-        {
-            return new ComandoObtenerLogrosVofPartido(partido);
-        }
-
-        public static ComandoObtenerLogrosCantidadPartido CrearComandoObtenerLogrosCantidadPartido(Entidad partido)
-        {
-            return new ComandoObtenerLogrosCantidadPartido(partido);
-        }
-
-        public static ComandoObtenerLogrosEquipoPartido CrearComandoObtenerLogrosEquipoPartido(Entidad partido)
-        {
-            return new ComandoObtenerLogrosEquipoPartido(partido);
-        }
-
-        public static ComandoObtenerLogrosJugadorPartido CrearComandoObtenerLogrosJugadorPartido(Entidad partido)
-        {
-            return new ComandoObtenerLogrosJugadorPartido(partido);
-        }
-
         public static ComandoVerificarApuestaVoFExiste CrearComandoVerificarApuestaVoFExiste(Entidad apuesta)
         {
             return new ComandoVerificarApuestaVoFExiste(apuesta);
@@ -180,6 +160,35 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoObtenerApuestasCantidadEnCurso(usuario);
         }
 
+        public static ComandoObtenerApuestasJugadorEnCurso CrearComandoObtenerApuestasJugadorEnCurso(Entidad usuario)
+        {
+            return new ComandoObtenerApuestasJugadorEnCurso(usuario);
+        }
+
+        public static ComandoObtenerApuestasEquipoEnCurso CrearComandoObtenerApuestasEquipoEnCurso(Entidad usuario)
+        {
+            return new ComandoObtenerApuestasEquipoEnCurso(usuario);
+        }
+
+        public static ComandoVerificarApuestaVoFValida CrearComandoVerificarApuestaVoFValida(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaVoFValida(apuesta);
+        }
+
+        public static ComandoVerificarApuestaCantidadValida CrearComandoVerificarApuestaCantidadValida(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaCantidadValida(apuesta);
+        }
+
+        public static ComandoVerificarApuestaJugadorValida CrearComandoVerificarApuestaJugadorValida(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaJugadorValida(apuesta);
+        }
+
+        public static ComandoVerificarApuestaEquipoValida CrearComandoVerificarApuestaEquipoValida(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaEquipoValida(apuesta);
+        }
 
     }
 }
