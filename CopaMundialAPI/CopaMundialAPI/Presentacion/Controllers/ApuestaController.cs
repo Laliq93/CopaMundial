@@ -539,6 +539,172 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
+
+        }
+
+        /// <summary>
+        /// Proceso para eliminar las apuestas de tipo verdadero/falso de un usuario específico.
+        /// </summary>
+        /// <param name="DTOApuestaVOF">Apuesta</param>
+        [Route("eliminarapuestavof")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage EliminarApuestaVoF(DTOApuestaVOF dto)
+        {
+            try
+            {
+                TraductorApuestaVOF traductor = FabricaTraductor.CrearTraductorApuestaVoF();
+
+                Entidad apuesta = traductor.CrearEntidad(dto);
+
+                Comando comando = FabricaComando.CrearComandoVerificarApuestaVoFValida(apuesta);
+
+                comando.Ejecutar();
+
+                comando = FabricaComando.CrearComandoEliminarApuestaVoF(apuesta);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (ApuestaInvalidaException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+        /// <summary>
+        /// Proceso para eliminar las apuestas de tipo cantidad de un usuario específico.
+        /// </summary>
+        /// <param name="DTOApuestaCantidad">Apuesta</param>
+        [Route("eliminarapuestacantidad")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage EliminarApuestaCantidad(DTOApuestaCantidad dto)
+        {
+            try
+            {
+                TraductorApuestaCantidad traductor = FabricaTraductor.CrearTraductorApuestaCantidad();
+
+                Entidad apuesta = traductor.CrearEntidad(dto);
+
+                Comando comando = FabricaComando.CrearComandoVerificarApuestaCantidadValida(apuesta);
+
+                comando.Ejecutar();
+
+                comando = FabricaComando.CrearComandoEliminarApuestaCantidad(apuesta);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (ApuestaInvalidaException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+        /// <summary>
+        /// Proceso para eliminar las apuestas de tipo jugador de un usuario específico.
+        /// </summary>
+        /// <param name="DTOApuestaJugador">Apuesta</param>
+        [Route("eliminarapuestajugador")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage EliminarApuestaJugador(DTOApuestaJugador dto)
+        {
+            try
+            {
+                TraductorApuestaJugador traductor = FabricaTraductor.CrearTraductorApuestaJugador();
+
+                Entidad apuesta = traductor.CrearEntidad(dto);
+
+                Comando comando = FabricaComando.CrearComandoVerificarApuestaJugadorValida(apuesta);
+
+                comando.Ejecutar();
+
+                comando = FabricaComando.CrearComandoEliminarApuestaJugador(apuesta);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (ApuestaInvalidaException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+        /// <summary>
+        /// Proceso para eliminar las apuestas de tipo equipo de un usuario específico.
+        /// </summary>
+        /// <param name="DTOApuestaEquipo">Apuesta</param>
+        [Route("eliminarapuestaequipo")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage EliminarApuestaEquipo(DTOApuestaEquipo dto)
+        {
+            try
+            {
+                TraductorApuestaEquipo traductor = FabricaTraductor.CrearTraductorApuestaEquipo();
+
+                Entidad apuesta = traductor.CrearEntidad(dto);
+
+                Comando comando = FabricaComando.CrearComandoVerificarApuestaEquipoValida(apuesta);
+
+                comando.Ejecutar();
+
+                comando = FabricaComando.CrearComandoEliminarApuestaEquipo(apuesta);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (ApuestaInvalidaException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+
         }
 
     }

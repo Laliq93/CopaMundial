@@ -49,10 +49,10 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             Conectar();
 
-            StoredProcedure("eliminarapuesta(@idlogro, @idusuario)");
+            StoredProcedure("eliminarapuesta(@idusuario, @idlogro)");
 
-            AgregarParametro("idlogro", apuesta.Logro.Id);
             AgregarParametro("idusuario", apuesta.Usuario.Id);
+            AgregarParametro("idlogro", apuesta.Logro.Id);
 
             EjecutarQuery();
         }

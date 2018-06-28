@@ -46,10 +46,12 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         {
             ApuestaCantidad apuesta = entidad as ApuestaCantidad;
 
-            StoredProcedure("eliminarapuesta(@idlogro, @idusuario)");
+            Conectar();
 
-            AgregarParametro("idlogro", apuesta.Logro.Id);
+            StoredProcedure("eliminarapuesta(@idusuario, @idlogro)");
+
             AgregarParametro("idusuario", apuesta.Usuario.Id);
+            AgregarParametro("idlogro", apuesta.Logro.Id);
 
             EjecutarQuery();
         }
