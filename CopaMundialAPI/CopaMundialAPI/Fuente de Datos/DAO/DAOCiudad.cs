@@ -29,7 +29,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             {
 
                 Exception e = new Exception ( );
-                throw e;
+                //throw e;
 
                 Ciudad ciudad = entidad as Ciudad;
 
@@ -115,14 +115,15 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         {
 			Ciudad ciudad = entidad as Ciudad;
 			Conectar();
-			StoredProcedure("obtenerciudad(@id)");
+			StoredProcedure("getciudad(@id)");
 			AgregarParametro("id", ciudad.Id);
 			EjecutarReader();
+			Ciudad ciudadARetornar = null;
 			for (int i = 0; i < cantidadRegistros; i++)
 			{
-				ciudad = FabricaEntidades.CrearCiudad(GetString(i,0),GetInt(i,1),GetString(i,2),GetString(i,3),GetString(i,4));
+				ciudadARetornar = FabricaEntidades.CrearCiudad(GetInt(i,0),GetString(i,1),GetInt(i,3),GetString(i,2),GetString(i,4),GetString(i,5));
 			}
-			return ciudad;
+			return ciudadARetornar;
 			
 		}
 

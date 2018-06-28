@@ -10,7 +10,7 @@ namespace CopaMundialAPI.Comun.Entidades
     /// </summary>
     public class Ciudad : Entidad
     {
-		private int _id;
+		//private int _id;
 		private string _nombre;//Nombre de la ciudad en español
         private int _habitantes;//Numero de habitantes de la ciudad
         private string _descripcion;//Descripcion de la ciudad en español
@@ -88,7 +88,7 @@ namespace CopaMundialAPI.Comun.Entidades
         /// </summary>
         public string DescripcionIngles { get => _descripcionIngles; set => _descripcionIngles = value; }
 
-		public int Id { get => _id; set => _id = value; }
+		//public int Id { get => _id; set => _id = value; }
 
     }
 }
