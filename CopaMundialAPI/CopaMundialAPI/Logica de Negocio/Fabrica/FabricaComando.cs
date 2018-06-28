@@ -161,6 +161,25 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoObtenerApuestasEquipoEnCurso(usuario);
         }
 
+        public static ComandoVerificarApuestaVoFValida CrearComandoVerificarApuestaVoFValida(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaVoFValida(apuesta);
+        }
+
+        public static ComandoVerificarApuestaCantidadValida CrearComandoVerificarApuestaCantidadValida(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaCantidadValida(apuesta);
+        }
+
+        public static ComandoVerificarApuestaJugadorValida CrearComandoVerificarApuestaJugadorValida(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaJugadorValida(apuesta);
+        }
+
+        public static ComandoVerificarApuestaEquipoValida CrearComandoVerificarApuestaEquipoValida(Entidad apuesta)
+        {
+            return new ComandoVerificarApuestaEquipoValida(apuesta);
+        }
 
     }
 }

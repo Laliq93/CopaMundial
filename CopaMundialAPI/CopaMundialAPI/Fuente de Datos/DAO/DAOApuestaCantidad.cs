@@ -16,6 +16,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         {
             ApuestaCantidad apuesta = entidad as ApuestaCantidad;
 
+            Conectar();
+
             StoredProcedure("editarapuestacantidad(@idlogro, @idusuario, @apuesta)");
 
             AgregarParametro("idlogro", apuesta.Logro.Id);
@@ -119,11 +121,30 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         public int VerificarApuestaExiste(Entidad apuesta)
         {
-            Conectar();
-
             ApuestaCantidad apuestacantidad = apuesta as ApuestaCantidad;
 
+            Conectar();
+
             StoredProcedure("verificarapuestaexiste(@idusuario, @idlogro)");
+
+            AgregarParametro("idusuario", apuestacantidad.Usuario.Id);
+            AgregarParametro("idlogro", apuestacantidad.Logro.Id);
+
+            EjecutarReader();
+
+            int count = GetInt(0, 0);
+
+            return count;
+        }
+
+        public int VerificarApuestaValidaParaEditar(Entidad apuesta)
+        {
+            ApuestaCantidad apuestacantidad = apuesta as ApuestaCantidad;
+
+            Conectar();
+
+            StoredProcedure("verificarapuestavalida(@idusuario, @idlogro)");
+
 
             AgregarParametro("idusuario", apuestacantidad.Usuario.Id);
             AgregarParametro("idlogro", apuestacantidad.Logro.Id);

@@ -172,4 +172,23 @@ BEGIN
 END;
 
 $BODY$;
+
+CREATE OR REPLACE FUNCTION public.verificarapuestavalida(
+	_idusuario integer,
+	_idlogro integer)
+    RETURNS TABLE(conteo bigint) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN
+	RETURN QUERY select count(apuesta.idusuario) from apuesta inner join logro_partido ON apuesta.idlogro = logro_partido.lo_id 
+	inner join partido on logro_partido.lo_resultado_pa = partido.pa_id where partido.pa_horainicio > now() 
+	AND apuesta.idusuario = _idusuario AND logro_partido.lo_id = _idlogro;
+END;
+
+$BODY$;
 	

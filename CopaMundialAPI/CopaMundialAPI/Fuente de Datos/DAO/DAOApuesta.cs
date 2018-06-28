@@ -20,7 +20,9 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             Conectar();
 
-            StoredProcedure("obtenerproximospartidos()");
+            StoredProcedure("obtenerproximospartidos(@fecha)");
+
+            AgregarParametro("fecha", DateTime.Now);
 
             EjecutarReader();
 

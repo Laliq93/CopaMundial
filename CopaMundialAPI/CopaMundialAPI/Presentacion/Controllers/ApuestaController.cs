@@ -526,6 +526,42 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
         }
 
+        /// <summary>
+        /// Proceso para editar las apuestas de tipo verdadero/falso de un usuario específico.
+        /// </summary>
+        /// <param name="DTOUsuarioId">Usuario</param>
+        [Route("actualizarapuestasvof")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage ActualizarApuestasVoF(DTOApuestaVOF dto)
+        {
+            try
+            {
+                TraductorApuestaVOF traductor = FabricaTraductor.CrearTraductorApuestaVoF();
+
+                Entidad apuesta = traductor.CrearEntidad(dto);
+
+                Comando comando = FabricaComando.CrearComandoVerificarApuestaVoFValida(apuesta);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch(ApuestaInvalidaException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
 
     }
 }

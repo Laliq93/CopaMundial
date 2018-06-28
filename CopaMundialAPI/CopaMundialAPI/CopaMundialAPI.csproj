@@ -139,6 +139,7 @@
     <Compile Include="Comun\Excepciones\AlineacionFaltaJugadoresException.cs" />
     <Compile Include="Comun\Excepciones\AlineacionJugadorNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\AlineacionMasDeUnCapitanException.cs" />
+    <Compile Include="Comun\Excepciones\ApuestaInvalidaException.cs" />
     <Compile Include="Comun\Excepciones\ApuestaRepetidaException.cs" />
     <Compile Include="Comun\Excepciones\BaseDeDatosException.cs" />
     <Compile Include="Comun\Excepciones\CasteoNoCorrectoException.cs" />
@@ -164,8 +165,12 @@
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosCantidadPartido.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosVofPartido.cs" />
     <Compile Include="Comun\Excepciones\ExcepcionGeneral.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarApuestaCantidadValida.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarApuestaEquipoValida.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarApuestaJugadorValida.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarCantidadApuestaExiste.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarJugadorApuestaExiste.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarApuestaVoFValida.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarVoFApuestaExiste.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarEquipoApuestaExiste.cs" />
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoObtenerCiudadPorNombre.cs" />
@@ -213,7 +218,6 @@
     <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoDesactivarJugador.cs" />
     <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoModificarJugador.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasVoFEnCurso.cs" />
-    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoEliminarApuestaVoF.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoActualizarApuestaVoF.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoAgregarApuestaVOF.cs" />
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoAgregarCiudad.cs" />
