@@ -72,5 +72,32 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
         }
 
+        [Route("modificarJugador")]
+        [System.Web.Http.AcceptVerbs("PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage ModificarJugador(DTOJugador dto)
+        {
+            try
+            {
+                TraductorJugador traductor = FabricaTraductor.CrearTraductorJugador();
+
+                Entidad jugador = traductor.CrearEntidad(dto);
+
+                Comando comando;
+
+                comando = FabricaComando.CrearComandoModificarJugador(jugador);
+
+                comando.Ejecutar();
+
+                return new HttpResponseMessage(HttpStatusCode.OK);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
     }
 }
