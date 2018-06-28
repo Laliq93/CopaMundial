@@ -707,5 +707,153 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
         }
 
+        /// <summary>
+        /// Proceso para obtener las apuestas de tipo verdadero/falso finalizadas de un usuario especifico.
+        /// </summary>
+        /// <param name="DTOUsuarioId">Usuario</param>
+        [Route("obtenerapuestasvoffinalizadas")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage ObtenerApuestasVoFFinalizadas(DTOUsuarioId dto)
+        {
+            try
+            {
+                TraductorUsuarioId traductor = FabricaTraductor.CrearTraductorUsuarioId();
+
+                Entidad usuario = traductor.CrearEntidad(dto);
+
+                Comando comando = FabricaComando.CrearComandoObtenerApuestasVoFFinalizadas(usuario);
+
+                comando.Ejecutar();
+
+                TraductorApuestaVOF traductorApuesta = FabricaTraductor.CrearTraductorApuestaVoF();
+
+                List<DTOApuestaVOF> Listadtos = traductorApuesta.CrearListaDto(comando.GetEntidades());
+
+                return Request.CreateResponse(HttpStatusCode.OK, Listadtos);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+        /// <summary>
+        /// Proceso para obtener las apuestas de tipo cantidad finalizadas de un usuario especifico.
+        /// </summary>
+        /// <param name="DTOUsuarioId">Usuario</param>
+        [Route("obtenerapuestascantidadfinalizadas")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage ObtenerApuestasCantidadFinalizadas(DTOUsuarioId dto)
+        {
+            try
+            {
+                TraductorUsuarioId traductor = FabricaTraductor.CrearTraductorUsuarioId();
+
+                Entidad usuario = traductor.CrearEntidad(dto);
+
+                Comando comando = FabricaComando.CrearComandoObtenerApuestasCantidadFinalizadas(usuario);
+
+                comando.Ejecutar();
+
+                TraductorApuestaCantidad traductorApuesta = FabricaTraductor.CrearTraductorApuestaCantidad();
+
+                List<DTOApuestaCantidad> Listadtos = traductorApuesta.CrearListaDto(comando.GetEntidades());
+
+                return Request.CreateResponse(HttpStatusCode.OK, Listadtos);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+        /// <summary>
+        /// Proceso para obtener las apuestas de tipo jugador finalizadas de un usuario especifico.
+        /// </summary>
+        /// <param name="DTOUsuarioId">Usuario</param>
+        [Route("obtenerapuestasjugadorfinalizadas")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage ObtenerApuestasJugadorFinalizadas(DTOUsuarioId dto)
+        {
+            try
+            {
+                TraductorUsuarioId traductor = FabricaTraductor.CrearTraductorUsuarioId();
+
+                Entidad usuario = traductor.CrearEntidad(dto);
+
+                Comando comando = FabricaComando.CrearComandoObtenerApuestasJugadorFinalizadas(usuario);
+
+                comando.Ejecutar();
+
+                TraductorApuestaJugador traductorApuesta = FabricaTraductor.CrearTraductorApuestaJugador();
+
+                List<DTOApuestaJugador> Listadtos = traductorApuesta.CrearListaDto(comando.GetEntidades());
+
+                return Request.CreateResponse(HttpStatusCode.OK, Listadtos);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+        /// <summary>
+        /// Proceso para obtener las apuestas de tipo equipo finalizadas de un usuario especifico.
+        /// </summary>
+        /// <param name="DTOUsuarioId">Usuario</param>
+        [Route("obtenerapuestasequipofinalizadas")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage ObtenerApuestasEquipoFinalizadas(DTOUsuarioId dto)
+        {
+            try
+            {
+                TraductorUsuarioId traductor = FabricaTraductor.CrearTraductorUsuarioId();
+
+                Entidad usuario = traductor.CrearEntidad(dto);
+
+                Comando comando = FabricaComando.CrearComandoObtenerApuestasEquipoFinalizadas(usuario);
+
+                comando.Ejecutar();
+
+                TraductorApuestaEquipo traductorApuesta = FabricaTraductor.CrearTraductorApuestaEquipo();
+
+                List<DTOApuestaEquipo> Listadtos = traductorApuesta.CrearListaDto(comando.GetEntidades());
+
+                return Request.CreateResponse(HttpStatusCode.OK, Listadtos);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
     }
 }

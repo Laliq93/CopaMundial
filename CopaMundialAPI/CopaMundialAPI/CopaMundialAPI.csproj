@@ -168,10 +168,14 @@
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoEliminarApuestaJugador.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoEliminarApuestaCantidad.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoEliminarApuestaVoF.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasCantidadFinalizadas.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasEquipoFinalizadas.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasEquipoEnCurso.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasJugadorFinalizadas.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasJugadorEnCurso.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasCantidadEnCurso.cs" />
     <Compile Include="Comun\Excepciones\ExcepcionGeneral.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasVoFFinalizadas.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarApuestaCantidadValida.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarApuestaEquipoValida.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarApuestaJugadorValida.cs" />
