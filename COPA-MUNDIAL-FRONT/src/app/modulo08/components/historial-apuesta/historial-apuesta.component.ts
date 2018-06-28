@@ -19,6 +19,7 @@ declare var bootbox: any;
   styleUrls: ['./historial-apuesta.component.css']
 })
 export class HistorialApuestaComponent implements OnInit {
+
   public api08: Api08Service;
   public connect: Conexion;
   public dtoUsuario: DTOEnviarIdUsuario;

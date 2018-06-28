@@ -23,6 +23,7 @@ declare var bootbox: any;
   ]
 })
 export class GestionarApuestaComponent implements OnInit {
+
   public api08: Api08Service;
   public connect: Conexion;
   public dtoUsuario: DTOEnviarIdUsuario;
