@@ -23,7 +23,6 @@ declare var bootbox: any;
   ]
 })
 export class GestionarApuestaComponent implements OnInit {
-
   public api08: Api08Service;
   public connect: Conexion;
   public dtoUsuario: DTOEnviarIdUsuario;
@@ -97,7 +96,11 @@ export class GestionarApuestaComponent implements OnInit {
             let apuestasVOF: DTOApuestaVOF;
             apuestasVOF = new DTOApuestaVOF();
 
-            apuestasVOF.IdUsuario = data[i].IdLogro;
+            apuestasVOF.IdLogro = data[i].IdLogro;
+            apuestasVOF.Logro = data[i].Logro;
+            apuestasVOF.ApuestaUsuario = data[i].ApuestaUsuario;
+            apuestasVOF.Estado = data[i].Estado;
+            apuestasVOF.Fecha = data[i].Fecha;
 
             this.ListApuestaApuestavof[i] = apuestasVOF;
           }
@@ -125,6 +128,10 @@ export class GestionarApuestaComponent implements OnInit {
             apuestasCantidad = new DTOApuestaCantidad();
 
             apuestasCantidad.IdLogro = data[i].IdLogro;
+            apuestasCantidad.Logro = data[i].Logro;
+            apuestasCantidad.ApuestaUsuario = data[i].ApuestaUsuario;
+            apuestasCantidad.Estado = data[i].Estado;
+            apuestasCantidad.Fecha = data[i].Fecha;
 
             this.ListApuestaApuestacantidad[i] = apuestasCantidad;
           }
@@ -152,6 +159,11 @@ export class GestionarApuestaComponent implements OnInit {
             apuestasJugador = new DTOApuestaJugador();
 
             apuestasJugador.IdLogro = data[i].IdLogro;
+            apuestasJugador.Logro = data[i].Logro;
+            apuestasJugador.NombreJugador = data[i].NombreJugador;
+            apuestasJugador.ApellidoJugador = data[i].ApellidoJugador;
+            apuestasJugador.Estado = data[i].Estado;
+            apuestasJugador.Fecha = data[i].Fecha;
 
             this.ListApuestaApuestajugadores[i] = apuestasJugador;
           }
@@ -177,6 +189,10 @@ export class GestionarApuestaComponent implements OnInit {
             logrosEquipo = new DTOApuestaEquipo();
 
             logrosEquipo.IdLogro = data[i].IdLogro;
+            logrosEquipo.Logro = data[i].Logro;
+            logrosEquipo.NombreEquipo = data[i].NombreEquipo;
+            logrosEquipo.Estado = data[i].Estado;
+            logrosEquipo.Fecha = data[i].Fecha;
 
             this.ListApuestaApuestaequipos[i] = logrosEquipo;
           }
@@ -217,7 +233,7 @@ export class GestionarApuestaComponent implements OnInit {
 
   public ActualizarApuestaVof(IdLogro, actualizarvof: boolean) {
     if (actualizarvof) {
-      this.api08.ActualiarApuestaVof(IdLogro, actualizarvof);
+      this.api08.ActualizarApuestaVof(IdLogro, actualizarvof);
     } else {
       bootbox.alert('Debes seleccionar una opción Valida');
     }
@@ -225,7 +241,7 @@ export class GestionarApuestaComponent implements OnInit {
 
   public ActualizarApuestaCantidad(IdLogro, actualizarCantidad: number) {
     if (actualizarCantidad) {
-      this.api08.ActualiarApuestaCantidad(IdLogro, actualizarCantidad);
+      this.api08.ActualizarApuestaCantidad(IdLogro, actualizarCantidad);
     } else {
       bootbox.alert('Debes Ingresar una Cantidad Valida');
     }
@@ -233,7 +249,7 @@ export class GestionarApuestaComponent implements OnInit {
 
   public ActualizarApuestaJugador(IdJugador: number) {
     if (IdJugador) {
-      this.api08.ActualiarApuestaJugador(this.idLogroJugador, IdJugador);
+      this.api08.ActualizarApuestaJugador(this.idLogroJugador, IdJugador);
       this.closeModalJuagdores();
     } else {
       bootbox.alert('Debes escoger un jugador Valido');
@@ -242,7 +258,7 @@ export class GestionarApuestaComponent implements OnInit {
 
   public ActualizarApuestaEquipo(IdLogro, IdEquipo: number) {
     if (IdEquipo) {
-      this.api08.ActualiarApuestaEquipo(IdLogro, IdEquipo);
+      this.api08.ActualizarApuestaEquipo(IdLogro, IdEquipo);
     } else {
       bootbox.alert('Debes escoger un equipo Valido');
     }
