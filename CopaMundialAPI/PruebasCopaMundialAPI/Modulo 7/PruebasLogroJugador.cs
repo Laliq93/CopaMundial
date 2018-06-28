@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
 using CopaMundialAPI.Comun.Excepciones;
@@ -17,16 +13,15 @@ using CopaMundialAPI.Servicios.Traductores.Fabrica;
 using CopaMundialAPI.Presentacion.Controllers;
 using NUnit.Framework;
 using System.Net.Http;
-using System.Web.Http;
 using System.Net;
-
+using System.Web.Http;
 
 namespace PruebasCopaMundialAPI.Modulo_7
 {
     [TestFixture]
-    public class PruebasLogroCantidad
+    public class PruebasLogroJugador
     {
-        
+  
         private DAO dao;
         private Comando comando;
         private Entidad respuesta;
@@ -36,8 +31,8 @@ namespace PruebasCopaMundialAPI.Modulo_7
         [SetUp]
         public void SetUp()
         {
-            dao = FabricaDAO.CrearDAOLogroCantidad();
-            dao.StoredProcedure("AsignarLogroPU(500,'PruebaLogroCantidad',1,1)");
+            dao = FabricaDAO.CrearDAOLogroJugador();
+            dao.StoredProcedure("AsignarLogroPU(500,'PruebaLogroJugador',1,1)");
             dao.EjecutarQuery();
             dao.Conectar();
             controller = new LogrosController();
@@ -52,22 +47,22 @@ namespace PruebasCopaMundialAPI.Modulo_7
         /// del dao de Agregar logrocantidad
         /// </summary>
         [Test]
-        public void PruebaDaoLogroCantidadAgregar()
+        public void PruebaDaoLogroJugadorAgregar()
         {
-            
-            LogroCantidad logro = FabricaEntidades.CrearLogroCantidad();
-            Partido partido = FabricaEntidades.CrearPartido(); 
+
+            LogroJugador logro = FabricaEntidades.CrearLogroJugador();
+            Partido partido = FabricaEntidades.CrearPartido();
             logro.Partido = partido;
             logro.Partido.Id = 14; //cambiar por 1
-            logro.IdTipo = TipoLogro.cantidad;
-            logro.Logro = "Logro Prueba Agregar";
-            
+            logro.IdTipo = TipoLogro.jugador;
+            logro.Logro = "Logro Jugador Prueba Agregar";
 
-            ((DAOLogroCantidad)dao).Agregar(logro);
-            respuesta = FabricaEntidades.CrearLogroCantidad();
 
-            respuesta = ((DAOLogroCantidad)dao).ObtenerLogroPorId(logro);
-    
+            ((DAOLogroJugador)dao).Agregar(logro);
+            respuesta = FabricaEntidades.CrearLogroJugador();
+
+            respuesta = ((DAOLogroJugador)dao).ObtenerLogroPorId(logro);
+
             Assert.IsNotNull(respuesta);
         }
 
@@ -76,18 +71,18 @@ namespace PruebasCopaMundialAPI.Modulo_7
         /// comando logroCantidadAgregar
         /// </summary>
         [Test]
-        public void PruebaComandoLogroCantidadAgregar()
+        public void PruebaComandoLogroJugadorAgregar()
         {
 
-            LogroCantidad logro = FabricaEntidades.CrearLogroCantidad();
+            LogroJugador logro = FabricaEntidades.CrearLogroJugador();
             Partido partido = FabricaEntidades.CrearPartido();
 
             logro.Partido = partido;
             logro.Partido.Id = 14; //cambiar a 1
-            logro.IdTipo = TipoLogro.cantidad;
-            logro.Logro = "Logro cantidad Prueba Comando agregar";
+            logro.IdTipo = TipoLogro.jugador;
+            logro.Logro = "Logro jugador Prueba Comando agregar";
 
-            comando = FabricaComando.CrearComandoAgregarLogroCantidad(logro);
+            comando = FabricaComando.CrearComandoAgregarLogroJugador(logro);
             comando.Ejecutar();
             respuesta = comando.GetEntidad();
             Assert.IsNotNull(respuesta);
@@ -96,43 +91,43 @@ namespace PruebasCopaMundialAPI.Modulo_7
 
         /// <summary>
         /// Metodo que prueba la traduccion de una entidad 
-        /// a un dtoLogroCantidad
+        /// a un dtoLogroJugador
         /// </summary>
         [Test]
-        public void PruebaTraductorLogroCantidadDto()
+        public void PruebaTraductorLogroJugadorDto()
         {
-            TraductorLogroCantidad traductor = FabricaTraductor.CrearTraductorLogroCantidad();
-            LogroCantidad logro = FabricaEntidades.CrearLogroCantidad();
-            DTOLogroCantidad dtoLogro = FabricaDTO.CrearDTOLogroCantidad();
+            TraductorLogroJugador traductor = FabricaTraductor.CrearTraductorLogroJugador();
+            LogroJugador logro = FabricaEntidades.CrearLogroJugador();
+            DTOLogroJugador dtoLogro = FabricaDTO.CrearDTOLogroJugador();
 
             Partido partido = FabricaEntidades.CrearPartido();
             logro.Partido = partido;
             logro.Partido.Id = 1;
-            logro.IdTipo = TipoLogro.cantidad;
+            logro.IdTipo = TipoLogro.jugador;
             logro.Logro = "Logro Prueba Traductor";
 
             dtoLogro = traductor.CrearDto(logro);
-
+            
             Assert.AreEqual(1, dtoLogro.IdPartido);
 
         }
 
         /// <summary>
-        /// Metodo que prueba la traduccion de un dtoLogroCantidad
-        /// a una entidad logroCantidad
+        /// Metodo que prueba la traduccion de un dtoLogroJugador
+        /// a una entidad logroJugador
         /// </summary>
         [Test]
-        public void PruebaTraductorLogroCantidadEntidad()
+        public void PruebaTraductorLogroJugadorEntidad()//NO ESTA IMPLEMENTADO EL TRADUCTOR TODAVIA
         {
-            TraductorLogroCantidad traductor = FabricaTraductor.CrearTraductorLogroCantidad();
-            LogroCantidad logro = FabricaEntidades.CrearLogroCantidad();
-            DTOLogroCantidad dtoLogro = FabricaDTO.CrearDTOLogroCantidad();
+            TraductorLogroJugador traductor = FabricaTraductor.CrearTraductorLogroJugador();
+            LogroJugador logro = FabricaEntidades.CrearLogroJugador();
+            DTOLogroJugador dtoLogro = FabricaDTO.CrearDTOLogroJugador();
 
             dtoLogro.IdPartido = 1;
-            dtoLogro.LogroCantidad = "Prueba de dto a entidad";
-            dtoLogro.TipoLogro = (int)TipoLogro.cantidad;
+            dtoLogro.LogroJugador = "Prueba de dto a entidad logro jugador";
+            dtoLogro.TipoLogro = (int)TipoLogro.jugador;
 
-            logro = (LogroCantidad)traductor.CrearEntidad(dtoLogro);
+            logro = (LogroJugador)traductor.CrearEntidad(dtoLogro);
 
             Assert.AreEqual(1, logro.Partido.Id);
 
@@ -140,19 +135,19 @@ namespace PruebasCopaMundialAPI.Modulo_7
 
         /// <summary>
         /// Metodo que prueba la respuesta exitosa de
-        ///del metodo agregarLogrocantidad del 
+        ///del metodo agregarLogrojugador del 
         ///LogroCotroller
         /// </summary>
         [Test]
-        public void PruebaControllerAgregarLogroCantidad()
+        public void PruebaControllerAgregarLogroJugador()
         {
-            DTOLogroCantidad dtoLogro = FabricaDTO.CrearDTOLogroCantidad();
+            DTOLogroJugador dtoLogro = FabricaDTO.CrearDTOLogroJugador();
             dtoLogro.IdPartido = 14; //cambiar a 1
-            dtoLogro.LogroCantidad = "Prueba controller Agregar logro cantidad";
-            dtoLogro.TipoLogro = (int)TipoLogro.cantidad;
+            dtoLogro.LogroJugador = "Prueba controller Agregar logro jugador";
+            dtoLogro.TipoLogro = (int)TipoLogro.jugador;
 
-            Assert.AreEqual(HttpStatusCode.OK, controller.AgregarLogroCantidad(dtoLogro).StatusCode);
-
+            Assert.AreEqual(HttpStatusCode.OK, controller.AgregarLogroJugador(dtoLogro).StatusCode);
+            
         }
 
         /// <summary>
@@ -160,13 +155,13 @@ namespace PruebasCopaMundialAPI.Modulo_7
         /// del dao ObtenerLogrosPendientes
         /// </summary>
         [Test]
-        public void PruebaDaoObtenerLogrosCantidadPendientes()
+        public void PruebaDaoObtenerLogrosJugadorPendientes()
         {
 
             Partido partido = FabricaEntidades.CrearPartido();
             partido.Id = 14; //cambiar por 1
- 
-            _respuestas = ((DAOLogroCantidad)dao).ObtenerLogrosPendientes(partido);
+
+            _respuestas = ((DAOLogroJugador)dao).ObtenerLogrosPendientes(partido);
             Assert.IsNotNull(_respuestas);
         }
 
@@ -177,27 +172,27 @@ namespace PruebasCopaMundialAPI.Modulo_7
         /// en el Dao
         /// </summary>
         [Test]
-        public void PruebaDaoObtenerLogrosCantidadPendientesException()
+        public void PruebaDaoObtenerLogrosJugadorPendientesException()
         {
 
             Partido partido = FabricaEntidades.CrearPartido();
             partido.Id = 15; //cambiar numero
 
-            Assert.Throws<LogrosPendientesNoExisteException>(() => ((DAOLogroCantidad)dao).ObtenerLogrosPendientes(partido));
+            Assert.Throws<LogrosPendientesNoExisteException>(() => ((DAOLogroJugador)dao).ObtenerLogrosPendientes(partido));
         }
 
         /// <summary>
         /// Metodo que prueba el resultado de exito del 
-        /// comando ObtenerLogrosCantidadPendientes
+        /// comando ObtenerLogrosJugadorPendientes
         /// </summary>
         [Test]
-        public void PruebaComandoObtenerLogrosCantidadPendientes()
+        public void PruebaComandoObtenerLogrosJugadorPendientes()
         {
             Partido partido = FabricaEntidades.CrearPartido();
 
             partido.Id = 14; //cambiar a 1
 
-            comando = FabricaComando.CrearComandoObtenerLogrosCantidadPendientes(partido);
+            comando = FabricaComando.CrearComandoObtenerLogrosJugadorPendientes(partido);
             comando.Ejecutar();
             _respuestas = comando.GetEntidades();
             Assert.AreNotEqual(0, _respuestas.Count);
@@ -210,26 +205,26 @@ namespace PruebasCopaMundialAPI.Modulo_7
         /// comando
         /// </summary>
         [Test]
-        public void PruebaCmdObtenerLogrosCantidadPendientesException()
+        public void PruebaCmdObtenerLogrosJugadorPendientesException()
         {
 
             Partido partido = FabricaEntidades.CrearPartido();
             partido.Id = 15; //cambiar numero
 
-            comando = FabricaComando.CrearComandoObtenerLogrosCantidadPendientes(partido);
+            comando = FabricaComando.CrearComandoObtenerLogrosJugadorPendientes(partido);
             Assert.Throws<LogrosPendientesNoExisteException>(() => comando.Ejecutar());
         }
 
-        
+
 
         [Test]
-        public void PruebaControllerObtenerLogrosCantidadPendiente()
+        public void PruebaControllerObtenerLogrosJugadorPendiente()
         {
             DTOLogroPartidoId dtoLogroPartidoId = FabricaDTO.CrearDTOLogroPartidoId();
             dtoLogroPartidoId.IdPartido = 14;//Cambiar
 
-            Assert.AreEqual(HttpStatusCode.OK, controller.ObtenerLogrosCantidadPendientes(dtoLogroPartidoId).StatusCode);
-            
+            Assert.AreEqual(HttpStatusCode.OK, controller.ObtenerLogrosJugadorPendientes(dtoLogroPartidoId).StatusCode);
+
         }
 
         [TearDown]
@@ -237,11 +232,10 @@ namespace PruebasCopaMundialAPI.Modulo_7
         {
             dao.Desconectar();
             dao = null;
-            comando = null; 
+            comando = null;
             respuesta = null;
             _respuestas = null;
-            
-        }
 
+        }
     }
 }
