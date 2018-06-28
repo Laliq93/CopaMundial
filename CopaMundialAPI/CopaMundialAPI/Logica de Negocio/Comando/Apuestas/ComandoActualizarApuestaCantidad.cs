@@ -9,20 +9,20 @@ using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 {
-    public class ComandoEliminarApuestaVOF : Comando
+    public class ComandoActualizarApuestaCantidad: Comando
     {
         private Entidad _apuesta;
 
-        public ComandoEliminarApuestaVOF(Entidad apuesta)
+        public ComandoActualizarApuestaCantidad(Entidad apuesta)
         {
             _apuesta = apuesta;
         }
 
         public override void Ejecutar()
         {
-            DAOApuestaVoF dao = FabricaDAO.CrearDAOApuestaVoF();
+            DAOApuestaCantidad dao = FabricaDAO.CrearDAOApuestaCantidad();
 
-            dao.Eliminar(_apuesta);
+            dao.Actualizar(_apuesta);
         }
 
         public override Entidad GetEntidad()
