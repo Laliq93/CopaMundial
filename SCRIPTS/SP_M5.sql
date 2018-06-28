@@ -126,3 +126,35 @@ BEGIN
     WHERE ju_id = _id;
 END;
 $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION consultarJugadoresActivo()
+RETURNS TABLE
+  (id integer, nombre varchar, apellido varchar, fechaNacimiento date, 
+    lugarNacimiento varchar, peso decimal, altura decimal, posicion varchar, numero decimal,
+    equipo varchar, capitan boolean)
+AS
+$$
+BEGIN
+    RETURN QUERY SELECT
+    ju_id, ju_nombre, ju_apellido, ju_fechaNacimiento, ju_lugarNacimiento, ju_peso, ju_altura,
+    ju_posicion, ju_numero, ju_equipo, ju_capitan
+    FROM jugador
+    WHERE ju_activo = true;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION consultarJugadoresInactivo()
+RETURNS TABLE
+  (id integer, nombre varchar, apellido varchar, fechaNacimiento date, 
+    lugarNacimiento varchar, peso decimal, altura decimal, posicion varchar, numero decimal,
+    equipo varchar, capitan boolean)
+AS
+$$
+BEGIN
+    RETURN QUERY SELECT
+    ju_id, ju_nombre, ju_apellido, ju_fechaNacimiento, ju_lugarNacimiento, ju_peso, ju_altura,
+    ju_posicion, ju_numero, ju_equipo, ju_capitan
+    FROM jugador
+    WHERE ju_activo = false;
+END;
+$$ LANGUAGE plpgsql;
