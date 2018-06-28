@@ -50,6 +50,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         {
             Jugador jugador = entidad as Jugador;
 
+            Conectar();
+
             StoredProcedure("editarJugador(@_id,@_nombre,@_apellido,@_fechaNacimiento,@_lugarNacimiento,@_peso,@_altura,@_posicion,@_numero,@_capitan)");
 
             AgregarParametro("_id", jugador.Id);
@@ -109,9 +111,9 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             return jugadores;
         }
 
-        public List<Entidad> ObtenerJugadorId(Entidad entidad)
+        public Entidad ObtenerJugadorId(Entidad entidad)
         {
-            List<Entidad> jugadores = new List<Entidad>();
+
             Jugador jugador = entidad as Jugador;
 
             Conectar();
@@ -127,11 +129,19 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 jugador = FabricaEntidades.CrearJugador();
 
                 jugador.Id = GetInt(i, 0);
-                
-                jugadores.Add(jugador);
+                jugador.Nombre = GetString(i, 1);
+                jugador.Apellido = GetString(i, 2);
+                jugador.FechaNacimiento = GetString(i, 3);
+                jugador.LugarNacimiento = GetString(i, 4);
+                jugador.Peso = GetDecimal(i, 5);
+                jugador.Altura = GetDecimal(i, 6);
+                jugador.Posicion = GetString(i, 7);
+                jugador.Numero = GetDecimal(i, 8);
+                jugador.Equipo.Pais = GetString(i, 9);
+                jugador.Capitan = GetBool(i, 10);
             }
 
-            return jugadores;
+            return jugador;
         }
 
         public void Agregar(Entidad entidad)

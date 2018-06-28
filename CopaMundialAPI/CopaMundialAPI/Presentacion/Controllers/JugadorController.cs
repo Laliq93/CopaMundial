@@ -73,8 +73,8 @@ namespace CopaMundialAPI.Presentacion.Controllers
         }
 
         [Route("modificarJugador")]
-        [System.Web.Http.AcceptVerbs("POST")]
-        [System.Web.Http.HttpPost]
+        [System.Web.Http.AcceptVerbs("PUT")]
+        [System.Web.Http.HttpPut]
         public HttpResponseMessage ModificarJugador(DTOModificarJugador dto)
         {
             try
