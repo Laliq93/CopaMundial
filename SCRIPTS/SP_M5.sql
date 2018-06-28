@@ -30,10 +30,10 @@ CREATE OR REPLACE FUNCTION editarJugador(
     _apellido varchar,
     _fechaNacimiento date,
     _lugarNacimiento varchar,  
-    _peso decimal(5,2),
-    _altura decimal(5,2), 
+    _peso decimal,
+    _altura decimal, 
     _posicion varchar, 
-    _numero decimal(2),
+    _numero decimal,
     _capitan boolean)
 
 RETURNS void
@@ -124,5 +124,37 @@ AS $$
 BEGIN
     UPDATE jugador SET ju_activo = true
     WHERE ju_id = _id;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION consultarJugadoresActivo()
+RETURNS TABLE
+  (id integer, nombre varchar, apellido varchar, fechaNacimiento date, 
+    lugarNacimiento varchar, peso decimal, altura decimal, posicion varchar, numero decimal,
+    equipo varchar, capitan boolean)
+AS
+$$
+BEGIN
+    RETURN QUERY SELECT
+    ju_id, ju_nombre, ju_apellido, ju_fechaNacimiento, ju_lugarNacimiento, ju_peso, ju_altura,
+    ju_posicion, ju_numero, ju_equipo, ju_capitan
+    FROM jugador
+    WHERE ju_activo = true;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION consultarJugadoresInactivo()
+RETURNS TABLE
+  (id integer, nombre varchar, apellido varchar, fechaNacimiento date, 
+    lugarNacimiento varchar, peso decimal, altura decimal, posicion varchar, numero decimal,
+    equipo varchar, capitan boolean)
+AS
+$$
+BEGIN
+    RETURN QUERY SELECT
+    ju_id, ju_nombre, ju_apellido, ju_fechaNacimiento, ju_lugarNacimiento, ju_peso, ju_altura,
+    ju_posicion, ju_numero, ju_equipo, ju_capitan
+    FROM jugador
+    WHERE ju_activo = false;
 END;
 $$ LANGUAGE plpgsql;

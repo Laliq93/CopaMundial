@@ -73,13 +73,13 @@ namespace CopaMundialAPI.Presentacion.Controllers
         }
 
         [Route("modificarJugador")]
-        [System.Web.Http.AcceptVerbs("PUT")]
-        [System.Web.Http.HttpPut]
-        public HttpResponseMessage ModificarJugador(DTOJugador dto)
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
+        public HttpResponseMessage ModificarJugador(DTOModificarJugador dto)
         {
             try
             {
-                TraductorJugador traductor = FabricaTraductor.CrearTraductorJugador();
+                TraductorModificarJugador traductor = FabricaTraductor.CrearTraductorModificarJugador();
 
                 Entidad jugador = traductor.CrearEntidad(dto);
 
@@ -98,6 +98,61 @@ namespace CopaMundialAPI.Presentacion.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
             }
         }
+
+        [Route("activarJugador")]
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
+        public HttpResponseMessage ActivarJugador(DTOJugadorId dto)
+        {
+            try
+            {
+                TraductorJugadorId traductor = FabricaTraductor.CrearTraductorJugadorId();
+
+                Entidad jugador = traductor.CrearEntidad(dto);
+
+                Comando comando;
+
+                comando = FabricaComando.CrearComandoActivarJugador(jugador);
+
+                comando.Ejecutar();
+
+                return new HttpResponseMessage(HttpStatusCode.OK);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+        [Route("desactivarJugador")]
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
+        public HttpResponseMessage DesactivarJugador(DTOJugadorId dto)
+        {
+            try
+            {
+                TraductorJugadorId traductor = FabricaTraductor.CrearTraductorJugadorId();
+
+                Entidad jugador = traductor.CrearEntidad(dto);
+
+                Comando comando;
+
+                comando = FabricaComando.CrearComandoDesactivarJugador(jugador);
+
+                comando.Ejecutar();
+
+                return new HttpResponseMessage(HttpStatusCode.OK);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
 
     }
 }

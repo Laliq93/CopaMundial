@@ -1,53 +1,162 @@
 <div class="container app">
     <div class="row">
-        <div class="col">
-          <h2>{{title}}</h2>
-        </div>
-        <div class="col rightAlign">
-          <button *ngIf="esAdmin" type="button" class="btn btn-sm separator" routerLink="/jugadores/detalle">Agregar</button>
-          <button *ngIf="jugadorActual" type="button" class="btn btn-sm separator" routerLink="/jugadores/detalle/{{jugadorActual.Id}}">Editar</button>
-          <button *ngIf="jugadorActual" type="button" class="btn btn-sm separator" (click)="fun()">Ver</button>
-        </div>
+      <div class="col">
+        <h2>{{title}}</h2>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-sm-9">
+    <div class="row">
 
-        </div>
-        <div class="col-sm-3">
-          <div class="row">
-            <div class="floating-label floating-label-sm textfield-box separator">
-              <label for="searchFloatingBox">Buscar</label>
-              <input aria-describedby="searchFloatingBox" class="form-control" id="searchFloatingBox" placeholder="" [(ngModel)]="searchTerm" type="search">
-            </div>
-            <div class="separator">
-              <button type="button" class="btn btn-sm" (click)="search()">Buscar</button>
-            </div>
+      <div class="col-lg-12 col-xlg-12 col-md-12">
+          <div class="card">
+    
+            <ul class="nav nav-tabs profile-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#agregar" role="tab">Agregar Jugador</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#jugadores" role="tab">Todos los jugadores</a>
+                </li>
+            </ul>
+    
+              <div class="tab-content">
+    
+                <div class="tab-pane active" id="agregar" role="tabpanel">
+                  <div class="card-body">
+  
+                      <form class="form-horizontal form-material">
 
+            
+                          <div class="form-group">
+                            <label class="col-md-12">Nombre</label>
+                            <div class="col-md-12">
+                              <input type="text" class="form-control form-control-line" name="nombre" id="nombre">
+                            </div>
+                          </div>
+            
+                          <div class="form-group">
+                            <label class="col-md-12">Apellido</label>
+                            <div class="col-md-12">
+                              <input type="text" class="form-control form-control-line" name="apellido" id="apellido">          
+                            </div>
+                          </div>
+  
+                          <div class="form-group">
+                            <div class="col-md-12">
+                              <label for="exampleInputDate">Fecha de nacimiento</label>
+                              <input type="date" name="fechaNacimiento" class="form-control" id="exampleInputDate">
+                            </div>
+                          </div>
+  
+                          <div class="form-group">
+                            <label class="col-md-12">Lugar de Nacimiento</label>
+                            <div class="col-md-12">
+                              <input type="text" class="form-control form-control-line" name="lugarNacimiento" id="lugarNacimiento">          
+                            </div>
+                          </div>
+  
+                          <div class="form-group">
+                            <label class="col-md-12">Peso</label>
+                            <div class="col-md-12">
+                              <input type="text" class="form-control form-control-line" name="peso" id="peso">          
+                            </div>
+                          </div>
+  
+                          <div class="form-group">
+                            <label class="col-md-12">Altura</label>
+                            <div class="col-md-12">
+                              <input type="text" class="form-control form-control-line" name="altura" id="altura">          
+                            </div>
+                          </div>
+            
+                          <div class="form-group">
+                            <label class="col-md-12">Posición</label>
+                            <div class="col-md-12">
+                              <select class="form-control">
+                                <option value="PORTERO" selected="true">PORTERO</option>
+                                <option value="LATERAL DERECHO">LATERAL DERECHO</option>
+                                <option value="LATERAL IZQUIERDO" selected="true">LATERAL IZQUIERDO</option>
+                                <option value="CENTRAL">CENTRAL</option>
+                                <option value="DEFENSA">DEFENSA</option>
+                                <option value="DELANTERO">DELANTERO</option>
+                                <option value="CENTROCAMPISTA">CENTROCAMPISTA</option>
+                              </select>
+                            </div>
+                          </div>
+  
+                          <div class="form-group">
+                            <label class="col-md-12">Número</label>
+                            <div class="col-md-12">
+                              <input type="text" class="form-control form-control-line" name="numero" id="numero">          
+                            </div>
+                          </div>
+  
+                          <div class="form-group">
+                            <label class="col-md-12">Equipo</label>
+                            <div class="col-md-12">
+                              <input type="text" class="form-control form-control-line" name="equipo" id="equipo">          
+                            </div>
+                          </div>
+            
+                          <div class="form-group">
+                            <div class="col-sm-12">
+                              <button class="btn btn-agregar">Agregar</button>
+                            </div>
+                          </div>
+            
+                        </form>
+                      
+                  </div>
+                </div>
+    
+                <div class="tab-pane active" id="jugadores" role="tabpanel">
+                  <div class="card-body">
+  
+                      <div class="d-none d-sm-block">
+                          <table datatable class="row-border hover">
+                              <thead>
+                                  <tr>
+                                      <th>ID</th>
+                                      <th>Nombre</th>
+                                      <th>Apellido</th>
+                                      <th>Fecha de nacimiento</th>
+                                      <th>Lugar de nacimiento</th>
+                                      <th>Peso</th>
+                                      <th>Altura</th>
+                                      <th>Posicion</th>
+                                      <th>Número</th>
+                                      <th>Equipo</th>
+                                      <th>Capitan</th>
+                                      <th>Opcion</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>1</td>
+                                      <td>Diego</td>
+                                      <td>Costa</td>
+                                      <td>1-12-1992</td>
+                                      <td>Brasil</td>
+                                      <td>80</td>
+                                      <td>1.80</td>
+                                      <td>DELANTERO</td>
+                                      <td>15</td>
+                                      <td>Espana</td>
+                                      <td>No</td>
+                                      <td>
+                                          <button type="button" class="btn btn-act btn-success">Act/des</button>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                      
+                  </div>
+                </div>
+    
+              </div>
           </div>
-        </div>
       </div>
-      <div class="row">
-        <table class="table table-hover separator">
-          <thead class="thead-light">
-            <tr>
-              <th scope="col">Nombre</th>
-              <th scope="col">Apellido</th>
-              <th scope="col">Numero</th>
-              <th scope="col">Posicion</th>
-              <th scope="col">Equipo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let jugador of jugadores" [class.table-dark]="jugador === jugadorActual" (click)="selectedJugador(jugador)">
-              <td>{{jugador.Nombre}}</td>
-              <td>{{jugador.Apellido}}</td>
-              <td>{{jugador.Numero}}</td>
-              <td>{{jugador.Posicion}}</td>
-              <td>{{jugador.Equipo}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    </div>
 
 </div>

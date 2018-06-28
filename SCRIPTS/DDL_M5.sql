@@ -8,7 +8,7 @@ CREATE TABLE JUGADOR
     ju_peso decimal(5,2) NOT NULL,
     ju_altura decimal(5,2) NOT NULL,
     ju_posicion varchar(20) CHECK (ju_posicion ='PORTERO' OR ju_posicion='LATERAL DERECHO' OR ju_posicion='LATERAL IZQUIERDO' OR ju_posicion='CENTRAL' OR ju_posicion='DEFENSA' OR ju_posicion='DELANTERO' OR ju_posicion='CENTROCAMPISTA'),
-    ju_numero integer,
+    ju_numero decimal,
     ju_equipo varchar(20) NOT NULL,
     ju_capitan boolean default false not null,
     ju_activo boolean default true not null,
