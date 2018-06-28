@@ -6,7 +6,7 @@
     -->
 <div class="central">
   
-  <form class="card" name="formagregar">
+  <form class="card" name="formagregar" novalidate>
   
     <h1 i18n="Encabezado Agregar Ciudad en el formulario @@m2H1AgregarCiudad" style="color: black; font-size: 30px; text-align: center;">Agregar Ciudad </h1>
   
@@ -16,11 +16,14 @@
       <input type="text" 
             class="form-control" 
             id="InputNombreES" 
-            placeholder="Ciudad" 
             name="nombreES" 
             #nombre="ngModel" 
-            [(ngModel)]="formulario.nombreES" required>
-            <span ng-show="!formagregar.$dirty && formagregar.nombreES.$error.required">El nombre en español es requerido</span>
+            [(ngModel)]="formulario.nombreES" required/>
+            <span class="messages" ng-show="formagregar.$submitted && formagregar.nombreES.$touched">
+              <span ng-show="formagregar.nombreES.$error.required">El campo es obligatorio.</span>
+            </span>
+           
+            
       
     </div>
 
@@ -33,8 +36,7 @@
               placeholder="Ciudad" 
               name="nombreEN" 
               #nombre="ngModel" 
-              [(ngModel)]="formulario.nombreEN" required>
-              <span ng-show="!formagregar.$dirty && formagregar.nombreEN.$error.required">El nombre en ingles es requerido</span>
+              [(ngModel)]="formulario.nombreEN" required/>
         
       </div>
   
@@ -48,7 +50,7 @@
             placeholder="Habitantes" 
             name="habitantes" 
             #habitantes="ngModel" 
-            [(ngModel)]="formulario.habitantes" required>
+            [(ngModel)]="formulario.habitantes" required/>
       
     </div>
   
@@ -71,7 +73,7 @@
   
       <button i18n="Boton de agregar en el formulario @@m2BotonAgregar" (click)="subirciudad();" type="submit" class="btn btn-primary btn-signin">Agregar Ciudad</button>
   
-      <button i18n="Boton de cancelar en el formulario @@m2BotonCancelarAgregacion" (click)="regresar()" type="submit" class="btn btn-primary btn-signin">Cancelar</button>
+      <button i18n="Boton de cancelar en el formulario @@m2BotonCancelarAgregacion" (click)="regresar()" type="button" class="btn btn-primary btn-signin">Cancelar</button>
   
     </form>
 

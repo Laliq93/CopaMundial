@@ -38,7 +38,7 @@ export class AgregarCiudadComponent implements OnInit {
     this.resetForm();
   }
 
-  subirciudad(){
+ /* subirciudad(){
     let ciudad = new Ciudad();
     
     ciudad.Nombre = this.formulario.nombreES
@@ -58,7 +58,32 @@ export class AgregarCiudadComponent implements OnInit {
       
     )
     
+  }*/
+
+  subirciudad(){
+    let ciudad = new Ciudad();
+    
+    ciudad.Nombre = this.formulario.nombreES
+    ciudad.Descripcion = this.formulario.descripcion;
+    ciudad.Habitantes = this.formulario.habitantes
+    ciudad.DescripcionIngles = this.formulario.descripcionEN
+    ciudad.NombreIngles = this.formulario.nombreEN
+    
+    this.ciudadservice.agregarciudad(ciudad).subscribe(
+      result => {
+      
+        console.log(result);
+       
+      },
+      error =>{
+         console.log(<any>error)
+      }
+      
+    )
+    
   }
+
+
 
   regresar() {
     this._location.back(); // <-- regresar a la pagina previa al presionar cancelar
@@ -106,7 +131,7 @@ export class AgregarCiudadComponent implements OnInit {
    )
  }*/
 
-  resetForm(Form? : NgForm){
+ resetForm(Form? : NgForm){
     if(Form != null)
       Form.reset();
       this.formulario = {
@@ -117,7 +142,10 @@ export class AgregarCiudadComponent implements OnInit {
         descripcionEN :''
       
       }
-    }
+  }
+
+  
+
 
     handleFileInput(file: File) {
      // this.imagen = file;
