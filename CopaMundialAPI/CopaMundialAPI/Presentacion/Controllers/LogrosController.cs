@@ -21,6 +21,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
     {
         Logger logger = LogManager.GetLogger("fileLogger");
 
+        
         [Route("agregarLogroCantidad")]
         [System.Web.Http.AcceptVerbs("POST")]
         [System.Web.Http.HttpPost]
