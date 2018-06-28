@@ -111,5 +111,15 @@ namespace CopaMundialAPI.Fuente_de_Datos.Fabrica
         {
             return new DAOLogroVF();
         }
+
+        public static DAOAlineacion CrearDAOAlineacion()
+        {
+            return new DAOAlineacion();
+        }
+
+        public static DAOPartido CrearDAOPartido()
+        {
+            return new DAOPartido();
+        }
     }
 }

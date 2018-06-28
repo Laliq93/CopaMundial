@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CopaMundialAPI.Comun.Entidades;
+using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
+using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
 {
     public class ComandoActualizarAlineacion : Comando
     {
+
+        public ComandoActualizarAlineacion(Alineacion entidad)
+        {
+            Entidad = entidad;
+        }
+
         public override void Ejecutar()
         {
-            throw new NotImplementedException();
+            IDAOAlineacion dao = FabricaDAO.CrearDAOAlineacion();
+
+            dao.Actualizar(Entidad);
         }
 
         public override Entidad GetEntidad()

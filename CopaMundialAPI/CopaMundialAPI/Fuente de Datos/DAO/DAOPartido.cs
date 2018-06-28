@@ -95,7 +95,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             return ConstruirEntidad();
         }
 
-        public List<Entidad> ConstruirListaEntidades()
+        private List<Entidad> ConstruirListaEntidades()
         {
             List<Entidad> _partidos = new List<Entidad>();
 
@@ -107,7 +107,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             return _partidos;
         }
 
-        public Entidad ConstruirEntidad(int i = 0)
+        private Entidad ConstruirEntidad(int i = 0)
         {
             Equipo equipo1 = FabricaEntidades.CrearEquipo();
             equipo1.Id = GetInt(i, 4);
