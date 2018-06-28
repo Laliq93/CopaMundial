@@ -12,6 +12,10 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 {
     public class DAOApuestaCantidad : DAO, IDAOApuesta
     {
+        /// <summary>
+        /// Actualiza la información de la apuesta en la base de datos
+        /// </summary>
+        /// <param name="Entidad">Apuesta</param>
         public void Actualizar(Entidad entidad)
         {
             ApuestaCantidad apuesta = entidad as ApuestaCantidad;
@@ -27,6 +31,10 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             EjecutarQuery();
         }
 
+        /// <summary>
+        /// Ingresa la informacion de una apuesta nueva en la base de datos
+        /// </summary>
+        /// <param name="Entidad">Apuesta</param>
         public void Agregar(Entidad entidad)
         {
             ApuestaCantidad apuesta = entidad as ApuestaCantidad;
@@ -42,6 +50,10 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             EjecutarQuery();
         }
 
+        /// <summary>
+        /// Elimina el registro de la apuesta respectivo.
+        /// </summary>
+        /// <param name="Entidad">Apuesta</param>
         public void Eliminar(Entidad entidad)
         {
             ApuestaCantidad apuesta = entidad as ApuestaCantidad;
@@ -56,6 +68,10 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             EjecutarQuery();
         }
 
+        /// <summary>
+        /// Obtener las apuestas de un usuario en curso. (Partido no iniciado).
+        /// </summary>
+        /// <param name="Entidad">Usuario</param>
         public List<Entidad> ObtenerApuestasEnCurso(Entidad usuario)
         {
             List<Entidad> apuestasEnCurso = new List<Entidad>();
@@ -111,6 +127,11 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         }
 
+
+        /// <summary>
+        /// Obtener las apuestas finalizadas de un usuario.
+        /// </summary>
+        /// <param name="Entidad">Usuario</param>
         public List<Entidad> ObtenerApuestasFinalizadas(Entidad usuario)
         {
             List<Entidad> apuestasFinalizadas = new List<Entidad>();
@@ -169,6 +190,10 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Verifica si la apuesta ya se encuentra registrada en la base de datos
+        /// </summary>
+        /// <param name="Entidad">Apuesta</param>
         public int VerificarApuestaExiste(Entidad apuesta)
         {
             ApuestaCantidad apuestacantidad = apuesta as ApuestaCantidad;
@@ -187,6 +212,10 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             return count;
         }
 
+        /// <summary>
+        /// Verifica si la apuesta es valida para ser editada, es decir, si el partido no ha iniciado.
+        /// </summary>
+        /// <param name="Entidad">Apuesta</param>
         public int VerificarApuestaValidaParaEditar(Entidad apuesta)
         {
             ApuestaCantidad apuestacantidad = apuesta as ApuestaCantidad;

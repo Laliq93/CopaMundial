@@ -12,14 +12,14 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
         /// Obtener todas las apuestas en curso de un usuario especifico.
         /// </summary>
         /// <param name="usuario"></param>
-        /// <returns></returns>
+        /// <returns>List<Entidad></returns>
         List<Entidad> ObtenerApuestasEnCurso(Entidad usuario);
 
         /// <summary>
         /// Obtener todas las apuestas finalizadas de un usuairo especifico
         /// </summary>
         /// <param name="usuario"></param>
-        /// <returns></returns>
+        /// <returns>List<Entidad></returns>
         List<Entidad> ObtenerApuestasFinalizadas(Entidad usuario);
 
         /// <summary>
