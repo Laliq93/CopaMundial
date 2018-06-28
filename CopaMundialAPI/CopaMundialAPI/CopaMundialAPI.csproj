@@ -238,6 +238,7 @@
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudad.cs" />
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudad2.cs" />
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudadID.cs" />
+    <Compile Include="Servicios\DTO\Jugadores\DTOModificarJugador.cs" />
     <Compile Include="Servicios\DTO\Jugadores\DTOObtenerJugadores.cs" />
     <Compile Include="Servicios\DTO\Logros\DTOLogroCantidad.cs" />
     <Compile Include="Servicios\DTO\Logros\DTOLogroCantidadResultado.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="Servicios\Traductores\Fabrica\FabricaTraductor.cs" />
     <Compile Include="Servicios\Traductores\Jugadores\TraductorJugador.cs" />
     <Compile Include="Servicios\Traductores\Jugadores\TraductorJugadorId.cs" />
+    <Compile Include="Servicios\Traductores\Jugadores\TraductorModificarJugador.cs" />
     <Compile Include="Servicios\Traductores\Jugadores\TraductorObtenerJugadores.cs" />
     <Compile Include="Servicios\Traductores\Logros\TraductorLogroCantidad.cs" />
     <Compile Include="Servicios\Traductores\Logros\TraductorLogroEquipo.cs" />
