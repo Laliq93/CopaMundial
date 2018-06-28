@@ -42,11 +42,6 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
             return new TraductorListarProximosPartidos();
         }
 
-        public static TraductorRecibirIdPartido CrearTraductorRecibirIdPartido()
-        {
-            return new TraductorRecibirIdPartido();
-        }
-
         /// <summary>
         /// Metodo con el cual se instancia un objeto de tipo TraductorCiudad
         /// </summary>
