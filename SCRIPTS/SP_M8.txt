@@ -192,3 +192,102 @@ END;
 
 $BODY$;
 	
+CREATE OR REPLACE FUNCTION public.editarapuestavof(
+	_idlogro integer,
+	_idusuario integer,
+	_apuesta boolean)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta SET respuestavof = _apuesta WHERE idusuario = _idusuario AND idlogro = _idlogro;
+
+	RETURN 1;
+	
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.editarapuestacantidad(
+	_idlogro integer,
+	_idusuario integer,
+	_apuesta integer)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta SET respuestacantidad = _apuesta WHERE idusuario = _idusuario AND idlogro = _idlogro;
+
+	RETURN 1;
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.editarapuestaequipo(
+	_idlogro integer,
+	_idusuario integer,
+	_apuesta integer)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta SET respuestaequipo = _apuesta WHERE idusuario = _idusuario AND idlogro = _idlogro;
+
+	RETURN 1;
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.editarapuestajugador(
+	_idlogro integer,
+	_idusuario integer,
+	_apuesta integer)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta SET respuestajugador = _apuesta WHERE idusuario = _idusuario AND idlogro = _idlogro;
+
+	RETURN 1;
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.eliminarapuesta(
+	_idusuario integer,
+	_idlogro integer)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+	DELETE FROM apuesta WHERE idusuario = _idusuario AND idlogro = _idlogro;
+
+	RETURN 1;
+END;
+
+$BODY$;

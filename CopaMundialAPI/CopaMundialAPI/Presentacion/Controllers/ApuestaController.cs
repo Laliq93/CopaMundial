@@ -380,11 +380,11 @@ namespace CopaMundialAPI.Presentacion.Controllers
         /// <summary>
         /// Proceso para editar las apuestas de tipo verdadero/falso de un usuario específico.
         /// </summary>
-        /// <param name="DTOUsuarioId">Usuario</param>
-        [Route("actualizarapuestasvof")]
+        /// <param name="DTOApuestaVOF">Apuesta</param>
+        [Route("actualizarapuestavof")]
         [System.Web.Http.AcceptVerbs("GET", "PUT")]
         [System.Web.Http.HttpPut]
-        public HttpResponseMessage ActualizarApuestasVoF(DTOApuestaVOF dto)
+        public HttpResponseMessage ActualizarApuestaVoF(DTOApuestaVOF dto)
         {
             try
             {
@@ -396,6 +396,10 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 comando.Ejecutar();
 
+                comando = FabricaComando.CrearComandoActualizarApuestaVoF(apuesta);
+
+                comando.Ejecutar();
+
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (ObjetoNullException exc)
@@ -403,6 +407,129 @@ namespace CopaMundialAPI.Presentacion.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch(ApuestaInvalidaException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+        /// <summary>
+        /// Proceso para editar las apuestas de tipo cantidad de un usuario específico.
+        /// </summary>
+        /// <param name="DTOApuestaCantidad">Apuesta</param>
+        [Route("actualizarapuestacantidad")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage ActualizarApuestaCantidad(DTOApuestaCantidad dto)
+        {
+            try
+            {
+                TraductorApuestaCantidad traductor = FabricaTraductor.CrearTraductorApuestaCantidad();
+
+                Entidad apuesta = traductor.CrearEntidad(dto);
+
+                Comando comando = FabricaComando.CrearComandoVerificarApuestaCantidadValida(apuesta);
+
+                comando.Ejecutar();
+
+                comando = FabricaComando.CrearComandoActualizarApuestaCantidad(apuesta);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (ApuestaInvalidaException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+        /// <summary>
+        /// Proceso para editar las apuestas de tipo jugador de un usuario específico.
+        /// </summary>
+        /// <param name="DTOApuestaJugador">Apuesta</param>
+        [Route("actualizarapuestajugador")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage ActualizarApuestaJugador(DTOApuestaJugador dto)
+        {
+            try
+            {
+                TraductorApuestaJugador traductor = FabricaTraductor.CrearTraductorApuestaJugador();
+
+                Entidad apuesta = traductor.CrearEntidad(dto);
+
+                Comando comando = FabricaComando.CrearComandoVerificarApuestaJugadorValida(apuesta);
+
+                comando.Ejecutar();
+
+                comando = FabricaComando.CrearComandoActualizarApuestaJugador(apuesta);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (ApuestaInvalidaException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+        /// <summary>
+        /// Proceso para editar las apuestas de tipo equipo de un usuario específico.
+        /// </summary>
+        /// <param name="DTOApuestaEquipo">Apuesta</param>
+        [Route("actualizarapuestaequipo")]
+        [System.Web.Http.AcceptVerbs("GET", "PUT")]
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage ActualizarApuestaEquipo(DTOApuestaEquipo dto)
+        {
+            try
+            {
+                TraductorApuestaEquipo traductor = FabricaTraductor.CrearTraductorApuestaEquipo();
+
+                Entidad apuesta = traductor.CrearEntidad(dto);
+
+                Comando comando = FabricaComando.CrearComandoVerificarApuestaEquipoValida(apuesta);
+
+                comando.Ejecutar();
+
+                comando = FabricaComando.CrearComandoActualizarApuestaEquipo(apuesta);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (ObjetoNullException exc)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (ApuestaInvalidaException exc)
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }

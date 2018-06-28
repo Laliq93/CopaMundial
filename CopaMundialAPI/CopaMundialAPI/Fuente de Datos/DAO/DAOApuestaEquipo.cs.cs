@@ -14,7 +14,17 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
     {
         public void Actualizar(Entidad entidad)
         {
-            throw new NotImplementedException();
+            ApuestaEquipo apuesta = entidad as ApuestaEquipo;
+
+            Conectar();
+
+            StoredProcedure("editarapuestaequipo(@idlogro, @idusuario, @apuesta)");
+
+            AgregarParametro("idlogro", apuesta.Logro.Id);
+            AgregarParametro("idusuario", apuesta.Usuario.Id);
+            AgregarParametro("apuesta", apuesta.Respuesta.Id);
+
+            EjecutarQuery();
         }
 
         public void Agregar(Entidad entidad)

@@ -150,6 +150,9 @@
     <Compile Include="Comun\Excepciones\LogrosPendientesNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\ObjetoNullException.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaEquipo.cs.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoActualizarApuestaEquipo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoActualizarApuestaJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoActualizarApuestaCantidad.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoAgregarApuestaJugador.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoAgregarApuestaCantidad.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoAgregarApuestaEquipo.cs" />
