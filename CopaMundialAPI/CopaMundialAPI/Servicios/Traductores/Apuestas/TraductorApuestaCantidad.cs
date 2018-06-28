@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
+using CopaMundialAPI.Comun.Excepciones;
 using CopaMundialAPI.Servicios.DTO.Apuestas;
 using CopaMundialAPI.Servicios.Fabrica;
 
@@ -28,13 +29,28 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
 
         public override Entidad CrearEntidad(DTOApuestaCantidad dto)
         {
-            ApuestaCantidad entidad = FabricaEntidades.CrearApuestaCantidad();
+            try
+            {
+                ApuestaCantidad apuesta = FabricaEntidades.CrearApuestaCantidad();
 
-            entidad.Logro.Id = dto.IdLogro;
-            entidad.Usuario.Id = dto.IdUsuario;
-            entidad.Respuesta = dto.ApuestaUsuario;
+                Usuario usuario = FabricaEntidades.CrearUsuarioVacio();
 
-            return entidad;
+                LogroCantidad logro = FabricaEntidades.CrearLogroCantidad();
+
+                apuesta.Usuario = usuario;
+                apuesta.Logro = logro;
+
+
+                apuesta.Logro.Id = dto.IdLogro;
+                apuesta.Usuario.Id = dto.IdUsuario;
+                apuesta.Respuesta = dto.ApuestaUsuario;
+
+                return apuesta;
+            }
+            catch (NullReferenceException exc)
+            {
+                throw new ObjetoNullException(exc, "Error al recibir la información de la apuesta");
+            }
         }
 
         public override List<DTOApuestaCantidad> CrearListaDto(List<Entidad> entidades)
