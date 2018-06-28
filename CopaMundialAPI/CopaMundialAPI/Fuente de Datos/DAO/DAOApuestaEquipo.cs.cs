@@ -155,7 +155,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
                 Conectar();
 
-                StoredProcedure("obtenerapuestasequipoencurso(@idusuario)");
+                StoredProcedure("obtenerapuestasequipofinalizadas(@idusuario)");
 
                 AgregarParametro("idusuario", usuario.Id);
 
