@@ -10,14 +10,15 @@ using CopaMundialAPI.Comun.Excepciones;
 
 namespace CopaMundialAPI.Servicios.Traductores.Jugadores
 {
-    public class TraductorJugador : TraductorGenerico<DTOJugador>
+    public class TraductorModificarJugador : TraductorGenerico<DTOModificarJugador>
     {
-        public override DTOJugador CrearDto(Entidad entidad)
+        public override DTOModificarJugador CrearDto(Entidad entidad)
         {
-            DTOJugador dto = FabricaDTO.CrearDTOJugador();
-
             Jugador jugador = entidad as Jugador;
 
+            DTOModificarJugador dto = FabricaDTO.CrearDTOModificarJugador();
+
+            dto.Id = jugador.Id;
             dto.Nombre = jugador.Nombre;
             dto.Apellido = jugador.Apellido;
             dto.FechaNacimiento = jugador.FechaNacimiento;
@@ -26,20 +27,18 @@ namespace CopaMundialAPI.Servicios.Traductores.Jugadores
             dto.Altura = jugador.Altura;
             dto.Posicion = jugador.Posicion;
             dto.Numero = jugador.Numero;
-            dto.Equipo = jugador.Equipo.Pais;
-
-
+            dto.Capitan = jugador.Capitan;
 
             return dto;
         }
 
-        public override Entidad CrearEntidad(DTOJugador dto)
+        public override Entidad CrearEntidad(DTOModificarJugador dto)
         {
-
             try
             {
                 Jugador jugador = FabricaEntidades.CrearJugador();
 
+                jugador.Id = dto.Id;
                 jugador.Nombre = dto.Nombre;
                 jugador.Apellido = dto.Apellido;
                 jugador.FechaNacimiento = dto.FechaNacimiento;
@@ -48,22 +47,22 @@ namespace CopaMundialAPI.Servicios.Traductores.Jugadores
                 jugador.Altura = dto.Altura;
                 jugador.Posicion = dto.Posicion;
                 jugador.Numero = dto.Numero;
-                jugador.Equipo.Pais = dto.Equipo;
+                jugador.Capitan = dto.Capitan;
 
                 return jugador;
             }
             catch (NullReferenceException exc)
             {
                 throw new ObjetoNullException(exc, "Error al recibir la información del jugador");
-            }            
+            }
         }
 
-        public override List<DTOJugador> CrearListaDto(List<Entidad> entidades)
+        public override List<DTOModificarJugador> CrearListaDto(List<Entidad> entidades)
         {
             throw new NotImplementedException();
         }
 
-        public override List<Entidad> CrearListaEntidades(List<DTOJugador> dtos)
+        public override List<Entidad> CrearListaEntidades(List<DTOModificarJugador> dtos)
         {
             throw new NotImplementedException();
         }
