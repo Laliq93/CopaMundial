@@ -10,7 +10,9 @@ export * from './Salida/dtoenviar-id-usuario';
 
 // Shared
 export * from './Shared/conexion';
-export * from './Shared/dtoapuesta-vof';
-export * from './Shared/dtoapuesta-cantidad';
-export * from './Shared/dtoapuesta-equipo';
-export * from './Shared/dtoapuesta-jugador';
+
+// Shared Entrada-Salida
+export * from './Shared/Entrada-Salida/dtoapuesta-vof';
+export * from './Shared/Entrada-Salida/dtoapuesta-cantidad';
+export * from './Shared/Entrada-Salida/dtoapuesta-equipo';
+export * from './Shared/Entrada-Salida/dtoapuesta-jugador';
