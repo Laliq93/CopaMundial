@@ -79,11 +79,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
 
             Conectar();
-
             StoredProcedure("EliminarAlineacion(@_idalineacion)");
-
             AgregarParametro("_idalineacion", alineacion.Id);
-
             EjecutarQuery();
         }
 
@@ -95,6 +92,11 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         private List<Entidad> ConstruirListaEntidades()
         {
             List<Entidad> _partidos = new List<Entidad>();
+
+            if (cantidadRegistros == 0)
+            {
+                throw new AlineacionNoExisteException();
+            }
 
             for (int i = 0; i < cantidadRegistros; i++)
             {

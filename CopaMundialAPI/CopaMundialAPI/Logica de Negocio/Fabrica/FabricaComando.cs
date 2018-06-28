@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CopaMundialAPI.Logica_de_Negocio.Comando.Jugadores;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
 {
@@ -190,6 +191,10 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoVerificarApuestaEquipoValida(apuesta);
         }
 
+        public static ComandoObtenerJugadorId CrearComandoObtenerJugadorId(Entidad jugador)
+        {
+            return new ComandoObtenerJugadorId(jugador);
+        }
 
     }
 }

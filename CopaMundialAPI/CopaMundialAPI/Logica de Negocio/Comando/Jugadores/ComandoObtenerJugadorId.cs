@@ -25,7 +25,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Jugadores
 
         public override Entidad GetEntidad()
         {
-            return Entidad;
+            return _jugador;
         }
 
         public override List<Entidad> GetEntidades()

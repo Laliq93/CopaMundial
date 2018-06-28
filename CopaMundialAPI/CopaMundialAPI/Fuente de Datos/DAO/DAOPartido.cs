@@ -97,6 +97,11 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         private List<Entidad> ConstruirListaEntidades()
         {
+            if (cantidadRegistros == 0)
+            {
+                throw new PartidoNoExisteException();
+            }
+
             List<Entidad> _partidos = new List<Entidad>();
 
             for (int i = 0; i < cantidadRegistros; i++)
