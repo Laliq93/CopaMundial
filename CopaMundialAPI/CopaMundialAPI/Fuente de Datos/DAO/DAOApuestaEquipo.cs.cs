@@ -48,10 +48,10 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             Conectar();
 
-            StoredProcedure("eliminarapuesta(@idlogro, @idusuario)");
+            StoredProcedure("eliminarapuesta(@idusuario, @idlogro)");
 
-            AgregarParametro("idlogro", apuesta.Logro.Id);
             AgregarParametro("idusuario", apuesta.Usuario.Id);
+            AgregarParametro("idlogro", apuesta.Logro.Id);
 
             EjecutarQuery();
         }
@@ -119,7 +119,63 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         public List<Entidad> ObtenerApuestasFinalizadas(Entidad usuario)
         {
-            throw new NotImplementedException();
+            List<Entidad> apuestasFinalizadas = new List<Entidad>();
+
+            ApuestaEquipo apuesta;
+
+            LogroEquipo logro;
+
+            Equipos listaequipos = new Equipos();
+
+            Equipo equipo;
+
+            try
+            {
+                Usuario apostador = usuario as Usuario;
+
+                Conectar();
+
+                StoredProcedure("obtenerapuestasequipoencurso(@idusuario)");
+
+                AgregarParametro("idusuario", usuario.Id);
+
+                EjecutarReader();
+
+                for (int i = 0; i < cantidadRegistros; i++)
+                {
+                    apuesta = FabricaEntidades.CrearApuestaEquipo();
+
+                    logro = FabricaEntidades.CrearLogroEquipo();
+
+                    logro.Id = GetInt(i, 0);
+
+                    logro.Logro = GetString(i, 1);
+
+                    equipo = listaequipos.GetEquipo(GetInt(i, 2));
+
+                    apuesta.Estado = GetString(i, 3);
+
+                    apuesta.Fecha = GetDateTime(i, 4);
+
+                    apuesta.Logro = logro;
+
+                    apuesta.Respuesta = equipo;
+
+                    apuesta.Usuario = apostador;
+
+                    apuestasFinalizadas.Add(apuesta);
+
+                }
+
+
+                return apuestasFinalizadas;
+
+            }
+            catch (InvalidCastException exc)
+            {
+                Desconectar();
+                throw exc;
+            }
         }
 
         public List<Entidad> ObtenerTodos()

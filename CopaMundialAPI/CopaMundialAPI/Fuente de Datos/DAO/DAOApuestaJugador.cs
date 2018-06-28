@@ -48,10 +48,10 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             Conectar();
 
-            StoredProcedure("eliminarapuesta(@idlogro, @idusuario)");
+            StoredProcedure("eliminarapuesta(@idusuario, @idlogro)");
 
-            AgregarParametro("idlogro", apuesta.Logro.Id);
             AgregarParametro("idusuario", apuesta.Usuario.Id);
+            AgregarParametro("idlogro", apuesta.Logro.Id);
 
             EjecutarQuery();
         }
@@ -123,7 +123,67 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         public List<Entidad> ObtenerApuestasFinalizadas(Entidad usuario)
         {
-            throw new NotImplementedException();
+            List<Entidad> apuestasFinalizadas = new List<Entidad>();
+
+            ApuestaJugador apuesta;
+
+            LogroJugador logro;
+
+            Jugador jugador;
+
+            try
+            {
+                Usuario apostador = usuario as Usuario;
+
+                Conectar();
+
+                StoredProcedure("obtenerapuestasjugadorfinalizadas(@idusuario)");
+
+                AgregarParametro("idusuario", usuario.Id);
+
+                EjecutarReader();
+
+                for (int i = 0; i < cantidadRegistros; i++)
+                {
+                    apuesta = FabricaEntidades.CrearApuestaJugador();
+
+                    logro = FabricaEntidades.CrearLogroJugador();
+
+                    jugador = FabricaEntidades.CrearJugador();
+
+                    logro.Id = GetInt(i, 0);
+
+                    logro.Logro = GetString(i, 1);
+
+                    jugador.Id = GetInt(i, 2);
+
+                    jugador.Nombre = GetString(i, 3);
+
+                    jugador.Apellido = GetString(i, 4);
+
+                    apuesta.Estado = GetString(i, 5);
+
+                    apuesta.Fecha = GetDateTime(i, 6);
+
+                    apuesta.Logro = logro;
+
+                    apuesta.Respuesta = jugador;
+
+                    apuesta.Usuario = apostador;
+
+                    apuestasFinalizadas.Add(apuesta);
+
+                }
+
+
+                return apuestasFinalizadas;
+
+            }
+            catch (InvalidCastException exc)
+            {
+                Desconectar();
+                throw exc;
+            }
         }
 
         public List<Entidad> ObtenerTodos()
