@@ -18,3 +18,7 @@ td, th{
 th{
   font-weight: 500;
 }
+
+.nav-tabs .nav-link.active {
+  color: #A11D1B;
+}
