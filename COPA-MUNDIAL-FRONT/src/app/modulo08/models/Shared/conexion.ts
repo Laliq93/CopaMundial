@@ -9,4 +9,8 @@ export class Conexion {
   public GetApiApuesta() {
     return this.RutaApi + 'Apuesta/';
   }
+
+  public GetApiLogro(){
+    return this.RutaApi + 'Logros/';
+  }
 }

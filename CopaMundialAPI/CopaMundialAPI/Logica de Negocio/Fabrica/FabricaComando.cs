@@ -81,26 +81,6 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoObtenerProximosPartidos();
         }
 
-        public static ComandoObtenerLogrosVofPartido CrearComandoObtenerLogrosVofPartido(Entidad partido)
-        {
-            return new ComandoObtenerLogrosVofPartido(partido);
-        }
-
-        public static ComandoObtenerLogrosCantidadPartido CrearComandoObtenerLogrosCantidadPartido(Entidad partido)
-        {
-            return new ComandoObtenerLogrosCantidadPartido(partido);
-        }
-
-        public static ComandoObtenerLogrosEquipoPartido CrearComandoObtenerLogrosEquipoPartido(Entidad partido)
-        {
-            return new ComandoObtenerLogrosEquipoPartido(partido);
-        }
-
-        public static ComandoObtenerLogrosJugadorPartido CrearComandoObtenerLogrosJugadorPartido(Entidad partido)
-        {
-            return new ComandoObtenerLogrosJugadorPartido(partido);
-        }
-
         public static ComandoVerificarApuestaVoFExiste CrearComandoVerificarApuestaVoFExiste(Entidad apuesta)
         {
             return new ComandoVerificarApuestaVoFExiste(apuesta);

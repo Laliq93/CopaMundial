@@ -164,10 +164,6 @@
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasEquipoEnCurso.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasJugadorEnCurso.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasCantidadEnCurso.cs" />
-    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosJugadorPartido.cs" />
-    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosEquipoPartido.cs" />
-    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosCantidadPartido.cs" />
-    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerLogrosVofPartido.cs" />
     <Compile Include="Comun\Excepciones\ExcepcionGeneral.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarApuestaCantidadValida.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarApuestaEquipoValida.cs" />
