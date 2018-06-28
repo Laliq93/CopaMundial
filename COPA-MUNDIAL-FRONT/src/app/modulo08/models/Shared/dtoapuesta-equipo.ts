@@ -5,4 +5,5 @@ export class DTOApuestaEquipo {
   public Estado: string;
   public Logro: String;
   public Fecha: String;
+  public NombreEquipo: String;
 }

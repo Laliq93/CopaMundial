@@ -20,7 +20,9 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             Conectar();
 
-            StoredProcedure("obtenerproximospartidos()");
+            StoredProcedure("obtenerproximospartidos(@fecha)");
+
+            AgregarParametro("fecha", DateTime.Now);
 
             EjecutarReader();
 
@@ -42,112 +44,5 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             return partidos;
         }
 
-        public List<Entidad> ObtenerLogrosVofPartido(Entidad entidad)
-        {
-            List<Entidad> logrosvof = new List<Entidad>();
-            LogroVoF logro;
-
-            Conectar();
-
-            StoredProcedure("obtenerlogrosvofpartido(@idpartido)");
-
-            AgregarParametro("idpartido", entidad.Id);
-
-            EjecutarReader();
-
-            for(int i = 0; i < cantidadRegistros; i++)
-            {
-                logro = FabricaEntidades.CrearLogroVoF();
-
-                logro.Id = GetInt(i, 0);
-                logro.Logro = GetString(i, 1);
-                logro.IdTipo = TipoLogro.vof;
-
-                logrosvof.Add(logro);
-            }
-
-            return logrosvof;
-        }
-
-        public List<Entidad> ObtenerLogrosCantidadPartido(Entidad entidad)
-        {
-            List<Entidad> logroscantidad = new List<Entidad>();
-            LogroCantidad logro;
-
-            Conectar();
-
-            StoredProcedure("obtenerlogroscantidadpartido(@idpartido)");
-
-            AgregarParametro("idpartido", entidad.Id);
-
-            EjecutarReader();
-
-            for (int i = 0; i < cantidadRegistros; i++)
-            {
-                logro = FabricaEntidades.CrearLogroCantidad();
-
-                logro.Id = GetInt(i, 0);
-                logro.Logro = GetString(i, 1);
-                logro.IdTipo = TipoLogro.cantidad;
-
-                logroscantidad.Add(logro);
-            }
-
-            return logroscantidad;
-        }
-
-        public List<Entidad> ObtenerLogrosEquipoPartido(Entidad entidad)
-        {
-            List<Entidad> logrosequipo = new List<Entidad>();
-            LogroEquipo logro;
-
-            Conectar();
-
-            StoredProcedure("obtenerlogrosequipopartido(@idpartido)");
-
-            AgregarParametro("idpartido", entidad.Id);
-
-            EjecutarReader();
-
-            for (int i = 0; i < cantidadRegistros; i++)
-            {
-                logro = FabricaEntidades.CrearLogroEquipo();
-
-                logro.Id = GetInt(i, 0);
-                logro.Logro = GetString(i, 1);
-                logro.IdTipo = TipoLogro.equipo;
-
-                logrosequipo.Add(logro);
-            }
-
-            return logrosequipo;
-        }
-
-        public List<Entidad> ObtenerLogrosJugadorPartido(Entidad entidad)
-        {
-            List<Entidad> logrosjugador = new List<Entidad>();
-            LogroJugador logro;
-
-            Conectar();
-
-            StoredProcedure("obtenerlogrosjugadorpartido(@idpartido)");
-
-            AgregarParametro("idpartido", entidad.Id);
-
-            EjecutarReader();
-
-            for (int i = 0; i < cantidadRegistros; i++)
-            {
-                logro = FabricaEntidades.CrearLogroJugador();
-
-                logro.Id = GetInt(i, 0);
-                logro.Logro = GetString(i, 1);
-                logro.IdTipo = TipoLogro.jugador;
-
-                logrosjugador.Add(logro);
-            }
-
-            return logrosjugador;
-        }
     }
 }
