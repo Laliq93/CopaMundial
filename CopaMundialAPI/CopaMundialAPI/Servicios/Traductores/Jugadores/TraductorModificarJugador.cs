@@ -5,6 +5,8 @@ using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Servicios.DTO.Jugadores;
 using CopaMundialAPI.Servicios.Fabrica;
+using CopaMundialAPI.Comun.Entidades.Fabrica;
+using CopaMundialAPI.Comun.Excepciones;
 
 namespace CopaMundialAPI.Servicios.Traductores.Jugadores
 {
@@ -32,7 +34,27 @@ namespace CopaMundialAPI.Servicios.Traductores.Jugadores
 
         public override Entidad CrearEntidad(DTOModificarJugador dto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Jugador jugador = FabricaEntidades.CrearJugador();
+
+                jugador.Id = dto.Id;
+                jugador.Nombre = dto.Nombre;
+                jugador.Apellido = dto.Apellido;
+                jugador.FechaNacimiento = dto.FechaNacimiento;
+                jugador.LugarNacimiento = dto.LugarNacimiento;
+                jugador.Peso = dto.Peso;
+                jugador.Altura = dto.Altura;
+                jugador.Posicion = dto.Posicion;
+                jugador.Numero = dto.Numero;
+                jugador.Capitan = dto.Capitan;
+
+                return jugador;
+            }
+            catch (NullReferenceException exc)
+            {
+                throw new ObjetoNullException(exc, "Error al recibir la información del jugador");
+            }
         }
 
         public override List<DTOModificarJugador> CrearListaDto(List<Entidad> entidades)
