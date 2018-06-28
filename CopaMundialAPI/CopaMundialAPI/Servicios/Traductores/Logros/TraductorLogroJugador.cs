@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
 using CopaMundialAPI.Servicios.DTO.Logros;
@@ -9,22 +7,23 @@ using CopaMundialAPI.Servicios.Fabrica;
 
 namespace CopaMundialAPI.Servicios.Traductores.Logros
 {
-    public class TraductorLogroCantidad : TraductorGenerico<DTOLogroCantidad>
+    public class TraductorLogroJugador: TraductorGenerico<DTOLogroJugador>
     {
+
         /// <summary>
         /// Metodo que sirve para convertir de una entidad a un dto
         /// </summary>
         /// <param name="entidad"></param>
         /// <returns></returns>
-        public override DTOLogroCantidad CrearDto(Entidad entidad)
+        public override DTOLogroJugador CrearDto(Entidad entidad)
         {
-            DTOLogroCantidad dto = FabricaDTO.CrearDTOLogroCantidad();
+            DTOLogroJugador dto = FabricaDTO.CrearDTOLogroJugador();
 
-            LogroCantidad logroCantidad = entidad as LogroCantidad;
-            
-            dto.IdPartido = logroCantidad.Partido.Id;
-            dto.LogroCantidad = logroCantidad.Logro;
-            dto.TipoLogro = (int)logroCantidad.IdTipo;
+            LogroJugador logroJugador = entidad as LogroJugador;
+
+            dto.IdPartido = logroJugador.Partido.Id;
+            dto.LogroJugador = logroJugador.Logro;
+            dto.TipoLogro = (int)logroJugador.IdTipo;
 
             return dto;
         }
@@ -35,27 +34,26 @@ namespace CopaMundialAPI.Servicios.Traductores.Logros
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public override Entidad CrearEntidad(DTOLogroCantidad dto)
+        public override Entidad CrearEntidad(DTOLogroJugador dto)
         {
-            LogroCantidad entidad = FabricaEntidades.CrearLogroCantidad();
+            LogroJugador entidad = FabricaEntidades.CrearLogroJugador();
             Partido partido = FabricaEntidades.CrearPartido();
-            entidad.IdTipo = TipoLogro.cantidad;
+            entidad.IdTipo = TipoLogro.jugador;
             entidad.Partido = partido;
             entidad.Partido.Id = dto.IdPartido;
-            entidad.Logro = dto.LogroCantidad;
+            entidad.Logro = dto.LogroJugador;
 
             return entidad;
         }
 
-        public override List<DTOLogroCantidad> CrearListaDto(List<Entidad> entidades)
+        public override List<DTOLogroJugador> CrearListaDto(List<Entidad> entidades)
         {
             throw new NotImplementedException();
         }
 
-        public override List<Entidad> CrearListaEntidades(List<DTOLogroCantidad> dtos)
+        public override List<Entidad> CrearListaEntidades(List<DTOLogroJugador> dtos)
         {
             throw new NotImplementedException();
         }
-
     }
 }
