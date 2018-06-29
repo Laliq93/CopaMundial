@@ -19,7 +19,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
             dto.IdPartido = partido.Id;
             dto.Equipo1 = partido.Equipo1.Pais;
             dto.Equipo2 = partido.Equipo2.Pais;
-            dto.Fecha = partido.FechaPartido.ToShortDateString();
+            dto.Fecha = partido.FechaInicioPartido.ToShortDateString();
 
             return dto;
 

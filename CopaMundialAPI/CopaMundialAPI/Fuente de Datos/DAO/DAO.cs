@@ -92,12 +92,12 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             catch (NpgsqlException exc)
             {
                 Desconectar();
-                throw new ArgumentNullException("Error al ejecutar el StoredProcedure " + exc);
+                throw exc;
             }
-            catch (Exception)
+            catch (Exception exc)
             {
                 Desconectar();
-                throw;
+                throw exc;
             }
 
             return _dataTable;
@@ -124,12 +124,12 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             catch (NpgsqlException exc)
             {
                 Desconectar();
-                throw new ArgumentNullException("Error al ejecutar el StoredProcedure " + exc);
+                throw exc;
             }
-            catch (Exception)
+            catch (Exception exc) 
             {
                 Desconectar();
-                throw;
+                throw exc;
             }
         }
 
@@ -169,13 +169,13 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             {
                 throw e;
             }
-            catch (NullReferenceException)
+            catch (NullReferenceException exc)
             {
-                throw new NullReferenceException();
+                throw exc;
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-                throw new Exception();
+                throw exc;
             }
         }
         public int GetInt(int fila, int columna)
@@ -186,25 +186,25 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
                 return intItem;
             }
-            catch (IndexOutOfRangeException)
+            catch (IndexOutOfRangeException e)
             {
-                throw new IndexOutOfRangeException();
+                throw e;
             }
-            catch (FormatException)
+            catch (FormatException e)
             {
-                throw new FormatException();
+                throw e;
             }
-            catch (OverflowException)
+            catch (OverflowException e)
             {
-                throw new OverflowException();
+                throw e;
             }
-            catch (NullReferenceException)
+            catch (NullReferenceException e)
             {
-                throw new NullReferenceException();
+                throw e;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new Exception();
+                throw e;
             }
         }
 
@@ -216,25 +216,25 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
                 return charItem;
             }
-            catch (IndexOutOfRangeException)
+            catch (IndexOutOfRangeException e)
             {
-                throw new IndexOutOfRangeException();
+                throw e;
             }
-            catch (FormatException)
+            catch (FormatException e)
             {
-                throw new FormatException();
+                throw e;
             }
-            catch (ArgumentNullException)
+            catch (ArgumentNullException e)
             {
-                throw new ArgumentNullException();
+                throw e;
             }
-            catch (NullReferenceException)
+            catch (NullReferenceException e)
             {
-                throw new NullReferenceException();
+                throw e;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new Exception();
+                throw e;
             }
         }
 
@@ -246,25 +246,25 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
                 return stringItem;
             }
-            catch (IndexOutOfRangeException)
+            catch (IndexOutOfRangeException e)
             {
-                throw new IndexOutOfRangeException();
+                throw e;
             }
-            catch (FormatException)
+            catch (FormatException e)
             {
-                throw new FormatException();
+                throw e;
             }
-            catch (ArgumentNullException)
+            catch (ArgumentNullException e)
             {
-                throw new ArgumentNullException();
+                throw e;
             }
-            catch (NullReferenceException)
+            catch (NullReferenceException e)
             {
-                throw new NullReferenceException();
+                throw e;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new Exception();
+                throw e;
             }
         }
 
@@ -276,25 +276,55 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
                 return doubleItem;
             }
-            catch (IndexOutOfRangeException)
+            catch (IndexOutOfRangeException e)
             {
-                throw new IndexOutOfRangeException();
+                throw e;
             }
-            catch (FormatException)
+            catch (FormatException e)
             {
-                throw new FormatException();
+                throw e;
             }
-            catch (OverflowException)
+            catch (OverflowException e)
             {
-                throw new OverflowException();
+                throw e;
             }
-            catch (NullReferenceException)
+            catch (NullReferenceException e)
             {
-                throw new NullReferenceException();
+                throw e;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new Exception();
+                throw e;
+            }
+        }
+
+        public decimal GetDecimal(int fila, int columna)
+        {
+            try
+            {
+                decimal decimalItem = Convert.ToDecimal(_dataTable.Rows[fila][columna]);
+
+                return decimalItem;
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                throw e;
+            }
+            catch (FormatException e)
+            {
+                throw e;
+            }
+            catch (OverflowException e)
+            {
+                throw e;
+            }
+            catch (NullReferenceException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
 
@@ -306,21 +336,21 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
                 return boolItem;
             }
-            catch (IndexOutOfRangeException)
+            catch (IndexOutOfRangeException e)
             {
-                throw new IndexOutOfRangeException();
+                throw e;
             }
-            catch (FormatException)
+            catch (FormatException e)
             {
-                throw new FormatException();
+                throw e;
             }
-            catch (NullReferenceException)
+            catch (NullReferenceException e)
             {
-                throw new NullReferenceException();
+                throw e;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new Exception();
+                throw e;
             }
         }
 
@@ -332,21 +362,21 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
                 return dateItem;
             }
-            catch (IndexOutOfRangeException)
+            catch (IndexOutOfRangeException e)
             {
-                throw new IndexOutOfRangeException();
+                throw e;
             }
-            catch (FormatException)
+            catch (FormatException e)
             {
-                throw new FormatException();
+                throw e;
             }
-            catch (NullReferenceException)
+            catch (NullReferenceException e)
             {
-                throw new NullReferenceException();
+                throw e;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new Exception();
+                throw e;
             }
         }
 		public byte[] GetByte(int fila, int columna)
@@ -357,21 +387,21 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
 				return dateItem;
 			}
-			catch (IndexOutOfRangeException)
+			catch (IndexOutOfRangeException e)
 			{
-				throw new IndexOutOfRangeException();
+                throw e;
 			}
-			catch (FormatException)
+			catch (FormatException e)
 			{
-				throw new FormatException();
+				throw e;
 			}
-			catch (NullReferenceException)
+			catch (NullReferenceException e)
 			{
-				throw new NullReferenceException();
+                throw e;
 			}
-			catch (Exception)
+			catch (Exception e)
 			{
-				throw new Exception();
+                throw e;
 			}
 		}
 

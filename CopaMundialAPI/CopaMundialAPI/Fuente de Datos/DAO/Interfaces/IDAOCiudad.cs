@@ -8,7 +8,11 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
 {
     public interface IDAOCiudad : IDAO
     {
-        Ciudad ConsultarCiudadPorId ( Ciudad ciudad );
+        Entidad ConsultarCiudadPorId ( Entidad entidad );
 
-    }
+		List<Entidad> ConsultarCiudadPorNombre(Entidad entidad);
+
+
+		List<Entidad> ConsultarCiudadPorNombreIngles(Entidad entidad);
+	}
 }

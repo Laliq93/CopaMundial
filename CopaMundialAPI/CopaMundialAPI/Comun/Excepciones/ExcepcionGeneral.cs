@@ -6,7 +6,7 @@ using System.Web;
 namespace CopaMundialAPI.Comun.Excepciones
 {
     /// <summary>
-    /// Excepcion personalizada para errores generales de la logica de negocio
+    /// Excepcion personalizada para errores generales 
     /// </summary>
     public class ExcepcionGeneral :Exception
     {

@@ -11,59 +11,64 @@ using Newtonsoft.Json.Linq;
 using CopaMundialAPI.Logica_de_Negocio.Comando;
 using System.Threading.Tasks;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Ciudades;
+using CopaMundialAPI.Servicios.DTO.Ciudades;
+using CopaMundialAPI.Servicios.Traductores.Fabrica;
+using CopaMundialAPI.Servicios.Traductores.Ciudades;
 
 namespace CopaMundialAPI.Presentacion.Controllers
 {
-	[RoutePrefix("api/ciudad")]
+	[RoutePrefix("api")]
 	public class CiudadController : ApiController
 	{
-		[Route("agregarciudad")]
-		[System.Web.Http.HttpPost]
-		public HttpResponseMessage InsertarCiudad(JObject json)
-		{
-			string js = (string)json["json"];
-			JObject dato = JObject.Parse(js);
-			String hola;
-			hola = (string)dato["nombre"];
-			Console.WriteLine(hola);
-			Ciudad ciudad = new Ciudad((string)dato["nombre"], (int)dato["poblacion"], (string)dato["descripcion"], (string)dato["nombreingles"], (string)dato["descripcioningles"]);
 
+
+		[Route("ciudadid")]
+		[System.Web.Http.HttpPost]
+		public IHttpActionResult InsertarCiudadid(DTOCiudadNombre dto)
+		{
+			
+			System.Diagnostics.Debug.WriteLine(dto);
+			TraductorCiudadNombre traductor = FabricaTraductor.CrearTraductorCiudadNombre();
+			Entidad ciudad = traductor.CrearEntidad(dto);
+			ComandoAgregarCiudad comando = FabricaComando.CrearComandoAgregarCiudad(ciudad);
+			comando.Ejecutar();
+			return Ok();
+		}
+		//Agregar ciudad
+		[Route("ciudad")]
+		[System.Web.Http.HttpPost]
+		public HttpResponseMessage InsertarCiudad(DTOCiudad dto)
+		{
+			
+			Console.WriteLine(dto);
+			TraductorCiudad traductor = FabricaTraductor.CrearTraductorCiudad();
+			Entidad ciudad = traductor.CrearEntidad(dto);
 			ComandoAgregarCiudad comando = FabricaComando.CrearComandoAgregarCiudad(ciudad);
 			comando.Ejecutar();
 			return Request.CreateResponse(HttpStatusCode.OK);
 		}
 
 
-		[Route("agregarimagen")]
-		[System.Web.Http.HttpPost]
-		public HttpResponseMessage Insertarimagen(HttpPostedFile dato)
-			{
+		
 
-            var httpRequest = HttpContext.Current.Request;
-				string file = httpRequest.Files.Get(0).ToString();
 
-			Console.WriteLine(file);
-			//byte[] f = Integerdato.InputStream.ReadByte();
+		//Lista de todas las ciudades
+		[Route("ciudad")]
+		[System.Web.Http.HttpGet]
+		public HttpResponseMessage GetCiudades()
+		{
 			
-			
-				Ciudad ciudad = new Ciudad("guatire", 4500,"gg","a","a");
-				FabricaComando.CrearComandoAgregarCiudad(ciudad);
-				return Request.CreateResponse(HttpStatusCode.OK, ciudad);
-			}
+			ComandoListarCiudades comando = FabricaComando.CrearComandoListarCiudades();
+			comando.Ejecutar();
+			TraductorCiudad traductor = FabricaTraductor.CrearTraductorCiudad();
 
-			[Route("ciudad")]
-			[System.Web.Http.HttpGet]
-			public HttpResponseMessage GetCiudad()
-			{
-			//Ciudad ciudad = new Ciudad((string)dato["nombre"], (int)dato["habitantes"], (string)dato["descripcion"], (byte[])dato["imagen"]);
-			//FabricaComando.CrearComandoAgregarCiudad(ciudad);
-			Ciudad ciudad = new Ciudad("hola", 1, "h","a","a");
+			List<Entidad> ciudades = comando.GetEntidades();
+			List<DTOCiudad> dtociudades = traductor.CrearListaDto(ciudades);
+			return Request.CreateResponse(HttpStatusCode.OK, dtociudades);
+		}
 
-				return Request.CreateResponse(HttpStatusCode.OK, ciudad);
-			}
-
-
-		[HttpPost, Route("api/upload")]
+		//codigo para guardar imagen, no borrar por si acaso
+		/*[HttpPost, Route("api/upload")]
 		public async Task<IHttpActionResult> Upload()
 		{
 			if (!Request.Content.IsMimeMultipartContent())
@@ -82,22 +87,56 @@ namespace CopaMundialAPI.Presentacion.Controllers
 			ComandoAgregarCiudad comando = FabricaComando.CrearComandoAgregarCiudad(ciudad);
 			comando.Ejecutar();
 			return Ok(ciudad);
-		}
-		[HttpPost,Route("ciudad")]
-		public HttpResponseMessage ObtenerCiudad(JObject json)
+		}*/
+		[HttpPost, Route("ciudadnombre")]
+		public HttpResponseMessage ObtenerCiudadesPorNombre(DTOCiudadNombre dto)
 		{
-			//string js = (string)json["json"];
-			//JObject dato = JObject.Parse(js);
-			int id;
-			id = (int)json["id"];
-			Console.WriteLine(id);
-			//Ciudad ciudad = new Ciudad((string)dato["nombre"], (int)dato["poblacion"], (string)dato["descripcion"], (string)dato["nombreingles"], (string)dato["descripcioningles"], (byte[])dato["imagen"]);
-			ComandoObtenerCiudad comando = FabricaComando.CrearComandoObtenerCiudad(id);
-			//ComandoAgregarCiudad comando = FabricaComando.CrearComandoAgregarCiudad(ciudad);
+			
+
+			//Creando traductor de dto CiudadNombre
+			TraductorCiudadNombre traductor = FabricaTraductor.CrearTraductorCiudadNombre();
+
+			//Creando Traductor de DTO ciudad
+			TraductorCiudad traductorciudad = FabricaTraductor.CrearTraductorCiudad();
+
+			//Creando entidad ciudad apartir de dto recibido por parametro
+			Entidad ciudad = traductor.CrearEntidad(dto);
+
+			//Creando comando que mandara a ejecutar la busqueda en la base de datos de ciudades por nombre
+			Comando comando = FabricaComando.CrearComandoObtenerCiudadPorNombre(ciudad);
+			//Ejecutando el comando
 			comando.Ejecutar();
-			Ciudad ciudad = (Ciudad)comando.GetEntidad();
-			return Request.CreateResponse(HttpStatusCode.OK, ciudad);
+
+			//Obteniendo lita de entidades de los resultados del comando y traduciendolas a dto
+			List<DTOCiudad> ciudades = traductorciudad.CrearListaDto(comando.GetEntidades());
+			//retornando resultados
+			return Request.CreateResponse(HttpStatusCode.OK, ciudades);
 		}
+
+		//Eliminar ciudad
+		[HttpDelete, Route("ciudad")]
+		public HttpResponseMessage EliminarCiudad(DTOCiudadID dto)
+		{
+
+			TraductorCiudadID traductor = FabricaTraductor.CrearTraductorCiudadID();
+			Entidad ciudad = traductor.CrearEntidad(dto);
+			Comando comando = FabricaComando.CrearComandoEliminarCiudad(ciudad);
+			comando.Ejecutar();
+
+
+			return Request.CreateResponse(HttpStatusCode.OK);
+		}
+
+		[HttpPut, Route("ciudad")]
+		public HttpResponseMessage ActualizarCiudad(DTOCiudad dto)
+		{
+			TraductorCiudad traductor = FabricaTraductor.CrearTraductorCiudad();
+			Entidad ciudad = traductor.CrearEntidad(dto);
+			Comando comando = FabricaComando.CrearComandoActualizarCiudad(ciudad);
+			comando.Ejecutar();
+			return Request.CreateResponse(HttpStatusCode.OK);
+		}
+
 
 	}
 }

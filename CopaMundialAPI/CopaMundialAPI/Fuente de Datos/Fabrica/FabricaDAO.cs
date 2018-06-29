@@ -66,5 +66,50 @@ namespace CopaMundialAPI.Fuente_de_Datos.Fabrica
             return new DAOApuesta();
         }
 
+        /// <summary>
+        /// Devuelve una nueva instancia de DAOApuestaEquipo
+        /// </summary>
+        /// <returns>DAOApuestaCantidad</returns>
+        public static DAOApuestaEquipo CrearDAOApuestaEquipo()
+        {
+            return new DAOApuestaEquipo();
+        }
+
+        /// Devuelve una nueva instancia de DAOLogroCantidad
+        /// </summary>
+        /// <returns></returns>
+        public static DAOLogroCantidad CrearDAOLogroCantidad()
+        {
+            return new DAOLogroCantidad();
+
+        }
+
+        /// <summary>
+        /// Devuelve una nueva instancia de DAOLogroJugador
+        /// </summary>
+        /// <returns></returns>
+        public static DAOLogroJugador CrearDAOLogroJugador()
+        {
+            return new DAOLogroJugador();
+        }
+
+        /// <summary>
+        /// Devuelve una nueva instancia de DAOLogroEquipo
+        /// </summary>
+        /// <returns></returns>
+        public static DAOLogroEquipo CrearDAOLogroEquipo()
+        {
+            return new DAOLogroEquipo();
+        }
+
+
+        /// <summary>
+        /// Devuelve una nueva instancia de DAOLogroVF
+        /// </summary>
+        /// <returns></returns>
+        public static DAOLogroVF CrearDAOLogroVF()
+        {
+            return new DAOLogroVF();
+        }
     }
 }

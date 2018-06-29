@@ -22,10 +22,13 @@ namespace CopaMundialAPI.Servicios.Traductores.Ciudades
             try
             {
                 Ciudad ciudad = entidad as Ciudad;
-
-                DTOCiudad dto = FabricaDTO.CrearDTOCiudad ( ciudad.Nombre, ciudad.Habitantes, ciudad.Descripcion, ciudad.NombreIngles, ciudad.DescripcionIngles );
-
-                return dto;
+				DTOCiudad dto = null;
+				
+					dto = FabricaDTO.CrearDTOCiudad(ciudad.Id,ciudad.Nombre, ciudad.Habitantes, ciudad.Descripcion, ciudad.NombreIngles, ciudad.DescripcionIngles);
+					return dto;
+				
+			
+				
             }
             catch (Exception e)
             {
@@ -43,7 +46,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Ciudades
         {
             try
             {
-                Entidad ciudad = FabricaEntidades.CrearCiudad ( dto.Nombre, dto.Habitantes, dto.Descripcion, dto.NombreIngles, dto.DescripcionIngles );
+                Entidad ciudad = FabricaEntidades.CrearCiudad ( dto.Id,dto.Nombre, dto.Habitantes, dto.Descripcion, dto.NombreIngles, dto.DescripcionIngles );
 
                 return ciudad;
             }
