@@ -153,6 +153,56 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
         }
 
+        [Route("obtenerJugadoresActivo")]
+        [System.Web.Http.AcceptVerbs("GET")]
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage ObtenerJugadoresActivo()
+        {
+            try
+            {
+                TraductorObtenerJugadores traductor = FabricaTraductor.CrearTraductorObtenerJugadores();
+
+                Comando comando = FabricaComando.CrearComandoObtenerJugadoresActivo();
+
+                comando.Ejecutar();
+
+                List<DTOObtenerJugadores> dtos = traductor.CrearListaDto(comando.GetEntidades());
+
+                return Request.CreateResponse(HttpStatusCode.OK, dtos);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+        [Route("obtenerJugadoresInactivo")]
+        [System.Web.Http.AcceptVerbs("GET")]
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage ObtenerJugadoresInactivo()
+        {
+            try
+            {
+                TraductorObtenerJugadores traductor = FabricaTraductor.CrearTraductorObtenerJugadores();
+
+                Comando comando = FabricaComando.CrearComandoObtenerJugadoresInactivo();
+
+                comando.Ejecutar();
+
+                List<DTOObtenerJugadores> dtos = traductor.CrearListaDto(comando.GetEntidades());
+
+                return Request.CreateResponse(HttpStatusCode.OK, dtos);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
 
     }
 }

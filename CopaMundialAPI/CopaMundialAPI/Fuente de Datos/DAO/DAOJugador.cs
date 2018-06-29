@@ -111,6 +111,72 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             return jugadores;
         }
 
+        public List<Entidad> ObtenerJugadoresActivo()
+        {
+            List<Entidad> jugadores = new List<Entidad>();
+            Jugador jugador;
+
+            Conectar();
+
+            StoredProcedure("consultarJugadoresActivo()");
+
+            EjecutarReader();
+
+            for (int i = 0; i < cantidadRegistros; i++)
+            {
+                jugador = FabricaEntidades.CrearJugador();
+
+                jugador.Id = GetInt(i, 0);
+                jugador.Nombre = GetString(i, 1);
+                jugador.Apellido = GetString(i, 2);
+                jugador.FechaNacimiento = GetString(i, 3);
+                jugador.LugarNacimiento = GetString(i, 4);
+                jugador.Peso = GetDecimal(i, 5);
+                jugador.Altura = GetDecimal(i, 6);
+                jugador.Posicion = GetString(i, 7);
+                jugador.Numero = GetDecimal(i, 8);
+                jugador.Equipo.Pais = GetString(i, 9);
+                jugador.Capitan = GetBool(i, 10);
+
+                jugadores.Add(jugador);
+            }
+
+            return jugadores;
+        }
+
+        public List<Entidad> ObtenerJugadoresInactivo()
+        {
+            List<Entidad> jugadores = new List<Entidad>();
+            Jugador jugador;
+
+            Conectar();
+
+            StoredProcedure("consultarJugadoresInactivo()");
+
+            EjecutarReader();
+
+            for (int i = 0; i < cantidadRegistros; i++)
+            {
+                jugador = FabricaEntidades.CrearJugador();
+
+                jugador.Id = GetInt(i, 0);
+                jugador.Nombre = GetString(i, 1);
+                jugador.Apellido = GetString(i, 2);
+                jugador.FechaNacimiento = GetString(i, 3);
+                jugador.LugarNacimiento = GetString(i, 4);
+                jugador.Peso = GetDecimal(i, 5);
+                jugador.Altura = GetDecimal(i, 6);
+                jugador.Posicion = GetString(i, 7);
+                jugador.Numero = GetDecimal(i, 8);
+                jugador.Equipo.Pais = GetString(i, 9);
+                jugador.Capitan = GetBool(i, 10);
+
+                jugadores.Add(jugador);
+            }
+
+            return jugadores;
+        }
+
         public Entidad ObtenerJugadorId(Entidad entidad)
         {
 
