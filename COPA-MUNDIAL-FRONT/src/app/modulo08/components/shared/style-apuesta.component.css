@@ -45,11 +45,20 @@ File: css (style-apuesta)
 }
 
 .nav-tabs .nav-link.active {
-    color: #1e88e5;
+  color: #1e88e5;
 }
 
-.nav-tabs .nav-link.active::before{
+.nav-tabs .nav-link.active::before {
   background-color: #1e88e5;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.center {
+  margin-right: 0px;
+  text-align: center;
 }
 /*============================================================== 
                         Card

@@ -8,6 +8,7 @@
             <li class="breadcrumb-item">
                 <a href="">Inicio</a>
             </li>
+            <li class="breadcrumb-item cursor" routerLink="/apuestas">Apuestas</li>
             <li class="breadcrumb-item active">Gestionar mis apuestas</li>
         </ol>
     </div>
@@ -67,8 +68,16 @@
                                     <td>{{ApuestaVof.Fecha}}</td>
                                     <td>
                                         <button type="button" (click)="ActualizarApuestaVof(ApuestaVof.IdLogro, actualizarOpcionVof[i])" class="btn btn-success-table"
-                                            style="margin-right:16px;">✓</button>
-                                        <button type="button" (click)="EliminarApuestaVof(ApuestaVof.IdLogro)" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                                            style="margin-right:16px;">
+                                            <i class="material-icons center">
+                                                edit
+                                            </i>
+                                        </button>
+                                        <button type="button" (click)="EliminarApuestaVof(ApuestaVof.IdLogro)" class="btn btn-danger-table" style="margin-right:16px;">
+                                            <i class="material-icons center">
+                                                delete_forever
+                                            </i>
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -113,8 +122,16 @@
                                     <td>{{ApuestaCantidad.Fecha}}</td>
                                     <td>
                                         <button type="button" (click)="ActualizarApuestaCantidad(ApuestaCantidad.IdLogro, actualizarOpcionCantidad[i])" class="btn btn-success-table"
-                                            style="margin-right:16px;">✓</button>
-                                        <button type="button" (click)="EliminarApuestaCantidad(ApuestaCantidad.IdLogro)" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                                            style="margin-right:16px;">
+                                            <i class="material-icons center">
+                                                edit
+                                            </i>
+                                        </button>
+                                        <button type="button" (click)="EliminarApuestaCantidad(ApuestaCantidad.IdLogro)" class="btn btn-danger-table" style="margin-right:16px;">
+                                            <i class="material-icons center">
+                                                delete_forever
+                                            </i>
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -146,7 +163,11 @@
                                     <td>
                                         <button type="button" class="btn btn-success-table" (click)="openModaljugadores(ApuestaJugador.IdLogro)" style="margin-right:16px;">Ver Jugadores</button>
                                         <div class="backdrop" [ngStyle]="{'display':display}"></div>
-                                        <button type="button" (click)="EliminarApuestaJugador(ApuestaJugador.IdLogro)" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                                        <button type="button" (click)="EliminarApuestaJugador(ApuestaJugador.IdLogro)" class="btn btn-danger-table" style="margin-right:16px;">
+                                            <i class="material-icons center">
+                                                delete_forever
+                                            </i>
+                                        </button>
                                     </td>
                                     <td>{{ApuestaJugador.Estado}}</td>
                                     <td>{{ApuestaJugador.Fecha}}</td>
@@ -165,19 +186,19 @@
                         <table datatable [dtOptions]="dtOptionsApuestaEquipos" [dtTrigger]="dtTriggerApuestaEquipos" class="row-border hover">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Logro</th>
-                                    <th>Opción</th>
-                                    <th>temporal</th>
-                                    <th>Estado</th>
-                                    <th>Fecha</th>
-                                    <th>Acción</th>
+                                    <th class="center">ID</th>
+                                    <th class="center">Logro</th>
+                                    <th class="center">Opción</th>
+                                    <th class="center">temporal</th>
+                                    <th class="center">Estado</th>
+                                    <th class="center">Fecha</th>
+                                    <th class="center">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let ApuestaEquipo of ListApuestaequipos; let i = index">
-                                    <td>{{ApuestaEquipo.IdLogro}}</td>
-                                    <td>{{ApuestaEquipo.Logro}}</td>
+                                    <td class="center">{{ApuestaEquipo.IdLogro}}</td>
+                                    <td class="center">{{ApuestaEquipo.Logro}}</td>
                                     <td>
                                         <select [(ngModel)]="actualizarOpcionEquipo[i]" name="actualizarOpcionEquipo" id="actualizarOpcionEquipo">
                                             <option value="1">Argentina</option>
@@ -197,13 +218,21 @@
                                             <option value="15">Uruguay</option>
                                         </select>
                                     </td>
-                                    <td>{{ApuestaEquipo.NombreEquipo}}</td>
-                                    <td>{{ApuestaEquipo.Estado}}</td>
-                                    <td>{{ApuestaEquipo.Fecha}}</td>
-                                    <td>
-                                        <button type="button" (click)="ActualizarApuestaEquipo(ApuestaEquipo.IdLogro, actualizarOpcionEquipo[i])" class="btn btn-success-table"
-                                            style="margin-right:16px;">✓</button>
-                                        <button type="button" (click)="EliminarApuestaEquipo(ApuestaEquipo.IdLogro)" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                                    <td class="center">{{ApuestaEquipo.NombreEquipo}}</td>
+                                    <td class="center">{{ApuestaEquipo.Estado}}</td>
+                                    <td class="center">{{ApuestaEquipo.Fecha}}</td>
+                                    <td class="center">
+                                        <button class="center" type="button" (click)="ActualizarApuestaEquipo(ApuestaEquipo.IdLogro, actualizarOpcionEquipo[i])" class="btn btn-success-table"
+                                            style="margin-right:16px;">
+                                            <i class="material-icons center">
+                                                edit
+                                            </i>
+                                        </button>
+                                        <button class="center" type="button" (click)="EliminarApuestaEquipo(ApuestaEquipo.IdLogro)" class="btn btn-danger-table" style="margin-right:16px;">
+                                            <i class="material-icons center">
+                                                delete_forever
+                                            </i>
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -235,19 +264,23 @@
                     <table datatable [dtOptions]="dtOptionsMostrarJugadores" [dtTrigger]="dtTriggerMostrarJugadores" class="row-border hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Acción</th>
+                                <th class="center">ID</th>
+                                <th class="center">Nombre</th>
+                                <th class="center">Apellido</th>
+                                <th class="center">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let MostrarJugadores of ListMostrarJugadores">
-                                <td>{{MostrarJugadores.Id}}</td>
-                                <td>{{MostrarJugadores.Nombre}}</td>
-                                <td>{{MostrarJugadores.Apellido}}</td>
-                                <td>
-                                    <button type="button" class="btn btn-success-table" (click)="ActualizarApuestaJugador(MostrarJugadores.Id)" style="margin-right:16px;">✓</button>
+                                <td class="center">{{MostrarJugadores.Id}}</td>
+                                <td class="center">{{MostrarJugadores.Nombre}}</td>
+                                <td class="center">{{MostrarJugadores.Apellido}}</td>
+                                <td class="center">
+                                    <button class="center" type="button" class="btn btn-success-table" (click)="ActualizarApuestaJugador(MostrarJugadores.Id)" style="margin-right:16px;">
+                                        <i class="material-icons center">
+                                            edit
+                                        </i>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
@@ -256,7 +289,11 @@
 
                 <!-- modal-footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" (click)="closeModalJuagdores()">Close</button>
+                    <button type="button" class="btn btn-default" (click)="closeModalJuagdores()">
+                        <i class="material-icons center">
+                            delete_forever
+                        </i>
+                    </button>
                 </div>
 
             </div>

@@ -61,6 +61,23 @@ END;
 
 $BODY$;
 
+CREATE OR REPLACE FUNCTION public.obtenerproximasapuestap(
+	_fecha timestamp with time zone)
+    RETURNS TABLE(idpartido integer, fechapartido text, equipo1 integer, equipo2 integer) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN
+	RETURN QUERY SELECT pa_id, to_char(pa_horainicio, 'DD-MM-YYYY'),
+	pa_eq1_id, pa_eq2_id FROM partido WHERE pa_horainicio > _fecha ORDER BY pa_horainicio;
+END;
+
+$BODY$;
+
 CREATE OR REPLACE FUNCTION public.agregarapuestavof(
 	_idlogro integer,
 	_idusuario integer,
