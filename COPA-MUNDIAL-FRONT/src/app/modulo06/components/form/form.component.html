@@ -1,0 +1,85 @@
+<div class="container-fluid">
+  <form>
+    <br>
+    <h3>Ingrese los datos del partido</h3>
+    <div class="card">
+      <div class="card-body">
+      
+        <div class="form-group">
+          <label for="selectEstadio">Estadio</label>
+          <select class="form-control" id="exampleFormStadium">
+            <option *ngFor="let estadio of listaEstadios" [value]="estadio.nombre">
+                {{estadio.nombre}}
+            </option>
+          </select>
+        </div>
+    
+      <div class="form-group">
+        <label for="selectEquipo1">Equipo Local</label>
+        <select class="form-control" id="exampleFormTeam1">
+          <option *ngFor="let equipo of listaEquipos"
+            [value]="equipo.nombre" 
+            [attr.selected]="equipo.nombre == equipo1 ? true : null">
+            {{equipo.nombre}}
+          </option>
+        </select>
+        <small id="teamlHelp" class="form-text text-muted">*Seleccione uno de los equipos que jugaran en el partido.</small>
+      </div>
+    
+        <div class="form-group">
+          <label for="selectEquipo2">Equipo Visitante</label>
+          <select class="form-control" id="exampleFormTeam2">
+            <option *ngFor="let equipo of listaEquipos"
+              [value]="equipo.nombre" 
+              [attr.selected]="equipo.nombre == equipo2 ? true : null">
+              {{equipo.nombre}}
+            </option>
+          </select>
+          <small id="teamlHelp" class="form-text text-muted">*Seleccione uno de los equipos que jugaran en el partido.</small>
+        </div>
+    
+        <label>Fecha de inicio del partido</label>
+        <div class="row">
+          <div class="col input-group">
+            <div class="input-group-prepend">
+              <label>Fecha</label>
+            </div>
+            <input type="date" class="form-control" id="exampleFormDate">
+          </div>
+          <div class="col input-group">
+              <div class="input-group-prepend">
+                <label>Hora</label>
+              </div>
+              <input type="time" class="form-control" id="exampleFormTime">
+          </div>
+        </div>
+        <br>
+
+        <div *ngIf="(equipo1) != null; then fechaFin"></div>
+
+        <ng-template #fechaFin>
+          <label>Fecha de fin del partido</label>
+          <div class="row">
+            <div class="col input-group">
+              <div class="input-group-prepend">
+                <label>Fecha</label>
+              </div>
+              <input type="date" class="form-control" id="exampleFormDate">
+            </div>
+            <div class="col input-group">
+                <div class="input-group-prepend">
+                  <label>Hora</label>
+                </div>
+                <input type="time" class="form-control" id="exampleFormTime">
+            </div>
+          </div>
+        </ng-template>
+        <br>
+
+        <button type="submit" (click)="matchDetails()" class="btn">Guardar</button>
+      </div>
+    </div>
+    <br>
+  </form>
+</div>
+    

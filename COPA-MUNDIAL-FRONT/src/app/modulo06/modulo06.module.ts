@@ -11,6 +11,9 @@ import { AdminPartidoComponent } from './components/admin-partido/admin-partido.
 import { AdminCpartidoComponent } from './components/admin-cpartido/admin-cpartido.component';
 import { AdminCalineacionComponent } from './components/admin-calineacion/admin-calineacion.component';
 import { AdminMpartidoComponent } from './components/admin-mpartido/admin-mpartido.component';
+import { FormComponent } from './components/form/form.component';
+import { CrearPartidoComponent } from './components/crear-partido/crear-partido.component';
+import { ModificarPartidoComponent } from './components/modificar-partido/modificar-partido.component';
 
 @NgModule({
   imports: [
@@ -28,7 +31,10 @@ import { AdminMpartidoComponent } from './components/admin-mpartido/admin-mparti
     AdminPartidoComponent,
     AdminCpartidoComponent,
     AdminCalineacionComponent,
-    AdminMpartidoComponent
+    AdminMpartidoComponent,
+    FormComponent,
+    CrearPartidoComponent,
+    ModificarPartidoComponent
   ]
 })
 export class Modulo06Module { }
