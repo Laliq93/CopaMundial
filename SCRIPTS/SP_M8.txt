@@ -51,6 +51,16 @@ CREATE OR REPLACE FUNCTION public.agregarapuestajugador(
     VOLATILE 
 AS $BODY$
 
+BEGIN
+
+INSERT INTO apuesta(idLogro , idUsuario, respuestajugador, fechaCreacion) 
+	values (_idlogro,_idUsuario,_apuesta, now());
+
+	RETURN 1;
+END;
+
+$BODY$;
+
 CREATE OR REPLACE FUNCTION public.obtenerproximasapuestap(
 	_fecha timestamp with time zone)
     RETURNS TABLE(idpartido integer, fechapartido text, equipo1 integer, equipo2 integer) 
@@ -64,16 +74,6 @@ AS $BODY$
 BEGIN
 	RETURN QUERY SELECT pa_id, to_char(pa_horainicio, 'DD-MM-YYYY'),
 	pa_eq1_id, pa_eq2_id FROM partido WHERE pa_horainicio > _fecha ORDER BY pa_horainicio;
-END;
-
-$BODY$;
-
-BEGIN
-
-INSERT INTO apuesta(idLogro , idUsuario, respuestajugador, fechaCreacion) 
-	values (_idlogro,_idUsuario,_apuesta, now());
-
-	RETURN 1;
 END;
 
 $BODY$;
