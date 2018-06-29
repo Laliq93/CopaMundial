@@ -13,6 +13,8 @@ namespace PruebasCopaMundialAPI.Modulo_5
 
         private DTOJugador jugador;
 
+       // private DTOModificarJugador modificar;
+
         [SetUp]
         public void SetUp ()
         {
@@ -28,6 +30,18 @@ namespace PruebasCopaMundialAPI.Modulo_5
             jugador.Posicion = "DELANTERO";
             jugador.Numero = 7;
             jugador.Equipo = "Portugal";
+
+           /* modificar = FabricaDTO.CrearDTOModificarJugador();
+            modificar.Id = 1;
+            modificar.Nombre = "modificar";
+            modificar.Apellido = "modificar";
+            modificar.FechaNacimiento = "02-01-96";
+            modificar.LugarNacimiento = "Lisboa";
+            modificar.Peso = 90;
+            modificar.Altura = 1.85M;
+            modificar.Posicion = "DELANTERO";
+            modificar.Numero = 7;
+            modificar.Capitan = true;*/
         }
 
         [Test]
@@ -41,11 +55,23 @@ namespace PruebasCopaMundialAPI.Modulo_5
             controlador.AgregarJugador(jugador);
         }
 
+        /*[Test]
+        public void TestModificarJugador()
+        {
+            Assert.DoesNotThrow(ModificarJugador);
+        }
+
+        public void ModificarJugador()
+        {
+            controlador.ModificarJugador(modificar);
+        }*/
+
         [TearDown]
         public void TearDown ()
         {
             controlador = null;
             jugador = null;
+            //modificar = null;
         }
     }
 }

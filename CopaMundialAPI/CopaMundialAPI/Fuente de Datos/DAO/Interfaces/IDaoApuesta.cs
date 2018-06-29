@@ -12,14 +12,14 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
         /// Obtener todas las apuestas en curso de un usuario especifico.
         /// </summary>
         /// <param name="usuario"></param>
-        /// <returns></returns>
+        /// <returns>List<Entidad></returns>
         List<Entidad> ObtenerApuestasEnCurso(Entidad usuario);
 
         /// <summary>
         /// Obtener todas las apuestas finalizadas de un usuairo especifico
         /// </summary>
         /// <param name="usuario"></param>
-        /// <returns></returns>
+        /// <returns>List<Entidad></returns>
         List<Entidad> ObtenerApuestasFinalizadas(Entidad usuario);
 
         /// <summary>
@@ -36,5 +36,10 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
         /// <param name="apuesta"></param>
         /// <returns>int</returns>
         int VerificarApuestaValidaParaEditar(Entidad apuesta);
+
+        /// <summary>
+        /// Marcar apuestas como ganadas o perdidas de los logros completados.
+        /// </summary>
+        void FinalizarApuestas();
     }
 }
