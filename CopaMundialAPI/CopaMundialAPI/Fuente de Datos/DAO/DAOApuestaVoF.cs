@@ -86,6 +86,26 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         }
 
         /// <summary>
+        /// Marcar apuestas de tipo verdadero/falso como ganadas o perdidas de los logros finalizados.
+        /// </summary>
+        public void FinalizarApuestas()
+        {
+            try
+            {
+                Conectar();
+
+                StoredProcedure("finalizarapuestavof()");
+
+                EjecutarQuery();
+            }
+            catch (NpgsqlException exc)
+            {
+                Desconectar();
+                throw new BaseDeDatosException(exc, "Error al finalizar apuestas de tipo verdadero o falso");
+            }
+        }
+
+        /// <summary>
         /// Obtener las apuestas de un usuario en curso. (Partido no iniciado).
         /// </summary>
         /// <param name="Entidad">Usuario</param>

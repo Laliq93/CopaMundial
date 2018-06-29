@@ -257,5 +257,30 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
         {
             return new ComandoObtenerApuestasEquipoFinalizadas(usuario);
         }
+
+        public static ComandoFinalizarApuestasCantidad CrearComandoFinalizarApuestasCantidad()
+        {
+            return new ComandoFinalizarApuestasCantidad();
+        }
+
+        public static ComandoFinalizarApuestasVoF CrearComandoFinalizarApuestasVoF()
+        {
+            return new ComandoFinalizarApuestasVoF();
+        }
+
+        public static ComandoFinalizarApuestasJugador CrearComandoFinalizarApuestasJugador()
+        {
+            return new ComandoFinalizarApuestasJugador();
+        }
+
+        public static ComandoFinalizarApuestasEquipo CrearComandoFinalizarApuestasEquipo()
+        {
+            return new ComandoFinalizarApuestasEquipo();
+        }
+
+        public static ComandoFinalizarApuestas CrearComandoFinalizarApuestas()
+        {
+            return new ComandoFinalizarApuestas();
+        }
     }
 }

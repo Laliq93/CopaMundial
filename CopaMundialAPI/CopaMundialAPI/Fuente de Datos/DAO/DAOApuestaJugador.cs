@@ -92,6 +92,26 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
         }
 
+        /// <summary>
+        /// Marcar apuestas de tipo jugador como ganadas o perdidas de los logros finalizados.
+        /// </summary>
+        public void FinalizarApuestas()
+        {
+            try
+            {
+                Conectar();
+
+                StoredProcedure("finalizarapuestajugador()");
+
+                EjecutarQuery();
+            }
+            catch (NpgsqlException exc)
+            {
+                Desconectar();
+                throw new BaseDeDatosException(exc, "Error al finalizar apuestas de tipo jugador");
+            }
+        }
+
 
         /// <summary>
         /// Obtener las apuestas de un usuario en curso. (Partido no iniciado).

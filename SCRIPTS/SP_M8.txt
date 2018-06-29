@@ -380,3 +380,95 @@ BEGIN
 END;
 
 $BODY$;
+
+CREATE OR REPLACE FUNCTION public.finalizarapuestavof(
+	)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta ap SET estado = 'ganada' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 4 
+AND lo.lo_resultado_vf is not null AND lo.lo_resultado_vf = ap.respuestavof AND ap.estado != 'ganada';
+
+UPDATE apuesta ap SET estado = 'perdida' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 4 
+AND lo.lo_resultado_vf is not null AND lo.lo_resultado_vf != ap.respuestavof AND ap.estado != 'perdida';
+
+	RETURN 1;
+	
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.finalizarapuestacantidad(
+	)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta ap SET estado = 'ganada' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 1 
+AND lo.lo_cantidad is not null AND lo.lo_cantidad = ap.respuestacantidad AND ap.estado != 'ganada';
+
+UPDATE apuesta ap SET estado = 'perdida' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 1 
+AND lo.lo_cantidad is not null AND lo.lo_cantidad != ap.respuestacantidad AND ap.estado != 'perdida';
+
+	RETURN 1;
+	
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.finalizarapuestajugador(
+	)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta ap SET estado = 'ganada' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 2 
+AND lo.lo_resultado_ju is not null AND lo.lo_resultado_ju = ap.respuestajugador AND ap.estado != 'ganada';
+
+UPDATE apuesta ap SET estado = 'perdida' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 2 
+AND lo.lo_resultado_ju is not null AND lo.lo_resultado_ju != ap.respuestajugador AND ap.estado != 'perdida';
+
+	RETURN 1;
+	
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.finalizarapuestaequipo(
+	)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta ap SET estado = 'ganada' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 3 
+AND lo.lo_resultado_eq is not null AND lo.lo_resultado_eq = ap.respuestaequipo AND ap.estado != 'ganada';
+
+UPDATE apuesta ap SET estado = 'perdida' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 3 
+AND lo.lo_resultado_eq is not null AND lo.lo_resultado_eq != ap.respuestaequipo AND ap.estado != 'perdida';
+
+	RETURN 1;
+	
+END;
+
+$BODY$;
