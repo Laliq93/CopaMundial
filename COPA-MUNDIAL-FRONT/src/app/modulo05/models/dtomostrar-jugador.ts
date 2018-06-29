@@ -1,4 +1,4 @@
-export class Jugador {
+export class DTOMostrarJugador {
   Id: number;
   Nombre: string;
   Apellido: string;
@@ -9,4 +9,5 @@ export class Jugador {
   Posicion: string;
   Numero: number;
   Equipo: string;
+  Capitan: boolean;
 }
