@@ -16,7 +16,8 @@ declare var bootbox: any;
 @Component({
   selector: 'app-historial-apuesta',
   templateUrl: './historial-apuesta.component.html',
-  styleUrls: ['./historial-apuesta.component.css']
+  styleUrls: ['./historial-apuesta.component.css',
+    '../shared/style-apuesta.component.css']
 })
 export class HistorialApuestaComponent implements OnInit {
 
