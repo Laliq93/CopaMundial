@@ -11,24 +11,24 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 {
     public class ComandoEliminarApuestaJugador : Comando
     {
-        private Entidad _apuesta;
+
         private Comando _comando;
 
         public ComandoEliminarApuestaJugador(Entidad apuesta)
         {
-            _apuesta = apuesta;
+            Entidad = apuesta;
         }
 
         public override void Ejecutar()
         {
 
-            _comando = FabricaComando.CrearComandoVerificarApuestaJugadorValida(_apuesta);
+            _comando = FabricaComando.CrearComandoVerificarApuestaJugadorValida(Entidad);
 
             _comando.Ejecutar();
 
             DAOApuestaJugador dao = FabricaDAO.CrearDAOApuestaJugador();
 
-            dao.Eliminar(_apuesta);
+            dao.Eliminar(Entidad);
         }
 
         public override Entidad GetEntidad()
