@@ -12,17 +12,16 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
     public class ComandoVerificarApuestaVoFExiste : Comando
     {
         DAOApuestaVoF _dao;
-        Entidad _apuesta;
 
         public ComandoVerificarApuestaVoFExiste(Entidad apuesta)
         {
-            _apuesta = apuesta;
+            Entidad = apuesta;
             _dao = FabricaDAO.CrearDAOApuestaVoF();
         }
 
         public override void Ejecutar()
         {
-            int count = _dao.VerificarApuestaExiste(_apuesta);
+            int count = _dao.VerificarApuestaExiste(Entidad);
 
             if (count > 0)
                 throw new ApuestaRepetidaException();

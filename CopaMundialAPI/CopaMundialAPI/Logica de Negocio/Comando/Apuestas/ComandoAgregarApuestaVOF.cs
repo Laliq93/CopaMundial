@@ -11,24 +11,23 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 {
     public class ComandoAgregarApuestaVOF : Comando
     {
-        private Entidad _apuesta;
         private Comando _comando;
 
         public ComandoAgregarApuestaVOF(Entidad apuesta)
         {
-            _apuesta = apuesta;
+            Entidad = apuesta;
         }
 
         public override void Ejecutar()
         {
 
-            _comando = FabricaComando.CrearComandoVerificarApuestaVoFExiste(_apuesta);
+            _comando = FabricaComando.CrearComandoVerificarApuestaVoFExiste(Entidad);
 
             _comando.Ejecutar();
 
             DAOApuestaVoF dao = FabricaDAO.CrearDAOApuestaVoF();
 
-            dao.Agregar(_apuesta);
+            dao.Agregar(Entidad);
         }
 
         public override Entidad GetEntidad()

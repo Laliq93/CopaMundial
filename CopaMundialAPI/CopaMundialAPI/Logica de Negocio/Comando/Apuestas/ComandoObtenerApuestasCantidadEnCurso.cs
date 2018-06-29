@@ -11,12 +11,11 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 {
     public class ComandoObtenerApuestasCantidadEnCurso : Comando
     {
-        private Entidad _usuario;
         private List<Entidad> _apuestas;
 
         public ComandoObtenerApuestasCantidadEnCurso(Entidad usuario)
         {
-            _usuario = usuario;
+            Entidad = usuario;
             _apuestas = new List<Entidad>();
         }
 
@@ -24,7 +23,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
         {
             DAOApuestaCantidad dao = FabricaDAO.CrearDAOApuestaCantidad();
 
-            _apuestas = dao.ObtenerApuestasEnCurso(_usuario);
+            _apuestas = dao.ObtenerApuestasEnCurso(Entidad);
             
         }
 
