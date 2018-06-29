@@ -9,12 +9,12 @@ using CopaMundialAPI.Logica_de_Negocio.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 {
-    public class ComandoAgregarApuestaVOF : Comando
+    public class ComandoEliminarApuestaJugador : Comando
     {
         private Entidad _apuesta;
         private Comando _comando;
 
-        public ComandoAgregarApuestaVOF(Entidad apuesta)
+        public ComandoEliminarApuestaJugador(Entidad apuesta)
         {
             _apuesta = apuesta;
         }
@@ -22,13 +22,13 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
         public override void Ejecutar()
         {
 
-            _comando = FabricaComando.CrearComandoVerificarApuestaVoFExiste(_apuesta);
+            _comando = FabricaComando.CrearComandoVerificarApuestaJugadorValida(_apuesta);
 
             _comando.Ejecutar();
 
-            DAOApuestaVoF dao = FabricaDAO.CrearDAOApuestaVoF();
+            DAOApuestaJugador dao = FabricaDAO.CrearDAOApuestaJugador();
 
-            dao.Agregar(_apuesta);
+            dao.Eliminar(_apuesta);
         }
 
         public override Entidad GetEntidad()

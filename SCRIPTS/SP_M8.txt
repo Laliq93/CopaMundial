@@ -61,6 +61,23 @@ END;
 
 $BODY$;
 
+CREATE OR REPLACE FUNCTION public.obtenerproximasapuestap(
+	_fecha timestamp with time zone)
+    RETURNS TABLE(idpartido integer, fechapartido text, equipo1 integer, equipo2 integer) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN
+	RETURN QUERY SELECT pa_id, to_char(pa_horainicio, 'DD-MM-YYYY'),
+	pa_eq1_id, pa_eq2_id FROM partido WHERE pa_horainicio > _fecha ORDER BY pa_horainicio;
+END;
+
+$BODY$;
+
 CREATE OR REPLACE FUNCTION public.agregarapuestavof(
 	_idlogro integer,
 	_idusuario integer,
@@ -192,3 +209,174 @@ END;
 
 $BODY$;
 	
+CREATE OR REPLACE FUNCTION public.editarapuestavof(
+	_idlogro integer,
+	_idusuario integer,
+	_apuesta boolean)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta SET respuestavof = _apuesta WHERE idusuario = _idusuario AND idlogro = _idlogro;
+
+	RETURN 1;
+	
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.editarapuestacantidad(
+	_idlogro integer,
+	_idusuario integer,
+	_apuesta integer)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta SET respuestacantidad = _apuesta WHERE idusuario = _idusuario AND idlogro = _idlogro;
+
+	RETURN 1;
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.editarapuestaequipo(
+	_idlogro integer,
+	_idusuario integer,
+	_apuesta integer)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta SET respuestaequipo = _apuesta WHERE idusuario = _idusuario AND idlogro = _idlogro;
+
+	RETURN 1;
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.editarapuestajugador(
+	_idlogro integer,
+	_idusuario integer,
+	_apuesta integer)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta SET respuestajugador = _apuesta WHERE idusuario = _idusuario AND idlogro = _idlogro;
+
+	RETURN 1;
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.eliminarapuesta(
+	_idusuario integer,
+	_idlogro integer)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+	DELETE FROM apuesta WHERE idusuario = _idusuario AND idlogro = _idlogro;
+
+	RETURN 1;
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.obtenerapuestasvoffinalizadas(
+	_idusuario integer)
+    RETURNS TABLE(logroid integer, logroenunciado character varying, respuestausuario boolean, estadoapuesta character varying, fechaapuesta date) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN
+	RETURN QUERY SELECT lo.lo_id, lo.lo_nombre, ap.respuestavof, ap.estado, ap.fechacreacion FROM logro_partido lo 
+	INNER JOIN apuesta ap ON lo.lo_id = ap.idlogro WHERE lo.lo_fg_tipologro = 4 AND ap.estado != 'en curso' 
+	AND ap.idusuario = _idusuario;
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.obtenerapuestascantidadfinalizadas(
+	_idusuario integer)
+    RETURNS TABLE(logroid integer, logroenunciado character varying, respuestausuario integer, estadoapuesta character varying, fechaapuesta date) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN
+	RETURN QUERY SELECT lo.lo_id, lo.lo_nombre, ap.respuestacantidad, ap.estado, ap.fechacreacion FROM logro_partido lo 
+	INNER JOIN apuesta ap ON lo.lo_id = ap.idlogro WHERE lo.lo_fg_tipologro = 1 AND ap.estado != 'en curso' 
+	AND ap.idusuario = _idusuario;
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.obtenerapuestasjugadorfinalizadas(
+	_idusuario integer)
+    RETURNS TABLE(logroid integer, logroenunciado character varying, idjugador integer, nombrejugador character varying, apellidojugador character varying, estadoapuesta character varying, fechaapuesta date) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN
+	RETURN QUERY SELECT lo.lo_id, lo.lo_nombre, ap.respuestajugador,ju.ju_nombre, ju.ju_apellido ,ap.estado, ap.fechacreacion FROM logro_partido lo 
+	INNER JOIN apuesta ap ON lo.lo_id = ap.idlogro INNER JOIN jugador ju ON ju.ju_id = ap.respuestajugador WHERE lo.lo_fg_tipologro = 2 AND ap.estado != 'en curso' 
+	AND ap.idusuario = _idusuario;
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.obtenerapuestasequipofinalizadas(
+	_idusuario integer)
+    RETURNS TABLE(logroid integer, logroenunciado character varying, respuestausuario integer, estadoapuesta character varying, fechaapuesta date) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN
+	RETURN QUERY SELECT lo.lo_id, lo.lo_nombre, ap.respuestaequipo, ap.estado, ap.fechacreacion FROM logro_partido lo 
+	INNER JOIN apuesta ap ON lo.lo_id = ap.idlogro WHERE lo.lo_fg_tipologro = 3 AND ap.estado != 'en curso' 
+	AND ap.idusuario = _idusuario;
+END;
+
+$BODY$;
