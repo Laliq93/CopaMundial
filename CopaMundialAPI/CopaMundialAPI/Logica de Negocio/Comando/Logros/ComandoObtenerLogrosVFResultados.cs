@@ -4,9 +4,10 @@ using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Fuente_de_Datos.DAO;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
+
 namespace CopaMundialAPI.Logica_de_Negocio.Comando.Logros
 {
-    public class ComandoObtenerLogrosVFPendientes: Comando
+    public class ComandoObtenerLogrosVFResultados: Comando
     {
 
 
@@ -14,7 +15,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Logros
         private List<Entidad> _logrosVF;
         private DAOLogroVF _dao;
 
-        public ComandoObtenerLogrosVFPendientes(Entidad partido)
+        public ComandoObtenerLogrosVFResultados(Entidad partido)
         {
             _partido = partido;
             _logrosVF = new List<Entidad>();
@@ -25,12 +26,12 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Logros
         {
             _dao = FabricaDAO.CrearDAOLogroVF();
 
-            _logrosVF = _dao.ObtenerLogrosPendientes(_partido);
+            _logrosVF = _dao.ObtenerLogrosResultados(_partido);
         }
 
         public override Entidad GetEntidad()
         {
-            throw new NotImplementedException(); 
+            throw new NotImplementedException();
         }
 
         public override List<Entidad> GetEntidades()
