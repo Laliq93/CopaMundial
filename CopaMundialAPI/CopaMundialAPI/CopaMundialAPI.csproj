@@ -149,6 +149,7 @@
     <Compile Include="Comun\Excepciones\LogroNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\LogrosPendientesNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\ObjetoNullException.cs" />
+    <Compile Include="Comun\Excepciones\UsuarioNoExisteException.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaEquipo.cs.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOUsuario.cs" />
     <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOUsuario.cs" />

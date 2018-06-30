@@ -27,8 +27,10 @@ namespace CopaMundialAPI.Comun.Entidades
 
         }
 
-        public Usuario(string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, bool activo)
+        public Usuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, bool activo)
         {
+
+            _Id = id;
             _nombreUsuario = nombreUsuario;
             _nombre = nombre;
             _apellido = apellido;
@@ -37,9 +39,10 @@ namespace CopaMundialAPI.Comun.Entidades
             _activo = activo;
         }
 
-        public Usuario(string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
+        public Usuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
         string correo, char genero, string password, string fotoPath, bool esAdmin, bool activo, string token)
         {
+             _Id = id;
             _nombreUsuario = nombreUsuario;
             _nombre = nombre;
             _apellido = apellido;
