@@ -24,6 +24,30 @@ namespace CopaMundialAPI.Comun.Entidades
         // al_pa_id
         private Partido _partido;
 
+        /// <summary>
+        /// Constructor de la entidad Alineacion
+        /// </summary>
+        /// <param name="id">Id de la alineacion</param>
+        /// <param name="esCapitan">Indica si el jugador es Capitan</param>
+        /// <param name="posicion">Posicion en la juega el jugador</param>
+        /// <param name="esTitular">Si es titular o suplente</param>
+        /// <param name="jugador">Entidad jugador correspondiente</param>
+        /// <param name="equipo">Entidad equipo asociada al jugador</param>
+        /// <param name="partido">Entidad partido asociada a la alineacion</param>
+        public Alineacion(int id, bool esCapitan, string posicion, bool esTitular, Jugador jugador,
+                          Equipo equipo, Partido partido)
+        {
+            Id = id;
+            EsCapitan = esCapitan;
+            Posicion = posicion;
+            EsTitular = esTitular;
+            Jugador = jugador;
+            Equipo = equipo;
+            Partido = partido;
+        }
+
+        public Alineacion() {}
+
         public Boolean EsCapitan { get => _esCapitan; set => _esCapitan = value; }
         public string Posicion { get => _posicion; set => _posicion = value; }
         public Boolean EsTitular { get => _esTitular; set => _esTitular = value; }

@@ -9,19 +9,30 @@ import { AdminPartidoComponent } from './components/admin-partido/admin-partido.
 import { ClienteDetallesComponent } from './components/cliente-detalles/cliente-detalles.component';
 import { ClientePartidoComponent } from './components/cliente-partido/cliente-partido.component';
 import { IsAdminGuard } from '../guards/is-admin.guard';
+import { FormComponent } from './components/form/form.component';
+import { CrearPartidoComponent } from './components/crear-partido/crear-partido.component';
+import { ModificarPartidoComponent } from 'src/app/modulo06/components/modificar-partido/modificar-partido.component';
+import { VerAlineacionComponent } from './components/ver-alineacion/ver-alineacion.component';
+import { CrearAlineacionComponent } from './components/crear-alineacion/crear-alineacion.component';
 
 
-const routes: Routes = [ 
-  
-{ path: 'partidos', component: AdminCalineacionComponent, canActivate: [NotLoggedInGuard] },//admin/alineacion
-{ path: 'crearPartido', component: AdminCpartidoComponent, canActivate: [IsAdminGuard] },
-{ path: 'modificarPartido', component: AdminMpartidoComponent, canActivate: [NotLoggedInGuard] },
-{ path: 'listaPartidos', component: AdminPartidoComponent, canActivate: [NotLoggedInGuard] },
-{ path: 'listaPartidos', component: ClientePartidoComponent, canActivate: [LoggedInGuard] },
-{ path: 'detallePartido', component: ClienteDetallesComponent, canActivate: [LoggedInGuard]}];
+const routes: Routes = [
+  { path: 'crearAlineacion', component: CrearAlineacionComponent, canActivate: [NotLoggedInGuard] }, // admin/alineacion
+
+  { path: '', component: ClientePartidoComponent, canActivate: [NotLoggedInGuard] },
+  { path: 'listaPartidos', component: AdminPartidoComponent, canActivate: [NotLoggedInGuard] },
+  { path: 'detallePartido/:equipo1/:equipo2', component: ClienteDetallesComponent, canActivate: [NotLoggedInGuard]},
+
+  { path: 'admin', component: AdminPartidoComponent, canActivate: [NotLoggedInGuard] },
+  { path: 'form', component: FormComponent },
+  { path: 'admin/modificarPartido/:equipo1/:equipo2', component: ModificarPartidoComponent, canActivate: [NotLoggedInGuard] },
+  { path: 'admin/crearPartido', component: CrearPartidoComponent, canActivate: [NotLoggedInGuard] },
+
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
+
 export class Modulo06RoutingModule { }
