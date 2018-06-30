@@ -150,6 +150,7 @@
     <Compile Include="Comun\Excepciones\LogrosFinalizadosNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\LogrosPendientesNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\ObjetoNullException.cs" />
+    <Compile Include="Comun\Excepciones\UsuarioNoExisteException.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaEquipo.cs.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOUsuario.cs" />
     <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOUsuario.cs" />
@@ -224,6 +225,15 @@
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerListaPartidos.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerPartido.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoPosponerPartido.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoActualizarCorreo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoActualizarPassword.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoActualizarUsuario.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoAgregarUsuarioAdministrador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoGestionarCuenta.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoObtenerUsuarioActivo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoObtenerUsuarioDatos.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoVerificarClaveUsuario.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoVerificarCorreoExiste.cs" />
     <Compile Include="Presentacion\Controllers\JugadorController.cs" />
     <Compile Include="Presentacion\Controllers\CiudadController.cs" />
     <Compile Include="Presentacion\Controllers\ApuestaController.cs" />
@@ -341,7 +351,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Logica de Negocio\Comando\Usuarios\" />
     <Folder Include="Logica de Negocio\Compuesto\" />
     <Folder Include="Logica de Negocio\Singleton\" />
     <Folder Include="Models\" />
