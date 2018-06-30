@@ -1,4 +1,8 @@
-﻿using CopaMundialAPI.Presentacion.Controllers;
+﻿using CopaMundialAPI.Comun.Entidades;
+using CopaMundialAPI.Comun.Entidades.Fabrica;
+using CopaMundialAPI.Fuente_de_Datos.DAO;
+using CopaMundialAPI.Fuente_de_Datos.Fabrica;
+using CopaMundialAPI.Presentacion.Controllers;
 using CopaMundialAPI.Servicios.DTO.Jugadores;
 using CopaMundialAPI.Servicios.Fabrica;
 using NUnit.Framework;
@@ -9,42 +13,34 @@ namespace PruebasCopaMundialAPI.Modulo_5
     [TestFixture]
     public class PUJugador
     {
-        private JugadorController controlador;
+        /*private JugadorController controlador;
 
-        private DTOJugador jugador;
+        private DTOJugador jugador;*/
 
-       // private DTOModificarJugador modificar;
+        Jugador _jugador;
+
+        DAOJugador _daoJugador;
 
         [SetUp]
         public void SetUp ()
         {
-            controlador = new JugadorController();
+            _jugador = FabricaEntidades.CrearJugador();
 
-            jugador = FabricaDTO.CrearDTOJugador();
-            jugador.Nombre = "Cristiado";
-            jugador.Apellido = "Ronaldo";
-            jugador.FechaNacimiento = "02-01-96";
-            jugador.LugarNacimiento = "Lisboa";
-            jugador.Peso = 90;
-            jugador.Altura = 1.85M;
-            jugador.Posicion = "DELANTERO";
-            jugador.Numero = 7;
-            jugador.Equipo = "Portugal";
+            _jugador.Id = 99; //cambiar este id a conveniencia sobre la BD o hacer insert especifico
+            _jugador.Nombre = "Sabina";
+            _jugador.Apellido = "Quiroga";
+            _jugador.FechaNacimiento = "01-12-1992";
+            _jugador.LugarNacimiento = "Rusia";
+            _jugador.Peso = 50;
+            _jugador.Altura = 1.60M;
+            _jugador.Posicion = "PORTERO";
+            _jugador.Numero = 15;
+            _jugador.Equipo.Pais = "Rusia";
 
-           /* modificar = FabricaDTO.CrearDTOModificarJugador();
-            modificar.Id = 1;
-            modificar.Nombre = "modificar";
-            modificar.Apellido = "modificar";
-            modificar.FechaNacimiento = "02-01-96";
-            modificar.LugarNacimiento = "Lisboa";
-            modificar.Peso = 90;
-            modificar.Altura = 1.85M;
-            modificar.Posicion = "DELANTERO";
-            modificar.Numero = 7;
-            modificar.Capitan = true;*/
+            _daoJugador = FabricaDAO.CrearDAOJugador();
         }
 
-        [Test]
+        /*[Test]
         public void TestAgregarJugador ()
         {
             Assert.DoesNotThrow( AgregarJugador );
@@ -53,25 +49,45 @@ namespace PruebasCopaMundialAPI.Modulo_5
         public void AgregarJugador ()
         {
             controlador.AgregarJugador(jugador);
-        }
-
-        /*[Test]
-        public void TestModificarJugador()
-        {
-            Assert.DoesNotThrow(ModificarJugador);
-        }
-
-        public void ModificarJugador()
-        {
-            controlador.ModificarJugador(modificar);
         }*/
+
+        [Test]
+        public void TestAgregarJugador()
+        {
+            _daoJugador.Agregar(_jugador);
+            SPObtenerJugadorId();
+
+            if (_daoJugador.cantidadRegistros > 0)
+                Assert.Pass();
+
+            Assert.Fail();
+
+        }
 
         [TearDown]
         public void TearDown ()
         {
-            controlador = null;
-            jugador = null;
-            //modificar = null;
+            _jugador = null;
+            _daoJugador = null;
+        }
+
+        private void SPObtenerJugadorId()
+        {
+            _daoJugador.Conectar();
+
+            _daoJugador.StoredProcedure("consultarJugadores()");
+
+            _daoJugador.EjecutarReader();
+
+            
+
+
+            _daoJugador.Conectar();
+
+            _daoJugador.StoredProcedure("consultarJugadorId(@idJugador)");
+
+            _daoJugador.AgregarParametro("idJugador", _jugador.Id);
+            _daoJugador.EjecutarReader();
         }
     }
 }
