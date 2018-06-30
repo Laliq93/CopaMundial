@@ -105,7 +105,7 @@ export class VerApuestaComponent implements OnInit {
           }
         },
         Error => {
-          this.api08.FatalError();
+          console.log(Error.error);
         }
       );
   }
@@ -133,7 +133,7 @@ export class VerApuestaComponent implements OnInit {
           }
         },
         Error => {
-          this.api08.FatalError();
+          console.log(Error.error);
         }
       );
   }
@@ -161,7 +161,7 @@ export class VerApuestaComponent implements OnInit {
           }
         },
         Error => {
-          this.api08.FatalError();
+          console.log(Error.error);
         }
       );
   }
@@ -189,7 +189,7 @@ export class VerApuestaComponent implements OnInit {
           }
         },
         Error => {
-          this.api08.FatalError();
+          console.log(Error.error);
         }
       );
   }
@@ -217,7 +217,7 @@ export class VerApuestaComponent implements OnInit {
           }
         },
         Error => {
-          this.api08.FatalError();
+          this.api08.FatalError(Error);
         }
       );
   }
