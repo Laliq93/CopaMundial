@@ -26,7 +26,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
     [RoutePrefix("api/Apuesta")]
     public class ApuestaController : ApiController
     {
-        Logger logger = LogManager.GetLogger("fileLogger");
+        Logger log = LogManager.GetLogger("fileLogger");
 
         /// <summary>
         /// Proceso para obtener todos los partidos con una fecha de inicio estrictamente mayor a la fecha actual del sistema.
@@ -48,11 +48,17 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 return Request.CreateResponse(HttpStatusCode.OK, Listadtos);
             }
+            catch(BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -73,13 +79,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 Entidad apuesta = traductor.CrearEntidad(dto);
 
-                Comando comando;
-
-                comando = FabricaComando.CrearComandoVerificarApuestaVoFExiste(apuesta);
-
-                comando.Ejecutar();
-
-                comando = FabricaComando.CrearComandoAgregarApuestaVoF(apuesta);
+                Comando comando = FabricaComando.CrearComandoAgregarApuestaVoF(apuesta);
 
                 comando.Ejecutar();
 
@@ -87,13 +87,19 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
             catch (ApuestaRepetidaException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
@@ -101,7 +107,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -123,13 +129,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 Entidad apuesta = traductor.CrearEntidad(dto);
 
-                Comando comando;
-
-                comando = FabricaComando.CrearComandoVerificarApuestaCantidadExiste(apuesta);
-
-                comando.Ejecutar();
-
-                comando = FabricaComando.CrearComandoAgregarApuestaCantidad(apuesta);
+                Comando comando = FabricaComando.CrearComandoAgregarApuestaCantidad(apuesta);
 
                 comando.Ejecutar();
 
@@ -137,21 +137,27 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaRepetidaException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -173,13 +179,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 Entidad apuesta = traductor.CrearEntidad(dto);
 
-                Comando comando;
-
-                comando = FabricaComando.CrearComandoVerificaApuestaJugadorExiste(apuesta);
-
-                comando.Ejecutar();
-
-                comando = FabricaComando.CrearComandoAgregarApuestaJugador(apuesta);
+                Comando comando = FabricaComando.CrearComandoAgregarApuestaJugador(apuesta);
 
                 comando.Ejecutar();
 
@@ -187,21 +187,27 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaRepetidaException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -223,13 +229,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 Entidad apuesta = traductor.CrearEntidad(dto);
 
-                Comando comando;
-
-                comando = FabricaComando.CrearComandoVerificaApuestaEquipoExiste(apuesta);
-
-                comando.Ejecutar();
-
-                comando = FabricaComando.CrearComandoAgregarApuestaEquipo(apuesta);
+                Comando comando = FabricaComando.CrearComandoAgregarApuestaEquipo(apuesta);
 
                 comando.Ejecutar();
 
@@ -237,13 +237,19 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
             catch (ApuestaRepetidaException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
@@ -251,7 +257,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -285,15 +291,21 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -326,15 +338,21 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -367,15 +385,21 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -408,15 +432,21 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -437,11 +467,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 Entidad apuesta = traductor.CrearEntidad(dto);
 
-                Comando comando = FabricaComando.CrearComandoVerificarApuestaVoFValida(apuesta);
-
-                comando.Ejecutar();
-
-                comando = FabricaComando.CrearComandoActualizarApuestaVoF(apuesta);
+                Comando comando = FabricaComando.CrearComandoActualizarApuestaVoF(apuesta);
 
                 comando.Ejecutar();
 
@@ -449,21 +475,27 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch(ApuestaInvalidaException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -484,11 +516,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 Entidad apuesta = traductor.CrearEntidad(dto);
 
-                Comando comando = FabricaComando.CrearComandoVerificarApuestaCantidadValida(apuesta);
-
-                comando.Ejecutar();
-
-                comando = FabricaComando.CrearComandoActualizarApuestaCantidad(apuesta);
+                Comando comando = FabricaComando.CrearComandoActualizarApuestaCantidad(apuesta);
 
                 comando.Ejecutar();
 
@@ -496,13 +524,19 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
             catch (ApuestaInvalidaException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
@@ -510,7 +544,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -531,11 +565,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 Entidad apuesta = traductor.CrearEntidad(dto);
 
-                Comando comando = FabricaComando.CrearComandoVerificarApuestaJugadorValida(apuesta);
-
-                comando.Ejecutar();
-
-                comando = FabricaComando.CrearComandoActualizarApuestaJugador(apuesta);
+                Comando comando = FabricaComando.CrearComandoActualizarApuestaJugador(apuesta);
 
                 comando.Ejecutar();
 
@@ -543,13 +573,19 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
             catch (ApuestaInvalidaException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
@@ -557,7 +593,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -578,11 +614,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 Entidad apuesta = traductor.CrearEntidad(dto);
 
-                Comando comando = FabricaComando.CrearComandoVerificarApuestaEquipoValida(apuesta);
-
-                comando.Ejecutar();
-
-                comando = FabricaComando.CrearComandoActualizarApuestaEquipo(apuesta);
+                Comando comando = FabricaComando.CrearComandoActualizarApuestaEquipo(apuesta);
 
                 comando.Ejecutar();
 
@@ -590,21 +622,27 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaInvalidaException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -626,11 +664,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 Entidad apuesta = traductor.CrearEntidad(dto);
 
-                Comando comando = FabricaComando.CrearComandoVerificarApuestaVoFValida(apuesta);
-
-                comando.Ejecutar();
-
-                comando = FabricaComando.CrearComandoEliminarApuestaVoF(apuesta);
+                Comando comando = FabricaComando.CrearComandoEliminarApuestaVoF(apuesta);
 
                 comando.Ejecutar();
 
@@ -638,21 +672,27 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaInvalidaException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -673,11 +713,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 Entidad apuesta = traductor.CrearEntidad(dto);
 
-                Comando comando = FabricaComando.CrearComandoVerificarApuestaCantidadValida(apuesta);
-
-                comando.Ejecutar();
-
-                comando = FabricaComando.CrearComandoEliminarApuestaCantidad(apuesta);
+                Comando comando = FabricaComando.CrearComandoEliminarApuestaCantidad(apuesta);
 
                 comando.Ejecutar();
 
@@ -685,19 +721,25 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaInvalidaException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -718,11 +760,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 Entidad apuesta = traductor.CrearEntidad(dto);
 
-                Comando comando = FabricaComando.CrearComandoVerificarApuestaJugadorValida(apuesta);
-
-                comando.Ejecutar();
-
-                comando = FabricaComando.CrearComandoEliminarApuestaJugador(apuesta);
+                Comando comando = FabricaComando.CrearComandoEliminarApuestaJugador(apuesta);
 
                 comando.Ejecutar();
 
@@ -730,19 +768,25 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaInvalidaException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -763,11 +807,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 Entidad apuesta = traductor.CrearEntidad(dto);
 
-                Comando comando = FabricaComando.CrearComandoVerificarApuestaEquipoValida(apuesta);
-
-                comando.Ejecutar();
-
-                comando = FabricaComando.CrearComandoEliminarApuestaEquipo(apuesta);
+                Comando comando = FabricaComando.CrearComandoEliminarApuestaEquipo(apuesta);
 
                 comando.Ejecutar();
 
@@ -775,19 +815,25 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaInvalidaException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -821,14 +867,20 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -861,14 +913,20 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -901,14 +959,20 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
@@ -941,14 +1005,52 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ObjetoNullException exc)
             {
-                logger.Error(exc, exc.Mensaje);
+                log.Error(exc, exc.Mensaje);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
                 ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                logger.Error(exc, exc.Message);
+                log.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
+            }
+        }
+
+        /// <summary>
+        /// Proceso para marcar todas las apuestas de los logros finalizados como ganadas o perdidas.
+        /// </summary>
+        [Route("finalizarapuestas")]
+        [System.Web.Http.AcceptVerbs("PUT", "GET")]
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage FinalizarApuestas()
+        {
+            try
+            {
+                Comando comando = FabricaComando.CrearComandoFinalizarApuestas();
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                log.Error(exc, exc.Message);
 
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }

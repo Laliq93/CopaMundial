@@ -18,17 +18,25 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// <param name="Entidad">Apuesta</param>
         public void Actualizar(Entidad entidad)
         {
-            ApuestaEquipo apuesta = entidad as ApuestaEquipo;
+            try
+            {
+                ApuestaEquipo apuesta = entidad as ApuestaEquipo;
 
-            Conectar();
+                Conectar();
 
-            StoredProcedure("editarapuestaequipo(@idlogro, @idusuario, @apuesta)");
+                StoredProcedure("editarapuestaequipo(@idlogro, @idusuario, @apuesta)");
 
-            AgregarParametro("idlogro", apuesta.Logro.Id);
-            AgregarParametro("idusuario", apuesta.Usuario.Id);
-            AgregarParametro("apuesta", apuesta.Respuesta.Id);
+                AgregarParametro("idlogro", apuesta.Logro.Id);
+                AgregarParametro("idusuario", apuesta.Usuario.Id);
+                AgregarParametro("apuesta", apuesta.Respuesta.Id);
 
-            EjecutarQuery();
+                EjecutarQuery();
+            }
+            catch (NpgsqlException exc)
+            {
+                Desconectar();
+                throw new BaseDeDatosException(exc, "Error al actualizar apuesta.");
+            }
         }
 
         /// <summary>
@@ -37,17 +45,25 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// <param name="Entidad">Apuesta</param>
         public void Agregar(Entidad entidad)
         {
-            ApuestaEquipo apuesta = entidad as ApuestaEquipo;
+            try
+            {
+                ApuestaEquipo apuesta = entidad as ApuestaEquipo;
 
-            Conectar();
+                Conectar();
 
-            StoredProcedure("agregarapuestaequipo(@idlogro, @idusuario, @apuesta)");
+                StoredProcedure("agregarapuestaequipo(@idlogro, @idusuario, @apuesta)");
 
-            AgregarParametro("idlogro", apuesta.Logro.Id);
-            AgregarParametro("idusuario", apuesta.Usuario.Id);
-            AgregarParametro("apuesta", apuesta.Respuesta.Id);
+                AgregarParametro("idlogro", apuesta.Logro.Id);
+                AgregarParametro("idusuario", apuesta.Usuario.Id);
+                AgregarParametro("apuesta", apuesta.Respuesta.Id);
 
-            EjecutarQuery();
+                EjecutarQuery();
+            }
+            catch (NpgsqlException exc)
+            {
+                Desconectar();
+                throw new BaseDeDatosException(exc, "Error al agregar nueva apuesta");
+            }
         }
 
         /// <summary>
@@ -56,16 +72,45 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// <param name="Entidad">Apuesta</param>
         public void Eliminar(Entidad entidad)
         {
-            ApuestaEquipo apuesta = entidad as ApuestaEquipo;
+            try
+            {
+                ApuestaEquipo apuesta = entidad as ApuestaEquipo;
 
-            Conectar();
+                Conectar();
 
-            StoredProcedure("eliminarapuesta(@idusuario, @idlogro)");
+                StoredProcedure("eliminarapuesta(@idusuario, @idlogro)");
 
-            AgregarParametro("idusuario", apuesta.Usuario.Id);
-            AgregarParametro("idlogro", apuesta.Logro.Id);
+                AgregarParametro("idusuario", apuesta.Usuario.Id);
+                AgregarParametro("idlogro", apuesta.Logro.Id);
 
-            EjecutarQuery();
+                EjecutarQuery();
+            }
+            catch (NpgsqlException exc)
+            {
+                Desconectar();
+                throw new BaseDeDatosException(exc, "Error al eliminar la apuesta");
+            }
+
+        }
+
+        /// <summary>
+        /// Marcar apuestas de tipo equipo como ganadas o perdidas de los logros finalizados.
+        /// </summary>
+        public void FinalizarApuestas()
+        {
+            try
+            {
+                Conectar();
+
+                StoredProcedure("finalizarapuestaequipo()");
+
+                EjecutarQuery();
+            }
+            catch (NpgsqlException exc)
+            {
+                Desconectar();
+                throw new BaseDeDatosException(exc, "Error al finalizar apuestas de tipo equipo");
+            }
         }
 
         /// <summary>
@@ -128,8 +173,15 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
             catch (InvalidCastException exc)
             {
-                Desconectar();
                 throw exc;
+            }
+            catch(NpgsqlException exc)
+            {
+                throw new BaseDeDatosException(exc, "Error al obtener apuestas en curso");
+            }
+            finally
+            {
+                Desconectar();
             }
         }
 
@@ -193,8 +245,15 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
             catch (InvalidCastException exc)
             {
-                Desconectar();
                 throw exc;
+            }
+            catch(NpgsqlException exc)
+            {
+                throw new BaseDeDatosException(exc, "Error al obtener apuestas finalizadas");
+            }
+            finally
+            {
+                Desconectar();
             }
         }
 
@@ -210,20 +269,28 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// <param name="Entidad">Apuesta</param>
         public int VerificarApuestaExiste(Entidad apuesta)
         {
-            ApuestaEquipo apuestaequipo = apuesta as ApuestaEquipo;
+            try
+            {
+                ApuestaEquipo apuestaequipo = apuesta as ApuestaEquipo;
 
-            Conectar();
+                Conectar();
 
-            StoredProcedure("verificarapuestaexiste(@idusuario, @idlogro)");
+                StoredProcedure("verificarapuestaexiste(@idusuario, @idlogro)");
 
-            AgregarParametro("idusuario", apuestaequipo.Usuario.Id);
-            AgregarParametro("idlogro", apuestaequipo.Logro.Id);
+                AgregarParametro("idusuario", apuestaequipo.Usuario.Id);
+                AgregarParametro("idlogro", apuestaequipo.Logro.Id);
 
-            EjecutarReader();
+                EjecutarReader();
 
-            int count = GetInt(0, 0);
+                int count = GetInt(0, 0);
 
-            return count;
+                return count;
+            }
+            catch (NpgsqlException exc)
+            {
+                Desconectar();
+                throw new BaseDeDatosException(exc, "Error al validar si la apuesta existe");
+            }
         }
 
         /// <summary>
@@ -232,21 +299,29 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// <param name="Entidad">Apuesta</param>
         public int VerificarApuestaValidaParaEditar(Entidad apuesta)
         {
-            ApuestaEquipo apuestaequipo = apuesta as ApuestaEquipo;
+            try
+            {
+                ApuestaEquipo apuestaequipo = apuesta as ApuestaEquipo;
 
-            Conectar();
+                Conectar();
 
-            StoredProcedure("verificarapuestavalida(@idusuario, @idlogro)");
+                StoredProcedure("verificarapuestavalida(@idusuario, @idlogro)");
 
 
-            AgregarParametro("idusuario", apuestaequipo.Usuario.Id);
-            AgregarParametro("idlogro", apuestaequipo.Logro.Id);
+                AgregarParametro("idusuario", apuestaequipo.Usuario.Id);
+                AgregarParametro("idlogro", apuestaequipo.Logro.Id);
 
-            EjecutarReader();
+                EjecutarReader();
 
-            int count = GetInt(0, 0);
+                int count = GetInt(0, 0);
 
-            return count;
+                return count;
+            }
+            catch (NpgsqlException exc)
+            {
+                Desconectar();
+                throw new BaseDeDatosException(exc, "Error al verificar si la apuesta puede ser modificada");
+            }
         }
     }
 }

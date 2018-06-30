@@ -15,12 +15,15 @@ using CopaMundialAPI.Servicios.Fabrica;
 using CopaMundialAPI.Comun.Excepciones;
 using CopaMundialAPI.Servicios.Traductores.Jugadores;
 using CopaMundialAPI.Servicios.Traductores.Fabrica;
+using NLog;
 
 namespace CopaMundialAPI.Presentacion.Controllers
 {
     [RoutePrefix("api/Jugador")]
     public class JugadorController : ApiController
     {
+        Logger log = LogManager.GetLogger("fileLogger");
+
         [Route("obtenerJugadores")]
         [System.Web.Http.AcceptVerbs("GET")]
         [System.Web.Http.HttpGet]
@@ -38,10 +41,17 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 return Request.CreateResponse(HttpStatusCode.OK, dtos);
             }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                log.Error(exc, exc.Message);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -64,17 +74,28 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 return new HttpResponseMessage(HttpStatusCode.OK);
             }
+            catch (ObjetoNullException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                log.Error(exc, exc.Message);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
         [Route("modificarJugador")]
-        [System.Web.Http.AcceptVerbs("POST")]
-        [System.Web.Http.HttpPost]
+        [System.Web.Http.AcceptVerbs("PUT")]
+        [System.Web.Http.HttpPut]
         public HttpResponseMessage ModificarJugador(DTOModificarJugador dto)
         {
             try
@@ -91,11 +112,17 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 return new HttpResponseMessage(HttpStatusCode.OK);
             }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                log.Error(exc, exc.Message);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -118,11 +145,17 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 return new HttpResponseMessage(HttpStatusCode.OK);
             }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
-
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                log.Error(exc, exc.Message);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 
@@ -145,11 +178,79 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
                 return new HttpResponseMessage(HttpStatusCode.OK);
             }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
             catch (Exception exc)
             {
-                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                log.Error(exc, exc.Message);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
+            }
+        }
 
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+        [Route("obtenerJugadoresActivo")]
+        [System.Web.Http.AcceptVerbs("GET")]
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage ObtenerJugadoresActivo()
+        {
+            try
+            {
+                TraductorObtenerJugadores traductor = FabricaTraductor.CrearTraductorObtenerJugadores();
+
+                Comando comando = FabricaComando.CrearComandoObtenerJugadoresActivo();
+
+                comando.Ejecutar();
+
+                List<DTOObtenerJugadores> dtos = traductor.CrearListaDto(comando.GetEntidades());
+
+                return Request.CreateResponse(HttpStatusCode.OK, dtos);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                log.Error(exc, exc.Message);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
+            }
+        }
+
+        [Route("obtenerJugadoresInactivo")]
+        [System.Web.Http.AcceptVerbs("GET")]
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage ObtenerJugadoresInactivo()
+        {
+            try
+            {
+                TraductorObtenerJugadores traductor = FabricaTraductor.CrearTraductorObtenerJugadores();
+
+                Comando comando = FabricaComando.CrearComandoObtenerJugadoresInactivo();
+
+                comando.Ejecutar();
+
+                List<DTOObtenerJugadores> dtos = traductor.CrearListaDto(comando.GetEntidades());
+
+                return Request.CreateResponse(HttpStatusCode.OK, dtos);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                log.Error(exc, exc.Message);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
         }
 

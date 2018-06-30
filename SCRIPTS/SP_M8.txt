@@ -61,6 +61,23 @@ END;
 
 $BODY$;
 
+CREATE OR REPLACE FUNCTION public.obtenerproximasapuestap(
+	_fecha timestamp with time zone)
+    RETURNS TABLE(idpartido integer, fechapartido text, equipo1 integer, equipo2 integer) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN
+	RETURN QUERY SELECT pa_id, to_char(pa_horainicio, 'DD-MM-YYYY'),
+	pa_eq1_id, pa_eq2_id FROM partido WHERE pa_horainicio > _fecha ORDER BY pa_horainicio;
+END;
+
+$BODY$;
+
 CREATE OR REPLACE FUNCTION public.agregarapuestavof(
 	_idlogro integer,
 	_idusuario integer,
@@ -360,6 +377,116 @@ BEGIN
 	RETURN QUERY SELECT lo.lo_id, lo.lo_nombre, ap.respuestaequipo, ap.estado, ap.fechacreacion FROM logro_partido lo 
 	INNER JOIN apuesta ap ON lo.lo_id = ap.idlogro WHERE lo.lo_fg_tipologro = 3 AND ap.estado != 'en curso' 
 	AND ap.idusuario = _idusuario;
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.finalizarapuestavof(
+	)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta ap SET estado = 'ganada' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 4 
+AND lo.lo_resultado_vf is not null AND lo.lo_resultado_vf = ap.respuestavof AND ap.estado != 'ganada';
+
+UPDATE apuesta ap SET estado = 'perdida' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 4 
+AND lo.lo_resultado_vf is not null AND lo.lo_resultado_vf != ap.respuestavof AND ap.estado != 'perdida';
+
+	RETURN 1;
+	
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.finalizarapuestacantidad(
+	)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta ap SET estado = 'ganada' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 1 
+AND lo.lo_cantidad is not null AND lo.lo_cantidad = ap.respuestacantidad AND ap.estado != 'ganada';
+
+UPDATE apuesta ap SET estado = 'perdida' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 1 
+AND lo.lo_cantidad is not null AND lo.lo_cantidad != ap.respuestacantidad AND ap.estado != 'perdida';
+
+	RETURN 1;
+	
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.finalizarapuestajugador(
+	)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta ap SET estado = 'ganada' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 2 
+AND lo.lo_resultado_ju is not null AND lo.lo_resultado_ju = ap.respuestajugador AND ap.estado != 'ganada';
+
+UPDATE apuesta ap SET estado = 'perdida' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 2 
+AND lo.lo_resultado_ju is not null AND lo.lo_resultado_ju != ap.respuestajugador AND ap.estado != 'perdida';
+
+	RETURN 1;
+	
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.finalizarapuestaequipo(
+	)
+    RETURNS integer
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+BEGIN
+
+UPDATE apuesta ap SET estado = 'ganada' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 3 
+AND lo.lo_resultado_eq is not null AND lo.lo_resultado_eq = ap.respuestaequipo AND ap.estado != 'ganada';
+
+UPDATE apuesta ap SET estado = 'perdida' FROM logro_partido lo WHERE lo.lo_id = ap.idlogro AND lo.lo_fg_tipologro = 3 
+AND lo.lo_resultado_eq is not null AND lo.lo_resultado_eq != ap.respuestaequipo AND ap.estado != 'perdida';
+
+	RETURN 1;
+	
+END;
+
+$BODY$;
+
+CREATE OR REPLACE FUNCTION public.obtenerapuestatest(
+	_idusuario integer, _idlogro integer)
+    RETURNS TABLE(usuario integer, logro integer, _estado character varying, _respuestavof boolean,
+				 _respuestacantidad integer, _respuestajugador integer, _respuestaequipo integer) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN
+	RETURN QUERY SELECT idusuario, idlogro, estado, respuestavof, respuestacantidad, 
+	respuestajugador, respuestaequipo FROM apuesta WHERE idusuario = _idusuario AND idlogro = _idlogro;
 END;
 
 $BODY$;
