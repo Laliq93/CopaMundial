@@ -33,8 +33,9 @@ export class JugadoresComponent implements OnInit {
   ListJugadoresActivos: DTOMostrarJugador[] = [];
   ListJugadoresInactivos: DTOMostrarJugador[] = [];
   jugador : Jugador;
-  activar_jugador : DTOActivarJugador;
-  desactivar_jugador : DTOActivarJugador;
+  jugadorInactivo : DTOActivarJugador;
+  jugadorActivo : DTOActivarJugador;
+
 
   readonly rootUrl =  'http://localhost:51543/api';
 
@@ -43,6 +44,8 @@ export class JugadoresComponent implements OnInit {
     { 
       this.conexion = new Conexion();
       this.jugador = new Jugador();
+      this.jugadorInactivo = new DTOActivarJugador();
+      this.jugadorActivo = new DTOActivarJugador();
     }
 
   ngOnInit() {
@@ -97,7 +100,8 @@ export class JugadoresComponent implements OnInit {
     
   }
 
-  desactivarJugador (idJugador: number) {
+  /*desactivarJugador (idJugador: number) {
+
 
     this.conexion.controller = 'activarJugador';
     this.url = this.conexion.GetApiJugador() + this.conexion.controller;
@@ -120,6 +124,72 @@ export class JugadoresComponent implements OnInit {
         } 
       );
 
+    
+  }*/
+
+  activarJugador(playerActivateForm){
+    this.conexion.controller = 'activarJugador';
+    this.url = this.conexion.GetApiJugador() + this.conexion.controller;
+    console.log(this.url+ "url");
+
+    const httpHeaders = new HttpHeaders().set('Accept', 'application/json');
+
+    const {Id} = playerActivateForm.controls;
+    
+
+    console.log(playerActivateForm.controls, Id.value);
+    
+    
+    const player_activate = {
+      id          : Id.value
+    };
+    
+
+      this.http
+      .post<DTOActivarJugador>(this.url, player_activate,  { responseType: 'json' })
+      .subscribe(
+        success => {
+          console.log(success)
+        },
+        error =>{
+          console.log('Player '+JSON.stringify({player_activate})
+        )
+          alert("Error en el sistema")
+        } 
+      );
+    
+  }
+
+  desactivarJugador(playerInactivateForm){
+    this.conexion.controller = 'desactivarJugador';
+    this.url = this.conexion.GetApiJugador() + this.conexion.controller;
+    console.log(this.url+ "url");
+
+    const httpHeaders = new HttpHeaders().set('Accept', 'application/json');
+
+    const {Id} = playerInactivateForm.controls;
+    
+
+    console.log(playerInactivateForm.controls, Id.value);
+    
+    
+    const player_inactivate = {
+      id          : Id.value
+    };
+    
+
+      this.http
+      .post<DTOActivarJugador>(this.url, player_inactivate,  { responseType: 'json' })
+      .subscribe(
+        success => {
+          console.log(success)
+        },
+        error =>{
+          console.log('Player '+JSON.stringify({player_inactivate})
+        )
+          alert("Error en el sistema")
+        } 
+      );
     
   }
 

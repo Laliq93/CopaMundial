@@ -22,7 +22,13 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="tab" href="#inactivos" role="tab">Jugadores Inactivos</a>
-                </li>              
+                </li> 
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#activar" role="tab">Activar Jugador</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#desactivar" role="tab">Desactivar Jugador</a>
+                  </li>             
             </ul>
     
               <div class="tab-content">
@@ -130,7 +136,7 @@
                   </div>
                 </div>
     
-                <div class="tab-pane active" id="jugadores" role="tabpanel">
+                <div class="tab-pane" id="jugadores" role="tabpanel">
                   <div class="card-body">
   
                       <div class="d-none d-sm-block">
@@ -172,7 +178,7 @@
                   </div>
                 </div>
 
-                <div class="tab-pane active" id="activos" role="tabpanel">
+                <div class="tab-pane" id="activos" role="tabpanel">
                   <div class="card-body">
   
                       <div class="d-none d-sm-block">
@@ -217,7 +223,7 @@
                   </div>
                 </div>
 
-                <div class="tab-pane active" id="inactivos" role="tabpanel">
+                <div class="tab-pane" id="inactivos" role="tabpanel">
                   <div class="card-body">
   
                       <div class="d-none d-sm-block">
@@ -260,6 +266,54 @@
                       </div>
                       
                   </div>
+                </div>
+
+                <div class="tab-pane" id="activar" role="tabpanel">
+                    <div class="card-body">
+    
+                        <form #playerActivateForm="ngForm" (ngSubmit)="activarJugador(playerActivateForm)" class="form-horizontal form-material">
+  
+              
+                            <div class="form-group">
+                              <label class="col-md-12" for="inputId">Id</label>
+                              <div class="col-md-12">
+                                <input matInput type="text" id="inputId" maxlength="20" #Id="ngModel" [(ngModel)]="jugadorInactivo.id" name="Id" required class="form-control form-control-line">
+                              </div>
+                            </div>
+              
+                            <div class="form-group">
+                              <div class="col-sm-12">
+                                <button [disabled]="!playerActivateForm.valid" type="submit" class="btn btn-agregar">Activar</button>
+                              </div>
+                            </div>
+              
+                          </form>
+                        
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="desactivar" role="tabpanel">
+                    <div class="card-body">
+    
+                        <form #playerInactivateForm="ngForm" (ngSubmit)="desactivarJugador(playerInactivateForm)" class="form-horizontal form-material">
+  
+              
+                            <div class="form-group">
+                              <label class="col-md-12" for="inputId2">Id</label>
+                              <div class="col-md-12">
+                                <input matInput type="text" id="inputId2" maxlength="20" #Id="ngModel" [(ngModel)]="jugadorActivo.id" name="Id" required class="form-control form-control-line">
+                              </div>
+                            </div>
+              
+                            <div class="form-group">
+                              <div class="col-sm-12">
+                                <button [disabled]="!playerInactivateForm.valid" type="submit" class="btn btn-agregar">Desactivar</button>
+                              </div>
+                            </div>
+              
+                          </form>
+                        
+                    </div>
                 </div>
     
               </div>
