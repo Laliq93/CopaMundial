@@ -21,6 +21,13 @@ namespace CopaMundialAPI.Comun.Excepciones
             _excepcion = excepcion;
         }
 
+        public ObjetoNullException(string mensaje)
+        {
+            _fecha = DateTime.Now;
+            _mensaje = mensaje;
+            _excepcion = excepcion;
+        }
+
         /// <summary>
         /// Getters y Setters del atributo _fecha
         /// </summary>
