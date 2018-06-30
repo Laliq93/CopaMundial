@@ -74,6 +74,9 @@ padding-bottom: 1%;
     color: #3f3f3f;
     border-radius: 5px 5px 5px 5px;
 }
+.row:hover .match-time{
+    color: black;
+}
 
 button{
     text-decoration:none;
@@ -106,8 +109,7 @@ button{
 }
 
 button .col-sm-4 p{
-    padding-top: 10px;
-    margin-left: 20px;
+    margin: 20px;
     text-align: left;
 }
 
@@ -117,9 +119,10 @@ button .col-sm-2 h4{
 
 .match-score, .match-time{
 
-    padding-top: 40px;
+    padding-top: 35px;
     font-size: 20px;
     color: #fff;
     /*color: #3f3f3f;*/
     font-weight:  bold;
 }
+

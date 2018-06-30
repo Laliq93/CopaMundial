@@ -36,7 +36,7 @@ import { VerAlineacionComponent } from './components/ver-alineacion/ver-alineaci
     FormComponent,
     CrearPartidoComponent,
     ModificarPartidoComponent,
-    VerAlineacionComponent
+    VerAlineacionComponent,
   ]
 })
 export class Modulo06Module { }

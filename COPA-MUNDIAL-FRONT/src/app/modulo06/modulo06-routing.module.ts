@@ -17,8 +17,7 @@ import { VerAlineacionComponent } from './components/ver-alineacion/ver-alineaci
 
 const routes: Routes = [
   { path: 'crearAlineacion', component: AdminCalineacionComponent, canActivate: [NotLoggedInGuard] }, // admin/alineacion
-  { path: 'campo', component: VerAlineacionComponent },
- 
+
   { path: '', component: ClientePartidoComponent, canActivate: [NotLoggedInGuard] },
   { path: 'listaPartidos', component: AdminPartidoComponent, canActivate: [NotLoggedInGuard] },
   { path: 'detallePartido/:equipo1/:equipo2', component: ClienteDetallesComponent, canActivate: [NotLoggedInGuard]},

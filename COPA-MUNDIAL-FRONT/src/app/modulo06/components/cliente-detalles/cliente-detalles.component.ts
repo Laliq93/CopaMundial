@@ -239,4 +239,4 @@ export class ClienteDetallesComponent implements OnInit {
   faseGrupos(): void {
     this.router.navigate(['partidos']);
   }
-
+}

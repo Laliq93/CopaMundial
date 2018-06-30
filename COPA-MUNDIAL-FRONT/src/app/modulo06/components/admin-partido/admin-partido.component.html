@@ -14,18 +14,19 @@
                 <div class="col-sm-2">
                   <h4>{{inf.equipo1}}</h4>
                 </div>
-                <div class="col-sm-4">
-                    <h4><img src="{{inf.bandera1}}" alt="{{inf.equipo1}}" class="img-thumbnail">
+                <div class="col-sm-3">
+                    <img src="{{inf.bandera1}}" alt="{{inf.equipo1}}" class="img-thumbnail">
                     <label class="match-time" *ngIf="inf.hora != null">{{inf.hora}}</label>
                     <img src="{{inf.bandera2}}" alt="{{inf.equipo2}" class="img-thumbnail">
-                    </h4>
                   </div>
                 <div class="col-sm-2">
                   <h4> {{inf.equipo2}} </h4>
                 </div>
-                <div class="col-sm-3 .offset-sm-1">
-                  <p></p>
-                  <button type="submit" (click)="modificarPartido(inf.equipo1, inf.equipo2)" class="btn">Modificar</button>
+                <div class="col-sm-2">
+                  <button type="submit" (click)="modificarPartido(inf.equipo1, inf.equipo2)" class="btn">Editar Partido</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="submit"  class="btn">Editar Alineacion</button>
                 </div>
             </div>
             <div class="dropdown-divider"></div>
