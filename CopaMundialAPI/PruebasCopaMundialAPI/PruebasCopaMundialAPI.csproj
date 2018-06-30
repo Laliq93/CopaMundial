@@ -75,6 +75,7 @@
     <Compile Include="Modulo 7\PruebasLogroEquipo.cs" />
     <Compile Include="Modulo 7\PruebasLogroJugador.cs" />
     <Compile Include="Modulo 7\PruebasLogroVF.cs" />
+    <Compile Include="Modulo 8\PruebasTraductoresApuestas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,7 +87,6 @@
     <Folder Include="Modulo 1\" />
     <Folder Include="Modulo 4\" />
     <Folder Include="Modulo 6\" />
-    <Folder Include="Modulo 8\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
