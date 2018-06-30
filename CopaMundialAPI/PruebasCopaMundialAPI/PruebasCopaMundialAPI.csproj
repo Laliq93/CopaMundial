@@ -76,6 +76,10 @@
     <Compile Include="Modulo 7\PruebasLogroJugador.cs" />
     <Compile Include="Modulo 7\PruebasLogroPartido.cs" />
     <Compile Include="Modulo 7\PruebasLogroVF.cs" />
+    <Compile Include="Modulo 8\PruebasDaoApuestaEquipo.cs" />
+    <Compile Include="Modulo 8\PruebasDaoApuestaJugador.cs" />
+    <Compile Include="Modulo 8\PruebasDaoApuestaCantidad.cs" />
+    <Compile Include="Modulo 8\PruebasDaoApuestaVoF.cs" />
     <Compile Include="Modulo 8\PruebasTraductoresApuestas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
