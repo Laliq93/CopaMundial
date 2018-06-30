@@ -126,9 +126,45 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         }
 
 
+        /// <summary>
+        /// Metodo que obtiene todos los logros de equipo 
+        /// que tengan resultado asignado
+        /// </summary>
+        /// <exception cref="LogrosFinalizadosNoExisteException">Excepcion que 
+        /// obtiene cuando el partido no tiene logros de equipo con 
+        /// resultado asignado</exception>
+        /// <param name="partido"></param>
+        /// <returns></returns>
         public List<Entidad> ObtenerLogrosResultados(Entidad partido)
         {
-            throw new NotImplementedException();
+            List<Entidad> logrosEquipo = new List<Entidad>();
+            LogroEquipo logro;
+
+            Conectar();
+
+            StoredProcedure("ConsultarLogrosEquipoResultados(@idpartido)");
+
+            AgregarParametro("idpartido", partido.Id);
+
+            EjecutarReader();
+
+            for (int i = 0; i < cantidadRegistros; i++)
+            {
+                logro = FabricaEntidades.CrearLogroEquipo();
+
+                logro.Id = GetInt(i, 0);
+                logro.IdTipo = TipoLogro.equipo;
+                logro.Logro = GetString(i, 2);
+                logro.Equipo.Id = GetInt(i, 3);
+            
+
+
+                logrosEquipo.Add(logro);
+            }
+            if (logrosEquipo.Count == 0)
+                throw new LogrosFinalizadosNoExisteException(partido.Id, "equipo");
+
+            return logrosEquipo;
         }
 
 
