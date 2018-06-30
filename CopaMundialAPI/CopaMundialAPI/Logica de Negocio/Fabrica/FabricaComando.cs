@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CopaMundialAPI.Logica_de_Negocio.Comando.Jugadores;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
 {
@@ -258,6 +259,15 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoObtenerApuestasEquipoFinalizadas(usuario);
         }
 
+        public static ComandoObtenerJugadoresActivo CrearComandoObtenerJugadoresActivo()
+        {
+            return new ComandoObtenerJugadoresActivo();
+        }
+
+        public static ComandoObtenerJugadoresInactivo CrearComandoObtenerJugadoresInactivo()
+        {
+            return new ComandoObtenerJugadoresInactivo();
+        }
         public static ComandoFinalizarApuestasCantidad CrearComandoFinalizarApuestasCantidad()
         {
             return new ComandoFinalizarApuestasCantidad();
