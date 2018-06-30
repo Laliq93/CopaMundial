@@ -1,6 +1,6 @@
 export class Conexion {
   Controlador: string;
-  IdUsuario: number = 3;
+  IdUsuario: number = 4;
   RutaApi = 'http://localhost:51543/api/';
 
   public GetApiJugador() {
