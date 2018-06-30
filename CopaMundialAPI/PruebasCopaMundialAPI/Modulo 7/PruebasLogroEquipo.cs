@@ -177,7 +177,7 @@ namespace PruebasCopaMundialAPI.Modulo_7
         {
 
             Partido partido = FabricaEntidades.CrearPartido();
-            partido.Id = 15; //cambiar numero
+            partido.Id = 18; //cambiar numero
 
             Assert.Throws<LogrosPendientesNoExisteException>(() => ((DAOLogroEquipo)dao).ObtenerLogrosPendientes(partido));
         }
@@ -210,7 +210,7 @@ namespace PruebasCopaMundialAPI.Modulo_7
         {
             
             Partido partido = FabricaEntidades.CrearPartido();
-            partido.Id = 15; //cambiar numero
+            partido.Id = 18; //cambiar numero
 
             comando = FabricaComando.CrearComandoObtenerLogrosEquipoPendientes(partido);
             Assert.Throws<LogrosPendientesNoExisteException>(() => comando.Ejecutar());
@@ -245,7 +245,7 @@ namespace PruebasCopaMundialAPI.Modulo_7
         public void PruebaControllerObtenerLogrosEquipoPendienteExc()
         {
             DTOLogroPartidoId dtoLogroPartidoId = FabricaDTO.CrearDTOLogroPartidoId();
-            dtoLogroPartidoId.IdPartido = 16;//Cambiar
+            dtoLogroPartidoId.IdPartido = 18;//Cambiar
             Assert.AreEqual(HttpStatusCode.InternalServerError, controller.ObtenerLogrosEquipoPendientes(dtoLogroPartidoId).StatusCode);
 
         }

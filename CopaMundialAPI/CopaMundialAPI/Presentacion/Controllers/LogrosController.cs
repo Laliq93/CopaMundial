@@ -298,5 +298,114 @@ namespace CopaMundialAPI.Presentacion.Controllers
 
         }
 
+
+        /// <summary>
+        /// Metodo que obtiene todos los partidos con fechas mayores a la actual del sistema
+        /// </summary>
+        [Route("obtenerProximosLogrosPartidos")]
+        [System.Web.Http.AcceptVerbs("GET")]
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage ObtenerProximosLogrosPartidos()
+        {
+            try
+            {
+                TraductorListaPartidosLogros traductor = FabricaTraductor.CrearTraductorListaPartidosLogros();
+
+                Comando comando = FabricaComando.CrearComandoObtenerProximosLogrosPartidos();
+
+                comando.Ejecutar();
+
+                List<DTOListaPartidosLogros> Listadtos = traductor.CrearListaDto(comando.GetEntidades());
+
+                return Request.CreateResponse(HttpStatusCode.OK, Listadtos);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                logger.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
+            }
+        }
+
+        /// <summary>
+        /// Metodo para obtener todos los partidos finalizados
+        /// </summary>
+        /// <returns></returns>
+        [Route("obtenerLogrosPartidosFinalizados")]
+        [System.Web.Http.AcceptVerbs("GET")]
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage ObtenerLogrosPartidosFinalizados()
+        {
+            try
+            {
+                TraductorListaPartidosLogros traductor = FabricaTraductor.CrearTraductorListaPartidosLogros();
+
+                Comando comando = FabricaComando.CrearComandoObtenerLogroPartidosFinalizados();
+
+                comando.Ejecutar();
+
+                List<DTOListaPartidosLogros> Listadtos = traductor.CrearListaDto(comando.GetEntidades());
+
+                return Request.CreateResponse(HttpStatusCode.OK, Listadtos);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                logger.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
+            }
+        }
+
+        
+        [Route("obtenerLogroPartidoPorId")]
+        [System.Web.Http.AcceptVerbs("PUT","GET")]
+        [System.Web.Http.HttpPut, System.Web.Http.HttpGet]
+        public HttpResponseMessage ObtenerLogroPartidoPorId(DTOListaPartidosLogros dto)
+        {
+            try
+            {
+                TraductorListaPartidosLogros traductor = FabricaTraductor.CrearTraductorListaPartidosLogros();
+                Entidad partido = traductor.CrearEntidad(dto);  
+                Comando comando = FabricaComando.CrearComandoObtenerLogroPartidoPorId(partido);
+
+                comando.Ejecutar();
+                
+                DTOListaPartidosLogros dtoPartido = traductor.CrearDto(comando.GetEntidad());
+               
+                return Request.CreateResponse(HttpStatusCode.OK, dtoPartido);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                logger.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                logger.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
+            }
+        }
+
+
     }
 }
