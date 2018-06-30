@@ -9,11 +9,11 @@ using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 {
-    public class ComandoObtenerApuestasEquipoEnCurso : Comando
+    public class ComandoObtenerApuestasCantidadFinalizadas : Comando
     {
         private List<Entidad> _apuestas;
 
-        public ComandoObtenerApuestasEquipoEnCurso(Entidad usuario)
+        public ComandoObtenerApuestasCantidadFinalizadas(Entidad usuario)
         {
             Entidad = usuario;
             _apuestas = new List<Entidad>();
@@ -21,9 +21,9 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 
         public override void Ejecutar()
         {
-            DAOApuestaEquipo dao = FabricaDAO.CrearDAOApuestaEquipo();
+            DAOApuestaCantidad dao = FabricaDAO.CrearDAOApuestaCantidad();
 
-            _apuestas = dao.ObtenerApuestasEnCurso(Entidad);
+            _apuestas = dao.ObtenerApuestasFinalizadas(Entidad);
             
         }
 

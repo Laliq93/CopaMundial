@@ -21,6 +21,7 @@ declare var bootbox: any;
   ]
 })
 export class VerApuestaComponent implements OnInit {
+
   public EnviarIdPartido: DTOEnviarIdPartido;
   public MostrarLogros: DTOMostrarLogros;
   public MostrarJugadores: DTOMostrarJugador;

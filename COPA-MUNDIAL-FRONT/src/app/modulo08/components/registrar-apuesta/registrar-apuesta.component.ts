@@ -16,6 +16,7 @@ declare var bootbox: any;
   ]
 })
 export class RegistrarApuestaComponent implements OnInit {
+
   public MostrarPartido: DTOMostrarPartido;
   public ListMostrarPartido: DTOMostrarPartido[] = [];
   public api08: Api08Service;

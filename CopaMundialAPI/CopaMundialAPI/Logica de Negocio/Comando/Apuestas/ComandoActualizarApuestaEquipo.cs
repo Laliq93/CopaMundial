@@ -5,26 +5,29 @@ using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Fuente_de_Datos.DAO;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
-
+using CopaMundialAPI.Logica_de_Negocio.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 {
-    public class ComandoObtenerApuestasEquipoEnCurso : Comando
+    public class ComandoActualizarApuestaEquipo: Comando
     {
-        private List<Entidad> _apuestas;
+        private Comando _comando;
 
-        public ComandoObtenerApuestasEquipoEnCurso(Entidad usuario)
+        public ComandoActualizarApuestaEquipo(Entidad apuesta)
         {
-            Entidad = usuario;
-            _apuestas = new List<Entidad>();
+            Entidad = apuesta;
         }
 
         public override void Ejecutar()
         {
+
+            _comando = FabricaComando.CrearComandoVerificarApuestaEquipoValida(Entidad);
+
+            _comando.Ejecutar();
+
             DAOApuestaEquipo dao = FabricaDAO.CrearDAOApuestaEquipo();
 
-            _apuestas = dao.ObtenerApuestasEnCurso(Entidad);
-            
+            dao.Actualizar(Entidad);
         }
 
         public override Entidad GetEntidad()
@@ -34,7 +37,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 
         public override List<Entidad> GetEntidades()
         {
-            return _apuestas;
+            throw new NotImplementedException();
         }
     }
 }
