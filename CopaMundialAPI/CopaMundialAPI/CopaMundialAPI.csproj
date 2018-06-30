@@ -190,6 +190,8 @@
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarVoFApuestaExiste.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarEquipoApuestaExiste.cs" />
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoObtenerCiudadPorNombre.cs" />
+    <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadoresActivo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadoresInactivo.cs" />
     <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadorId.cs" />
     <Compile Include="Logica de Negocio\Comando\Logros\ComandoAgregarLogroCantidad.cs" />
     <Compile Include="Logica de Negocio\Comando\Logros\ComandoAgregarLogroEquipo.cs" />
