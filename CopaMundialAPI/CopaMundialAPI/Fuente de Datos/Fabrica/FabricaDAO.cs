@@ -13,6 +13,15 @@ namespace CopaMundialAPI.Fuente_de_Datos.Fabrica
     public static class FabricaDAO
     {
         /// <summary>
+        /// Devuelve instancia de DAOUsuario
+        /// </summary>
+        /// <returns>DAOUsuario</returns>
+        public static DAOUsuario CrearDAOUsuario()
+        {
+            return new DAOUsuario();
+        }
+
+        /// <summary>
         /// Devuelve instancia de DAOCiudad
         /// </summary>
         /// <returns>DAOCiudad</returns>
