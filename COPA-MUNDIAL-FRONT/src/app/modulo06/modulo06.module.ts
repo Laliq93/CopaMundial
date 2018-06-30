@@ -15,12 +15,13 @@ import { FormComponent } from './components/form/form.component';
 import { CrearPartidoComponent } from './components/crear-partido/crear-partido.component';
 import { ModificarPartidoComponent } from './components/modificar-partido/modificar-partido.component';
 import { VerAlineacionComponent } from './components/ver-alineacion/ver-alineacion.component';
+import { CrearAlineacionComponent } from './components/crear-alineacion/crear-alineacion.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    Modulo06RoutingModule
+    Modulo06RoutingModule,
   ],
   providers: [
     LoggedInGuard,
@@ -37,6 +38,7 @@ import { VerAlineacionComponent } from './components/ver-alineacion/ver-alineaci
     CrearPartidoComponent,
     ModificarPartidoComponent,
     VerAlineacionComponent,
+    CrearAlineacionComponent,
   ]
 })
 export class Modulo06Module { }

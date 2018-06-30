@@ -106,8 +106,8 @@ export class FormComponent implements OnInit {
     this.router.navigate(['partidos/partidos']);
   }
 
-  matchDetails(): void {
-    this.router.navigate(['partidos/detallePartido']);
+  onSubnit(): void {
+    this.router.navigate(['partidos/crearAlineacion']);
   }
 
 }

@@ -13,10 +13,11 @@ import { FormComponent } from './components/form/form.component';
 import { CrearPartidoComponent } from './components/crear-partido/crear-partido.component';
 import { ModificarPartidoComponent } from 'src/app/modulo06/components/modificar-partido/modificar-partido.component';
 import { VerAlineacionComponent } from './components/ver-alineacion/ver-alineacion.component';
+import { CrearAlineacionComponent } from './components/crear-alineacion/crear-alineacion.component';
 
 
 const routes: Routes = [
-  { path: 'crearAlineacion', component: AdminCalineacionComponent, canActivate: [NotLoggedInGuard] }, // admin/alineacion
+  { path: 'crearAlineacion', component: CrearAlineacionComponent, canActivate: [NotLoggedInGuard] }, // admin/alineacion
 
   { path: '', component: ClientePartidoComponent, canActivate: [NotLoggedInGuard] },
   { path: 'listaPartidos', component: AdminPartidoComponent, canActivate: [NotLoggedInGuard] },
