@@ -14,9 +14,9 @@ import { LogroCantidadComponent } from './components/logro-cantidad/logro-cantid
     CommonModule,
     Modulo07RoutingModule,
     HttpClientModule,
+    HttpModule,
     FormsModule
   ],
-  declarations: [VerPartidosComponent, LogroEquipoComponent, LogroCantidadComponent],
-  providers: [HttpClient]
+  declarations: [VerPartidosComponent, LogroEquipoComponent, LogroCantidadComponent]
 })
 export class Modulo07Module { }
