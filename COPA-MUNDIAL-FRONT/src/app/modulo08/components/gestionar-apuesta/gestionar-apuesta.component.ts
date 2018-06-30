@@ -307,4 +307,11 @@ export class GestionarApuestaComponent implements OnInit {
   public closeModalJuagdores() {
     this.display = 'none';
   }
+
+  public ObtenerVoF(apuesta) {
+    if(apuesta)
+      return 'Si';
+    
+    return 'No';
+  }
 }

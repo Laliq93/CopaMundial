@@ -67,7 +67,7 @@
                 <tr class="center" *ngFor="let historialApuestaVof of ListHistorialApuestavof; let i = index">
                   <td>{{historialApuestaVof.IdLogro}}</td>
                   <td>{{historialApuestaVof.Logro}}</td>
-                  <td>{{historialApuestaVof.ApuestaUsuario}}</td>
+                  <td>{{ObtenerVoF(historialApuestaVof.ApuestaUsuario)}}</td>
                   <td>{{historialApuestaVof.Estado}}</td>
                   <td>{{historialApuestaVof.Fecha}}</td>
                 </tr>

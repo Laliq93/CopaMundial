@@ -69,7 +69,7 @@
                                 <tr class="center" *ngFor="let ApuestaVof of ListApuestavof; let i = index">
                                     <td>{{ApuestaVof.IdLogro}}</td>
                                     <td>{{ApuestaVof.Logro}}</td>
-                                    <td>{{ApuestaVof.ApuestaUsuario}}</td>
+                                    <td>{{ObtenerVoF(ApuestaVof.ApuestaUsuario)}}</td>
                                     <td>
                                         <select [(ngModel)]="actualizarOpcionVof[i]" name="opcion" id="opcion">
                                             <option value="true">Si</option>
