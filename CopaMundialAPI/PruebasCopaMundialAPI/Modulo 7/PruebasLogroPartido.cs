@@ -217,6 +217,26 @@ namespace PruebasCopaMundialAPI.Modulo_7
             Assert.AreEqual(HttpStatusCode.OK, controller.ObtenerLogroPartidoPorId(dto).StatusCode);
 
         }
+        /// <summary>
+        /// Metodo que prueba el resultado de exito del comando
+        /// AsignarResultadoLogroVF
+        /// </summary>
+        [Test]
+        public void PruebaCmdAsignarResultadoLogroVF()
+        {
+
+            LogroVoF logro = FabricaEntidades.CrearLogroVoF();
+
+            logro.Id = 52;//cambiar
+            logro.Respuesta = true;
+
+            comando = FabricaComando.CrearComandoAsignarResultadoLogroVF(logro);
+            comando.Ejecutar();
+
+            respuesta = comando.GetEntidad();
+            Assert.IsNotNull(respuesta);
+
+        }
 
 
         [TearDown]
