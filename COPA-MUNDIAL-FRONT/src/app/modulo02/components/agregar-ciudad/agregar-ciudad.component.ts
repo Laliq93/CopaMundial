@@ -51,16 +51,31 @@ export class AgregarCiudadComponent implements OnInit {
     
    if (ciudad.Habitantes>0){
      if (ciudad.Nombre!=""){
-          this.ciudadservice.agregarciudad(ciudad).subscribe(
-            result => {
-            
-              console.log(result);
-            
-            },
-            error =>{
-              console.log(<any>error)
-            }   
-          )
+          if (ciudad.NombreIngles!=""){
+            if (ciudad.Descripcion!=""){
+              if (ciudad.DescripcionIngles!=""){
+              this.ciudadservice.agregarciudad(ciudad).subscribe(
+                result => {
+                
+                  console.log(result);
+                
+                },
+                error =>{
+                  console.log(<any>error)
+                }   
+              )
+            }
+            else{
+              $("#iddescripcionEN").append("<span style='color: red'>Campo obligatorio</span>")
+              }
+          }
+            else{
+              $("#iddescripcion").append("<span style='color: red'>Campo obligatorio</span>")
+              }
+          }
+          else{
+            $("#idnombreEN").append("<span style='color: red'>Campo obligatorio</span>")
+            }
       }
         else{
         $("#idnombre").append("<span style='color: red'>Campo obligatorio</span>")

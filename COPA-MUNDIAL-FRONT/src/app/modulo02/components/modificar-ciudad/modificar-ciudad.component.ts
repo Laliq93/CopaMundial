@@ -25,6 +25,12 @@ export class ModificarCiudadComponent implements OnInit {
     {id:"3",nombre: 'Kaliningrado', habitantes: 5, descripcion: 'estas', nomIngles:"Kaliningrad",descIngles:"are you"},
     {id:"4",nombre: 'Nizhny Nóvgorod', habitantes: 2, descripcion: 'bien', nomIngles:"Nizhny Novgorod",descIngles:"good"},
     {id:"5",nombre: 'Volgogrado',habitantes: 1000, descripcion: 'chevere', nomIngles:"Volgograd",descIngles:"thanks"}
+]
+
+
+habilitados: any = [
+  "Habilitado","Deshabilitado"
+
 ]  
   
   constructor( private _location: Location, private route:Router, private ciudadservice: CiudadService){}
@@ -88,7 +94,9 @@ export class ModificarCiudadComponent implements OnInit {
    
     city.NombreIngles = "";
     city.DescripcionIngles = "";
+
     console.log(city);
+    if(city.Nombre!=""){
     this.ciudadservice.ActualizarCiudad(city).subscribe(
       result => {
         console.log(result)
@@ -97,6 +105,10 @@ export class ModificarCiudadComponent implements OnInit {
         console.log(error)
       }
     )
+  }
+  else{
+    $("#idnombre").append("<span style='color: red'>Campo obligatorio</span>")
+    }
   }
 
   
