@@ -37,8 +37,6 @@ namespace PruebasCopaMundialAPI.Modulo_7
         public void SetUp()
         {
             dao = FabricaDAO.CrearDAOLogroCantidad();
-            dao.StoredProcedure("AsignarLogroPU(500,'PruebaLogroCantidad',1,1)");
-            dao.EjecutarQuery();
             dao.Conectar();
             controller = new LogrosController();
             controller.Request = new HttpRequestMessage();

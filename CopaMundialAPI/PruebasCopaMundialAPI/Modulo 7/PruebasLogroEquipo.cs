@@ -33,8 +33,6 @@ namespace PruebasCopaMundialAPI.Modulo_7
         public void SetUp()
         {
             dao = FabricaDAO.CrearDAOLogroEquipo();
-            dao.StoredProcedure("AsignarLogroPU(500,'PruebaLogroEquipo',1,1)");
-            dao.EjecutarQuery();
             dao.Conectar();
             controller = new LogrosController();
             controller.Request = new HttpRequestMessage();
