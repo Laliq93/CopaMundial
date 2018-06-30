@@ -11,7 +11,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
     public class ComandoActualizarAlineacion : Comando
     {
 
-        public ComandoActualizarAlineacion(Alineacion entidad)
+        public ComandoActualizarAlineacion(Entidad entidad)
         {
             Entidad = entidad;
         }

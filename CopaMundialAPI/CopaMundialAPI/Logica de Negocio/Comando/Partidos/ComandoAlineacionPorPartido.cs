@@ -14,7 +14,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
     {
         private List<Entidad> _alineaciones;
 
-        public ComandoAlineacionPorPartido(Alineacion entidad)
+        public ComandoAlineacionPorPartido(Entidad entidad)
         {
             Entidad = entidad;
         }
@@ -32,12 +32,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
         {
             foreach(Alineacion alineacion in _alineaciones)
             {
-                if (!(alineacion.Jugador is Jugador _jugador))
-                {
-                    throw new CasteoInvalidoException();
-                }
-
-                Comando comandoJugador = FabricaComando.CrearComandoObtenerJugadorId(_jugador);
+                Comando comandoJugador = FabricaComando.CrearComandoObtenerJugadorId(alineacion.Jugador);
                 comandoJugador.Ejecutar();
                 
                 alineacion.Jugador = comandoJugador.GetEntidad() as Jugador;

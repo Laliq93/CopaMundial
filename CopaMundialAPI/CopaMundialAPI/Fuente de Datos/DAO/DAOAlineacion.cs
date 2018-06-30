@@ -117,8 +117,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             Partido partido = FabricaEntidades.CrearPartido();
             partido.Id = GetInt(i, 6);
 
-            Alineacion alineacion = FabricaEntidades.CrearAlineacion(GetInt(i, 0), GetBool(i, 1), GetString(i, 2), GetBool(i, 3),
-                                                                     jugador, equipo, partido);
+            Alineacion alineacion = FabricaEntidades.CrearAlineacion(GetInt(i, 0), GetBool(i, 1), GetString(i, 2),
+                                                                     GetBool(i, 3), jugador, equipo, partido);
 
             return partido;
         }
