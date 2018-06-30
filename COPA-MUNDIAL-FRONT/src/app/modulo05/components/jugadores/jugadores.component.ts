@@ -9,6 +9,8 @@ import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import { FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 
+declare var bootbox, router: any;
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
@@ -54,6 +56,7 @@ export class JugadoresComponent implements OnInit {
   registrarJugador(playerRegistrationForm){
     this.conexion.controller = 'agregarJugador';
     this.url = this.conexion.GetApiJugador() + this.conexion.controller;
+    console.log(this.url+ "url");
 
     const httpHeaders = new HttpHeaders().set('Accept', 'application/json');
 
@@ -77,17 +80,49 @@ export class JugadoresComponent implements OnInit {
       numero          : Numero.value,
       equipo          : Equipo.value  
     };
+    
 
       this.http
-      .post<Jugador>(this.url, player, httpOptions)
+      .post<Jugador>(this.url, player,  { responseType: 'json' })
       .subscribe(
         success => {
           console.log(success)
         },
-        error => alert("Error en el sistema")
+        error =>{
+          console.log('Player '+JSON.stringify({player})
+        )
+          alert("Error en el sistema")
+        } 
       );
     
   }
+
+  desactivarJugador (idJugador: number) {
+
+    this.conexion.controller = 'activarJugador';
+    this.url = this.conexion.GetApiJugador() + this.conexion.controller;
+    console.log(idJugador);
+    const playerActivo = {
+      id          : idJugador
+    };
+
+    this.http
+      .post<Jugador>(this.url, playerActivo,  { responseType: 'json' })
+      .subscribe(
+        success => {
+          console.log(success)
+          console.log('entro al post');
+        },
+        error =>{
+          console.log('Player '+JSON.stringify({playerActivo})
+        )
+          alert("Error en el sistema")
+        } 
+      );
+
+    
+  }
+
   
   obtenerJugadores(){
     this.conexion.controller = 'obtenerJugadores';

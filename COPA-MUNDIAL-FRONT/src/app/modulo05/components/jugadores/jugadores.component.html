@@ -46,13 +46,20 @@
                               <input matInput type="text" id="inputLastname" maxlength="20" #Apellido="ngModel" [(ngModel)]="jugador.apellido" name="Apellido" required class="form-control form-control-line">          
                             </div>
                           </div>
-  
+
                           <div class="form-group">
+                            <label class="col-md-12" for="inputprueba">fecha nacimiento</label>
+                            <div class="col-md-12">
+                              <input matInput type="text" id="inputprueba" maxlength="20" #FechaNacimiento="ngModel" [(ngModel)]="jugador.fechaNacimiento" name="FechaNacimiento" required class="form-control form-control-line">          
+                            </div>
+                          </div>
+  
+                          <!--<div class="form-group">
                             <div class="col-md-12">
                               <label for="exampleInputDate">Fecha de nacimiento</label>
                               <input matInput type="date" #FechaNacimiento="ngModel" [(ngModel)]="jugador.fechaNacimiento" name="FechaNacimiento" required class="form-control" id="exampleInputDate">
                             </div>
-                          </div>
+                          </div>-->
   
                           <div class="form-group">
                             <label class="col-md-12" for="inputBirth">Lugar de Nacimiento</label>
@@ -200,7 +207,7 @@
                                       <td>{{jugador.Equipo}}</td>
                                       <td>{{jugador.Capitan}}</td>
                                       <td>
-                                          <button type="button" class="btn btn-act btn-success">Act/des</button>
+                                          <button type="button" class="btn btn-act btn-danger" onClick="desactivarJugador(jugador.Id)">Desactivar</button>
                                       </td>
                                   </tr>
                               </tbody>
@@ -245,7 +252,7 @@
                                       <td>{{jugador.Equipo}}</td>
                                       <td>{{jugador.Capitan}}</td>
                                       <td>
-                                          <button type="button" class="btn btn-act btn-success">Act/des</button>
+                                          <button type="button" class="btn btn-act btn-success">Activar</button>
                                       </td>
                                   </tr>
                               </tbody>
