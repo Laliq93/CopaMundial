@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  Conexion
-} from '../../models/index';
+import { Component } from '@angular/core';
+import { Conexion } from '../../models/index';
 import { Api08Service } from '../../services/api08.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -15,8 +13,7 @@ declare var bootbox: any;
     '../shared/style-apuesta.component.css'
   ]
 })
-export class AdminApuestaComponent implements OnInit {
-
+export class AdminApuestaComponent {
   public api08: Api08Service;
   public connect: Conexion;
 
@@ -25,5 +22,7 @@ export class AdminApuestaComponent implements OnInit {
     this.connect = new Conexion();
   }
 
-  ngOnInit() {}
+  public AdministradorApuestas() {
+      this.api08.AdministradorApuestas();
+  }
 }
