@@ -26,7 +26,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
                 StoredProcedure("editarperfilusuario(@id, @nombre, @apellido, @fechaNacimiento, @genero, @foto)");
 
-                AgregarParametro("id", usuario._Id);
+                AgregarParametro("id", usuario.Id);
                 AgregarParametro("nombre", usuario.Nombre);
                 AgregarParametro("apellido", usuario.Apellido);
                 AgregarParametro("fechaNacimiento", Convert.ToDateTime(usuario.FechaNacimiento).ToShortDateString());
@@ -55,7 +55,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
                 StoredProcedure("gestionaractivocuentausuario(@id, @activo)");
 
-                AgregarParametro("id", usuario._Id);
+                AgregarParametro("id", usuario.Id);
                 AgregarParametro("activo", usuario.Activo);
 
                 EjecutarQuery();
@@ -80,7 +80,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
                     StoredProcedure("cambiarpasswordusuario(@id, @clave)");
 
-                    AgregarParametro("id", usuario._Id);
+                    AgregarParametro("id", usuario.Id);
                     AgregarParametro("clave", usuario.Password);
 
                     EjecutarQuery();
@@ -107,7 +107,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
                 StoredProcedure("cambiarcorreousuario(@id, @correo)");
 
-                AgregarParametro("id", usuario._Id);
+                AgregarParametro("id", usuario.Id);
                 AgregarParametro("correo", usuario.Correo);
 
                 EjecutarQuery();
@@ -166,7 +166,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 StoredProcedure("verificarclaveusuario(@clave, @idUsuario)");
 
                 AgregarParametro("clave", usuario.Password.Trim());
-                AgregarParametro("idUsuario", usuario._Id);
+                AgregarParametro("idUsuario", usuario.Id);
 
                 EjecutarReader();
 
@@ -226,11 +226,11 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
                 StoredProcedure("ObtenerUsuario(@id)");
 
-                AgregarParametro("id", usuario._Id);
+                AgregarParametro("id", usuario.Id);
 
                 EjecutarReader();
 
-                usuario = FabricaEntidades.CrearUsuario(usuario._Id, GetString(0, 0), GetString(0, 1), GetString(0, 2), Convert.ToDateTime(GetString(0, 3)).ToShortDateString(),
+                usuario = FabricaEntidades.CrearUsuario(usuario.Id, GetString(0, 0), GetString(0, 1), GetString(0, 2), Convert.ToDateTime(GetString(0, 3)).ToShortDateString(),
                     GetString(0, 4), GetChar(0, 5), GetString(0, 6), GetString(0, 7), GetBool(0, 8), GetBool(0, 9), "");
 
                 return usuario;
