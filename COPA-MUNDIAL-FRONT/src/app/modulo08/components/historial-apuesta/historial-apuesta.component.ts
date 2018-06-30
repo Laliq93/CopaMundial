@@ -190,4 +190,12 @@ export class HistorialApuestaComponent implements OnInit {
         }
       );
   }
+
+  public ObtenerVoF(Apuesta){
+
+    if(Apuesta)
+      return 'Si';
+
+    return 'No';
+  }
 }

@@ -1,6 +1,6 @@
 export class Conexion {
   Controlador: string;
-  IdUsuario = 3;
+  IdUsuario = 4;
   Puerto = 51543;
   Ip = '192.168.15.105';
   RutaApi = 'http://' + this.Ip + ':' + this.Puerto + '/api/';
