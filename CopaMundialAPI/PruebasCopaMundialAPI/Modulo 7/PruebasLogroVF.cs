@@ -250,6 +250,61 @@ namespace PruebasCopaMundialAPI.Modulo_7
 
         }
 
+
+        /// <summary>
+        /// Metodo que prueba el resultado de exito de
+        // ObtenerLogroPorId de DaoLogroVF
+        /// </summary>
+        [Test]
+        public void PruebaDaoObtenerLogroPorId()
+        {
+            LogroVoF logro = FabricaEntidades.CrearLogroVoF();
+            logro.Id = 6;//asegurar que este id sea de tipo jugador
+            respuesta = ((DAOLogroVF)dao).ObtenerLogroPorId(logro);
+            Assert.IsNotNull(respuesta);
+
+        }
+
+
+        /// <summary>
+        /// Metodo que prueba el resultado exitoso 
+        /// de AsignarResultadoLogro de DaoLogroVF
+        /// </summary>
+        [Test]
+        public void PruebaDaoAsignarResultadoLogro()
+        {
+
+            LogroVoF logro = FabricaEntidades.CrearLogroVoF();
+            logro.Id = 77;
+            logro.Respuesta = true;
+            ((DAOLogroVF)dao).AsignarResultadoLogro(logro);
+
+            respuesta = ((DAOLogroVF)dao).ObtenerLogroPorId(logro);
+
+            Assert.AreEqual(true, ((LogroVoF)respuesta).Respuesta);
+        }
+
+
+        /// <summary>
+        /// Metodo que prueba el resultado exitoso del 
+        /// comando AsignarResultadoLogroVF
+        /// </summary>
+        [Test]
+        public void PruebaCmdAsignarResultadoLogroVF()
+        {
+
+            LogroVoF logro = FabricaEntidades.CrearLogroVoF();
+
+            logro.Id = 53;//cambiar
+            logro.Respuesta = true;
+
+            comando = FabricaComando.CrearComandoAsignarResultadoLogroVF(logro);
+            comando.Ejecutar();
+
+            respuesta = comando.GetEntidad();
+            Assert.IsNotNull(respuesta);
+
+        }
         [TearDown]
         public void TearDown()
         {

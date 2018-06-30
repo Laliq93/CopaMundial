@@ -67,10 +67,23 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             return logro;
         }
 
-
-        public void AsignarResultadoLogro(Entidad logro)
+        /// <summary>
+        /// Metodo para asignar el resultado de un 
+        /// logro por equipo
+        /// </summary>
+        /// <param name="entidad"></param>
+        public void AsignarResultadoLogro(Entidad entidad)
         {
-            throw new NotImplementedException();
+
+            LogroEquipo logro = entidad as LogroEquipo;
+
+            Conectar();
+
+            StoredProcedure("RegistrarLogroEquipo(@idLogro,@idEquipo)");
+            AgregarParametro("idLogro", logro.Id);
+            AgregarParametro("idEquipo", logro.Equipo.Id);
+
+            EjecutarQuery();
         }
 
         /// <summary>

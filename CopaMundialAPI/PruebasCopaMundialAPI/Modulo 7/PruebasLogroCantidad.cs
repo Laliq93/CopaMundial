@@ -263,6 +263,45 @@ namespace PruebasCopaMundialAPI.Modulo_7
 
         }
 
+        /// <summary>
+        /// Metodo que prueba el resultado exitoso 
+        /// de AsignarResultadoLogro en DaoLogroCantidad
+        /// </summary>
+        [Test]
+        public void PruebaDaoAsignarResultadoLogro()
+        {
+
+            LogroCantidad logro = FabricaEntidades.CrearLogroCantidad();
+            logro.Id = 4;
+            logro.Cantidad = 5;
+            ((DAOLogroCantidad)dao).AsignarResultadoLogro(logro);
+
+            respuesta = ((DAOLogroCantidad)dao).ObtenerLogroPorId(logro);
+
+            Assert.AreEqual(5,((LogroCantidad)respuesta).Cantidad);
+        }
+
+        /// <summary>
+        /// Metodo que prueba el resultado de exito del comando
+        /// AsignarResultadoLogroCantidad 
+        /// </summary>
+        [Test]
+        public void PruebaCmdAsignarResultadoLogroCantidad()
+        {
+
+            LogroCantidad logro = FabricaEntidades.CrearLogroCantidad();
+            logro.Id = 7;//cambiar
+            logro.Cantidad = 8;
+
+            comando = FabricaComando.CrearComandoAsignarResultadoLogroCantidad(logro);
+            comando.Ejecutar();
+
+            respuesta = comando.GetEntidad();
+            Assert.IsNotNull(respuesta);
+
+        }
+
+
         [TearDown]
         public void TearDown()
         {

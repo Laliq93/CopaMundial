@@ -246,6 +246,63 @@ namespace PruebasCopaMundialAPI.Modulo_7
 
         }
 
+
+        /// <summary>
+        /// Metodo que prueba el resultado de exito de
+        // ObtenerLogroPorId de DaoLogroJugador
+        /// </summary>
+        [Test]
+        public void PruebaDaoObtenerLogroPorId()
+        {
+            LogroJugador logro = FabricaEntidades.CrearLogroJugador();
+            logro.Id = 5;//asegurar que este id sea de tipo jugador
+            respuesta = ((DAOLogroJugador)dao).ObtenerLogroPorId(logro);
+            Assert.IsNotNull(respuesta);
+
+        }
+
+        /// <summary>
+        /// Metodo que prueba el resultado exitoso 
+        /// de AsignarResultadoLogro de DaoLogroJugador
+        /// </summary>
+        [Test]
+        public void PruebaDaoAsignarResultadoLogro()
+        {
+            LogroJugador logro = FabricaEntidades.CrearLogroJugador();
+            Jugador jugador = FabricaEntidades.CrearJugador();
+            logro.Jugador = jugador;
+            logro.Id = 41;
+            logro.Jugador.Id= 1;
+            ((DAOLogroJugador)dao).AsignarResultadoLogro(logro);
+
+            respuesta = ((DAOLogroJugador)dao).ObtenerLogroPorId(logro);
+
+            Assert.AreEqual(1, ((LogroJugador)respuesta).Jugador.Id);
+        }
+
+
+        /// <summary>
+        /// Metodo que prueba el resultado de exito del comando
+        /// AsignarResultadoLogroJugador
+        /// </summary>
+        [Test]
+        public void PruebaCmdAsignarResultadoLogroJugador()
+        {
+
+            LogroJugador logro = FabricaEntidades.CrearLogroJugador();
+            Jugador jugador = FabricaEntidades.CrearJugador();
+            logro.Jugador = jugador;
+            logro.Id = 42;//cambiar
+            logro.Jugador.Id = 1;
+
+            comando = FabricaComando.CrearComandoAsignarResultadoLogroJugador(logro);
+            comando.Ejecutar();
+
+            respuesta = comando.GetEntidad();
+            Assert.IsNotNull(respuesta);
+
+        }
+
         [TearDown]
         public void TearDown()
         {
