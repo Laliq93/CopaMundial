@@ -73,8 +73,8 @@ namespace CopaMundialAPI.Presentacion.Controllers
         }
 
         [Route("modificarJugador")]
-        [System.Web.Http.AcceptVerbs("POST")]
-        [System.Web.Http.HttpPost]
+        [System.Web.Http.AcceptVerbs("PUT")]
+        [System.Web.Http.HttpPut]
         public HttpResponseMessage ModificarJugador(DTOModificarJugador dto)
         {
             try
@@ -144,6 +144,56 @@ namespace CopaMundialAPI.Presentacion.Controllers
                 comando.Ejecutar();
 
                 return new HttpResponseMessage(HttpStatusCode.OK);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+        [Route("obtenerJugadoresActivo")]
+        [System.Web.Http.AcceptVerbs("GET")]
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage ObtenerJugadoresActivo()
+        {
+            try
+            {
+                TraductorObtenerJugadores traductor = FabricaTraductor.CrearTraductorObtenerJugadores();
+
+                Comando comando = FabricaComando.CrearComandoObtenerJugadoresActivo();
+
+                comando.Ejecutar();
+
+                List<DTOObtenerJugadores> dtos = traductor.CrearListaDto(comando.GetEntidades());
+
+                return Request.CreateResponse(HttpStatusCode.OK, dtos);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+        [Route("obtenerJugadoresInactivo")]
+        [System.Web.Http.AcceptVerbs("GET")]
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage ObtenerJugadoresInactivo()
+        {
+            try
+            {
+                TraductorObtenerJugadores traductor = FabricaTraductor.CrearTraductorObtenerJugadores();
+
+                Comando comando = FabricaComando.CrearComandoObtenerJugadoresInactivo();
+
+                comando.Ejecutar();
+
+                List<DTOObtenerJugadores> dtos = traductor.CrearListaDto(comando.GetEntidades());
+
+                return Request.CreateResponse(HttpStatusCode.OK, dtos);
             }
             catch (Exception exc)
             {

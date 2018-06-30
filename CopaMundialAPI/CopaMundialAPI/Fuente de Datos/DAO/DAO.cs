@@ -77,8 +77,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             try
             {
-                if (!IsConnected())
-                    return null;
 
                 _dataTable = new DataTable();
 
@@ -112,9 +110,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         {
             try
             {
-                if (!IsConnected())
-                    return 0;
-
                 int filasAfectadas = _command.ExecuteNonQuery();
 
                 Desconectar();
@@ -140,10 +135,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         {
             try
             {
-                if (!IsConnected())
-                    return null;
-
-
                 _command = new NpgsqlCommand("select * from " + sp, _con);
             }
             catch (NpgsqlException e)

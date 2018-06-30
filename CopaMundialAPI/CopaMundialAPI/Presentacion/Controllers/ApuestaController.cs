@@ -1024,5 +1024,37 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
         }
 
+        /// <summary>
+        /// Proceso para marcar todas las apuestas de los logros finalizados como ganadas o perdidas.
+        /// </summary>
+        [Route("finalizarapuestas")]
+        [System.Web.Http.AcceptVerbs("PUT", "GET")]
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage FinalizarApuestas()
+        {
+            try
+            {
+                Comando comando = FabricaComando.CrearComandoFinalizarApuestas();
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (BaseDeDatosException exc)
+            {
+                log.Error(exc, exc.Mensaje);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+
+                log.Error(exc, exc.Message);
+
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
+            }
+        }
+
     }
 }

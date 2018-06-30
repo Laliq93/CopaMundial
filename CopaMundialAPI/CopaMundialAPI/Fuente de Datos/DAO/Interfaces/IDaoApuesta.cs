@@ -36,5 +36,10 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
         /// <param name="apuesta"></param>
         /// <returns>int</returns>
         int VerificarApuestaValidaParaEditar(Entidad apuesta);
+
+        /// <summary>
+        /// Marcar apuestas como ganadas o perdidas de los logros completados.
+        /// </summary>
+        void FinalizarApuestas();
     }
 }
