@@ -16,7 +16,7 @@ namespace CopaMundialAPI.Servicios.DTO.Ciudades
         private string _descripcion;//Descripcion de la ciudad en español
         private string _nombreIngles;//Nombre de la ciudad en ingles
         private string _descripcionIngles;//Descripcion de la ciudad en ingles
-
+		private Boolean _habilitado;
      /*   /// <summary>
         /// Constructor de la entidad DTOCiudad
         /// </summary>
@@ -73,6 +73,8 @@ namespace CopaMundialAPI.Servicios.DTO.Ciudades
         /// Getters y Setters del atributo _id
         /// </summary>
         public int Id { get => _id; set => _id = value; }
+
+		public Boolean Habilitado { get => _habilitado; set => _habilitado = value; }
 
     }
 }

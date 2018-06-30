@@ -56,18 +56,18 @@
             <table datatable [dtOptions]="dtOptionsHistorialVof" [dtTrigger]="dtTriggerHistorialVof" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Logro</th>
-                  <th>Apuesta</th>
-                  <th>Resultado</th>
-                  <th>Fecha</th>
+                  <th class="center">ID</th>
+                  <th class="center">Logro</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Resultado</th>
+                  <th class="center">Fecha</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let historialApuestaVof of ListHistorialApuestavof; let i = index">
+                <tr class="center" *ngFor="let historialApuestaVof of ListHistorialApuestavof; let i = index">
                   <td>{{historialApuestaVof.IdLogro}}</td>
                   <td>{{historialApuestaVof.Logro}}</td>
-                  <td>{{historialApuestaVof.ApuestaUsuario}}</td>
+                  <td>{{ObtenerVoF(historialApuestaVof.ApuestaUsuario)}}</td>
                   <td>{{historialApuestaVof.Estado}}</td>
                   <td>{{historialApuestaVof.Fecha}}</td>
                 </tr>
@@ -83,15 +83,15 @@
             <table datatable [dtOptions]="dtOptionsHistorialCantidad" [dtTrigger]="dtTriggerHistorialCantidad" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Logro</th>
-                  <th>Apuesta</th>
-                  <th>Estado</th>
-                  <th>Fecha</th>
+                  <th class="center">ID</th>
+                  <th class="center">Logro</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Estado</th>
+                  <th class="center">Fecha</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let historialApuestaCantidad of ListHistorialApuestacantidad; let i = index">
+                <tr class="center" *ngFor="let historialApuestaCantidad of ListHistorialApuestacantidad; let i = index">
                   <td>{{historialApuestaCantidad.IdLogro}}</td>
                   <td>{{historialApuestaCantidad.Logro}}</td>
                   <td>{{historialApuestaCantidad.ApuestaUsuario}}</td>
@@ -110,15 +110,15 @@
             <table datatable [dtOptions]="dtOptionsHistorialJugadores" [dtTrigger]="dtTriggerHistorialJugadores" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Apuesta</th>
-                  <th>Logro</th>
-                  <th>Estado</th>
-                  <th>Fecha</th>
+                  <th class="center">ID</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Logro</th>
+                  <th class="center">Estado</th>
+                  <th class="center">Fecha</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let historialApuestaJugador of ListHistorialApuestajugadores">
+                <tr class="center" *ngFor="let historialApuestaJugador of ListHistorialApuestajugadores">
                   <td>{{historialApuestaJugador.IdLogro}}</td>
                   <td>{{historialApuestaJugador.NombreJugador}} {{historialApuestaJugador.ApellidoJugador}}</td>
                   <td>{{historialApuestaJugador.Logro}}</td>
@@ -138,15 +138,15 @@
             <table datatable [dtOptions]="dtOptionsHistorialEquipos" [dtTrigger]="dtTriggerHistorialEquipos" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Logro</th>
-                  <th>Apuesta</th>>
-                  <th>Estado</th>
-                  <th>Fecha</th>
+                  <th class="center">ID</th>
+                  <th class="center">Logro</th>
+                  <th class="center">Apuesta</th>>
+                  <th class="center">Estado</th>
+                  <th class="center">Fecha</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let historialApuestaEquipo of ListHistorialApuestaequipos; let i = index">
+                <tr class="center" *ngFor="let historialApuestaEquipo of ListHistorialApuestaequipos; let i = index">
                   <td>{{historialApuestaEquipo.IdLogro}}</td>
                   <td>{{historialApuestaEquipo.Logro}}</td>
                   <td>{{historialApuestaEquipo.NombreEquipo}}</td>

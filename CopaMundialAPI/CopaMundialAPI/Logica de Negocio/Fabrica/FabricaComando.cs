@@ -42,7 +42,12 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
 			return new ComandoObtenerCiudadPorNombre(ciudad);
 		}
 
-        public static ComandoAgregarApuestaVOF CrearComandoAgregarApuestaVoF(Entidad apuesta)
+		public static ComandoObtenerCiudadTrue CrearComandoObtenerCiudadesHabilitadas()
+		{
+			return new ComandoObtenerCiudadTrue();
+		}
+
+		public static ComandoAgregarApuestaVOF CrearComandoAgregarApuestaVoF(Entidad apuesta)
         {
             return new ComandoAgregarApuestaVOF(apuesta);
         }
@@ -174,6 +179,46 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
         public static ComandoObtenerLogroPartidoPorId CrearComandoObtenerLogroPartidoPorId(Entidad partido)
         {
             return new ComandoObtenerLogroPartidoPorId(partido);
+        }     
+
+        public static ComandoAsignarResultadoLogroCantidad CrearComandoAsignarResultadoLogroCantidad(Entidad logroCantidad)
+        {
+            return new ComandoAsignarResultadoLogroCantidad(logroCantidad);
+        }
+
+        public static ComandoAsignarResultadoLogroEquipo CrearComandoAsignarResultadoLogroEquipo(Entidad logroEquipo)
+        {
+            return new ComandoAsignarResultadoLogroEquipo(logroEquipo);
+        }
+
+        public static ComandoAsignarResultadoLogroJugador CrearComandoAsignarResultadoLogroJugador(Entidad logroJugador)
+        {
+            return new ComandoAsignarResultadoLogroJugador(logroJugador);
+        }
+
+        public static ComandoAsignarResultadoLogroVF CrearComandoAsignarResultadoLogroVF(Entidad logroVF)
+        {
+            return new ComandoAsignarResultadoLogroVF(logroVF);
+        }
+
+        public static ComandoObtenerLogrosCantidadResultados CrearComandoObtenerLogrosCantidadResultados(Entidad partido)
+        {
+            return new ComandoObtenerLogrosCantidadResultados(partido);
+        }
+
+        public static ComandoObtenerLogrosJugadorResultados CrearComandoObtenerLogrosJugadorResultados(Entidad partido)
+        {
+            return new ComandoObtenerLogrosJugadorResultados(partido);
+        }
+
+        public static ComandoObtenerLogrosEquipoResultados CrearComandoObtenerLogrosEquipoResultados(Entidad partido)
+        {
+            return new ComandoObtenerLogrosEquipoResultados(partido);
+        }
+
+        public static ComandoObtenerLogrosVFResultados CrearComandoObtenerLogrosVFResultados(Entidad partido)
+        {
+            return new ComandoObtenerLogrosVFResultados(partido);
         }
 
         public static ComandoObtenerApuestasCantidadEnCurso CrearComandoObtenerApuestasCantidadEnCurso(Entidad usuario)

@@ -392,8 +392,7 @@ export class Api08Service {
   }
 
   public FatalError(Error) {
-    
-    if(Error.status == 0){
+    if (Error.status === 0) {
       bootbox.alert('Problema al establecer la conexión con el servidor');
       return;
     }

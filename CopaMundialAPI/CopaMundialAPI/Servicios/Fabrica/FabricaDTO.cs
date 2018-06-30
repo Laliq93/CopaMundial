@@ -38,10 +38,10 @@ namespace CopaMundialAPI.Servicios.Fabrica
         /// <param name="nombreIngles">Nombre de la ciudad en ingles</param>
         /// <param name="descripcionIngles">Descripcion de la ciudad en ingles</param>
         /// <returns></returns>
-        public static DTOCiudad2 CrearDTOCiudad (string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
+       /* public static DTOCiudad2 CrearDTOCiudad (string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
         {
             return new DTOCiudad2 (nombre,habitantes,descripcion,nombreIngles,descripcionIngles);
-        }
+        }*/
 
 
 		public static DTOCiudad CrearDTOCiudad(int id,string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
@@ -147,5 +147,6 @@ namespace CopaMundialAPI.Servicios.Fabrica
         {
             return new DTOListaPartidosLogros();
         }
+
     }
 }

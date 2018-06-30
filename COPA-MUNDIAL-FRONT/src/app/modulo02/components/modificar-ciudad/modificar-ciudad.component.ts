@@ -18,6 +18,7 @@ export class ModificarCiudadComponent implements OnInit {
   nombre : string;
   descripcion:string;
   habitantes:number;
+  habilitado : Boolean;
   
   ciudadess: any = [
     {id:"1",nombre: 'Moscú',habitantes: 50, descripcion: 'hola', nomIngles:"Moscow",descIngles:"hello"},
@@ -25,6 +26,12 @@ export class ModificarCiudadComponent implements OnInit {
     {id:"3",nombre: 'Kaliningrado', habitantes: 5, descripcion: 'estas', nomIngles:"Kaliningrad",descIngles:"are you"},
     {id:"4",nombre: 'Nizhny Nóvgorod', habitantes: 2, descripcion: 'bien', nomIngles:"Nizhny Novgorod",descIngles:"good"},
     {id:"5",nombre: 'Volgogrado',habitantes: 1000, descripcion: 'chevere', nomIngles:"Volgograd",descIngles:"thanks"}
+]
+
+
+habilitados: any = [
+  "Habilitado","Deshabilitado"
+
 ]  
   
   constructor( private _location: Location, private route:Router, private ciudadservice: CiudadService){}
@@ -43,6 +50,7 @@ export class ModificarCiudadComponent implements OnInit {
             ciudad.Habitantes = element.Habitantes;
             ciudad.NombreIngles = element.NombreIngles;
             ciudad.DescripcionIngles = element.DescripcionIngles;
+            ciudad.Habilitado = element.Habilitado;
             this.ciudades.push(ciudad);
           });
           this.route.navigate(['ciudades/modificarCiudad']);
@@ -61,6 +69,17 @@ export class ModificarCiudadComponent implements OnInit {
     console.log("ciudad elegida "+this.ciudades[this.id])
     console.log("city = "+this.ciudadselected+this.id)
   }
+
+
+  selectChangeHabilitado($event){
+    console.log($event)
+    if ($event == 0)
+      this.habilitado = true;
+    else
+      this.habilitado = false;
+    
+  }
+
 
   modificar(){
     let city = new Ciudad;
@@ -85,10 +104,17 @@ export class ModificarCiudadComponent implements OnInit {
       else{
         city.Habitantes = this.habitantes;
       }
-   
+   if (this.habilitado == null || typeof this.habilitado == undefined) {
+     city.Habilitado = this.ciudadselected.Habilitado;
+     
+   }else{
+      city.Habilitado = this.habilitado;
+    }
     city.NombreIngles = "";
     city.DescripcionIngles = "";
+
     console.log(city);
+    if(city.Nombre!=""){
     this.ciudadservice.ActualizarCiudad(city).subscribe(
       result => {
         console.log(result)
@@ -97,6 +123,11 @@ export class ModificarCiudadComponent implements OnInit {
         console.log(error)
       }
     )
+    alert("Sus datos fueron procesados satisfactoriamente")
+  }
+  else{
+    $("#idnombre").append("<span style='color: red'>Campo obligatorio</span>")
+    }
   }
 
   
