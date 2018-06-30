@@ -27,8 +27,8 @@
         <li class="nav-item">
           <a class="nav-link" data-toggle="tab" href="#Partidos" role="tab">
             <i class="material-icons">
-            timer
-          </i>Partidos</a>
+              timer
+            </i>Partidos</a>
         </li>
       </ul>
 
@@ -40,26 +40,29 @@
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Equipo 1</th>
-                  <th>Equipo 2</th>
-                  <th>Fecha</th>
-                  <th>Accion</th>
+                  <th class="center">ID</th>
+                  <th class="center">Equipo 1</th>
+                  <th class="center">Equipo 2</th>
+                  <th class="center">Fecha</th>
+                  <th class="center">Accion</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MostrarPartido of ListMostrarPartido">
+                <tr class="center" *ngFor="let MostrarPartido of ListMostrarPartido">
                   <td>{{MostrarPartido.Id}}</td>
                   <td>{{MostrarPartido.Equipo1}}</td>
                   <td>{{MostrarPartido.Equipo2}}</td>
                   <td>{{MostrarPartido.FechaPartido}}</td>
                   <td>
-                    <button type="button" (click)="LlamarApuestas(MostrarPartido.Id)" class="btn btn-info" style="margin-right:16px;">Ver Apuestas</button>
+                    <button class="center" type="button" (click)="LlamarApuestas(MostrarPartido.Id)" class="btn btn-info" style="margin-right:16px;">
+                      <i class="material-icons">
+                        search
+                      </i>Ver Apuestas</button>
                   </td>
                 </tr>
               </tbody>
             </table>
-            
+
           </div>
         </div>
       </div>

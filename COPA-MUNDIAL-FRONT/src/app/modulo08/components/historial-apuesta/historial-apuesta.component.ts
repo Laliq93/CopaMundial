@@ -16,11 +16,12 @@ declare var bootbox: any;
 @Component({
   selector: 'app-historial-apuesta',
   templateUrl: './historial-apuesta.component.html',
-  styleUrls: ['./historial-apuesta.component.css',
-    '../shared/style-apuesta.component.css']
+  styleUrls: [
+    './historial-apuesta.component.css',
+    '../shared/style-apuesta.component.css'
+  ]
 })
 export class HistorialApuestaComponent implements OnInit {
-
   public api08: Api08Service;
   public connect: Conexion;
   public dtoUsuario: DTOEnviarIdUsuario;
@@ -189,5 +190,12 @@ export class HistorialApuestaComponent implements OnInit {
           this.api08.FatalError(Error);
         }
       );
+  }
+
+  public ObtenerVoF(Apuesta) {
+    if (Apuesta) {
+      return 'Si';
+    }
+    return 'No';
   }
 }
