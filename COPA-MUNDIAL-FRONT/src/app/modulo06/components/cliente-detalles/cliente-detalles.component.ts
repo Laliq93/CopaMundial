@@ -8,17 +8,23 @@ import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 })
 export class ClienteDetallesComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  public equipo1;
+  public equipo2;
 
-  ngOnInit() {
+  constructor(private route: ActivatedRoute, private router: Router) {
+    this.route.params.subscribe( params => this.equipo1 = params['equipo1'] );
+    this.route.params.subscribe( params => this.equipo2 = params['equipo2'] );
   }
 
-  
-  faseGrupos(): void {
-		this.router.navigate(['listaPartidos']);
-  }	
 
-  
+  ngOnInit() {
+    console.log('los eqipos son ' + this.equipo1 + ' y ' +this.equipo2);
+  }
+
+
+  faseGrupos(): void {
+    this.router.navigate(['partidos']);
+  }
 
   public listmatch: Array<any>= [
     {

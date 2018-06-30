@@ -1,3 +1,7 @@
+.matches-container button:hover {
+    cursor: pointer;
+}
+
 /*.tab-content{
 
     overflow-y: scroll;
@@ -19,7 +23,7 @@
 }
 
 .container-fluid{
-
+    
     background-size: cover;
 	background-position: center;
     background-repeat: no-repeat;

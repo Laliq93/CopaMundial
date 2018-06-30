@@ -1,4 +1,4 @@
-
+/* stored procedure para agrear un nuevo partido */
 CREATE OR REPLACE FUNCTION AgregarPartido
 (_fechaInicio timestamp, _fechaFin timestamp, _arbitro VARCHAR(30),
  _equipo1 integer, _equipo2 integer, _estadio integer)
@@ -17,6 +17,7 @@ END;
 $$ LANGUAGE plpgsql;
 --select * from agregarpartido('2018/02/12 1:00:00', '2018/02/12 1:00:00' , 'pedro',1, 2, 3);
 
+/* stored procedure para consultar un partido en especifico por su Id */
 CREATE OR REPLACE FUNCTION ConsultarPartido(_idPartido integer)
 RETURNS TABLE
   (id integer,
@@ -35,11 +36,9 @@ BEGIN
   WHERE pa_id=_idPartido;
 END;
 $$ LANGUAGE plpgsql;
-
-
 --select * from consultarpartido(2)
 
-
+/* stored procedure para consultar todos los partidos existentes */
    CREATE OR REPLACE FUNCTION ConsultarPartidos()
 RETURNS TABLE
   (id integer,
@@ -60,6 +59,7 @@ $$ LANGUAGE plpgsql;
 
 --select * from consultarpartidos()
 
+/* stored procedure para consultar los partidos a futuro de la fecha*/
 CREATE OR REPLACE FUNCTION ConsultarPartidosSiguientes(fecha timestamp)
 RETURNS TABLE
   (id integer,
@@ -81,6 +81,7 @@ $$ LANGUAGE plpgsql;
 
 --select * from ConsultarPartidosSiguientes('2018-02-13 01:00:00')
 
+/* stored procedure para modificar el partido al que le corresponda el Id */
 CREATE OR REPLACE FUNCTION ModificarPartido
 (_idPartido integer, _fechaInicio timestamp, _fechaFin timestamp, _arbitro VARCHAR(30),
  _equipo1 integer, _equipo2 integer, _estadio integer)
@@ -98,6 +99,7 @@ $$ LANGUAGE plpgsql;
 
 --select * from Modificarpartido(1,'2018/06/27 1:00:00', '2018/06/27 3:00:00', 'pedro', 1, 2, 3)
 
+/* stored procedure para agrear la alineacion a equipo y partido en especifico */
 CREATE OR REPLACE FUNCTION AgregarAlineacion
 (_capitan boolean, _posicion VARCHAR(30), _titular boolean,
  _jugador integer, _equipo integer, _partido integer)
@@ -116,6 +118,7 @@ END;
 $$ LANGUAGE plpgsql;
 --select * from agregaralineacion(true, 'delantero', true, 1, 1, 1)
 
+/* stored procedure para consultar la alineacion de un partido en especifico */
 CREATE OR REPLACE FUNCTION ConsultarAlineacionPorPartido(idPartido integer)
 RETURNS TABLE
   (id integer,
@@ -137,6 +140,7 @@ $$ LANGUAGE plpgsql;
 
 --select * from consultaralineacionporpartido(1)
 
+/* stored procedure para modificar la alineacion que corresponde al Id */
 CREATE OR REPLACE FUNCTION ModificarAlineacion
 (_idAlineacion integer, _capitan boolean, _posicion VARCHAR(30), _titular boolean,
  _jugador integer, _equipo integer, _partido integer)
@@ -155,6 +159,7 @@ $$ LANGUAGE plpgsql;
 
 --select * from modificaralineacion(1, false, 'defensa', true, 1,1,1)
 
+/* stored procedure para eliminar la alineacion de un partido*/
 CREATE OR REPLACE FUNCTION EliminarAlineacion(_idAlineacion integer)
 RETURNS void AS
 $$

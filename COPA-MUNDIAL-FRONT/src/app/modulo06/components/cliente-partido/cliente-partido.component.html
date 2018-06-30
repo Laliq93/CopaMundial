@@ -14,7 +14,7 @@
         <br>
      <div class="matches-container">
       <ng-container *ngFor="let inf of match.info">
-        <button (click)="details()">
+        <button (click)="details(inf.equipo1, inf.equipo2)">
             <div class="row" >
               <div class="col-sm-4">
                   <p>

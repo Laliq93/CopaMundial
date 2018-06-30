@@ -83,7 +83,7 @@
     }
 
     .d-block {
-
+        text-align: center;
         margin-top: 50px;
         color: #fff;
         /*color: #3f3f3f;*/
@@ -264,4 +264,8 @@
         font-size: 20px;
         font-weight: bold;
 
+    }
+
+    #justifiedTab > li:nth-child(1) {
+        cursor: pointer;
     }
