@@ -23,16 +23,28 @@
 
             <ul class="nav nav-tabs profile-tab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#vf" role="tab">V o F</a>
+                    <a class="nav-link active" data-toggle="tab" href="#vf" role="tab">
+                        <i class="material-icons">
+                            repeat_one
+                        </i>V o F</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#aciertos" role="tab">Cantidad</a>
+                    <a class="nav-link" data-toggle="tab" href="#aciertos" role="tab">
+                        <i class="material-icons">
+                            library_add
+                        </i>Cantidad</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#jugadores" role="tab">Jugadores</a>
+                    <a class="nav-link" data-toggle="tab" href="#jugadores" role="tab">
+                        <i class="material-icons">
+                            directions_run
+                        </i>Jugadores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#equipos" role="tab">Equipos</a>
+                    <a class="nav-link" data-toggle="tab" href="#equipos" role="tab">
+                        <i class="material-icons">
+                            group_add
+                        </i>Equipos</a>
                 </li>
             </ul>
 
@@ -145,7 +157,7 @@
 
                         <table datatable [dtOptions]="dtOptionsApuestaJugadores" [dtTrigger]="dtTriggerApuestaJugadores" class="row-border hover">
                             <thead>
-                                <tr>
+                                <tr class="center">
                                     <th>ID</th>
                                     <th>Apuesta</th>
                                     <th>Logro</th>
@@ -156,7 +168,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let ApuestaJugador of ListApuestajugadores">
+                                <tr class="center" *ngFor="let ApuestaJugador of ListApuestajugadores">
                                     <td>{{ApuestaJugador.IdLogro}}</td>
                                     <td>{{ApuestaJugador.NombreJugador}} {{ApuestaJugador.ApellidoJugador}}</td>
                                     <td>{{ApuestaJugador.Logro}}</td>
@@ -171,7 +183,6 @@
                                     </td>
                                     <td>{{ApuestaJugador.Estado}}</td>
                                     <td>{{ApuestaJugador.Fecha}}</td>
-
                                 </tr>
                             </tbody>
                         </table>

@@ -357,6 +357,34 @@ export class Api08Service {
     return null;
   }
 
+  public AdministradorApuestas() {
+    this.connect.Controlador = 'finalizarapuestas';
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
+
+    this.http
+      .put(url, {
+        responseType: 'json'
+      })
+      .subscribe(
+        data => {
+          if (data != null) {
+            console.log(data);
+          } else {
+            this.Succes('Apuestas finalizadas Correctamenre');
+          }
+        },
+        Error => {
+          this.FatalError(Error);
+        }
+      );
+
+    return null;
+  }
+
+  public Error() {
+    bootbox.alert();
+  }
+
   public Succes(mensaje: string) {
     bootbox.alert(mensaje, function() {
       location.reload();
