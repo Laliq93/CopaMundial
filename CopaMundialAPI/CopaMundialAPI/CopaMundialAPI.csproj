@@ -224,8 +224,15 @@
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerListaPartidos.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerPartido.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoPosponerPartido.cs" />
-    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoEditarPerfilUsuario.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoActualizarCorreo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoActualizarPassword.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoActualizarUsuario.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoAgregarUsuarioAdministrador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoGestionarCuenta.cs" />
     <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoObtenerUsuarioActivo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoObtenerUsuarioDatos.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoVerificarClaveUsuario.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoVerificarCorreoExiste.cs" />
     <Compile Include="Presentacion\Controllers\JugadorController.cs" />
     <Compile Include="Presentacion\Controllers\CiudadController.cs" />
     <Compile Include="Presentacion\Controllers\ApuestaController.cs" />

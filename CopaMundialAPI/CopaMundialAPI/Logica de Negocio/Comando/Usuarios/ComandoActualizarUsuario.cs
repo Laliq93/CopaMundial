@@ -8,9 +8,9 @@ using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando.Usuarios
 {
-    public class ComandoEditarPerfilUsuario : Comando
+    public class ComandoActualizarUsuario : Comando
     {
-        public ComandoEditarPerfilUsuario(Entidad usuario)
+        public ComandoActualizarUsuario(Entidad usuario)
         {
             Entidad = usuario;
         }
