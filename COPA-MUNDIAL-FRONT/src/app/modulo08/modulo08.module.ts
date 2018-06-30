@@ -10,6 +10,7 @@ import { GestionarApuestaComponent } from './components/gestionar-apuesta/gestio
 import { VerApuestaComponent } from './components/ver-apuesta/ver-apuesta.component';
 import { NavButtonsComponent } from './components/shared/nav-buttons/nav-buttons.component';
 import { AdminApuestaComponent } from './components/admin-apuesta/admin-apuesta.component';
+import { HistorialApuestaComponent } from './components/historial-apuesta/historial-apuesta.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { AdminApuestaComponent } from './components/admin-apuesta/admin-apuesta.
     GestionarApuestaComponent,
     VerApuestaComponent,
     NavButtonsComponent,
-    AdminApuestaComponent
+    AdminApuestaComponent,
+    HistorialApuestaComponent
   ]
 })
 export class Modulo08Module {}

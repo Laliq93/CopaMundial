@@ -21,6 +21,9 @@ DROP FUNCTION IF EXISTS ConsultarLogrosCantidadResultados;
 DROP FUNCTION IF EXISTS ConsultarLogrosJugadorResultados;
 DROP FUNCTION IF EXISTS ConsultarLogrosEquipoResultados;
 DROP FUNCTION IF EXISTS ConsultarLogrosVFResultados;
+DROP FUNCTION IF EXISTS ConsultarProximosLogroPartido;
+DROP FUNCTION IF EXISTS ConsultarLogroPartidoFinalizados;
+DROP FUNCTION IF EXISTS ConsultarLogroPartidoPorId;
 DROP FUNCTION IF EXISTS AsignarLogroPU;
 
 
@@ -337,7 +340,7 @@ $$ LANGUAGE plpgsql;
 
 ---------------------------CONSULTAR TODOS LOS LOGROS PENDIENTES DE UN PARTIDO----------------
 /*
-	Consulta una lista de logros sin resultado
+	Consulta una lista de logros sin resultado (NO SE ESTA IMPLEMENTANDO TODAVIA)
 */
 CREATE OR REPLACE FUNCTION ConsultarLogrosPendientes(_idPartido integer)
 RETURNS TABLE
@@ -356,8 +359,44 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+--**************************************SP PARA INTERFAZ**********************************
+
+-------------------------------------CONSULTAR PROXIMOS PARTIDOS-------------------------
+CREATE OR REPLACE FUNCTION ConsultarProximosLogroPartido(
+	_fecha timestamp with time zone)
+    RETURNS TABLE(idpartido integer, fechapartido text, equipo1 integer, equipo2 integer) 
+AS 
+$$
+BEGIN
+	RETURN QUERY SELECT pa_id, to_char(pa_horainicio, 'DD-MM-YYYY'),
+	pa_eq1_id, pa_eq2_id FROM partido WHERE pa_horainicio > _fecha ORDER BY pa_horainicio;
+END;
+$$ LANGUAGE plpgsql;
+------------------------------------CONSULTAR PARTIDOS FINALIZADOS-----------------------
+CREATE OR REPLACE FUNCTION ConsultarLogroPartidoFinalizados(
+	_fecha timestamp with time zone)
+    RETURNS TABLE(idpartido integer, fechapartido text, equipo1 integer, equipo2 integer) 
+AS 
+$$
+BEGIN
+	RETURN QUERY SELECT pa_id, to_char(pa_horainicio, 'DD-MM-YYYY'),
+	pa_eq1_id, pa_eq2_id FROM partido WHERE pa_horainicio < _fecha ORDER BY pa_horainicio;
+END;
+$$ LANGUAGE plpgsql;
+
+----------------------------------CONSULTAR LOGRO PARTIDO--------------------------------
+CREATE OR REPLACE FUNCTION ConsultarLogroPartidoPorId(_idPartido integer)
+    RETURNS TABLE(idpartido integer, fechapartido text, equipo1 integer, equipo2 integer) 
+AS 
+$$
+BEGIN
+	RETURN QUERY SELECT pa_id, to_char(pa_horainicio, 'DD-MM-YYYY'),
+	pa_eq1_id, pa_eq2_id FROM partido WHERE pa_id = _idPartido;
+END;
+$$ LANGUAGE plpgsql;
 
 --**************************************SP PARA PU***************************************
+----------------------------------------AsignarLogroPU
 CREATE OR REPLACE FUNCTION AsignarLogroPU
 (_idLogro integer, _nombre VARCHAR, _idTipoLogro integer, _idPartido integer)
 RETURNS integer AS
@@ -369,10 +408,4 @@ BEGIN
    RETURN _idLogro;
 END;
 $$ LANGUAGE plpgsql;
-
-
-
-
-
-
 

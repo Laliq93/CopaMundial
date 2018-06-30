@@ -32,8 +32,6 @@ namespace PruebasCopaMundialAPI.Modulo_7
         public void SetUp()
         {
             dao = FabricaDAO.CrearDAOLogroVF();
-            dao.StoredProcedure("AsignarLogroPU(500,'PruebaLogroVF',1,1)");
-            dao.EjecutarQuery();
             dao.Conectar();
             controller = new LogrosController();
             controller.Request = new HttpRequestMessage();
@@ -234,6 +232,21 @@ namespace PruebasCopaMundialAPI.Modulo_7
             dtoLogroPartidoId.IdPartido = 14;//Cambiar
 
             Assert.AreEqual(HttpStatusCode.OK, controller.ObtenerLogrosVFPendientes(dtoLogroPartidoId).StatusCode);
+
+        }
+
+        /// <summary>
+        /// Metodo que prueba la excepcion Logros
+        /// pendientes not found exception del metodo 
+        /// ObtenerLogrosVFPendientes de
+        /// LogrosController
+        /// </summary>
+        [Test]
+        public void PruebaControllerObtenerLogrosVFPendienteExc()
+        {
+            DTOLogroPartidoId dtoLogroPartidoId = FabricaDTO.CrearDTOLogroPartidoId();
+            dtoLogroPartidoId.IdPartido = 16;//Cambiar
+            Assert.AreEqual(HttpStatusCode.InternalServerError, controller.ObtenerLogrosVFPendientes(dtoLogroPartidoId).StatusCode);
 
         }
 

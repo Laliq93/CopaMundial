@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Jugador } from '../models/jugador';
+import { Conexion } from '../models/conexion';
+import { DTOMostrarJugador } from '../models/dtomostrar-jugador';
 
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Jugador } from '../models/jugador';
+//import { Jugador } from '../models/jugador';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -38,10 +41,10 @@ export class JugadorService {
   }
 
   updateJugador(jugador: Jugador): Observable<any> {
-    console.log(jugador.FechaNacimiento);
+    console.log(jugador.fechaNacimiento);
     const url = `${this.jugadoresUrl}/EditarJugador`;
     return this.http.put(url, jugador, httpOptions).pipe(
-      tap(_ => this.log(`updated jugador id=${jugador.Id}`)),
+      tap(_ => this.log(`updated jugador id=${jugador.id}`)),
       catchError(this.handleError<any>('updateJugador'))
     );
   }
@@ -49,7 +52,7 @@ export class JugadorService {
   addJugador(jugador: Jugador): Observable<any> {
     const url = `${this.jugadoresUrl}/CrearJugador`;
     return this.http.post<Jugador>(url, jugador, httpOptions).pipe(
-      tap(_ => this.log(`added jugador w/ id=${jugador.Id}`)),
+      tap(_ => this.log(`added jugador w/ id=${jugador.id}`)),
       catchError(this.handleError<Jugador>('addJugador'))
     );
   }
