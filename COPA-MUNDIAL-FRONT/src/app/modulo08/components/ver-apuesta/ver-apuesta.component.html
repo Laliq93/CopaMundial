@@ -57,14 +57,14 @@
             <table datatable [dtOptions]="dtOptionsVof" [dtTrigger]="dtTriggerVof" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Apuesta</th>
-                  <th>Opción</th>
-                  <th>Acción</th>
+                  <th class="center">ID</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Opción</th>
+                  <th class="center">Acción</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MostrarLogros of ListMostrarlogrovof; let i = index">
+                <tr class="center" *ngFor="let MostrarLogros of ListMostrarlogrovof; let i = index">
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
                   <td>
@@ -89,14 +89,14 @@
             <table datatable [dtOptions]="dtOptionsCantidad" [dtTrigger]="dtTriggerCantidad" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Apuesta</th>
-                  <th>Opción</th>
-                  <th>Acción</th>
+                  <th class="center">ID</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Opción</th>
+                  <th class="center">Acción</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MostrarLogros of ListMostrarlogrocantidad; let i = index">
+                <tr class="center" *ngFor="let MostrarLogros of ListMostrarlogrocantidad; let i = index">
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
 
@@ -114,9 +114,7 @@
                   </td>
                   <td>
                     <button type="button" (click)="ApostarCantidad(MostrarLogros.IdLogro, opcionCantidad[i])" class="btn btn-success-table" style="margin-right:16px;">
-                      <i class="material-icons">
-                        done_outline
-                      </i>
+                     ✓
                     </button>
                   </td>
                 </tr>
@@ -132,17 +130,20 @@
             <table datatable [dtOptions]="dtOptionsJugadores" [dtTrigger]="dtTriggerJugadores" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Apuesta</th>
-                  <th>Opción</th>
+                  <th class="center">ID</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Opción</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MostrarLogros of ListMostrarlogrojugadores">
+                <tr class="center" *ngFor="let MostrarLogros of ListMostrarlogrojugadores">
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
                   <td>
-                    <button type="button" class="btn btn-success-table" (click)="openModaljugadores(MostrarLogros.IdLogro)" style="margin-right:16px;">Ver Jugadores</button>
+                    <button type="button" class="btn btn-success-table" (click)="openModaljugadores(MostrarLogros.IdLogro)" style="margin-right:16px;">
+                      <i class="material-icons">
+                        transfer_within_a_station
+                      </i>Ver Jugadores</button>
                     <div class="backdrop" [ngStyle]="{'display':display}"></div>
                   </td>
                 </tr>
@@ -159,14 +160,14 @@
             <table datatable [dtOptions]="dtOptionsEquipos" [dtTrigger]="dtTriggerEquipos" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Apuesta</th>
-                  <th>Opción</th>
-                  <th>Acción</th>
+                  <th class="center">ID</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Opción</th>
+                  <th class="center">Acción</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MostrarLogros of ListMostrarlogroequipos; let i = index">
+                <tr class="center" *ngFor="let MostrarLogros of ListMostrarlogroequipos; let i = index">
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
                   <td>
@@ -190,9 +191,7 @@
                   </td>
                   <td>
                     <button type="button" (click)="ApostarEquipo(MostrarLogros.IdLogro, opcionEquipo[i])" class="btn btn-success-table" style="margin-right:16px;">
-                      <i class="material-icons">
-                        done_outline
-                      </i>
+                     ✓
                     </button>
                   </td>
                 </tr>
@@ -225,22 +224,20 @@
           <table datatable [dtOptions]="dtOptionsMostrarJugadores" [dtTrigger]="dtTriggerMostrarJugadores" class="row-border hover">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Acción</th>
+                <th class="center">ID</th>
+                <th class="center">Nombre</th>
+                <th class="center">Apellido</th>
+                <th class="center">Acción</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let MostrarJugadores of ListMostrarJugadores">
+              <tr class="center" *ngFor="let MostrarJugadores of ListMostrarJugadores">
                 <td>{{MostrarJugadores.Id}}</td>
                 <td>{{MostrarJugadores.Nombre}}</td>
                 <td>{{MostrarJugadores.Apellido}}</td>
                 <td>
                   <button type="button" class="btn btn-success-table" (click)="ApostarJugador(MostrarJugadores.Id)" style="margin-right:16px;">
-                    <i class="material-icons">
-                      done_outline
-                    </i>
+                   ✓
                   </button>
                 </td>
               </tr>
