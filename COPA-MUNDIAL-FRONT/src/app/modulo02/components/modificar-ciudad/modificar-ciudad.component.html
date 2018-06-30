@@ -16,9 +16,11 @@
 <div id="modificarform" class="central" style="margin-left: 5%">
   <form class="card">
   <div class="form-group">
+      <div id="idnombre">
     <label i18n="Label nombre en la tarjeta Modificar Ciudad @@m2LabelNombreModificar" for="InputNombre">Nombre</label>
     <input id="nombre" type="text" class="form-control" id="InputNombre" placeholder="Ciudad" value ="{{ciudadselected.Nombre}}"  [(ngModel)]="nombre" [ngModelOptions]="{standalone: true}">
   </div>
+</div>
   <div class="form-group">
     <label i18n="Label habitantes en la tarjeta Modificar Ciudad @@m2LabelHabitantesModificar" for="InputPoblacion">Habitantes</label>
     <input id="habitantes" type="number" class="form-control" id="InputPoblacion" placeholder="Poblacion" value="{{ciudadselected.Habitantes}}" [(ngModel)]="habitantes " [ngModelOptions]="{standalone: true}">
@@ -26,6 +28,11 @@
   <div class="form-group">
       <label i18n="Label descripcion en la tarjeta Modificar Ciudad @@m2LabelDescripcionModificar" for="InputDescripcion">Descripción</label>
       <input id="descripcion" type="text" class="form-control" id="InputDescripcion" placeholder="Descripcion" value ="{{ciudadselected.Descripcion}}" [(ngModel)]="descripcion" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+        <select (ngModelChange)="selectChangeHabilitado($event)" [(ngModel)]="InputHabilitado" [ngModelOptions]="{standalone: true}" id='Habilitado' class="form-control font-estilo"   >
+            <option  *ngFor = "let habilitado of habilitados; let i = index"  [value]="i">{{habilitado}} </option>
+        </select>
     </div>
   <button i18n="Boton agregar ciudad en la tarjeta Modificar Ciudad @@m2BotonAgregarModificar" (click)="modificar()" type="submit" class="btn btn-primary btn-signin">Modificar Ciudad</button>
   <button i18n="Boton cancelar en la tarjeta Modificar Ciudad @@m2BotonCancelarModificar"  (click)="regresar()" type="submit" class="btn btn-primary btn-signin">Cancelar</button>

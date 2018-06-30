@@ -5,6 +5,7 @@ CREATE TABLE CIUDAD (
     ci_descripcion  varchar(250),
 	ci_nombreingles varchar(70),
 	ci_descripcioningles varchar(250),
+	ci_habilitado boolean default (true),
     CONSTRAINT pk_ciudad PRIMARY KEY(ci_id)
 
 );

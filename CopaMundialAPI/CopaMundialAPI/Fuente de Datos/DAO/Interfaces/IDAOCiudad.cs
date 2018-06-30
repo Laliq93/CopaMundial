@@ -14,5 +14,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
 
 
 		List<Entidad> ConsultarCiudadPorNombreIngles(Entidad entidad);
+
+		List<Entidad> ObtenerTodosHabilitados();
 	}
 }
