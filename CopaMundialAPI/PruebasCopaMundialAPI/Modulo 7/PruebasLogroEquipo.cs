@@ -248,6 +248,20 @@ namespace PruebasCopaMundialAPI.Modulo_7
 
         }
 
+        /// <summary>
+        /// Metodo que prueba el resultado de exito de
+        // ObtenerLogroPorId de DaoLogroEquipo
+        /// </summary>
+        [Test]
+        public void PruebaDaoObtenerLogroPorId()
+        {
+            LogroEquipo logro = FabricaEntidades.CrearLogroEquipo();
+            logro.Id = 9;//asegurar que este id sea de tipo equipo
+            respuesta = ((DAOLogroEquipo)dao).ObtenerLogroPorId(logro);
+            Assert.IsNotNull(respuesta);
+
+        }
+
         [TearDown]
         public void TearDown()
         {
