@@ -1,0 +1,50 @@
+<h2>Gestión de Logros Partido</h2>
+<hr/>
+<h3>1. Seleccionar un partido</h3>
+<br>
+    <div class="management">
+      <h4>Proximos Partidos</h4>
+      <div class="container row-border hover" *ngFor="let partido of listmatches">
+           <div class="matches-container">
+              <button (click)="LlamarLogros(partido.IdPartido)">
+                  <div class="row" >
+
+                      <div class="col-sm-4">
+                        <h4>{{partido.Equipo1}}</h4>
+                      </div>
+                      <div class="col-sm-4">
+                          <h4 class="match-time">{{partido.Fecha}}</h4>
+                        </div>
+                      <div class="col-sm-4">
+                        <h4> {{partido.Equipo2}} </h4>
+                      </div>
+
+                  </div>
+              </button>
+          <br>
+         </div>
+         <hr/>
+      </div>
+      <h4>Partidos Finalizados</h4>
+      <div class="container row-border hover" *ngFor="let partidoFinal of partidosFinalizados">
+           <div class="matches-container">
+              <button (click)="LlamarLogros(partidoFinal.IdPartido)">
+                  <div class="row" >
+
+                      <div class="col-sm-4">
+                        <h4>{{partidoFinal.Equipo1}}</h4>
+                      </div>
+                      <div class="col-sm-4">
+                           <h4 class="match-time">{{partidoFinal.Fecha}}</h4>
+                        </div>
+                      <div class="col-sm-4">
+                        <h4> {{partidoFinal.Equipo2}} </h4>
+                      </div>
+
+                  </div>
+              </button>
+          <br>
+         </div>
+         <hr/>
+      </div>
+    </div>
