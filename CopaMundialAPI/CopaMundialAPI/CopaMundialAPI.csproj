@@ -150,6 +150,7 @@
     <Compile Include="Comun\Excepciones\LogrosPendientesNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\ObjetoNullException.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaEquipo.cs.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOLogroPartido.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoActualizarApuestaEquipo.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoActualizarApuestaJugador.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoActualizarApuestaCantidad.cs" />
@@ -197,10 +198,13 @@
     <Compile Include="Logica de Negocio\Comando\Logros\ComandoAgregarLogroEquipo.cs" />
     <Compile Include="Logica de Negocio\Comando\Logros\ComandoAgregarLogroJugador.cs" />
     <Compile Include="Logica de Negocio\Comando\Logros\ComandoAgregarLogroVF.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogroPartidoPorId.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogroPartidosFinalizados.cs" />
     <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogrosCantidadPendientes.cs" />
     <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogrosEquipoPendientes.cs" />
     <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogrosJugadorPendientes.cs" />
     <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogrosVFPendientes.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerProximosLogrosPartidos.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoActualizarAlineacion.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoActualizarPartido.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoCrearAlineacion.cs" />
@@ -258,6 +262,7 @@
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudadID.cs" />
     <Compile Include="Servicios\DTO\Jugadores\DTOModificarJugador.cs" />
     <Compile Include="Servicios\DTO\Jugadores\DTOObtenerJugadores.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOListaPartidosLogros.cs" />
     <Compile Include="Servicios\DTO\Logros\DTOLogroCantidad.cs" />
     <Compile Include="Servicios\DTO\Logros\DTOLogroCantidadResultado.cs" />
     <Compile Include="Servicios\DTO\Logros\DTOLogroEquipo.cs" />
@@ -294,6 +299,7 @@
     <Compile Include="Servicios\Traductores\Jugadores\TraductorJugadorId.cs" />
     <Compile Include="Servicios\Traductores\Jugadores\TraductorModificarJugador.cs" />
     <Compile Include="Servicios\Traductores\Jugadores\TraductorObtenerJugadores.cs" />
+    <Compile Include="Servicios\Traductores\Logros\TraductorListaPartidosLogros.cs" />
     <Compile Include="Servicios\Traductores\Logros\TraductorLogroCantidad.cs" />
     <Compile Include="Servicios\Traductores\Logros\TraductorLogroEquipo.cs" />
     <Compile Include="Servicios\Traductores\Logros\TraductorLogroJugador.cs" />

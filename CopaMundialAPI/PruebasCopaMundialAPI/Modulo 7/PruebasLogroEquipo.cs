@@ -33,8 +33,6 @@ namespace PruebasCopaMundialAPI.Modulo_7
         public void SetUp()
         {
             dao = FabricaDAO.CrearDAOLogroEquipo();
-            dao.StoredProcedure("AsignarLogroPU(500,'PruebaLogroEquipo',1,1)");
-            dao.EjecutarQuery();
             dao.Conectar();
             controller = new LogrosController();
             controller.Request = new HttpRequestMessage();
@@ -177,7 +175,7 @@ namespace PruebasCopaMundialAPI.Modulo_7
         {
 
             Partido partido = FabricaEntidades.CrearPartido();
-            partido.Id = 15; //cambiar numero
+            partido.Id = 18; //cambiar numero
 
             Assert.Throws<LogrosPendientesNoExisteException>(() => ((DAOLogroEquipo)dao).ObtenerLogrosPendientes(partido));
         }
@@ -210,7 +208,7 @@ namespace PruebasCopaMundialAPI.Modulo_7
         {
             
             Partido partido = FabricaEntidades.CrearPartido();
-            partido.Id = 15; //cambiar numero
+            partido.Id = 18; //cambiar numero
 
             comando = FabricaComando.CrearComandoObtenerLogrosEquipoPendientes(partido);
             Assert.Throws<LogrosPendientesNoExisteException>(() => comando.Ejecutar());
@@ -218,6 +216,12 @@ namespace PruebasCopaMundialAPI.Modulo_7
         }
 
 
+
+        /// <summary>
+        /// Metodo que prueba la respuesta exitosa del
+        /// metodo ObtenerLogrosEquipoPendiente del 
+        /// LogroController
+        /// </summary>
         [Test]
         public void PruebaControllerObtenerLogrosEquipoPendiente()
         {
@@ -225,6 +229,36 @@ namespace PruebasCopaMundialAPI.Modulo_7
             dtoLogroPartidoId.IdPartido = 14;//Cambiar
 
             Assert.AreEqual(HttpStatusCode.OK, controller.ObtenerLogrosEquipoPendientes(dtoLogroPartidoId).StatusCode);
+
+        }
+
+
+        /// <summary>
+        /// Metodo que prueba la excepcion Logros
+        /// pendientes not found exception del metodo 
+        /// ObtenerLogrosEquipoPendientes de
+        /// LogrosController
+        /// </summary>
+        [Test]
+        public void PruebaControllerObtenerLogrosEquipoPendienteExc()
+        {
+            DTOLogroPartidoId dtoLogroPartidoId = FabricaDTO.CrearDTOLogroPartidoId();
+            dtoLogroPartidoId.IdPartido = 18;//Cambiar
+            Assert.AreEqual(HttpStatusCode.InternalServerError, controller.ObtenerLogrosEquipoPendientes(dtoLogroPartidoId).StatusCode);
+
+        }
+
+        /// <summary>
+        /// Metodo que prueba el resultado de exito de
+        // ObtenerLogroPorId de DaoLogroEquipo
+        /// </summary>
+        [Test]
+        public void PruebaDaoObtenerLogroPorId()
+        {
+            LogroEquipo logro = FabricaEntidades.CrearLogroEquipo();
+            logro.Id = 9;//asegurar que este id sea de tipo equipo
+            respuesta = ((DAOLogroEquipo)dao).ObtenerLogroPorId(logro);
+            Assert.IsNotNull(respuesta);
 
         }
 
