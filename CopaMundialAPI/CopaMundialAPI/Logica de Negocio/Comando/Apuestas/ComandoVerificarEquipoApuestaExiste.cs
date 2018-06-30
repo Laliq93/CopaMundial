@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CopaMundialAPI.Comun.Entidades;
+using CopaMundialAPI.Comun.Excepciones;
 using CopaMundialAPI.Fuente_de_Datos.DAO;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
@@ -11,17 +12,19 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
     public class ComandoVerificarApuestaEquipoExiste : Comando
     {
         DAOApuestaEquipo _dao;
-        Entidad _apuesta;
 
         public ComandoVerificarApuestaEquipoExiste(Entidad apuesta)
         {
-            _apuesta = apuesta;
+            Entidad = apuesta;
             _dao = FabricaDAO.CrearDAOApuestaEquipo();
         }
 
         public override void Ejecutar()
         {
-            _dao.VerificarApuestaExiste(_apuesta);
+            int count = _dao.VerificarApuestaExiste(Entidad);
+
+            if (count > 0)
+                throw new ApuestaRepetidaException();
         }
 
         public override Entidad GetEntidad()

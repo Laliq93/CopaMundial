@@ -29,7 +29,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             {
 
 
-                Ciudad ciudad = entidad as Ciudad;
+				Ciudad ciudad = (Ciudad)entidad;
 
                 Conectar ( );
 
@@ -91,7 +91,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             try
             {
-                Ciudad ciudad = entidad as Ciudad;
+                Ciudad ciudad = (Ciudad)entidad ;
 
                 Conectar ( );
 
@@ -150,15 +150,15 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             try
             {
-                Ciudad ciudad = entidad as Ciudad;
-                Conectar ( );
-                StoredProcedure ( "obtenerciudad(@id)" );
+				Ciudad ciudad = (Ciudad)entidad;
+				Conectar ( );
+                StoredProcedure ( "getciudad(@id)" );
                 AgregarParametro ( "id", ciudad.Id );
                 EjecutarReader ( );
 				Ciudad ciudadARetornar = null;
                 for (int i = 0; i < cantidadRegistros; i++)
                 {
-                    ciudadARetornar = FabricaEntidades.CrearCiudad ( GetString ( i, 0 ), GetInt ( i, 1 ), GetString ( i, 2 ), GetString ( i, 3 ), GetString ( i, 4 ) );
+                    ciudadARetornar = FabricaEntidades.CrearCiudad(GetInt(i, 0), GetString(i, 1), GetInt(i, 3), GetString(i, 2), GetString(i, 4), GetString(i, 5)) ;
                 }
                 return ciudadARetornar;
 			
@@ -207,8 +207,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 		{
             try
             {
-                Ciudad ciudad = entidad as Ciudad;
-                List<Entidad> _ciudades = new List<Entidad> ( );
+				Ciudad ciudad = (Ciudad)entidad;
+				List<Entidad> _ciudades = new List<Entidad> ( );
                 Conectar ( );
                 StoredProcedure ( "getciudadbyname(@nombre)" );
                 AgregarParametro ( "nombre", ciudad.Nombre );
@@ -263,8 +263,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 		{
             try
             {
-                Ciudad ciudad = entidad as Ciudad;
-                List<Entidad> _ciudades = new List<Entidad> ( );
+				Ciudad ciudad = (Ciudad)entidad;
+				List<Entidad> _ciudades = new List<Entidad> ( );
                 Conectar ( );
                 StoredProcedure ( "getciudadbynameingles(@nombre)" );
                 AgregarParametro ( "nombre", ciudad.Nombre );
@@ -320,8 +320,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             try
             {
 
-                Ciudad ciudad = entidad as Ciudad;
-                Conectar ( );
+				Ciudad ciudad = (Ciudad)entidad;
+				Conectar ( );
                 StoredProcedure ( "eliminarciudad(@id)" );
                 AgregarParametro ( "id", ciudad.Id );
                 EjecutarQuery ( );

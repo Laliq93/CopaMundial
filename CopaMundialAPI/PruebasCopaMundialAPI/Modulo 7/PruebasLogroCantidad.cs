@@ -17,6 +17,8 @@ using CopaMundialAPI.Servicios.Traductores.Fabrica;
 using CopaMundialAPI.Presentacion.Controllers;
 using NUnit.Framework;
 using System.Net.Http;
+using System.Web.Http;
+using System.Net;
 
 
 namespace PruebasCopaMundialAPI.Modulo_7
@@ -24,8 +26,7 @@ namespace PruebasCopaMundialAPI.Modulo_7
     [TestFixture]
     public class PruebasLogroCantidad
     {
-        private Entidad logro;
-        private List<Entidad> _logroscantidad;
+        
         private DAO dao;
         private Comando comando;
         private Entidad respuesta;
@@ -40,8 +41,8 @@ namespace PruebasCopaMundialAPI.Modulo_7
             dao.EjecutarQuery();
             dao.Conectar();
             controller = new LogrosController();
-         /*   controller.Request = new HttpRequestMessage();
-            controller.Configuration = new HttpConfiguration();*/
+            controller.Request = new HttpRequestMessage();
+            controller.Configuration = new HttpConfiguration();
 
         }
 
@@ -150,7 +151,7 @@ namespace PruebasCopaMundialAPI.Modulo_7
             dtoLogro.LogroCantidad = "Prueba controller Agregar logro cantidad";
             dtoLogro.TipoLogro = (int)TipoLogro.cantidad;
 
-           // Assert.AreEqual(HttpStatusCode.OK, controller.AgregarLogroCantidad(dtoLogro));
+            Assert.AreEqual(HttpStatusCode.OK, controller.AgregarLogroCantidad(dtoLogro).StatusCode);
 
         }
 
@@ -219,11 +220,22 @@ namespace PruebasCopaMundialAPI.Modulo_7
             Assert.Throws<LogrosPendientesNoExisteException>(() => comando.Ejecutar());
         }
 
+        
+
+        [Test]
+        public void PruebaControllerObtenerLogrosCantidadPendiente()
+        {
+            DTOLogroPartidoId dtoLogroPartidoId = FabricaDTO.CrearDTOLogroPartidoId();
+            dtoLogroPartidoId.IdPartido = 14;//Cambiar
+
+            Assert.AreEqual(HttpStatusCode.OK, controller.ObtenerLogrosCantidadPendientes(dtoLogroPartidoId).StatusCode);
+            
+        }
+
         [TearDown]
         public void TearDown()
         {
             dao.Desconectar();
-            logro = null;
             dao = null;
             comando = null; 
             respuesta = null;

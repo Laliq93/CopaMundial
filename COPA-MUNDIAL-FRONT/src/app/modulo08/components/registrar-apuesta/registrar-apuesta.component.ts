@@ -16,6 +16,7 @@ declare var bootbox: any;
   ]
 })
 export class RegistrarApuestaComponent implements OnInit {
+
   public MostrarPartido: DTOMostrarPartido;
   public ListMostrarPartido: DTOMostrarPartido[] = [];
   public api08: Api08Service;
@@ -39,7 +40,7 @@ export class RegistrarApuestaComponent implements OnInit {
 
   public ObtenerProximosPartidos() {
     this.connect.Controlador = 'obtenerproximospartidos';
-    let url = this.connect.RutaApi + this.connect.Controlador;
+    const url = this.connect.GetApiApuesta() + this.connect.Controlador;
 
     this.http.get<DTOMostrarPartido>(url, { responseType: 'json' }).subscribe(
       data => {

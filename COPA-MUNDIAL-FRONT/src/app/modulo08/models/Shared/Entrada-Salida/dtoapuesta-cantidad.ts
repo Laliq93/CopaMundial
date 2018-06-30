@@ -1,7 +1,8 @@
-export class DTOApuestaEquipo {
+export class DTOApuestaCantidad {
   public IdUsuario: number = null;
   public IdLogro: number = null;
-  public IdEquipo: number;
+  public ApuestaUsuario: number;
   public Estado: string;
   public Logro: String;
+  public Fecha: String;
 }

@@ -11,14 +11,16 @@
     <h1 i18n="Encabezado Agregar Ciudad en el formulario @@m2H1AgregarCiudad" style="color: black; font-size: 30px; text-align: center;">Agregar Ciudad </h1>
   
     <div class="form-group">
-  
+  <div id="idnombre">
       <label i18n="Label del nombre en español en el formulario @@m2LabelNombreES" for="InputNombre">Nombre (ES)</label>
       <input type="text" 
             class="form-control" 
             id="InputNombreES" 
             name="nombreES" 
             #nombre="ngModel" 
-            [(ngModel)]="formulario.nombreES" required/>       
+            [(ngModel)]="formulario.nombreES" required>
+            
+          </div>
       
     </div>
 
@@ -31,8 +33,7 @@
               placeholder="Ciudad" 
               name="nombreEN" 
               #nombre="ngModel" 
-              [(ngModel)]="formulario.nombreEN" 
-              ng-pattern="/^[a-zA-Z]*$/" required/>
+              [(ngModel)]="formulario.nombreEN" required>
         
       </div>
   
@@ -67,7 +68,7 @@
       </div>
   
   
-      <button i18n="Boton de agregar en el formulario @@m2BotonAgregar" (click)="subirciudad();" type="submit" class="btn btn-primary btn-signin">Agregar Ciudad</button>
+      <button i18n="Boton de agregar en el formulario @@m2BotonAgregar" id="boton_enviar" (click)="subirciudad();" type="submit" class="btn btn-primary btn-signin">Agregar Ciudad</button>
   
       <button i18n="Boton de cancelar en el formulario @@m2BotonCancelarAgregacion" (click)="regresar()" type="button" class="btn btn-primary btn-signin">Cancelar</button>
   
