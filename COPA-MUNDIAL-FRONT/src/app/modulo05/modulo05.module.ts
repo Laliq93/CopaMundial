@@ -5,7 +5,6 @@ import { DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Modulo05RoutingModule } from './modulo05-routing.module';
 import { JugadoresComponent } from './components/jugadores/jugadores.component';
-import { JugadorDetalleComponent } from './components/jugador-detalle/jugador-detalle.component';
 import { JugadorService } from './services/jugador.service';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -17,8 +16,7 @@ import { Routes, RouterModule } from '@angular/router';
     Modulo05RoutingModule
   ],
   declarations: [
-    JugadoresComponent,
-    JugadorDetalleComponent
+    JugadoresComponent
   ],
   providers: [
     DatePipe,
