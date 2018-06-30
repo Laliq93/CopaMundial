@@ -145,7 +145,7 @@
 
                         <table datatable [dtOptions]="dtOptionsApuestaJugadores" [dtTrigger]="dtTriggerApuestaJugadores" class="row-border hover">
                             <thead>
-                                <tr>
+                                <tr class="center">
                                     <th>ID</th>
                                     <th>Apuesta</th>
                                     <th>Logro</th>
@@ -156,7 +156,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let ApuestaJugador of ListApuestajugadores">
+                                <tr class="center" *ngFor="let ApuestaJugador of ListApuestajugadores">
                                     <td>{{ApuestaJugador.IdLogro}}</td>
                                     <td>{{ApuestaJugador.NombreJugador}} {{ApuestaJugador.ApellidoJugador}}</td>
                                     <td>{{ApuestaJugador.Logro}}</td>
