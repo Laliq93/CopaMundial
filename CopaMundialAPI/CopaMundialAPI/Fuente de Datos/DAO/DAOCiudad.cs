@@ -28,14 +28,12 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             try
             {
 
-                Exception e = new Exception ( );
-                throw e;
 
-                Ciudad ciudad = entidad as Ciudad;
+				Ciudad ciudad = (Ciudad)entidad;
 
                 Conectar ( );
 
-                StoredProcedure ( "updateciudad(@_id,@_nombre,@_poblacion,@_descripcion,@_nombreingles,@_descripcioningles)" );
+                StoredProcedure ( "updateciudad(@_id,@_nombre,@_poblacion,@_descripcion,@_nombreingles,@_descripcioningles,@_habilitado)" );
 
                 AgregarParametro ( "_id", ciudad.Id );
                 AgregarParametro ( "_nombre", ciudad.Nombre );
@@ -43,6 +41,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 AgregarParametro ( "_descripcion", ciudad.Descripcion );
                 AgregarParametro ( "_nombreingles", ciudad.NombreIngles );
                 AgregarParametro ( "_descripcioningles", ciudad.DescripcionIngles );
+				AgregarParametro("_habilitado", ciudad.Habilitado);
 
                 EjecutarQuery ( );
 
@@ -91,19 +90,55 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         public void Agregar ( Entidad entidad )
         {
 
-            Ciudad ciudad = entidad as Ciudad;
+            try
+            {
+                Ciudad ciudad = (Ciudad)entidad ;
 
-            Conectar();
+                Conectar ( );
 
-            StoredProcedure("insertarciudad(@_nombre,@_poblacion,@_descripcion,@_nombreingles,@_descripcioningles)");
+                StoredProcedure ( "insertarciudad(@_nombre,@_poblacion,@_descripcion,@_nombreingles,@_descripcioningles)" );
 
-            AgregarParametro("_nombre", ciudad.Nombre);
-            AgregarParametro("_poblacion", ciudad.Habitantes);
-            AgregarParametro("_descripcion", ciudad.Descripcion);
-			AgregarParametro("_nombreingles", ciudad.NombreIngles);
-			AgregarParametro("_descripcioningles", ciudad.DescripcionIngles);
+                AgregarParametro ( "_nombre", ciudad.Nombre );
+                AgregarParametro ( "_poblacion", ciudad.Habitantes );
+                AgregarParametro ( "_descripcion", ciudad.Descripcion );
+                AgregarParametro ( "_nombreingles", ciudad.NombreIngles );
+                AgregarParametro ( "_descripcioningles", ciudad.DescripcionIngles );
 
-            EjecutarQuery ( );
+                EjecutarQuery ( );
+            }
+            catch (NullReferenceException e)
+            {
+                logger.Error ( e, "Parametros de entrada nulos" );
+
+                throw new ObjetoNullException ( e, "Parametros nulos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (InvalidCastException e)
+            {
+                logger.Error ( e, "Casteo no correcto" );
+
+                throw new CasteoNoCorrectoException ( e, "Casteo no correcto en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (NpgsqlException e)
+            {
+                logger.Error ( e, "Error en la base de datos" );
+
+                throw new BaseDeDatosException ( e, "Error en la base de datos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (Exception e)
+            {
+                logger.Error ( e, "Error desconocido" );
+
+                throw new ExcepcionGeneral ( e, DateTime.Now );
+
+            }
+
+            finally
+            {
+                Desconectar ( );
+            }
         }
 
         /// <summary>
@@ -113,38 +148,115 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// <returns></returns>
         public Entidad ConsultarCiudadPorId ( Entidad entidad )
         {
-			Ciudad ciudad = entidad as Ciudad;
-			Conectar();
-			StoredProcedure("obtenerciudad(@id)");
-			AgregarParametro("id", ciudad.Id);
-			EjecutarReader();
-			for (int i = 0; i < cantidadRegistros; i++)
-			{
-				ciudad = FabricaEntidades.CrearCiudad(GetString(i,0),GetInt(i,1),GetString(i,2),GetString(i,3),GetString(i,4));
-			}
-			return ciudad;
-			
-		}
 
-        /// <summary>
-        /// Metodo para consultar una ciudad de tipo entidad dado su nombre en espanol
-        /// </summary>
-        /// <param name="entidad">ciudad a consultar</param>
-        /// <returns></returns>
+            try
+            {
+				Ciudad ciudad = (Ciudad)entidad;
+				Conectar ( );
+                StoredProcedure ( "getciudad(@id)" );
+                AgregarParametro ( "id", ciudad.Id );
+                EjecutarReader ( );
+				Ciudad ciudadARetornar = null;
+                for (int i = 0; i < cantidadRegistros; i++)
+                {
+                    ciudadARetornar = FabricaEntidades.CrearCiudad(GetInt(i, 0), GetString(i, 1), GetInt(i, 3), GetString(i, 2), GetString(i, 4), GetString(i, 5)) ;
+					ciudadARetornar.Habilitado = GetBool(i, 6);
+				}
+                return ciudadARetornar;
+			
+            }
+            catch (NullReferenceException e)
+            {
+                logger.Error ( e, "Parametros de entrada nulos" );
+
+                throw new ObjetoNullException ( e, "Parametros nulos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (InvalidCastException e)
+            {
+                logger.Error ( e, "Casteo no correcto" );
+
+                throw new CasteoNoCorrectoException ( e, "Casteo no correcto en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (NpgsqlException e)
+            {
+                logger.Error ( e, "Error en la base de datos" );
+
+                throw new BaseDeDatosException ( e, "Error en la base de datos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (Exception e)
+            {
+                logger.Error ( e, "Error desconocido" );
+
+                throw new ExcepcionGeneral ( e, DateTime.Now );
+
+            }
+
+            finally
+            {
+                Desconectar ( );
+            }
+
+        }
+		/// <summary>
+		/// Metodo para consultar una ciudad de tipo entidad dado su nombre en espanol
+		/// </summary>
+		/// <param name="entidad">ciudad a consultar</param>
+		/// <returns></returns>
 		public List<Entidad> ConsultarCiudadPorNombre(Entidad entidad)
 		{
-			Ciudad ciudad = entidad as Ciudad;
-			List<Entidad> _ciudades = new List<Entidad>();
-			Conectar();
-			StoredProcedure("getciudadbyname(@nombre)");
-			AgregarParametro("nombre", ciudad.Nombre);
-			EjecutarReader();
-			for (int i = 0; i < cantidadRegistros; i++)
-			{
-				_ciudades.Add(FabricaEntidades.CrearCiudad(GetInt(i,0),GetString(i, 1), GetInt(i, 3), GetString(i, 2), GetString(i, 4), GetString(i, 5)));
-			}
-			return _ciudades;
-		}
+            try
+            {
+				Ciudad ciudad = (Ciudad)entidad;
+				List<Entidad> _ciudades = new List<Entidad> ( );
+                Conectar ( );
+                StoredProcedure ( "getciudadbyname(@nombre)" );
+                AgregarParametro ( "nombre", ciudad.Nombre );
+                EjecutarReader ( );
+                for (int i = 0; i < cantidadRegistros; i++)
+                {
+					Ciudad city = FabricaEntidades.CrearCiudad(GetInt(i, 0), GetString(i, 1), GetInt(i, 3), GetString(i, 2), GetString(i, 4), GetString(i, 5));
+					city.Habilitado = GetBool(i, 6);
+					_ciudades.Add(city);
+				}
+				return _ciudades;
+            }
+            catch (NullReferenceException e)
+            {
+                logger.Error ( e, "Parametros de entrada nulos" );
+
+                throw new ObjetoNullException ( e, "Parametros nulos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (InvalidCastException e)
+            {
+                logger.Error ( e, "Casteo no correcto" );
+
+                throw new CasteoNoCorrectoException ( e, "Casteo no correcto en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (NpgsqlException e)
+            {
+                logger.Error ( e, "Error en la base de datos" );
+
+                throw new BaseDeDatosException ( e, "Error en la base de datos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (Exception e)
+            {
+                logger.Error ( e, "Error desconocido" );
+
+                throw new ExcepcionGeneral ( e, DateTime.Now );
+
+            }
+
+            finally
+            {
+                Desconectar ( );
+            }
+        }
 
         /// <summary>
         /// Metodo para consultar una ciudad de tipo entidad dado su nombre en espanol
@@ -153,18 +265,56 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// <returns></returns>
         public List<Entidad> ConsultarCiudadPorNombreIngles(Entidad entidad)
 		{
-			Ciudad ciudad = entidad as Ciudad;
-			List<Entidad> _ciudades = new List<Entidad>();
-			Conectar();
-			StoredProcedure("getciudadbynameingles(@nombre)");
-			AgregarParametro("nombre", ciudad.Nombre);
-			EjecutarReader();
-			for (int i = 0; i < cantidadRegistros; i++)
-			{
-				_ciudades.Add(FabricaEntidades.CrearCiudad(GetString(i, 0), GetInt(i, 1), GetString(i, 2), GetString(i, 3), GetString(i, 4)));
-			}
-			return _ciudades;
-		}
+            try
+            {
+				Ciudad ciudad = (Ciudad)entidad;
+				List<Entidad> _ciudades = new List<Entidad> ( );
+                Conectar ( );
+                StoredProcedure ( "getciudadbynameingles(@nombre)" );
+                AgregarParametro ( "nombre", ciudad.Nombre );
+                EjecutarReader ( );
+                for (int i = 0; i < cantidadRegistros; i++)
+                {
+					Ciudad city = FabricaEntidades.CrearCiudad(GetInt(i, 0), GetString(i, 1), GetInt(i, 3), GetString(i, 2), GetString(i, 4), GetString(i, 5));
+					city.Habilitado = GetBool(i, 6);
+					_ciudades.Add(city);
+      }
+                return _ciudades;
+            }
+            catch (NullReferenceException e)
+            {
+                logger.Error ( e, "Parametros de entrada nulos" );
+
+                throw new ObjetoNullException ( e, "Parametros nulos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (InvalidCastException e)
+            {
+                logger.Error ( e, "Casteo no correcto" );
+
+                throw new CasteoNoCorrectoException ( e, "Casteo no correcto en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (NpgsqlException e)
+            {
+                logger.Error ( e, "Error en la base de datos" );
+
+                throw new BaseDeDatosException ( e, "Error en la base de datos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (Exception e)
+            {
+                logger.Error ( e, "Error desconocido" );
+
+                throw new ExcepcionGeneral ( e, DateTime.Now );
+
+            }
+
+            finally
+            {
+                Desconectar ( );
+            }
+        }
 
         /// <summary>
         /// Metodo para eliminar una ciudad 
@@ -173,15 +323,51 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// <returns></returns>
         public void Eliminar ( Entidad entidad )
         {
+            try
+            {
 
-			Ciudad ciudad = entidad as Ciudad;
-			Conectar();
-			StoredProcedure("eliminarciudad(@id)");
-			AgregarParametro("id", ciudad.Id);
-			EjecutarQuery();
-			
+				Ciudad ciudad = (Ciudad)entidad;
+				Conectar ( );
+                StoredProcedure ( "eliminarciudad(@id)" );
+                AgregarParametro ( "id", ciudad.Id );
+                EjecutarQuery ( );
 
-		}
+
+            }
+            catch (NullReferenceException e)
+            {
+                logger.Error ( e, "Parametros de entrada nulos" );
+
+                throw new ObjetoNullException ( e, "Parametros nulos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (InvalidCastException e)
+            {
+                logger.Error ( e, "Casteo no correcto" );
+
+                throw new CasteoNoCorrectoException ( e, "Casteo no correcto en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (NpgsqlException e)
+            {
+                logger.Error ( e, "Error en la base de datos" );
+
+                throw new BaseDeDatosException ( e, "Error en la base de datos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (Exception e)
+            {
+                logger.Error ( e, "Error desconocido" );
+
+                throw new ExcepcionGeneral ( e, DateTime.Now );
+
+            }
+
+            finally
+            {
+                Desconectar ( );
+            }
+        }
 
         /// <summary>
         /// Metodo para obetner todas las ciudades que existen
@@ -190,16 +376,114 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         public List<Entidad> ObtenerTodos ( )
         {
 
-			Conectar();
-			StoredProcedure("getallciudad()");
-			EjecutarReader();
-			List<Entidad> _ciudades = new List<Entidad>();
-			for (int i = 0; i < cantidadRegistros; i++)
+            try
+            {
+                Conectar ( );
+                StoredProcedure ( "getallciudad()" );
+                EjecutarReader ( );
+                List<Entidad> _ciudades = new List<Entidad> ( );
+                for (int i = 0; i < cantidadRegistros; i++)
+                {
+					Ciudad ciudad = FabricaEntidades.CrearCiudad(GetInt(i, 0), GetString(i, 1), GetInt(i, 3), GetString(i, 2), GetString(i, 4), GetString(i, 5));
+					ciudad.Habilitado = GetBool(i, 6);
+					_ciudades.Add (ciudad );
+				
+					
+				}
+                return _ciudades;
+            }
+            catch (NullReferenceException e)
+            {
+                logger.Error ( e, "Parametros de entrada nulos" );
+
+                throw new ObjetoNullException ( e, "Parametros nulos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (InvalidCastException e)
+            {
+                logger.Error ( e, "Casteo no correcto" );
+
+                throw new CasteoNoCorrectoException ( e, "Casteo no correcto en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (NpgsqlException e)
+            {
+                logger.Error ( e, "Error en la base de datos" );
+
+                throw new BaseDeDatosException ( e, "Error en la base de datos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
+            }
+
+            catch (Exception e)
+            {
+                logger.Error ( e, "Error desconocido" );
+
+                throw new ExcepcionGeneral ( e, DateTime.Now );
+
+            }
+
+            finally
+            {
+                Desconectar ( );
+            }
+        }
+
+
+		public List<Entidad> ObtenerTodosHabilitados()
+		{
+
+			try
 			{
-				_ciudades.Add(FabricaEntidades.CrearCiudad(GetInt(i,0),GetString(i, 1), GetInt(i, 3), GetString(i, 2), GetString(i, 4), GetString(i, 5)));
+				Conectar();
+				StoredProcedure("getallciudadtrue()");
+				EjecutarReader();
+				List<Entidad> _ciudades = new List<Entidad>();
+				for (int i = 0; i < cantidadRegistros; i++)
+				{
+					Ciudad ciudad = FabricaEntidades.CrearCiudad(GetInt(i, 0), GetString(i, 1), GetInt(i, 3), GetString(i, 2), GetString(i, 4), GetString(i, 5));
+					ciudad.Habilitado = GetBool(i, 6);
+					_ciudades.Add(ciudad);
+
+
+				}
+				return _ciudades;
 			}
-			return _ciudades;
+			catch (NullReferenceException e)
+			{
+				logger.Error(e, "Parametros de entrada nulos");
+
+				throw new ObjetoNullException(e, "Parametros nulos en: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
+			}
+
+			catch (InvalidCastException e)
+			{
+				logger.Error(e, "Casteo no correcto");
+
+				throw new CasteoNoCorrectoException(e, "Casteo no correcto en: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
+			}
+
+			catch (NpgsqlException e)
+			{
+				logger.Error(e, "Error en la base de datos");
+
+				throw new BaseDeDatosException(e, "Error en la base de datos en: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
+			}
+
+			catch (Exception e)
+			{
+				logger.Error(e, "Error desconocido");
+
+				throw new ExcepcionGeneral(e, DateTime.Now);
+
+			}
+
+			finally
+			{
+				Desconectar();
+			}
 		}
 
-    }
+
+
+
+	}
 }
