@@ -296,10 +296,65 @@ namespace PruebasCopaMundialAPI.Modulo_8
 
         }
 
+        [Test]
+        public void TraductorDTOApuestaVOFExceptionTest()
+        {
+            _traductorApuestaVoF = FabricaTraductor.CrearTraductorApuestaVoF();
+
+            Assert.Throws<ObjetoNullException>(() => _traductorApuestaVoF.CrearEntidad(null));
+        }
+
+        [Test]
+        public void TraductorDTOApuestaCantidadExceptionTest()
+        {
+            _traductorApuestaCantidad = FabricaTraductor.CrearTraductorApuestaCantidad();
+
+            Assert.Throws<ObjetoNullException>(() => _traductorApuestaCantidad.CrearEntidad(null));
+        }
+
+        [Test]
+        public void TraductorDTOApuestaEquipoExceptionTest()
+        {
+            _traductorApuestaEquipo = FabricaTraductor.CrearTraductorApuestaEquipo();
+
+            Assert.Throws<ObjetoNullException>(() => _traductorApuestaEquipo.CrearEntidad(null));
+        }
+
+        [Test]
+        public void TraductorDTOApuestaJugadorExceptionTest()
+        {
+            _traductorApuestaJugador = FabricaTraductor.CrearTraductorApuestaJugador();
+
+            Assert.Throws<ObjetoNullException>(() => _traductorApuestaJugador.CrearEntidad(null));
+        }
+
         [TearDown]
         public void End()
         {
+            _dtoApuestaVOF = null;
+            _dtoApuestaJugador = null;
+            _dtoApuestaEquipo = null;
+            _dtoApuestaCantidad = null;
 
+            _apuestaVoF = null;
+            _apuestaCantidad = null;
+            _apuestaEquipo = null;
+            _apuestaJugador = null;
+
+            _traductorApuestaCantidad = null;
+            _traductorApuestaJugador = null;
+            _traductorApuestaEquipo = null;
+            _traductorApuestaVoF = null;
+
+
+            _logroVoF = null;
+            _logroCantidad = null;
+            _logroJugador = null;
+            _logroEquipo = null;
+
+            _apostador = null;
+
+            _equiposEstaticos = null;
         }
     }
 }
