@@ -50,7 +50,7 @@ export class Api08Service {
           }
         },
         Error => {
-          this.FatalError();
+          this.FatalError(Error);
         }
       );
 
@@ -78,7 +78,7 @@ export class Api08Service {
           }
         },
         Error => {
-          this.FatalError();
+          this.FatalError(Error);
         }
       );
 
@@ -106,7 +106,7 @@ export class Api08Service {
           }
         },
         Error => {
-          this.FatalError();
+          this.FatalError(Error);
         }
       );
 
@@ -134,7 +134,7 @@ export class Api08Service {
           }
         },
         Error => {
-          this.FatalError();
+          this.FatalError(Error);
         }
       );
 
@@ -160,7 +160,7 @@ export class Api08Service {
           }
         },
         Error => {
-          this.FatalError();
+          this.FatalError(Error);
         }
       );
 
@@ -188,7 +188,7 @@ export class Api08Service {
           }
         },
         Error => {
-          this.FatalError();
+          this.FatalError(Error);
         }
       );
 
@@ -216,7 +216,7 @@ export class Api08Service {
           }
         },
         Error => {
-          this.FatalError();
+          this.FatalError(Error);
         }
       );
 
@@ -244,7 +244,7 @@ export class Api08Service {
           }
         },
         Error => {
-          this.FatalError();
+          this.FatalError(Error);
         }
       );
 
@@ -269,7 +269,7 @@ export class Api08Service {
           }
         },
         Error => {
-          this.FatalError();
+          this.FatalError(Error);
         }
       );
 
@@ -296,7 +296,7 @@ export class Api08Service {
           }
         },
         Error => {
-          this.FatalError();
+          this.FatalError(Error);
         }
       );
 
@@ -323,7 +323,7 @@ export class Api08Service {
           }
         },
         Error => {
-          this.FatalError();
+          this.FatalError(Error);
         }
       );
 
@@ -350,15 +350,11 @@ export class Api08Service {
           }
         },
         Error => {
-          this.FatalError();
+          this.FatalError(Error);
         }
       );
 
     return null;
-  }
-
-  public Error() {
-    bootbox.alert();
   }
 
   public Succes(mensaje: string) {
@@ -367,7 +363,13 @@ export class Api08Service {
     });
   }
 
-  public FatalError() {
-    bootbox.alert('Problema al establecer la conexión con el servidor');
+  public FatalError(Error) {
+    
+    if(Error.status == 0){
+      bootbox.alert('Problema al establecer la conexión con el servidor');
+      return;
+    }
+
+    bootbox.alert(Error.error);
   }
 }
