@@ -68,14 +68,15 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             return logro;
         }
 
-      
+
         public void AsignarResultadoLogro(Entidad logro)
         {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// 
+        /// Metodo para obtener todos los logros
+        /// pendientes por asignar un resultado de un partido
         /// </summary>
         /// <param name="partido"></param>
         /// <exception cref="LogrosPendientesNoExisteException">Excepcion que 
