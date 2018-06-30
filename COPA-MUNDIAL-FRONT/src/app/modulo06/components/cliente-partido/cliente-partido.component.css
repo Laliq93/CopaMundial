@@ -28,7 +28,7 @@
 	background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-	background-image: url("/../../../assets/images/background-match.jpg");
+	/* background-image: url("/../../../assets/images/background-match.jpg"); */
 	height: 100%;/*100vh*/
     position: relative;
     background-color: #fff;

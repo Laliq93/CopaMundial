@@ -38,7 +38,7 @@ export class AdminCalineacionComponent implements OnInit {
   matchList(): void {
     this.router.navigate(['partidos/listaPartidos']);
   }
- 
+
   matchLineup(): void {
     this.router.navigate(['partidos/partidos']);
   }
@@ -54,13 +54,17 @@ export class AdminCalineacionComponent implements OnInit {
     return cantJugTit;
   }
 
+  public pop (jugador) {
+    jugador.pop();
+  }
+
   public agregarJugador1():void
   {
     const cantJugTit = this.contarTitulares();
     if ( cantJugTit == 11) {
       alert('Ya hay 11 jugadores titulares, no se pueden agregar mas jugadores.');
     } else {
-      this.listAlineacion1[0].players.push({
+      this.listAlineacion1[0].players.pop({
         nombre: 'Prueba',
         posicion: 'defensor1',
         numero: '123',
@@ -79,10 +83,10 @@ export class AdminCalineacionComponent implements OnInit {
     });
     console.log(this.listAlineacion1);
     /* alert(this.listAlineacion1[0].players[17].nombre);*/
-     
+
   }
 
-  
+
   public listAlineacion1: Array<any>=[
     {
       "equipo": "EGIPTO",

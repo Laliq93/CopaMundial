@@ -100,8 +100,8 @@
                       <ng-container *ngFor="let player of match.players">
                           <ng-container  *ngIf="player.estado == 'titular' && player.posicion=='delantero1'">
                               <div class="col col-jugador">
-                                  <img src="../../../../assets/images/player.png" class="img-lineup">
-                                  <label class="player-name">{{player.numero}}</label>
+                                  <img src="../../../../assets/images/player.png" class="img-lineup" (click)="pop(player)">
+                                  <label class="player-name">{{player.numero}}zz</label>
                               </div>
                           </ng-container>
                           </ng-container>

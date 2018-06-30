@@ -5,9 +5,9 @@ using System.Web;
 
 namespace CopaMundialAPI.Comun.Excepciones
 {
-    public class CasteoInvalidoException : ExcepcionPersonalizada
+    public class DatabaseException : ExcepcionPersonalizada
     {
-        public CasteoInvalidoException(string mensaje) : base(mensaje)
+        public DatabaseException(string mensaje) : base(mensaje)
         {
         }
     }

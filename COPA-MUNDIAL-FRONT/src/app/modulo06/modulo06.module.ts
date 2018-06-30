@@ -14,6 +14,7 @@ import { AdminMpartidoComponent } from './components/admin-mpartido/admin-mparti
 import { FormComponent } from './components/form/form.component';
 import { CrearPartidoComponent } from './components/crear-partido/crear-partido.component';
 import { ModificarPartidoComponent } from './components/modificar-partido/modificar-partido.component';
+import { VerAlineacionComponent } from './components/ver-alineacion/ver-alineacion.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { ModificarPartidoComponent } from './components/modificar-partido/modifi
     AdminMpartidoComponent,
     FormComponent,
     CrearPartidoComponent,
-    ModificarPartidoComponent
+    ModificarPartidoComponent,
+    VerAlineacionComponent
   ]
 })
 export class Modulo06Module { }

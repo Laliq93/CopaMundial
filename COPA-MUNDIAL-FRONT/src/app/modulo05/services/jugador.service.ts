@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Jugador } from '../models/jugador';
+import { Conexion } from '../models/conexion';
+import { DTOMostrarJugador } from '../models/dtomostrar-jugador';
 
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Jugador } from '../models/jugador';
+//import { Jugador } from '../models/jugador';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

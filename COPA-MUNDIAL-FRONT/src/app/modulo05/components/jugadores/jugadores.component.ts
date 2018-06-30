@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Jugador } from '../../models/jugador';
-
+import { Conexion } from '../../models/conexion';
 import { JugadorService } from '../../services/jugador.service';
+import {DTOMostrarJugador} from '../../models/dtomostrar-jugador';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-jugadores',
@@ -11,41 +13,63 @@ import { JugadorService } from '../../services/jugador.service';
 })
 export class JugadoresComponent implements OnInit {
   title = 'Jugadores';
+  conexion : Conexion;
+  url : string;
+  ListJugadores: DTOMostrarJugador[] = [];
+  ListJugadoresActivos: DTOMostrarJugador[] = [];
+  ListJugadoresInactivos: DTOMostrarJugador[] = [];
 
-  esAdmin = true;
 
-  jugadores: Jugador[];
-
-  jugadorActual: Jugador = null;
-
-  searchTerm = '';
-
-  constructor(
-    private jugadorService: JugadorService
-  ) { }
+  constructor(private jugadorService: JugadorService,
+    public http: HttpClient) 
+    { 
+      this.conexion = new Conexion();
+    }
 
   ngOnInit() {
-    this.getJugadores();
-  }
 
-  getJugadores(): void {
-    this.jugadorService.getJugadores().subscribe(jugadores => this.jugadores = jugadores);
-  }
+    this.obtenerJugadores();
+    this.obtenerJugadoresActivos();
+    this.obtenerJugadoresInactivos();
 
-  search(): void {
-    this.jugadorService.searchJugador(this.searchTerm).subscribe(data => {
-      if (data.length > 0) {
-        this.jugadores = data;
+  }
+  
+  obtenerJugadores(){
+    this.conexion.controller = 'obtenerJugadores';
+    this.url = this.conexion.GetApiJugador() + this.conexion.controller;
+    console.log(this.http.get<DTOMostrarJugador>(this.url,  { responseType: 'json' }));
+    
+    this.http.get<DTOMostrarJugador>(this.url,  { responseType: 'json' }).subscribe(data => {
+      for (let i = 0; i < Object.keys(data).length; i++) {
+        this.ListJugadores[i] = data[i];
       }
     });
-    this.searchTerm = '';
   }
 
-  selectedJugador(jugador: Jugador): void {
-    if (this.jugadorActual !== jugador) {
-      this.jugadorActual = jugador;
-    } else {
-      this.jugadorActual = null;
-    }
+  obtenerJugadoresActivos(){
+    this.conexion.controller = 'obtenerJugadoresActivo';
+    this.url = this.conexion.GetApiJugador() + this.conexion.controller;
+    console.log(this.http.get<DTOMostrarJugador>(this.url,  { responseType: 'json' }));
+    
+    this.http.get<DTOMostrarJugador>(this.url,  { responseType: 'json' }).subscribe(data => {
+      for (let i = 0; i < Object.keys(data).length; i++) {
+        this.ListJugadoresActivos[i] = data[i];
+      }
+    });
+
   }
+
+  obtenerJugadoresInactivos(){
+    this.conexion.controller = 'obtenerJugadoresInactivo';
+    this.url = this.conexion.GetApiJugador() + this.conexion.controller;
+    console.log(this.http.get<DTOMostrarJugador>(this.url,  { responseType: 'json' }));
+    
+    this.http.get<DTOMostrarJugador>(this.url,  { responseType: 'json' }).subscribe(data => {
+      for (let i = 0; i < Object.keys(data).length; i++) {
+        this.ListJugadoresInactivos[i] = data[i];
+      }
+    });
+
+  }
+
 }

@@ -1,0 +1,47 @@
+<div class="cancha">
+    
+    <div class="portero">
+        <ng-container *ngFor="let jugador of listaJugadores">
+          <div class="jugador" *ngIf="jugador.estado === 'titular' && jugador.posicion === 'portero'">
+            <img src="../../../../assets/images/player.png" class="player">
+            <label class="content">
+              {{ jugador.numero }}
+            </label>
+          </div>
+        </ng-container>
+      </div>
+  
+    <div class="defensa">
+      <ng-container *ngFor="let jugador of listaJugadores">
+        <div class="jugador" *ngIf="jugador.estado === 'titular' && jugador.posicion === 'defensa'">
+          <img src="../../../../assets/images/player.png" class="player">
+          <label class="content">
+            {{ jugador.numero }}
+          </label>
+        </div>
+      </ng-container>
+    </div>
+  
+    <div class="medio">
+      <ng-container *ngFor="let jugador of listaJugadores">
+        <div class="jugador" *ngIf="jugador.estado === 'titular' && jugador.posicion === 'medio'">
+          <img src="../../../../assets/images/player.png" class="player">
+          <label class="content">
+            {{ jugador.numero }}
+          </label>
+        </div>
+      </ng-container>
+    </div>
+  
+    <div class="delantero">
+      <ng-container *ngFor="let jugador of listaJugadores">
+        <div class="jugador" *ngIf="jugador.estado === 'titular' && jugador.posicion === 'delantero'">
+          <img src="../../../../assets/images/player.png" class="player">
+          <label class="content">
+            {{ jugador.numero }}
+          </label>
+        </div>
+      </ng-container>
+    </div>
+
+  </div>

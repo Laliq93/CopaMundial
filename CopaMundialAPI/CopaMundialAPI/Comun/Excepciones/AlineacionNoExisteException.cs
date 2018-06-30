@@ -5,7 +5,10 @@ using System.Web;
 
 namespace CopaMundialAPI.Comun.Excepciones
 {
-    public class AlineacionNoExisteException: Exception
+    public class AlineacionNoExisteException : ExcepcionPersonalizada
     {
+        public AlineacionNoExisteException(string mensaje) : base(mensaje)
+        {
+        }
     }
 }
