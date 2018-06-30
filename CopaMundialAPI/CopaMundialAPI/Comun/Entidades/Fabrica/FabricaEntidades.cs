@@ -79,19 +79,19 @@ namespace CopaMundialAPI.Comun.Entidades.Fabrica
         {
             return new ApuestaEquipo();
         }
+
+        public static Usuario CrearConfiguracionUsuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento, string correo, bool activo)
+        {
+            return new Usuario(id, nombreUsuario, nombre, apellido, fechaNacimiento,  correo, activo);
+        }
         public static Usuario CrearUsuarioVacio()
         {
             return new Usuario();
         }
-        public static Usuario CrearUsuario(string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
+        public static Usuario CrearUsuario(int id, string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
             string correo, char genero, string password, string fotoPath, bool esAdmin, bool activo, string token)
         {
-            return new Usuario(nombreUsuario, nombre, apellido, fechaNacimiento, correo, genero, password, fotoPath, esAdmin, activo, token);
-        }
-        public static Usuario CrearConfigurarUsuario( string nombre, string apellido, string fechaNacimiento,
-         char genero, string fotoPath)
-        {
-            return new Usuario(nombre, apellido, fechaNacimiento, genero, fotoPath);
+            return new Usuario(id, nombreUsuario, nombre, apellido, fechaNacimiento, correo, genero, password, fotoPath, esAdmin, activo, token);
         }
 
         public static Alineacion CrearAlineacion()

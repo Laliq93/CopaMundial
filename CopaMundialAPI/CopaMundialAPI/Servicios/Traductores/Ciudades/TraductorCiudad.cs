@@ -25,7 +25,8 @@ namespace CopaMundialAPI.Servicios.Traductores.Ciudades
 				DTOCiudad dto = null;
 				
 					dto = FabricaDTO.CrearDTOCiudad(ciudad.Id,ciudad.Nombre, ciudad.Habitantes, ciudad.Descripcion, ciudad.NombreIngles, ciudad.DescripcionIngles);
-					return dto;
+					dto.Habilitado = ciudad.Habilitado;
+				return dto;
 				
 			
 				
@@ -46,8 +47,8 @@ namespace CopaMundialAPI.Servicios.Traductores.Ciudades
         {
             try
             {
-                Entidad ciudad = FabricaEntidades.CrearCiudad ( dto.Id,dto.Nombre, dto.Habitantes, dto.Descripcion, dto.NombreIngles, dto.DescripcionIngles );
-
+                Ciudad ciudad = FabricaEntidades.CrearCiudad ( dto.Id,dto.Nombre, dto.Habitantes, dto.Descripcion, dto.NombreIngles, dto.DescripcionIngles );
+				ciudad.Habilitado = dto.Habilitado;
                 return ciudad;
             }
             catch (Exception e)

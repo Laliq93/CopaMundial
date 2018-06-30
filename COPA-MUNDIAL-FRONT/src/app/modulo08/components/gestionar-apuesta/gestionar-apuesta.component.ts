@@ -107,7 +107,7 @@ export class GestionarApuestaComponent implements OnInit {
           }
         },
         Error => {
-          this.api08.FatalError();
+          this.api08.FatalError(Error);
         }
       );
   }
@@ -138,7 +138,7 @@ export class GestionarApuestaComponent implements OnInit {
           }
         },
         Error => {
-          this.api08.FatalError();
+          this.api08.FatalError(Error);
         }
       );
   }
@@ -170,7 +170,7 @@ export class GestionarApuestaComponent implements OnInit {
           }
         },
         Error => {
-          this.api08.FatalError();
+          this.api08.FatalError(Error);
         }
       );
   }
@@ -199,7 +199,7 @@ export class GestionarApuestaComponent implements OnInit {
           }
         },
         Error => {
-          this.api08.FatalError();
+          this.api08.FatalError(Error);
         }
       );
   }
@@ -227,7 +227,7 @@ export class GestionarApuestaComponent implements OnInit {
           }
         },
         Error => {
-          this.api08.FatalError();
+          this.api08.FatalError(Error);
         }
       );
   }
@@ -306,5 +306,12 @@ export class GestionarApuestaComponent implements OnInit {
 
   public closeModalJuagdores() {
     this.display = 'none';
+  }
+
+  public ObtenerVoF(apuesta) {
+    if (apuesta) {
+      return 'Si';
+    }
+    return 'No';
   }
 }

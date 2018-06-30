@@ -137,6 +137,19 @@ namespace CopaMundialAPI.Presentacion.Controllers
 			return Request.CreateResponse(HttpStatusCode.OK);
 		}
 
+		[Route("ciudad/habilitada")]
+		[System.Web.Http.HttpGet]
+		public HttpResponseMessage GetCiudadesHabilitadas()
+		{
+
+			ComandoObtenerCiudadTrue comando = FabricaComando.CrearComandoObtenerCiudadesHabilitadas();
+			comando.Ejecutar();
+			TraductorCiudad traductor = FabricaTraductor.CrearTraductorCiudad();
+
+			List<Entidad> ciudades = comando.GetEntidades();
+			List<DTOCiudad> dtociudades = traductor.CrearListaDto(ciudades);
+			return Request.CreateResponse(HttpStatusCode.OK, dtociudades);
+		}
 
 	}
 }

@@ -6,4 +6,5 @@ export class Ciudad {
      NombreIngles: string;
      DescripcionIngles : string;
      Id: number;
+     Habilitado : Boolean;
 }

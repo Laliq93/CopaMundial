@@ -7,6 +7,8 @@ import { Binary } from '@angular/compiler';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+declare var jquery:any;
+declare var $ :any;
 
 
 @Component({
@@ -20,7 +22,7 @@ export class AgregarCiudadComponent implements OnInit {
   formulario = {
     nombreES : "",
     habitantes : 0,
-    descripcion : "",
+    descripcionES : "",
     nombreEN :"",
     descripcionEN : ""
   }
@@ -42,23 +44,55 @@ export class AgregarCiudadComponent implements OnInit {
     let ciudad = new Ciudad();
     
     ciudad.Nombre = this.formulario.nombreES
-    ciudad.Descripcion = this.formulario.descripcion;
+    ciudad.Descripcion = this.formulario.descripcionES
     ciudad.Habitantes = this.formulario.habitantes
     ciudad.DescripcionIngles = this.formulario.descripcionEN
     ciudad.NombreIngles = this.formulario.nombreEN
-    this.ciudadservice.agregarciudad(ciudad).subscribe(
-      result => {
-      
-        console.log(result);
-       
-      },
-      error =>{
-         console.log(<any>error)
-      }
-      
-    )
     
+   if (ciudad.Habitantes>0){
+     if (ciudad.Nombre!=""){
+          if (ciudad.NombreIngles!=""){
+            if (ciudad.Descripcion!=""){
+              if (ciudad.DescripcionIngles!=""){
+              this.ciudadservice.agregarciudad(ciudad).subscribe(
+                result => {
+                
+                  console.log(result);
+                
+                },
+                error =>{
+                  console.log(<any>error)
+                }   
+              )
+              alert("Sus datos fueron procesados satisfactoriamente")
+              this.resetForm();
+            }
+            else{
+              $("#iddescripcionEN").append("<span style='color: red'>Campo obligatorio</span>")
+              }
+          }
+            else{
+              $("#iddescripcion").append("<span style='color: red'>Campo obligatorio</span>")
+              }
+          }
+          else{
+            $("#idnombreEN").append("<span style='color: red'>Campo obligatorio</span>")
+            }
+      }
+        else{
+        $("#idnombre").append("<span style='color: red'>Campo obligatorio</span>")
+        }
+   }
+    else{
+      alert("Sus datos no han sido procesados, habitantes tiene que ser > 0")
+    }
+
   }
+  
+
+  
+
+
 
   regresar() {
     this._location.back(); // <-- regresar a la pagina previa al presionar cancelar
@@ -106,18 +140,21 @@ export class AgregarCiudadComponent implements OnInit {
    )
  }*/
 
-  resetForm(Form? : NgForm){
+ resetForm(Form? : NgForm){
     if(Form != null)
       Form.reset();
       this.formulario = {
         nombreES:'',
         habitantes: 0,
-        descripcion:'',
+        descripcionES:'',
         nombreEN:'',
         descripcionEN :''
       
       }
-    }
+  }
+
+  
+
 
     handleFileInput(file: File) {
      // this.imagen = file;
