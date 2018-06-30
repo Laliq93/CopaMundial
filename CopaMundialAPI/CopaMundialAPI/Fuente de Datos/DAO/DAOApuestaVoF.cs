@@ -46,17 +46,25 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// <param name="Entidad">Apuesta</param>
         public void Agregar(Entidad entidad)
         {
-            ApuestaVoF apuesta = entidad as ApuestaVoF;
+            try
+            {
+                ApuestaVoF apuesta = entidad as ApuestaVoF;
 
-            Conectar();
+                Conectar();
 
-            StoredProcedure("agregarapuestavof(@idlogro, @idusuario, @apuesta)");
+                StoredProcedure("agregarapuestavof(@idlogro, @idusuario, @apuesta)");
 
-            AgregarParametro("idlogro", apuesta.Logro.Id);
-            AgregarParametro("idusuario", apuesta.Usuario.Id);
-            AgregarParametro("apuesta", apuesta.Respuesta);
+                AgregarParametro("idlogro", apuesta.Logro.Id);
+                AgregarParametro("idusuario", apuesta.Usuario.Id);
+                AgregarParametro("apuesta", apuesta.Respuesta);
 
-            EjecutarQuery();
+                EjecutarQuery();
+            }
+            catch (NpgsqlException exc)
+            {
+                Desconectar();
+                throw new BaseDeDatosException(exc, "Error al ingresar la apuesta");
+            }
         }
 
         /// <summary>

@@ -230,6 +230,70 @@ namespace PruebasCopaMundialAPI.Modulo_8
             Assert.AreEqual(_dtoEsperado.IdEquipo, _dtoApuestaEquipo.IdEquipo);
             Assert.AreEqual(_dtoEsperado.Estado, _dtoApuestaEquipo.Estado);
 
+
+        }
+
+        [Test]
+        public void TraducirApuestaJugadorTest()
+        {
+            ApuestaJugador _apuestaEsperada = FabricaEntidades.CrearApuestaJugador();
+
+            Jugador _jugador = FabricaEntidades.CrearJugador();
+            _jugador.Id = 1;
+
+            _apuestaEsperada.Respuesta = _jugador;
+            _apuestaEsperada.Logro = _logroJugador;
+            _apuestaEsperada.Usuario = _apostador;
+
+
+            _dtoApuestaJugador = FabricaDTO.CrearDtoApuestaJugador();
+
+            _dtoApuestaJugador.IdLogro = 1;
+            _dtoApuestaJugador.IdUsuario = 1;
+            _dtoApuestaJugador.IdJugador = 1;
+
+            _traductorApuestaJugador = FabricaTraductor.CrearTraductorApuestaJugador();
+
+            _apuestaJugador = _traductorApuestaJugador.CrearEntidad(_dtoApuestaJugador) as ApuestaJugador;
+
+            Assert.AreEqual(_apuestaEsperada.Logro.Id, _apuestaJugador.Logro.Id);
+            Assert.AreEqual(_apuestaEsperada.Usuario.Id, _apuestaJugador.Usuario.Id);
+            Assert.AreEqual(_apuestaEsperada.Respuesta.Id, _apuestaJugador.Respuesta.Id);
+
+        }
+
+        [Test]
+        public void TraducirDTOApuestaJugadorTest()
+        {
+
+            DTOApuestaJugador _dtoEsperado = FabricaDTO.CrearDtoApuestaJugador();
+            Jugador _jugador = FabricaEntidades.CrearJugador();
+
+            _jugador.Id = 1;
+
+            _dtoEsperado.IdLogro = 1;
+            _dtoEsperado.IdUsuario = 1;
+            _dtoEsperado.IdJugador = 1;
+            _dtoEsperado.Estado = "en curso";
+
+
+            _apuestaJugador = FabricaEntidades.CrearApuestaJugador();
+
+            _apuestaJugador.Logro = _logroJugador;
+            _apuestaJugador.Usuario = _apostador;
+            _apuestaJugador.Respuesta = _jugador;
+            _apuestaJugador.Estado = "en curso";
+
+            _traductorApuestaJugador = FabricaTraductor.CrearTraductorApuestaJugador();
+
+            _dtoApuestaJugador = _traductorApuestaJugador.CrearDto(_apuestaJugador);
+
+            Assert.AreEqual(_dtoEsperado.IdLogro, _dtoApuestaJugador.IdLogro);
+            Assert.AreEqual(_dtoEsperado.IdUsuario, _dtoApuestaJugador.IdUsuario);
+            Assert.AreEqual(_dtoEsperado.IdJugador, _dtoApuestaJugador.IdJugador);
+            Assert.AreEqual(_dtoEsperado.Estado, _dtoApuestaJugador.Estado);
+
+
         }
 
         [TearDown]
