@@ -22,7 +22,13 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="tab" href="#inactivos" role="tab">Jugadores Inactivos</a>
-                </li>              
+                </li> 
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#activar" role="tab">Activar Jugador</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#desactivar" role="tab">Desactivar Jugador</a>
+                  </li>             
             </ul>
     
               <div class="tab-content">
@@ -30,58 +36,65 @@
                 <div class="tab-pane active" id="agregar" role="tabpanel">
                   <div class="card-body">
   
-                      <form class="form-horizontal form-material">
+                      <form #playerRegistrationForm="ngForm" (ngSubmit)="registrarJugador(playerRegistrationForm)" class="form-horizontal form-material">
 
             
                           <div class="form-group">
-                            <label class="col-md-12">Nombre</label>
+                            <label class="col-md-12" for="inputName">Nombre</label>
                             <div class="col-md-12">
-                              <input type="text" class="form-control form-control-line" name="nombre" id="nombre">
+                              <input matInput type="text" id="inputName" maxlength="20" #Nombre="ngModel" [(ngModel)]="jugador.nombre" name="Nombre" required class="form-control form-control-line">
                             </div>
                           </div>
             
                           <div class="form-group">
-                            <label class="col-md-12">Apellido</label>
+                            <label class="col-md-12" for="inputLastname">Apellido</label>
                             <div class="col-md-12">
-                              <input type="text" class="form-control form-control-line" name="apellido" id="apellido">          
+                              <input matInput type="text" id="inputLastname" maxlength="20" #Apellido="ngModel" [(ngModel)]="jugador.apellido" name="Apellido" required class="form-control form-control-line">          
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="col-md-12" for="inputprueba">fecha nacimiento</label>
+                            <div class="col-md-12">
+                              <input matInput type="text" id="inputprueba" maxlength="20" #FechaNacimiento="ngModel" [(ngModel)]="jugador.fechaNacimiento" name="FechaNacimiento" required class="form-control form-control-line">          
                             </div>
                           </div>
   
-                          <div class="form-group">
+                          <!--<div class="form-group">
                             <div class="col-md-12">
                               <label for="exampleInputDate">Fecha de nacimiento</label>
-                              <input type="date" name="fechaNacimiento" class="form-control" id="exampleInputDate">
+                              <input matInput type="date" #FechaNacimiento="ngModel" [(ngModel)]="jugador.fechaNacimiento" name="FechaNacimiento" required class="form-control" id="exampleInputDate">
+                            </div>
+                          </div>-->
+  
+                          <div class="form-group">
+                            <label class="col-md-12" for="inputBirth">Lugar de Nacimiento</label>
+                            <div class="col-md-12">
+                              <input matInput type="text" id="inputBirth" maxlength="40" #LugarNacimiento="ngModel" [(ngModel)]="jugador.lugarNacimiento" name="LugarNacimiento" required class="form-control form-control-line">          
                             </div>
                           </div>
   
                           <div class="form-group">
-                            <label class="col-md-12">Lugar de Nacimiento</label>
+                            <label class="col-md-12" for="inputWeight">Peso</label>
                             <div class="col-md-12">
-                              <input type="text" class="form-control form-control-line" name="lugarNacimiento" id="lugarNacimiento">          
+                              <input matInput type="text" id="inputWeight" maxlength="4" #Peso="ngModel" [(ngModel)]="jugador.peso" name="Peso" required class="form-control form-control-line">          
                             </div>
                           </div>
   
                           <div class="form-group">
-                            <label class="col-md-12">Peso</label>
+                            <label class="col-md-12" for="inputHeight">Altura</label>
                             <div class="col-md-12">
-                              <input type="text" class="form-control form-control-line" name="peso" id="peso">          
-                            </div>
-                          </div>
-  
-                          <div class="form-group">
-                            <label class="col-md-12">Altura</label>
-                            <div class="col-md-12">
-                              <input type="text" class="form-control form-control-line" name="altura" id="altura">          
+                              <input matInput type="text" id="inputHeight" maxlength="4" #Altura="ngModel" [(ngModel)]="jugador.altura" name="Altura" required class="form-control form-control-line">          
                             </div>
                           </div>
             
                           <div class="form-group">
-                            <label class="col-md-12">Posición</label>
+                            <label class="col-md-12" for="inputPosition">Posición</label>
                             <div class="col-md-12">
-                              <select class="form-control">
-                                <option value="PORTERO" selected="true">PORTERO</option>
+                              <select #Posicion="ngModel" id="inputPosition" [(ngModel)]="jugador.posicion" name="Posicion" required class="form-control">
+                                <option value="PORTERO">PORTERO</option>
                                 <option value="LATERAL DERECHO">LATERAL DERECHO</option>
-                                <option value="LATERAL IZQUIERDO" selected="true">LATERAL IZQUIERDO</option>
+                                <option value="LATERAL IZQUIERDO">LATERAL IZQUIERDO</option>
                                 <option value="CENTRAL">CENTRAL</option>
                                 <option value="DEFENSA">DEFENSA</option>
                                 <option value="DELANTERO">DELANTERO</option>
@@ -91,22 +104,30 @@
                           </div>
   
                           <div class="form-group">
-                            <label class="col-md-12">Número</label>
+                            <label class="col-md-12" for="inputNumber">Número</label>
                             <div class="col-md-12">
-                              <input type="text" class="form-control form-control-line" name="numero" id="numero">          
+                              <input matInput type="text" id="inputNumber" maxlength="2" #Numero="ngModel" [(ngModel)]="jugador.numero" name="Numero" required class="form-control form-control-line">          
                             </div>
                           </div>
   
                           <div class="form-group">
-                            <label class="col-md-12">Equipo</label>
-                            <div class="col-md-12">
-                              <input type="text" class="form-control form-control-line" name="equipo" id="equipo">          
+                              <label class="col-md-12" for="inputTeam">Equipo</label>
+                              <div class="col-md-12">
+                                <select #Equipo="ngModel" id="inputTeam" [(ngModel)]="jugador.equipo" name="Equipo" required class="form-control">
+                                  <option value="Espana">España</option>
+                                  <option value="Uruguay">Uruguay</option>
+                                  <option value="Brasil">Brasil</option>
+                                  <option value="Mexico">Mexico</option>
+                                  <option value="Colombia">Colombia</option>
+                                  <option value="Rusia">Rusia</option>
+                                  <option value="Argentina">Argentina</option>
+                                </select>
+                              </div>
                             </div>
-                          </div>
             
                           <div class="form-group">
                             <div class="col-sm-12">
-                              <button class="btn btn-agregar">Agregar</button>
+                              <button [disabled]="!playerRegistrationForm.valid" type="submit" class="btn btn-agregar">Agregar</button>
                             </div>
                           </div>
             
@@ -115,7 +136,7 @@
                   </div>
                 </div>
     
-                <div class="tab-pane active" id="jugadores" role="tabpanel">
+                <div class="tab-pane" id="jugadores" role="tabpanel">
                   <div class="card-body">
   
                       <div class="d-none d-sm-block">
@@ -133,7 +154,6 @@
                                       <th>Número</th>
                                       <th>Equipo</th>
                                       <th>Capitan</th>
-                                      <th>Opción</th>
                                   </tr>
                               </thead>
                               <tbody>
@@ -149,9 +169,6 @@
                                       <td>{{jugador.Numero}}</td>
                                       <td>{{jugador.Equipo}}</td>
                                       <td>{{jugador.Capitan}}</td>
-                                      <td>
-                                          <button type="button" class="btn btn-act btn-danger">Desactivar</button>
-                                      </td>
                                   </tr>
                                   
                               </tbody>
@@ -161,7 +178,7 @@
                   </div>
                 </div>
 
-                <div class="tab-pane active" id="activos" role="tabpanel">
+                <div class="tab-pane" id="activos" role="tabpanel">
                   <div class="card-body">
   
                       <div class="d-none d-sm-block">
@@ -196,7 +213,7 @@
                                       <td>{{jugador.Equipo}}</td>
                                       <td>{{jugador.Capitan}}</td>
                                       <td>
-                                          <button type="button" class="btn btn-act btn-success">Act/des</button>
+                                          <button type="button" class="btn btn-act btn-danger" onClick="desactivarJugador(jugador.Id)">Desactivar</button>
                                       </td>
                                   </tr>
                               </tbody>
@@ -206,7 +223,7 @@
                   </div>
                 </div>
 
-                <div class="tab-pane active" id="inactivos" role="tabpanel">
+                <div class="tab-pane" id="inactivos" role="tabpanel">
                   <div class="card-body">
   
                       <div class="d-none d-sm-block">
@@ -241,7 +258,7 @@
                                       <td>{{jugador.Equipo}}</td>
                                       <td>{{jugador.Capitan}}</td>
                                       <td>
-                                          <button type="button" class="btn btn-act btn-success">Act/des</button>
+                                          <button type="button" class="btn btn-act btn-success">Activar</button>
                                       </td>
                                   </tr>
                               </tbody>
@@ -249,6 +266,54 @@
                       </div>
                       
                   </div>
+                </div>
+
+                <div class="tab-pane" id="activar" role="tabpanel">
+                    <div class="card-body">
+    
+                        <form #playerActivateForm="ngForm" (ngSubmit)="activarJugador(playerActivateForm)" class="form-horizontal form-material">
+  
+              
+                            <div class="form-group">
+                              <label class="col-md-12" for="inputId">Id</label>
+                              <div class="col-md-12">
+                                <input matInput type="text" id="inputId" maxlength="20" #Id="ngModel" [(ngModel)]="jugadorInactivo.id" name="Id" required class="form-control form-control-line">
+                              </div>
+                            </div>
+              
+                            <div class="form-group">
+                              <div class="col-sm-12">
+                                <button [disabled]="!playerActivateForm.valid" type="submit" class="btn btn-agregar">Activar</button>
+                              </div>
+                            </div>
+              
+                          </form>
+                        
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="desactivar" role="tabpanel">
+                    <div class="card-body">
+    
+                        <form #playerInactivateForm="ngForm" (ngSubmit)="desactivarJugador(playerInactivateForm)" class="form-horizontal form-material">
+  
+              
+                            <div class="form-group">
+                              <label class="col-md-12" for="inputId2">Id</label>
+                              <div class="col-md-12">
+                                <input matInput type="text" id="inputId2" maxlength="20" #Id="ngModel" [(ngModel)]="jugadorActivo.id" name="Id" required class="form-control form-control-line">
+                              </div>
+                            </div>
+              
+                            <div class="form-group">
+                              <div class="col-sm-12">
+                                <button [disabled]="!playerInactivateForm.valid" type="submit" class="btn btn-agregar">Desactivar</button>
+                              </div>
+                            </div>
+              
+                          </form>
+                        
+                    </div>
                 </div>
     
               </div>

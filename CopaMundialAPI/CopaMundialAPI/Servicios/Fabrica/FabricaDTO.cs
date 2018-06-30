@@ -142,5 +142,10 @@ namespace CopaMundialAPI.Servicios.Fabrica
         {
             return new DTOLogroPartidoId();
         }
+
+        public static DTOListaPartidosLogros CrearDTOListaPartidosLogros()
+        {
+            return new DTOListaPartidosLogros();
+        }
     }
 }

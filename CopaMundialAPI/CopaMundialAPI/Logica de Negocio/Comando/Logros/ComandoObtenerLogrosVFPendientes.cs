@@ -32,7 +32,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Logros
 
         public override Entidad GetEntidad()
         {
-            throw new NotImplementedException(); ;
+            throw new NotImplementedException(); 
         }
 
         public override List<Entidad> GetEntidades()
