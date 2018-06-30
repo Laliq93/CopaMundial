@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CopaMundialAPI.Comun.Entidades;
+using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
+using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
-namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
+namespace CopaMundialAPI.Logica_de_Negocio.Comando.Usuarios
 {
-    public class ComandoPosponerPartido : Comando
+    public class ComandoActualizarUsuario : Comando
     {
+        public ComandoActualizarUsuario(Entidad usuario)
+        {
+            Entidad = usuario;
+        }
+
         public override void Ejecutar()
         {
-            throw new NotImplementedException();
+            IDAOUsuario dao = FabricaDAO.CrearDAOUsuario();
+            dao.Actualizar(Entidad);
         }
 
         public override Entidad GetEntidad()

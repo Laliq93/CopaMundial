@@ -139,17 +139,23 @@
     <Compile Include="Comun\Excepciones\AlineacionFaltaJugadoresException.cs" />
     <Compile Include="Comun\Excepciones\AlineacionJugadorNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\AlineacionMasDeUnCapitanException.cs" />
+    <Compile Include="Comun\Excepciones\AlineacionNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\ApuestaInvalidaException.cs" />
     <Compile Include="Comun\Excepciones\ApuestaRepetidaException.cs" />
     <Compile Include="Comun\Excepciones\BaseDeDatosException.cs" />
+    <Compile Include="Comun\Excepciones\CasteoInvalidoException.cs" />
     <Compile Include="Comun\Excepciones\CasteoNoCorrectoException.cs" />
     <Compile Include="Comun\Excepciones\CiudadNoEncontradaException.cs" />
+    <Compile Include="Comun\Excepciones\DatabaseException.cs" />
+    <Compile Include="Comun\Excepciones\DatosInvalidosException.cs" />
+    <Compile Include="Comun\Excepciones\ExcepcionPersonalizada.cs" />
     <Compile Include="Comun\Excepciones\FechaPasadaPartidoException.cs" />
     <Compile Include="Comun\Excepciones\JugadorNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\LogroNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\LogrosFinalizadosNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\LogrosPendientesNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\ObjetoNullException.cs" />
+    <Compile Include="Comun\Excepciones\UsuarioNoExisteException.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuestaEquipo.cs.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOUsuario.cs" />
     <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOUsuario.cs" />
@@ -194,6 +200,7 @@
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarVoFApuestaExiste.cs" />
     <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarEquipoApuestaExiste.cs" />
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoObtenerCiudadPorNombre.cs" />
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoObtenerCiudadTrue.cs" />
     <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadoresActivo.cs" />
     <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadoresInactivo.cs" />
     <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadorId.cs" />
@@ -218,11 +225,22 @@
     <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerProximosLogrosPartidos.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoActualizarAlineacion.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoActualizarPartido.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoAlineacionPorPartido.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoCrearAlineacion.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoCrearPartido.cs" />
-    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerListaPartidos.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoEliminarAlineacion.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerListaPartidosPorFecha.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerPartido.cs" />
-    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoPosponerPartido.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerPartidos.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoActualizarCorreo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoActualizarPassword.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoActualizarUsuario.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoAgregarUsuarioAdministrador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoGestionarCuenta.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoObtenerUsuarioActivo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoObtenerUsuarioDatos.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoVerificarClaveUsuario.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoVerificarCorreoExiste.cs" />
     <Compile Include="Presentacion\Controllers\JugadorController.cs" />
     <Compile Include="Presentacion\Controllers\CiudadController.cs" />
     <Compile Include="Presentacion\Controllers\ApuestaController.cs" />
@@ -269,7 +287,6 @@
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaCantidad.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaVOF.cs" />
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudad.cs" />
-    <Compile Include="Servicios\DTO\Ciudades\DTOCiudad2.cs" />
     <Compile Include="Servicios\DTO\Ciudades\DTOCiudadID.cs" />
     <Compile Include="Servicios\DTO\Jugadores\DTOModificarJugador.cs" />
     <Compile Include="Servicios\DTO\Jugadores\DTOObtenerJugadores.cs" />
@@ -302,7 +319,6 @@
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaVOF.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaEquipo.cs" />
     <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudad.cs" />
-    <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudad2.cs" />
     <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudadID.cs" />
     <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudadNombre.cs" />
     <Compile Include="Servicios\Traductores\Fabrica\FabricaTraductor.cs" />
@@ -342,7 +358,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Logica de Negocio\Comando\Usuarios\" />
     <Folder Include="Logica de Negocio\Compuesto\" />
     <Folder Include="Logica de Negocio\Singleton\" />
     <Folder Include="Models\" />

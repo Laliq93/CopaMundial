@@ -13,12 +13,12 @@ export class AdminPartidoComponent implements OnInit {
   ngOnInit() {
   }
 
-  matchCreate(): void {
-    this.router.navigate(['partidos/crearPartido']);
+  crearPartido(): void {
+    this.router.navigate(['partidos/admin/crearPartido']);
   }
 
-  matchUpdate(): void {
-    this.router.navigate(['partidos/modificarPartido']);
+  modificarPartido(equipo1, equipo2): void {
+    this.router.navigate(['partidos/admin', 'modificarPartido', equipo1, equipo2 ]);
   }
 
 public listmatches: Array<any>= [

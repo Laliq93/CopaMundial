@@ -9,6 +9,11 @@ namespace CopaMundialAPI.Comun.Entidades
     {
         private string _nombre;
 
+        public Estadio()
+        {
+
+        }
+
         public Estadio(int id, string nombre)
         {
             Id = id;
