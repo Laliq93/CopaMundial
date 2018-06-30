@@ -1,0 +1,27 @@
+.title {
+    text-align: center;
+    margin-bottom: 5%;
+}
+.card-body {
+    padding: 2%;
+    text-align: center;
+}
+table {
+    width: 100%;
+    text-align: center;
+}
+th {
+    font-size: 18px;
+    text-align: center;
+    border: 1px solid black;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.crear, .descartar {
+    padding: 5%;
+    border-radius: 25px;
+    background-color: #8d1918;
+    text-align: center;
+}
