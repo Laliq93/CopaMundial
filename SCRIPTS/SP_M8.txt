@@ -472,3 +472,21 @@ AND lo.lo_resultado_eq is not null AND lo.lo_resultado_eq != ap.respuestaequipo 
 END;
 
 $BODY$;
+
+CREATE OR REPLACE FUNCTION public.obtenerapuestatest(
+	_idusuario integer, _idlogro integer)
+    RETURNS TABLE(usuario integer, logro integer, _estado character varying, _respuestavof boolean,
+				 _respuestacantidad integer, _respuestajugador integer, _respuestaequipo integer) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN
+	RETURN QUERY SELECT idusuario, idlogro, estado, respuestavof, respuestacantidad, 
+	respuestajugador, respuestaequipo FROM apuesta WHERE idusuario = _idusuario AND idlogro = _idlogro;
+END;
+
+$BODY$;
