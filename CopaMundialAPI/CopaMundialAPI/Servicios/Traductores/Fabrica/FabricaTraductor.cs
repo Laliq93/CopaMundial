@@ -104,7 +104,12 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
         {
             return new TraductorLogroPartidoId();
         }
-        
+
+        public static TraductorListaPartidosLogros CrearTraductorListaPartidosLogros()
+        {
+            return new TraductorListaPartidosLogros();
+        }
+
         public static TraductorUsuarioId CrearTraductorUsuarioId()
         {
             return new TraductorUsuarioId();
