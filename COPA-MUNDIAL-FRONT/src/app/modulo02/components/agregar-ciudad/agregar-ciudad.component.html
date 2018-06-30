@@ -18,12 +18,7 @@
             id="InputNombreES" 
             name="nombreES" 
             #nombre="ngModel" 
-            [(ngModel)]="formulario.nombreES" required/>
-            <span class="messages" ng-show="formagregar.$submitted && formagregar.nombreES.$touched">
-              <span ng-show="formagregar.nombreES.$error.required">El campo es obligatorio.</span>
-            </span>
-           
-            
+            [(ngModel)]="formulario.nombreES" required/>       
       
     </div>
 
@@ -36,7 +31,8 @@
               placeholder="Ciudad" 
               name="nombreEN" 
               #nombre="ngModel" 
-              [(ngModel)]="formulario.nombreEN" required/>
+              [(ngModel)]="formulario.nombreEN" 
+              ng-pattern="/^[a-zA-Z]*$/" required/>
         
       </div>
   

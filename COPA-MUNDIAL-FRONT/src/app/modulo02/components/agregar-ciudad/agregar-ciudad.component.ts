@@ -7,6 +7,8 @@ import { Binary } from '@angular/compiler';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+declare var jquery:any;
+declare var $ :any;
 
 
 @Component({
@@ -64,7 +66,7 @@ export class AgregarCiudadComponent implements OnInit {
     let ciudad = new Ciudad();
     
     ciudad.Nombre = this.formulario.nombreES
-    ciudad.Descripcion = this.formulario.descripcion;
+    ciudad.Descripcion = this.formulario.descripcion
     ciudad.Habitantes = this.formulario.habitantes
     ciudad.DescripcionIngles = this.formulario.descripcionEN
     ciudad.NombreIngles = this.formulario.nombreEN
@@ -82,6 +84,8 @@ export class AgregarCiudadComponent implements OnInit {
     )
     
   }
+
+  
 
 
 
