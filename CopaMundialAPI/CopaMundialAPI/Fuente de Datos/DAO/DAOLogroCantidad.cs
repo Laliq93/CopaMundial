@@ -128,10 +128,43 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
            
         }
 
-       
+       /// <summary>
+       /// Metodo que obtiene todos los logros de cantidad
+       /// con resultados asignados
+       /// </summary>
+       /// <exception cref="LogrosFinalizadosNoExisteException">excepcion que se arroja
+       /// cuando un partido no posee logros con resultados asignados</exception>
+       /// <param name="partido"></param>
+       /// <returns></returns>
         public List<Entidad> ObtenerLogrosResultados(Entidad partido)
         {
-            throw new NotImplementedException();
+            List<Entidad> logroscantidad = new List<Entidad>();
+            LogroCantidad logro;
+
+            Conectar();
+
+            StoredProcedure("ConsultarLogrosCantidadResultados(@idpartido)");
+
+            AgregarParametro("idpartido", partido.Id);
+
+            EjecutarReader();
+
+            for (int i = 0; i < cantidadRegistros; i++)
+            {
+                logro = FabricaEntidades.CrearLogroCantidad();
+
+                logro.Id = GetInt(i, 0);
+                logro.IdTipo = TipoLogro.cantidad;
+                logro.Logro = GetString(i, 2);
+                logro.Cantidad = GetInt(i, 3);
+
+
+                logroscantidad.Add(logro);
+            }
+            if (logroscantidad.Count == 0)
+                throw new LogrosFinalizadosNoExisteException(partido.Id, "cantidad");
+
+            return logroscantidad;
         }
 
 

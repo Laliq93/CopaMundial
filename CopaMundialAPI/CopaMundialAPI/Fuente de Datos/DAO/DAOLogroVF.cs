@@ -127,10 +127,44 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         }
 
-
+        /// <summary>
+        /// Metodo que obtiene todos los logros de vf
+        /// que tienen resultado asignado
+        /// </summary>
+        /// <exception cref="LogrosFinalizadosNoExisteException">se obtiene esta
+        /// excepcion si el partido no tiene ningun logro vf con resultado asignado</exception>
+        /// <param name="partido"></param>
+        /// <returns></returns>
         public List<Entidad> ObtenerLogrosResultados(Entidad partido)
         {
-            throw new NotImplementedException();
+
+            List<Entidad> logrosVf = new List<Entidad>();
+            LogroVoF logro;
+
+            Conectar();
+
+            StoredProcedure("ConsultarLogrosVFResultados(@idpartido)");
+
+            AgregarParametro("idpartido", partido.Id);
+
+            EjecutarReader();
+
+            for (int i = 0; i < cantidadRegistros; i++)
+            {
+                logro = FabricaEntidades.CrearLogroVoF();
+
+                logro.Id = GetInt(i, 0);
+                logro.IdTipo = TipoLogro.vof;
+                logro.Logro = GetString(i, 2);
+                logro.Respuesta = GetBool(i, 3);
+
+
+                logrosVf.Add(logro);
+            }
+            if (logrosVf.Count == 0)
+                throw new LogrosFinalizadosNoExisteException(partido.Id, "vf");
+
+            return logrosVf;
         }
 
 

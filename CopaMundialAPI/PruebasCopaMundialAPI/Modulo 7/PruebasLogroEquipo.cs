@@ -301,6 +301,128 @@ namespace PruebasCopaMundialAPI.Modulo_7
 
         }
 
+        /// <summary>
+        /// Metodo que prueba el resultado de exito del
+        /// ObtenerLogrosEquipoResultados del dao
+        /// DaoLogroEquipo
+        /// </summary>
+        [Test]
+        public void PruebaDaoObtenerLogrosEquipoResultados()
+        {
+
+            Partido partido = FabricaEntidades.CrearPartido();
+            partido.Id = 14; //cambiar por 1
+
+            _respuestas = ((DAOLogroEquipo)dao).ObtenerLogrosResultados(partido);
+            Assert.IsNotNull(_respuestas);
+        }
+
+        /// <summary>
+        /// Metodo que prueba la excepcion LogroFinalizadosNoExisteException
+        /// del metodo ObtenerLogrosEquipoResultados de DaoLogroEquipo
+        /// </summary>
+        [Test]
+        public void PruebaDaoObtenerLogrosEquipoResultadosExc()
+        {
+
+            Partido partido = FabricaEntidades.CrearPartido();
+            partido.Id = 11; //cambiar numero 
+            Assert.Throws<LogrosFinalizadosNoExisteException>(() => ((DAOLogroEquipo)dao).ObtenerLogrosResultados(partido));
+        }
+
+        /// <summary>
+        /// Metodo que prueba el resultado de exito del 
+        /// comando ObtenerLogrosEquipoResultado
+        /// </summary>
+        [Test]
+        public void PruebaComandoObtenerLogrosEquipoResultado()
+        {
+            Partido partido = FabricaEntidades.CrearPartido();
+
+            partido.Id = 14; //cambiar a 1
+
+            comando = FabricaComando.CrearComandoObtenerLogrosEquipoResultados(partido);
+            comando.Ejecutar();
+            _respuestas = comando.GetEntidades();
+            Assert.AreNotEqual(0, _respuestas.Count);
+
+        }
+
+
+
+        [Test]
+        public void PruebaTraductorLogroEquipoResultadoDto()
+        {
+            TraductorLogroEquipoResultado traductor = FabricaTraductor.CrearTraductorLogroEquipoResultado();
+            LogroEquipo logro = FabricaEntidades.CrearLogroEquipo();
+            DTOLogroEquipoResultado dtoLogro = FabricaDTO.CrearDTOLogroEquipoResultado();
+
+            logro.Id = 1;
+            logro.IdTipo = TipoLogro.cantidad;
+            logro.Logro = "Logro Prueba Traductor";
+            logro.Equipo.Id = 2;
+
+            dtoLogro = traductor.CrearDto(logro);
+
+            Assert.AreEqual(2, dtoLogro.Equipo);
+
+        }
+
+        /// <summary>
+        /// Metodo que prueba la traduccion de un dtoLogroEquipo
+        /// a una entidad logroCantidad
+        /// </summary>
+        [Test]
+        public void PruebaTraductorLogroEquipoResultadoEntidad()
+        {
+            TraductorLogroEquipoResultado traductor = FabricaTraductor.CrearTraductorLogroEquipoResultado();
+            LogroEquipo logro = FabricaEntidades.CrearLogroEquipo();
+            DTOLogroEquipoResultado dtoLogro = FabricaDTO.CrearDTOLogroEquipoResultado();
+
+            dtoLogro.IdLogroEquipo = 1;
+            dtoLogro.LogroEquipo = "Prueba de dto a entidad";
+            dtoLogro.TipoLogro = (int)TipoLogro.equipo;
+            dtoLogro.Equipo = 6;
+
+            logro = (LogroEquipo)traductor.CrearEntidad(dtoLogro);
+
+            Assert.AreEqual(6, logro.Equipo.Id);
+
+        }
+
+
+        /// <summary>
+        /// Metodo que prueba la respuesta exitosa del
+        /// metodo ObtenerLogrosEquipoResultado del 
+        /// LogroController
+        /// </summary>
+        [Test]
+        public void PruebaControllerObtenerLogrosEquipoResultado()
+        {
+            DTOLogroPartidoId dtoLogroPartidoId = FabricaDTO.CrearDTOLogroPartidoId();
+            dtoLogroPartidoId.IdPartido = 14;//Cambiar
+
+            Assert.AreEqual(HttpStatusCode.OK, controller.ObtenerLogrosEquipoResultados(dtoLogroPartidoId).StatusCode);
+
+        }
+
+
+        /// <summary>
+        /// Metodo que prueba la excepcion Logros
+        /// pendientes not found exception del metodo 
+        /// ObtenerLogrosEquipoResultados de
+        /// LogrosController
+        /// </summary>
+        [Test]
+        public void PruebaControllerObtenerLogrosEquipoResultadosExc()
+        {
+            DTOLogroPartidoId dtoLogroPartidoId = FabricaDTO.CrearDTOLogroPartidoId();
+            dtoLogroPartidoId.IdPartido = 18;//Cambiar
+            Assert.AreEqual(HttpStatusCode.InternalServerError, controller.ObtenerLogrosEquipoResultados(dtoLogroPartidoId).StatusCode);
+
+        }
+
+
         [TearDown]
         public void TearDown()
         {
