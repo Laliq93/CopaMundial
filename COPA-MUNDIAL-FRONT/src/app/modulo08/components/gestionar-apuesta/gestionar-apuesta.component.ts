@@ -309,9 +309,9 @@ export class GestionarApuestaComponent implements OnInit {
   }
 
   public ObtenerVoF(apuesta) {
-    if(apuesta)
+    if (apuesta) {
       return 'Si';
-    
+    }
     return 'No';
   }
 }

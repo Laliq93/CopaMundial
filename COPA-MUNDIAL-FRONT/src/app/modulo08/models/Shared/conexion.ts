@@ -1,8 +1,8 @@
 export class Conexion {
   Controlador: string;
-  IdUsuario = 4;
+  IdUsuario = 1;
   Puerto = 51543;
-  Ip = '192.168.15.105';
+  Ip = 'localhost';
   RutaApi = 'http://' + this.Ip + ':' + this.Puerto + '/api/';
 
   public GetApiJugador() {
