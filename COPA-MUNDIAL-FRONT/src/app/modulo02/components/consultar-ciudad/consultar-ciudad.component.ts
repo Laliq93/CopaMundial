@@ -33,7 +33,7 @@ ciudades :Ciudad[] = new Array<Ciudad>()
 
   ngOnInit() {
   $('#infoCiudad').hide();
-  this.ciudadservice.ObtenerListaCiudades().subscribe(
+  this.ciudadservice.ObtenerListaCiudadesHabilitadas().subscribe(
     ciudades => {
       //this.ciudades = ciudades.map(<Ciudad[]>);
       ciudades.forEach(element => {

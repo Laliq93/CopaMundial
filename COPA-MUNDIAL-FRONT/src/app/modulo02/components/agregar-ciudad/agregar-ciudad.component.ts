@@ -22,7 +22,7 @@ export class AgregarCiudadComponent implements OnInit {
   formulario = {
     nombreES : "",
     habitantes : 0,
-    descripcion : "",
+    descripcionES : "",
     nombreEN :"",
     descripcionEN : ""
   }
@@ -44,7 +44,7 @@ export class AgregarCiudadComponent implements OnInit {
     let ciudad = new Ciudad();
     
     ciudad.Nombre = this.formulario.nombreES
-    ciudad.Descripcion = this.formulario.descripcion
+    ciudad.Descripcion = this.formulario.descripcionES
     ciudad.Habitantes = this.formulario.habitantes
     ciudad.DescripcionIngles = this.formulario.descripcionEN
     ciudad.NombreIngles = this.formulario.nombreEN
@@ -143,7 +143,7 @@ export class AgregarCiudadComponent implements OnInit {
       this.formulario = {
         nombreES:'',
         habitantes: 0,
-        descripcion:'',
+        descripcionES:'',
         nombreEN:'',
         descripcionEN :''
       

@@ -18,6 +18,7 @@ export class ModificarCiudadComponent implements OnInit {
   nombre : string;
   descripcion:string;
   habitantes:number;
+  habilitado : Boolean;
   
   ciudadess: any = [
     {id:"1",nombre: 'Moscú',habitantes: 50, descripcion: 'hola', nomIngles:"Moscow",descIngles:"hello"},
@@ -49,6 +50,7 @@ habilitados: any = [
             ciudad.Habitantes = element.Habitantes;
             ciudad.NombreIngles = element.NombreIngles;
             ciudad.DescripcionIngles = element.DescripcionIngles;
+            ciudad.Habilitado = element.Habilitado;
             this.ciudades.push(ciudad);
           });
           this.route.navigate(['ciudades/modificarCiudad']);
@@ -67,6 +69,17 @@ habilitados: any = [
     console.log("ciudad elegida "+this.ciudades[this.id])
     console.log("city = "+this.ciudadselected+this.id)
   }
+
+
+  selectChangeHabilitado($event){
+    console.log($event)
+    if ($event == 0)
+      this.habilitado = true;
+    else
+      this.habilitado = false;
+    
+  }
+
 
   modificar(){
     let city = new Ciudad;
@@ -91,7 +104,12 @@ habilitados: any = [
       else{
         city.Habitantes = this.habitantes;
       }
-   
+   if (this.habilitado == null || typeof this.habilitado == undefined) {
+     city.Habilitado = this.ciudadselected.Habilitado;
+     
+   }else{
+      city.Habilitado = this.habilitado;
+    }
     city.NombreIngles = "";
     city.DescripcionIngles = "";
 

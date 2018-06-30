@@ -15,6 +15,7 @@ namespace CopaMundialAPI.Comun.Entidades
         private string _descripcion;//Descripcion de la ciudad en español
         private string _nombreIngles;//Nombre de la ciudad en ingles
         private string _descripcionIngles;//Descripcion de la ciudad en ingles
+		private Boolean _habilitado;
 
         /// <summary>
         /// Constructor con un parametro entidad Ciudad
@@ -87,6 +88,7 @@ namespace CopaMundialAPI.Comun.Entidades
         /// </summary>
         public string DescripcionIngles { get => _descripcionIngles; set => _descripcionIngles = value; }
 
+		public Boolean Habilitado { get => _habilitado; set => _habilitado = value;}
 
     }
 }

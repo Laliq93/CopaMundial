@@ -30,7 +30,7 @@
       <input id="descripcion" type="text" class="form-control" id="InputDescripcion" placeholder="Descripcion" value ="{{ciudadselected.Descripcion}}" [(ngModel)]="descripcion" [ngModelOptions]="{standalone: true}">
     </div>
     <div class="form-group">
-        <select (ngModelChange)="selectChange($event)" [(ngModel)]="InputHabilitado" [ngModelOptions]="{standalone: true}" id='Habilitado' class="form-control font-estilo"   >
+        <select (ngModelChange)="selectChangeHabilitado($event)" [(ngModel)]="InputHabilitado" [ngModelOptions]="{standalone: true}" id='Habilitado' class="form-control font-estilo"   >
             <option  *ngFor = "let habilitado of habilitados; let i = index"  [value]="i">{{habilitado}} </option>
         </select>
     </div>

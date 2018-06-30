@@ -33,7 +33,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
                 Conectar ( );
 
-                StoredProcedure ( "updateciudad(@_id,@_nombre,@_poblacion,@_descripcion,@_nombreingles,@_descripcioningles)" );
+                StoredProcedure ( "updateciudad(@_id,@_nombre,@_poblacion,@_descripcion,@_nombreingles,@_descripcioningles,@_habilitado)" );
 
                 AgregarParametro ( "_id", ciudad.Id );
                 AgregarParametro ( "_nombre", ciudad.Nombre );
@@ -41,6 +41,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 AgregarParametro ( "_descripcion", ciudad.Descripcion );
                 AgregarParametro ( "_nombreingles", ciudad.NombreIngles );
                 AgregarParametro ( "_descripcioningles", ciudad.DescripcionIngles );
+				AgregarParametro("_habilitado", ciudad.Habilitado);
 
                 EjecutarQuery ( );
 
@@ -159,7 +160,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 for (int i = 0; i < cantidadRegistros; i++)
                 {
                     ciudadARetornar = FabricaEntidades.CrearCiudad(GetInt(i, 0), GetString(i, 1), GetInt(i, 3), GetString(i, 2), GetString(i, 4), GetString(i, 5)) ;
-                }
+					ciudadARetornar.Habilitado = GetBool(i, 6);
+				}
                 return ciudadARetornar;
 			
             }
@@ -215,9 +217,11 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 EjecutarReader ( );
                 for (int i = 0; i < cantidadRegistros; i++)
                 {
-                    _ciudades.Add ( FabricaEntidades.CrearCiudad ( GetInt ( i, 0 ), GetString ( i, 1 ), GetInt ( i, 3 ), GetString ( i, 2 ), GetString ( i, 4 ), GetString ( i, 5 ) ) );
-                }
-                return _ciudades;
+					Ciudad city = FabricaEntidades.CrearCiudad(GetInt(i, 0), GetString(i, 1), GetInt(i, 3), GetString(i, 2), GetString(i, 4), GetString(i, 5));
+					city.Habilitado = GetBool(i, 6);
+					_ciudades.Add(city);
+				}
+				return _ciudades;
             }
             catch (NullReferenceException e)
             {
@@ -271,8 +275,10 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 EjecutarReader ( );
                 for (int i = 0; i < cantidadRegistros; i++)
                 {
-                    _ciudades.Add ( FabricaEntidades.CrearCiudad ( GetString ( i, 0 ), GetInt ( i, 1 ), GetString ( i, 2 ), GetString ( i, 3 ), GetString ( i, 4 ) ) );
-                }
+					Ciudad city = FabricaEntidades.CrearCiudad(GetInt(i, 0), GetString(i, 1), GetInt(i, 3), GetString(i, 2), GetString(i, 4), GetString(i, 5));
+					city.Habilitado = GetBool(i, 6);
+					_ciudades.Add(city);
+      }
                 return _ciudades;
             }
             catch (NullReferenceException e)
@@ -378,8 +384,12 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 List<Entidad> _ciudades = new List<Entidad> ( );
                 for (int i = 0; i < cantidadRegistros; i++)
                 {
-                    _ciudades.Add ( FabricaEntidades.CrearCiudad ( GetInt ( i, 0 ), GetString ( i, 1 ), GetInt ( i, 3 ), GetString ( i, 2 ), GetString ( i, 4 ), GetString ( i, 5 ) ) );
-                }
+					Ciudad ciudad = FabricaEntidades.CrearCiudad(GetInt(i, 0), GetString(i, 1), GetInt(i, 3), GetString(i, 2), GetString(i, 4), GetString(i, 5));
+					ciudad.Habilitado = GetBool(i, 6);
+					_ciudades.Add (ciudad );
+				
+					
+				}
                 return _ciudades;
             }
             catch (NullReferenceException e)
@@ -417,5 +427,63 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
         }
 
-    }
+
+		public List<Entidad> ObtenerTodosHabilitados()
+		{
+
+			try
+			{
+				Conectar();
+				StoredProcedure("getallciudadtrue()");
+				EjecutarReader();
+				List<Entidad> _ciudades = new List<Entidad>();
+				for (int i = 0; i < cantidadRegistros; i++)
+				{
+					Ciudad ciudad = FabricaEntidades.CrearCiudad(GetInt(i, 0), GetString(i, 1), GetInt(i, 3), GetString(i, 2), GetString(i, 4), GetString(i, 5));
+					ciudad.Habilitado = GetBool(i, 6);
+					_ciudades.Add(ciudad);
+
+
+				}
+				return _ciudades;
+			}
+			catch (NullReferenceException e)
+			{
+				logger.Error(e, "Parametros de entrada nulos");
+
+				throw new ObjetoNullException(e, "Parametros nulos en: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
+			}
+
+			catch (InvalidCastException e)
+			{
+				logger.Error(e, "Casteo no correcto");
+
+				throw new CasteoNoCorrectoException(e, "Casteo no correcto en: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
+			}
+
+			catch (NpgsqlException e)
+			{
+				logger.Error(e, "Error en la base de datos");
+
+				throw new BaseDeDatosException(e, "Error en la base de datos en: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
+			}
+
+			catch (Exception e)
+			{
+				logger.Error(e, "Error desconocido");
+
+				throw new ExcepcionGeneral(e, DateTime.Now);
+
+			}
+
+			finally
+			{
+				Desconectar();
+			}
+		}
+
+
+
+
+	}
 }

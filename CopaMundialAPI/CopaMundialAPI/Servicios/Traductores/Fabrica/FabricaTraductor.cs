@@ -50,11 +50,11 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
         {
             return new TraductorCiudad ( );
         }
-		public static TraductorCiudad2 CrearTraductorCiudad2()
+	/*	public static TraductorCiudad2 CrearTraductorCiudad2()
 		{
 			return new TraductorCiudad2();
 		}
-
+		*/
 		public static TraductorCiudadNombre CrearTraductorCiudadNombre()
 		{
 			return new TraductorCiudadNombre();

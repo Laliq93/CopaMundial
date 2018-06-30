@@ -41,7 +41,12 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
 			return new ComandoObtenerCiudadPorNombre(ciudad);
 		}
 
-        public static ComandoAgregarApuestaVOF CrearComandoAgregarApuestaVoF(Entidad apuesta)
+		public static ComandoObtenerCiudadTrue CrearComandoObtenerCiudadesHabilitadas()
+		{
+			return new ComandoObtenerCiudadTrue();
+		}
+
+		public static ComandoAgregarApuestaVOF CrearComandoAgregarApuestaVoF(Entidad apuesta)
         {
             return new ComandoAgregarApuestaVOF(apuesta);
         }
