@@ -3,39 +3,37 @@ using System.Collections.Generic;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Fuente_de_Datos.DAO;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
-
 namespace CopaMundialAPI.Logica_de_Negocio.Comando.Logros
 {
-    public class ComandoObtenerLogrosVFPendientes: Comando
+    public class ComandoObtenerLogrosEquipoResultados: Comando
     {
 
-
         private Entidad _partido;
-        private List<Entidad> _logrosVF;
-        private DAOLogroVF _dao;
+        private List<Entidad> _logrosEquipo;
+        private DAOLogroEquipo _dao;
 
-        public ComandoObtenerLogrosVFPendientes(Entidad partido)
+        public ComandoObtenerLogrosEquipoResultados(Entidad partido)
         {
             _partido = partido;
-            _logrosVF = new List<Entidad>();
+            _logrosEquipo = new List<Entidad>();
 
         }
 
         public override void Ejecutar()
         {
-            _dao = FabricaDAO.CrearDAOLogroVF();
+            _dao = FabricaDAO.CrearDAOLogroEquipo();
 
-            _logrosVF = _dao.ObtenerLogrosPendientes(_partido);
+            _logrosEquipo = _dao.ObtenerLogrosResultados(_partido);
         }
 
         public override Entidad GetEntidad()
         {
-            throw new NotImplementedException(); 
+            throw new NotImplementedException(); ;
         }
 
         public override List<Entidad> GetEntidades()
         {
-            return _logrosVF;
+            return _logrosEquipo;
         }
     }
 }
