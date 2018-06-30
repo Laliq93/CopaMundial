@@ -18,7 +18,8 @@ export class ModificarCiudadComponent implements OnInit {
   nombre : string;
   descripcion:string;
   habitantes:number;
-  habilitado : Boolean;
+  habilit =-1;
+  inputHabilitado:Boolean;
   
   ciudadess: any = [
     {id:"1",nombre: 'Moscú',habitantes: 50, descripcion: 'hola', nomIngles:"Moscow",descIngles:"hello"},
@@ -34,7 +35,9 @@ habilitados: any = [
 
 ]  
   
-  constructor( private _location: Location, private route:Router, private ciudadservice: CiudadService){}
+  constructor( private _location: Location, private route:Router, private ciudadservice: CiudadService){
+    this.habilit = -1;
+  }
 
   ngOnInit() {
 
@@ -60,6 +63,7 @@ habilitados: any = [
         console.log(<any>error)
      }
     )
+    console.log("habilitado "+ this.habilit)
   }
 
   selectChange($event){
@@ -68,22 +72,26 @@ habilitados: any = [
     this.ciudadselected = this.ciudades[this.id];
     console.log("ciudad elegida "+this.ciudades[this.id])
     console.log("city = "+this.ciudadselected+this.id)
+    if (this.ciudadselected.Habilitado == true) {
+      this.habilit =0
+      
+    }else{
+      this.habilit=1
+    }
+    console.log("habilitado "+ this.habilit)
   }
 
 
   selectChangeHabilitado($event){
-    console.log($event)
-    if ($event == 0)
-      this.habilitado = true;
-    else
-      this.habilitado = false;
-    
+    console.log("habilitado "+ this.habilit)
+    this.habilit = $event
   }
 
 
   modificar(){
     let city = new Ciudad;
     city.Id = this.ciudadselected.Id;
+    console.log("habilitado "+ this.habilit)
     if (this.nombre == null || typeof this.nombre == "undefined") {
       city.Nombre = this.ciudadselected.Nombre;
     }
@@ -104,11 +112,11 @@ habilitados: any = [
       else{
         city.Habitantes = this.habitantes;
       }
-   if (this.habilitado == null || typeof this.habilitado == undefined) {
-     city.Habilitado = this.ciudadselected.Habilitado;
-     
-   }else{
-      city.Habilitado = this.habilitado;
+   if (this.habilit == 0) {
+     city.Habilitado = true;
+    }
+    if (this.habilit ==1){
+      city.Habilitado = false;
     }
     city.NombreIngles = "";
     city.DescripcionIngles = "";
@@ -133,7 +141,15 @@ habilitados: any = [
   
 
   mostrarInformacion(): void{
+    if (this.ciudadselected.Habilitado == true) {
+      this.habilit =0
+      
+    }else{
+      this.habilit=1
+    }
+    console.log("habilitado "+ this.habilit)
     this.route.navigate(['ciudades/modificarCiudad']);
+    
   /*  $('#Nombre').text('').append(this.ciudades[this.id].Nombre);
     $('#Habitantes').text('').append(this.ciudades[this.id].Habitantes.toString);
     $('#Descripcion').text('').append(this.ciudades[this.id].Descripcion);
