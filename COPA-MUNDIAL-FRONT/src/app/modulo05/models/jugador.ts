@@ -1,12 +1,12 @@
 export class Jugador {
-  Id: number;
-  Nombre: string;
-  Apellido: string;
-  FechaNacimiento: string;
-  LugarNacimiento: string;
-  Peso: number;
-  Altura: number;
-  Posicion: string;
-  Numero: number;
-  Equipo: string;
+  id: number;
+  nombre: string;
+  apellido: string;
+  fechaNacimiento: string;
+  lugarNacimiento: string;
+  peso: number;
+  altura: number;
+  posicion: string;
+  numero: number;
+  equipo: string;
 }
