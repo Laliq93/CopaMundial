@@ -4,11 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { LogrosService } from '../../services/logros.service';
 import { DTOListaPartidosLogros } from '../../models/DTOListaPartidosLogros';
 
+
 @Component({
   selector: 'app-ver-partidos',
   templateUrl: './ver-partidos.component.html',
-  styleUrls: ['./ver-partidos.component.css']
+  styleUrls: ['./ver-partidos.component.css'],
+  providers: [LogrosService]
 })
+
 export class VerPartidosComponent implements OnInit {
 
   
@@ -17,11 +20,12 @@ public partidosFinalizados : DTOListaPartidosLogros[] = [];
   constructor(private _logrosService: LogrosService, private http: HttpClient, private router: Router)
   {
       this._logrosService = new LogrosService(http);
-      this.listmatches = this._logrosService.ObtenerProximosPartidos();
-      this.partidosFinalizados = this._logrosService.ObtenerPartidosFinalizados();
+     
    }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.listmatches = this._logrosService.ObtenerProximosPartidos();
+    this.partidosFinalizados = this._logrosService.ObtenerPartidosFinalizados();
   }
 
   public LlamarLogros(idPartido) {

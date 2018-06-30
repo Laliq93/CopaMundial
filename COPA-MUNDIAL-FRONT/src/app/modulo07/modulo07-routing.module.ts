@@ -9,10 +9,10 @@ import { LogroCantidadComponent } from './components/logro-cantidad/logro-cantid
 const routes: Routes = [
   
   //  { path: 'crearLogro', component: CrearLogroComponent, canActivate: [NotLoggedInGuard] },
-    { path: '', component: VerPartidosComponent, canActivate: [NotLoggedInGuard] }/*,
+    { path: '', component: VerPartidosComponent}/*,
     { path: 'logroPartido/:idPartido', component: LogroPartidoComponent, canActivate: [NotLoggedInGuard]}*/,
-    { path: 'logroEquipo/:idPartido', component: LogroEquipoComponent, canActivate: [NotLoggedInGuard]},
-    { path: 'logroCantidad/:idPartido', component: LogroCantidadComponent, canActivate: [NotLoggedInGuard]}/*,
+    { path: 'logroEquipo/:idPartido', component: LogroEquipoComponent},
+    { path: 'logroCantidad/:idPartido', component: LogroCantidadComponent}/*,
     { path: 'logroJugador', component: LogroJugadorComponent, canActivate: [NotLoggedInGuard]},
     { path: 'logroVF', component: LogroVofComponent, canActivate: [NotLoggedInGuard]},*/
   ];

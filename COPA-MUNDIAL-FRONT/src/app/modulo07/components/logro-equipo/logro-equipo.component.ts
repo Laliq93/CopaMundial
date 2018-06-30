@@ -17,7 +17,8 @@ import { DTOLogroEquipoResultado } from '../../models/DTOLogroEquipoResultado';
 @Component({
   selector: 'app-logro-equipo',
   templateUrl: './logro-equipo.component.html',
-  styleUrls: ['./logro-equipo.component.css']
+  styleUrls: ['./logro-equipo.component.css'],
+  providers: [LogrosService]
 })
 
 export class LogroEquipoComponent implements OnInit {
@@ -46,7 +47,7 @@ export class LogroEquipoComponent implements OnInit {
      }
   
   
-    ngOnInit() {
+    ngOnInit(): void {
       this.partido = this._logrosService.ObtenerPartidoDTO(this.idPartido);
       this.obtenerLogrosEquipoDTO(this.idPartido);
       this.obtenerLogrosEquipoResultadosDTO(this.idPartido);

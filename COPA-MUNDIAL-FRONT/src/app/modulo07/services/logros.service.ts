@@ -1,6 +1,7 @@
-import { Injectable, OnInit, Inject } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
-//import { HttpModule } from '@angular/http';
+import { Injectable } from '@angular/core';
+//import { Injectable, OnInit, Inject } from '@angular/core';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { Router } from '@angular/router';
 import { DTOLogroEquipo } from '../models/DTOLogroEquipo';
 import { DTOLogroCantidad } from '../models/DTOLogroCantidad';
@@ -16,10 +17,12 @@ const httpOptions = {
 };*/
 
 declare var alerta;
-
+/**
 @Injectable({
   providedIn: 'root'
-})
+})*/
+
+@Injectable()
 export class LogrosService{
 
   public service: LogrosService;
@@ -32,7 +35,7 @@ export class LogrosService{
   public dtoListaPartidoFinaliz : DTOListaPartidosLogros[] = [];
 
 
-    constructor(private http: HttpClient)
+    constructor(public http: HttpClient)
     {
 
         this.logrosEquipo = new Array as Array <DTOLogroEquipo>;

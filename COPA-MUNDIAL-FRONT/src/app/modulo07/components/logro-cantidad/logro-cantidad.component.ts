@@ -16,7 +16,8 @@ import {  DTOListaPartidosLogros } from '../../models/DTOListaPartidosLogros';
 @Component({
   selector: 'app-logro-cantidad',
   templateUrl: './logro-cantidad.component.html',
-  styleUrls: ['./logro-cantidad.component.css']
+  styleUrls: ['./logro-cantidad.component.css'],
+  providers: [LogrosService]
 })
 export class LogroCantidadComponent implements OnInit {
 
@@ -43,7 +44,7 @@ export class LogroCantidadComponent implements OnInit {
    }
 
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.partido = this._logrosService.ObtenerPartidoDTO(this.idPartido);
     this.obtenerLogrosCantidadDTO(this.idPartido);
 
