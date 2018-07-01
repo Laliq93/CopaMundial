@@ -7,8 +7,8 @@ using CopaMundialAPI.Servicios.Traductores.Jugadores;
 using CopaMundialAPI.Servicios.Traductores.Logros;
 using CopaMundialAPI.Servicios.Traductores.Ciudades;
 using CopaMundialAPI.Servicios.Traductores.Usuarios;
-using CopaMundialAPI.Servicios.Traductores.Equipo;
-using CopaMundialAPI.Servicios.Traductores.Estadio;
+using CopaMundialAPI.Servicios.Traductores.Equipos;
+using CopaMundialAPI.Servicios.Traductores.Estadios;
 using CopaMundialAPI.Servicios.Traductores.Partidos;
 
 namespace CopaMundialAPI.Servicios.Traductores.Fabrica

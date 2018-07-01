@@ -3,7 +3,6 @@ using CopaMundialAPI.Comun.Entidades.Fabrica;
 using CopaMundialAPI.Comun.Excepciones;
 using CopaMundialAPI.Servicios.DTO.Partidos;
 using CopaMundialAPI.Servicios.Fabrica;
-using CopaMundialAPI.Servicios.Traductores.Equipo;
 using CopaMundialAPI.Servicios.Traductores.Equipos;
 using CopaMundialAPI.Servicios.Traductores.Fabrica;
 using CopaMundialAPI.Servicios.Traductores.Jugadores;

@@ -9,11 +9,6 @@ using CopaMundialAPI.Logica_de_Negocio.Comando.Logros;
 using CopaMundialAPI.Logica_de_Negocio.Comando;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Jugadores;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Usuarios;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Partidos;
 using CopaMundialAPI.Logica_de_Negocio.Comando.EquipoEstatico;
 using CopaMundialAPI.Logica_de_Negocio.Comando.EstadioEstatico;

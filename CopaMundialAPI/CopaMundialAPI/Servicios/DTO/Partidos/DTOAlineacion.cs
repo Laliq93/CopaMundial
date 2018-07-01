@@ -25,6 +25,6 @@ namespace CopaMundialAPI.Servicios.DTO.Partidos
 
         public DTOJugador Jugador { get => _jugador; set => _jugador = value; }
         public DTOEquipo Equipo { get => _equipo; set => _equipo = value; }
-        public DTOPartido Partido { get => _partido; set => _partido = value; 
+        public DTOPartido Partido { get => _partido; set => _partido = value; }
     }
 }
