@@ -133,8 +133,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 partido.Equipo2 = equiposEstaticos.GetEquipo(idequipo2);
 
             }
-            if (partido == null)
-                throw new PartidoNoExisteException();
+           if (partido == null)
+                throw new PartidoNoExisteException("Partido no existe");
             return partido;
         }
 
