@@ -41,14 +41,14 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Ciudades
 
             catch (NpgsqlException e)
             {
-                logger.Error ( e, "Error en la base de datos" );
+                logger.Error ( e, e.Message );
 
                 throw new BaseDeDatosException ( e, "Error en la base de datos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (Exception e)
             {
-                logger.Error ( e, "Error desconocido" );
+                logger.Error ( e, e.Message );
 
                 throw new ExcepcionGeneral ( e, DateTime.Now );
 

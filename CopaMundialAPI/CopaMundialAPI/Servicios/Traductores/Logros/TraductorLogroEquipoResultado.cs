@@ -21,7 +21,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Logros
             DTOLogroEquipoResultado dto = FabricaDTO.CrearDTOLogroEquipoResultado();
 
             LogroEquipo logroEquipo = entidad as LogroEquipo;
-            Equipos listaEquipos = new Equipos();
+            Comun.Entidades.Equipos listaEquipos = new Comun.Entidades.Equipos();
 
             dto.IdLogroEquipo = logroEquipo.Id;
             dto.LogroEquipo = logroEquipo.Logro;

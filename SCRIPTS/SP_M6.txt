@@ -172,3 +172,47 @@ END;
 $$ LANGUAGE plpgsql;
 
 --select * from EliminarAlineacion(1)
+
+/* stored procedure para consultar la alineacion de un partido en especifico */
+CREATE OR REPLACE FUNCTION ConsultarTitularesPorPartidoYEquipo(idPartido integer, idEquipo integer)
+RETURNS TABLE
+  (id integer,
+   _capitan boolean,
+   _posicion varchar(30),
+   _titular boolean,
+   _jugador integer,
+   _equipo integer,
+   _partido integer)
+AS
+$$
+BEGIN
+  RETURN QUERY SELECT
+  al_id, al_capitan, al_posicion, al_titular, al_ju_id, al_eq_id, al_pa_id
+  FROM Alineacion
+  WHERE al_pa_id = idPartido AND al_eq_id = idEquipo AND al_titular = true;
+END;
+$$ LANGUAGE plpgsql;
+
+--select * from ConsultarTitularesPorPartidoYEquipo(1, 4)
+
+/* stored procedure para consultar la alineacion de un partido en especifico */
+CREATE OR REPLACE FUNCTION ConsultarCapitanPorPartidoYEquipo(idPartido integer, idEquipo integer)
+RETURNS TABLE
+  (id integer,
+   _capitan boolean,
+   _posicion varchar(30),
+   _titular boolean,
+   _jugador integer,
+   _equipo integer,
+   _partido integer)
+AS
+$$
+BEGIN
+  RETURN QUERY SELECT
+  al_id, al_capitan, al_posicion, al_titular, al_ju_id, al_eq_id, al_pa_id
+  FROM Alineacion
+  WHERE al_pa_id = idPartido AND al_eq_id = idEquipo AND al_capitan = true;
+END;
+$$ LANGUAGE plpgsql;
+
+--select * from ConsultarCapitanPorPartidoYEquipo(1, 4)

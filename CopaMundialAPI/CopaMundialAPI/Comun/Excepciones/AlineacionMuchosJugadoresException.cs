@@ -5,9 +5,9 @@ using System.Web;
 
 namespace CopaMundialAPI.Comun.Excepciones
 {
-    public class AlineacionJugadorNoExisteException : ExcepcionPersonalizada
+    public class AlineacionMuchosJugadoresException : ExcepcionPersonalizada
     {
-        public AlineacionJugadorNoExisteException(string mensaje) : base(mensaje)
+        public AlineacionMuchosJugadoresException(string mensaje) : base(mensaje)
         {
         }
     }

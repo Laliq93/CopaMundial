@@ -11,7 +11,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
     public class ComandoActualizarPartido : Comando
     {
 
-        public ComandoActualizarPartido(Partido entidad)
+        public ComandoActualizarPartido(Entidad entidad)
         {
             Entidad = entidad;
         }

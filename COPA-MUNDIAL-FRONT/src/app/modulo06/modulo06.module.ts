@@ -16,6 +16,7 @@ import { CrearPartidoComponent } from './components/crear-partido/crear-partido.
 import { ModificarPartidoComponent } from './components/modificar-partido/modificar-partido.component';
 import { VerAlineacionComponent } from './components/ver-alineacion/ver-alineacion.component';
 import { CrearAlineacionComponent } from './components/crear-alineacion/crear-alineacion.component';
+import { EditarAlineacionComponent } from './components/editar-alineacion/editar-alineacion.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { CrearAlineacionComponent } from './components/crear-alineacion/crear-al
     ModificarPartidoComponent,
     VerAlineacionComponent,
     CrearAlineacionComponent,
+    EditarAlineacionComponent,
   ]
 })
 export class Modulo06Module { }

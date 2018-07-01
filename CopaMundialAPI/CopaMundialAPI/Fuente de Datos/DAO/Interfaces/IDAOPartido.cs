@@ -8,7 +8,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
 {
     public interface IDAOPartido: IDAO
     {
-        List<Entidad> ObtenerPartidosPosterioresA(DateTime fecha);
+        List<Entidad> ObtenerPartidosPosterioresA(Entidad entidad);
 
         Entidad ObtenerPorId(Entidad entidad);
     }

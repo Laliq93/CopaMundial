@@ -12,6 +12,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CopaMundialAPI.Servicios.Traductores.Ciudades;
+using CopaMundialAPI.Servicios.Traductores;
+using CopaMundialAPI.Servicios.Traductores.Fabrica;
+
 
 namespace PruebasCopaMundialAPI
 {
@@ -270,12 +274,135 @@ namespace PruebasCopaMundialAPI
 			Assert.AreEqual(ciudad1.Nombre, ciudadamodificar.Nombre);
 		}
 
+        [Test]
+        public void TestTraducirDTOCiudadaCiudad ( )
+        {
+            Ciudad ciudadEsperada = FabricaEntidades.CrearCiudad ( 1, "nombremodificado", 5, "descripcionmodificada", "NombreEnModificado", "DescripcionEnModificado" );
+
+            Ciudad ciudad = null;
+
+            DTOCiudad dto = FabricaDTO.CrearDTOCiudad ( 1, "nombremodificado", 5, "descripcionmodificada", "NombreEnModificado", "DescripcionEnModificado" );
+
+            TraductorCiudad traductor = FabricaTraductor.CrearTraductorCiudad ( );
+
+            ciudad=traductor.CrearEntidad ( dto ) as Ciudad;
+
+            Assert.AreEqual ( ciudad.Id,ciudadEsperada.Id );
+            Assert.AreEqual ( ciudad.Nombre, ciudadEsperada.Nombre );
+            Assert.AreEqual ( ciudad.Habitantes, ciudadEsperada.Habitantes );
+            Assert.AreEqual ( ciudad.Habilitado, ciudadEsperada.Habilitado );
+            Assert.AreEqual ( ciudad.NombreIngles, ciudadEsperada.NombreIngles );
+            Assert.AreEqual ( ciudad.DescripcionIngles, ciudadEsperada.DescripcionIngles );
+
+        }
+
+        [Test]
+        public void TestTraducirCiudadaDTOCiudad ( )
+        {
+            DTOCiudad dtoEsperado = FabricaDTO.CrearDTOCiudad ( 1, "nombremodificado", 5, "descripcionmodificada", "NombreEnModificado", "DescripcionEnModificado" );
+
+            DTOCiudad dto = null;
+
+            Ciudad ciudad = FabricaEntidades.CrearCiudad ( 1, "nombremodificado", 5, "descripcionmodificada", "NombreEnModificado", "DescripcionEnModificado" );
+
+            TraductorCiudad traductor = FabricaTraductor.CrearTraductorCiudad ( );
+
+            Entidad entidad = ciudad as Ciudad;
+
+            dto = traductor.CrearDto ( entidad ) ;
+
+            Assert.AreEqual ( dto.Id, dtoEsperado.Id );
+            Assert.AreEqual ( dto.Nombre, dtoEsperado.Nombre );
+            Assert.AreEqual ( dto.Habitantes, dtoEsperado.Habitantes );
+            Assert.AreEqual ( dto.Habilitado, dtoEsperado.Habilitado );
+            Assert.AreEqual ( dto.NombreIngles, dtoEsperado.NombreIngles );
+            Assert.AreEqual ( dto.DescripcionIngles, dtoEsperado.DescripcionIngles );
+
+        }
+
+        [Test]
+        public void TestTraducirCiudadaDTOCiudadNombre ( )
+        {
+            DTOCiudadNombre dtoEsperado = FabricaDTO.CrearDTOCiudadNombre ( "nombremodificado");
+
+            DTOCiudadNombre dto = null;
+
+            Ciudad ciudad = FabricaEntidades.CrearCiudad ("nombremodificado", 5, "descripcionmodificada", "NombreEnModificado", "DescripcionEnModificado" );
+
+            TraductorCiudadNombre traductor = FabricaTraductor.CrearTraductorCiudadNombre ( );
+
+            Entidad entidad = ciudad as Ciudad;
+
+            dto = traductor.CrearDto ( entidad );
+
+            Assert.AreEqual ( dto.Nombre, dtoEsperado.Nombre );
+
+
+        }
+
+        [Test]
+        public void TestTraducirDTOCiudadNombreaCiudad ( )
+        {
+            DTOCiudadNombre dtoEsperado = FabricaDTO.CrearDTOCiudadNombre ("nombremodificado");
+
+            DTOCiudadNombre dto = null;
+
+            Ciudad ciudad = FabricaEntidades.CrearCiudad ( 1, "nombremodificado", 5, "descripcionmodificada", "NombreEnModificado", "DescripcionEnModificado" );
+
+            TraductorCiudadNombre traductor = FabricaTraductor.CrearTraductorCiudadNombre ( );
+
+            Entidad entidad = ciudad as Ciudad;
+
+            dto = traductor.CrearDto ( entidad );
+
+            Assert.AreEqual ( dto.Nombre, dtoEsperado.Nombre );
+
+        }
+
+        [Test]
+        public void TestTraducirCiudadaDTOCiudadID ( )
+        {
+            DTOCiudadID dtoEsperado = FabricaDTO.CrearDTOCiudadId ( 1 );
+
+            DTOCiudadID dto = null;
+
+            Ciudad ciudad = FabricaEntidades.CrearCiudad (1, "nombremodificado", 5, "descripcionmodificada", "NombreEnModificado", "DescripcionEnModificado" );
+
+            TraductorCiudadID traductor = FabricaTraductor.CrearTraductorCiudadID ( );
+
+            Entidad entidad = ciudad as Ciudad;
+
+            dto = traductor.CrearDto ( entidad );
+
+            Assert.AreEqual ( dto.Id, dtoEsperado.Id );
+
+
+        }
+        
+
+        [Test]
+        public void TestTraducirDTOCiudadIDaCiudad ( )
+        {
+            DTOCiudadID dtoEsperado = FabricaDTO.CrearDTOCiudadId ( 1 );
+
+            DTOCiudadID dto = null;
+
+            Ciudad ciudad = FabricaEntidades.CrearCiudad ( 1, "nombremodificado", 5, "descripcionmodificada", "NombreEnModificado", "DescripcionEnModificado" );
+
+            TraductorCiudadID traductor = FabricaTraductor.CrearTraductorCiudadID ( );
+
+            Entidad entidad = ciudad as Ciudad;
+
+            dto = traductor.CrearDto ( entidad );
+
+            Assert.AreEqual ( dto.Id, dtoEsperado.Id );
 
 
 
+        }
 
 
-		[TearDown]
+        [TearDown]
 		public void TeadDown()
 		{
 			
