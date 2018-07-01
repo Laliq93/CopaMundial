@@ -40,22 +40,38 @@ namespace PruebasCopaMundialAPI.Modulo_5
             _daoJugador = FabricaDAO.CrearDAOJugador();
         }
 
-        /*[Test]
-        public void TestAgregarJugador ()
-        {
-            Assert.DoesNotThrow( AgregarJugador );
-        }
-
-        public void AgregarJugador ()
-        {
-            controlador.AgregarJugador(jugador);
-        }*/
-
         [Test]
         public void TestAgregarJugador()
         {
             _daoJugador.Agregar(_jugador);
             SPObtenerJugadorId();
+
+            if (_daoJugador.cantidadRegistros > 0)
+                Assert.Pass();
+
+            Assert.Fail();
+
+        }
+
+        [Test]
+        public void TestDesactivarJugador()
+        {
+            _daoJugador.DesactivarJugador(_jugador);
+            SPObtenerJugadoresInactivo();
+
+            if (_daoJugador.cantidadRegistros > 0)
+                Assert.Pass();
+
+            Assert.Fail();
+
+        }
+
+        [Test]
+        public void TestActivarJugador()
+        {
+            _daoJugador.DesactivarJugador(_jugador);
+            _daoJugador.ActivarJugador(_jugador);
+            SPObtenerJugadoresActivo();
 
             if (_daoJugador.cantidadRegistros > 0)
                 Assert.Pass();
@@ -75,18 +91,36 @@ namespace PruebasCopaMundialAPI.Modulo_5
         {
             _daoJugador.Conectar();
 
-            _daoJugador.StoredProcedure("consultarJugadores()");
-
-            _daoJugador.EjecutarReader();
-
-            
-
-
-            _daoJugador.Conectar();
-
             _daoJugador.StoredProcedure("consultarJugadorId(@idJugador)");
 
             _daoJugador.AgregarParametro("idJugador", _jugador.Id);
+            _daoJugador.EjecutarReader();
+        }
+
+        private void SPObtenerJugadores()
+        {
+            _daoJugador.Conectar();
+
+            _daoJugador.StoredProcedure("consultarJugadores()");
+
+            _daoJugador.EjecutarReader();
+        }
+
+        private void SPObtenerJugadoresActivo()
+        {
+            _daoJugador.Conectar();
+
+            _daoJugador.StoredProcedure("consultarJugadoresActivo()");
+
+            _daoJugador.EjecutarReader();
+        }
+
+        private void SPObtenerJugadoresInactivo()
+        {
+            _daoJugador.Conectar();
+
+            _daoJugador.StoredProcedure("consultarJugadoresInactivo()");
+
             _daoJugador.EjecutarReader();
         }
     }
