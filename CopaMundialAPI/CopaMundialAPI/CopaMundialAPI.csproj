@@ -316,6 +316,8 @@
     <Compile Include="Servicios\DTO\Partidos\DTOPartidoActualizar.cs" />
     <Compile Include="Servicios\DTO\Partidos\DTOPartidoNuevo.cs" />
     <Compile Include="Servicios\DTO\Partidos\DTOPartidoReducido.cs" />
+    <Compile Include="Servicios\DTO\Usuario\DTOUsuario.cs" />
+    <Compile Include="Servicios\DTO\Usuario\DTOUsuarioConfiguracion.cs" />
     <Compile Include="Servicios\DTO\Usuario\DTOUsuarioId.cs" />
     <Compile Include="Servicios\Fabrica\FabricaDTO.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaCantidad.cs" />
@@ -343,6 +345,8 @@
     <Compile Include="Servicios\Traductores\Logros\TraductorMostrarLogrosPartido.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorListarProximosPartidos.cs" />
     <Compile Include="Servicios\Traductores\TraductorGenerico.cs" />
+    <Compile Include="Servicios\Traductores\Usuarios\TraductorUsuario.cs" />
+    <Compile Include="Servicios\Traductores\Usuarios\TraductorUsuarioConfiguracion.cs" />
     <Compile Include="Servicios\Traductores\Usuarios\TraductorUsuarioId.cs" />
   </ItemGroup>
   <ItemGroup>

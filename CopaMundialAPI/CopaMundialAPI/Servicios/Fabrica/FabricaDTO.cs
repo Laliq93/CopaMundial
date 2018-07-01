@@ -6,6 +6,7 @@ using CopaMundialAPI.Servicios.DTO.Apuestas;
 using CopaMundialAPI.Servicios.DTO.Ciudades;
 using CopaMundialAPI.Servicios.DTO.Jugadores;
 using CopaMundialAPI.Servicios.DTO.Logros;
+using CopaMundialAPI.Servicios.DTO.Usuario;
 
 namespace CopaMundialAPI.Servicios.Fabrica
 {
@@ -14,6 +15,22 @@ namespace CopaMundialAPI.Servicios.Fabrica
     /// </summary>
     public class FabricaDTO
     {
+
+        public static DTOUsuario CrearDtoUsuario ()
+        {
+            return new DTOUsuario();
+        }
+
+        public static DTOUsuarioId CrearDtoUsuarioId ()
+        {
+            return new DTOUsuarioId();
+        }
+
+        public static DTOUsuarioConfiguracion CrearDtoUsuarioConfiguracion()
+        {
+            return new DTOUsuarioConfiguracion();
+        }
+
         public static DTOApuestaVOF CrearDtoApuestaVOF()
         {
             return new DTOApuestaVOF();
