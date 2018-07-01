@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
 using CopaMundialAPI.Servicios.DTO.Usuario;
-using CopaMundialAPI.Servicios.Fabrica;
 using CopaMundialAPI.Comun.Excepciones;
 using System.Web;
 
