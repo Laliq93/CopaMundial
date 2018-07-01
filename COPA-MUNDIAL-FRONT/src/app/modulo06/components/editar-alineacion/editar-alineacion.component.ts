@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-editar-alineacion',
@@ -113,9 +114,17 @@ export class EditarAlineacionComponent implements OnInit {
     }
   ];
 
-  constructor(private _location: Location) { }
+  public equipo1: string;
+  public equipo2: string;
+
+  constructor(private _location: Location, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.equipo1 = null;
+    this.equipo2 = null;
+
+    this.route.params.subscribe( params => this.equipo1 = params['equipo1'] );
+    this.route.params.subscribe( params => this.equipo2 = params['equipo2'] );
   }
 
   public agregar( jugador ) {

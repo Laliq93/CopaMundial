@@ -19,7 +19,7 @@ import { EditarAlineacionComponent } from './components/editar-alineacion/editar
 
 const routes: Routes = [
   { path: 'admin/crearAlineacion', component: CrearAlineacionComponent, canActivate: [NotLoggedInGuard] }, // admin/alineacion
-  { path: 'admin/editarAlineacion', component: EditarAlineacionComponent, canActivate: [NotLoggedInGuard] },
+  { path: 'admin/editarAlineacion/:equipo1/:equipo2', component: EditarAlineacionComponent, canActivate: [NotLoggedInGuard] },
 
   { path: '', component: ClientePartidoComponent, canActivate: [NotLoggedInGuard] },
   { path: 'listaPartidos', component: AdminPartidoComponent, canActivate: [NotLoggedInGuard] },
