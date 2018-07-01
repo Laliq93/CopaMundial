@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
 using CopaMundialAPI.Comun.Excepciones;
@@ -170,21 +166,6 @@ namespace PruebasCopaMundialAPI.Modulo_7
 
 
         /// <summary>
-        /// Metodo que prueba el resultado de la
-        /// excepcion LogrosPendientesNoExisteException
-        /// en el Dao
-        /// </summary>
-        [Test]
-        public void PruebaDaoObtenerLogrosCantidadPendientesException()
-        {
-
-            Partido partido = FabricaEntidades.CrearPartido();
-            partido.Id = 15; //cambiar numero
-
-            Assert.Throws<LogrosPendientesNoExisteException>(() => ((DAOLogroCantidad)dao).ObtenerLogrosPendientes(partido));
-        }
-
-        /// <summary>
         /// Metodo que prueba el resultado de exito del 
         /// comando ObtenerLogrosCantidadPendientes
         /// </summary>
@@ -202,21 +183,7 @@ namespace PruebasCopaMundialAPI.Modulo_7
 
         }
 
-        /// <summary>
-        /// Metodo que prueba el resultado de la
-        /// excepcion LogrosPendientesNoExisteException en el
-        /// comando
-        /// </summary>
-        [Test]
-        public void PruebaCmdObtenerLogrosCantidadPendientesException()
-        {
-
-            Partido partido = FabricaEntidades.CrearPartido();
-            partido.Id = 15; //cambiar numero
-
-            comando = FabricaComando.CrearComandoObtenerLogrosCantidadPendientes(partido);
-            Assert.Throws<LogrosPendientesNoExisteException>(() => comando.Ejecutar());
-        }
+      
 
         
         /// <summary>
@@ -234,20 +201,7 @@ namespace PruebasCopaMundialAPI.Modulo_7
             
         }
 
-        /// <summary>
-        /// Metodo que prueba la excepcion Logros
-        /// pendientes not found exception del metodo 
-        /// ObtenerLogrosCantidadPendientes de
-        /// LogrosController
-        /// </summary>
-        [Test]
-        public void PruebaControllerObtenerLogrosCantidadPendienteExc()
-        {
-            DTOLogroPartidoId dtoLogroPartidoId = FabricaDTO.CrearDTOLogroPartidoId();
-            dtoLogroPartidoId.IdPartido = 16;//Cambiar
-             Assert.AreEqual(HttpStatusCode.InternalServerError, controller.ObtenerLogrosCantidadPendientes(dtoLogroPartidoId).StatusCode);
-
-        }
+   
 
         /// <summary>
         /// Metodo que prueba el resultado de exito de
