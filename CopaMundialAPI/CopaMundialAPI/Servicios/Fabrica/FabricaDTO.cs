@@ -4,8 +4,12 @@ using System.Linq;
 using System.Web;
 using CopaMundialAPI.Servicios.DTO.Apuestas;
 using CopaMundialAPI.Servicios.DTO.Ciudades;
+using CopaMundialAPI.Servicios.DTO.Equipos;
+using CopaMundialAPI.Servicios.DTO.Estadios;
 using CopaMundialAPI.Servicios.DTO.Jugadores;
 using CopaMundialAPI.Servicios.DTO.Logros;
+using CopaMundialAPI.Servicios.DTO.Partidos;
+
 using CopaMundialAPI.Servicios.DTO.Usuario;
 
 namespace CopaMundialAPI.Servicios.Fabrica
@@ -55,30 +59,30 @@ namespace CopaMundialAPI.Servicios.Fabrica
         /// <param name="nombreIngles">Nombre de la ciudad en ingles</param>
         /// <param name="descripcionIngles">Descripcion de la ciudad en ingles</param>
         /// <returns></returns>
-       /* public static DTOCiudad2 CrearDTOCiudad (string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
-        {
-            return new DTOCiudad2 (nombre,habitantes,descripcion,nombreIngles,descripcionIngles);
-        }*/
+        /* public static DTOCiudad2 CrearDTOCiudad (string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
+         {
+             return new DTOCiudad2 (nombre,habitantes,descripcion,nombreIngles,descripcionIngles);
+         }*/
 
 
-		public static DTOCiudad CrearDTOCiudad(int id,string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
-		{
-			return new DTOCiudad(id,nombre, habitantes, descripcion, nombreIngles, descripcionIngles);
-		}
-		/// <summary>
-		/// Metodo que instancia un objeto de tipo DTOCiudadNombre
-		/// </summary>
-		/// <param name="nombre">Nombre de la ciudad</param>
-		/// <returns></returns>
-		public static DTOCiudadNombre CrearDTOCiudadNombre (string nombre)
+        public static DTOCiudad CrearDTOCiudad(int id, string nombre, int habitantes, string descripcion, string nombreIngles, string descripcionIngles)
         {
-            return new DTOCiudadNombre ( nombre );
+            return new DTOCiudad(id, nombre, habitantes, descripcion, nombreIngles, descripcionIngles);
+        }
+        /// <summary>
+        /// Metodo que instancia un objeto de tipo DTOCiudadNombre
+        /// </summary>
+        /// <param name="nombre">Nombre de la ciudad</param>
+        /// <returns></returns>
+        public static DTOCiudadNombre CrearDTOCiudadNombre(string nombre)
+        {
+            return new DTOCiudadNombre(nombre);
         }
 
-		public static DTOCiudadID CrearDTOCiudadId (int id)
-		{
-			return new DTOCiudadID(id);
-		}
+        public static DTOCiudadID CrearDTOCiudadId(int id)
+        {
+            return new DTOCiudadID(id);
+        }
 
         public static DTOListarProximosPartidos CrearDTOListarProximosPartidos()
         {
@@ -113,7 +117,7 @@ namespace CopaMundialAPI.Servicios.Fabrica
         public static DTOModificarJugador CrearDTOModificarJugador()
         {
             return new DTOModificarJugador();
-        } 
+        }
 
         public static DTOApuestaEquipo CrearDTOApuestaEquipo()
         {
@@ -168,6 +172,66 @@ namespace CopaMundialAPI.Servicios.Fabrica
         public static DTOUsuarioRegistrar CrearDTOUsuarioRegistrar()
         {
             return new DTOUsuarioRegistrar();
+        }
+
+        public static DTOEquipo CrearDTOEquipo()
+        {
+            return new DTOEquipo();
+        }
+
+        public static DTOEstadio CrearDTOEstadio()
+        {
+            return new DTOEstadio();
+        }
+
+        public static DTOAlineacion CrearDTOAlineacion()
+        {
+            return new DTOAlineacion();
+        }
+
+        public static DTOAlineacionActualizar CrearDTOAlineacionActualizar()
+        {
+            return new DTOAlineacionActualizar();
+        }
+
+        public static DTOAlineacionNuevo CrearDTOAlineacionNuevo()
+        {
+            return new DTOAlineacionNuevo();
+        }
+
+        public static DTOPartidoSoloId CrearDTOPartidoSoloId()
+        {
+            return new DTOPartidoSoloId();
+        }
+
+        public static DTOAlineacionSoloId CrearDTOAlineacionSoloId()
+        {
+            return new DTOAlineacionSoloId();
+        }
+
+        public static DTOPartido CrearDTOPartido()
+        {
+            return new DTOPartido();
+        }
+
+        public static DTOPartidoActualizar CrearDTOPartidoActualizar()
+        {
+            return new DTOPartidoActualizar();
+        }
+
+        public static DTOPartidoFecha CrearDTOPartidoFecha()
+        {
+            return new DTOPartidoFecha();
+        }
+
+        public static DTOPartidoNuevo CrearDTOPartidoNuevo()
+        {
+            return new DTOPartidoNuevo();
+        }
+
+        public static DTOPartidoReducido CrearDTOPartidoReducido()
+        {
+            return new DTOPartidoReducido();
         }
 
     }

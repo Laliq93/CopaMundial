@@ -10,7 +10,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
 {
     public class ComandoEliminarAlineacion : Comando
     {
-        public ComandoEliminarAlineacion(Alineacion entidad)
+        public ComandoEliminarAlineacion(Entidad entidad)
         {
             Entidad = entidad;
         }
@@ -18,7 +18,6 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
         public override void Ejecutar()
         {
             IDAOAlineacion dao = FabricaDAO.CrearDAOAlineacion();
-
             dao.Eliminar(Entidad);
         }
 
