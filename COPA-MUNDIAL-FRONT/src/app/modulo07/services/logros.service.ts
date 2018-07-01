@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { DTOLogroEquipo } from '../models/DTOLogroEquipo';
 import { DTOLogroCantidad } from '../models/DTOLogroCantidad';
 import { DTOLogroJugador } from  '../models/DTOLogroJugador';
+import { DTOLogroEquipoResultado } from '../models/DTOLogroEquipoResultado';
 import { DTOLogroVF } from '../models/DTOLogroVF';
 import { DTOLogroPartidoId } from '../models/DTOLogroPartidoId';
 import { DTOListaPartidosLogros } from '../models/DTOListaPartidosLogros';
@@ -58,6 +59,8 @@ export class LogrosService{
             console.log(data);
                this.dtoPartidoPorId.Equipo1 = data.Equipo1;
                this.dtoPartidoPorId.Equipo2 = data.Equipo2;
+               this.dtoPartidoPorId.IdEquipo1 = data.IdEquipo1;
+               this.dtoPartidoPorId.IdEquipo2 = data.IdEquipo2;
                this.dtoPartidoPorId.Fecha = data.Fecha;
                this.dtoPartidoPorId.IdPartido = data.IdPartido;
           },
@@ -249,6 +252,26 @@ export class LogrosService{
         }
       );
   }
+
+  public AsignarResutadoLogroEquipo(dtoLogroEquipoResult: DTOLogroEquipoResultado)
+  {
+
+    const url2 = this.apiURL+ 'asignarResultadoLogroEquipo';
+    return this.http.post<DTOLogroEquipoResultado>(url2, dtoLogroEquipoResult, { responseType: 'json' })
+      .subscribe(
+        data => {
+          if (data != null) {
+            console.log(data);
+          } else {
+            alert('Resultado equipo registrado correctamente');
+          }
+        },
+        Error => {
+          alert("Error al registrar cantidad el logro");
+        }
+      );
+  }
+
 
   
 
