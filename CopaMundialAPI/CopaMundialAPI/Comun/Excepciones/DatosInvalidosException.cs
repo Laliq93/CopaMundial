@@ -7,8 +7,9 @@ namespace CopaMundialAPI.Comun.Excepciones
 {
     public class DatosInvalidosException : ExcepcionPersonalizada
     {
-        public DatosInvalidosException(string mensaje) : base(mensaje)
+        public DatosInvalidosException(string mensaje)
         {
+            Mensaje = mensaje;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Partidos
         {
             if (!(entidad is Partido partido))
             {
-                logger.Error("Casteo invalido de la entidad " + entidad.ToString() + " a Partido");
+                logger.Error("Casteo invalido de la entidad " + entidad + " a Partido");
                 throw new CasteoInvalidoException("La entidad no es del tipo Partido");
             }
 
@@ -38,6 +38,9 @@ namespace CopaMundialAPI.Servicios.Traductores.Partidos
         public override Entidad CrearEntidad(DTOPartidoNuevo dto)
         {
             Partido partido = FabricaEntidades.CrearPartido();
+            partido.Equipo1 = FabricaEntidades.CrearEquipo();
+            partido.Equipo2 = FabricaEntidades.CrearEquipo();
+            partido.Estadio = FabricaEntidades.CrearEstadio();
 
             partido.Equipo1.Id = dto.Equipo1;
             partido.Equipo2.Id = dto.Equipo2;

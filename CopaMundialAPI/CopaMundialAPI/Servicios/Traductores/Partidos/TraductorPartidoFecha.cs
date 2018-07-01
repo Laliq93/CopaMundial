@@ -19,7 +19,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Partidos
         {
             if (!(entidad is Partido partido))
             {
-                logger.Error("Casteo invalido de la entidad " + entidad.ToString() + " a Partido");
+                logger.Error("Casteo invalido de la entidad " + entidad + " a Partido");
                 throw new CasteoInvalidoException("La entidad no es del tipo Partido");
             }
 

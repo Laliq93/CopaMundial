@@ -152,7 +152,6 @@
     <Compile Include="Comun\Excepciones\DatabaseException.cs" />
     <Compile Include="Comun\Excepciones\DatosInvalidosException.cs" />
     <Compile Include="Comun\Excepciones\ExcepcionPersonalizada.cs" />
-    <Compile Include="Comun\Excepciones\FechaPasadaPartidoException.cs" />
     <Compile Include="Comun\Excepciones\JugadorNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\LogroNoExisteException.cs" />
     <Compile Include="Comun\Excepciones\LogrosFinalizadosNoExisteException.cs" />

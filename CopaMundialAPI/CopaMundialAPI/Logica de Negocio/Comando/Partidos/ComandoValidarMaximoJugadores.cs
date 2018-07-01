@@ -12,10 +12,11 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
     public class ComandoValidarMaximoJugadores: Comando
     {
         private List<Entidad> _respuesta;
+        private Alineacion _alineacion;
 
         public ComandoValidarMaximoJugadores(Entidad entidad)
         {
-            Entidad = entidad;
+            _alineacion = entidad as Alineacion;
         }
 
         public override void Ejecutar()
@@ -23,21 +24,25 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
             IDAOAlineacion dao = FabricaDAO.CrearDAOAlineacion();
             try
             {
-                _respuesta = dao.ConsultarTitularesPorPartidoYEquipo(Entidad);
+                _respuesta = dao.ConsultarTitularesPorPartidoYEquipo(_alineacion);
             }
             catch (AlineacionNoExisteException)
             {
                 // No hacer nada, no hay capitan
             }
 
-            this.ValidarAlineacion();
+            if (_respuesta != null)
+            {
+                this.ValidarAlineacion();
+            }
+            
         }
 
         private void ValidarAlineacion()
         {
-            int _index = _respuesta.FindIndex(e => e.Id == Entidad.Id);
+            int _index = _respuesta.FindIndex(e => e.Id == _alineacion.Id);
 
-            if (_respuesta.Count > 11 && _index == -1)
+            if (_respuesta.Count >= 11 && _index == -1 && _alineacion.EsTitular)
             {
                 throw new AlineacionMuchosJugadoresException("El equipo solo puede tener 11 titulares");
             }

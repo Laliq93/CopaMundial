@@ -7,8 +7,9 @@ namespace CopaMundialAPI.Comun.Excepciones
 {
     public class PartidoNoExisteException : ExcepcionPersonalizada
     {
-        public PartidoNoExisteException(string mensaje) : base(mensaje)
+        public PartidoNoExisteException(string mensaje)
         {
+            Mensaje = mensaje;
         }
     }
 }
