@@ -13,6 +13,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
     public class ComandoAlineacionPorPartido : Comando
     {
         private List<Entidad> _alineaciones;
+        private Comando _comando;
 
         public ComandoAlineacionPorPartido(Entidad entidad)
         {
@@ -31,10 +32,17 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
         {
             foreach(Alineacion alineacion in _alineaciones)
             {
-                Comando comandoJugador = FabricaComando.CrearComandoObtenerJugadorId(alineacion.Jugador);
-                comandoJugador.Ejecutar();
-                
-                alineacion.Jugador = comandoJugador.GetEntidad() as Jugador;
+                _comando = FabricaComando.CrearComandoObtenerJugadorId(alineacion.Jugador);
+                _comando.Ejecutar();
+                alineacion.Jugador = _comando.GetEntidad() as Jugador;
+
+                _comando = FabricaComando.CrearComandoObtenerEquipoEstatico(alineacion.Equipo);
+                _comando.Ejecutar();
+                alineacion.Equipo = _comando.GetEntidad() as Equipo;
+
+                _comando = FabricaComando.CrearComandoObtenerPartido(alineacion.Partido);
+                _comando.Ejecutar();
+                alineacion.Partido = _comando.GetEntidad() as Partido;
             }
         }
 

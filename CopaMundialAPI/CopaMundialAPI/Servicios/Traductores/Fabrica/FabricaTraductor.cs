@@ -7,6 +7,9 @@ using CopaMundialAPI.Servicios.Traductores.Jugadores;
 using CopaMundialAPI.Servicios.Traductores.Logros;
 using CopaMundialAPI.Servicios.Traductores.Ciudades;
 using CopaMundialAPI.Servicios.Traductores.Usuarios;
+using CopaMundialAPI.Servicios.Traductores.Equipo;
+using CopaMundialAPI.Servicios.Traductores.Estadio;
+using CopaMundialAPI.Servicios.Traductores.Partidos;
 
 namespace CopaMundialAPI.Servicios.Traductores.Fabrica
 {
@@ -138,6 +141,61 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
         public static TraductorModificarJugador CrearTraductorModificarJugador()
         {
             return new TraductorModificarJugador();
+        }
+
+        public static TraductorEquipo CrearTraductorEquipo()
+        {
+            return new TraductorEquipo();
+        }
+
+        public static TraductorEstadio CrearTraductorEstadio()
+        {
+            return new TraductorEstadio();
+        }
+
+        public static TraductorAlineacion CrearTraductorAlineacion()
+        {
+            return new TraductorAlineacion();
+        }
+
+        public static TraductorAlineacionActualizar CrearTraductorAlineacionActualizar()
+        {
+            return new TraductorAlineacionActualizar();
+        }
+
+        public static TraductorAlineacionNuevo CrearTraductoAlineacionNuevo()
+        {
+            return new TraductorAlineacionNuevo();
+        }
+
+        public static TraductorPartidoSoloId CrearTraductorEntidadSoloId()
+        {
+            return new TraductorPartidoSoloId();
+        }
+
+        public static TraductorPartido CrearTraductorPartido()
+        {
+            return new TraductorPartido();
+        }
+
+        public static TraductorPartidoActualizar CrearTraductorPartidoActualizar()
+        {
+            return new TraductorPartidoActualizar();
+        }
+
+        public static TraductorPartidoFecha CrearTraductorPartidoFecha()
+        {
+            return new TraductorPartidoFecha();
+        }
+
+        public static TraductorPartidoNuevo CrearTraductorPartidoNuevo()
+        {
+            return new TraductorPartidoNuevo();
+        }
+
+        public static TraductorPartidoReducido CrearTraductorPartidoReducido()
+        {
+            return new TraductorPartidoReducido();
         }
     }
 }

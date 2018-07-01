@@ -14,7 +14,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
         private Partido _entidadRespuesta;
         private Comando _comando;
 
-        public ComandoObtenerPartido(Partido entidad)
+        public ComandoObtenerPartido(Entidad entidad)
         {
             Entidad = entidad;
         }
