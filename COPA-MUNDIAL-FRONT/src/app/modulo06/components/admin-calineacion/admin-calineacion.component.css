@@ -1,3 +1,15 @@
+.col-jugador {
+    padding: 0;
+}
+.title-formacion {
+    text-align: center;
+}
+.label-pasos {
+    font-size: 16px;
+}
+.estatus-container {
+    text-align: center;
+ }
 
 
 .container-fluid{
@@ -36,7 +48,7 @@
    background-color:  rgba(197, 197, 197, 0);
    background-image: url("/../../../assets/images/field2.jpg");
    background-repeat: no-repeat;
-   background-size: auto;
+   background-size: cover;
    height: 72%;
    background-position-x: center;
    border-radius: 5px 5px 5px 5px;
@@ -76,7 +88,7 @@ label{
         font-size: 14px;
     }
 
-    .btn-agregar{
+    a.btn-agregar{
         background: #02588E;
         text-align: center;
         margin: auto;
@@ -89,8 +101,9 @@ label{
         background-color: #0080FF;
     }
 
-    .btn-agregar:hover{
+    a.btn-agregar:hover{
         background-color: #0080FF;
+        color: white;
     }
 
     .img-thumbnail{
@@ -108,9 +121,9 @@ label{
  }
 
  .img-team{
-
-   margin: 0px 20px;
-   width: 10;
+   margin: 0;
+   padding-right: 5%;
+   width: auto;
    height: 20px;
  }
 
@@ -121,8 +134,8 @@ label{
  }
 
  .img-lineup:hover{
-    width: 65;
-    height: 75px;
+    /* width: 65;
+    height: 75px; */
 
  }
         .match-lineup .row{
@@ -186,11 +199,10 @@ label{
         }
 
         #row-equipo img{
-
-            margin: 0px 20px;
-            width: 20;
+            margin: 0;
+            padding-right: 5%;
+            width: auto;
             height: 30px;
-
         }
 
 
@@ -244,7 +256,7 @@ label{
    background-color:  rgba(197, 197, 197, 0);
    background-image: url("/../../../assets/images/field2.jpg");
    background-repeat: no-repeat;
-   background-size: auto;
+   background-size: cover;
    height: 72%;
    background-position-x: center;
    border-radius: 5px 5px 5px 5px;
@@ -284,7 +296,7 @@ label{
         font-size: 14px;
     }
 
-    .btn-agregar{
+    a.btn-agregar{
         background: #02588E;
         text-align: center;
         margin: auto;
@@ -297,8 +309,9 @@ label{
         background-color: #0080FF;
     }
 
-    .btn-agregar:hover{
+    a.btn-agregar:hover{
         background-color: #0080FF;
+        color: white;
     }
 
     .img-thumbnail{
@@ -316,10 +329,10 @@ label{
  }
 
  .img-team{
-
-   margin: 0px 20px;
-   width: 10;
-   height: 20px;
+    margin: 0;
+    padding-right: 5%;
+    width: auto;
+    height: 20px;
  }
 
  .img-lineup{
@@ -329,8 +342,8 @@ label{
  }
 
  .img-lineup:hover{
-    width: 65;
-    height: 75px;
+    /* width: 65;
+    height: 75px; */
 
  }
         .match-lineup .row{
@@ -394,11 +407,10 @@ label{
         }
 
         #row-equipo img{
-
-            margin: 0px 20px;
-            width: 20;
+            margin: 0;
+            padding-right: 5%;
+            width: auto;
             height: 30px;
-
         }
 
 

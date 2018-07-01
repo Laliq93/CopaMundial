@@ -3,6 +3,7 @@ using CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Ciudades;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Logros;
 using CopaMundialAPI.Logica_de_Negocio.Comando;
+using CopaMundialAPI.Logica_de_Negocio.Comando.Jugadores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -407,5 +408,10 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
         {
             return new ComandoFinalizarApuestas();
         }
+        public static ComandoObtenerJugadorId CrearComandoObtenerJugadorId(Entidad jugador)
+        {
+            return new ComandoObtenerJugadorId(jugador);
+        }
+
     }
 }
