@@ -135,6 +135,11 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
             return new TraductorUsuarioId();
         }
 
+        public static TraductorUsuarioRegistrar CrearTraductorUsuarioRegistrar()
+        {
+            return new TraductorUsuarioRegistrar();
+        }
+
         public static TraductorModificarJugador CrearTraductorModificarJugador()
         {
             return new TraductorModificarJugador();

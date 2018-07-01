@@ -192,6 +192,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             try
             {
                 Usuario usuario = entidad as Usuario;
+
                 Conectar();
 
                 StoredProcedure("crearusuarioadministrador(@nombreU, @nombre, @apellido, @fechaNacimiento, @correo, @genero, @clave)");
@@ -211,6 +212,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 Desconectar();
                 throw new BaseDeDatosException(exc, "Error insertando usuario como administrador");
             }
+
         }
 
         /// <summary>
@@ -299,6 +301,44 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         public List<Entidad> ObtenerTodos()
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Ingresa un nuevo usuario administrador en la base de datos.
+        /// </summary>
+        /// <param name="entidad">Usuario</param>
+        public void AgregarNuevo(Entidad entidad)
+        {
+            try
+            {
+                Usuario usuario = entidad as Usuario;
+
+                Conectar();
+
+                StoredProcedure("agregarusuario(@nombreusuario, @nombre, @apellido , @fechanacimiento, @correo, @genero, @password)");
+
+                AgregarParametro("nombreusuario", usuario.NombreUsuario);
+                AgregarParametro("nombre", usuario.Nombre);
+                AgregarParametro("apellido", usuario.Apellido);
+                AgregarParametro("fechanacimiento", usuario.FechaNacimiento );
+                AgregarParametro("correo", usuario.Correo);
+                AgregarParametro("genero", usuario.Genero.ToString().ToUpper());
+                AgregarParametro("password", usuario.Password);
+
+                System.Diagnostics.Debug.WriteLine(usuario.NombreUsuario + " " + usuario.FechaNacimiento);
+
+                EjecutarReader();
+            }
+            catch (NpgsqlException exc)
+            {
+                System.Diagnostics.Debug.WriteLine("exception:"+exc.ToString());
+                throw new BaseDeDatosException(exc, "Error al agregar el usuario");
+            }
+            finally
+            {
+                Desconectar();
+            }
+
         }
     }
 }
