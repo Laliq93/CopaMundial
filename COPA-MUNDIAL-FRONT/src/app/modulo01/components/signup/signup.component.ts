@@ -5,6 +5,7 @@ import { NotLoggedInGuard } from '../../../guards/not-logged-in.guard';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Usuario } from '../../models/usuario';
+import { DTOUsuarioRegistrar } from '../../models/dtousuario-registrar';
 
 
 const httpOptions = {
@@ -22,15 +23,15 @@ const httpOptions = {
 @Injectable()
 export class SignupComponent implements OnInit {
 
-  usuario: Usuario;
+  usuario: DTOUsuarioRegistrar;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-  readonly rootUrl =  'http://localhost:54059/api';
+  readonly rootUrl =  'http://localhost:51543/api';
 
   private emailResponse;
-  private truefalse:boolean = false;
+  private truefalse: boolean = false;
 
   constructor(private router: Router, private http: HttpClient) {
-    this.usuario = new Usuario();
+    this.usuario = new DTOUsuarioRegistrar();
   }
 
   ngOnInit() {
@@ -38,16 +39,16 @@ export class SignupComponent implements OnInit {
   }
 
   registerUser(userRegistrationForm){
-    const url = `${this.rootUrl}/M1_RegistroLoginRecuperar/RegistrarUsuario`;
+    const url = `${this.rootUrl}/Login/RegistrarUsuario`;
     const httpHeaders = new HttpHeaders().set('Accept', 'application/json');
 
 
     const {NombreUsuario, Nombre, Apellido, FechaNacimiento, Correo, Genero, Password} = userRegistrationForm.controls;
-    
+
 
     console.log(userRegistrationForm.controls, Nombre.value, Apellido.value);
-    
-    
+
+
     const user = {
       nombreUsuario   : NombreUsuario.value,
       nombre          : Nombre.value,
@@ -55,11 +56,11 @@ export class SignupComponent implements OnInit {
       fechaNacimiento : FechaNacimiento.value,
       correo          : Correo.value,
       genero          : Genero.value,
-      password        : Password.value  
+      password        : Password.value
     };
 
       this.http
-      .post<Usuario>(url, user, httpOptions)
+      .post<DTOUsuarioRegistrar>(url, user, httpOptions)
       .subscribe(
         success => {
           console.log(success)
@@ -69,9 +70,9 @@ export class SignupComponent implements OnInit {
         },
         error => alert("usuario o email en uso")
       );
-    
+
   }
-  
+
  /* resetForm(form?: NgForm) {
     if (form != null)
       form.reset();
@@ -85,5 +86,5 @@ export class SignupComponent implements OnInit {
 			password: ''
     }
   }*/
-  
+
 }
