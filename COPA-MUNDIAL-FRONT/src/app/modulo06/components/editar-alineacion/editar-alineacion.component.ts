@@ -57,7 +57,7 @@ export class EditarAlineacionComponent implements AfterViewInit {
     this.partidoService.crearAlineacion(this.alineacion).subscribe(data => this.ActualizarFuentes());
   }
 
-  regresar() {
+  goBack() {
     this._location.back(); // <-- regresar a la pagina previa al presionar cancelar
   }
 

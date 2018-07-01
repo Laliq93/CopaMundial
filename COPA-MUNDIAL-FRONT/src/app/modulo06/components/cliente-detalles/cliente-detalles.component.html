@@ -23,29 +23,7 @@
         </div>
     </div>
 </div>
-
-<hr>
-<br>
-
-<div class="card col-sm-6 offset-sm-3">
-  <div class="card-body">
-    <h3>Formación de los equipos</h3>
-  </div>
-</div>
-
-<br>
-
-<div *ngIf="partido" class="container">
-    <h3><strong>{{ partido.Equipo1.Pais | titlecase }}</strong></h3>
-    <app-ver-alineacion></app-ver-alineacion>
-
-    <br><hr><br>
-
-    <h3><strong>{{ partido.Equipo2.Pais | titlecase }}</strong></h3>
-    <app-ver-alineacion></app-ver-alineacion>
-</div>
-
-<br><hr><br>
+<hr><br>
 
 <div class="card col-sm-6 offset-sm-3">
   <div class="card-body">
@@ -106,7 +84,7 @@
 </div>
 
 <br>
-<ul class="nav nav-justified nav-tabs col-sm-4 offset-sm-4 back" id="justifiedTab" role="tablist" (click)="goBack()">
+<ul class="nav nav-justified nav-tabs col-sm-6 mx-auto back" id="justifiedTab" role="tablist" (click)="goBack()">
     <li class="nav-item">
         <a aria-controls="groups" aria-selected="false" class="nav-link"  data-toggle="tab" id="groups-tab" role="tab" (click)="faseGrupos()">Regresar</a>
     </li>

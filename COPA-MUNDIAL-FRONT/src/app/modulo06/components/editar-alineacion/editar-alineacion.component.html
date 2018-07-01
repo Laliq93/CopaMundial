@@ -40,7 +40,7 @@
           <label class="custom-control-label" for="esTitular">Titular</label>
         </div>
         <div class="offset-md-5 custom-control custom-control-inline">
-          <button type="submit" (click)="EnviarAlineacion()" class="btn btn-primary">Enviar</button>
+          <button type="submit" (click)="EnviarAlineacion()" class="btn btn-primary enviar">Enviar</button>
         </div>
       </div>
     </form>
@@ -77,7 +77,7 @@
             <td>No</td>
           </ng-container>
           
-          <td><a class="material-icons" (click)="EliminarAlineacion(jugador.Id)">
+          <td><a class="material-icons pointer" (click)="EliminarAlineacion(jugador.Id)">
             delete
           </a></td>
         </tr>
@@ -85,3 +85,9 @@
     </table>
   </div>
 </div>
+
+<ul class="nav nav-justified nav-tabs col-sm-4 offset-sm-4 back" id="justifiedTab" role="tablist" (click)="goBack()">
+  <li class="nav-item">
+    <a aria-controls="groups" aria-selected="false" class="nav-link" data-toggle="tab" id="groups-tab" role="tab" (click)="faseGrupos()">Regresar</a>
+  </li>
+</ul>

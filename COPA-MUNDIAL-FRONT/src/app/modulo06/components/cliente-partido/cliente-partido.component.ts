@@ -33,6 +33,10 @@ export class ClientePartidoComponent implements AfterViewInit {
     }
   }
 
+  public IrAdministracion() {
+    this.router.navigate(['partidos', 'admin']);
+  }
+
   // muestra vista de detalle de equipos
   details(Id): void {
     this.router.navigate(['partidos', 'detallePartido', Id ]);
