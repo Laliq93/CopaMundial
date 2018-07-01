@@ -77,7 +77,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (ObjetoNullException exc)
             {
                 log.Error(exc, exc.Mensaje);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {

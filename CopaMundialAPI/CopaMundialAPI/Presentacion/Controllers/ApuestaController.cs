@@ -89,7 +89,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -101,7 +101,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
@@ -139,13 +139,13 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaRepetidaException exc)
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -239,7 +239,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -251,7 +251,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
@@ -293,7 +293,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -340,7 +340,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -387,7 +387,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -434,7 +434,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -477,13 +477,13 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch(ApuestaInvalidaException exc)
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -526,7 +526,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -538,7 +538,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
@@ -575,7 +575,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -587,7 +587,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
@@ -624,13 +624,13 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaInvalidaException exc)
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -674,13 +674,13 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaInvalidaException exc)
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -722,7 +722,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (ObjetoNullException exc)
             {
                 log.Error(exc, exc.Mensaje);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -733,7 +733,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (ApuestaInvalidaException exc)
             {
                 log.Error(exc, exc.Mensaje);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
@@ -769,7 +769,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (ObjetoNullException exc)
             {
                 log.Error(exc, exc.Mensaje);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -780,7 +780,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (ApuestaInvalidaException exc)
             {
                 log.Error(exc, exc.Mensaje);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
@@ -816,7 +816,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (ObjetoNullException exc)
             {
                 log.Error(exc, exc.Mensaje);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -827,7 +827,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (ApuestaInvalidaException exc)
             {
                 log.Error(exc, exc.Mensaje);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (Exception exc)
             {
@@ -868,7 +868,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (ObjetoNullException exc)
             {
                 log.Error(exc, exc.Mensaje);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -914,7 +914,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (ObjetoNullException exc)
             {
                 log.Error(exc, exc.Mensaje);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -960,7 +960,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (ObjetoNullException exc)
             {
                 log.Error(exc, exc.Mensaje);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
@@ -1006,7 +1006,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             catch (ObjetoNullException exc)
             {
                 log.Error(exc, exc.Mensaje);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
