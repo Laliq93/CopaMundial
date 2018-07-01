@@ -1,13 +1,12 @@
-﻿using CopaMundialAPI.Comun.Entidades;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Ciudades;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Logros;
 using CopaMundialAPI.Logica_de_Negocio.Comando;
-using CopaMundialAPI.Logica_de_Negocio.Comando.Jugadores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Jugadores;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Usuarios;
 
