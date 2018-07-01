@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Fuente_de_Datos.DAO;
+using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 
@@ -21,7 +22,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 
         public override void Ejecutar()
         {
-            DAOApuestaCantidad dao = FabricaDAO.CrearDAOApuestaCantidad();
+            IDAOApuesta dao = FabricaDAO.CrearDAOApuestaCantidad();
 
             _apuestas = dao.ObtenerApuestasFinalizadas(Entidad);
             
