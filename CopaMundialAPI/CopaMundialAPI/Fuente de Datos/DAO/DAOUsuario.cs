@@ -5,6 +5,8 @@ using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
 using CopaMundialAPI.Comun.Entidades.Fabrica;
+using CopaMundialAPI.Comun.Excepciones;
+using Npgsql;
 
 namespace CopaMundialAPI.Fuente_de_Datos.DAO
 {
@@ -17,7 +19,37 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         public void Agregar(Entidad entidad)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Usuario usuario = entidad as Usuario;
+
+                Conectar();
+
+                StoredProcedure("agregarusuario(@nombreusuario, @nombre, @apellido , @fechanacimiento, @correo, @genero, @password)");
+
+                AgregarParametro("nombreusuario", usuario.NombreUsuario);
+                AgregarParametro("nombre", usuario.Nombre);
+                AgregarParametro("apellido", usuario.Apellido);
+                AgregarParametro("fechanacimiento", usuario.FechaNacimiento );
+                AgregarParametro("correo", usuario.Correo);
+                AgregarParametro("genero", usuario.Genero.ToString().ToUpper());
+                AgregarParametro("password", usuario.Password);
+
+                System.Diagnostics.Debug.WriteLine(usuario.NombreUsuario + " " + usuario.FechaNacimiento);
+
+                EjecutarReader();
+            }
+            catch (NpgsqlException exc)
+            {
+                System.Diagnostics.Debug.WriteLine("exception:"+exc.ToString());
+                throw new BaseDeDatosException(exc, "Error al agregar el usuario");
+            }
+            finally
+            {
+                Desconectar();
+            }
+
+
         }
          
         public void Eliminar(Entidad entidad)

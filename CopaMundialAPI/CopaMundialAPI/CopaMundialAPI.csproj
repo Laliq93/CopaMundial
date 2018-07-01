@@ -214,6 +214,8 @@
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerListaPartidos.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerPartido.cs" />
     <Compile Include="Logica de Negocio\Comando\Partidos\ComandoPosponerPartido.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoAgregarUsuario.cs" />
+    <Compile Include="Presentacion\Controllers\LoginController.cs" />
     <Compile Include="Presentacion\Controllers\JugadorController.cs" />
     <Compile Include="Presentacion\Controllers\CiudadController.cs" />
     <Compile Include="Presentacion\Controllers\ApuestaController.cs" />
@@ -286,6 +288,7 @@
     <Compile Include="Servicios\DTO\Partidos\DTOPartidoActualizar.cs" />
     <Compile Include="Servicios\DTO\Partidos\DTOPartidoNuevo.cs" />
     <Compile Include="Servicios\DTO\Partidos\DTOPartidoReducido.cs" />
+    <Compile Include="Servicios\DTO\Usuario\DTOUsuarioRegistrar.cs" />
     <Compile Include="Servicios\DTO\Usuario\DTOUsuarioId.cs" />
     <Compile Include="Servicios\Fabrica\FabricaDTO.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaCantidad.cs" />
@@ -310,6 +313,7 @@
     <Compile Include="Servicios\Traductores\Logros\TraductorMostrarLogrosPartido.cs" />
     <Compile Include="Servicios\Traductores\Apuestas\TraductorListarProximosPartidos.cs" />
     <Compile Include="Servicios\Traductores\TraductorGenerico.cs" />
+    <Compile Include="Servicios\Traductores\Usuarios\TraductorUsuarioRegistrar.cs" />
     <Compile Include="Servicios\Traductores\Usuarios\TraductorUsuarioId.cs" />
   </ItemGroup>
   <ItemGroup>

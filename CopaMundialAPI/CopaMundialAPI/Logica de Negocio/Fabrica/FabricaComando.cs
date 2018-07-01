@@ -308,5 +308,10 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
         {
             return new ComandoFinalizarApuestas();
         }
+
+        public static ComandoAgregarUsuario CrearComandoAgregarUsuario(Entidad usuario)
+        {
+            return new ComandoAgregarUsuario(usuario);
+        }
     }
 }

@@ -6,6 +6,7 @@ using CopaMundialAPI.Servicios.DTO.Apuestas;
 using CopaMundialAPI.Servicios.DTO.Ciudades;
 using CopaMundialAPI.Servicios.DTO.Jugadores;
 using CopaMundialAPI.Servicios.DTO.Logros;
+using CopaMundialAPI.Servicios.DTO.Usuario;
 
 namespace CopaMundialAPI.Servicios.Fabrica
 {
@@ -146,6 +147,11 @@ namespace CopaMundialAPI.Servicios.Fabrica
         public static DTOListaPartidosLogros CrearDTOListaPartidosLogros()
         {
             return new DTOListaPartidosLogros();
+        }
+
+        public static DTOUsuarioRegistrar CrearDTOUsuarioRegistrar()
+        {
+            return new DTOUsuarioRegistrar();
         }
     }
 }
