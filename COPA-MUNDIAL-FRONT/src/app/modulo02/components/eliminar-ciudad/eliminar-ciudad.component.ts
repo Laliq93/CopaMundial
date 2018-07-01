@@ -61,6 +61,7 @@ export class EliminarCiudadComponent implements OnInit {
           console.log(error)
       }
     )
+    alert("Sus datos fueron procesados satisfactoriamente")
   }
 
   selectChange($event){
