@@ -16,7 +16,7 @@ namespace CopaMundialAPI.Servicios.DTO.Partidos
 
         private DTOObtenerJugadores _jugador;
         private DTOEquipo _equipo;
-        private DTOPartido _partido;
+        private DTOPartidoSoloId _partido;
 
         public int Id { get => _id; set => _id = value; }
         public bool EsCapitan { get => _esCapitan; set => _esCapitan = value; }
@@ -25,6 +25,6 @@ namespace CopaMundialAPI.Servicios.DTO.Partidos
 
         public DTOObtenerJugadores Jugador { get => _jugador; set => _jugador = value; }
         public DTOEquipo Equipo { get => _equipo; set => _equipo = value; }
-        public DTOPartido Partido { get => _partido; set => _partido = value; }
+        public DTOPartidoSoloId Partido { get => _partido; set => _partido = value; }
     }
 }

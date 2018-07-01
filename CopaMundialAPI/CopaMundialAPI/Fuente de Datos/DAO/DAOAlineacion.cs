@@ -107,17 +107,11 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         public List<Entidad> ConsultarPorPartido(Entidad entidad)
         {
-            if (!(entidad is Partido partido))
-            {
-                logger.Error("Casteo invalido de la entidad " + entidad.ToString() + " a Partido");
-                throw new CasteoInvalidoException("La entidad no es del tipo partido");
-            }
-
             try
             {
                 Conectar();
                 StoredProcedure("ConsultarAlineacionPorPartido(@_idPartido)");
-                AgregarParametro("_idPartido", partido.Id);
+                AgregarParametro("_idPartido", entidad.Id);
                 EjecutarReader();
             }
             catch (NullReferenceException e)
@@ -299,7 +293,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             Alineacion alineacion = FabricaEntidades.CrearAlineacion(GetInt(i, 0), GetBool(i, 1), GetString(i, 2),
                                                                      GetBool(i, 3), jugador, equipo, partido);
 
-            return partido;
+            return alineacion;
         }
 
     }

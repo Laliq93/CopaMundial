@@ -9,33 +9,28 @@
 </ul>
 <div class="tab-content" id="justifiedTabContent">
   <div aria-labelledby="groups-tab" class="tab-pane fade show active" ng-show="tab === 1" id="groups"  role="tabpanel" >
-    <div class="container" *ngFor="let match of listmatches">
-        <div class="d-block">{{match.dia}}</div>
-        <br>
      <div class="matches-container">
-      <ng-container *ngFor="let inf of match.info">
-        <button (click)="details(inf.equipo1, inf.equipo2)">
+      <ng-container *ngFor="let match of listMatches">
+        <button (click)="details(match.Id)">
             <div class="row" >
               <div class="col-sm-4">
-                  <p>
-                      {{inf.fecha}}
-                      <br>
-                      {{inf.estadio}}
-                      <br>
-                      {{inf.ciudad}}
+                  <p class="lateral-text">
+                    {{match.FechaInicioPartido | date:'fullDate':'es'}}
+                    <br>
+                    {{match.Estadio.Nombre | titlecase}}
                   </p>
                 </div>
                 <div class="col-sm-2">
-                  <h4>{{inf.equipo1}}</h4>
+                  <h4>{{match.Equipo1.Nombre | titlecase}}</h4>
                 </div>
                 <div class="col-sm-4">
-                    <h4><img src="{{inf.bandera1}}" alt="{{inf.equipo1}}" class="img-thumbnail">
-                    <label class="match-time">{{inf.hora}}</label>
-                    <img src="{{inf.bandera2}}" alt="{{inf.equipo2}" class="img-thumbnail">
+                    <h4><img src="{{match.bandera1}}" alt="{{match.Equipo1.Nombre}}" class="img-thumbnail">
+                    <label class="match-time">{{match.FechaInicioPartido | date:'shortTime'}}</label>
+                    <img src="{{match.bandera2}}" alt="{{match.Equipo2.Nombre}}" class="img-thumbnail">
                     </h4>
                   </div>
                 <div class="col-sm-2">
-                  <h4> {{inf.equipo2}} </h4>
+                  <h4> {{match.Equipo2.Nombre | titlecase}} </h4>
                 </div>
 
             </div>
@@ -43,9 +38,7 @@
           </button>
 
     </ng-container>
-    <br>
   </div>
-    </div>
 
   </div>
 

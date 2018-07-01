@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Partido } from '../../models/partido';
+import { PartidoService } from '../../services/partido.service';
 
 @Component({
   selector: 'app-cliente-detalles',
   templateUrl: './cliente-detalles.component.html',
   styleUrls: ['./cliente-detalles.component.css']
 })
-export class ClienteDetallesComponent implements OnInit {
+export class ClienteDetallesComponent implements AfterViewInit {
 
-  public equipo1;
-  public equipo2;
+  public Id: number;
+  public partido: Partido;
 
   public listaJugadores1 = [
     {
@@ -222,14 +224,26 @@ export class ClienteDetallesComponent implements OnInit {
   ];
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private location: Location) {
-    this.route.params.subscribe( params => this.equipo1 = params['equipo1'] );
-    this.route.params.subscribe( params => this.equipo2 = params['equipo2'] );
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
+    private partidoService: PartidoService) {
+    this.route.params.subscribe(params => this.Id = params['idPartido'] );
   }
 
 
-  ngOnInit() {
-    console.log('los eqipos son ' + this.equipo1 + ' y ' + this.equipo2);
+  ngAfterViewInit() {
+    console.log(this.Id);
+    this.partidoService.obtenerPartidoPorId(this.Id).subscribe(data => {
+      this.partido = data;
+      this.orderForView();
+    });
+  }
+
+  private orderForView() {
+    console.log(this.partido);
+    this.partido.bandera1 = '../../../assets/banderas/' + this.partido.Equipo1.Pais + '.png';
+    this.partido.bandera2 = '../../../assets/banderas/' + this.partido.Equipo2.Pais + '.png';
   }
 
   public goBack() {

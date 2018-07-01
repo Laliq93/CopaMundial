@@ -34,6 +34,8 @@ namespace CopaMundialAPI.Servicios.Traductores.Partidos
             TraductorObtenerJugadores traductorJugadores = FabricaTraductor.CrearTraductorObtenerJugadores();
             dto.Jugador = traductorJugadores.CrearDto(alineacion.Jugador);
 
+            dto.Partido = FabricaDTO.CrearDTOPartidoSoloId();
+
             dto.Partido.Id = alineacion.Partido.Id;
             dto.EsCapitan = alineacion.EsCapitan;
             dto.EsTitular = alineacion.EsTitular;

@@ -1,13 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PartidoService } from '../../services/partido.service';
+
+import { Jugador } from '../../models/jugador';
+import { Partido } from '../../models/partido';
 
 @Component({
   selector: 'app-editar-alineacion',
   templateUrl: './editar-alineacion.component.html',
   styleUrls: ['./editar-alineacion.component.css']
 })
-export class EditarAlineacionComponent implements OnInit {
+export class EditarAlineacionComponent implements AfterViewInit {
 
   public listaJugadores = [
     {
@@ -114,17 +118,32 @@ export class EditarAlineacionComponent implements OnInit {
     }
   ];
 
-  public equipo1: string;
-  public equipo2: string;
+  public jugadores: Array<Jugador>;
+  public posiciones: Array<String>;
+  public partido: Partido;
+  public Id: number;
 
-  constructor(private _location: Location, private router: Router, private route: ActivatedRoute) { }
+  constructor(private _location: Location,
+    private router: Router,
+    private route: ActivatedRoute,
+    private partidoService: PartidoService) {
+    this.route.params.subscribe(params => this.Id = params['idPartido'] );
+    }
 
-  ngOnInit() {
-    this.equipo1 = null;
-    this.equipo2 = null;
+  ngAfterViewInit() {
+    this.partidoService.obtenerJugadores().subscribe(data => {
+      this.jugadores = data;
+    });
 
-    this.route.params.subscribe( params => this.equipo1 = params['equipo1'] );
-    this.route.params.subscribe( params => this.equipo2 = params['equipo2'] );
+    this.partidoService.obtenerPartidoPorId(this.Id).subscribe(data => {
+      this.partido = data;
+    });
+
+    this.posiciones = this.partidoService.obtenerPosiciones();
+  }
+
+  public EliminarAlineacion(Id: number): void{
+    console.log(Id);
   }
 
   public agregar( jugador ) {
