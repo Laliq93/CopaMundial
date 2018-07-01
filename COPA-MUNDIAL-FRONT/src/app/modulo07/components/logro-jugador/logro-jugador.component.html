@@ -8,10 +8,10 @@
     <a aria-controls="Create" aria-selected="true" class="nav-link"  data-toggle="tab" id="create-tab" role="tab" (click)="LlamarLogroCantidad()">Cantidad</a>
   </li>
   <li class="nav-item">
-    <a aria-controls="Create" aria-selected="true" class="nav-link active"  data-toggle="tab" id="create-tab" role="tab" (click)="LlamarLogroEquipo()">Equipos</a>
+    <a aria-controls="Create" aria-selected="true" class="nav-link "  data-toggle="tab" id="create-tab" role="tab" (click)="LlamarLogroEquipo()">Equipos</a>
   </li>
   <li class="nav-item">
-      <a aria-controls="Create" aria-selected="true" class="nav-link"  data-toggle="tab" id="create-tab" role="tab" (click)="LlamarLogroJugador()">Jugador</a>
+      <a aria-controls="Create" aria-selected="true" class="nav-link active"  data-toggle="tab" id="create-tab" role="tab" (click)="LlamarLogroEquipo()" >Jugador</a>
     </li>
     <li class="nav-item">
         <a aria-controls="Create" aria-selected="true" class="nav-link" data-toggle="tab" id="create-tab" role="tab" (click)="LlamarLogroVF()">Verdadero o Falso</a>
@@ -21,11 +21,12 @@
 <div class="management">
     <div class="match-container">
         <div class="match-info">
+            <!--{{partido.estadio}}, {{partido.ciudad}} Estadio, Ciudad {{partido.fecha}} Hora: {{partido.hora}}-->
         </div>
         <div class="match-result"> FECHA DEL PARTIDO </div>
         <div class="row" id="match-header">
           <div class="col-sm-4">
-            <h4>
+            <h4> <!--<img src="{{partido.bandera1}}" alt="{{Partido.equipo1}}" class="img-thumbnail">-->
                {{this.partido.Equipo1}} </h4>
             </div>
             <div class="col-sm-4">
@@ -35,6 +36,7 @@
             </div>
             <div class="col-sm-4">
                 <h4>{{this.partido.Equipo2}}
+                    <!--<img src="{{partido.bandera2}}" alt="{{partido.equipo2}}" class="img-thumbnail">-->
                 </h4>
               </div>
 
@@ -42,9 +44,9 @@
           <hr>
     </div>
     <form>
-      <h4>Crear Logro de un Equipo</h4>
+      <h4>Crear Logro de un Jugador</h4>
         <div class="row">
-          <div class="col-6">
+          <div class="col-5">
               <label for="exampleFormControlFile1">Indicar el nombre del logro</label>
                 <input type="text" class="form-control" id="newLogro" #newLogro="ngModel" name="newLogro" [(ngModel)]="_newLogro" placeholder="">
             </div>
@@ -65,6 +67,18 @@
                 </select>
             </div>
           </ng-container>
+          <ng-container *ngIf="resultadoLogroEActive"> <!---->
+            <div class="col-3">
+               <label for="exampleFormControlFile1">Jugador</label>
+               <select id="inputJugador" class="form-control">
+                 <option selected>Elegir...</option>
+                 <ng-container>
+                     <option>jugador1</option>
+                     <option>jugador2</option>
+                 </ng-container>
+               </select>
+           </div>
+         </ng-container>
           <div class="col-1">
               <button type="button" title="Registrar resultado logro" class="btn btn-secondary btnCrearLogro" *ngIf="resultadoLogroEActive || modificarLogroEActive">
                 <i class="material-icons">check</i>
@@ -76,17 +90,17 @@
               </button>
           </div>
         </div>
-        <div class="row" *ngIf="listaDTOLogroEquipo.length != 0">
-              <h4>Lista de Logros Pendientes por Equipo</h4>
+        <div class="row" *ngIf="listaDTOLogroJugador.length != 0">
+              <h4>Lista de Logros Pendientes por Jugador</h4>
        </div>
        <div class="logrosContainer">
-        <ng-container *ngFor="let logrosEquipo of listaDTOLogroEquipo">
+        <ng-container *ngFor="let logrosJugador of listaDTOLogroJugador">
               <div class="row" >
                 <div class="col-sm-8">
                     <p>
                         <br>
                         <br>
-                        {{logrosEquipo.Logro}}
+                        {{logrosJugador.Logro}}
                     </p>
                   </div>
                   <div class="col-md-1">
@@ -102,26 +116,26 @@
               </div>
         </ng-container>
       </div>
-           <div class="row" *ngIf="listaDTOLogroEquipo.length != 0">
-               <h4>Lista de Logros Culminados por Equipo</h4>
+           <div class="row" *ngIf="listaDTOLogroJugador.length != 0">
+               <h4>Lista de Logros de Jugadores Cuminados</h4>
           </div>
           <div class="logrosContainer">
-            <ng-container *ngFor="let logrosEquipoResult of listaDTOLogroEquipoResultado">
+            <ng-container *ngFor="let logrosJugadorResult of listaDTOLogroJugadorResultado">
                   <div class="row" >
                     <div class="col-sm-6">
                         <p>
                             <br>
                             <br>
-                            {{logrosEquipoResult.LogroEquipo}}
+                            {{logrosJugadorResult.LogroJugador}}
                         </p>
                       </div>
                       <div class="col-sm-4">
                             <br>
                             <br>
-                            {{logrosEquipoResult.NombreEquipo}}
+                            {{logrosJugadorResult.NombreJugador}}
                       </div>
                       <div class="col-md-1">
-                          <button type="button" title="Modificar logro" class="btn btn-secondary btnModificarLogro" (click)="setModificarLogroEActive(logrosEquipo)" [ngClass]="{'active': modificarLogroEActive }" >
+                          <button type="button" title="Modificar logro" class="btn btn-secondary btnModificarLogro" (click)="setModificarLogroEActive(logrosJugadorResult)" [ngClass]="{'active': modificarLogroEActive }" >
                             <i class="material-icons">build</i>
                           </button>
                       </div>

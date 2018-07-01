@@ -4,31 +4,30 @@ import { ActivatedRoute } from '@angular/router';
 import { LoggedInGuard } from '../../../guards/logged-in.guard';
 import { NotLoggedInGuard } from '../../../guards/not-logged-in.guard';
 import { HttpClient} from '@angular/common/http';
-//import { HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import { FormControl, FormBuilder, Validators, NgForm, FormsModule } from '@angular/forms';
 import { LogrosService } from '../../services/logros.service';
-import { DTOLogroEquipo } from '../../models/DTOLogroEquipo';
+import { DTOLogroVF } from '../../models/DTOLogroVF';
 import { DTOLogroPartidoId } from '../../models/DTOLogroPartidoId';
 import { DTOMostrarLogrosPartido } from '../../models/DTOMostrarLogrosPartido';
 import { catchError, map, tap } from 'rxjs/operators';
 import {  DTOListaPartidosLogros } from '../../models/DTOListaPartidosLogros';
-import { DTOLogroEquipoResultado } from '../../models/DTOLogroEquipoResultado';
+import { DTOLogroVFResultado } from '../../models/DTOLogroVFResultado';
 
 @Component({
-  selector: 'app-logro-equipo',
-  templateUrl: './logro-equipo.component.html',
-  styleUrls: ['./logro-equipo.component.css'],
+  selector: 'app-logro-vf',
+  templateUrl: './logro-vf.component.html',
+  styleUrls: ['./logro-vf.component.css'],
   providers: [LogrosService]
 })
 
-export class LogroEquipoComponent implements OnInit {
+export class LogroVFComponent implements OnInit {
   
   
-    public listaDTOLogroEquipo: DTOMostrarLogrosPartido[] = [];//Contiene una lista de todos los logros del partido
-    public listaDTOLogroEquipoResultado : DTOLogroEquipoResultado[] = [];
+    public listaDTOLogroVF: DTOMostrarLogrosPartido[] = [];//Contiene una lista de todos los logros del partido
+    public listaDTOLogroVFResultado : DTOLogroVFResultado[] = [];
     public partido:  DTOListaPartidosLogros = null;
     public dtoPartidoId: DTOLogroPartidoId;
-    public dtoLogroEquipo : DTOLogroEquipo;
+    public dtoLogroVF: DTOLogroVF;
     public _newLogro;
     public idPartido : number;
   
@@ -40,7 +39,7 @@ export class LogroEquipoComponent implements OnInit {
     constructor(private _logrosService: LogrosService, public router: ActivatedRoute, private http: HttpClient, public router2: Router)
     {
         this._logrosService = new LogrosService(http);
-        this.dtoLogroEquipo = new DTOLogroEquipo();
+        this.dtoLogroVF = new DTOLogroVF();
         this.idPartido = parseInt(
              this.router.snapshot.paramMap.get('idPartido')
            );
@@ -49,8 +48,8 @@ export class LogroEquipoComponent implements OnInit {
   
     ngOnInit(): void {
       this.partido = this._logrosService.ObtenerPartidoDTO(this.idPartido);
-      this.obtenerLogrosEquipoDTO(this.idPartido);
-      this.obtenerLogrosEquipoResultadosDTO(this.idPartido);
+      this.obtenerLogrosVFDTO(this.idPartido);
+      this.obtenerLogrosVFResultadosDTO(this.idPartido);
   
     }
   
@@ -99,11 +98,11 @@ export class LogroEquipoComponent implements OnInit {
   
     
   
-    public obtenerLogrosEquipoDTO(idPartido: number)
+    public obtenerLogrosVFDTO(idPartido: number)
      {
             this.dtoPartidoId = new DTOLogroPartidoId();
             this.dtoPartidoId.idPartido = idPartido;
-             const url = this.apiURL+ 'obtenerLogrosEquipoPendiente';
+             const url = this.apiURL+ 'obtenerLogrosVFPendiente';
              this.http.put<DTOMostrarLogrosPartido[]>(url, this.dtoPartidoId, {
                  responseType: 'json'
                })
@@ -111,12 +110,12 @@ export class LogroEquipoComponent implements OnInit {
                  data => {
                    for (let i = 0; i < Object.keys(data).length; i++)
                     {
-                       let logroEquipo: DTOMostrarLogrosPartido;
-                       logroEquipo = new DTOMostrarLogrosPartido();
+                       let logroVF: DTOMostrarLogrosPartido;
+                       logroVF = new DTOMostrarLogrosPartido();
   
-                       logroEquipo.IdLogro = data[i].IdLogro;
-                       logroEquipo.Logro = data[i].Logro;
-                       this.listaDTOLogroEquipo[i] = logroEquipo;
+                       logroVF.IdLogro = data[i].IdLogro;
+                       logroVF.Logro = data[i].Logro;
+                       this.listaDTOLogroVF[i] = logroVF;
                        console.log(data[i]);
                     }
                  },
@@ -128,27 +127,26 @@ export class LogroEquipoComponent implements OnInit {
      }
 
 
-    public obtenerLogrosEquipoResultadosDTO(idPartido: number)
+    public obtenerLogrosVFResultadosDTO(idPartido: number)
     {
            this.dtoPartidoId = new DTOLogroPartidoId();
            this.dtoPartidoId.idPartido = idPartido;
-            const url = this.apiURL+ 'obtenerLogrosEquipoResultados';
-            this.http.put<DTOLogroEquipoResultado[]>(url, this.dtoPartidoId, {
+            const url = this.apiURL+ 'obtenerLogrosVFResultados';
+            this.http.put<DTOLogroVFResultado[]>(url, this.dtoPartidoId, {
                 responseType: 'json'
               })
               .subscribe(
                 data => {
                   for (let i = 0; i < Object.keys(data).length; i++)
                    {
-                      let logroEquipo: DTOLogroEquipoResultado;
-                      logroEquipo = new DTOLogroEquipoResultado();
+                      let logroVF: DTOLogroVFResultado;
+                      logroVF = new DTOLogroVFResultado();
  
-                      logroEquipo.IdLogroEquipo = data[i].IdLogroEquipo;
-                      logroEquipo.LogroEquipo = data[i].LogroEquipo;
-                      logroEquipo.Equipo = data[i].Equipo;
-                      logroEquipo.NombreEquipo = data[i].NombreEquipo;
-                      logroEquipo.TipoLogro = data[i].TipoLogro;
-                      this.listaDTOLogroEquipoResultado[i] = logroEquipo;
+                      logroVF.IdLogroVF = data[i].IdLogroVF;
+                      logroVF.LogroVF = data[i].LogroVF;
+                      logroVF.Respuesta = data[i].Respuesta;
+                      logroVF.TipoLogro = data[i].TipoLogro;
+                      this.listaDTOLogroVFResultado[i] = logroVF;
                       console.log(data[i]);
                    }
                 },
@@ -164,12 +162,12 @@ export class LogroEquipoComponent implements OnInit {
       {
         if (this._newLogro != null)
         {
-         // alert(this._newLogro);
-          this.dtoLogroEquipo.IdPartido = this.idPartido;
-          this.dtoLogroEquipo.LogroEquipo = this._newLogro;
-          this.dtoLogroEquipo.TipoLogro = 3;
-          this._logrosService.AgregarLogroEquipo(this.dtoLogroEquipo);
-          this.obtenerLogrosEquipoDTO(this.idPartido);
+          alert(this._newLogro);
+          this.dtoLogroVF.IdPartido = this.idPartido;
+          this.dtoLogroVF.LogroVF = this._newLogro;
+          this.dtoLogroVF.TipoLogro = 3;
+          this._logrosService.AgregarLogroVF(this.dtoLogroVF);
+          this.obtenerLogrosVFDTO(this.idPartido);
         }
         else
           alert("Debe ingresar un nombre de logro correcto");
