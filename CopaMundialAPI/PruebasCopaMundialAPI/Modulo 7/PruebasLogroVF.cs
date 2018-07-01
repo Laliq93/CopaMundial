@@ -388,7 +388,7 @@ namespace PruebasCopaMundialAPI.Modulo_7
             LogroVoF logro = FabricaEntidades.CrearLogroVoF();
             DTOLogroVFResultado dtoLogro = FabricaDTO.CrearDTOLogroVFResultado();
 
-            dtoLogro.IdPartido = 1;
+         
             dtoLogro.LogroVF = "Prueba de dto a entidad";
             dtoLogro.TipoLogro = (int)TipoLogro.vof;
             dtoLogro.Respuesta = true;
