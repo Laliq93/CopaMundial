@@ -1,107 +1,56 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Estadio } from '../../models/estadio';
+import { Equipo } from '../../models/equipo';
+import { Partido } from '../../models/partido';
+import { PartidoService } from '../../services/partido.service';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements AfterViewInit {
 
-  public listaEstadios = [
-    {
-      nombre: 'Rostov Arena',
-      ciudad: 'Rostov'
-    },
-    {
-      nombre: 'Spartak Stadium',
-      ciudad: 'Moscú'
-    },
-    {
-      nombre: 'Luzhniki Stadium',
-      ciudad: 'Moscú'
-    },
-    {
-      nombre: 'Nizhny Novgorod Stadium',
-      ciudad: 'Nizhny Novgorod'
-    },
-    {
-      nombre: 'Samara Arena',
-      ciudad: 'Samara'
-    },
-    {
-      nombre: 'Kazan Arena',
-      ciudad: 'Kazán'
-    },
-    {
-      nombre: 'Saint Petersburg Stadium',
-      ciudad: 'San Petersburgo'
-    },
-    {
-      nombre: 'Mordovia Arena',
-      ciudad: 'Saransk'
-    },
-    {
-      nombre: 'Ekaterinburg Arena',
-      ciudad: 'Ekaterinburgo'
-    },
-    {
-      nombre: 'Kaliningrad Stadium',
-      ciudad: 'Kaliningrado'
-    },
-    {
-      nombre: 'Volgogrado Arena',
-      ciudad: 'Volgogrado'
-    },
-    {
-      nombre: 'Fisht Stadium',
-      ciudad: 'Sochi'
+  @Input() public idPartido: number = null;
+  public listaEstadios: Array<Estadio>;
+  public listaEquipos: Array<Equipo>;
+  public partido: Partido  = new Partido();
+
+  public Id: number;
+
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+    private partidoService: PartidoService) {}
+
+  ngAfterViewInit() {
+    this.partidoService.obtenerEquipos().subscribe(data => this.listaEquipos = data);
+    this.partidoService.obtenerEstadios().subscribe(data => this.listaEstadios = data);
+
+    console.log(this.idPartido);
+    if (this.idPartido != null) {
+      this.partidoService.obtenerPartidoPorId(this.idPartido).subscribe(data => {
+        this.partido = data;
+        this.partido.Equipo1 = (this.partido.Equipo1 as Equipo).Id;
+        this.partido.Equipo2 = (this.partido.Equipo2 as Equipo).Id;
+        this.partido.Estadio = (this.partido.Estadio as Estadio).Id;
+      });
     }
-  ];
-  public listaEquipos = [
-    {
-      nombre: 'España',
-      iso: 'esp'
-    },
-    {
-      nombre: 'Portugal',
-      iso: 'por'
-    },
-    {
-      nombre: 'Egipto',
-      iso: 'egy'
-    },
-    {
-      nombre: 'Uruguay',
-      iso: 'uru'
-    },
-    {
-      nombre: 'Marruecos',
-      iso: 'mar'
-    }, 
-    {
-      nombre: 'RI de Irán',
-      iso: 'irn'
+  }
+
+  guardar(): void {
+    if (this.idPartido != null) {
+      this.partido.Id = this.idPartido;
+      this.partidoService.actualizarPartido(this.partido).subscribe(data => this.router.navigate(['partidos/listaPartidos']));
+    } else {
+      this.partidoService.crearPartido(this.partido).subscribe(data => this.router.navigate(['partidos/listaPartidos']));
     }
-  ];
-
-  public equipo1: string;
-  public equipo2: string;
-
-  constructor(private router: Router, private route: ActivatedRoute) { }
-
-  ngOnInit() {
-    this.equipo1 = null;
-    this.equipo2 = null;
-
-    this.route.params.subscribe( params => this.equipo1 = params['equipo1'] );
-    this.route.params.subscribe( params => this.equipo2 = params['equipo2'] );
   }
 
   matchList(): void {
     this.router.navigate(['partidos/listaPartidos']);
   }
- 
+
   matchLineup(): void {
     this.router.navigate(['partidos/partidos']);
   }

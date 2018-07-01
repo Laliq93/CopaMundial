@@ -7,9 +7,9 @@ export class Partido {
     FechaInicioPartido: Date;
     FechaFinPartido: Date;
     Arbitro: string;
-    Equipo1: Equipo;
-    Equipo2: Equipo;
-    Estadio: Estadio;
+    Equipo1: Equipo | number;
+    Equipo2: Equipo | number;
+    Estadio: Estadio | number;
     Alineaciones: Array<Alineacion>;
     bandera1: String;
     bandera2: String;

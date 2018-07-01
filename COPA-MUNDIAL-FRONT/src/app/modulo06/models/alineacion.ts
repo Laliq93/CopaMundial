@@ -7,7 +7,7 @@ export class Alineacion {
     EsCapitan: boolean;
     Posicion: string;
     EsTitular: boolean;
-    Jugador: Jugador;
-    Equipo: Equipo;
-    Partido: Partido;
+    Jugador: Jugador | number;
+    Equipo: Equipo | number;
+    Partido: Partido | number;
   }

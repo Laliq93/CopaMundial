@@ -6,78 +6,60 @@
       <form>
         <div class="card-body">
         
-          <div class="form-group">
+          <div *ngIf="listaEstadios" class="form-group">
             <label for="selectEstadio">Estadio</label>
-            <select class="form-control" id="exampleFormStadium">
-              <option *ngFor="let estadio of listaEstadios" [value]="estadio.nombre">
-                  {{estadio.nombre}}
+            <select class="form-control" [(ngModel)]="partido.Estadio" name="Estadio">
+              <option *ngFor="let estadio of listaEstadios" 
+                [value]="estadio.Id"
+                [attr.selected]="estadio.Id == partido.Estadio ? true : null">
+                  {{estadio.Nombre | titlecase}}
               </option>
             </select>
           </div>
       
-        <div class="form-group">
+        <div *ngIf="listaEquipos" class="form-group">
           <label for="selectEquipo1">Equipo Local</label>
-          <select class="form-control" id="exampleFormTeam1">
+          <select class="form-control" [(ngModel)]="partido.Equipo1" name="Equipo1">
             <option *ngFor="let equipo of listaEquipos"
-              [value]="equipo.nombre" 
-              [attr.selected]="equipo.nombre == equipo1 ? true : null">
-              {{equipo.nombre}}
+              [value]="equipo.Id" 
+              [attr.selected]="equipo.Id == partido.Equipo1 ? true : null">
+              {{equipo.Pais | titlecase}}
             </option>
           </select>
           <small id="teamlHelp" class="form-text text-muted">*Seleccione uno de los equipos que jugaran en el partido.</small>
         </div>
       
-          <div class="form-group">
+          <div *ngIf="listaEquipos" class="form-group">
             <label for="selectEquipo2">Equipo Visitante</label>
-            <select class="form-control" id="exampleFormTeam2">
+            <select class="form-control" [(ngModel)]="partido.Equipo2" name="Equipo2">
               <option *ngFor="let equipo of listaEquipos"
-                [value]="equipo.nombre" 
-                [attr.selected]="equipo.nombre == equipo2 ? true : null">
-                {{equipo.nombre}}
+                [value]="equipo.Id" 
+                [attr.selected]="equipo.Id == partido.Equipo2 ? true : null">
+                {{equipo.Pais | titlecase}}
               </option>
             </select>
             <small id="teamlHelp" class="form-text text-muted">*Seleccione uno de los equipos que jugaran en el partido.</small>
           </div>
       
-          <label>Fecha de inicio del partido</label>
-          <div class="row">
-            <div class="col input-group">
-              <div class="input-group-prepend">
-                <label>Fecha</label>
-              </div>
-              <input type="date" class="form-control" id="exampleFormDate">
-            </div>
-            <div class="col input-group">
-                <div class="input-group-prepend">
-                  <label>Hora</label>
-                </div>
-                <input type="time" class="form-control" id="exampleFormTime">
-            </div>
+          <div class="form-group">
+            <label>Arbitro</label>
+            <input type="text" [(ngModel)]="partido.Arbitro" class="form-control" name="Arbitro">
           </div>
           <br>
 
-          <div *ngIf="(equipo1) != null; then fechaFin"></div>
-
-          <ng-template #fechaFin>
-            <label>Fecha de fin del partido</label>
-            <div class="row">
-              <div class="col input-group">
-                <div class="input-group-prepend">
-                  <label>Fecha</label>
-                </div>
-                <input type="date" class="form-control" id="exampleFormDate">
-              </div>
-              <div class="col input-group">
-                  <div class="input-group-prepend">
-                    <label>Hora</label>
-                  </div>
-                  <input type="time" class="form-control" id="exampleFormTime">
-              </div>
-            </div>
-          </ng-template>
+          <div class="form-group">
+            <label>Fecha de inicio del partido</label>
+            <input type="datetime-local" [(ngModel)]="partido.FechaInicioPartido" class="form-control" name="FechaInicioPartido">
+          </div>
           <br>
 
-          <button type="submit" class="btn">Guardar</button>
+            <div class="form-group">
+              <label>Fecha de fin del partido</label>
+              <input type="datetime-local" [(ngModel)]="partido.FechaFinPartido" class="form-control" name="FechaFinPartido">
+            </div>
+          <br>
+
+          <button type="submit" (click)="guardar()" class="btn">Guardar</button>
         </div>
       </form>
     </div>

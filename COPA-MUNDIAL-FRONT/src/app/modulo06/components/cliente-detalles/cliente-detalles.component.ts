@@ -3,6 +3,7 @@ import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Partido } from '../../models/partido';
 import { PartidoService } from '../../services/partido.service';
+import { Equipo } from '../../models/equipo';
 
 @Component({
   selector: 'app-cliente-detalles',
@@ -242,8 +243,8 @@ export class ClienteDetallesComponent implements AfterViewInit {
 
   private orderForView() {
     console.log(this.partido);
-    this.partido.bandera1 = '../../../assets/banderas/' + this.partido.Equipo1.Pais + '.png';
-    this.partido.bandera2 = '../../../assets/banderas/' + this.partido.Equipo2.Pais + '.png';
+    this.partido.bandera1 = '../../../assets/banderas/' + (this.partido.Equipo1 as Equipo).Pais + '.png';
+    this.partido.bandera2 = '../../../assets/banderas/' + (this.partido.Equipo2 as Equipo).Pais + '.png';
   }
 
   public goBack() {

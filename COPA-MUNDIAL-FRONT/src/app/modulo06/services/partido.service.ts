@@ -141,6 +141,7 @@ export class PartidoService {
 
   private handleError(error: HttpErrorResponse) {
     console.log(error);
+    alert(error.error.Message);
     if (error.error instanceof ErrorEvent) {
       console.error('Ocurrio un error del lado del cliente:', error.error.message);
     } else {

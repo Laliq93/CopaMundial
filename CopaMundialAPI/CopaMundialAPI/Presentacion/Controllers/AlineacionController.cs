@@ -77,7 +77,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
         [Route("eliminar")]
         [System.Web.Http.AcceptVerbs("DELETE")]
         [System.Web.Http.HttpDelete]
-        public HttpResponseMessage EliminarAlineacion(DTOAlineacionSoloId dto)
+        public HttpResponseMessage EliminarAlineacion([FromUri] DTOAlineacionSoloId dto)
         {
             logger.Info("Entrando a EliminarAlineacion[]");
             try

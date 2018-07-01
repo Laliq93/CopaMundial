@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -8,11 +9,11 @@ import { Location } from '@angular/common';
 })
 export class ModificarPartidoComponent implements OnInit {
 
-  public equipo1: string = null;
-  public equipo2: string = null;
+  public Id: number;
 
-  constructor(private _location: Location) {
-
+  constructor(private _location: Location,
+    private route: ActivatedRoute) {
+    this.route.params.subscribe(params => this.Id = params['idPartido']);
   }
 
   ngOnInit() {

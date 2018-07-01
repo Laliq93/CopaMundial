@@ -1,35 +1,51 @@
 <div class="row">
-  <div class="mx-auto col-md-8" *ngIf="jugadores">
-    <div class="form-group">
-      <label for="Jugador.Id">Jugador</label>
-      <select class="form-control" name="Jugador.Id" id="Jugador.Id">
-        <option label=" " selected disable></option>
-        <ng-container *ngFor="let jugador of jugadores">
-          <option value="{{jugador.Id}}">{{jugador.Nombre}}</option>
-        </ng-container>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="Posicion">Posicion</label>
-      <select class="custom-select" id="Posicion">
-        <option label=" " selected disable></option>
-        <ng-container *ngFor="let posicion of posiciones">
-          <option value="{{posicion}}">{{posicion}}</option>
-        </ng-container>
-      </select>
-    </div>
-    <div class="form-group">
-      <div class="custom-control custom-checkbox custom-control-inline">
-        <input type="checkbox" class="custom-control-input" id="esCapitan">
-        <label class="custom-control-label" for="esCapitan">Capitan</label>
+  <div class="mx-auto col-md-8">
+    <form *ngIf="jugadores && partido">
+      <div class="form-group">
+        <label for="Jugador.Id">Jugador</label>
+        <select class="form-control" [(ngModel)]="alineacion.Jugador" name="Jugador" id="Jugador">
+          <option label=" " selected disable></option>
+          <ng-container *ngFor="let jugador of jugadores">
+            <option value="{{jugador.Id}}">{{jugador.Nombre | titlecase}}</option>
+          </ng-container>
+        </select>
       </div>
-      <div class="custom-control custom-checkbox custom-control-inline">
-        <input type="checkbox" class="custom-control-input" id="esTitular">
-        <label class="custom-control-label" for="esTitular">Titular</label>
+      <div class="form-group row">
+        <div class="col">
+          <label for="Posicion">Posicion</label>
+          <select [(ngModel)]="alineacion.Posicion" class="custom-select" name="Posicion" id="Posicion">
+            <option label=" " selected disable></option>
+            <ng-container *ngFor="let posicion of posiciones">
+              <option value="{{posicion}}">{{posicion | titlecase}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div class="col">
+          <label for="Posicion">Equipo</label>
+          <select [(ngModel)]="alineacion.Equipo" class="custom-select" name="Equipo" id="Equipo">
+            <option label=" " selected disable></option>
+            <option value="{{partido.Equipo1.Id}}">{{partido.Equipo1.Pais | titlecase}}</option>
+            <option value="{{partido.Equipo2.Id}}">{{partido.Equipo2.Pais | titlecase}}</option>
+          </select>
+        </div>
       </div>
-    </div>
+      
+      <div class="form-group">
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <input type="checkbox" [(ngModel)]="alineacion.EsCapitan" value=0 class="custom-control-input" name="esCapitan" id="esCapitan">
+          <label class="custom-control-label" for="esCapitan">Capitan</label>
+        </div>
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <input type="checkbox" [(ngModel)]="alineacion.EsTitular" value=0 class="custom-control-input" name="esTitular" id="esTitular">
+          <label class="custom-control-label" for="esTitular">Titular</label>
+        </div>
+        <div class="offset-md-5 custom-control custom-control-inline">
+          <button type="submit" (click)="EnviarAlineacion()" class="btn btn-primary">Enviar</button>
+        </div>
+      </div>
+    </form>
   </div>
-
+    
   <div class="col-md-12">
     <table *ngIf="partido" class="table">
       <thead>
@@ -47,17 +63,17 @@
           <th scope="row">{{jugador.Jugador.Numero}}</th>
           <td>{{jugador.Jugador.Nombre}}</td>
           <td>{{jugador.Jugador.Posicion | titlecase}}</td>
-          <ng-container *ngIf="jugador.Jugador.EsTitular">
+          <ng-container *ngIf="jugador.EsTitular">
             <td>Si</td>
           </ng-container>
-          <ng-container *ngIf="!jugador.Jugador.EsTitular">
+          <ng-container *ngIf="!jugador.EsTitular">
             <td>No</td>
           </ng-container>
 
-          <ng-container *ngIf="jugador.Jugador.EsCapitan">
+          <ng-container *ngIf="jugador.EsCapitan">
             <td>Si</td>
           </ng-container>
-          <ng-container *ngIf="!jugador.Jugador.EsCapitan">
+          <ng-container *ngIf="!jugador.EsCapitan">
             <td>No</td>
           </ng-container>
           
