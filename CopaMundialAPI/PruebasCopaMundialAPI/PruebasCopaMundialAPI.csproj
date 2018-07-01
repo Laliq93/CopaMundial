@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Modulo 2\PUCiudad.cs" />
+    <Compile Include="Modulo 5\PUTraductoresJugador.cs" />
     <Compile Include="Modulo 7\PruebasLogroCantidad.cs" />
     <Compile Include="Modulo 5\PUJugador.cs" />
     <Compile Include="Modulo 7\PruebasLogroEquipo.cs" />
