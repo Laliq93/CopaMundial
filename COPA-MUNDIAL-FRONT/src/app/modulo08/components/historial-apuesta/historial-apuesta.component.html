@@ -23,16 +23,28 @@
 
       <ul class="nav nav-tabs profile-tab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#vf" role="tab">V o F</a>
+          <a class="nav-link active" data-toggle="tab" href="#vf" role="tab">
+            <i class="material-icons">
+              repeat_one
+            </i>V o F</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#aciertos" role="tab">Cantidad</a>
+          <a class="nav-link" data-toggle="tab" href="#aciertos" role="tab">
+            <i class="material-icons">
+              library_add
+            </i>Cantidad</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#jugadores" role="tab">Jugadores</a>
+          <a class="nav-link" data-toggle="tab" href="#jugadores" role="tab">
+            <i class="material-icons">
+              directions_run
+            </i>Jugadores</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#equipos" role="tab">Equipos</a>
+          <a class="nav-link" data-toggle="tab" href="#equipos" role="tab">
+            <i class="material-icons">
+              group_add
+            </i>Equipos</a>
         </li>
       </ul>
 
@@ -44,18 +56,18 @@
             <table datatable [dtOptions]="dtOptionsHistorialVof" [dtTrigger]="dtTriggerHistorialVof" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Logro</th>
-                  <th>Apuesta</th>
-                  <th>Resultado</th>
-                  <th>Fecha</th>
+                  <th class="center">ID</th>
+                  <th class="center">Logro</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Resultado</th>
+                  <th class="center">Fecha</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let historialApuestaVof of ListHistorialApuestavof; let i = index">
+                <tr class="center" *ngFor="let historialApuestaVof of ListHistorialApuestavof; let i = index">
                   <td>{{historialApuestaVof.IdLogro}}</td>
                   <td>{{historialApuestaVof.Logro}}</td>
-                  <td>{{historialApuestaVof.ApuestaUsuario}}</td>
+                  <td>{{ObtenerVoF(historialApuestaVof.ApuestaUsuario)}}</td>
                   <td>{{historialApuestaVof.Estado}}</td>
                   <td>{{historialApuestaVof.Fecha}}</td>
                 </tr>
@@ -71,15 +83,15 @@
             <table datatable [dtOptions]="dtOptionsHistorialCantidad" [dtTrigger]="dtTriggerHistorialCantidad" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Logro</th>
-                  <th>Apuesta</th>
-                  <th>Estado</th>
-                  <th>Fecha</th>
+                  <th class="center">ID</th>
+                  <th class="center">Logro</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Estado</th>
+                  <th class="center">Fecha</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let historialApuestaCantidad of ListHistorialApuestacantidad; let i = index">
+                <tr class="center" *ngFor="let historialApuestaCantidad of ListHistorialApuestacantidad; let i = index">
                   <td>{{historialApuestaCantidad.IdLogro}}</td>
                   <td>{{historialApuestaCantidad.Logro}}</td>
                   <td>{{historialApuestaCantidad.ApuestaUsuario}}</td>
@@ -98,15 +110,15 @@
             <table datatable [dtOptions]="dtOptionsHistorialJugadores" [dtTrigger]="dtTriggerHistorialJugadores" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Apuesta</th>
-                  <th>Logro</th>
-                  <th>Estado</th>
-                  <th>Fecha</th>
+                  <th class="center">ID</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Logro</th>
+                  <th class="center">Estado</th>
+                  <th class="center">Fecha</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let historialApuestaJugador of ListHistorialApuestajugadores">
+                <tr class="center" *ngFor="let historialApuestaJugador of ListHistorialApuestajugadores">
                   <td>{{historialApuestaJugador.IdLogro}}</td>
                   <td>{{historialApuestaJugador.NombreJugador}} {{historialApuestaJugador.ApellidoJugador}}</td>
                   <td>{{historialApuestaJugador.Logro}}</td>
@@ -126,15 +138,15 @@
             <table datatable [dtOptions]="dtOptionsHistorialEquipos" [dtTrigger]="dtTriggerHistorialEquipos" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Logro</th>
-                  <th>Apuesta</th>>
-                  <th>Estado</th>
-                  <th>Fecha</th>
+                  <th class="center">ID</th>
+                  <th class="center">Logro</th>
+                  <th class="center">Apuesta</th>>
+                  <th class="center">Estado</th>
+                  <th class="center">Fecha</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let historialApuestaEquipo of ListHistorialApuestaequipos; let i = index">
+                <tr class="center" *ngFor="let historialApuestaEquipo of ListHistorialApuestaequipos; let i = index">
                   <td>{{historialApuestaEquipo.IdLogro}}</td>
                   <td>{{historialApuestaEquipo.Logro}}</td>
                   <td>{{historialApuestaEquipo.NombreEquipo}}</td>

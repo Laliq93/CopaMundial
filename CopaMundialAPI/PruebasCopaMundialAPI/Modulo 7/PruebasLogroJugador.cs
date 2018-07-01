@@ -246,6 +246,191 @@ namespace PruebasCopaMundialAPI.Modulo_7
 
         }
 
+
+        /// <summary>
+        /// Metodo que prueba el resultado de exito de
+        // ObtenerLogroPorId de DaoLogroJugador
+        /// </summary>
+        [Test]
+        public void PruebaDaoObtenerLogroPorId()
+        {
+            LogroJugador logro = FabricaEntidades.CrearLogroJugador();
+            logro.Id = 5;//asegurar que este id sea de tipo jugador
+            respuesta = ((DAOLogroJugador)dao).ObtenerLogroPorId(logro);
+            Assert.IsNotNull(respuesta);
+
+        }
+
+        /// <summary>
+        /// Metodo que prueba el resultado exitoso 
+        /// de AsignarResultadoLogro de DaoLogroJugador
+        /// </summary>
+        [Test]
+        public void PruebaDaoAsignarResultadoLogro()
+        {
+            LogroJugador logro = FabricaEntidades.CrearLogroJugador();
+            Jugador jugador = FabricaEntidades.CrearJugador();
+            logro.Jugador = jugador;
+            logro.Id = 41;
+            logro.Jugador.Id= 1;
+            ((DAOLogroJugador)dao).AsignarResultadoLogro(logro);
+
+            respuesta = ((DAOLogroJugador)dao).ObtenerLogroPorId(logro);
+
+            Assert.AreEqual(1, ((LogroJugador)respuesta).Jugador.Id);
+        }
+
+
+        /// <summary>
+        /// Metodo que prueba el resultado de exito del comando
+        /// AsignarResultadoLogroJugador
+        /// </summary>
+        [Test]
+        public void PruebaCmdAsignarResultadoLogroJugador()
+        {
+
+            LogroJugador logro = FabricaEntidades.CrearLogroJugador();
+            Jugador jugador = FabricaEntidades.CrearJugador();
+            logro.Jugador = jugador;
+            logro.Id = 42;//cambiar
+            logro.Jugador.Id = 1;
+
+            comando = FabricaComando.CrearComandoAsignarResultadoLogroJugador(logro);
+            comando.Ejecutar();
+
+            respuesta = comando.GetEntidad();
+            Assert.IsNotNull(respuesta);
+
+        }
+
+
+        /// <summary>
+        /// Metodo que prueba el resultado de exito del
+        /// ObtenerLogrosJugadorResultados del dao
+        /// DaoLogroJugador
+        /// </summary>
+        [Test]
+        public void PruebaDaoObtenerLogrosJugadorResultados()
+        {
+
+            Partido partido = FabricaEntidades.CrearPartido();
+            partido.Id = 14; //cambiar por 1
+           
+            _respuestas = ((DAOLogroJugador)dao).ObtenerLogrosResultados(partido);
+            Assert.IsNotNull(_respuestas);
+        }
+
+        /// <summary>
+        /// Metodo que prueba la excepcion LogroFinalizadosNoExisteException
+        /// del metodo ObtenerLogrosJugadorResultados de DaoLogroJugador
+        /// </summary>
+        [Test]
+        public void PruebaDaoObtenerLogrosJugadorResultadosExc()
+        {
+
+            Partido partido = FabricaEntidades.CrearPartido();
+            partido.Id = 11; //cambiar numero 
+            Assert.Throws<LogrosFinalizadosNoExisteException>(() => ((DAOLogroJugador)dao).ObtenerLogrosResultados(partido));
+        }
+
+
+        /// <summary>
+        /// Metodo que prueba el resultado de exito del 
+        /// comando ObtenerLogrosJugadorResultado
+        /// </summary>
+        [Test]
+        public void PruebaComandoObtenerLogrosJugadorResultado()
+        {
+            Partido partido = FabricaEntidades.CrearPartido();
+
+            partido.Id = 14; //cambiar a 1
+
+            comando = FabricaComando.CrearComandoObtenerLogrosJugadorResultados(partido);
+            comando.Ejecutar();
+            _respuestas = comando.GetEntidades();
+            Assert.AreNotEqual(0, _respuestas.Count);
+
+        }
+
+
+
+        [Test]
+        public void PruebaTraductorLogroJugadorResultadoDto()
+        {
+            TraductorLogroJugadorResultado traductor = FabricaTraductor.CrearTraductorLogroJugadorResultado();
+            LogroJugador logro = FabricaEntidades.CrearLogroJugador();
+            DTOLogroJugadorResultado dtoLogro = FabricaDTO.CrearDTOLogroJugadorResultado();
+
+            Jugador jugador = FabricaEntidades.CrearJugador();
+            logro.Jugador = jugador;
+        
+            logro.Id= 1;
+            logro.IdTipo = TipoLogro.jugador;
+            logro.Logro = "Logro Prueba Traductor";
+            logro.Jugador.Id = 1;
+
+            dtoLogro = traductor.CrearDto(logro);
+
+            Assert.AreEqual(1, dtoLogro.Jugador);
+
+        }
+
+        /// <summary>
+        /// Metodo que prueba la traduccion de un dtoLogroJugador
+        /// a una entidad logroJugador
+        /// </summary>
+        [Test]
+        public void PruebaTraductorLogroJugadorResultadoEntidad()
+        {
+            TraductorLogroJugadorResultado traductor = FabricaTraductor.CrearTraductorLogroJugadorResultado();
+            LogroJugador logro = FabricaEntidades.CrearLogroJugador();
+            DTOLogroJugadorResultado dtoLogro = FabricaDTO.CrearDTOLogroJugadorResultado();
+
+           
+            dtoLogro.LogroJugador = "Prueba de dto a entidad";
+            dtoLogro.TipoLogro = (int)TipoLogro.cantidad;
+            dtoLogro.Jugador = 6;
+
+            logro = (LogroJugador)traductor.CrearEntidad(dtoLogro);
+
+            Assert.AreEqual(6, logro.Jugador.Id);
+
+        }
+
+
+        /// <summary>
+        /// Metodo que prueba la respuesta exitosa del
+        /// metodo ObtenerLogrosJugadorResultado del 
+        /// LogroController
+        /// </summary>
+        [Test]
+        public void PruebaControllerObtenerLogrosJugadorResultado()
+        {
+            DTOLogroPartidoId dtoLogroPartidoId = FabricaDTO.CrearDTOLogroPartidoId();
+            dtoLogroPartidoId.IdPartido = 14;//Cambiar
+
+            Assert.AreEqual(HttpStatusCode.OK, controller.ObtenerLogrosJugadorResultados(dtoLogroPartidoId).StatusCode);
+
+        }
+
+
+        /// <summary>
+        /// Metodo que prueba la excepcion Logros
+        /// pendientes not found exception del metodo 
+        /// ObtenerLogrosJugadorResultados de
+        /// LogrosController
+        /// </summary>
+        [Test]
+        public void PruebaControllerObtenerLogrosJugadorResultadosExc()
+        {
+            DTOLogroPartidoId dtoLogroPartidoId = FabricaDTO.CrearDTOLogroPartidoId();
+            dtoLogroPartidoId.IdPartido = 16;//Cambiar
+            Assert.AreEqual(HttpStatusCode.InternalServerError, controller.ObtenerLogrosJugadorResultados(dtoLogroPartidoId).StatusCode);
+
+        }
+
+
+
         [TearDown]
         public void TearDown()
         {

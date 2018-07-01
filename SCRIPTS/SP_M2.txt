@@ -3,7 +3,7 @@ RETURNS void AS
 $$
 BEGIN
 
-   insert into ciudad values (nextval('ciudad_ci_id_seq'::regclass),_nombre,_poblacion,_descripcion,_nombreingles, _descripcioningles);
+   insert into ciudad values (nextval('ciudad_ci_id_seq'::regclass),_nombre,_poblacion,_descripcion,_nombreingles, _descripcioningles,true);
 END;
 $$ LANGUAGE plpgsql;
 
@@ -23,13 +23,13 @@ $$ LANGUAGE plpgsql;
 /* funcion actualizar ciudad*/
 
 
-create or replace function updateciudad(_id integer,_nombre varchar, _poblacion integer, _descripcion varchar, _nombreingles varchar, _descripcioningles varchar)
+create or replace function updateciudad(_id integer,_nombre varchar, _poblacion integer, _descripcion varchar, _nombreingles varchar, _descripcioningles varchar,_habilitado boolean)
 RETURNS void
 AS
 $$
 BEGIN
 	
-	update ciudad set ci_nombre = _nombre, ci_poblacion = _poblacion, ci_descripcion = _descripcion, ci_nombreingles = _nombreingles,
+	update ciudad set ci_nombre = _nombre, ci_poblacion = _poblacion, ci_descripcion = _descripcion, ci_nombreingles = _nombreingles, ci_habilitado = _habilitado,
 	ci_descripcioningles = _descripcioningles
 	where ci_id = _id;
 	
@@ -44,13 +44,14 @@ RETURNS table(
 	ci_descripcion varchar,
 	ci_poblacion integer,
 	ci_nombreingles varchar,
-	ci_descripcioningles varchar
+	ci_descripcioningles varchar,
+	ci_habilitado boolean
 )
 AS
 $$
 BEGIN
 
-	return query select ciudad.ci_id, ciudad.ci_nombre, ciudad.ci_descripcion, ciudad.ci_poblacion, ciudad.ci_nombreingles,ciudad.ci_descripcioningles from ciudad
+	return query select ciudad.ci_id, ciudad.ci_nombre, ciudad.ci_descripcion, ciudad.ci_poblacion, ciudad.ci_nombreingles,ciudad.ci_descripcioningles,ciudad.ci_habilitado from ciudad
 	where ciudad.ci_id = _id; 
 	
 	
@@ -66,13 +67,14 @@ RETURNS table(
 	ci_descripcion varchar,
 	ci_poblacion integer,
 	ci_nombreingles varchar,
-	ci_descripcioningles varchar
+	ci_descripcioningles varchar,
+	ci_habilitado boolean
 )
 AS
 $$
 BEGIN
 
-	return query select ciudad.ci_id, ciudad.ci_nombre, ciudad.ci_descripcion, ciudad.ci_poblacion, ciudad.ci_nombreingles,ciudad.ci_descripcioningles from ciudad; 
+	return query select ciudad.ci_id, ciudad.ci_nombre, ciudad.ci_descripcion, ciudad.ci_poblacion, ciudad.ci_nombreingles,ciudad.ci_descripcioningles,ciudad.ci_habilitado from ciudad; 
 	
 	
 	
@@ -86,13 +88,14 @@ RETURNS table(
 	ci_descripcion varchar,
 	ci_poblacion integer,
 	ci_nombreingles varchar,
-	ci_descripcioningles varchar
+	ci_descripcioningles varchar,
+	ci_habilitado boolean
 )
 AS
 $$
 BEGIN
 
-	return query select ciudad.ci_id, ciudad.ci_nombre, ciudad.ci_descripcion, ciudad.ci_poblacion, ciudad.ci_nombreingles,ciudad.ci_descripcioningles from ciudad
+	return query select ciudad.ci_id, ciudad.ci_nombre, ciudad.ci_descripcion, ciudad.ci_poblacion, ciudad.ci_nombreingles,ciudad.ci_descripcioningles,ciudad.ci_habilitado from ciudad
 	where LOWER(_nombre) = LOWER(ciudad.ci_nombre);
 	
 	
@@ -107,14 +110,38 @@ RETURNS table(
 	ci_descripcion varchar,
 	ci_poblacion integer,
 	ci_nombreingles varchar,
-	ci_descripcioningles varchar
+	ci_descripcioningles varchar,
+	ci_habilitado boolean
 )
 AS
 $$
 BEGIN
 
-	return query select ciudad.ci_id, ciudad.ci_nombre, ciudad.ci_descripcion, ciudad.ci_poblacion, ciudad.ci_nombreingles,ciudad.ci_descripcioningles from ciudad
+	return query select ciudad.ci_id, ciudad.ci_nombre, ciudad.ci_descripcion, ciudad.ci_poblacion, ciudad.ci_nombreingles,ciudad.ci_descripcioningles,ciudad.ci_habilitado from ciudad
 	where LOWER(_nombre) = LOWER(ciudad.ci_nombreingles);
+	
+	
+	
+END;
+$$ LANGUAGE plpgsql;
+
+
+create or replace function getallciudadtrue()
+RETURNS table(
+	ci_id integer,
+	ci_nombre varchar,
+	ci_descripcion varchar,
+	ci_poblacion integer,
+	ci_nombreingles varchar,
+	ci_descripcioningles varchar,
+	ci_habilitado boolean
+)
+AS
+$$
+BEGIN
+
+	return query select ciudad.ci_id, ciudad.ci_nombre, ciudad.ci_descripcion, ciudad.ci_poblacion, ciudad.ci_nombreingles,ciudad.ci_descripcioningles,ciudad.ci_habilitado from ciudad
+	where ciudad.ci_habilitado = true	; 
 	
 	
 	

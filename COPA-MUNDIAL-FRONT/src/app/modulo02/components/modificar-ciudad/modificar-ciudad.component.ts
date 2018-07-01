@@ -18,6 +18,8 @@ export class ModificarCiudadComponent implements OnInit {
   nombre : string;
   descripcion:string;
   habitantes:number;
+  habilit =-1;
+  inputHabilitado:Boolean;
   
   ciudadess: any = [
     {id:"1",nombre: 'Moscú',habitantes: 50, descripcion: 'hola', nomIngles:"Moscow",descIngles:"hello"},
@@ -25,9 +27,17 @@ export class ModificarCiudadComponent implements OnInit {
     {id:"3",nombre: 'Kaliningrado', habitantes: 5, descripcion: 'estas', nomIngles:"Kaliningrad",descIngles:"are you"},
     {id:"4",nombre: 'Nizhny Nóvgorod', habitantes: 2, descripcion: 'bien', nomIngles:"Nizhny Novgorod",descIngles:"good"},
     {id:"5",nombre: 'Volgogrado',habitantes: 1000, descripcion: 'chevere', nomIngles:"Volgograd",descIngles:"thanks"}
+]
+
+
+habilitados: any = [
+  "Habilitado","Deshabilitado"
+
 ]  
   
-  constructor( private _location: Location, private route:Router, private ciudadservice: CiudadService){}
+  constructor( private _location: Location, private route:Router, private ciudadservice: CiudadService){
+    this.habilit = -1;
+  }
 
   ngOnInit() {
 
@@ -43,6 +53,7 @@ export class ModificarCiudadComponent implements OnInit {
             ciudad.Habitantes = element.Habitantes;
             ciudad.NombreIngles = element.NombreIngles;
             ciudad.DescripcionIngles = element.DescripcionIngles;
+            ciudad.Habilitado = element.Habilitado;
             this.ciudades.push(ciudad);
           });
           this.route.navigate(['ciudades/modificarCiudad']);
@@ -52,6 +63,7 @@ export class ModificarCiudadComponent implements OnInit {
         console.log(<any>error)
      }
     )
+    console.log("habilitado "+ this.habilit)
   }
 
   selectChange($event){
@@ -60,11 +72,26 @@ export class ModificarCiudadComponent implements OnInit {
     this.ciudadselected = this.ciudades[this.id];
     console.log("ciudad elegida "+this.ciudades[this.id])
     console.log("city = "+this.ciudadselected+this.id)
+    if (this.ciudadselected.Habilitado == true) {
+      this.habilit =0
+      
+    }else{
+      this.habilit=1
+    }
+    console.log("habilitado "+ this.habilit)
   }
+
+
+  selectChangeHabilitado($event){
+    console.log("habilitado "+ this.habilit)
+    this.habilit = $event
+  }
+
 
   modificar(){
     let city = new Ciudad;
     city.Id = this.ciudadselected.Id;
+    console.log("habilitado "+ this.habilit)
     if (this.nombre == null || typeof this.nombre == "undefined") {
       city.Nombre = this.ciudadselected.Nombre;
     }
@@ -85,10 +112,17 @@ export class ModificarCiudadComponent implements OnInit {
       else{
         city.Habitantes = this.habitantes;
       }
-   
+   if (this.habilit == 0) {
+     city.Habilitado = true;
+    }
+    if (this.habilit ==1){
+      city.Habilitado = false;
+    }
     city.NombreIngles = "";
     city.DescripcionIngles = "";
+
     console.log(city);
+    if(city.Nombre!=""){
     this.ciudadservice.ActualizarCiudad(city).subscribe(
       result => {
         console.log(result)
@@ -97,12 +131,25 @@ export class ModificarCiudadComponent implements OnInit {
         console.log(error)
       }
     )
+    alert("Sus datos fueron procesados satisfactoriamente")
+  }
+  else{
+    $("#idnombre").append("<span style='color: red'>Campo obligatorio</span>")
+    }
   }
 
   
 
   mostrarInformacion(): void{
+    if (this.ciudadselected.Habilitado == true) {
+      this.habilit =0
+      
+    }else{
+      this.habilit=1
+    }
+    console.log("habilitado "+ this.habilit)
     this.route.navigate(['ciudades/modificarCiudad']);
+    
   /*  $('#Nombre').text('').append(this.ciudades[this.id].Nombre);
     $('#Habitantes').text('').append(this.ciudades[this.id].Habitantes.toString);
     $('#Descripcion').text('').append(this.ciudades[this.id].Descripcion);

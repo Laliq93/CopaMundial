@@ -1,0 +1,14 @@
+.nav, .nav-justified, .nav-tabs
+{
+    background-color: #A11D1B;
+    color: #fff;
+}
+.nav-item {
+    padding: 0;
+}
+.nav-tabs a{
+    color: #fff;
+}
+.regresar:hover {
+    cursor: pointer;
+}

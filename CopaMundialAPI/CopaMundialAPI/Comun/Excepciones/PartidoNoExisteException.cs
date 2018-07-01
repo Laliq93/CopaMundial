@@ -5,7 +5,10 @@ using System.Web;
 
 namespace CopaMundialAPI.Comun.Excepciones
 {
-    public class PartidoNoExisteException: Exception
+    public class PartidoNoExisteException : ExcepcionPersonalizada
     {
+        public PartidoNoExisteException(string mensaje) : base(mensaje)
+        {
+        }
     }
 }

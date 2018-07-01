@@ -24,16 +24,28 @@
 
       <ul class="nav nav-tabs profile-tab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#vf" role="tab">V o F</a>
+          <a class="nav-link active" data-toggle="tab" href="#vf" role="tab">
+            <i class="material-icons">
+              repeat_one
+            </i>V o F</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#aciertos" role="tab">Cantidad</a>
+          <a class="nav-link" data-toggle="tab" href="#aciertos" role="tab">
+            <i class="material-icons">
+              library_add
+            </i>Cantidad</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#jugadores" role="tab">Jugadores</a>
+          <a class="nav-link" data-toggle="tab" href="#jugadores" role="tab">
+            <i class="material-icons">
+              directions_run
+            </i>Jugadores</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#equipos" role="tab">Equipos</a>
+          <a class="nav-link" data-toggle="tab" href="#equipos" role="tab">
+            <i class="material-icons">
+              group_add
+            </i>Equipos</a>
         </li>
       </ul>
 
@@ -45,14 +57,14 @@
             <table datatable [dtOptions]="dtOptionsVof" [dtTrigger]="dtTriggerVof" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Apuesta</th>
-                  <th>Opción</th>
-                  <th>Acción</th>
+                  <th class="center">ID</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Opción</th>
+                  <th class="center">Acción</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MostrarLogros of ListMostrarlogrovof; let i = index">
+                <tr class="center" *ngFor="let MostrarLogros of ListMostrarlogrovof; let i = index">
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
                   <td>
@@ -77,14 +89,14 @@
             <table datatable [dtOptions]="dtOptionsCantidad" [dtTrigger]="dtTriggerCantidad" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Apuesta</th>
-                  <th>Opción</th>
-                  <th>Acción</th>
+                  <th class="center">ID</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Opción</th>
+                  <th class="center">Acción</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MostrarLogros of ListMostrarlogrocantidad; let i = index">
+                <tr class="center" *ngFor="let MostrarLogros of ListMostrarlogrocantidad; let i = index">
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
 
@@ -101,7 +113,9 @@
                     </div>
                   </td>
                   <td>
-                    <button type="button" (click)="ApostarCantidad(MostrarLogros.IdLogro, opcionCantidad[i])" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                    <button type="button" (click)="ApostarCantidad(MostrarLogros.IdLogro, opcionCantidad[i])" class="btn btn-success-table" style="margin-right:16px;">
+                     ✓
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -116,18 +130,21 @@
             <table datatable [dtOptions]="dtOptionsJugadores" [dtTrigger]="dtTriggerJugadores" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Apuesta</th>
-                  <th>Opción</th>
+                  <th class="center">ID</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Opción</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MostrarLogros of ListMostrarlogrojugadores">
+                <tr class="center" *ngFor="let MostrarLogros of ListMostrarlogrojugadores">
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
                   <td>
-                    <button type="button" class="btn btn-success-table"  (click)="openModaljugadores(MostrarLogros.IdLogro)" style="margin-right:16px;">Ver Jugadores</button>
-                  <div class="backdrop" [ngStyle]="{'display':display}"></div>
+                    <button type="button" class="btn btn-success-table" (click)="openModaljugadores(MostrarLogros.IdLogro)" style="margin-right:16px;">
+                      <i class="material-icons">
+                        transfer_within_a_station
+                      </i>Ver Jugadores</button>
+                    <div class="backdrop" [ngStyle]="{'display':display}"></div>
                   </td>
                 </tr>
               </tbody>
@@ -143,14 +160,14 @@
             <table datatable [dtOptions]="dtOptionsEquipos" [dtTrigger]="dtTriggerEquipos" class="row-border hover">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Apuesta</th>
-                  <th>Opción</th>
-                  <th>Acción</th>
+                  <th class="center">ID</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Opción</th>
+                  <th class="center">Acción</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let MostrarLogros of ListMostrarlogroequipos; let i = index">
+                <tr class="center" *ngFor="let MostrarLogros of ListMostrarlogroequipos; let i = index">
                   <td>{{MostrarLogros.IdLogro}}</td>
                   <td>{{MostrarLogros.Logro}}</td>
                   <td>
@@ -173,7 +190,9 @@
                     </select>
                   </td>
                   <td>
-                    <button type="button" (click)="ApostarEquipo(MostrarLogros.IdLogro, opcionEquipo[i])" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                    <button type="button" (click)="ApostarEquipo(MostrarLogros.IdLogro, opcionEquipo[i])" class="btn btn-success-table" style="margin-right:16px;">
+                     ✓
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -205,19 +224,21 @@
           <table datatable [dtOptions]="dtOptionsMostrarJugadores" [dtTrigger]="dtTriggerMostrarJugadores" class="row-border hover">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Acción</th>
+                <th class="center">ID</th>
+                <th class="center">Nombre</th>
+                <th class="center">Apellido</th>
+                <th class="center">Acción</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let MostrarJugadores of ListMostrarJugadores">
+              <tr class="center" *ngFor="let MostrarJugadores of ListMostrarJugadores">
                 <td>{{MostrarJugadores.Id}}</td>
                 <td>{{MostrarJugadores.Nombre}}</td>
                 <td>{{MostrarJugadores.Apellido}}</td>
                 <td>
-                  <button type="button" class="btn btn-success-table" (click)="ApostarJugador(MostrarJugadores.Id)" style="margin-right:16px;">✓</button>
+                  <button type="button" class="btn btn-success-table" (click)="ApostarJugador(MostrarJugadores.Id)" style="margin-right:16px;">
+                   ✓
+                  </button>
                 </td>
               </tr>
             </tbody>

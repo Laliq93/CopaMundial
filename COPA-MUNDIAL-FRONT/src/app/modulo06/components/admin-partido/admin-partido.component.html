@@ -1,9 +1,6 @@
 <ul class="nav nav-justified nav-tabs" id="justifiedTab" role="tablist">
   <li class="nav-item">
-    <a aria-controls="groups" aria-selected="true" class="nav-link active"  data-toggle="tab" id="groups-tab" role="tab">Partidos</a>
-  </li>
-  <li class="nav-item">
-    <a aria-controls="Create" aria-selected="false" class="nav-link" (click)="matchCreate()" data-toggle="tab" id="create-tab" role="tab">Crear Partido</a>
+    <a aria-controls="groups" aria-selected="true" class="nav-link active"  data-toggle="tab" id="groups-tab" role="tab">Lista de partidos</a>
   </li>
 </ul>
 
@@ -13,23 +10,23 @@
         <div class="d-block">{{match.dia}}</div>
 
       <ng-container *ngFor="let inf of match.info">
-            <div class="row" >
+            <div class="row partido">
                 <div class="col-sm-2">
                   <h4>{{inf.equipo1}}</h4>
                 </div>
-                <div class="col-sm-4">
-                    <h4><img src="{{inf.bandera1}}" alt="{{inf.equipo1}}" class="img-thumbnail">
-                    <label class="match-time" *ngIf="inf.puntaje.length == 0">{{inf.hora}}</label>
-                      <label class="match-score" *ngIf="inf.puntaje.length != 0">{{inf.puntaje}}</label>
+                <div class="col-sm-3">
+                    <img src="{{inf.bandera1}}" alt="{{inf.equipo1}}" class="img-thumbnail">
+                    <label class="match-time" *ngIf="inf.hora != null">{{inf.hora}}</label>
                     <img src="{{inf.bandera2}}" alt="{{inf.equipo2}" class="img-thumbnail">
-                    </h4>
                   </div>
                 <div class="col-sm-2">
                   <h4> {{inf.equipo2}} </h4>
                 </div>
                 <div class="col-sm-2">
-                  <p></p>
-                  <button type="submit" (click)="matchUpdate()" class="btn">Modificar</button>
+                  <button type="submit" (click)="modificarPartido(inf.equipo1, inf.equipo2)" class="btn">Editar Partido</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="submit" (click)="editarAlineacion(inf.equipo1, inf.equipo2)" class="btn">Editar Alineacion</button>
                 </div>
             </div>
             <div class="dropdown-divider"></div>
@@ -39,3 +36,8 @@
   </div>
 
 </div>
+
+<button type="button" class="btn btn-secondary crear" (click)="crearPartido()"> 
+  <i class="material-icons">add</i> 
+</button>
+
