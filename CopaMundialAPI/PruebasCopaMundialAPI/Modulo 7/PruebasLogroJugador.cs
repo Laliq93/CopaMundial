@@ -163,22 +163,7 @@ namespace PruebasCopaMundialAPI.Modulo_7
             Assert.IsNotNull(_respuestas);
         }
 
-
-        /// <summary>
-        /// Metodo que prueba el resultado de la
-        /// excepcion LogrosPendientesNoExisteException
-        /// en el Dao
-        /// </summary>
-        [Test]
-        public void PruebaDaoObtenerLogrosJugadorPendientesException()
-        {
-
-            Partido partido = FabricaEntidades.CrearPartido();
-            partido.Id = 15; //cambiar numero
-
-            Assert.Throws<LogrosPendientesNoExisteException>(() => ((DAOLogroJugador)dao).ObtenerLogrosPendientes(partido));
-        }
-
+        
         /// <summary>
         /// Metodo que prueba el resultado de exito del 
         /// comando ObtenerLogrosJugadorPendientes
@@ -197,21 +182,7 @@ namespace PruebasCopaMundialAPI.Modulo_7
 
         }
 
-        /// <summary>
-        /// Metodo que prueba el resultado de la
-        /// excepcion LogrosPendientesNoExisteException en el
-        /// comando
-        /// </summary>
-        [Test]
-        public void PruebaCmdObtenerLogrosJugadorPendientesException()
-        {
-
-            Partido partido = FabricaEntidades.CrearPartido();
-            partido.Id = 15; //cambiar numero
-
-            comando = FabricaComando.CrearComandoObtenerLogrosJugadorPendientes(partido);
-            Assert.Throws<LogrosPendientesNoExisteException>(() => comando.Ejecutar());
-        }
+       
 
 
 
@@ -231,20 +202,7 @@ namespace PruebasCopaMundialAPI.Modulo_7
         }
 
 
-        /// <summary>
-        /// Metodo que prueba la excepcion Logros
-        /// pendientes not found exception del metodo 
-        /// ObtenerLogrosJugadorPendientes de
-        /// LogrosController
-        /// </summary>
-        [Test]
-        public void PruebaControllerObtenerLogrosJugadorPendienteExc()
-        {
-            DTOLogroPartidoId dtoLogroPartidoId = FabricaDTO.CrearDTOLogroPartidoId();
-            dtoLogroPartidoId.IdPartido = 16;//Cambiar
-            Assert.AreEqual(HttpStatusCode.InternalServerError, controller.ObtenerLogrosJugadorPendientes(dtoLogroPartidoId).StatusCode);
-
-        }
+       
 
 
         /// <summary>

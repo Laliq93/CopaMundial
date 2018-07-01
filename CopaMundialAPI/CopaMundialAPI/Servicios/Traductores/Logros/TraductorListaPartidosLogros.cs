@@ -21,6 +21,8 @@ namespace CopaMundialAPI.Servicios.Traductores.Logros
             dto.Equipo1 = partido.Equipo1.Pais;
             dto.Equipo2 = partido.Equipo2.Pais;
             dto.Fecha = partido.FechaInicioPartido.ToShortDateString();
+            dto.IdEquipo1 = partido.Equipo1.Id;
+            dto.IdEquipo2 = partido.Equipo1.Id;
 
             return dto;
 
@@ -31,6 +33,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Logros
             Partido partido = FabricaEntidades.CrearPartido();
             
             partido.Id = dto.IdPartido;
+            
 
             return partido;
         }

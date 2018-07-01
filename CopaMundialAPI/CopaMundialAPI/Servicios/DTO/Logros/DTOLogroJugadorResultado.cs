@@ -11,12 +11,12 @@ namespace CopaMundialAPI.Servicios.DTO.Logros
         private string _logroJugador;
         private int _tipoLogro;
         private int _jugador;
-        private string _nombreJugador;
+
 
         public int IdLogroJugador { get => _idLogroJugador; set => _idLogroJugador = value; }
         public string LogroJugador { get => _logroJugador; set => _logroJugador = value; }
         public int TipoLogro { get => _tipoLogro; set => _tipoLogro = value; }
         public int Jugador { get => _jugador; set => _jugador = value; }
-        public string NombreJugador { get => _nombreJugador; set => _nombreJugador = value; }
+
     }
 }

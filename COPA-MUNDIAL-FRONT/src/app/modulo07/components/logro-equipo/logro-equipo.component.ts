@@ -30,8 +30,12 @@ export class LogroEquipoComponent implements OnInit {
     public dtoPartidoId: DTOLogroPartidoId;
     public dtoLogroEquipo : DTOLogroEquipo;
     public _newLogro;
+    public _equipo;
     public idPartido : number;
-  
+    public dtoLogroEquipoResult : DTOLogroEquipoResultado;
+    public dtoLogroPartido : DTOMostrarLogrosPartido; 
+    
+
     public asignarLogroEActive: boolean = false;
     public modificarLogroEActive: boolean = false;
     public consultarLogroEActive: boolean = false;
@@ -41,6 +45,7 @@ export class LogroEquipoComponent implements OnInit {
     {
         this._logrosService = new LogrosService(http);
         this.dtoLogroEquipo = new DTOLogroEquipo();
+        this.dtoLogroEquipoResult = new DTOLogroEquipoResultado();
         this.idPartido = parseInt(
              this.router.snapshot.paramMap.get('idPartido')
            );
@@ -80,13 +85,15 @@ export class LogroEquipoComponent implements OnInit {
       this.resultadoLogroEActive = false;
     }
   
-    setResultadoLogroEActive(){
+    setResultadoLogroEActive(dto: DTOMostrarLogrosPartido){
       this.asignarLogroEActive = false;
       this.modificarLogroEActive = false;
       this.consultarLogroEActive = false;
       this.resultadoLogroEActive = true;
-  
+      this._newLogro = dto.Logro;
+      this.dtoLogroPartido = dto;
     }
+  
 
     clear()
     {
@@ -124,10 +131,9 @@ export class LogroEquipoComponent implements OnInit {
                    console.log(Error);
                     alert(Error.error);
                   }
-               );
-     }
+               ); 
 
-
+              }
     public obtenerLogrosEquipoResultadosDTO(idPartido: number)
     {
            this.dtoPartidoId = new DTOLogroPartidoId();
@@ -164,7 +170,7 @@ export class LogroEquipoComponent implements OnInit {
       {
         if (this._newLogro != null)
         {
-         // alert(this._newLogro);
+      
           this.dtoLogroEquipo.IdPartido = this.idPartido;
           this.dtoLogroEquipo.LogroEquipo = this._newLogro;
           this.dtoLogroEquipo.TipoLogro = 3;
@@ -173,6 +179,28 @@ export class LogroEquipoComponent implements OnInit {
         }
         else
           alert("Debe ingresar un nombre de logro correcto");
+  
+      }
+
+
+      public AsignarResultado()
+      {
+        if (this._equipo != null)
+        { 
+  
+          this.dtoLogroEquipoResult.IdLogroEquipo = this.dtoLogroPartido.IdLogro;
+          this.dtoLogroEquipoResult.LogroEquipo = this.dtoLogroPartido.Logro;
+          this.dtoLogroEquipoResult.TipoLogro = 3;
+          if(this._equipo == "1")
+              this.dtoLogroEquipoResult.Equipo = this.partido.IdEquipo1;
+            else
+              this.dtoLogroEquipoResult.Equipo = this.partido.IdEquipo2;
+          this.dtoLogroEquipoResult.NombreEquipo = this._equipo;
+          this._logrosService.AsignarResutadoLogroEquipo(this.dtoLogroEquipoResult);
+          this.obtenerLogrosEquipoDTO(this.idPartido);
+        }
+        else
+          alert("Debe ingresar una cantidad valida");
   
       }
   

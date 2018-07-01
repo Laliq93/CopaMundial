@@ -168,12 +168,13 @@ export class LogroCantidadComponent implements OnInit {
     {
       if (this._newLogro != null)
       {
-       // alert(this._newLogro);
+       
         this.dtoLogroCantidad.IdPartido = this.idPartido;
         this.dtoLogroCantidad.LogroCantidad = this._newLogro;
         this.dtoLogroCantidad.TipoLogro = 1;
         this._logrosService.AgregarLogroCantidad(this.dtoLogroCantidad);
-      //  this.obtenerLogrosCantidadDTO(this.idPartido);
+         this.obtenerLogrosCantidadDTO(this.idPartido);
+         this._newLogro = "";
       }
       else
         alert("Debe ingresar un nombre de logro correcto");
@@ -185,9 +186,7 @@ export class LogroCantidadComponent implements OnInit {
     {
       if (this._newCantidad != null)
       { 
-        
-      //  this._newLogro = dto.Logro;
-      //  this.dtoLogroPartido = dto;
+
         this.dtoLogroCantidadResult.IdLogroCantidad = this.dtoLogroPartido.IdLogro;
         this.dtoLogroCantidadResult.LogroCantidad = this.dtoLogroPartido.Logro;
         this.dtoLogroCantidadResult.TipoLogro = 1;
