@@ -145,7 +145,6 @@ export class LogroJugadorComponent implements OnInit {
                       logroJugador.IdLogroJugador = data[i].IdLogroJugador;
                       logroJugador.LogroJugador = data[i].LogroJugador;
                       logroJugador.Jugador = data[i].Jugador;
-                      logroJugador.NombreJugador = data[i].NombreJugador;
                       logroJugador.TipoLogro = data[i].TipoLogro;
                       this.listaDTOLogroJugadorResultado[i] = logroJugador;
                       console.log(data[i]);

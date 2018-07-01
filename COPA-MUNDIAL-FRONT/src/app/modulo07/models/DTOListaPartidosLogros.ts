@@ -3,5 +3,7 @@ export class DTOListaPartidosLogros {
     public Equipo1: string;
     public Equipo2: String;
     public Fecha: string;
+    public IdEquipo1: number = null;
+    public IdEquipo2: number = null;
   }
   
