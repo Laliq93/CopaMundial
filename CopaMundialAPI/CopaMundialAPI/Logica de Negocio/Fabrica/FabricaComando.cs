@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CopaMundialAPI.Logica_de_Negocio.Comando.Partidos;
+using CopaMundialAPI.Logica_de_Negocio.Comando.EquipoEstatico;
+using CopaMundialAPI.Logica_de_Negocio.Comando.EstadioEstatico;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
 {
@@ -356,6 +359,71 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
         public static ComandoObtenerJugadorId CrearComandoObtenerJugadorId(Entidad jugador)
         {
             return new ComandoObtenerJugadorId(jugador);
+        }
+
+        public static ComandoValidarCapitan CrearComandoValidarCapitan(Entidad entidad)
+        {
+            return new ComandoValidarCapitan(entidad);
+        }
+
+        public static ComandoValidarMaximoJugadores CrearComandoValidarMaximoJugadores(Entidad entidad)
+        {
+            return new ComandoValidarMaximoJugadores(entidad);
+        }
+
+        public static ComandoValidarAlineacion CrearComandoValidarAlineacion(Entidad entidad)
+        {
+            return new ComandoValidarAlineacion(entidad);
+        }
+
+        public static ComandoActualizarAlineacion CrearComandoActualizarAlineacion(Entidad entidad)
+        {
+            return new ComandoActualizarAlineacion(entidad);
+        }
+
+        public static ComandoActualizarPartido CrearComandoActualizarPartido(Entidad entidad)
+        {
+            return new ComandoActualizarPartido(entidad);
+        }
+
+        public static ComandoAlineacionPorPartido CrearComandoAlineacionPorPartido(Entidad entidad)
+        {
+            return new ComandoAlineacionPorPartido(entidad);
+        }
+
+        public static ComandoCrearAlineacion CrearComandoCrearAlineacion(Entidad entidad)
+        {
+            return new ComandoCrearAlineacion(entidad);
+        }
+
+        public static ComandoCrearPartido CrearComandoCrearPartido(Entidad entidad)
+        {
+            return new ComandoCrearPartido(entidad);
+        }
+
+        public static ComandoEliminarAlineacion CrearComandoEliminarAlineacion(Entidad entidad)
+        {
+            return new ComandoEliminarAlineacion(entidad);
+        }
+
+        public static ComandoObtenerEquipoEstatico CrearComandoObtenerEquipoEstatico(Entidad entidad)
+        {
+            return new ComandoObtenerEquipoEstatico(entidad);
+        }
+
+        public static ComandoObtenerEstadioEstatico CrearComandoObtenerEstadioEstatico(Entidad entidad)
+        {
+            return new ComandoObtenerEstadioEstatico(entidad);
+        }
+
+        public static ComandoObtenerListaPartidosPorFecha CrearComandoObtenerListaPartidosPorFecha(Entidad entidad)
+        {
+            return new ComandoObtenerListaPartidosPorFecha(entidad);
+        }
+
+        public static ComandoObtenerPartido CrearComandoObtenerPartido(Entidad entidad)
+        {
+            return new ComandoObtenerPartido(entidad);
         }
 
     }

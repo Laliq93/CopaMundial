@@ -5,38 +5,41 @@ using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
+using CopaMundialAPI.Logica_de_Negocio.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
 {
     public class ComandoObtenerListaPartidosPorFecha: Comando
     {
-        private DateTime _fecha;
         private List<Entidad> _partidos;
+        private Comando _comando;
 
-        public DateTime Fecha { get => _fecha; set => _fecha = value; }
-        public List<Entidad> Partidos { get => _partidos; set => _partidos = value; }
-
-        public ComandoObtenerListaPartidosPorFecha(DateTime fecha)
+        public ComandoObtenerListaPartidosPorFecha(Entidad entidad)
         {
-            Fecha = fecha;
+            Entidad = entidad;
         }
 
         public override void Ejecutar()
         {
             IDAOPartido dao = FabricaDAO.CrearDAOPartido();
-            this.Partidos = dao.ObtenerPartidosPosterioresA(Fecha);
+            _partidos = dao.ObtenerPartidosPosterioresA(Entidad);
         }
 
         private void CompletarLista()
         {
-            Estadios estadios = new Estadios();
-            Equipos equipos = new Equipos();
-
-            foreach(Partido partido in Partidos)
+            foreach(Partido partido in _partidos)
             {
-                partido.Estadio = estadios.GetEstadio(partido.Estadio.Id);
-                partido.Equipo1 = equipos.GetEquipo(partido.Equipo1.Id);
-                partido.Equipo2 = equipos.GetEquipo(partido.Equipo2.Id);
+                _comando = FabricaComando.CrearComandoObtenerEquipoEstatico(partido.Equipo1);
+                _comando.Ejecutar();
+                partido.Equipo1 = _comando.GetEntidad() as Equipo;
+
+                _comando = FabricaComando.CrearComandoObtenerEquipoEstatico(partido.Equipo2);
+                _comando.Ejecutar();
+                partido.Equipo2 = _comando.GetEntidad() as Equipo;
+
+                _comando = FabricaComando.CrearComandoObtenerEstadioEstatico(partido.Estadio);
+                _comando.Ejecutar();
+                partido.Estadio = _comando.GetEntidad() as Estadio;
             }
         }
 
@@ -47,7 +50,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
 
         public override List<Entidad> GetEntidades()
         {
-            return Partidos;
+            return _partidos;
         }
     }
 }
