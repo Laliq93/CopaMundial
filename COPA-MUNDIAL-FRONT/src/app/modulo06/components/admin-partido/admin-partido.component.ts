@@ -17,6 +17,10 @@ export class AdminPartidoComponent implements OnInit {
     this.router.navigate(['partidos/admin/crearPartido']);
   }
 
+  editarAlineacion(equipo1, equipo2){
+    this.router.navigate(['partidos/admin', 'editarAlineacion', equipo1, equipo2]);
+  }
+
   modificarPartido(equipo1, equipo2): void {
     this.router.navigate(['partidos/admin', 'modificarPartido', equipo1, equipo2 ]);
   }

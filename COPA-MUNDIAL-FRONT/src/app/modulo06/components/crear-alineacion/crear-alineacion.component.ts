@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-crear-alineacion',
@@ -112,9 +113,32 @@ export class CrearAlineacionComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private _location: Location) { }
 
   ngOnInit() {
+  }
+
+  public agregar( jugador ) {
+    let titulares = 0;
+    this.listaJugadores.forEach(function (player) {
+      if (player.estado === 'titular') {
+        titulares++;
+      }
+    });
+
+    if (titulares < 11) {
+      jugador.estado = 'titular';
+    } else {
+      alert('Ya estan los once titulares!');
+    }
+  }
+
+  public descartar( jugador ) {
+    jugador.estado = 'suplente';
+  }
+
+  regresar() {
+    this._location.back(); // <-- regresar a la pagina previa al presionar cancelar
   }
 
 }
