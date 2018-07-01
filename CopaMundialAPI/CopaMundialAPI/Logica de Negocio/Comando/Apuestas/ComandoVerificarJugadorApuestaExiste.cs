@@ -5,13 +5,14 @@ using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Comun.Excepciones;
 using CopaMundialAPI.Fuente_de_Datos.DAO;
+using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 {
     public class ComandoVerificarApuestaJugadorExiste : Comando
     {
-        DAOApuestaJugador _dao;
+        IDAOApuesta _dao;
 
         public ComandoVerificarApuestaJugadorExiste(Entidad apuesta)
         {
