@@ -6,12 +6,13 @@ using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Fuente_de_Datos.DAO;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 using CopaMundialAPI.Comun.Excepciones;
+using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 {
     public class ComandoVerificarApuestaCantidadExiste : Comando
     {
-        DAOApuestaCantidad _dao;
+        IDAOApuesta _dao;
 
         public ComandoVerificarApuestaCantidadExiste(Entidad apuesta)
         {
