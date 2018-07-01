@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CopaMundialAPI.Logica_de_Negocio.Comando.Jugadores;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
 {
@@ -164,6 +165,62 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
         {
             return new ComandoObtenerLogrosVFPendientes(partido);
         }
+
+        public static ComandoObtenerLogroPartidosFinalizados CrearComandoObtenerLogroPartidosFinalizados()
+        {
+            return new ComandoObtenerLogroPartidosFinalizados();
+        }
+
+        public static ComandoObtenerProximosLogrosPartidos CrearComandoObtenerProximosLogrosPartidos()
+        {
+            return new ComandoObtenerProximosLogrosPartidos();
+        }
+
+        public static ComandoObtenerLogroPartidoPorId CrearComandoObtenerLogroPartidoPorId(Entidad partido)
+        {
+            return new ComandoObtenerLogroPartidoPorId(partido);
+        }     
+
+        public static ComandoAsignarResultadoLogroCantidad CrearComandoAsignarResultadoLogroCantidad(Entidad logroCantidad)
+        {
+            return new ComandoAsignarResultadoLogroCantidad(logroCantidad);
+        }
+
+        public static ComandoAsignarResultadoLogroEquipo CrearComandoAsignarResultadoLogroEquipo(Entidad logroEquipo)
+        {
+            return new ComandoAsignarResultadoLogroEquipo(logroEquipo);
+        }
+
+        public static ComandoAsignarResultadoLogroJugador CrearComandoAsignarResultadoLogroJugador(Entidad logroJugador)
+        {
+            return new ComandoAsignarResultadoLogroJugador(logroJugador);
+        }
+
+        public static ComandoAsignarResultadoLogroVF CrearComandoAsignarResultadoLogroVF(Entidad logroVF)
+        {
+            return new ComandoAsignarResultadoLogroVF(logroVF);
+        }
+
+        public static ComandoObtenerLogrosCantidadResultados CrearComandoObtenerLogrosCantidadResultados(Entidad partido)
+        {
+            return new ComandoObtenerLogrosCantidadResultados(partido);
+        }
+
+        public static ComandoObtenerLogrosJugadorResultados CrearComandoObtenerLogrosJugadorResultados(Entidad partido)
+        {
+            return new ComandoObtenerLogrosJugadorResultados(partido);
+        }
+
+        public static ComandoObtenerLogrosEquipoResultados CrearComandoObtenerLogrosEquipoResultados(Entidad partido)
+        {
+            return new ComandoObtenerLogrosEquipoResultados(partido);
+        }
+
+        public static ComandoObtenerLogrosVFResultados CrearComandoObtenerLogrosVFResultados(Entidad partido)
+        {
+            return new ComandoObtenerLogrosVFResultados(partido);
+        }
+
         public static ComandoObtenerApuestasCantidadEnCurso CrearComandoObtenerApuestasCantidadEnCurso(Entidad usuario)
         {
             return new ComandoObtenerApuestasCantidadEnCurso(usuario);
@@ -263,6 +320,15 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoObtenerApuestasEquipoFinalizadas(usuario);
         }
 
+        public static ComandoObtenerJugadoresActivo CrearComandoObtenerJugadoresActivo()
+        {
+            return new ComandoObtenerJugadoresActivo();
+        }
+
+        public static ComandoObtenerJugadoresInactivo CrearComandoObtenerJugadoresInactivo()
+        {
+            return new ComandoObtenerJugadoresInactivo();
+        }
         public static ComandoFinalizarApuestasCantidad CrearComandoFinalizarApuestasCantidad()
         {
             return new ComandoFinalizarApuestasCantidad();

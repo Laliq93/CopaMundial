@@ -23,16 +23,28 @@
 
             <ul class="nav nav-tabs profile-tab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#vf" role="tab">V o F</a>
+                    <a class="nav-link active" data-toggle="tab" href="#vf" role="tab">
+                        <i class="material-icons">
+                            repeat_one
+                        </i>V o F</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#aciertos" role="tab">Cantidad</a>
+                    <a class="nav-link" data-toggle="tab" href="#aciertos" role="tab">
+                        <i class="material-icons">
+                            library_add
+                        </i>Cantidad</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#jugadores" role="tab">Jugadores</a>
+                    <a class="nav-link" data-toggle="tab" href="#jugadores" role="tab">
+                        <i class="material-icons">
+                            directions_run
+                        </i>Jugadores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#equipos" role="tab">Equipos</a>
+                    <a class="nav-link" data-toggle="tab" href="#equipos" role="tab">
+                        <i class="material-icons">
+                            group_add
+                        </i>Equipos</a>
                 </li>
             </ul>
 
@@ -44,26 +56,26 @@
                         <table datatable [dtOptions]="dtOptionsApuestaVof" [dtTrigger]="dtTriggerApuestaVof" class="row-border hover">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Logro</th>
-                                    <th>Apuesta</th>
-                                    <th>Temporal</th>
-                                    <th>Estado</th>
-                                    <th>Fecha</th>
-                                    <th>Acción</th>
+                                    <th class="center">ID</th>
+                                    <th class="center">Logro</th>
+                                    <th class="center">Apuesta Actual</th>
+                                    <th class="center">Nueva Apuesta</th>
+                                    <th class="center">Estado</th>
+                                    <th class="center">Fecha</th>
+                                    <th class="center">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let ApuestaVof of ListApuestavof; let i = index">
+                                <tr class="center" *ngFor="let ApuestaVof of ListApuestavof; let i = index">
                                     <td>{{ApuestaVof.IdLogro}}</td>
                                     <td>{{ApuestaVof.Logro}}</td>
+                                    <td>{{ObtenerVoF(ApuestaVof.ApuestaUsuario)}}</td>
                                     <td>
                                         <select [(ngModel)]="actualizarOpcionVof[i]" name="opcion" id="opcion">
                                             <option value="true">Si</option>
                                             <option value="false">No</option>
                                         </select>
                                     </td>
-                                    <td>{{ApuestaVof.ApuestaUsuario}}</td>
                                     <td>{{ApuestaVof.Estado}}</td>
                                     <td>{{ApuestaVof.Fecha}}</td>
                                     <td>
@@ -92,23 +104,24 @@
                         <table datatable [dtOptions]="dtOptionsApuestaCantidad" [dtTrigger]="dtTriggerApuestaCantidad" class="row-border hover">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Logro</th>
-                                    <th>Apuesta</th>
-                                    <th>Temporal</th>
-                                    <th>Estado</th>
-                                    <th>Fecha</th>
-                                    <th>Acción</th>
+                                    <th class="center">ID</th>
+                                    <th class="center">Logro</th>
+                                    <th class="center">Apuesta Actual</th>
+                                    <th class="center">Nueva Apuesta</th>
+                                    <th class="center">Estado</th>
+                                    <th class="center">Fecha</th>
+                                    <th class="center">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let ApuestaCantidad of ListApuestacantidad; let i = index">
+                                <tr class="center" *ngFor="let ApuestaCantidad of ListApuestacantidad; let i = index">
                                     <td>{{ApuestaCantidad.IdLogro}}</td>
                                     <td>{{ApuestaCantidad.Logro}}</td>
+                                    <td>{{ApuestaCantidad.ApuestaUsuario}}</td>
                                     <td>
                                         <div class="col-4">
-                                            <input type="number" class="form-control form-control-line" name="newCantidad" id="newCantidad" pattern="^[0-9\s]+$" [(ngModel)]="actualizarOpcionCantidad[i]"
-                                                #newCantidad="ngModel">
+                                            <input type="number" class="form-control form-control-line center" name="newCantidad" id="newCantidad" pattern="^[0-9\s]+$"
+                                                [(ngModel)]="actualizarOpcionCantidad[i]" #newCantidad="ngModel">
 
                                             <div *ngIf="newCantidad.errors &&  (newCantidad.touched || newCantidad.dirty)" class="aler alert-danger">
                                                 <div [hidden]="!newCantidad.errors?.pattern">
@@ -117,7 +130,6 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{ApuestaCantidad.ApuestaUsuario}}</td>
                                     <td>{{ApuestaCantidad.Estado}}</td>
                                     <td>{{ApuestaCantidad.Fecha}}</td>
                                     <td>
@@ -146,32 +158,36 @@
                         <table datatable [dtOptions]="dtOptionsApuestaJugadores" [dtTrigger]="dtTriggerApuestaJugadores" class="row-border hover">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Apuesta</th>
-                                    <th>Logro</th>
-                                    <th>Opción</th>
-                                    <th>Estado</th>
-                                    <th>Fecha</th>
-                                    <th>Acción</th>
+                                    <th class="center">ID</th>
+                                    <th class="center">Apuesta</th>
+                                    <th class="center">Logro</th>
+                                    <th class="center">Opción</th>
+                                    <th class="center">Estado</th>
+                                    <th class="center">Fecha</th>
+                                    <th class="center">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let ApuestaJugador of ListApuestajugadores">
+                                <tr class="center" *ngFor="let ApuestaJugador of ListApuestajugadores">
                                     <td>{{ApuestaJugador.IdLogro}}</td>
                                     <td>{{ApuestaJugador.NombreJugador}} {{ApuestaJugador.ApellidoJugador}}</td>
                                     <td>{{ApuestaJugador.Logro}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-success-table" (click)="openModaljugadores(ApuestaJugador.IdLogro)" style="margin-right:16px;">Ver Jugadores</button>
+                                        <button type="button" class="btn btn-success-table" (click)="openModaljugadores(ApuestaJugador.IdLogro)" style="margin-right:16px;">
+                                            <i class="material-icons">
+                                                transfer_within_a_station
+                                            </i>Ver Jugadores</button>
                                         <div class="backdrop" [ngStyle]="{'display':display}"></div>
+                                    </td>
+                                    <td>{{ApuestaJugador.Estado}}</td>
+                                    <td>{{ApuestaJugador.Fecha}}</td>
+                                    <td>
                                         <button type="button" (click)="EliminarApuestaJugador(ApuestaJugador.IdLogro)" class="btn btn-danger-table" style="margin-right:16px;">
-                                            <i class="material-icons center">
+                                            <i class="material-icons">
                                                 delete_forever
                                             </i>
                                         </button>
                                     </td>
-                                    <td>{{ApuestaJugador.Estado}}</td>
-                                    <td>{{ApuestaJugador.Fecha}}</td>
-
                                 </tr>
                             </tbody>
                         </table>
@@ -188,17 +204,18 @@
                                 <tr>
                                     <th class="center">ID</th>
                                     <th class="center">Logro</th>
-                                    <th class="center">Opción</th>
-                                    <th class="center">temporal</th>
+                                    <th class="center">Apuesta Actual</th>
+                                    <th class="center">Nueva Apuesta</th>
                                     <th class="center">Estado</th>
                                     <th class="center">Fecha</th>
                                     <th class="center">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let ApuestaEquipo of ListApuestaequipos; let i = index">
-                                    <td class="center">{{ApuestaEquipo.IdLogro}}</td>
-                                    <td class="center">{{ApuestaEquipo.Logro}}</td>
+                                <tr class="center" *ngFor="let ApuestaEquipo of ListApuestaequipos; let i = index">
+                                    <td>{{ApuestaEquipo.IdLogro}}</td>
+                                    <td>{{ApuestaEquipo.Logro}}</td>
+                                    <td>{{ApuestaEquipo.NombreEquipo}}</td>
                                     <td>
                                         <select [(ngModel)]="actualizarOpcionEquipo[i]" name="actualizarOpcionEquipo" id="actualizarOpcionEquipo">
                                             <option value="1">Argentina</option>
@@ -218,18 +235,18 @@
                                             <option value="15">Uruguay</option>
                                         </select>
                                     </td>
-                                    <td class="center">{{ApuestaEquipo.NombreEquipo}}</td>
-                                    <td class="center">{{ApuestaEquipo.Estado}}</td>
-                                    <td class="center">{{ApuestaEquipo.Fecha}}</td>
-                                    <td class="center">
-                                        <button class="center" type="button" (click)="ActualizarApuestaEquipo(ApuestaEquipo.IdLogro, actualizarOpcionEquipo[i])" class="btn btn-success-table"
-                                            style="margin-right:16px;">
-                                            <i class="material-icons center">
+                                    <td>{{ApuestaEquipo.Estado}}</td>
+                                    <td>{{ApuestaEquipo.Fecha}}</td>
+                                    <td>
+                                        <button class="center" type="button" (click)="ActualizarApuestaEquipo(ApuestaEquipo.IdLogro, actualizarOpcionEquipo[i])"
+                                            class="btn btn-success-table" style="margin-right:16px;">
+                                            <i class="material-icons">
                                                 edit
                                             </i>
                                         </button>
-                                        <button class="center" type="button" (click)="EliminarApuestaEquipo(ApuestaEquipo.IdLogro)" class="btn btn-danger-table" style="margin-right:16px;">
-                                            <i class="material-icons center">
+                                        <button class="center" type="button" (click)="EliminarApuestaEquipo(ApuestaEquipo.IdLogro)" class="btn btn-danger-table"
+                                            style="margin-right:16px;">
+                                            <i class="material-icons">
                                                 delete_forever
                                             </i>
                                         </button>
@@ -271,13 +288,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let MostrarJugadores of ListMostrarJugadores">
-                                <td class="center">{{MostrarJugadores.Id}}</td>
-                                <td class="center">{{MostrarJugadores.Nombre}}</td>
-                                <td class="center">{{MostrarJugadores.Apellido}}</td>
-                                <td class="center">
-                                    <button class="center" type="button" class="btn btn-success-table" (click)="ActualizarApuestaJugador(MostrarJugadores.Id)" style="margin-right:16px;">
-                                        <i class="material-icons center">
+                            <tr class="center" *ngFor="let MostrarJugadores of ListMostrarJugadores">
+                                <td>{{MostrarJugadores.Id}}</td>
+                                <td>{{MostrarJugadores.Nombre}}</td>
+                                <td>{{MostrarJugadores.Apellido}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-success-table" (click)="ActualizarApuestaJugador(MostrarJugadores.Id)" style="margin-right:16px;">
+                                        <i class="material-icons">
                                             edit
                                         </i>
                                     </button>
@@ -290,9 +307,7 @@
                 <!-- modal-footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" (click)="closeModalJuagdores()">
-                        <i class="material-icons center">
-                            delete_forever
-                        </i>
+                        Close
                     </button>
                 </div>
 

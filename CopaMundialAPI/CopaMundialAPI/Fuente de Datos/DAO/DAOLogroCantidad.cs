@@ -68,14 +68,29 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             return logro;
         }
 
-      
-        public void AsignarResultadoLogro(Entidad logro)
+        /// <summary>
+        /// Metodo que asigna un el resultado  de un 
+        /// logroCantidad
+        /// </summary>
+        /// <param name="entidad"></param>
+        public void AsignarResultadoLogro(Entidad entidad)
         {
-            throw new NotImplementedException();
+            
+                LogroCantidad logro = entidad as LogroCantidad;
+
+                Conectar();
+
+                StoredProcedure("RegistrarLogroCantidad(@idLogro,@cantidad)");
+                AgregarParametro("idLogro", logro.Id);
+                AgregarParametro("cantidad", (int)logro.Cantidad);
+
+                EjecutarQuery();
+            
         }
 
         /// <summary>
-        /// 
+        /// Metodo para obtener todos los logros
+        /// pendientes por asignar un resultado de un partido
         /// </summary>
         /// <param name="partido"></param>
         /// <exception cref="LogrosPendientesNoExisteException">Excepcion que 
@@ -113,10 +128,43 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
            
         }
 
-       
+       /// <summary>
+       /// Metodo que obtiene todos los logros de cantidad
+       /// con resultados asignados
+       /// </summary>
+       /// <exception cref="LogrosFinalizadosNoExisteException">excepcion que se arroja
+       /// cuando un partido no posee logros con resultados asignados</exception>
+       /// <param name="partido"></param>
+       /// <returns></returns>
         public List<Entidad> ObtenerLogrosResultados(Entidad partido)
         {
-            throw new NotImplementedException();
+            List<Entidad> logroscantidad = new List<Entidad>();
+            LogroCantidad logro;
+
+            Conectar();
+
+            StoredProcedure("ConsultarLogrosCantidadResultados(@idpartido)");
+
+            AgregarParametro("idpartido", partido.Id);
+
+            EjecutarReader();
+
+            for (int i = 0; i < cantidadRegistros; i++)
+            {
+                logro = FabricaEntidades.CrearLogroCantidad();
+
+                logro.Id = GetInt(i, 0);
+                logro.IdTipo = TipoLogro.cantidad;
+                logro.Logro = GetString(i, 2);
+                logro.Cantidad = GetInt(i, 3);
+
+
+                logroscantidad.Add(logro);
+            }
+            if (logroscantidad.Count == 0)
+                throw new LogrosFinalizadosNoExisteException(partido.Id, "cantidad");
+
+            return logroscantidad;
         }
 
 
