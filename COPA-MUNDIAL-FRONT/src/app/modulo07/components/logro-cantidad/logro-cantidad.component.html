@@ -1,0 +1,134 @@
+<h2>Gestión de Logros</h2>
+<hr/>
+<ul class="nav nav-justified nav-tabs" id="justifiedTab" role="tablist">
+  <li class="nav-item">
+    <a aria-controls="groups" aria-selected="false" class="nav-link"   data-toggle="tab" id="groups-tab" role="tab" routerLink="/logros">Partidos</a>
+  </li>
+  <li class="nav-item">
+    <a aria-controls="Create" aria-selected="true" class="nav-link active"  data-toggle="tab" id="create-tab" role="tab" (click)="LlamarLogroCantidad()">Cantidad</a>
+  </li>
+  <li class="nav-item">
+    <a aria-controls="Create" aria-selected="true" class="nav-link"  data-toggle="tab" id="create-tab" role="tab" (click)="LlamarLogroEquipo()">Equipos</a>
+  </li>
+  <li class="nav-item">
+      <a aria-controls="Create" aria-selected="true" class="nav-link"  data-toggle="tab" id="create-tab" role="tab" (click)="LlamarLogroJugador()">Jugador</a>
+    </li>
+    <li class="nav-item">
+        <a aria-controls="Create" aria-selected="true" class="nav-link" data-toggle="tab" id="create-tab" role="tab" (click)="LlamarLogroVF()">Verdadero o Falso</a>
+      </li>
+</ul>
+<br>
+<div class="management">
+    <div class="match-container">
+        <div class="match-info">
+            <!--{{partido.estadio}}, {{partido.ciudad}} Estadio, Ciudad {{partido.fecha}} Hora: {{partido.hora}}-->
+        </div>
+        <div class="match-result"> FECHA DEL PARTIDO </div>
+        <div class="row" id="match-header">
+          <div class="col-sm-4">
+            <h4> <!--<img src="{{partido.bandera1}}" alt="{{Partido.equipo1}}" class="img-thumbnail">-->
+               {{this.partido.Equipo1}} </h4>
+            </div>
+            <div class="col-sm-4">
+               <h4>
+                 <label class="match-time">{{this.partido.Fecha}}</label>
+               </h4>
+            </div>
+            <div class="col-sm-4">
+                <h4>{{this.partido.Equipo2}}
+                    <!--<img src="{{partido.bandera2}}" alt="{{partido.equipo2}}" class="img-thumbnail">-->
+                </h4>
+              </div>
+
+          </div>
+          <hr>
+    </div>
+    <form>
+      <h4>Crear Logro por Cantidad</h4>
+        <div class="row">
+          <div class="col-6">
+              <label for="exampleFormControlFile1">Indicar el nombre del logro</label>
+                <input type="text" class="form-control" id="newLogro" #newLogro="ngModel" name="newLogro" [(ngModel)]="_newLogro" placeholder="">
+            </div>
+            <div class="col-1">
+                <button type="button" title="Agregar logro" class="btn btn-secondary btnCrearLogro" (click)="AgregarLogro()" *ngIf="!modificarLogroEActive">
+                  <i class="material-icons">add</i>
+                </button>
+            </div>
+            <ng-container *ngIf="resultadoLogroEActive"> <!---->
+             <div class="col-3">
+                <label for="exampleFormControlFile1">Cantidad</label>
+                <input type="number" class="form-control" id="newCantidad" #newCantidad="ngModel" name="newCantidad" [(ngModel)]="_newCantidad" placeholder="">
+            </div>
+          </ng-container>
+          <div class="col-1">
+              <button type="button" title="Registrar resultado logro" class="btn btn-secondary btnCrearLogro" *ngIf="resultadoLogroEActive || modificarLogroEActive" (click)="AsignarResultado()">
+                <i class="material-icons">check</i>
+              </button>
+          </div>
+          <div class="col-1">
+              <button type="button" title="Registrar resultado logro" class="btn btn-secondary btnCrearLogro" *ngIf="resultadoLogroEActive || modificarLogroEActive" (click)="clear()">
+                <i class="material-icons">clear</i>
+              </button>
+          </div>
+        </div>
+    <ng-container *ngIf="listaDTOLogroCantidad.length != 0">
+        <div class="row" *ngIf="listaDTOLogroCantidad.length != 0">
+              <h4>Lista de Logros Pendientes por Cantidad</h4>
+       </div>
+       <div class="logrosContainer">
+        <ng-container *ngFor="let logrosCantidad of listaDTOLogroCantidad">
+              <div class="row" >
+                <div class="col-sm-8">
+                    <p>
+                        <br>
+                        <br>
+                        {{logrosCantidad.Logro}}
+                    </p>
+                  </div>
+                  <div class="col-md-1">
+                      <button type="button" title="Modificar logro" class="btn btn-secondary btnModificarLogro" (click)="setModificarLogroEActive(logrosCantidad)" [ngClass]="{'active': modificarLogroEActive }">
+                        <i class="material-icons">build</i>
+                      </button>
+                  </div>
+                  <div class="col-md-1">
+                      <button type="button" title="Asignar Resultado logro" class="btn btn-secondary btnResultadoLogro" (click)="setResultadoLogroEActive(logrosCantidad)"  [ngClass]="{'active': resultadoLogroEActive }">
+                        <i class="material-icons">check</i>
+                      </button>
+                  </div>
+              </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  <ng-container *ngIf="listaDTOLogroCantidadResultado.length != 0">    
+ <div class="row" *ngIf="listaDTOLogroCantidadResultado.length != 0">
+        <h4>Lista de Logros Culminados por Cantidad</h4>
+ </div>
+ <div class="logrosContainer">
+  <ng-container *ngFor="let logrosCantidadResult of listaDTOLogroCantidadResultado">
+        <div class="row" >
+          <div class="col-sm-5">
+              <p>
+                  <br>
+                  <br>
+                  {{logrosCantidadResult.LogroCantidad}}
+              </p>
+            </div>
+            <div class="col-sm-3">
+              <p>
+                  <br>
+                  <br>
+                  {{logrosCantidadResult.Cantidad}}
+              </p>
+            </div>
+            <div class="col-md-1">
+                <button type="button" title="Modificar logro" class="btn btn-secondary btnModificarLogro"  [ngClass]="{'active': modificarLogroEActive }">
+                  <i class="material-icons">build</i>
+                </button>
+            </div>
+        </div>
+  </ng-container>
+</div>
+</ng-container>
+      </form>
+</div>

@@ -165,5 +165,10 @@ namespace CopaMundialAPI.Servicios.Fabrica
             return new DTOListaPartidosLogros();
         }
 
+        public static DTOUsuarioRegistrar CrearDTOUsuarioRegistrar()
+        {
+            return new DTOUsuarioRegistrar();
+        }
+
     }
 }

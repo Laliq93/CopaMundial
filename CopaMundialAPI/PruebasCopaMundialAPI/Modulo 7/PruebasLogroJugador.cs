@@ -386,7 +386,7 @@ namespace PruebasCopaMundialAPI.Modulo_7
             LogroJugador logro = FabricaEntidades.CrearLogroJugador();
             DTOLogroJugadorResultado dtoLogro = FabricaDTO.CrearDTOLogroJugadorResultado();
 
-            dtoLogro.IdPartido = 1;
+           
             dtoLogro.LogroJugador = "Prueba de dto a entidad";
             dtoLogro.TipoLogro = (int)TipoLogro.cantidad;
             dtoLogro.Jugador = 6;
