@@ -15,8 +15,9 @@ export class ClientePartidoComponent implements OnInit {
   ngOnInit() {
   }
 
-  details(): void {
-		this.router.navigate(['partidos/detallePartido/1']);
+  // muestra vista de detalle de equipos
+  details(equipo1, equipo2): void {
+    this.router.navigate(['partidos', 'detallePartido', equipo1, equipo2 ]);
   }	
 
   public listmatches: Array<any>= [

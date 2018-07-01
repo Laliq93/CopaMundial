@@ -8,12 +8,25 @@ import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 })
 export class AdminCalineacionComponent implements OnInit {
 
+  public listmatch: Array<any> = [
+    {
+      estadio: 'Ekaterinburg Arena',
+      ciudad: 'EKATERINBURG',
+      fecha: '4 jun. 2018',
+      fase: 'Octavos de final',
+      equipo1: 'EGIPTO',
+      bandera1: '../../../assets/banderas/egy.png',
+      hora: '08:00',
+      equipo2: 'URUGUAY',
+      bandera2: '../../../assets/banderas/uru.png',
+    }
+  ];
+
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  
   matchCreate(): void {
     this.router.navigate(['partidos/crearPartido']);
   }
@@ -21,57 +34,59 @@ export class AdminCalineacionComponent implements OnInit {
   matchUpdate(): void {
     this.router.navigate(['partidos/modificarPartido']);
   }
-  
+
   matchList(): void {
     this.router.navigate(['partidos/listaPartidos']);
   }
-  
+
   matchLineup(): void {
     this.router.navigate(['partidos/partidos']);
   }
 
-
-  
-  public listmatch: Array<any>= [
-    {
-      "estadio": "Ekaterinburg Arena",
-      "ciudad": "EKATERINBURG",
-      "fecha":"14 jun. 2018",
-      "fase": "Octavos de final",
-      "equipo1": "EGIPTO",
-      "bandera1": "../../../assets/banderas/egy.png",
-      "hora": "08:00",
-      "equipo2": "URUGUAY",
-      "bandera2": "../../../assets/banderas/uru.png",
+  public contarTitulares(): number {
+    let cantJugTit = 0;
+    for ( let i = 0; i < this.listAlineacion1[0].players.length; i++ ) {
+      if ( this.listAlineacion1[0].players[i].estado == 'titular' ) {
+        cantJugTit++;
+      }
     }
-  ]
 
+    return cantJugTit;
+  }
+
+  public pop (jugador) {
+    jugador.pop();
+  }
 
   public agregarJugador1():void
   {
-         this.listAlineacion1[0].players.push( {nombre: "Prueba",
-          posicion: "arquero",
-        numero: "223",
-        estado: "titular"});
-  
-     
-  }
+    const cantJugTit = this.contarTitulares();
+    if ( cantJugTit == 11) {
+      alert('Ya hay 11 jugadores titulares, no se pueden agregar mas jugadores.');
+    } else {
+      this.listAlineacion1[0].players.pop({
+        nombre: 'Prueba',
+        posicion: 'defensor1',
+        numero: '123',
+        estado: 'titular'
+      });
+    }
+}
 
-  
   public agregarJugador2():void
   {
+    this.listAlineacion2[0].players.push({
+      nombre: 'Prueba',
+        posicion: 'arquero',
+        numero: '123',
+        estado: 'titular'
+    });
+    console.log(this.listAlineacion1);
+    /* alert(this.listAlineacion1[0].players[17].nombre);*/
 
-         this.listAlineacion2[0].players.push( {nombre: "Prueba",
-          posicion: "arquero",
-        numero: "223",
-        estado: "titular"});
-
-        console.log(this.listAlineacion1);
-       /* alert(this.listAlineacion1[0].players[17].nombre);*/
-     
   }
 
-  
+
   public listAlineacion1: Array<any>=[
     {
       "equipo": "EGIPTO",

@@ -5,7 +5,10 @@ using System.Web;
 
 namespace CopaMundialAPI.Comun.Excepciones
 {
-    public class FechaPasadaPartidoException: Exception
+    public class FechaPasadaPartidoException : ExcepcionPersonalizada
     {
+        public FechaPasadaPartidoException(string mensaje) : base(mensaje)
+        {
+        }
     }
 }
