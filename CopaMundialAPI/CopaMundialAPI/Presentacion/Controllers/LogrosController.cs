@@ -592,5 +592,35 @@ namespace CopaMundialAPI.Presentacion.Controllers
         }
 
 
+        [Route("asignarResultadoLogroEquipo")]
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
+        public HttpResponseMessage AsignarResultadoLogroEquipo(DTOLogroEquipoResultado dto)
+        {
+            try
+            {
+                TraductorLogroEquipoResultado traductor = FabricaTraductor.CrearTraductorLogroEquipoResultado();
+
+                Entidad logroEquipo = traductor.CrearEntidad(dto);
+
+                Comando comando;
+
+                comando = FabricaComando.CrearComandoAsignarResultadoLogroEquipo(logroEquipo);
+
+                comando.Ejecutar();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception exc)
+            {
+                ExcepcionGeneral personalizada = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
+                logger.Error(exc, exc.Message);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, personalizada.Mensaje);
+            }
+        }
+
+
+
+
     }
 }

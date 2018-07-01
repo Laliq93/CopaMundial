@@ -56,17 +56,16 @@
             <ng-container *ngIf="resultadoLogroEActive"> <!---->
              <div class="col-3">
                 <label for="exampleFormControlFile1">Equipo</label>
-                <select id="inputJugador" class="form-control">
-                  <option selected>Elegir...</option>
+                <select [(ngModel)]="_equipo" id="equipo" #equipo="ngModel" name="equipo" class="form-control">
                   <ng-container>
-                      <option>{{this.partido.Equipo1}}</option>
-                      <option>{{this.partido.Equipo2}}</option>
-                  </ng-container>
+                      <option value="1">{{this.partido.Equipo1}}</option>
+                      <option value="2">{{this.partido.Equipo2}}</option>   
+                    </ng-container>
                 </select>
             </div>
           </ng-container>
           <div class="col-1">
-              <button type="button" title="Registrar resultado logro" class="btn btn-secondary btnCrearLogro" *ngIf="resultadoLogroEActive || modificarLogroEActive">
+              <button type="button" title="Registrar resultado logro" class="btn btn-secondary btnCrearLogro" *ngIf="resultadoLogroEActive || modificarLogroEActive" (click)="AsignarResultado()">
                 <i class="material-icons">check</i>
               </button>
           </div>
@@ -95,7 +94,7 @@
                       </button>
                   </div>
                   <div class="col-md-1">
-                      <button type="button" title="Asignar Resultado logro" class="btn btn-secondary btnResultadoLogro" (click)="setResultadoLogroEActive()"  [ngClass]="{'active': resultadoLogroEActive }">
+                      <button type="button" title="Asignar Resultado logro" class="btn btn-secondary btnResultadoLogro" (click)="setResultadoLogroEActive(logrosEquipo)"  [ngClass]="{'active': resultadoLogroEActive }">
                         <i class="material-icons">check</i>
                       </button>
                   </div>
