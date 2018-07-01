@@ -124,3 +124,26 @@ BEGIN
 	
 END;
 $$ LANGUAGE plpgsql;
+
+
+create or replace function getallciudadtrue()
+RETURNS table(
+	ci_id integer,
+	ci_nombre varchar,
+	ci_descripcion varchar,
+	ci_poblacion integer,
+	ci_nombreingles varchar,
+	ci_descripcioningles varchar,
+	ci_habilitado boolean
+)
+AS
+$$
+BEGIN
+
+	return query select ciudad.ci_id, ciudad.ci_nombre, ciudad.ci_descripcion, ciudad.ci_poblacion, ciudad.ci_nombreingles,ciudad.ci_descripcioningles,ciudad.ci_habilitado from ciudad
+	where ciudad.ci_habilitado = true	; 
+	
+	
+	
+END;
+$$ LANGUAGE plpgsql;

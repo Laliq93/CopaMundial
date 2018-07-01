@@ -35,6 +35,11 @@ namespace CopaMundialAPI.Servicios.Traductores.Ciudades
             }
         }
 
+        /// <summary>
+        /// Metodo con el cual se transforma un DTOCiudadNombre a una Entidad Ciudad
+        /// </summary>
+        /// <param name="dto">Objeto dto que se desea transformar</param>
+        /// <returns></returns>
         public override Entidad CrearEntidad ( DTOCiudadNombre dto )
         {
             try
