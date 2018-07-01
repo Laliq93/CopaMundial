@@ -134,7 +134,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
             }
             if (partido == null)
-                throw new PartidoNoExisteException();
+                throw new PartidoNoExisteException("No existe ningùn partido");
             return partido;
         }
 
