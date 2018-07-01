@@ -17,7 +17,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
     /// </summary>
     public class DAOCiudad : DAO, IDAOCiudad
     {
-        Logger logger = LogManager.GetLogger ( "fileLogger" );
+        Logger logger = LogManager.GetLogger ( "fileLogger" );//logger
 
         /// <summary>
         /// Metodo para actualizar una ciudad
@@ -49,28 +49,28 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
             catch (NullReferenceException e)
             {
-                logger.Error (e,"Parametros de entrada nulos");
+                logger.Error (e,e.Message);
 
                 throw new ObjetoNullException(e,"Parametros nulos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (InvalidCastException e)
             {
-                logger.Error ( e, "Casteo no correcto" );
+                logger.Error ( e, e.Message );
 
                 throw new CasteoNoCorrectoException ( e, "Casteo no correcto en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (NpgsqlException e)
             {
-                logger.Error ( e, "Error en la base de datos" );
+                logger.Error ( e, e.Message );
 
                 throw new BaseDeDatosException ( e, "Error en la base de datos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (Exception e)
             {
-                logger.Error ( e, "Error desconocido" );
+                logger.Error ( e, e.Message );
 
                 throw new ExcepcionGeneral ( e,DateTime.Now);
 
@@ -108,28 +108,28 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
             catch (NullReferenceException e)
             {
-                logger.Error ( e, "Parametros de entrada nulos" );
+                logger.Error ( e, e.Message );
 
                 throw new ObjetoNullException ( e, "Parametros nulos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (InvalidCastException e)
             {
-                logger.Error ( e, "Casteo no correcto" );
+                logger.Error ( e, e.Message );
 
                 throw new CasteoNoCorrectoException ( e, "Casteo no correcto en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (NpgsqlException e)
             {
-                logger.Error ( e, "Error en la base de datos" );
+                logger.Error ( e, e.Message );
 
                 throw new BaseDeDatosException ( e, "Error en la base de datos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (Exception e)
             {
-                logger.Error ( e, "Error desconocido" );
+                logger.Error ( e, e.Message );
 
                 throw new ExcepcionGeneral ( e, DateTime.Now );
 
@@ -167,28 +167,28 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
             catch (NullReferenceException e)
             {
-                logger.Error ( e, "Parametros de entrada nulos" );
+                logger.Error ( e, e.Message );
 
                 throw new ObjetoNullException ( e, "Parametros nulos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (InvalidCastException e)
             {
-                logger.Error ( e, "Casteo no correcto" );
+                logger.Error ( e, e.Message );
 
                 throw new CasteoNoCorrectoException ( e, "Casteo no correcto en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (NpgsqlException e)
             {
-                logger.Error ( e, "Error en la base de datos" );
+                logger.Error ( e, e.Message );
 
                 throw new BaseDeDatosException ( e, "Error en la base de datos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (Exception e)
             {
-                logger.Error ( e, "Error desconocido" );
+                logger.Error ( e, e.Message );
 
                 throw new ExcepcionGeneral ( e, DateTime.Now );
 
@@ -225,28 +225,28 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
             catch (NullReferenceException e)
             {
-                logger.Error ( e, "Parametros de entrada nulos" );
+                logger.Error ( e, e.Message );
 
                 throw new ObjetoNullException ( e, "Parametros nulos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (InvalidCastException e)
             {
-                logger.Error ( e, "Casteo no correcto" );
+                logger.Error ( e, e.Message );
 
                 throw new CasteoNoCorrectoException ( e, "Casteo no correcto en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (NpgsqlException e)
             {
-                logger.Error ( e, "Error en la base de datos" );
+                logger.Error ( e, e.Message );
 
                 throw new BaseDeDatosException ( e, "Error en la base de datos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (Exception e)
             {
-                logger.Error ( e, "Error desconocido" );
+                logger.Error ( e, e.Message );
 
                 throw new ExcepcionGeneral ( e, DateTime.Now );
 
@@ -283,28 +283,28 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
             catch (NullReferenceException e)
             {
-                logger.Error ( e, "Parametros de entrada nulos" );
+                logger.Error ( e, e.Message );
 
                 throw new ObjetoNullException ( e, "Parametros nulos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (InvalidCastException e)
             {
-                logger.Error ( e, "Casteo no correcto" );
+                logger.Error ( e, e.Message );
 
                 throw new CasteoNoCorrectoException ( e, "Casteo no correcto en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (NpgsqlException e)
             {
-                logger.Error ( e, "Error en la base de datos" );
+                logger.Error ( e, e.Message );
 
                 throw new BaseDeDatosException ( e, "Error en la base de datos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (Exception e)
             {
-                logger.Error ( e, "Error desconocido" );
+                logger.Error ( e, e.Message );
 
                 throw new ExcepcionGeneral ( e, DateTime.Now );
 
@@ -336,28 +336,28 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
             catch (NullReferenceException e)
             {
-                logger.Error ( e, "Parametros de entrada nulos" );
+                logger.Error ( e, e.Message );
 
                 throw new ObjetoNullException ( e, "Parametros nulos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (InvalidCastException e)
             {
-                logger.Error ( e, "Casteo no correcto" );
+                logger.Error ( e, e.Message );
 
                 throw new CasteoNoCorrectoException ( e, "Casteo no correcto en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (NpgsqlException e)
             {
-                logger.Error ( e, "Error en la base de datos" );
+                logger.Error ( e, e.Message );
 
                 throw new BaseDeDatosException ( e, "Error en la base de datos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (Exception e)
             {
-                logger.Error ( e, "Error desconocido" );
+                logger.Error ( e, e.Message );
 
                 throw new ExcepcionGeneral ( e, DateTime.Now );
 
@@ -394,28 +394,28 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
             catch (NullReferenceException e)
             {
-                logger.Error ( e, "Parametros de entrada nulos" );
+                logger.Error ( e, e.Message );
 
                 throw new ObjetoNullException ( e, "Parametros nulos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (InvalidCastException e)
             {
-                logger.Error ( e, "Casteo no correcto" );
+                logger.Error ( e, e.Message );
 
                 throw new CasteoNoCorrectoException ( e, "Casteo no correcto en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (NpgsqlException e)
             {
-                logger.Error ( e, "Error en la base de datos" );
+                logger.Error ( e, e.Message );
 
                 throw new BaseDeDatosException ( e, "Error en la base de datos en: " + GetType ( ).FullName + "." + MethodBase.GetCurrentMethod ( ).Name + ". " + e.Message );
             }
 
             catch (Exception e)
             {
-                logger.Error ( e, "Error desconocido" );
+                logger.Error ( e, e.Message );
 
                 throw new ExcepcionGeneral ( e, DateTime.Now );
 
@@ -427,8 +427,11 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
         }
 
-
-		public List<Entidad> ObtenerTodosHabilitados()
+        /// <summary>
+        /// Metodo para obetner todas las ciudades habilitadas que existen
+        /// </summary>
+        /// <returns></returns>
+        public List<Entidad> ObtenerTodosHabilitados()
 		{
 
 			try
@@ -449,28 +452,28 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 			}
 			catch (NullReferenceException e)
 			{
-				logger.Error(e, "Parametros de entrada nulos");
+				logger.Error(e, e.Message);
 
 				throw new ObjetoNullException(e, "Parametros nulos en: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
 			}
 
 			catch (InvalidCastException e)
 			{
-				logger.Error(e, "Casteo no correcto");
+				logger.Error(e, e.Message);
 
 				throw new CasteoNoCorrectoException(e, "Casteo no correcto en: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
 			}
 
 			catch (NpgsqlException e)
 			{
-				logger.Error(e, "Error en la base de datos");
+				logger.Error(e, e.Message);
 
 				throw new BaseDeDatosException(e, "Error en la base de datos en: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
 			}
 
 			catch (Exception e)
 			{
-				logger.Error(e, "Error desconocido");
+				logger.Error(e, e.Message);
 
 				throw new ExcepcionGeneral(e, DateTime.Now);
 
