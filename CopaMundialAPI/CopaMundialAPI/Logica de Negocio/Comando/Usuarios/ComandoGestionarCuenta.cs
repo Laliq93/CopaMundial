@@ -7,7 +7,6 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 {
     public class ComandoGestionarCuenta : Comando
     {
-        private Comando _comando;
 
         public ComandoGestionarCuenta()
         {
