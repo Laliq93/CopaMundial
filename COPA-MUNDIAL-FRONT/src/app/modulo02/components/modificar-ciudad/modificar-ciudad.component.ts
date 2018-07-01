@@ -123,6 +123,7 @@ habilitados: any = [
         console.log(error)
       }
     )
+    alert("Sus datos fueron procesados satisfactoriamente")
   }
   else{
     $("#idnombre").append("<span style='color: red'>Campo obligatorio</span>")

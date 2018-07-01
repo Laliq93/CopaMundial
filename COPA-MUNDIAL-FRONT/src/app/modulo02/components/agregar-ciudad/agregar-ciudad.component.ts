@@ -64,6 +64,8 @@ export class AgregarCiudadComponent implements OnInit {
                   console.log(<any>error)
                 }   
               )
+              alert("Sus datos fueron procesados satisfactoriamente")
+              this.resetForm();
             }
             else{
               $("#iddescripcionEN").append("<span style='color: red'>Campo obligatorio</span>")
@@ -82,8 +84,9 @@ export class AgregarCiudadComponent implements OnInit {
         }
    }
     else{
-      alert("Sus datos no han sido procesados satisfactoriamente, habitantes tiene que ser > 0")
+      alert("Sus datos no han sido procesados, habitantes tiene que ser > 0")
     }
+
   }
   
 
