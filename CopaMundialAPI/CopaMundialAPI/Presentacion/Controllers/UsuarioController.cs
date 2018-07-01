@@ -66,31 +66,35 @@ namespace CopaMundialAPI.Presentacion.Controllers
             [Route("CrearUsuarioAdministrador")]
             [System.Web.Http.AcceptVerbs("GET", "POST")]
             [System.Web.Http.HttpPost]
-            public HttpResponseMessage CrearUsuarioAdministrador(DTOUsuarioConfiguracion dto)
+            public HttpResponseMessage CrearUsuarioAdministrador(DTOUsuarioRegistrar dto)
             {
             try
             {
-                //debo crear DTO para este y modificar usuario y comando agregar usuario administrador
-                Console.WriteLine(dto);
-                TraductorUsuarioConfiguracion traductor = FabricaTraductor.CrearTraductorUsuarioConfiguracion();
+                System.Diagnostics.Debug.WriteLine(dto.Nombre + " " + dto.Apellido);
+
+                TraductorUsuarioRegistrar traductor = FabricaTraductor.CrearTraductorUsuarioRegistrar();
+
                 Entidad usuario = traductor.CrearEntidad(dto);
-                Comando comando = FabricaComando.CrearComandoAgregarUsuarioAdministrador(usuario);
+
+                Comando comando = FabricaComando.CrearComandoAgregarUsuario(usuario);
+
                 comando.Ejecutar();
+
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
-            catch (NpgsqlException e)
+            catch (BaseDeDatosException exc)
             {
-                logger.Error(e, e.Message);
+                logger.Error(exc, exc.Mensaje);
 
-                throw new BaseDeDatosException(e, "Error en la base de datos: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
-
-            catch (Exception e)
+            catch (Exception exc)
             {
-                logger.Error(e, e.Message);
+                ExcepcionGeneral exceptionGeneral = new ExcepcionGeneral(exc.InnerException, DateTime.Now);
 
-                throw new ExcepcionGeneral(e, DateTime.Now);
+                logger.Error(exc, exc.Message);
 
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exceptionGeneral.Mensaje);
             }
 
         }

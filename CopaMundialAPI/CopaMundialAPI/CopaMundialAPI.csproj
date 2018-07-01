@@ -258,6 +258,7 @@
     <Compile Include="Presentacion\Controllers\PartidoController.cs" />
     <Compile Include="Presentacion\Controllers\LogrosController.cs" />
     <Compile Include="Presentacion\Controllers\UsuarioController.cs" />
+     <Compile Include="Presentacion\Controllers\LoginController.cs" />
     <Compile Include="Presentacion\Controllers\TestController.cs" />
     <Compile Include="Fuente de Datos\DAO\DAO.cs" />
     <Compile Include="Fuente de Datos\DAO\DAOApuesta.cs" />
