@@ -9,6 +9,7 @@ import { FormControl, FormBuilder, Validators, NgForm, FormsModule } from '@angu
 import { LogrosService } from '../../services/logros.service';
 import { DTOLogroCantidad } from '../../models/DTOLogroCantidad';
 import { DTOLogroPartidoId } from '../../models/DTOLogroPartidoId';
+import { DTOLogroCantidadResultado } from '../../models/DTOLogroCantidadResultado';
 import { DTOMostrarLogrosPartido } from '../../models/DTOMostrarLogrosPartido';
 import { catchError, map, tap } from 'rxjs/operators';
 import {  DTOListaPartidosLogros } from '../../models/DTOListaPartidosLogros';
@@ -22,9 +23,12 @@ import {  DTOListaPartidosLogros } from '../../models/DTOListaPartidosLogros';
 export class LogroCantidadComponent implements OnInit {
 
   public listaDTOLogroCantidad: DTOMostrarLogrosPartido[] = [];//Contiene una lista de todos los logros del partido
+  public listaDTOLogroCantidadResultado: DTOLogroCantidadResultado [] = [];
   public partido:  DTOListaPartidosLogros = null;
   public dtoPartidoId: DTOLogroPartidoId;
   public dtoLogroCantidad : DTOLogroCantidad;
+  public dtoLogroPartido : DTOMostrarLogrosPartido;
+  public dtoLogroCantidadResult : DTOLogroCantidadResultado; 
   public _newLogro;
   public _newCantidad;
   public idPartido : number;
@@ -38,15 +42,51 @@ export class LogroCantidadComponent implements OnInit {
   {
       this._logrosService = new LogrosService(http);
       this.dtoLogroCantidad = new DTOLogroCantidad();
+      this.dtoLogroCantidadResult = new DTOLogroCantidadResultado();
       this.idPartido = parseInt(
            this.router.snapshot.paramMap.get('idPartido')
          );
    }
 
 
+
+
+   public obtenerLogrosCantidadResultadosDTO(idPartido: number)
+   {
+          this.dtoPartidoId = new DTOLogroPartidoId();
+          this.dtoPartidoId.idPartido = idPartido;
+           const url = this.apiURL+ 'obtenerLogrosCantidadResultados';
+           this.http.put<DTOLogroCantidadResultado[]>(url, this.dtoPartidoId, {
+               responseType: 'json'
+             })
+             .subscribe(
+               data => {
+                 for (let i = 0; i < Object.keys(data).length; i++)
+                  {
+                     let logroCantidad: DTOLogroCantidadResultado;
+                     logroCantidad = new DTOLogroCantidadResultado();
+
+                     logroCantidad.IdLogroCantidad = data[i].IdLogroCantidad;
+                     logroCantidad.LogroCantidad = data[i].LogroCantidad;
+                     logroCantidad.Cantidad = data[i].Cantidad;
+                     logroCantidad.TipoLogro = data[i].TipoLogro;
+                     this.listaDTOLogroCantidadResultado[i] = logroCantidad;
+                     console.log(data[i]);
+                  }
+               },
+               Error => {
+                 console.log(Error);
+                  alert(Error.error);
+                }
+             );
+   }
+
+
   ngOnInit(): void {
     this.partido = this._logrosService.ObtenerPartidoDTO(this.idPartido);
+    
     this.obtenerLogrosCantidadDTO(this.idPartido);
+    this.obtenerLogrosCantidadResultadosDTO(this.idPartido);
 
   }
 
@@ -74,6 +114,7 @@ export class LogroCantidadComponent implements OnInit {
     this.consultarLogroEActive = false;
     this.resultadoLogroEActive = false;
     this._newLogro = dto.Logro;
+    this.dtoLogroPartido = dto;
 
   }
 
@@ -84,12 +125,13 @@ export class LogroCantidadComponent implements OnInit {
     this.resultadoLogroEActive = false;
   }
 
-  setResultadoLogroEActive(){
+  setResultadoLogroEActive(dto: DTOMostrarLogrosPartido){
     this.asignarLogroEActive = false;
     this.modificarLogroEActive = false;
     this.consultarLogroEActive = false;
     this.resultadoLogroEActive = true;
-
+    this._newLogro = dto.Logro;
+    this.dtoLogroPartido = dto;
   }
 
 
@@ -126,15 +168,35 @@ export class LogroCantidadComponent implements OnInit {
     {
       if (this._newLogro != null)
       {
-        alert(this._newLogro);
+       // alert(this._newLogro);
         this.dtoLogroCantidad.IdPartido = this.idPartido;
         this.dtoLogroCantidad.LogroCantidad = this._newLogro;
         this.dtoLogroCantidad.TipoLogro = 1;
         this._logrosService.AgregarLogroCantidad(this.dtoLogroCantidad);
-        this.obtenerLogrosCantidadDTO(this.idPartido);
+      //  this.obtenerLogrosCantidadDTO(this.idPartido);
       }
       else
         alert("Debe ingresar un nombre de logro correcto");
+
+    }
+
+
+    public AsignarResultado()
+    {
+      if (this._newCantidad != null)
+      { 
+        
+      //  this._newLogro = dto.Logro;
+      //  this.dtoLogroPartido = dto;
+        this.dtoLogroCantidadResult.IdLogroCantidad = this.dtoLogroPartido.IdLogro;
+        this.dtoLogroCantidadResult.LogroCantidad = this.dtoLogroPartido.Logro;
+        this.dtoLogroCantidadResult.TipoLogro = 1;
+        this.dtoLogroCantidadResult.Cantidad = this._newCantidad;
+        this._logrosService.AsignarResutadoLogroCantidad(this.dtoLogroCantidadResult);
+        this.obtenerLogrosCantidadDTO(this.idPartido);
+      }
+      else
+        alert("Debe ingresar una cantidad valida");
 
     }
 

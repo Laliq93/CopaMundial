@@ -62,7 +62,7 @@
             </div>
           </ng-container>
           <div class="col-1">
-              <button type="button" title="Registrar resultado logro" class="btn btn-secondary btnCrearLogro" *ngIf="resultadoLogroEActive || modificarLogroEActive">
+              <button type="button" title="Registrar resultado logro" class="btn btn-secondary btnCrearLogro" *ngIf="resultadoLogroEActive || modificarLogroEActive" (click)="AsignarResultado()">
                 <i class="material-icons">check</i>
               </button>
           </div>
@@ -72,6 +72,7 @@
               </button>
           </div>
         </div>
+    <ng-container *ngIf="listaDTOLogroCantidad.length != 0">
         <div class="row" *ngIf="listaDTOLogroCantidad.length != 0">
               <h4>Lista de Logros Pendientes por Cantidad</h4>
        </div>
@@ -91,12 +92,43 @@
                       </button>
                   </div>
                   <div class="col-md-1">
-                      <button type="button" title="Asignar Resultado logro" class="btn btn-secondary btnResultadoLogro" (click)="setResultadoLogroEActive()"  [ngClass]="{'active': resultadoLogroEActive }">
+                      <button type="button" title="Asignar Resultado logro" class="btn btn-secondary btnResultadoLogro" (click)="setResultadoLogroEActive(logrosCantidad)"  [ngClass]="{'active': resultadoLogroEActive }">
                         <i class="material-icons">check</i>
                       </button>
                   </div>
               </div>
         </ng-container>
       </div>
+    </ng-container>
+  <ng-container *ngIf="listaDTOLogroCantidadResultado.length != 0">    
+ <div class="row" *ngIf="listaDTOLogroCantidadResultado.length != 0">
+        <h4>Lista de Logros Culminados por Cantidad</h4>
+ </div>
+ <div class="logrosContainer">
+  <ng-container *ngFor="let logrosCantidadResult of listaDTOLogroCantidadResultado">
+        <div class="row" >
+          <div class="col-sm-5">
+              <p>
+                  <br>
+                  <br>
+                  {{logrosCantidadResult.LogroCantidad}}
+              </p>
+            </div>
+            <div class="col-sm-3">
+              <p>
+                  <br>
+                  <br>
+                  {{logrosCantidadResult.Cantidad}}
+              </p>
+            </div>
+            <div class="col-md-1">
+                <button type="button" title="Modificar logro" class="btn btn-secondary btnModificarLogro"  [ngClass]="{'active': modificarLogroEActive }">
+                  <i class="material-icons">build</i>
+                </button>
+            </div>
+        </div>
+  </ng-container>
+</div>
+</ng-container>
       </form>
 </div>

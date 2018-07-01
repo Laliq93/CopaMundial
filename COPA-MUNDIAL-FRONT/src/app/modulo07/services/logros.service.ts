@@ -9,6 +9,7 @@ import { DTOLogroJugador } from  '../models/DTOLogroJugador';
 import { DTOLogroVF } from '../models/DTOLogroVF';
 import { DTOLogroPartidoId } from '../models/DTOLogroPartidoId';
 import { DTOListaPartidosLogros } from '../models/DTOListaPartidosLogros';
+import { DTOLogroCantidadResultado } from '../models/DTOLogroCantidadResultado';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -230,6 +231,24 @@ export class LogrosService{
       );
   }
 
+  public AsignarResutadoLogroCantidad(dtoLogroCantidadResult: DTOLogroCantidadResultado)
+  {
+
+    const url2 = this.apiURL+ 'asignarResultadoLogroCantidad';
+    return this.http.post<DTOLogroCantidadResultado>(url2, dtoLogroCantidadResult, { responseType: 'json' })
+      .subscribe(
+        data => {
+          if (data != null) {
+            console.log(data);
+          } else {
+            alert('Resultado cantidad registrado correctamente');
+          }
+        },
+        Error => {
+          alert("Error al registrar cantidad el logro");
+        }
+      );
+  }
 
   
 
