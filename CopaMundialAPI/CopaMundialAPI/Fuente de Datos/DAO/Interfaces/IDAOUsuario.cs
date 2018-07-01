@@ -9,11 +9,18 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
     public interface IDAOUsuario: IDAO
     {
         /// <summary>
-        /// Obtener todos los usuarios activos o inactivos
+        /// Obtener todos los usuarios activos
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns>List<Entidad></returns>
-        List<Entidad> ObtenerUsuarios(Entidad usuario);
+        List<Entidad> ObtenerUsuariosActivos(Entidad usuario);
+
+        /// <summary>
+        /// Obtener todos los usuarios no inactivos
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns>List<Entidad></returns>
+        List<Entidad> ObtenerUsuariosNoActivos(Entidad usuario);
 
         /// <summary>
         /// Verifica si el correo ya se encuentra registrado en la base de datos.

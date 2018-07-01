@@ -3,29 +3,20 @@ using System.Collections.Generic;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Fuente_de_Datos.DAO;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
-using CopaMundialAPI.Logica_de_Negocio.Fabrica;
 
-namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
+namespace CopaMundialAPI.Logica_de_Negocio.Comando.Usuarios
 {
-    public class ComandoAgregarUsuarioAdministrador : Comando
+    public class ComandoObtenerUsuarioNoActivo : Comando
     {
-        private Comando _comando;
-
-        public ComandoAgregarUsuarioAdministrador(Entidad usuario)
+        public ComandoObtenerUsuarioNoActivo(Entidad usuario)
         {
             Entidad = usuario;
         }
 
         public override void Ejecutar()
         {
-
-            _comando = FabricaComando.CrearComandoVerificarCorreoExiste(Entidad);
-
-            _comando.Ejecutar();
-
-            DAOUsuario _dao = FabricaDAO.CrearDAOUsuario();
-
-            _dao.Agregar(Entidad);
+            DAOUsuario dao = FabricaDAO.CrearDAOUsuario();
+            dao.ObtenerUsuariosNoActivos(Entidad);
         }
 
         public override Entidad GetEntidad()
@@ -37,5 +28,6 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
         {
             throw new NotImplementedException();
         }
+
     }
 }
