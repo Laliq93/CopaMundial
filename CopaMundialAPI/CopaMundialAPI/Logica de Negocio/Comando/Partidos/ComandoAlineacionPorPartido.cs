@@ -22,7 +22,6 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
         public override void Ejecutar()
         {
             IDAOAlineacion dao = FabricaDAO.CrearDAOAlineacion();
-
             _alineaciones = dao.ConsultarPorPartido(Entidad);
 
             CompletarLista();

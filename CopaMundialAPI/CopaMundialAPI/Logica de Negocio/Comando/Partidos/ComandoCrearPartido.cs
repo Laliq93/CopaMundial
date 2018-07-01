@@ -10,7 +10,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
 {
     public class ComandoCrearPartido : Comando
     {
-        public ComandoCrearPartido(Partido entidad)
+        public ComandoCrearPartido(Entidad entidad)
         {
             Entidad = entidad;
         }
