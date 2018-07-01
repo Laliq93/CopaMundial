@@ -40,16 +40,16 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
         }
 
 
-        public static ComandoObtenerUsuarioActivo CrearComandoObtenerUsuarioActivo(Entidad usuario)
+        public static ComandoObtenerUsuarioActivo CrearComandoObtenerUsuarioActivo()
 
         {
-            return new ComandoObtenerUsuarioActivo(usuario);
+            return new ComandoObtenerUsuarioActivo();
         }
 
-        public static ComandoObtenerUsuarioNoActivo CrearComandoObtenerUsuarioNoActivo(Entidad usuario)
+        public static ComandoObtenerUsuarioNoActivo CrearComandoObtenerUsuarioNoActivo()
 
         {
-            return new ComandoObtenerUsuarioNoActivo(usuario);
+            return new ComandoObtenerUsuarioNoActivo();
         }
 
         public static ComandoObtenerUsuarioDatos CrearComandoObtenerUsuarioDatos(Entidad usuario)
