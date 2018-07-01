@@ -44,5 +44,9 @@ export class CiudadService {
         let headers = new HttpHeaders().set('Content-Type','application/json');
         return this.http.put(this.url,json,{headers:headers})
       }
+      ObtenerListaCiudadesHabilitadas() : Observable<Ciudad[]>{
+        let headers = new HttpHeaders().set('Content-Type','application/json');
+        return this.http.get<Ciudad[]>(this.url+'/habilitada',{headers: headers});
+     }
 }
  

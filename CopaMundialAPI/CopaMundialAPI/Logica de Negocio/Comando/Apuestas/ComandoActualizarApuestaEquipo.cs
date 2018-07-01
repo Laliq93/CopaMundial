@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 using CopaMundialAPI.Fuente_de_Datos.DAO;
+using CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 using CopaMundialAPI.Logica_de_Negocio.Fabrica;
 
@@ -25,7 +26,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 
             _comando.Ejecutar();
 
-            DAOApuestaEquipo dao = FabricaDAO.CrearDAOApuestaEquipo();
+            IDAOApuesta dao = FabricaDAO.CrearDAOApuestaEquipo();
 
             dao.Actualizar(Entidad);
         }

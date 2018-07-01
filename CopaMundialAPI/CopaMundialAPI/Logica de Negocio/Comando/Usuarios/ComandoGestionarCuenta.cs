@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using CopaMundialAPI.Comun.Entidades;
 
-namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
+
+namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
 {
-    public class ComandoPosponerPartido : Comando
+    public class ComandoGestionarCuenta : Comando
     {
+
+        public ComandoGestionarCuenta()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void Ejecutar()
         {
             throw new NotImplementedException();

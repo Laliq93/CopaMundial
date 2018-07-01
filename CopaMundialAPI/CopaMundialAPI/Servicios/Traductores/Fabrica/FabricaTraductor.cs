@@ -50,11 +50,11 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
         {
             return new TraductorCiudad ( );
         }
-		public static TraductorCiudad2 CrearTraductorCiudad2()
+	/*	public static TraductorCiudad2 CrearTraductorCiudad2()
 		{
 			return new TraductorCiudad2();
 		}
-
+		*/
 		public static TraductorCiudadNombre CrearTraductorCiudadNombre()
 		{
 			return new TraductorCiudadNombre();
@@ -108,6 +108,26 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
         public static TraductorListaPartidosLogros CrearTraductorListaPartidosLogros()
         {
             return new TraductorListaPartidosLogros();
+        }
+
+        public static TraductorLogroCantidadResultado CrearTraductorLogroCantidadResultado()
+        {
+            return new TraductorLogroCantidadResultado();
+        }
+
+        public static TraductorLogroJugadorResultado CrearTraductorLogroJugadorResultado()
+        {
+            return new TraductorLogroJugadorResultado();
+        }
+
+        public static TraductorLogroEquipoResultado CrearTraductorLogroEquipoResultado()
+        {
+            return new TraductorLogroEquipoResultado();
+        }
+
+        public static TraductorLogroVFResultado CrearTraductorLogroVFResultado()
+        {
+            return new TraductorLogroVFResultado();
         }
 
         public static TraductorUsuarioId CrearTraductorUsuarioId()

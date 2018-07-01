@@ -2,13 +2,28 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">Ciudad</th>
+   
+      <th scope="col">Descripcion</th>
+    
+      <th scope="col">Habitantes</th>
+ 
+      <th scope="col">Estado</th>
     </tr>
+    
   </thead>
   <tbody>
     <ng-container *ngFor="let ciudad of ciudades; let i = index">
       <tr>
-        <th scope="row">{{ciudad}}</th>
+        <th scope="row">{{ciudad.Nombre}}</th>
+     
+        <th scope="row">{{ciudad.Descripcion}}</th>
+   
+        <th scope="row">{{ciudad.Habitantes}}</th>
+    
+        <th *ngIf="ciudad.Habilitado == true" scope="row">Habilitado</th>
+        <th *ngIf="ciudad.Habilitado == false" scope="row">Inhabilitado</th>
       </tr>
+
     </ng-container>
   </tbody>
 </table>
