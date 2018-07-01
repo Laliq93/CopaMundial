@@ -138,6 +138,7 @@ export class LogroCantidadComponent implements OnInit {
 
     }
 
+    
     public LlamarLogroCantidad() {
       this.router2.navigate(['/logros/logroCantidad',this.idPartido]);
     }
@@ -146,5 +147,12 @@ export class LogroCantidadComponent implements OnInit {
       this.router2.navigate(['/logros/logroEquipo',this.idPartido]);
     }
 
+    public LlamarLogroJugador() {
+      this.router2.navigate(['/logros/logroJugador',this.idPartido]);
+    }
+
+    public LlamarLogroVF() {
+      this.router2.navigate(['/logros/logroVF',this.idPartido]);
+    }
 
 }

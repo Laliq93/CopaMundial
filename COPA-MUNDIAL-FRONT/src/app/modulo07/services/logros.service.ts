@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 import { Router } from '@angular/router';
 import { DTOLogroEquipo } from '../models/DTOLogroEquipo';
 import { DTOLogroCantidad } from '../models/DTOLogroCantidad';
+import { DTOLogroJugador } from  '../models/DTOLogroJugador';
+import { DTOLogroVF } from '../models/DTOLogroVF';
 import { DTOLogroPartidoId } from '../models/DTOLogroPartidoId';
 import { DTOListaPartidosLogros } from '../models/DTOListaPartidosLogros';
 import { Observable } from 'rxjs';
@@ -29,7 +31,9 @@ export class LogrosService{
   public apiURL = 'http://localhost:51543/api/logros/';
   public dtoPartidoPorId: DTOListaPartidosLogros;
   public logrosEquipo : DTOLogroEquipo[];
+  public logrosJugador: DTOLogroJugador[];
   public logrosCantidad : DTOLogroCantidad[];
+  public logrosVF : DTOLogroVF[];
   public dtoPartidoId: DTOLogroPartidoId = new  DTOLogroPartidoId();
   public dtoListaPartido : DTOListaPartidosLogros[] = [];
   public dtoListaPartidoFinaliz : DTOListaPartidosLogros[] = [];
@@ -153,6 +157,7 @@ export class LogrosService{
 
   }
 
+
   public AgregarLogroEquipo(dtoLogroEquipo: DTOLogroEquipo)
   {
 
@@ -224,6 +229,120 @@ export class LogrosService{
         }
       );
   }
+
+
+  
+
+  public obtenerLogrosJugadorDTO(idPartido: number): DTOLogroJugador[]
+  {
+          this.dtoPartidoId.idPartido = idPartido;
+          const url = this.apiURL+ 'obtenerLogrosJugadorPendiente';
+          this.http.put<DTOLogroJugador[]>(url, idPartido, {
+              responseType: 'json'
+            })
+            .subscribe(
+              data => {
+                for (let i = 0; i < Object.keys(data).length; i++) {
+                  let logroJugador: DTOLogroJugador;
+                  logroJugador = new DTOLogroJugador();
+
+                  logroJugador.IdPartido = data[i].IdPartido;
+                  logroJugador.LogroJugador = data[i].LogroJugador;
+
+                  this.logrosJugador[i] = logroJugador;
+                  console.log(data);
+
+                }
+                Error => {
+
+                    alert("No hay logros de Jugador pendientes en el partido");
+
+                }
+
+              }
+            );
+
+          return this.logrosJugador;
+
+  }
+
+  public AgregarLogroJugador(dtoLogroJugador: DTOLogroJugador)
+  {
+
+    const url2 = this.apiURL+ 'agregarLogroJugador';
+    return this.http.post<DTOLogroJugador>(url2, dtoLogroJugador, { responseType: 'json' })
+      .subscribe(
+        data => {
+          if (data != null) {
+            console.log(data);
+          } else {
+            alert('Logro jugador agregado correctamente');
+          }
+        },
+        Error => {
+          alert("Error al agregar el logro");
+        }
+      );
+  }
+
+
+    
+
+  public obtenerLogrosVFDTO(idPartido: number): DTOLogroVF[]
+  {
+          this.dtoPartidoId.idPartido = idPartido;
+          const url = this.apiURL+ 'obtenerLogrosVFPendiente';
+          this.http.put<DTOLogroVF[]>(url, idPartido, {
+              responseType: 'json'
+            })
+            .subscribe(
+              data => {
+                for (let i = 0; i < Object.keys(data).length; i++) {
+                  let logroVF: DTOLogroVF;
+                  logroVF = new DTOLogroVF();
+
+                  logroVF.IdPartido = data[i].IdPartido;
+                  logroVF.LogroVF = data[i].LogroVF;
+
+                  this.logrosVF[i] = logroVF;
+                  console.log(data);
+
+                }
+                Error => {
+
+                    alert("No hay logros de Jugador pendientes en el partido");
+
+                }
+
+              }
+            );
+
+          return this.logrosVF;
+
+  }
+
+  public AgregarLogroVF(dtoLogroVF: DTOLogroVF)
+  {
+
+    const url2 = this.apiURL+ 'agregarLogroVF';
+    return this.http.post<DTOLogroJugador>(url2, dtoLogroVF, { responseType: 'json' })
+      .subscribe(
+        data => {
+          if (data != null) {
+            console.log(data);
+          } else {
+            alert('Logro verdadero o falso agregado correctamente');
+          }
+        },
+        Error => {
+          alert("Error al agregar el logro");
+        }
+      );
+  }
+
+
+
+
 
 
 }

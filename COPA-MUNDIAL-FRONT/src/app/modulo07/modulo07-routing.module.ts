@@ -5,16 +5,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { VerPartidosComponent } from './components/ver-partidos/ver-partidos.component';
 import { LogroEquipoComponent } from './components/logro-equipo/logro-equipo.component';
 import { LogroCantidadComponent } from './components/logro-cantidad/logro-cantidad.component';
+import { LogroJugadorComponent } from './components/logro-jugador/logro-jugador.component';
+import { LogroVFComponent } from './components/logro-vf/logro-vf.component';
 
 const routes: Routes = [
-  
-  //  { path: 'crearLogro', component: CrearLogroComponent, canActivate: [NotLoggedInGuard] },
-    { path: '', component: VerPartidosComponent}/*,
-    { path: 'logroPartido/:idPartido', component: LogroPartidoComponent, canActivate: [NotLoggedInGuard]}*/,
+
+    { path: '', component: VerPartidosComponent},
     { path: 'logroEquipo/:idPartido', component: LogroEquipoComponent},
-    { path: 'logroCantidad/:idPartido', component: LogroCantidadComponent}/*,
-    { path: 'logroJugador', component: LogroJugadorComponent, canActivate: [NotLoggedInGuard]},
-    { path: 'logroVF', component: LogroVofComponent, canActivate: [NotLoggedInGuard]},*/
+    { path: 'logroCantidad/:idPartido', component: LogroCantidadComponent},
+    { path: 'logroJugador/:idPartido', component: LogroJugadorComponent},
+    { path: 'logroVF/:idPartido', component: LogroVFComponent}
   ];
 
 @NgModule({
