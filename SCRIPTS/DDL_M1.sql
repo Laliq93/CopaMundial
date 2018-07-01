@@ -1,3 +1,6 @@
+DROP SEQUENCE IF EXISTS SEQ_Usuario;
+DROP TABLE IF EXISTS USUARIO CASCADE;
+
 CREATE SEQUENCE SEQ_Usuario
   START WITH 1
   INCREMENT BY 1
@@ -5,7 +8,7 @@ CREATE SEQUENCE SEQ_Usuario
   NO MAXVALUE
   CACHE 1;
 
-CREATE TABLE USUARIO (
+CREATE TABLE public.USUARIO (
     us_id		integer,
     us_nombreUsuario 	  varchar(20)  UNIQUE,
     us_nombre         	varchar(30) NOT NULL,
@@ -20,4 +23,4 @@ CREATE TABLE USUARIO (
     us_token            varchar(100),
     CONSTRAINT primaria_usuario PRIMARY KEY(us_id)
 
-);
+) TABLESPACE pg_default;

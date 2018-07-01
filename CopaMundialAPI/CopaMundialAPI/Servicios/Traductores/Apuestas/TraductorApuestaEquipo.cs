@@ -36,7 +36,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Apuestas
                 ApuestaEquipo apuesta = FabricaEntidades.CrearApuestaEquipo();
 
                 Usuario apostador = FabricaEntidades.CrearUsuarioVacio();
-                Equipos equipos = new Equipos();
+                Comun.Entidades.Equipos equipos = new Comun.Entidades.Equipos();
                 LogroEquipo logro = FabricaEntidades.CrearLogroEquipo();
 
                 apuesta.Usuario = apostador;

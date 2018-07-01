@@ -9,6 +9,9 @@ using CopaMundialAPI.Logica_de_Negocio.Comando.Logros;
 using CopaMundialAPI.Logica_de_Negocio.Comando;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Jugadores;
 using CopaMundialAPI.Logica_de_Negocio.Comando.Usuarios;
+using CopaMundialAPI.Logica_de_Negocio.Comando.Partidos;
+using CopaMundialAPI.Logica_de_Negocio.Comando.EquipoEstatico;
+using CopaMundialAPI.Logica_de_Negocio.Comando.EstadioEstatico;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
 {
@@ -37,16 +40,16 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
         }
 
 
-        public static ComandoObtenerUsuarioActivo CrearComandoObtenerUsuarioActivo(Entidad usuario)
+        public static ComandoObtenerUsuarioActivo CrearComandoObtenerUsuarioActivo()
 
         {
-            return new ComandoObtenerUsuarioActivo(usuario);
+            return new ComandoObtenerUsuarioActivo();
         }
 
-        public static ComandoObtenerUsuarioNoActivo CrearComandoObtenerUsuarioNoActivo(Entidad usuario)
+        public static ComandoObtenerUsuarioNoActivo CrearComandoObtenerUsuarioNoActivo()
 
         {
-            return new ComandoObtenerUsuarioNoActivo(usuario);
+            return new ComandoObtenerUsuarioNoActivo();
         }
 
         public static ComandoObtenerUsuarioDatos CrearComandoObtenerUsuarioDatos(Entidad usuario)
@@ -407,9 +410,95 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
         {
             return new ComandoFinalizarApuestas();
         }
+
+        public static ComandoAgregarUsuario CrearComandoAgregarUsuario(Entidad usuario)
+        {
+            return new ComandoAgregarUsuario(usuario);
+        }
+
         public static ComandoObtenerJugadorId CrearComandoObtenerJugadorId(Entidad jugador)
         {
             return new ComandoObtenerJugadorId(jugador);
+        }
+
+        public static ComandoValidarCapitan CrearComandoValidarCapitan(Entidad entidad)
+        {
+            return new ComandoValidarCapitan(entidad);
+        }
+
+        public static ComandoValidarMaximoJugadores CrearComandoValidarMaximoJugadores(Entidad entidad)
+        {
+            return new ComandoValidarMaximoJugadores(entidad);
+        }
+
+        public static ComandoValidarAlineacion CrearComandoValidarAlineacion(Entidad entidad)
+        {
+            return new ComandoValidarAlineacion(entidad);
+        }
+
+        public static ComandoActualizarAlineacion CrearComandoActualizarAlineacion(Entidad entidad)
+        {
+            return new ComandoActualizarAlineacion(entidad);
+        }
+
+        public static ComandoActualizarPartido CrearComandoActualizarPartido(Entidad entidad)
+        {
+            return new ComandoActualizarPartido(entidad);
+        }
+
+        public static ComandoAlineacionPorPartido CrearComandoAlineacionPorPartido(Entidad entidad)
+        {
+            return new ComandoAlineacionPorPartido(entidad);
+        }
+
+        public static ComandoCrearAlineacion CrearComandoCrearAlineacion(Entidad entidad)
+        {
+            return new ComandoCrearAlineacion(entidad);
+        }
+
+        public static ComandoCrearPartido CrearComandoCrearPartido(Entidad entidad)
+        {
+            return new ComandoCrearPartido(entidad);
+        }
+
+        public static ComandoEliminarAlineacion CrearComandoEliminarAlineacion(Entidad entidad)
+        {
+            return new ComandoEliminarAlineacion(entidad);
+        }
+
+        public static ComandoObtenerEquipoEstatico CrearComandoObtenerEquipoEstatico(Entidad entidad)
+        {
+            return new ComandoObtenerEquipoEstatico(entidad);
+        }
+
+        public static ComandoObtenerEstadioEstatico CrearComandoObtenerEstadioEstatico(Entidad entidad)
+        {
+            return new ComandoObtenerEstadioEstatico(entidad);
+        }
+
+        public static ComandoObtenerListaPartidosPorFecha CrearComandoObtenerListaPartidosPorFecha(Entidad entidad)
+        {
+            return new ComandoObtenerListaPartidosPorFecha(entidad);
+        }
+
+        public static ComandoObtenerPartido CrearComandoObtenerPartido(Entidad entidad)
+        {
+            return new ComandoObtenerPartido(entidad);
+        }
+
+        public static ComandoObtenerPartidos CrearComandoObtenerPartidos()
+        {
+            return new ComandoObtenerPartidos();
+        }
+
+        public static ComandoObtenerTodosLosEquipos CrearComandoObtenerTodosLosEquipos()
+        {
+            return new ComandoObtenerTodosLosEquipos();
+        }
+
+        public static ComandoObtenerTodosLosEstadios CrearComandoObtenerTodosLosEstadios()
+        {
+            return new ComandoObtenerTodosLosEstadios();
         }
 
     }

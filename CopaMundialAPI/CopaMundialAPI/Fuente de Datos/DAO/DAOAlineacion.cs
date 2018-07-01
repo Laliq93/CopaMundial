@@ -15,6 +15,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
     public class DAOAlineacion : DAO, IDAOAlineacion
     {
         Logger logger = LogManager.GetLogger("fileLogger");
+        private int _filasAfectadas;
 
         public void Actualizar(Entidad entidad)
         {
@@ -37,7 +38,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 AgregarParametro("_jugador", alineacion.Jugador.Id);
                 AgregarParametro("_equipo", alineacion.Equipo.Id);
                 AgregarParametro("_partido", alineacion.Partido.Id);
-                EjecutarQuery();
+                _filasAfectadas = EjecutarQuery();
             }
             catch (NullReferenceException e)
             {
@@ -57,6 +58,11 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             finally
             {
                 Desconectar();
+            }
+
+            if (_filasAfectadas == 0)
+            {
+                throw new AlineacionNoExisteException("No existen registros que cumplan los parametros");
             }
             
         }
@@ -107,17 +113,17 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         public List<Entidad> ConsultarPorPartido(Entidad entidad)
         {
-            if (!(entidad is Alineacion alineacion))
+            if (!(entidad is Partido partido))
             {
-                logger.Error("Casteo invalido de la entidad " + entidad.ToString() + " a Alineacion");
-                throw new CasteoInvalidoException("La entidad no es del tipo alineación");
+                logger.Error("Casteo invalido de la entidad " + entidad.ToString() + " a Partido");
+                throw new CasteoInvalidoException("La entidad no es del tipo partido");
             }
 
             try
             {
                 Conectar();
-                StoredProcedure("ConsultarPorPartido(@_idalineacion)");
-                AgregarParametro("_idalineacion", alineacion.Id);
+                StoredProcedure("ConsultarAlineacionPorPartido(@_idPartido)");
+                AgregarParametro("_idPartido", partido.Id);
                 EjecutarReader();
                 return ConstruirListaEntidades();
             }
@@ -139,8 +145,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             finally
             {
                 Desconectar();
-            }
-                        
+            }      
         }
 
         public void Eliminar(Entidad entidad)
@@ -156,7 +161,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 Conectar();
                 StoredProcedure("EliminarAlineacion(@_idalineacion)");
                 AgregarParametro("_idalineacion", alineacion.Id);
-                EjecutarQuery();
+                _filasAfectadas = EjecutarQuery();
             }
             catch (NullReferenceException e)
             {
@@ -171,6 +176,87 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             catch (Exception e)
             {
                 logger.Error(e, "DAOAlineacion.Eliminar[" + entidad.ToString() + "]");
+                throw new ExcepcionPersonalizada();
+            }
+            finally
+            {
+                Desconectar();
+            }
+
+            if (_filasAfectadas == 0)
+            {
+                throw new AlineacionNoExisteException("No existen registros que cumplan los parametros");
+            }
+        }
+
+        public List<Entidad> ConsultarTitularesPorPartidoYEquipo(Entidad entidad)
+        {
+            if (!(entidad is Alineacion alineacion))
+            {
+                logger.Error("Casteo invalido de la entidad " + entidad.ToString() + " a Alineacion");
+                throw new CasteoInvalidoException("La entidad no es del tipo alineación");
+            }
+
+            try
+            {
+                Conectar();
+                StoredProcedure("ConsultarTitularesPorPartidoYEquipo(@_idPartido, @_idEquipo)");
+                AgregarParametro("_idPartido", alineacion.Partido.Id);
+                AgregarParametro("_idEquipo", alineacion.Equipo.Id);
+                EjecutarReader();
+                return ConstruirListaEntidades();
+            }
+            catch (NullReferenceException e)
+            {
+                logger.Error(e, "DAOAlineacion.ConsultarTitularesPorPartidoYEquipo[" + entidad.ToString() + "] valor nulo");
+                throw new DatosInvalidosException("La información enviada no tiene el formato correcto");
+            }
+            catch (NpgsqlException e)
+            {
+                logger.Error(e, "DAOAlineacion.ConsultarTitularesPorPartidoYEquipo[" + entidad.ToString() + "] error bd");
+                throw new DatabaseException("Error en la comunicación con la base de datos");
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "DAOAlineacion.ConsultarTitularesPorPartidoYEquipo[" + entidad.ToString() + "]");
+                throw new ExcepcionPersonalizada();
+            }
+            finally
+            {
+                Desconectar();
+            }
+        }
+
+        public Entidad ConsultarCapitanPorPartidoYEquipo(Entidad entidad)
+        {
+            if (!(entidad is Alineacion alineacion))
+            {
+                logger.Error("Casteo invalido de la entidad " + entidad.ToString() + " a Alineacion");
+                throw new CasteoInvalidoException("La entidad no es del tipo alineación");
+            }
+
+            try
+            {
+                Conectar();
+                StoredProcedure("ConsultarCapitanPorPartidoYEquipo(@_idPartido, @_idEquipo)");
+                AgregarParametro("_idPartido", alineacion.Partido.Id);
+                AgregarParametro("_idEquipo", alineacion.Equipo.Id);
+                EjecutarReader();
+                return ConstruirEntidad();
+            }
+            catch (NullReferenceException e)
+            {
+                logger.Error(e, "DAOAlineacion.ConsultarPorPartido[" + entidad.ToString() + "] valor nulo");
+                throw new DatosInvalidosException("La información enviada no tiene el formato correcto");
+            }
+            catch (NpgsqlException e)
+            {
+                logger.Error(e, "DAOAlineacion.ConsultarPorPartido[" + entidad.ToString() + "] error bd");
+                throw new DatabaseException("Error en la comunicación con la base de datos");
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "DAOAlineacion.ConsultarPorPartido[" + entidad.ToString() + "]");
                 throw new ExcepcionPersonalizada();
             }
             finally
@@ -203,6 +289,11 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         private Entidad ConstruirEntidad(int i = 0)
         {
+            if (cantidadRegistros == 0)
+            {
+                throw new AlineacionNoExisteException("Alineación no encontrada");
+            }
+
             Jugador jugador = FabricaEntidades.CrearJugador();
             jugador.Id = GetInt(i, 4);
 

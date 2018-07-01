@@ -142,30 +142,36 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             }
         }
 
-        public List<Entidad> ObtenerPartidosPosterioresA(DateTime fecha)
+        public List<Entidad> ObtenerPartidosPosterioresA(Entidad entidad)
         {
+            if (!(entidad is Partido partido))
+            {
+                logger.Error("Casteo invalido de la entidad " + entidad.ToString() + " a Partido");
+                throw new CasteoInvalidoException("La entidad no es del tipo partido");
+            }
+
             try
             {
                 Conectar();
                 StoredProcedure("ConsultarPartidosSiguientes(@_fecha)");
-                AgregarParametro("_fecha", fecha);
+                AgregarParametro("_fecha", partido.FechaInicioPartido);
                 EjecutarReader();
 
                 return ConstruirListaEntidades();
             }
             catch (NullReferenceException e)
             {
-                logger.Error(e, "DAOPartido.ObtenerPartidosPosterioresA[" + fecha.ToString() + "] valor nulo");
+                logger.Error(e, "DAOPartido.ObtenerPartidosPosterioresA[" + entidad.ToString() + "] valor nulo");
                 throw new DatosInvalidosException("La información enviada no tiene el formato correcto");
             }
             catch (NpgsqlException e)
             {
-                logger.Error(e, "DAOPartido.ObtenerPartidosPosterioresA[" + fecha.ToString() + "] error bd");
+                logger.Error(e, "DAOPartido.ObtenerPartidosPosterioresA[" + entidad.ToString() + "] error bd");
                 throw new DatabaseException("Error en la comunicación con la base de datos");
             }
             catch (Exception e)
             {
-                logger.Error(e, "DAOPartido.ObtenerPartidosPosterioresA[" + fecha.ToString() + "]");
+                logger.Error(e, "DAOPartido.ObtenerPartidosPosterioresA[" + entidad.ToString() + "]");
                 throw new ExcepcionPersonalizada();
             }
             finally

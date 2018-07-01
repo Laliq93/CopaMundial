@@ -192,6 +192,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             try
             {
                 Usuario usuario = entidad as Usuario;
+
                 Conectar();
 
                 StoredProcedure("crearusuarioadministrador(@nombreU, @nombre, @apellido, @fechaNacimiento, @correo, @genero, @clave)");
@@ -211,6 +212,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 Desconectar();
                 throw new BaseDeDatosException(exc, "Error insertando usuario como administrador");
             }
+
         }
 
         /// <summary>
@@ -252,9 +254,9 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// Devuelve los usuarios (no administradores) activos/no activos registrados en la base de datos. true = activos; false = no activos.
         /// </summary>
         /// <param name="entidad">Usuario</param>
-        public List<Entidad> ObtenerUsuariosActivos(Entidad entidad)
+        public List<Entidad> ObtenerUsuariosActivos()
         {
-            Usuario usuario = entidad as Usuario;
+  
             List<Entidad> usuarios = new List<Entidad>();
 
             Conectar();
@@ -266,7 +268,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             for (int i = 0; i < cantidadRegistros; i++)
             {
                 usuarios.Add(FabricaEntidades.CrearConfiguracionUsuario(GetInt(i, 0), GetString(i, 1), GetString(i, 2), GetString(i, 3),
-                 Convert.ToDateTime(GetString(i, 4)).ToShortDateString(), GetString(i, 5), usuario.Activo));
+                 Convert.ToDateTime(GetString(i, 4)).ToShortDateString(), GetString(i, 5), GetBool(i, 6)));
 
             }
             return usuarios;
@@ -276,9 +278,9 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// Devuelve los usuarios (no administradores) no activos registrados en la base de datos
         /// </summary>
         /// <param name="entidad">Usuario</param>
-        public List<Entidad> ObtenerUsuariosNoActivos(Entidad entidad)
+        public List<Entidad> ObtenerUsuariosNoActivos()
         {
-            Usuario usuario = entidad as Usuario;
+
             List<Entidad> usuarios = new List<Entidad>();
 
             Conectar();
@@ -290,7 +292,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             for (int i = 0; i < cantidadRegistros; i++)
             {
                 usuarios.Add(FabricaEntidades.CrearConfiguracionUsuario(GetInt(i, 0), GetString(i, 1), GetString(i, 2), GetString(i, 3),
-                 Convert.ToDateTime(GetString(i, 4)).ToShortDateString(), GetString(i, 5), usuario.Activo));
+                 Convert.ToDateTime(GetString(i, 4)).ToShortDateString(), GetString(i, 5), GetBool(i, 6)));
 
             }
             return usuarios;
@@ -299,6 +301,44 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         public List<Entidad> ObtenerTodos()
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Ingresa un nuevo usuario administrador en la base de datos.
+        /// </summary>
+        /// <param name="entidad">Usuario</param>
+        public void AgregarNuevo(Entidad entidad)
+        {
+            try
+            {
+                Usuario usuario = entidad as Usuario;
+
+                Conectar();
+
+                StoredProcedure("agregarusuario(@nombreusuario, @nombre, @apellido , @fechanacimiento, @correo, @genero, @password)");
+
+                AgregarParametro("nombreusuario", usuario.NombreUsuario);
+                AgregarParametro("nombre", usuario.Nombre);
+                AgregarParametro("apellido", usuario.Apellido);
+                AgregarParametro("fechanacimiento", usuario.FechaNacimiento );
+                AgregarParametro("correo", usuario.Correo);
+                AgregarParametro("genero", usuario.Genero.ToString().ToUpper());
+                AgregarParametro("password", usuario.Password);
+
+                System.Diagnostics.Debug.WriteLine(usuario.NombreUsuario + " " + usuario.FechaNacimiento);
+
+                EjecutarReader();
+            }
+            catch (NpgsqlException exc)
+            {
+                System.Diagnostics.Debug.WriteLine("exception:"+exc.ToString());
+                throw new BaseDeDatosException(exc, "Error al agregar el usuario");
+            }
+            finally
+            {
+                Desconectar();
+            }
+
         }
     }
 }

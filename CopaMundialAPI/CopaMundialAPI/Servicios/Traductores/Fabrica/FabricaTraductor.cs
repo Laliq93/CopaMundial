@@ -7,11 +7,26 @@ using CopaMundialAPI.Servicios.Traductores.Jugadores;
 using CopaMundialAPI.Servicios.Traductores.Logros;
 using CopaMundialAPI.Servicios.Traductores.Ciudades;
 using CopaMundialAPI.Servicios.Traductores.Usuarios;
+using CopaMundialAPI.Servicios.Traductores.Equipos;
+using CopaMundialAPI.Servicios.Traductores.Estadios;
+using CopaMundialAPI.Servicios.Traductores.Partidos;
 
 namespace CopaMundialAPI.Servicios.Traductores.Fabrica
 {
     public class FabricaTraductor
     {
+        public static TraductorUsuarioConfiguracion CrearTraductorUsuarioConfiguracion()
+
+        {
+            return new TraductorUsuarioConfiguracion();
+        }
+
+        public static TraductorUsuario CrearTraductorUsuario()
+
+        {
+            return new TraductorUsuario();
+        }
+
         public static TraductorApuestaCantidad CrearTraductorApuestaCantidad() 
         {
             return new TraductorApuestaCantidad();
@@ -135,9 +150,74 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
             return new TraductorUsuarioId();
         }
 
+        public static TraductorUsuarioRegistrar CrearTraductorUsuarioRegistrar()
+        {
+            return new TraductorUsuarioRegistrar();
+        }
+
         public static TraductorModificarJugador CrearTraductorModificarJugador()
         {
             return new TraductorModificarJugador();
+        }
+
+        public static TraductorEquipo CrearTraductorEquipo()
+        {
+            return new TraductorEquipo();
+        }
+
+        public static TraductorEstadio CrearTraductorEstadio()
+        {
+            return new TraductorEstadio();
+        }
+
+        public static TraductorAlineacion CrearTraductorAlineacion()
+        {
+            return new TraductorAlineacion();
+        }
+
+        public static TraductorAlineacionActualizar CrearTraductorAlineacionActualizar()
+        {
+            return new TraductorAlineacionActualizar();
+        }
+
+        public static TraductorAlineacionNuevo CrearTraductorAlineacionNuevo()
+        {
+            return new TraductorAlineacionNuevo();
+        }
+
+        public static TraductorPartidoSoloId CrearTraductorPartidoSoloId()
+        {
+            return new TraductorPartidoSoloId();
+        }
+
+        public static TraductorAlineacionSoloId CrearTraductorAlineacionSoloId()
+        {
+            return new TraductorAlineacionSoloId();
+        }
+
+        public static TraductorPartido CrearTraductorPartido()
+        {
+            return new TraductorPartido();
+        }
+
+        public static TraductorPartidoActualizar CrearTraductorPartidoActualizar()
+        {
+            return new TraductorPartidoActualizar();
+        }
+
+        public static TraductorPartidoFecha CrearTraductorPartidoFecha()
+        {
+            return new TraductorPartidoFecha();
+        }
+
+        public static TraductorPartidoNuevo CrearTraductorPartidoNuevo()
+        {
+            return new TraductorPartidoNuevo();
+        }
+
+        public static TraductorPartidoReducido CrearTraductorPartidoReducido()
+        {
+            return new TraductorPartidoReducido();
         }
     }
 }
