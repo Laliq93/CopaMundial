@@ -486,5 +486,20 @@ namespace CopaMundialAPI.Logica_de_Negocio.Fabrica
             return new ComandoObtenerPartido(entidad);
         }
 
+        public static ComandoObtenerPartidos CrearComandoObtenerPartidos()
+        {
+            return new ComandoObtenerPartidos();
+        }
+
+        public static ComandoObtenerTodosLosEquipos CrearComandoObtenerTodosLosEquipos()
+        {
+            return new ComandoObtenerTodosLosEquipos();
+        }
+
+        public static ComandoObtenerTodosLosEstadios CrearComandoObtenerTodosLosEstadios()
+        {
+            return new ComandoObtenerTodosLosEstadios();
+        }
+
     }
 }
