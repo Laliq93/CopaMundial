@@ -11,7 +11,12 @@ namespace CopaMundialAPI.Servicios.Traductores.Ciudades
 {
 	public class TraductorCiudadID : TraductorGenerico<DTOCiudadID>
 	{
-		public override DTOCiudadID CrearDto(Entidad entidad)
+        /// <summary>
+        /// Metodo con el cual se transforma una entidad en un DTOCiudadID
+        /// </summary>
+        /// <param name="entidad">Entidad que se desea transformar</param>
+        /// <returns></returns>
+        public override DTOCiudadID CrearDto(Entidad entidad)
 		{
 			try
 			{
@@ -32,7 +37,12 @@ namespace CopaMundialAPI.Servicios.Traductores.Ciudades
 			}
 		}
 
-		public override Entidad CrearEntidad(DTOCiudadID dto)
+        /// <summary>
+        /// Metodo con el cual se transforma un DTOCiudadID a una Entidad Ciudad
+        /// </summary>
+        /// <param name="dto">Objeto dto que se desea transformar</param>
+        /// <returns></returns>
+        public override Entidad CrearEntidad(DTOCiudadID dto)
 		{
 			Entidad entidad = FabricaEntidades.CrearCiudadID(dto.Id);
 			return entidad;

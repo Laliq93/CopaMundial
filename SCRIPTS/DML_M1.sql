@@ -1,0 +1,1 @@
+INSERT INTO USUARIO(us_id,us_nombreusuario,us_nombre,us_apellido,us_fechanacimiento,us_correo,us_genero,us_password,us_esadmin,us_activo) VALUES (nextval('seq_Usuario'),'mfelix','Felix','Morales','1995-12-13','felix@hotmail.com','M','test',false,true);
