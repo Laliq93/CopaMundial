@@ -24,7 +24,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Apuestas
             //faltan verificaciones
             DAOUsuario dao = FabricaDAO.CrearDAOUsuario();
 
-            dao.Agregar(Entidad);
+            dao.AgregarNuevo(Entidad);
         }
 
         public override Entidad GetEntidad()
