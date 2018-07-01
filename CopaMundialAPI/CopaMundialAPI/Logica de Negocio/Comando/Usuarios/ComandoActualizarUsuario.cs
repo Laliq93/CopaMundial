@@ -8,8 +8,12 @@ using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 
 namespace CopaMundialAPI.Logica_de_Negocio.Comando.Usuarios
 {
+    /// <summary>
+    /// Comando que se encarga de actualizar los datos de perfil de un usuario
+    /// </summary>
     public class ComandoActualizarUsuario : Comando
     {
+
         public ComandoActualizarUsuario(Entidad usuario)
         {
             Entidad = usuario;
