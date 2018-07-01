@@ -12,6 +12,18 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
 {
     public class FabricaTraductor
     {
+        public static TraductorUsuarioConfiguracion CrearTraductorUsuarioConfiguracion()
+
+        {
+            return new TraductorUsuarioConfiguracion();
+        }
+
+        public static TraductorUsuario CrearTraductorUsuario()
+
+        {
+            return new TraductorUsuario();
+        }
+
         public static TraductorApuestaCantidad CrearTraductorApuestaCantidad() 
         {
             return new TraductorApuestaCantidad();

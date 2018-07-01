@@ -13,14 +13,14 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO.Interfaces
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns>List<Entidad></returns>
-        List<Entidad> ObtenerUsuariosActivos(Entidad usuario);
+        List<Entidad> ObtenerUsuariosActivos();
 
         /// <summary>
         /// Obtener todos los usuarios no inactivos
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns>List<Entidad></returns>
-        List<Entidad> ObtenerUsuariosNoActivos(Entidad usuario);
+        List<Entidad> ObtenerUsuariosNoActivos();
 
         /// <summary>
         /// Verifica si el correo ya se encuentra registrado en la base de datos.

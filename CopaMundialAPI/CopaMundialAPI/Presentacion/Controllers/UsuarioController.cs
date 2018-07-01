@@ -27,36 +27,40 @@ namespace CopaMundialAPI.Presentacion.Controllers
             Logger logger = LogManager.GetLogger("fileLogger");
 
 
-            [Route("ActualizarPerfil")]
+        /// <summary>
+        /// Metodo para actualizar el perfil de un usuario
+        /// </summary>
+        /// <param name="dto">Dto de tipo DtoUsuarioConfiguracion</param>
+        /// <returns></returns>
+        [Route("ActualizarPerfil")]
             [System.Web.Http.AcceptVerbs("GET", "PUT")]
             [System.Web.Http.HttpPut]
-            public HttpResponseMessage ActualizarPerfil(DTOUsuarioConfiguracion)
+            public HttpResponseMessage ActualizarPerfil(DTOUsuarioConfiguracion dto)
             {
-                try
-                {
+            try
+            {
+                TraductorUsuarioConfiguracion traductor = FabricaTraductor.CrearTraductorUsuarioConfiguracion();
+                Entidad usuario = traductor.CrearEntidad( dto );
+                Comando comando = FabricaComando.CrearComandoActualizarUsuario(usuario);
+                comando.Ejecutar();
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (NpgsqlException e)
+            {
+                logger.Error(e, e.Message);
 
-                    EditarPerfil(usuario);
+                throw new BaseDeDatosException(e, "Error en la base de datos: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
+            }
 
-                    return Request.CreateResponse(HttpStatusCode.OK);
-                }
-                catch (UsuarioNullException exc)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));//exc.Message);
-                }
-                catch (NpgsqlException e)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error en la base de datos"));
-                }
-                catch (Exception e)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general."));
-                }
+            catch (Exception e)
+            {
+                logger.Error(e, e.Message);
 
+                throw new ExcepcionGeneral(e, DateTime.Now);
 
             }
+
+        }
 
             //[Route("CrearUsuarioAdministrador/{nombreUsuario}/{nombre}/{apellido}/{fechaNacimiento}/{correo}/{genero}/{password}")]
             //public IHttpActionResult CrearUsuarioAdministrador(string nombreUsuario, string nombre, string apellido, string fechaNacimiento,
@@ -64,85 +68,70 @@ namespace CopaMundialAPI.Presentacion.Controllers
             [Route("CrearUsuarioAdministrador")]
             [System.Web.Http.AcceptVerbs("GET", "POST")]
             [System.Web.Http.HttpPost]
-            public HttpResponseMessage CrearUsuarioAdministrador(Usuario usuario)
+            public HttpResponseMessage CrearUsuarioAdministrador(DTOUsuarioConfiguracion dto)
             {
-                try
-                {
-                    VerificarCorreoExiste(usuario);
+            try
+            {
+                //debo crear DTO para este y modificar usuario y comando agregar usuario administrador
+                Console.WriteLine(dto);
+                TraductorUsuarioConfiguracion traductor = FabricaTraductor.CrearTraductorUsuarioConfiguracion();
+                Entidad usuario = traductor.CrearEntidad(dto);
+                Comando comando = FabricaComando.CrearComandoAgregarUsuarioAdministrador(usuario);
+                comando.Ejecutar();
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (NpgsqlException e)
+            {
+                logger.Error(e, e.Message);
 
-                    InsertarAdministrador(usuario);
+                throw new BaseDeDatosException(e, "Error en la base de datos: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
+            }
 
-                    return Request.CreateResponse(HttpStatusCode.OK);
-                }
-                catch (UsuarioNullException exc)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
-                }
-                catch (CorreoEnUsoException exc)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
-                }
-                catch (Exception e)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
-                }
+            catch (Exception e)
+            {
+                logger.Error(e, e.Message);
+
+                throw new ExcepcionGeneral(e, DateTime.Now);
 
             }
+
+        }
 
             [Route("AdministradorDesactivaUsuario")]
             [System.Web.Http.AcceptVerbs("GET", "PUT")]
             [System.Web.Http.HttpPut]
-            public HttpResponseMessage AdministradorDesactivaUsuario(Usuario usuario)
+            public HttpResponseMessage AdministradorDesactivaUsuario(DTOUsuario dto)
             {
                 try
                 {
-                    GestionarActivo(usuario, false);
 
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
-                catch (UsuarioNullException exc)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
-                }
                 catch (Exception e)
                 {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
-                }
+                    logger.Error(e, e.Message);
 
+                    throw new ExcepcionGeneral(e, DateTime.Now);
+
+                }
             }
 
-            [Route("DesactivarUsuarioPropio")]
+        [Route("DesactivarUsuarioPropio")]
             [System.Web.Http.AcceptVerbs("GET", "PUT")]
             [System.Web.Http.HttpPut]
-            public HttpResponseMessage DesactivarUsuarioPropio(Usuario usuario)
+            public HttpResponseMessage DesactivarUsuarioPropio(DTOUsuario dto)
             {
                 try
                 {
-                    VerificarClaveUsuario(usuario);
-
-                    GestionarActivo(usuario, false);
 
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
-                catch (UsuarioNullException exc)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
-                }
-                catch (ClaveInvalidaException exc)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
-                }
                 catch (Exception e)
                 {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
+                    logger.Error(e, e.Message);
+
+                    throw new ExcepcionGeneral(e, DateTime.Now);
+
                 }
 
             }
@@ -150,184 +139,202 @@ namespace CopaMundialAPI.Presentacion.Controllers
             [Route("ActivarUsuario")]
             [System.Web.Http.AcceptVerbs("GET", "PUT")]
             [System.Web.Http.HttpPut]
-            public HttpResponseMessage ActivarUsuario(Usuario usuario)
+            public HttpResponseMessage ActivarUsuario(DTOUsuario dto)
             {
-                try
-                {
-                    GestionarActivo(usuario, true);
+            try
+            {
 
-                    return Request.CreateResponse(HttpStatusCode.OK);
-                }
-                catch (UsuarioNullException exc)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
-                }
-                catch (Exception e)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
-                }
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, e.Message);
+
+                throw new ExcepcionGeneral(e, DateTime.Now);
 
             }
+
+        }
 
             [Route("ActualizarClaveUsuario/{passwordNuevo}")]
             [System.Web.Http.AcceptVerbs("GET", "PUT")]
             [System.Web.Http.HttpPut]
-            public HttpResponseMessage ActualizarClaveUsuario(Usuario usuario, string passwordNuevo)
+            public HttpResponseMessage ActualizarClaveUsuario(DTOUsuarioConfiguracion dto, string passwordNuevo)
             {
-                try
-                {
-                    VerificarClaveUsuario(usuario);
+            try
+            {
+                TraductorUsuarioConfiguracion traductor = FabricaTraductor.CrearTraductorUsuarioConfiguracion();
+                Entidad usuario = traductor.CrearEntidad(dto);
+                Comando comando = FabricaComando.CrearComandoActualizarPassword(usuario);
+                comando.Ejecutar();
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (NpgsqlException e)
+            {
+                logger.Error(e, e.Message);
 
-                    usuario.Password = passwordNuevo;
+                throw new BaseDeDatosException(e, "Error en la base de datos: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
+            }
 
-                    EditarPassword(usuario);
+            catch (Exception e)
+            {
+                logger.Error(e, e.Message);
 
-                    return Request.CreateResponse(HttpStatusCode.OK);
-                }
-                catch (UsuarioNullException exc)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
-                }
-                catch (ClaveInvalidaException exc)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
-                }
-                catch (Exception e)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
-                }
+                throw new ExcepcionGeneral(e, DateTime.Now);
 
             }
+        }
 
             [Route("ActualizarCorreoUsuario")]
             [System.Web.Http.AcceptVerbs("GET", "PUT")]
             [System.Web.Http.HttpPut]
-            public HttpResponseMessage ActualizarCorreoUsuario(Usuario usuario)
+            public HttpResponseMessage ActualizarCorreoUsuario(DTOUsuarioConfiguracion dto)
             {
-                try
-                {
+            try
+            {
+                TraductorUsuarioConfiguracion traductor = FabricaTraductor.CrearTraductorUsuarioConfiguracion();
+                Entidad usuario = traductor.CrearEntidad(dto);
+                Comando comando = FabricaComando.CrearComandoActualizarCorreo(usuario);
+                comando.Ejecutar();
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (NpgsqlException e)
+            {
+                logger.Error(e, e.Message);
 
-                    VerificarClaveUsuario(usuario);
+                throw new BaseDeDatosException(e, "Error en la base de datos: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
+            }
 
-                    VerificarCorreoExiste(usuario);
+            catch (Exception e)
+            {
+                logger.Error(e, e.Message);
 
-                    EditarCorreo(usuario);
-
-                    return Request.CreateResponse(HttpStatusCode.OK);
-                }
-                catch (UsuarioNullException exc)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
-                }
-                catch (ClaveInvalidaException exc)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
-                }
-                catch (CorreoEnUsoException exc)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
-                }
-                catch (Exception e)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError("Error general"));
-                }
+                throw new ExcepcionGeneral(e, DateTime.Now);
 
             }
+
+        }
 
             [Route("AgregarJugadorFavorito/{idUsuario:int}/{idJugador:int}")]
             [System.Web.Http.AcceptVerbs("GET", "PUT")]
             [System.Web.Http.HttpPut]
             public IHttpActionResult AgregarJugadorFavorito(int idUsuario, int idJugador)
             {
-                try
-                {
+            try
+            {
+                return Ok();
+            }
+            catch (NpgsqlException e)
+            {
+                logger.Error(e, e.Message);
 
-                    return Ok();
-                }
-                catch (UsuarioNullException exc)
-                {
-                    _database.Desconectar();
-                    return BadRequest(exc.Message);
-                }
-                catch (ClaveInvalidaException exc)
-                {
-                    return BadRequest(exc.Message);
-                }
-                catch (CorreoEnUsoException exc)
-                {
+                throw new BaseDeDatosException(e, "Error en la base de datos: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
+            }
 
-                    return BadRequest(exc.Message);
-                }
-                catch (Exception e)
-                {
-                    _database.Desconectar();
-                    return BadRequest("Error en el servidor: " + e.Message);
-                }
+            catch (Exception e)
+            {
+                logger.Error(e, e.Message);
+
+                throw new ExcepcionGeneral(e, DateTime.Now);
 
             }
+        }
 
 
             [System.Web.Http.AcceptVerbs("GET")]
             [System.Web.Http.HttpGet]
             public HttpResponseMessage ObtenerUsuariosActivos()
             {
-                try
-                {
-                    ObtenerUsuarios(true);
+            try
+            {
+                ComandoObtenerUsuarioActivo comando = FabricaComando.CrearComandoObtenerUsuarioActivo();
+                comando.Ejecutar();
+                TraductorUsuarioConfiguracion traductor = FabricaTraductor.CrearTraductorUsuarioConfiguracion();
 
-                    return Request.CreateResponse(HttpStatusCode.OK, _listaUsuarios);
-                }
-                catch (Exception e)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, new HttpError("Error general"));
-                }
+                List<Entidad> usuarios = comando.GetEntidades();
+                List<DTOUsuarioConfiguracion> dtousuarios = traductor.CrearListaDto(usuarios);
+                return Request.CreateResponse(HttpStatusCode.OK, dtousuarios);
+            }
+            catch (NpgsqlException e)
+            {
+                logger.Error(e, e.Message);
+
+                throw new BaseDeDatosException(e, "Error en la base de datos: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
             }
 
-            [System.Web.Http.AcceptVerbs("GE T")]
+            catch (Exception e)
+            {
+                logger.Error(e, e.Message);
+
+                throw new ExcepcionGeneral(e, DateTime.Now);
+
+            }
+        }
+
+            [System.Web.Http.AcceptVerbs("GET")]
             [System.Web.Http.HttpGet]
             public HttpResponseMessage ObtenerUsuariosNoActivos()
             {
-                try
-                {
-                    ObtenerUsuarios(false);
+            try
+            {
+                ComandoObtenerUsuarioNoActivo comando = FabricaComando.CrearComandoObtenerUsuarioNoActivo();
+                comando.Ejecutar();
+                TraductorUsuarioConfiguracion traductor = FabricaTraductor.CrearTraductorUsuarioConfiguracion();
 
-                    return Request.CreateResponse(HttpStatusCode.OK, _listaUsuarios);
-                }
-                catch (Exception e)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, new HttpError("Error general"));
-                }
+                List<Entidad> usuarios = comando.GetEntidades();
+                List<DTOUsuarioConfiguracion> dtousuarios = traductor.CrearListaDto(usuarios);
+                return Request.CreateResponse(HttpStatusCode.OK, dtousuarios);
             }
+            catch (NpgsqlException e)
+            {
+                logger.Error(e, e.Message);
+
+                throw new BaseDeDatosException(e, "Error en la base de datos: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
+            }
+
+            catch (Exception e)
+            {
+                logger.Error(e, e.Message);
+
+                throw new ExcepcionGeneral(e, DateTime.Now);
+
+            }
+        }
             [Route("ObtenerUsuario/{idUsuario:int}")]
             [System.Web.Http.AcceptVerbs("GET")]
             [System.Web.Http.HttpGet]
-            public HttpResponseMessage ObtenerUsuario(int idUsuario)
+            public HttpResponseMessage ObtenerUsuario( DTOUsuarioId dto)
             {
-                try
-                {
-                    GetUsuario(idUsuario);
+            try
+            {
+                TraductorUsuarioId traductor = FabricaTraductor.CrearTraductorUsuarioId();
 
-                    return Request.CreateResponse(HttpStatusCode.OK, _usuario);
-                }
-                catch (UsuarioNullException exc)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.OK, new HttpError(exc.Message));
-                }
-                catch (Exception e)
-                {
-                    _database.Desconectar();
-                    return Request.CreateResponse(HttpStatusCode.NotFound, new HttpError("Error general"));
-                }
+                TraductorUsuarioId traductorusuario = FabricaTraductor.CrearTraductorUsuarioId();
+
+                Entidad usuario = traductor.CrearEntidad(dto);
+
+                Comando comando = FabricaComando.CrearComandoObtenerUsuarioDatos(usuario);
+                comando.Ejecutar();
+
+                //usuario = traductorusuario.CrearEntidad(comando.GetEntidad());
+
+                return Request.CreateResponse(HttpStatusCode.OK, "falta este" );
             }
+            catch (NpgsqlException e)
+            {
+                logger.Error(e, e.Message);
+
+                throw new BaseDeDatosException(e, "Error en la base de datos: " + GetType().FullName + "." + MethodBase.GetCurrentMethod().Name + ". " + e.Message);
+            }
+
+            catch (Exception e)
+            {
+                logger.Error(e, e.Message);
+
+                throw new ExcepcionGeneral(e, DateTime.Now);
+
+            }
+        }
 
         }
 }
