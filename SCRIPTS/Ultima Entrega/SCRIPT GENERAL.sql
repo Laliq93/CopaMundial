@@ -1920,3 +1920,7 @@ INSERT INTO public.tipo_logro(ti_id, ti_nombre, ti_status) VALUES (1,'cantidad',
 INSERT INTO public.tipo_logro(ti_id, ti_nombre, ti_status) VALUES (2,'jugador',true);
 INSERT INTO public.tipo_logro(ti_id, ti_nombre, ti_status) VALUES (3,'equipo',true);
 INSERT INTO public.tipo_logro(ti_id, ti_nombre, ti_status) VALUES (4,'VoF',true);
+
+INSERT INTO public.ciudad(
+	ci_nombre, ci_poblacion, ci_descripcion, ci_nombreingles, ci_descripcioningles, ci_habilitado)
+	VALUES ('Moscu', 1000, 'Descripcion', 'Moscu', 'hi', true);
