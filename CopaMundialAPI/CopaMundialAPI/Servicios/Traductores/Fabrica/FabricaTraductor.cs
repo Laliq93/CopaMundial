@@ -180,14 +180,19 @@ namespace CopaMundialAPI.Servicios.Traductores.Fabrica
             return new TraductorAlineacionActualizar();
         }
 
-        public static TraductorAlineacionNuevo CrearTraductoAlineacionNuevo()
+        public static TraductorAlineacionNuevo CrearTraductorAlineacionNuevo()
         {
             return new TraductorAlineacionNuevo();
         }
 
-        public static TraductorPartidoSoloId CrearTraductorEntidadSoloId()
+        public static TraductorPartidoSoloId CrearTraductorPartidoSoloId()
         {
             return new TraductorPartidoSoloId();
+        }
+
+        public static TraductorAlineacionSoloId CrearTraductorAlineacionSoloId()
+        {
+            return new TraductorAlineacionSoloId();
         }
 
         public static TraductorPartido CrearTraductorPartido()
