@@ -8,6 +8,8 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Usuarios
 {
     public class ComandoObtenerUsuarioDatos : Comando
     {
+        private Usuario _usuarioDatos;
+
         public ComandoObtenerUsuarioDatos(Entidad usuario)
         {
             Entidad = usuario;
@@ -16,12 +18,12 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Usuarios
         public override void Ejecutar()
         {
             IDAOUsuario dao = FabricaDAO.CrearDAOUsuario();
-            dao.GetUsuario(Entidad);
+            _usuarioDatos = dao.GetUsuario(Entidad);
         }
 
         public override Entidad GetEntidad()
         {
-            throw new NotImplementedException();
+            return _usuarioDatos;
         }
 
         public override List<Entidad> GetEntidades()
