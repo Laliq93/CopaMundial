@@ -205,7 +205,9 @@
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoObtenerCiudadPorNombre.cs" />
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoObtenerCiudadTrue.cs" />
     <Compile Include="Logica de Negocio\Comando\EquipoEstatico\ComandoObtenerEquipoEstatico.cs" />
+    <Compile Include="Logica de Negocio\Comando\EquipoEstatico\ComandoObtenerTodosLosEquipos.cs" />
     <Compile Include="Logica de Negocio\Comando\EstadioEstatico\ComandoObtenerEstadioEstatico.cs" />
+    <Compile Include="Logica de Negocio\Comando\EstadioEstatico\ComandoObtenerTodosLosEstadios.cs" />
     <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadoresActivo.cs" />
     <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadoresInactivo.cs" />
     <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadorId.cs" />
@@ -251,10 +253,13 @@
     <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoObtenerUsuarioNoActivo.cs" />
     <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoVerificarClaveUsuario.cs" />
     <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoVerificarCorreoExiste.cs" />
+    <Compile Include="Presentacion\Controllers\EquiposController.cs" />
+    <Compile Include="Presentacion\Controllers\EstadiosController.cs" />
     <Compile Include="Presentacion\Controllers\JugadorController.cs" />
     <Compile Include="Presentacion\Controllers\CiudadController.cs" />
     <Compile Include="Presentacion\Controllers\ApuestaController.cs" />
     <Compile Include="Presentacion\Controllers\AlineacionController.cs" />
+    <Compile Include="Presentacion\Controllers\LoginController.cs" />
     <Compile Include="Presentacion\Controllers\PartidoController.cs" />
     <Compile Include="Presentacion\Controllers\LogrosController.cs" />
     <Compile Include="Presentacion\Controllers\TestController.cs" />
@@ -291,6 +296,7 @@
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoAgregarCiudad.cs" />
     <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadores.cs" />
     <Compile Include="Logica de Negocio\Fabrica\FabricaComando.cs" />
+    <Compile Include="Presentacion\Controllers\UsuarioController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaEquipo.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaJugador.cs" />
