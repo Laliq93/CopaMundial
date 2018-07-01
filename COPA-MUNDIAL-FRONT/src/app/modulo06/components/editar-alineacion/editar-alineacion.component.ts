@@ -2,78 +2,78 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-crear-alineacion',
-  templateUrl: './crear-alineacion.component.html',
-  styleUrls: ['./crear-alineacion.component.css']
+  selector: 'app-editar-alineacion',
+  templateUrl: './editar-alineacion.component.html',
+  styleUrls: ['./editar-alineacion.component.css']
 })
-export class CrearAlineacionComponent implements OnInit {
+export class EditarAlineacionComponent implements OnInit {
 
   public listaJugadores = [
     {
       nombre: 'NIGMATULLIN',
       posicion: 'portero',
       numero: '1',
-      estado: 'suplente'
+      estado: 'titular'
     },
     {
       nombre: 'KOVTUN',
       posicion: 'defensa',
       numero: '2',
-      estado: 'suplente'
+      estado: 'titular'
     },
     {
       nombre: 'NIKIFOROV',
       posicion: 'defensa',
       numero: '3',
-      estado: 'suplente'
+      estado: 'titular'
     },
     {
       nombre: 'SOLOMATIN',
       posicion: 'defensa',
       numero: '5',
-      estado: 'suplente'
+      estado: 'titular'
     },
     {
       nombre: 'SEMSHOV',
       posicion: 'defensa',
       numero: '6',
-      estado: 'suplente'
+      estado: 'titular'
     },
     {
       nombre: 'ONOPKO',
       posicion: 'medio',
       numero: '7',
-      estado: 'suplente'
+      estado: 'titular'
     },
     {
       nombre: 'KARPIN',
       posicion: 'medio',
       numero: '8',
-      estado: 'suplente'
+      estado: 'titular'
     },
     {
       nombre: 'TITOV',
       posicion: 'medio',
       numero: '9',
-      estado: 'suplente'
+      estado: 'titular'
     },
     {
       nombre: 'BESCHASTNYKH',
       posicion: 'delantero',
       numero: '11',
-      estado: 'suplente'
+      estado: 'titular'
     },
     {
       nombre: 'PIMENOV',
       posicion: 'delantero',
       numero: '19',
-      estado: 'suplente'
+      estado: 'titular'
     },
     {
       nombre: 'IZMAYLOV',
       posicion: 'delantero',
       numero: '20',
-      estado: 'suplente'
+      estado: 'titular'
     },
     {
       nombre: 'SMERTIN',
