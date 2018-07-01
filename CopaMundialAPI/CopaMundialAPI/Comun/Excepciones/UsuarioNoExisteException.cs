@@ -10,9 +10,9 @@ namespace CopaMundialAPI.Comun.Excepciones
             private string _mensaje;
             private DateTime _fecha;
 
-            public UsuarioNoExisteException (string mensaje)
+            public UsuarioNoExisteException ()
             {
-                Mensaje = mensaje;
+                Mensaje = "Usuario no existente";
                 Fecha = DateTime.Now;
             }
 

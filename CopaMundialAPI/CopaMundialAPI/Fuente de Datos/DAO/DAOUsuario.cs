@@ -252,17 +252,38 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
         /// Devuelve los usuarios (no administradores) activos/no activos registrados en la base de datos. true = activos; false = no activos.
         /// </summary>
         /// <param name="entidad">Usuario</param>
-        public List<Entidad> ObtenerUsuarios(Entidad entidad)
+        public List<Entidad> ObtenerUsuariosActivos(Entidad entidad)
+        {
+            Usuario usuario = entidad as Usuario;
+            List<Entidad> usuarios = new List<Entidad>();
+
+            Conectar();
+            
+            StoredProcedure("ObtenerUsuariosActivos()");
+ 
+            EjecutarReader();
+
+            for (int i = 0; i < cantidadRegistros; i++)
+            {
+                usuarios.Add(FabricaEntidades.CrearConfiguracionUsuario(GetInt(i, 0), GetString(i, 1), GetString(i, 2), GetString(i, 3),
+                 Convert.ToDateTime(GetString(i, 4)).ToShortDateString(), GetString(i, 5), usuario.Activo));
+
+            }
+            return usuarios;
+        }
+
+        /// <summary>
+        /// Devuelve los usuarios (no administradores) no activos registrados en la base de datos
+        /// </summary>
+        /// <param name="entidad">Usuario</param>
+        public List<Entidad> ObtenerUsuariosNoActivos(Entidad entidad)
         {
             Usuario usuario = entidad as Usuario;
             List<Entidad> usuarios = new List<Entidad>();
 
             Conectar();
 
-            if (usuario.Activo == true)
-                StoredProcedure("ObtenerUsuariosActivos()");
-            else
-                StoredProcedure("ObtenerUsuariosNoActivos()");
+            StoredProcedure("ObtenerUsuariosNoActivos()");
 
             EjecutarReader();
 
