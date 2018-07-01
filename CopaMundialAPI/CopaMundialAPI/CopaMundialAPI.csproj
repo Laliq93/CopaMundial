@@ -285,6 +285,7 @@
     <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoAgregarCiudad.cs" />
     <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadores.cs" />
     <Compile Include="Logica de Negocio\Fabrica\FabricaComando.cs" />
+    <Compile Include="Presentacion\Controllers\UsuarioController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaEquipo.cs" />
     <Compile Include="Servicios\DTO\Apuestas\DTOApuestaJugador.cs" />
