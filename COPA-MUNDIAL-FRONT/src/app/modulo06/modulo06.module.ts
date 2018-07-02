@@ -12,7 +12,6 @@ import { AdminPartidoComponent } from './components/admin-partido/admin-partido.
 import { FormComponent } from './components/form/form.component';
 import { CrearPartidoComponent } from './components/crear-partido/crear-partido.component';
 import { ModificarPartidoComponent } from './components/modificar-partido/modificar-partido.component';
-import { VerAlineacionComponent } from './components/ver-alineacion/ver-alineacion.component';
 import { EditarAlineacionComponent } from './components/editar-alineacion/editar-alineacion.component';
 import { PartidoService } from './services/partido.service';
 
@@ -35,7 +34,6 @@ import { PartidoService } from './services/partido.service';
     FormComponent,
     CrearPartidoComponent,
     ModificarPartidoComponent,
-    VerAlineacionComponent,
     EditarAlineacionComponent,
   ]
 })
