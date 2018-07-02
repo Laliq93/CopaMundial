@@ -7,8 +7,9 @@ namespace CopaMundialAPI.Comun.Excepciones
 {
     public class AlineacionMuchosJugadoresException : ExcepcionPersonalizada
     {
-        public AlineacionMuchosJugadoresException(string mensaje) : base(mensaje)
+        public AlineacionMuchosJugadoresException(string mensaje)
         {
+            Mensaje = mensaje;
         }
     }
 }

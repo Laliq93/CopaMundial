@@ -6,31 +6,27 @@
 
 <div class="tab-content" id="justifiedTabContent">
   <div aria-labelledby="groups-tab" class="tab-pane fade show active" id="groups"  role="tabpanel" >
-    <div class="container" *ngFor="let match of listmatches">
-        <div class="d-block">{{match.dia}}</div>
-
-      <ng-container *ngFor="let inf of match.info">
-            <div class="row partido">
-                <div class="col-sm-2">
-                  <h4>{{inf.equipo1}}</h4>
-                </div>
-                <div class="col-sm-3">
-                    <img src="{{inf.bandera1}}" alt="{{inf.equipo1}}" class="img-thumbnail">
-                    <label class="match-time" *ngIf="inf.hora != null">{{inf.hora}}</label>
-                    <img src="{{inf.bandera2}}" alt="{{inf.equipo2}" class="img-thumbnail">
-                  </div>
-                <div class="col-sm-2">
-                  <h4> {{inf.equipo2}} </h4>
-                </div>
-                <div class="col-sm-2">
-                  <button type="submit" (click)="modificarPartido(inf.equipo1, inf.equipo2)" class="btn">Editar Partido</button>
-                </div>
-                <div class="col-sm-2">
-                  <button type="submit" (click)="editarAlineacion(inf.equipo1, inf.equipo2)" class="btn">Editar Alineacion</button>
-                </div>
+    <div class="container" *ngFor="let match of listMatches">
+        <div class="row partido">
+            <div class="col-sm-2">
+              <h4>{{match.Equipo1.Pais | titlecase}}</h4>
             </div>
-            <div class="dropdown-divider"></div>
-    </ng-container>
+            <div class="col-sm-4">
+                <img src="{{match.bandera1}}" alt="{{match.Equipo1.Pais}}" class="img-thumbnail">
+                <label class="match-time">{{match.FechaInicioPartido | date:'short'}}</label>
+                <img src="{{match.bandera2}}" alt="{{match.Equipo2.Pais}}" class="img-thumbnail">
+              </div>
+            <div class="col-sm-2">
+              <h4> {{match.Equipo2.Pais | titlecase}} </h4>
+            </div>
+            <div class="col-sm-2">
+              <button type="submit" (click)="modificarPartido(match.Id)" class="btn">Editar Partido</button>
+            </div>
+            <div class="col-sm-2">
+              <button type="submit" (click)="editarAlineacion(match.Id)" class="btn">Editar Alineacion</button>
+            </div>
+        </div>
+        <div class="dropdown-divider"></div>
     </div>
 
   </div>

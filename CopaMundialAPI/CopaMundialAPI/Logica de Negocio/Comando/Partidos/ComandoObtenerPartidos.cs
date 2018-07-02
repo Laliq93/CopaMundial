@@ -18,6 +18,8 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
         {
             IDAOPartido dao = FabricaDAO.CrearDAOPartido();
             _entidadRespuesta = dao.ObtenerTodos();
+
+            CompletarPartido();
         }
 
         private void CompletarPartido()

@@ -12,9 +12,10 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
     public class ComandoValidarCapitan : Comando
     {
         private Entidad _respuesta;
+        private Alineacion _alineacion;
         public ComandoValidarCapitan(Entidad entidad)
         {
-            Entidad = entidad;
+            _alineacion = entidad as Alineacion;
         }
 
         public override void Ejecutar()
@@ -22,7 +23,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
             IDAOAlineacion dao = FabricaDAO.CrearDAOAlineacion();
             try
             {
-                _respuesta = dao.ConsultarCapitanPorPartidoYEquipo(Entidad);
+                _respuesta = dao.ConsultarCapitanPorPartidoYEquipo(_alineacion);
             }
             catch (AlineacionNoExisteException)
             {
@@ -35,7 +36,7 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
 
         private void ValidarCapitania()
         {
-            if (_respuesta != null && _respuesta.Id != Entidad.Id)
+            if (_respuesta != null && _respuesta.Id != _alineacion.Id && _alineacion.EsCapitan)
             {
                 throw new AlineacionMasDeUnCapitanException("Solo se permite un capitan por equipo");
             }

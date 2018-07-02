@@ -23,7 +23,13 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.EstadioEstatico
 
         public override Entidad GetEntidad()
         {
-            return _respuesta;
+            if (_respuesta != null)
+            {
+                return _respuesta;
+            } else {
+                return new Estadio();
+            }
+            
         }
 
         public override List<Entidad> GetEntidades()

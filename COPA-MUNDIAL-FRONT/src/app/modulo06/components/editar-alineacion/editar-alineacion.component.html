@@ -1,143 +1,93 @@
-<ul class="nav nav-justified nav-tabs" id="justifiedTab" role="tablist">
-    <li class="nav-item col-sm-2">
-      <a aria-controls="groups" aria-selected="true" class="nav-link active regresar"  data-toggle="tab" id="groups-tab" role="tab" (click)="regresar()">Regresar</a>
-    </li>
-    <li class="nav-item col-sm-10">
-      <a aria-controls="groups" aria-selected="true" class="nav-link active"  data-toggle="tab" id="groups-tab" role="tab">Creación de alineación</a>
-    </li>
-  </ul>
-  <div class="title"><h3>{{ equipo1 }}</h3></div>
-  <div class="row">
-    <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <h4>Plantilla del equipo1</h4>
-        </div>
+<div class="row">
+  <div class="mx-auto col-md-8">
+    <form *ngIf="jugadores && partido">
+      <div class="form-group">
+        <label for="Jugador.Id">Jugador</label>
+        <select class="form-control" [(ngModel)]="alineacion.Jugador" name="Jugador" id="Jugador">
+          <option label=" " selected disable></option>
+          <ng-container *ngFor="let jugador of jugadores">
+            <option value="{{jugador.Id}}">{{jugador.Nombre | titlecase}}</option>
+          </ng-container>
+        </select>
       </div>
-  
-      <div class="plantilla">
-        <table>
-          <tr>
-            <th>Numero</th>
-            <th>Nombre</th> 
-            <th>Posicion</th>
-            <th>Agregar</th>
-          </tr>
-          <tr *ngFor="let jugador of listaJugadores">
-            <ng-container *ngIf="jugador.estado === 'suplente'">
-                <td>{{ jugador.numero }}</td>
-                <td>{{ jugador.nombre }}</td> 
-                <td>{{ jugador.posicion }}</td>
-                <td>
-                  <button type="button" class="btn btn-secondary crear" (click)="agregar(jugador)">
-                    <i class="material-icons">add</i>
-                  </button>
-                </td>
+      <div class="form-group row">
+        <div class="col">
+          <label for="Posicion">Posicion</label>
+          <select [(ngModel)]="alineacion.Posicion" class="custom-select" name="Posicion" id="Posicion">
+            <option label=" " selected disable></option>
+            <ng-container *ngFor="let posicion of posiciones">
+              <option value="{{posicion}}">{{posicion | titlecase}}</option>
             </ng-container>
-          </tr>
-        </table>
-      </div>
-    </div>
-  
-    <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <h4>Plantilla del partido</h4>
+          </select>
+        </div>
+        <div class="col">
+          <label for="Posicion">Equipo</label>
+          <select [(ngModel)]="alineacion.Equipo" class="custom-select" name="Equipo" id="Equipo">
+            <option label=" " selected disable></option>
+            <option value="{{partido.Equipo1.Id}}">{{partido.Equipo1.Pais | titlecase}}</option>
+            <option value="{{partido.Equipo2.Id}}">{{partido.Equipo2.Pais | titlecase}}</option>
+          </select>
         </div>
       </div>
-  
-      <div class="plantilla">
-        <table>
-          <tr>
-            <th>Numero</th>
-            <th>Nombre</th> 
-            <th>Posicion</th>
-            <th>Descartar</th>
-          </tr>
-          <tr *ngFor="let jugador of listaJugadores">
-            <ng-container *ngIf="jugador.estado === 'titular'">
-                <td>{{ jugador.numero }}</td>
-                <td>{{ jugador.nombre }}</td> 
-                <td>{{ jugador.posicion }}</td>
-                <td>
-                  <button type="button" class="btn btn-secondary descartar" (click)="descartar(jugador)">
-                    <i class="material-icons">remove_circle_outline</i>
-                  </button>
-                </td>
-            </ng-container>
-          </tr>
-        </table>
+      
+      <div class="form-group">
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <input type="checkbox" [(ngModel)]="alineacion.EsCapitan" value=0 class="custom-control-input" name="esCapitan" id="esCapitan">
+          <label class="custom-control-label" for="esCapitan">Capitan</label>
+        </div>
+        <div class="custom-control custom-checkbox custom-control-inline">
+          <input type="checkbox" [(ngModel)]="alineacion.EsTitular" value=0 class="custom-control-input" name="esTitular" id="esTitular">
+          <label class="custom-control-label" for="esTitular">Titular</label>
+        </div>
+        <div class="offset-md-5 custom-control custom-control-inline">
+          <button type="submit" (click)="EnviarAlineacion()" class="btn btn-primary enviar">Enviar</button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
-  <br>
-  <hr>
-  <br>
-  <div class="title"><h3>{{ equipo2 }}</h3></div>
-  <div class="row">
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h4>Plantilla del equipo2</h4>
-          </div>
-        </div>
     
-        <div class="plantilla">
-          <table>
-            <tr>
-              <th>Numero</th>
-              <th>Nombre</th> 
-              <th>Posicion</th>
-              <th>Agregar</th>
-            </tr>
-            <tr *ngFor="let jugador of listaJugadores">
-              <ng-container *ngIf="jugador.estado === 'suplente'">
-                  <td>{{ jugador.numero }}</td>
-                  <td>{{ jugador.nombre }}</td> 
-                  <td>{{ jugador.posicion }}</td>
-                  <td>
-                    <button type="button" class="btn btn-secondary crear" (click)="agregar(jugador)">
-                      <i class="material-icons">add</i>
-                    </button>
-                  </td>
-              </ng-container>
-            </tr>
-          </table>
-        </div>
-      </div>
-    
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h4>Plantilla del partido</h4>
-          </div>
-        </div>
-    
-        <div class="plantilla">
-          <table>
-            <tr>
-              <th>Numero</th>
-              <th>Nombre</th> 
-              <th>Posicion</th>
-              <th>Descartar</th>
-            </tr>
-            <tr *ngFor="let jugador of listaJugadores">
-              <ng-container *ngIf="jugador.estado === 'titular'">
-                  <td>{{ jugador.numero }}</td>
-                  <td>{{ jugador.nombre }}</td> 
-                  <td>{{ jugador.posicion }}</td>
-                  <td>
-                    <button type="button" class="btn btn-secondary descartar" (click)="descartar(jugador)">
-                      <i class="material-icons">remove_circle_outline</i>
-                    </button>
-                  </td>
-              </ng-container>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div>
-    <br>
-  <div class="col-sm-4 offset-sm-4">
-      <button type="button" class="btn">Guardar</button>
+  <div class="col-md-12">
+    <table *ngIf="partido" class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Posicion</th>
+          <th scope="col">Titular</th>
+          <th scope="col">Capitan</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let jugador of partido.Alineaciones">
+          <th scope="row">{{jugador.Jugador.Numero}}</th>
+          <td>{{jugador.Jugador.Nombre}}</td>
+          <td>{{jugador.Jugador.Posicion | titlecase}}</td>
+          <ng-container *ngIf="jugador.EsTitular">
+            <td>Si</td>
+          </ng-container>
+          <ng-container *ngIf="!jugador.EsTitular">
+            <td>No</td>
+          </ng-container>
+
+          <ng-container *ngIf="jugador.EsCapitan">
+            <td>Si</td>
+          </ng-container>
+          <ng-container *ngIf="!jugador.EsCapitan">
+            <td>No</td>
+          </ng-container>
+          
+          <td><a class="material-icons pointer" (click)="EliminarAlineacion(jugador.Id)">
+            delete
+          </a></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
+
+<ul class="nav nav-justified nav-tabs col-sm-4 offset-sm-4 back" id="justifiedTab" role="tablist" (click)="goBack()">
+  <li class="nav-item">
+    <a aria-controls="groups" aria-selected="false" class="nav-link" data-toggle="tab" id="groups-tab" role="tab">Regresar</a>
+  </li>
+</ul>

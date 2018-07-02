@@ -14,17 +14,17 @@ namespace CopaMundialAPI.Servicios.DTO.Partidos
         private String _posicion;
         private Boolean _esTitular;
 
-        private DTOJugador _jugador;
+        private DTOObtenerJugadores _jugador;
         private DTOEquipo _equipo;
-        private DTOPartido _partido;
+        private DTOPartidoSoloId _partido;
 
         public int Id { get => _id; set => _id = value; }
         public bool EsCapitan { get => _esCapitan; set => _esCapitan = value; }
         public string Posicion { get => _posicion; set => _posicion = value; }
         public bool EsTitular { get => _esTitular; set => _esTitular = value; }
 
-        public DTOJugador Jugador { get => _jugador; set => _jugador = value; }
+        public DTOObtenerJugadores Jugador { get => _jugador; set => _jugador = value; }
         public DTOEquipo Equipo { get => _equipo; set => _equipo = value; }
-        public DTOPartido Partido { get => _partido; set => _partido = value; }
+        public DTOPartidoSoloId Partido { get => _partido; set => _partido = value; }
     }
 }

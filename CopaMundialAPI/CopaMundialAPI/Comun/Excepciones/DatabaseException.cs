@@ -7,8 +7,9 @@ namespace CopaMundialAPI.Comun.Excepciones
 {
     public class DatabaseException : ExcepcionPersonalizada
     {
-        public DatabaseException(string mensaje) : base(mensaje)
+        public DatabaseException(string mensaje)
         {
+            Mensaje = mensaje;
         }
     }
 }

@@ -22,7 +22,13 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.EquipoEstatico
 
         public override Entidad GetEntidad()
         {
-            return _respuesta;
+            if (_respuesta != null)
+            {
+                return _respuesta;
+            } else {
+                return new Equipo();
+            }
+            
         }
 
         public override List<Entidad> GetEntidades()

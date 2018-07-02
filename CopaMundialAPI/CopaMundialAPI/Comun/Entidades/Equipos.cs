@@ -35,7 +35,7 @@ namespace CopaMundialAPI.Comun.Entidades
 
         public Equipo GetEquipo(int id)
         {
-            return _equipos.Find(e => e.Id == id);
+            return _equipos.Where(e => e.Id == id).FirstOrDefault<Equipo>();
         }
 
     }

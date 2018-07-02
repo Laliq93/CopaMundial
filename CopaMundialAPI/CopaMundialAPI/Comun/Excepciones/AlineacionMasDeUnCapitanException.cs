@@ -7,8 +7,9 @@ namespace CopaMundialAPI.Comun.Excepciones
 {
     public class AlineacionMasDeUnCapitanException : ExcepcionPersonalizada
     {
-        public AlineacionMasDeUnCapitanException(string mensaje) : base(mensaje)
+        public AlineacionMasDeUnCapitanException(string mensaje)
         {
+            Mensaje = mensaje;
         }
     }
 }

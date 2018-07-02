@@ -12,8 +12,8 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.EquipoEstatico
 
         public override void Ejecutar()
         {
-            Estadios estadios = new Estadios();
-            _respuesta = estadios.ListaEstadios.Cast<Entidad>().ToList();
+            Equipos estadios = new Equipos();
+            _respuesta = estadios.ListaEquipos.Cast<Entidad>().ToList();
         }
 
         public override Entidad GetEntidad()

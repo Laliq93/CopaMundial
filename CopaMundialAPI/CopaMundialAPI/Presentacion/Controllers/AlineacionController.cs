@@ -20,9 +20,12 @@ namespace CopaMundialAPI.Presentacion.Controllers
     {
         Logger logger = LogManager.GetLogger("fileLogger");
 
+        [Route("crear")]
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
         public HttpResponseMessage CrearAlineacion(DTOAlineacionNuevo dto)
         {
-            logger.Info("Entrando a CrearAlineacion[" + dto.ToString() + "]");
+            logger.Info("Entrando a CrearAlineacion[]");
             try
             {
                 TraductorAlineacionNuevo traductor = FabricaTraductor.CrearTraductorAlineacionNuevo();
@@ -31,7 +34,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
                 Comando comando = FabricaComando.CrearComandoCrearAlineacion(entidad);
                 comando.Ejecutar();
 
-                return Request.CreateResponse(HttpStatusCode.OK, "Actualizado exitosamente");
+                return Request.CreateResponse(HttpStatusCode.OK, "Creado exitosamente");
             }
             catch (ExcepcionPersonalizada ex)
             {
@@ -44,9 +47,12 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
         }
 
+        [Route("actualizar")]
+        [System.Web.Http.AcceptVerbs("PUT")]
+        [System.Web.Http.HttpPut]
         public HttpResponseMessage ActualizarAlineacion(DTOAlineacionActualizar dto)
         {
-            logger.Info("Entrando a ActualizarAlineacion[" + dto.ToString() + "]");
+            logger.Info("Entrando a ActualizarAlineacion[]");
             try
             {
                 TraductorAlineacionActualizar traductor = FabricaTraductor.CrearTraductorAlineacionActualizar();
@@ -68,9 +74,12 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
         }
 
-        public HttpResponseMessage EliminarAlineacion(DTOAlineacionSoloId dto)
+        [Route("eliminar")]
+        [System.Web.Http.AcceptVerbs("DELETE")]
+        [System.Web.Http.HttpDelete]
+        public HttpResponseMessage EliminarAlineacion([FromUri] DTOAlineacionSoloId dto)
         {
-            logger.Info("Entrando a EliminarAlineacion[" + dto.ToString() + "]");
+            logger.Info("Entrando a EliminarAlineacion[]");
             try
             {
                 TraductorAlineacionSoloId traductor = FabricaTraductor.CrearTraductorAlineacionSoloId();

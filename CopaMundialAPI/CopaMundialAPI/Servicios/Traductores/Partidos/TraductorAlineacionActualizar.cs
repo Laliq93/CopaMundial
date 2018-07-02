@@ -19,7 +19,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Partidos
         {
             if (!(entidad is Alineacion alineacion))
             {
-                logger.Error("Casteo invalido de la entidad " + entidad.ToString() + " a Alineacion");
+                logger.Error("Casteo invalido de la entidad " + entidad + " a Alineacion");
                 throw new CasteoInvalidoException("La entidad no es del tipo Alineacion");
             }
 
@@ -40,6 +40,9 @@ namespace CopaMundialAPI.Servicios.Traductores.Partidos
         public override Entidad CrearEntidad(DTOAlineacionActualizar dto)
         {
             Alineacion alineacion = FabricaEntidades.CrearAlineacion();
+            alineacion.Equipo = FabricaEntidades.CrearEquipo();
+            alineacion.Partido = FabricaEntidades.CrearPartido();
+            alineacion.Jugador = FabricaEntidades.CrearJugador();
 
             alineacion.EsCapitan = dto.EsCapitan;
             alineacion.EsTitular = dto.EsTitular;
@@ -47,6 +50,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Partidos
             alineacion.Partido.Id = dto.Partido;
             alineacion.Id = dto.Id;
             alineacion.Posicion = dto.Posicion;
+            alineacion.Jugador.Id = dto.Jugador;
 
             return alineacion;
         }

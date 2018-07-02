@@ -1,101 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
+import { PartidoService } from '../../services/partido.service';
+import { Partido } from '../../models/partido';
+import { PartidoVer } from '../../models/partidoVer';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-admin-partido',
   templateUrl: './admin-partido.component.html',
   styleUrls: ['./admin-partido.component.css']
 })
-export class AdminPartidoComponent implements OnInit {
+export class AdminPartidoComponent implements AfterViewInit {
 
-  constructor(private router: Router) { }
+  public listMatches: Array<Partido>;
 
-  ngOnInit() {
+  constructor(private router: Router,
+    private partidoService: PartidoService) { }
+
+  ngAfterViewInit() {
+    this.partidoService.obtenerPartidos().subscribe(data => {
+      this.listMatches = data;
+      this.orderForView();
+    });
+  }
+
+  private orderForView() {
+    console.log(this.listMatches);
+    this.listMatches.sort((a, b) => new Date(a.FechaInicioPartido).getTime() - new Date(b.FechaInicioPartido).getTime());
+    for (const match of Object.keys(this.listMatches)) {
+      this.listMatches[match].bandera1 = '../../../assets/banderas/' + this.listMatches[match].Equipo1.Pais + '.png';
+      this.listMatches[match].bandera2 = '../../../assets/banderas/' + this.listMatches[match].Equipo2.Pais + '.png';
+    }
   }
 
   crearPartido(): void {
     this.router.navigate(['partidos/admin/crearPartido']);
   }
 
-  editarAlineacion(equipo1, equipo2){
-    this.router.navigate(['partidos/admin', 'editarAlineacion', equipo1, equipo2]);
+  editarAlineacion(Id) {
+    this.router.navigate(['partidos/admin', 'editarAlineacion', Id]);
   }
 
-  modificarPartido(equipo1, equipo2): void {
-    this.router.navigate(['partidos/admin', 'modificarPartido', equipo1, equipo2 ]);
+  modificarPartido(Id): void {
+    this.router.navigate(['partidos/admin', 'modificarPartido', Id ]);
   }
-
-public listmatches: Array<any>= [
-    {
-      "dia": "Jueves 14 Junio",
-      "info": [ {
-                  "fecha":"14 jun. 2018",
-                  "grupo":"Grupo A",
-                  "estadio":"Ekaterinburg Arena",
-                  "ciudad": "EKATERINBURG",
-                  "equipo1": "Egipto",
-                  "bandera1": "../../../assets/banderas/egy.png",
-                  "hora": "08:00",
-                  "equipo2": "Uruguay",
-                  "bandera2": "../../../assets/banderas/uru.png",
-                  "puntaje": "1 - 0 "
-                },
-                {
-                  "fecha":"14 jun. 2018",
-                  "grupo":"Grupo B",
-                  "estadio":"estadio de San Petersburgo",
-                  "ciudad": "ST. PETERSBURG",
-                  "equipo1": "Marruecos",
-                  "bandera1": "../../../assets/banderas/mar.png",
-                  "hora": "11:00",
-                  "equipo2": "RI de Irán",
-                  "bandera2": "../../../assets/banderas/irn.png",
-                  "puntaje": "2 - 1 "
-                },
-                {
-                  "fecha":"14 jun. 2018",
-                  "grupo":"Grupo B",
-                  "estadio":"Fisht Stadium",
-                  "ciudad": "SOCHI",
-                  "equipo1": "Portugal",
-                  "bandera1": "../../../assets/banderas/por.png",
-                  "hora": "14:00",
-                  "equipo2": "España",
-                  "bandera2": "../../../assets/banderas/esp.png",
-                  "puntaje": ""
-                }
-              ]
-  },
-  {
-    "dia": "Sábado 16 junio",
-    "info": [ {
-                "fecha":"16 jun. 2018",
-                "grupo":"Grupo C",
-                "estadio":"Kazan Arena",
-                "ciudad": "KAZAN",
-                "equipo1": "Francia",
-                "bandera1": "../../../assets/banderas/fra.png",
-                "hora": "06:00",
-                "equipo2": "Australia",
-                "bandera2": "../../../assets/banderas/aus.png",
-                "puntaje": ""
-              },
-              {
-                "fecha":"16 jun. 2018",
-                "grupo":"Grupo D",
-                "estadio":"Spartak Stadium",
-                "ciudad": "MOSCOW",
-                "equipo1": "Argentina",
-                "bandera1": "../../../assets/banderas/arg.png",
-                "hora": "09:00",
-                "equipo2": "Islandia",
-                "bandera2": "../../../assets/banderas/isl.png",
-                "puntaje": ""
-              }
-
-            ]
-}
-
-]
 
 }

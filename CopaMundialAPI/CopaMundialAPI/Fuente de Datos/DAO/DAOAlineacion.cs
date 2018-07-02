@@ -15,7 +15,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
     public class DAOAlineacion : DAO, IDAOAlineacion
     {
         Logger logger = LogManager.GetLogger("fileLogger");
-        private int _filasAfectadas;
 
         public void Actualizar(Entidad entidad)
         {
@@ -29,7 +28,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             {
                 Conectar();
                 StoredProcedure("ModificarAlineacion(@_idalineacion, @_capitan, @_posicion, @_titular, " +
-                                                    "@_jugador @_equipo, @_partido)");
+                                                    "@_jugador, @_equipo, @_partido)");
 
                 AgregarParametro("_idalineacion", alineacion.Id);
                 AgregarParametro("_capitan", alineacion.EsCapitan);
@@ -38,7 +37,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 AgregarParametro("_jugador", alineacion.Jugador.Id);
                 AgregarParametro("_equipo", alineacion.Equipo.Id);
                 AgregarParametro("_partido", alineacion.Partido.Id);
-                _filasAfectadas = EjecutarQuery();
+                EjecutarQuery();
             }
             catch (NullReferenceException e)
             {
@@ -59,11 +58,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             {
                 Desconectar();
             }
-
-            if (_filasAfectadas == 0)
-            {
-                throw new AlineacionNoExisteException("No existen registros que cumplan los parametros");
-            }
             
         }
 
@@ -79,7 +73,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             {
                 Conectar();
                 StoredProcedure("AgregarAlineacion(@_capitan, @_posicion, @_titular, " +
-                                                "@_jugador @_equipo, @_partido)");
+                                                "@_jugador, @_equipo, @_partido)");
 
                 AgregarParametro("_capitan", alineacion.EsCapitan);
                 AgregarParametro("_posicion", alineacion.Posicion);
@@ -113,19 +107,12 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
 
         public List<Entidad> ConsultarPorPartido(Entidad entidad)
         {
-            if (!(entidad is Partido partido))
-            {
-                logger.Error("Casteo invalido de la entidad " + entidad.ToString() + " a Partido");
-                throw new CasteoInvalidoException("La entidad no es del tipo partido");
-            }
-
             try
             {
                 Conectar();
                 StoredProcedure("ConsultarAlineacionPorPartido(@_idPartido)");
-                AgregarParametro("_idPartido", partido.Id);
+                AgregarParametro("_idPartido", entidad.Id);
                 EjecutarReader();
-                return ConstruirListaEntidades();
             }
             catch (NullReferenceException e)
             {
@@ -145,7 +132,9 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             finally
             {
                 Desconectar();
-            }      
+            }
+
+            return ConstruirListaEntidades();
         }
 
         public void Eliminar(Entidad entidad)
@@ -161,7 +150,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 Conectar();
                 StoredProcedure("EliminarAlineacion(@_idalineacion)");
                 AgregarParametro("_idalineacion", alineacion.Id);
-                _filasAfectadas = EjecutarQuery();
+                EjecutarQuery();
             }
             catch (NullReferenceException e)
             {
@@ -183,10 +172,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 Desconectar();
             }
 
-            if (_filasAfectadas == 0)
-            {
-                throw new AlineacionNoExisteException("No existen registros que cumplan los parametros");
-            }
         }
 
         public List<Entidad> ConsultarTitularesPorPartidoYEquipo(Entidad entidad)
@@ -204,7 +189,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 AgregarParametro("_idPartido", alineacion.Partido.Id);
                 AgregarParametro("_idEquipo", alineacion.Equipo.Id);
                 EjecutarReader();
-                return ConstruirListaEntidades();
             }
             catch (NullReferenceException e)
             {
@@ -225,6 +209,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             {
                 Desconectar();
             }
+
+            return ConstruirListaEntidades();
         }
 
         public Entidad ConsultarCapitanPorPartidoYEquipo(Entidad entidad)
@@ -242,7 +228,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 AgregarParametro("_idPartido", alineacion.Partido.Id);
                 AgregarParametro("_idEquipo", alineacion.Equipo.Id);
                 EjecutarReader();
-                return ConstruirEntidad();
             }
             catch (NullReferenceException e)
             {
@@ -263,6 +248,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             {
                 Desconectar();
             }
+
+            return ConstruirEntidad();
         }
 
         public List<Entidad> ObtenerTodos()
@@ -306,7 +293,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             Alineacion alineacion = FabricaEntidades.CrearAlineacion(GetInt(i, 0), GetBool(i, 1), GetString(i, 2),
                                                                      GetBool(i, 3), jugador, equipo, partido);
 
-            return partido;
+            return alineacion;
         }
 
     }

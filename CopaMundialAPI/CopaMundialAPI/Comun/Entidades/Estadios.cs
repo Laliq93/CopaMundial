@@ -32,7 +32,7 @@ namespace CopaMundialAPI.Comun.Entidades
 
         public Estadio GetEstadio(int id)
         {
-            return _estadios.Find(e => e.Id == id);
+            return _estadios.Where(e => e.Id == id).FirstOrDefault<Estadio>();
         }
 
     }

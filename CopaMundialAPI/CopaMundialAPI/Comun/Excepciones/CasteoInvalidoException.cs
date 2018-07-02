@@ -7,8 +7,9 @@ namespace CopaMundialAPI.Comun.Excepciones
 {
     public class CasteoInvalidoException : ExcepcionPersonalizada
     {
-        public CasteoInvalidoException(string mensaje) : base(mensaje)
+        public CasteoInvalidoException(string mensaje)
         {
+            Mensaje = mensaje;
         }
     }
 }

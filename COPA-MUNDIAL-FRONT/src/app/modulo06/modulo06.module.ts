@@ -3,43 +3,37 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoggedInGuard } from '../guards/logged-in.guard';
 import { NotLoggedInGuard } from '../guards/not-logged-in.guard';
+import { HttpClientModule } from '@angular/common/http';
 
 import { Modulo06RoutingModule } from './modulo06-routing.module';
 import { ClientePartidoComponent } from './components/cliente-partido/cliente-partido.component';
 import { ClienteDetallesComponent } from './components/cliente-detalles/cliente-detalles.component';
 import { AdminPartidoComponent } from './components/admin-partido/admin-partido.component';
-import { AdminCpartidoComponent } from './components/admin-cpartido/admin-cpartido.component';
-import { AdminCalineacionComponent } from './components/admin-calineacion/admin-calineacion.component';
-import { AdminMpartidoComponent } from './components/admin-mpartido/admin-mpartido.component';
 import { FormComponent } from './components/form/form.component';
 import { CrearPartidoComponent } from './components/crear-partido/crear-partido.component';
 import { ModificarPartidoComponent } from './components/modificar-partido/modificar-partido.component';
-import { VerAlineacionComponent } from './components/ver-alineacion/ver-alineacion.component';
-import { CrearAlineacionComponent } from './components/crear-alineacion/crear-alineacion.component';
 import { EditarAlineacionComponent } from './components/editar-alineacion/editar-alineacion.component';
+import { PartidoService } from './services/partido.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     Modulo06RoutingModule,
   ],
   providers: [
     LoggedInGuard,
-    NotLoggedInGuard
+    NotLoggedInGuard,
+    PartidoService
   ],
   declarations: [
     ClientePartidoComponent,
     ClienteDetallesComponent,
     AdminPartidoComponent,
-    AdminCpartidoComponent,
-    AdminCalineacionComponent,
-    AdminMpartidoComponent,
     FormComponent,
     CrearPartidoComponent,
     ModificarPartidoComponent,
-    VerAlineacionComponent,
-    CrearAlineacionComponent,
     EditarAlineacionComponent,
   ]
 })

@@ -25,7 +25,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
         [System.Web.Http.HttpPost]
         public HttpResponseMessage CrearPartido(DTOPartidoNuevo dto)
         {
-            logger.Info("Entrando a CrearPartido[" + dto.ToString() + "]");
+            logger.Info("Entrando a CrearPartido[]");
             try
             {
                 TraductorPartidoNuevo traductor = FabricaTraductor.CrearTraductorPartidoNuevo();
@@ -38,6 +38,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ExcepcionPersonalizada ex)
             {
+                logger.Error(ex, "Se capturo un error");
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Mensaje);
             }
             catch (Exception ex)
@@ -52,7 +53,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
         [System.Web.Http.HttpPut]
         public HttpResponseMessage ActualizarPartido(DTOPartidoActualizar dto)
         {
-            logger.Info("Entrando a ActualizarPartido[" + dto.ToString() + "]");
+            logger.Info("Entrando a ActualizarPartido[]");
             try
             {
                 TraductorPartidoActualizar traductor = FabricaTraductor.CrearTraductorPartidoActualizar();
@@ -65,6 +66,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ExcepcionPersonalizada ex)
             {
+                logger.Error(ex, "Se capturo un error");
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Mensaje);
             }
             catch (Exception ex)
@@ -93,6 +95,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ExcepcionPersonalizada ex)
             {
+                logger.Error(ex, "Se capturo un error");
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Mensaje);
             }
             catch (Exception ex)
@@ -105,9 +108,9 @@ namespace CopaMundialAPI.Presentacion.Controllers
         [Route("obtenerporfecha")]
         [System.Web.Http.AcceptVerbs("GET")]
         [System.Web.Http.HttpGet]
-        public HttpResponseMessage ObtenerPorFecha(DTOPartidoFecha dto)
+        public HttpResponseMessage ObtenerPorFecha([FromUri] DTOPartidoFecha dto)
         {
-            logger.Info("Entrando a ObtenerPorFecha[" + dto.ToString() + "]");
+            logger.Info("Entrando a ObtenerPorFecha[]");
             try
             {
                 TraductorPartidoFecha traductor = FabricaTraductor.CrearTraductorPartidoFecha();
@@ -123,6 +126,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ExcepcionPersonalizada ex)
             {
+                logger.Error(ex, "Se capturo un error");
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Mensaje);
             }
             catch (Exception ex)
@@ -135,9 +139,9 @@ namespace CopaMundialAPI.Presentacion.Controllers
         [Route("obtener")]
         [System.Web.Http.AcceptVerbs("GET")]
         [System.Web.Http.HttpGet]
-        public HttpResponseMessage ObtenerPorId(DTOPartidoSoloId dto)
+        public HttpResponseMessage ObtenerPorId([FromUri] DTOPartidoSoloId dto)
         {
-            logger.Info("Entrando a ObtenerPorId[" + dto.ToString() + "]");
+            logger.Info("Entrando a ObtenerPorId[]");
             try
             {
                 TraductorPartidoSoloId traductor = FabricaTraductor.CrearTraductorPartidoSoloId();
@@ -153,6 +157,7 @@ namespace CopaMundialAPI.Presentacion.Controllers
             }
             catch (ExcepcionPersonalizada ex)
             {
+                logger.Error(ex, "Se capturo un error");
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Mensaje);
             }
             catch (Exception ex)

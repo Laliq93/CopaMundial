@@ -118,8 +118,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 Conectar();
                 StoredProcedure("ConsultarPartidos()");
                 EjecutarReader();
-
-                return ConstruirListaEntidades();
             }
             catch (NullReferenceException e)
             {
@@ -140,6 +138,9 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             {
                 Desconectar();
             }
+
+
+            return ConstruirListaEntidades();
         }
 
         public List<Entidad> ObtenerPartidosPosterioresA(Entidad entidad)
@@ -156,8 +157,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 StoredProcedure("ConsultarPartidosSiguientes(@_fecha)");
                 AgregarParametro("_fecha", partido.FechaInicioPartido);
                 EjecutarReader();
-
-                return ConstruirListaEntidades();
             }
             catch (NullReferenceException e)
             {
@@ -178,6 +177,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             {
                 Desconectar();
             }
+
+            return ConstruirListaEntidades();
         }
 
         public Entidad ObtenerPorId(Entidad entidad)
@@ -195,8 +196,6 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
                 AgregarParametro("_idpartido", partido.Id);
 
                 EjecutarReader();
-
-                return ConstruirEntidad();
             }
             catch (NullReferenceException e)
             {
@@ -217,6 +216,8 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             {
                 Desconectar();
             }
+
+            return ConstruirEntidad();
 
         }
 
@@ -243,7 +244,7 @@ namespace CopaMundialAPI.Fuente_de_Datos.DAO
             equipo1.Id = GetInt(i, 4);
 
             Equipo equipo2 = FabricaEntidades.CrearEquipo();
-            equipo1.Id = GetInt(i, 5);
+            equipo2.Id = GetInt(i, 5);
 
             Estadio estadio = FabricaEntidades.CrearEstadio();
             estadio.Id = GetInt(i, 6);

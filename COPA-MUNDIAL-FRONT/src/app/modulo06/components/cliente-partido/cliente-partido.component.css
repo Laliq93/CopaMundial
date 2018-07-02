@@ -2,6 +2,7 @@
     cursor: pointer;
 }
 
+
 /*.tab-content{
 
     overflow-y: scroll;
@@ -10,63 +11,65 @@
 
 }*/
 
-.nav, .nav-justified, .nav-tabs
-{
+.nav,
+.nav-justified,
+.nav-tabs {
     background-color: #A11D1B;
     color: #fff;
-
-
 }
 
-.nav-tabs a{
+.btn {
+    background-color: #A11D1B;
+    color: #fff;
+    width: 100%;
+    font-size: 10px;
+}
+
+.nav-tabs a {
     color: #fff;
 }
 
-.container-fluid{
-    
+.container-fluid {
     background-size: cover;
-	background-position: center;
+    background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-	/* background-image: url("/../../../assets/images/background-match.jpg"); */
-	height: 100%;/*100vh*/
+    /* background-image: url("/../../../assets/images/background-match.jpg"); */
+    height: 100%;
+    /*100vh*/
     position: relative;
     background-color: #fff;
 }
-.tab-content
-{
+
+.tab-content {
     padding-top: 1%;
     padding-bottom: 10%;
-
 }
 
-.match-container{
-
+.match-container {
     padding-top: 1%;
     background-color: #02588E;
 }
-.matches-container{
 
-padding-top: 1%;
-background-color: rgba(63,63,63,0.7);
-border-radius: 5px 5px 5px 5px;
-margin-bottom: 1%;
-padding-bottom: 1%;
+.matches-container {
+    padding-top: 1%;
+    background-color: rgba(63, 63, 63, 0.7);
+    border-radius: 5px 5px 5px 5px;
+    margin-bottom: 1%;
+    padding-bottom: 1%;
 }
 
-.row{
-
+.row {
     margin-bottom: 0px;
 }
 
-.row hr{
+.row hr {
     margin-top: 0px;
     width: 95%;
     color: #fff;
 }
 
-.row:hover{
-
+.row:hover {
     background-color: #EBF5FB;
     margin-left: 5px;
     margin-right: 5px;
@@ -74,12 +77,13 @@ padding-bottom: 1%;
     color: #3f3f3f;
     border-radius: 5px 5px 5px 5px;
 }
-.row:hover .match-time{
+
+.row:hover .match-time {
     color: black;
 }
 
-button{
-    text-decoration:none;
+button {
+    text-decoration: none;
     color: #fff;
     /*color: #3f3f3f;*/
     padding: 0;
@@ -88,17 +92,15 @@ button{
     width: 100%;
 }
 
-.img-thumbnail{
-
+.img-thumbnail {
     margin: 10px 20px;
     width: 25%;
     height: 45%;
 }
 
 .d-block {
-
     background: #02588E;
-   /* background: #eee;
+    /* background: #eee;
     color: #3f3f3f;*/
     color: #fff;
     padding: 15px;
@@ -108,21 +110,35 @@ button{
     border-radius: 5px 5px 5px 5px;
 }
 
-button .col-sm-4 p{
+button .col-sm-4 p {
     margin: 20px;
     text-align: left;
 }
 
-button .col-sm-2 h4{
+button .col-sm-2 h4 {
     padding-top: 40px;
 }
 
-.match-score, .match-time{
-
-    padding-top: 35px;
-    font-size: 20px;
-    color: #fff;
-    /*color: #3f3f3f;*/
-    font-weight:  bold;
+.lateral-text {
+    font-size: 14px;
 }
 
+.match-score,
+.match-time {
+    padding-top: 35px;
+    font-size: 12px;
+    color: #fff;
+    /*color: #3f3f3f;*/
+    font-weight: bold;
+}
+
+.crear {
+    border-radius: 50%;
+    height: 50px;
+    min-width: 50px;
+    max-width: 50px;
+    position: fixed;
+    right: 2%;
+    bottom: 2%;
+    padding: 0 0 0 5px;
+}

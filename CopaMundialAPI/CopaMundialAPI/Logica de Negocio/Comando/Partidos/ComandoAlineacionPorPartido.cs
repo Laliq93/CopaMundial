@@ -39,10 +39,6 @@ namespace CopaMundialAPI.Logica_de_Negocio.Comando.Partidos
                 _comando = FabricaComando.CrearComandoObtenerEquipoEstatico(alineacion.Equipo);
                 _comando.Ejecutar();
                 alineacion.Equipo = _comando.GetEntidad() as Equipo;
-
-                _comando = FabricaComando.CrearComandoObtenerPartido(alineacion.Partido);
-                _comando.Ejecutar();
-                alineacion.Partido = _comando.GetEntidad() as Partido;
             }
         }
 

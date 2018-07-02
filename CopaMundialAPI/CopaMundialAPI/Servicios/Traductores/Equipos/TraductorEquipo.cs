@@ -19,7 +19,7 @@ namespace CopaMundialAPI.Servicios.Traductores.Equipos
         {
             if (!(entidad is Comun.Entidades.Equipo equipo))
             {
-                logger.Error("Casteo invalido de la entidad " + entidad.ToString() + " a Equipo");
+                logger.Error("Casteo invalido de la entidad " + entidad + " a Equipo");
                 throw new CasteoInvalidoException("La entidad no es del tipo equipo");
             }
 
