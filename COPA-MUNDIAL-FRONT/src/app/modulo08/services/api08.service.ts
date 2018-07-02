@@ -397,6 +397,6 @@ export class Api08Service {
       return;
     }
 
-    bootbox.alert(Error.error);
+    bootbox.alert(Error.error.Message);
   }
 }

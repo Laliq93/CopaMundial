@@ -72,8 +72,8 @@ CREATE OR REPLACE FUNCTION public.obtenerproximasapuestap(
 AS $BODY$
 
 BEGIN
-	RETURN QUERY SELECT pa_id, to_char(pa_horainicio, 'DD-MM-YYYY'),
-	pa_eq1_id, pa_eq2_id FROM partido WHERE pa_horainicio > _fecha ORDER BY pa_horainicio;
+	RETURN QUERY SELECT pa_id, to_char(pa_fechainicio, 'DD-MM-YYYY'),
+	pa_eq1_id, pa_eq2_id FROM partido WHERE pa_fechainicio > _fecha ORDER BY pa_fechainicio;
 END;
 
 $BODY$;
@@ -203,7 +203,7 @@ AS $BODY$
 
 BEGIN
 	RETURN QUERY select count(apuesta.idusuario) from apuesta inner join logro_partido ON apuesta.idlogro = logro_partido.lo_id 
-	inner join partido on logro_partido.lo_resultado_pa = partido.pa_id where partido.pa_horainicio > now() 
+	inner join partido on logro_partido.lo_resultado_pa = partido.pa_id where partido.pa_fechainicio > now() 
 	AND apuesta.idusuario = _idusuario AND logro_partido.lo_id = _idlogro;
 END;
 
