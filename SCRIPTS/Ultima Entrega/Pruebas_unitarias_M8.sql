@@ -15,8 +15,8 @@ INSERT INTO public.usuario(
 	VALUES (100, 'test100','test','test','13-12-1995','testing2@hotmail.com','M', 'test', null, true, true, null);
 
 INSERT INTO public.partido(
-	pa_id, pa_horainicio, pa_horafin, pa_arbitro, pa_status, pa_eq1_id, pa_eq2_id, pa_es_id)
-	VALUES (100, '10-10-2015 20:00:00', '10-10-2020 22:00:00','test',true, 1, 2, 1);	
+	pa_id, pa_fechainicio, pa_fechafin, pa_arbitro, pa_eq1_id, pa_eq2_id, pa_es_id)
+	VALUES (100, '10-10-2015 20:00:00', '10-10-2020 22:00:00','test', 1, 2, 1);	
 	
 INSERT INTO public.jugador(
 	ju_id, ju_nombre, ju_apellido, ju_fechanacimiento, ju_lugarnacimiento, ju_peso, ju_altura, ju_posicion, ju_numero, ju_equipo, ju_capitan, ju_activo)
@@ -27,21 +27,21 @@ INSERT INTO public.jugador(
 	VALUES (101, 'test2', 'test2', '12-12-1995', 'test2',62, 1.74,'DELANTERO', 7, 'test', true, true);	
 	
 INSERT INTO public.logro_partido(
-	lo_id, lo_nombre, lo_cantidad, lo_minuto_juego, lo_status, lo_fg_tipologro, lo_resultado_pa, lo_resultado_eq, 
+	lo_id, lo_nombre, lo_cantidad, lo_status, lo_fg_tipologro, lo_resultado_pa, lo_resultado_eq, 
 	lo_resultado_ju, lo_resultado_vf)
-	VALUES (100, 'cantidad',null,null, true, 1,100, null,null, null);
+	VALUES (100, 'cantidad',null, true, 1,100, null,null, null);
 	
 INSERT INTO public.logro_partido(
-	lo_id, lo_nombre, lo_cantidad, lo_minuto_juego, lo_status, lo_fg_tipologro, lo_resultado_pa, lo_resultado_eq, 
+	lo_id, lo_nombre, lo_cantidad, lo_status, lo_fg_tipologro, lo_resultado_pa, lo_resultado_eq, 
 	lo_resultado_ju, lo_resultado_vf)
-	VALUES (101, 'jugador',null,null, true, 2,100, null,null, null);
+	VALUES (101, 'jugador',null, true, 2,100, null,null, null);
 	
 INSERT INTO public.logro_partido(
-	lo_id, lo_nombre, lo_cantidad, lo_minuto_juego, lo_status, lo_fg_tipologro, lo_resultado_pa, lo_resultado_eq, 
+	lo_id, lo_nombre, lo_cantidad, lo_status, lo_fg_tipologro, lo_resultado_pa, lo_resultado_eq, 
 	lo_resultado_ju, lo_resultado_vf)
-	VALUES (102, 'equipo',null,null, true, 3,100, null,null, null);
+	VALUES (102, 'equipo',null, true, 3,100, null,null, null);
 	
 INSERT INTO public.logro_partido(
-	lo_id, lo_nombre, lo_cantidad, lo_minuto_juego, lo_status, lo_fg_tipologro, lo_resultado_pa, lo_resultado_eq, 
+	lo_id, lo_nombre, lo_cantidad, lo_status, lo_fg_tipologro, lo_resultado_pa, lo_resultado_eq, 
 	lo_resultado_ju, lo_resultado_vf)
-	VALUES (103, 'vof',null,null, true, 4,100, null,null, null);
+	VALUES (103, 'vof',null, true, 4,100, null,null, null);
