@@ -71,6 +71,8 @@
   <ItemGroup>
     <Compile Include="Modulo 2\PUCiudad.cs" />
     <Compile Include="Modulo 5\PUTraductoresJugador.cs" />
+    <Compile Include="Modulo 6\PruebasAlineacion.cs" />
+    <Compile Include="Modulo 6\PruebasPartido.cs" />
     <Compile Include="Modulo 7\PruebasLogroCantidad.cs" />
     <Compile Include="Modulo 5\PUJugador.cs" />
     <Compile Include="Modulo 7\PruebasLogroEquipo.cs" />
@@ -92,7 +94,6 @@
     <Folder Include="Modulo 10\" />
     <Folder Include="Modulo 1\" />
     <Folder Include="Modulo 4\" />
-    <Folder Include="Modulo 6\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

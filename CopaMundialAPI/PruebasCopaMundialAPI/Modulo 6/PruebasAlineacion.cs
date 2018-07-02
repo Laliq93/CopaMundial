@@ -3,8 +3,12 @@ using CopaMundialAPI.Comun.Entidades.Fabrica;
 using CopaMundialAPI.Comun.Excepciones;
 using CopaMundialAPI.Fuente_de_Datos.DAO;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
+using CopaMundialAPI.Servicios.DTO.Partidos;
+using CopaMundialAPI.Servicios.Fabrica;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using System;
+using System.Collections.Generic;
 
 namespace PruebasCopaMundialAPI
 {
@@ -14,26 +18,41 @@ namespace PruebasCopaMundialAPI
     {
 
         private Partido partido;
-        private DaoPartido daoPartido;
+        private DAOPartido daoPartido;
         private Equipo equipo1;
         private Equipo equipo2;
         private Estadio estadio;
+        private Alineacion alineacion;
+        private DAOAlineacion daoAlineacion;
+        private Partido partidoobtenido;
+        private Jugador jugador;
 
         [SetUp]
         public void SetUp()
         {
-            daoPartido = FabricaDao.CrearDaoPartido();
-            equipo1 = GetEquipo(1);
-            equipo2 = GetEquipo(2);
-            estadio = GetEstadio(1);
-            partido = FabricaEntidades.CrearPartido("2018/06/29 1:00:00", "2018/06/29 3:00:00", "pedro", equipo1, equipo2, estadio);
+            Equipos equipos = new Equipos();
+            Estadios estadios = new Estadios();
+            daoPartido = FabricaDAO.CrearDAOPartido();
+            equipo1 = equipos.GetEquipo(1);
+            equipo2 = equipos. GetEquipo(2);
+            estadio = estadios.GetEstadio(1);
+            partido = FabricaEntidades.CrearPartido(0, new DateTime(2018,06,29,1,0,0), new DateTime(2018, 06, 29, 3, 0, 0), "pedro", equipo1, equipo2, estadio);
             daoPartido.Agregar(partido);
-            Partido partidoobtenido = (Partido)dao.ObtenerTodos().Last();
-            daoJugador = FabricaDao.CrearDaoJugador();
-            jugador = FabricaEntidades.CrearJugador("prueba","prueba","prueba","prueba",80.2,1.82,"Delantero",1.1,equipo1.getId(),true,true);
+            partidoobtenido = (Partido)daoPartido.ObtenerTodos()[daoPartido.ObtenerTodos().Count - 1];
+            DAOJugador daoJugador = FabricaDAO.CrearDAOJugador();
+            jugador = FabricaEntidades.CrearJugador();
+            jugador.Equipo = equipo1;
+            jugador.Altura = 180;
+            jugador.Apellido = "Prueba";
+            jugador.Nombre = "PruebaDos";
+            jugador.Numero = 10;
+            jugador.Posicion = "Delantero";
+            jugador.Peso = 90;
+            jugador.LugarNacimiento = "Perdido";
+            jugador.FechaNacimiento = "2012/12/12";
             daoJugador.Agregar(jugador);
-            daoAlineacion = Fabrica.CrearDaoAlineacion();
-            alineacion = FabricaEntidades.CrearAlineacion(true,"Delantero", true, 1, equipo1.getId(), partidoobtenido.getId();
+            daoAlineacion = FabricaDAO.CrearDAOAlineacion();
+            alineacion = FabricaEntidades.CrearAlineacion(0, true,"Delantero", true, jugador, equipo1, partidoobtenido);
             
         }
 
@@ -42,9 +61,9 @@ namespace PruebasCopaMundialAPI
         {
 
             daoAlineacion.Agregar(alineacion);
-            Alineacion alineacionobtenido = (Alineacion)dao.ConsultarPorPartido(alineacion);
+            List<Entidad> alineacionobtenido = daoAlineacion.ConsultarPorPartido(alineacion.Partido);
 
-            Assert.AreEqual(alineacion.id, alineacionobtenido.id);
+            Assert.IsTrue(alineacionobtenido.Contains(alineacion));
 
         }
 
@@ -53,9 +72,9 @@ namespace PruebasCopaMundialAPI
         {
 
             daoAlineacion.Agregar(alineacion);
-            Alineacion alineacionobtenido = (Alineacion)ConsultarPorPartido(alineacion);
+            List<Entidad> alineacionobtenido = daoAlineacion.ConsultarPorPartido(alineacion.Partido);
 
-            Assert.IsNotNull(alineacionbtenido);
+            Assert.IsNotNull(alineacionobtenido);
 
         }
 
@@ -65,9 +84,9 @@ namespace PruebasCopaMundialAPI
 
             daoAlineacion.Agregar(alineacion);
             daoAlineacion.Eliminar(alineacion);
-            Alineacion alineacionobtenido = (Alineacion)ConsultarPorPartido(alineacion);
+            List<Entidad> alineacionobtenido = daoAlineacion.ConsultarPorPartido(alineacion.Partido);
 
-            Assert.IsNull(alineacionbtenido);
+            Assert.IsNull(alineacionobtenido);
 
         }
 
@@ -75,12 +94,12 @@ namespace PruebasCopaMundialAPI
         public void ModificarAlineacion()
         {
             daoAlineacion.Agregar(alineacion);
-            Alineacion alineacionobtenido = (Alineacion)dao.ObtenerTodos().Last();
-            Alineacion alineacionmodificado = new Alineacion (alineacionobtenido.Id,true,"Delantero", true, 1, equipo1.getId(), partidoobtenido.getId();
-            dao.Actualizar(alineacionmodificado);
-            Alineacion alineacionprueba = (Alineacion)dao.ObtenerTodos.Last();
+            Alineacion alineacionobtenido = (Alineacion)daoAlineacion.ObtenerTodos()[daoAlineacion.ObtenerTodos().Count - 1];
+            Alineacion alineacionmodificado = new Alineacion (alineacionobtenido.Id,true,"Delantero", true, jugador, equipo1, partidoobtenido);
+            daoAlineacion.Actualizar(alineacionmodificado);
+            Alineacion alineacionprueba = (Alineacion) daoAlineacion.ObtenerTodos()[daoAlineacion.ObtenerTodos().Count - 1];
 
-            Assert.AreEqual(alineacionprueba.arbitro, partidomodificado.arbitro);
+            Assert.AreEqual(alineacionprueba.Posicion, alineacionmodificado.Posicion);
         }
         
 
@@ -89,7 +108,8 @@ namespace PruebasCopaMundialAPI
         {
 
             alineacion = null;
-            Assert.Catch<NullReferenceException>(daoAlineacion.Agregar(alineacion));
+
+            Assert.Throws<DatosInvalidosException>(() => daoAlineacion.Agregar(alineacion));
 
 
         }
@@ -99,30 +119,16 @@ namespace PruebasCopaMundialAPI
         {
 
             
-        alineacion = FabricaEntidades.CrearAlineacion(true,"Delantero", true, null, null, null;
-                  
+        alineacion = FabricaEntidades.CrearAlineacion(0, true,"Delantero", true, null, null, null);
 
-            Assert.Catch<Exception>(dao.Agregar(alineacion));
+        Assert.Throws<ExcepcionPersonalizada>(() => daoAlineacion.Agregar(alineacion));
 
         }
 
         [Test]
         public void ConsultarPorPartidoNullReferenceException()
         {
-
-            daoAlineacion.Agregar(null);
-            
-            Assert.Catch<NullReferenceException>(daoAlineacion.ConsultarPorPartido(alineacion));
-
-        }
-
-        [Test]
-        public void ConsultarPorPartidoExcepcionGenerica()
-        {
-
-            daoAlineacion.Agregar("prueba");
-            
-            Assert.Catch<Exception>(daoAlineacion.ConsultarPorPartido(alineacion));
+            Assert.Throws<DatosInvalidosException>(() => daoAlineacion.ConsultarPorPartido(null));
 
         }
 
@@ -131,16 +137,8 @@ namespace PruebasCopaMundialAPI
         {
 
             alineacion = null;
-            Assert.Catch<NullReferenceException>(daoAlineacion.Eliminar(alineacion));
+            Assert.Throws<DatosInvalidosException>(() => daoAlineacion.Eliminar(null));
 
-
-        }
-
-        [Test]
-        public void EliminarAlineacionExceptionGenerica()
-        {
-
-            Assert.Catch<Exception>(dao.Agregar(5444));
 
         }
 
@@ -149,27 +147,15 @@ namespace PruebasCopaMundialAPI
         {
             daoAlineacion.Agregar(alineacion);
             Alineacion alineacionmodificado = null;
-            Assert.Catch<NullReferenceException>(dao.Actualizar(alineacionmodificado));
-            
-        }
-
-        [Test]
-        public void ModificarAlineacionExcepcionNullReferenceException()
-        {
-            daoAlineacion.Agregar(alineacion);
-            Alineacion alineacionmodificado = FabricaEntidades.CrearAlineacion(1,true,"Delantero", true, null, null, null;
-                  
-            Assert.Catch<NullReferenceException>(dao.Actualizar(alineacionmodificado));
+            Assert.Throws<DatosInvalidosException>(() => daoAlineacion.Actualizar(alineacionmodificado));
             
         }
 
         [TearDown]
         public void TeadDown()
         {
-            
-            
             daoAlineacion = null;
         }
-    }
+}
 
 }

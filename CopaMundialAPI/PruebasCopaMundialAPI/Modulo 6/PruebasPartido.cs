@@ -5,6 +5,7 @@ using CopaMundialAPI.Fuente_de_Datos.DAO;
 using CopaMundialAPI.Fuente_de_Datos.Fabrica;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace PruebasCopaMundialAPI
 {
@@ -14,19 +15,23 @@ namespace PruebasCopaMundialAPI
     {
 
         private Partido partido;
-        private DaoPartido daoPartido;
+        private DAOPartido daoPartido;
         private Equipo equipo1;
         private Equipo equipo2;
         private Estadio estadio;
+        private Equipos equipos;
+        private Estadios estadios;
 
         [SetUp]
         public void SetUp()
         {
-            daoPartido = FabricaDao.CrearDaoPartido();
-            equipo1 = GetEquipo(1);
-            equipo2 = GetEquipo(2);
-            estadio = GetEstadio(1);
-            partido = FabricaEntidades.CrearPartido("2018/06/29 1:00:00", "2018/06/29 3:00:00", "pedro", equipo1.getId(), equipo2Id(), estadioId());
+            equipos = new Equipos();
+            estadios = new Estadios();
+            daoPartido = FabricaDAO.CrearDAOPartido();
+            equipo1 = equipos.GetEquipo(1);
+            equipo2 = equipos.GetEquipo(2);
+            estadio = estadios.GetEstadio(1);
+            partido = FabricaEntidades.CrearPartido(0, new DateTime(2018, 06, 29, 1, 0, 0), new DateTime(2018, 06, 29, 3, 0, 0), "pedro", equipo1, equipo2, estadio);
         }
 
         [Test]
@@ -34,9 +39,9 @@ namespace PruebasCopaMundialAPI
         {
 
             daoPartido.Agregar(partido);
-            Partido partidoobtenido = (Partido)dao.ObtenerTodos().Last();
+            Partido partidoobtenido = (Partido)daoPartido.ObtenerTodos()[daoPartido.ObtenerTodos().Count - 1];
 
-            Assert.AreEqual(partido.id, partidoobtenido.id);
+            Assert.AreEqual(partido.Id, partidoobtenido.Id);
 
         }
 
@@ -45,9 +50,9 @@ namespace PruebasCopaMundialAPI
         {
 
             daoPartido.Agregar(partido);
-            Partido partidoobtenido = (Partido)dao.ObtenerTodos().Last();
+            Partido partidoobtenido = (Partido)daoPartido.ObtenerTodos()[daoPartido.ObtenerTodos().Count - 1];
 
-            Assert.IsNotNull(partidobtenido);
+            Assert.IsNotNull(partidoobtenido);
 
         }
 
@@ -56,9 +61,12 @@ namespace PruebasCopaMundialAPI
         {
 
             daoPartido.Agregar(partido);
-            Partido partidoobtenido = (Partido)ObtenerPartidosPosterioresA("2018/06/28 1:00:00").Last();
+            Partido partidoAux = FabricaEntidades.CrearPartido();
+            partidoAux.FechaInicioPartido = new DateTime(2018, 06, 28, 1, 0, 0);
+            List<Entidad> entidades = daoPartido.ObtenerPartidosPosterioresA(partidoAux);
+            Partido partidoobtenido = (Partido) entidades[entidades.Count - 1];
 
-            Assert.IsNotNull(partidobtenido);
+            Assert.IsNotNull(partidoobtenido);
 
         }
 
@@ -67,9 +75,9 @@ namespace PruebasCopaMundialAPI
         {
 
             daoPartido.Agregar(partido);
-            Partido partidoobtenido = (Partido)ObtenerPorId(1).Last();
+            Partido partidoobtenido = (Partido) daoPartido.ObtenerPorId(partido);
 
-            Assert.IsNotNull(partidobtenido);
+            Assert.IsNotNull(partidoobtenido);
 
         }
 
@@ -77,12 +85,12 @@ namespace PruebasCopaMundialAPI
         public void ModificarPartido()
         {
             daoPartido.Agregar(partido);
-            Partido partidoobtenido = (Partido)dao.ObtenerTodos().Last();
-            Partido partidomodificado = new Partido (partidoobtenido.Id,"2018/06/29 1:00:00", "2018/06/29 3:00:00", "modificado", equipo1getId(), equipo2getId(), estadiogetId());
-            dao.Actualizar(partidomodificado);
-            Partido partidoprueba = (Partido)dao.ObtenerTodos.Last();
+            Partido partidoobtenido = (Partido)daoPartido.ObtenerTodos()[daoPartido.ObtenerTodos().Count - 1];
+            Partido partidomodificado = new Partido (partidoobtenido.Id, new DateTime(2018, 06, 29, 1, 0, 0), new DateTime(2018, 06, 29, 3, 0, 0), "modificado", equipo1, equipo2, estadio);
+            daoPartido.Actualizar(partidomodificado);
+            Partido partidoprueba = (Partido)daoPartido.ObtenerTodos()[daoPartido.ObtenerTodos().Count - 1];
 
-            Assert.AreEqual(partidoprueba.arbitro, partidomodificado.arbitro);
+            Assert.AreEqual(partidoprueba.Arbitro, partidomodificado.Arbitro);
         }
 
         [Test]
@@ -90,7 +98,8 @@ namespace PruebasCopaMundialAPI
         {
             daoPartido.Agregar(partido);
             Partido partidomodificado = null;
-            Assert.Catch<NullReferenceException>(dao.Actualizar(partidomodificado));
+
+            Assert.Throws<DatosInvalidosException>(() => daoPartido.Actualizar(partidomodificado));
             
         }
 
@@ -98,33 +107,9 @@ namespace PruebasCopaMundialAPI
         public void ModificarPartidoExcepcionGenerica()
         {
             daoPartido.Agregar(partido);
-            Partido partidomodificado = new Partido (null,null, "2018/06/29 3:00:00", "modificado", equipo1, equipo2, estadio);
-            Assert.Catch<NullReferenceException>(dao.Actualizar(partidomodificado));
+
+            Assert.Throws<DatosInvalidosException>(() => daoPartido.Actualizar(null));
             
-        }
-
-
-
-        [Test]
-        public void AgregarPartidoNullReferenceException()
-        {
-
-            partido = null;
-
-            Assert.Catch<NullReferenceException>(dao.Agregar(partido));
-
-        }
-
-        [Test]
-        public void AgregarPartidoExceptionGenerica()
-        {
-
-            
-            partido = FabricaEntidades.CrearPartido(null, null, "pedro", equipo1, equipo2, estadio);
-        
-
-            Assert.Catch<Exception>(dao.Agregar(partido));
-
         }
 
         [Test]
@@ -133,16 +118,7 @@ namespace PruebasCopaMundialAPI
 
             daoPartido.Agregar(partido);
 
-            Assert.Catch<NullReferenceException>(dao.ObtenerPartidosPosterioresA(null));
-        }
-
-        [Test]
-        public void ObtenerSiguientesExceptionGenerica()
-        {
-
-            daoPartido.Agregar(partido);
-
-            Assert.Catch<Exception>(dao.ObtenerPartidosPosterioresA(7));
+            Assert.Throws<DatosInvalidosException>(() => daoPartido.ObtenerPartidosPosterioresA(null));
         }
 
         [Test]
@@ -151,16 +127,7 @@ namespace PruebasCopaMundialAPI
 
             daoPartido.Agregar(partido);
 
-            Assert.Catch<NullReferenceException>(dao.ObtenerPorId(null));
-        }
-
-        [Test]
-        public void ObtenerPorIdExceptionGenerica()
-        {
-
-            daoPartido.Agregar(partido);
-
-            Assert.Catch<Exception>(dao.ObtenerPorId('error'));
+            Assert.Throws<DatosInvalidosException>(() => daoPartido.ObtenerPorId(null));
         }
 
         [TearDown]
