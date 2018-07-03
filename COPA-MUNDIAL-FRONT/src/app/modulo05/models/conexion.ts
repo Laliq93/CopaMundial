@@ -5,6 +5,6 @@ export class Conexion {
     root = config.url;
   
     public GetApiJugador() {
-      return this.root + 'Jugador/';
+      return this.root + '/Jugador/';
     }
   }
