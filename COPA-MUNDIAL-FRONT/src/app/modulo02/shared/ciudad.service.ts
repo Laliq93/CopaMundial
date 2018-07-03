@@ -4,12 +4,13 @@ import { HttpClient, HttpHeaders, HttpClientModule, HttpParams } from '@angular/
 import { Observable } from 'rxjs';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 import { RequestOptions } from '@angular/http';
+import { config } from '../../config';
 
 @Injectable()
 export class CiudadService {
 
   selectedCiudad : Ciudad;
-  url:string = "http://localhost:51543/api/ciudad/";
+  url:string = config.url + '/ciudad/';
 
   constructor(public http: HttpClient) { }
 

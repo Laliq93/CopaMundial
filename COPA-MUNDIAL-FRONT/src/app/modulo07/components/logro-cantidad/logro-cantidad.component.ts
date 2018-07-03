@@ -13,6 +13,7 @@ import { DTOLogroCantidadResultado } from '../../models/DTOLogroCantidadResultad
 import { DTOMostrarLogrosPartido } from '../../models/DTOMostrarLogrosPartido';
 import { catchError, map, tap } from 'rxjs/operators';
 import {  DTOListaPartidosLogros } from '../../models/DTOListaPartidosLogros';
+import { config } from '../../../config';
 
 @Component({
   selector: 'app-logro-cantidad',
@@ -37,7 +38,7 @@ export class LogroCantidadComponent implements OnInit {
   public modificarLogroEActive: boolean = false;
   public consultarLogroEActive: boolean = false;
   public resultadoLogroEActive: boolean = false;
-  public apiURL = 'http://localhost:51543/api/logros/';
+  public apiURL = config.url + '/logros';
   constructor(private _logrosService: LogrosService, public router: ActivatedRoute, private http: HttpClient, public router2: Router)
   {
       this._logrosService = new LogrosService(http);

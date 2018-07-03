@@ -6,7 +6,7 @@
         <select class="form-control" [(ngModel)]="alineacion.Jugador" name="Jugador" id="Jugador">
           <option label=" " selected disable></option>
           <ng-container *ngFor="let jugador of jugadores">
-            <option value="{{jugador.Id}}">{{jugador.Nombre | titlecase}}</option>
+            <option value="{{jugador.Id}}">{{jugador.Nombre + ' ' + jugador.Apellido | titlecase}}</option>
           </ng-container>
         </select>
       </div>
@@ -62,7 +62,7 @@
         <tr *ngFor="let jugador of partido.Alineaciones">
           <th scope="row">{{jugador.Jugador.Numero}}</th>
           <td>{{jugador.Jugador.Nombre}}</td>
-          <td>{{jugador.Jugador.Posicion | titlecase}}</td>
+          <td>{{jugador.Posicion | titlecase}}</td>
           <ng-container *ngIf="jugador.EsTitular">
             <td>Si</td>
           </ng-container>

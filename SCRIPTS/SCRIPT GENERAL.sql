@@ -1924,3 +1924,21 @@ INSERT INTO public.tipo_logro(ti_id, ti_nombre, ti_status) VALUES (4,'VoF',true)
 INSERT INTO public.ciudad(
 	ci_nombre, ci_poblacion, ci_descripcion, ci_nombreingles, ci_descripcioningles, ci_habilitado)
 	VALUES ('Moscu', 1000, 'Descripcion', 'Moscu', 'hi', true);
+
+INSERT INTO public.jugador
+(ju_id, ju_nombre, ju_apellido, ju_fechanacimiento, ju_lugarnacimiento, ju_peso, ju_altura, ju_posicion, ju_numero, ju_equipo, ju_capitan, ju_activo)
+VALUES(1, 'Pedro', 'Perez', '1994-07-07', 'Bolivia', 72, 190, 'CENTRAL', 14, '3', true, true);
+INSERT INTO public.jugador
+(ju_id, ju_nombre, ju_apellido, ju_fechanacimiento, ju_lugarnacimiento, ju_peso, ju_altura, ju_posicion, ju_numero, ju_equipo, ju_capitan, ju_activo)
+VALUES(2, 'Jose', 'Sanchez', '1983-11-11', 'Ecuador', 55, 160, 'PORTERO', 1, '2', false, true);
+INSERT INTO public.jugador
+(ju_id, ju_nombre, ju_apellido, ju_fechanacimiento, ju_lugarnacimiento, ju_peso, ju_altura, ju_posicion, ju_numero, ju_equipo, ju_capitan, ju_activo)
+VALUES(3, 'Marco', 'Gonzales', '1987-07-14', 'Brasil', 60, 180, 'DEFENSA', 3, '7', false, true);
+INSERT INTO public.jugador
+(ju_id, ju_nombre, ju_apellido, ju_fechanacimiento, ju_lugarnacimiento, ju_peso, ju_altura, ju_posicion, ju_numero, ju_equipo, ju_capitan, ju_activo)
+VALUES(4, 'Luis', 'Martinez', '1991-09-16', 'Belgica', 57, 174, 'CENTRAL', 16, '4', false, true);
+
+INSERT INTO public.partido (pa_id,pa_fechainicio,pa_fechafin,pa_arbitro,pa_eq1_id,pa_eq2_id,pa_es_id)
+VALUES (1,'2012-12-12 13:00:00','2012-12-12 18:00:00','Juan Perez',1,4,3) ;
+INSERT INTO public.partido (pa_id,pa_fechainicio,pa_fechafin,pa_arbitro,pa_eq1_id,pa_eq2_id,pa_es_id)
+VALUES (2,'2018-07-02 14:00:00','2018-07-02 17:00:00','Manuel Gonzalez',5,8,5) ;

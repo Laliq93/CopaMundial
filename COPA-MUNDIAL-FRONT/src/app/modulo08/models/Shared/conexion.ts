@@ -1,9 +1,11 @@
+import { config } from '../../../config';
+
 export class Conexion {
   Controlador: string;
   IdUsuario = 1;
-  Puerto = 51543;
-  Ip = 'localhost';
-  RutaApi = 'http://' + this.Ip + ':' + this.Puerto + '/api/';
+  Puerto = config.puerto;
+  Ip = config.ip;
+  RutaApi = config.url;
 
   public GetApiJugador() {
     return this.RutaApi + 'Jugador/';
