@@ -6,6 +6,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Usuario } from '../../models/usuario';
 import { DTOUsuarioRegistrar } from '../../models/dtousuario-registrar';
+import { config } from '../../../config';
 
 
 const httpOptions = {
@@ -25,7 +26,7 @@ export class SignupComponent implements OnInit {
 
   usuario: DTOUsuarioRegistrar;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-  readonly rootUrl =  'http://localhost:51543/api';
+  readonly rootUrl =  config.url;
 
   private emailResponse;
   private truefalse: boolean = false;

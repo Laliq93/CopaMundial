@@ -14,6 +14,7 @@ import { DTOLogroCantidadResultado } from '../models/DTOLogroCantidadResultado';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
+import { config } from '../../config';
 
 /*
 const httpOptions = {
@@ -30,7 +31,7 @@ declare var alerta;
 export class LogrosService{
 
   public service: LogrosService;
-  public apiURL = 'http://localhost:51543/api/logros/';
+  public apiURL = config.url + '/logros/';
   public dtoPartidoPorId: DTOListaPartidosLogros;
   public logrosEquipo : DTOLogroEquipo[];
   public logrosJugador: DTOLogroJugador[];

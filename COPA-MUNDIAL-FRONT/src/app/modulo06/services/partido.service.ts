@@ -13,12 +13,13 @@ import { Alineacion } from '../models/alineacion';
 import { Estadio } from '../models/estadio';
 import { Partido } from '../models/partido';
 import { Jugador } from '../models/jugador';
+import { config } from '../../config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PartidoService {
-  private API_ENDPOINT = 'http://localhost:51543/api/';
+  private API_ENDPOINT = config.url + '/';
 
   constructor(private _http: HttpClient, private _router: Router) {}
 

@@ -189,13 +189,13 @@ namespace CopaMundialAPI.Presentacion.Controllers
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (ApuestaRepetidaException exc)
             {
                 log.Error(exc, exc.Mensaje);
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc.Mensaje);
             }
             catch (BaseDeDatosException exc)
             {
