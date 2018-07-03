@@ -1,0 +1,32 @@
+<!-- ============================================================== -->
+<!-- nav button Apuestas -->
+<!-- ============================================================== -->
+
+<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+  <button type="button" class="btn btn-primary" routerLink="/apuestas" routerLinkActive="active">
+    <i class="material-icons">
+      offline_bolt
+    </i>Realizar Apuesta</button>
+
+  <div class="btn-group" role="group">
+    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false">
+      <i class="material-icons">
+        play_for_work
+      </i>Ver mis Apuestas
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+      <a class="dropdown-item" routerLink="/apuestas/gestionar" routerLinkActive="active">
+        <i class="material-icons">
+          build
+        </i>Gestionar Apuestas</a>
+      <a class="dropdown-item" routerLink="/apuestas/historial" routerLinkActive="active">
+        <i class="material-icons">
+          local_library
+        </i>Apuestas Finalizadas</a>
+    </div>
+  </div>
+</div>
+<!-- ============================================================== -->
+<!-- nav button Apuestas -->
+<!-- ============================================================== -->

@@ -1,0 +1,65 @@
+/*
+Template Name: Copa Mundial
+Author: Desarrollo de Software UCAB | Modulo_08
+Email: wjoseperez20@gmail.com
+File: css (ver-apuesta)
+*/
+
+/**
+ * Contenido
+ *
+ * 	1. Globales
+ *	2. Headers
+ *	3. Nav | Side
+ *	4. Banners
+ *	5. Footers
+ *	6. app
+ *	7. Widgets
+ *	8. Media's
+ *	9. Custom Templates
+ */
+
+/******************* 
+1. Global Styles 
+*******************/
+
+.backdrop {
+    background-color:rgba(0,0,0,0.6);
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+}
+
+/*******************
+2. Headers
+*******************/
+
+/*******************
+3. Nav | Side
+******************/
+
+/*******************
+4. Banners
+******************/
+
+/*******************
+5. Footers
+******************/
+
+/*******************
+6. app
+******************/
+
+/*******************
+7. Footers
+******************/
+
+/*******************
+8. Media's
+******************/
+
+/*******************
+9. Custom Templates
+******************/

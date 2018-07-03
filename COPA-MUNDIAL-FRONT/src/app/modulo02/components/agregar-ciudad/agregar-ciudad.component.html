@@ -1,0 +1,89 @@
+
+ <!--<img [src}="data:image/png;base64,{{ima}}">
+<button (click)="imprimirimagen()">hola</button>-->
+<!-- <label for="exampleFormControlFile2">Example file input</label>
+<input type="file" [(ngModel)]="archivo" (change)="handleFileInput($event.target.files)" class="form-control-file" name="category_banner" id="category_banner">
+    -->
+<div class="central">
+  
+  <form class="card" name="formagregar" novalidate>
+  
+    <h1 i18n="Encabezado Agregar Ciudad en el formulario @@m2H1AgregarCiudad" style="color: black; font-size: 30px; text-align: center;">Agregar Ciudad </h1>
+  
+    <div class="form-group">
+  <div id="idnombre">
+      <label i18n="Label del nombre en español en el formulario @@m2LabelNombreES" for="InputNombre">Nombre (ES)</label>
+      <input type="text" 
+            class="form-control" 
+            id="InputNombreES" 
+            name="nombreES" 
+            #nombre="ngModel" 
+            [(ngModel)]="formulario.nombreES" required>
+            
+          </div>
+      
+    </div>
+
+    <div class="form-group">
+        <div id="idnombreEN">
+        <label i18n="Label del nombre en el formulario @@m2LabelNombreEN" for="InputNombre">Nombre (EN)</label>
+        <input type="text" 
+              class="form-control" 
+              id="InputNombreEN" 
+              placeholder="Ciudad" 
+              name="nombreEN" 
+              #nombre="ngModel" 
+              [(ngModel)]="formulario.nombreEN" required>
+          </div> 
+      </div>
+  
+    <div class="form-group">
+  
+      <label i18n="Label de los habitantes en el formulario @@m2Labelhabitantes" for="InputPoblacion">Habitantes</label>
+  
+      <input type="number" 
+            class="form-control" 
+            id="InputHabitantes" 
+            placeholder="Habitantes" 
+            name="habitantes" 
+            #habitantes="ngModel" 
+            [(ngModel)]="formulario.habitantes" required/>
+      
+    </div>
+  
+    <div class="form-group">
+      <div id="iddescripcion">
+      <label i18n="Label de la descripcion en español en el formulario @@m2LabelDescripcionES" for="exampleFormControlTextarea1">Descripción (ES)</label>
+      
+      <textarea class="form-control" id="InputDescES" rows="3" name="descripcionES" #descripcion="ngModel" [(ngModel)]="formulario.descripcionES" required></textarea>
+    </div>
+    </div>
+
+    <div class="form-group">
+        <div id="iddescripcionEN">
+       
+        <label i18n="Label de la descripcion en ingles en el formulario @@m2LabelDescripcionEN" for="exampleFormControlTextarea1">Descripción (EN)</label>
+        
+        <textarea class="form-control" id="InputDesEN" rows="3" name="descripcionEN" #descripcion="ngModel" [(ngModel)]="formulario.descripcionEN" required></textarea>
+      </div>
+      </div>
+  
+  
+      <button i18n="Boton de agregar en el formulario @@m2BotonAgregar" id="boton_enviar" (click)="subirciudad();" type="submit" class="btn btn-primary btn-signin">Agregar Ciudad</button>
+  
+      <button i18n="Boton de cancelar en el formulario @@m2BotonCancelarAgregacion" (click)="regresar()" type="button" class="btn btn-primary btn-signin">Cancelar</button>
+  
+    </form>
+
+     
+    <!--  <div class="form-group">
+        <label for="exampleFormControlFile1">Example file inputtttttttt</label>
+        <input type="file" [(ngModel)] = "archivo" (change)="saveImagen($event.target.files)"  class="form-control-file" id="exampleFormControlFile1">
+          </div>-->
+     
+         
+          
+  </div>
+  
+
+  

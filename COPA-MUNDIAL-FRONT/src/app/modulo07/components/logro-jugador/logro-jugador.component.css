@@ -1,0 +1,88 @@
+.nav-tabs a{
+    color: #000;
+}
+
+.nav, .nav-justified, .nav-tabs
+{
+    background-color: #fff;
+    color: #000;
+
+}
+
+a {
+	cursor: pointer;
+}
+
+.row{
+
+    margin-bottom: 20px;
+}
+.btnCrearLogro, .btnResultadoLogro,  .btnModificarLogro {
+   /* border-radius: 50%;*/
+    height: 30px;
+    min-width: 30px;
+    max-width: 30px;
+    position: center;
+    margin-top: 20px;
+    /*right: 2%;
+    bottom: 2%;*/
+    padding: 2%;
+    background-color: #A11D1B;
+    text-align: center;
+}
+
+.btnAsignarLogro, .btnModificarLogro, .btnConsultarLogro, .btnResultadoLogro{
+
+    margin-top: 20px;
+}
+
+.btnRegistrarLogro, .btnActualizarLogro{
+    margin: 60px;
+    position: center;
+}
+
+.btnAtras{
+
+    margin: 80px 60px;
+
+    background-color: #A11D1B;
+}
+
+
+
+.match-team, .match-position{
+
+  font-size: 20px;
+  color: #000;
+  font-weight:  bold;
+}
+
+.match-time{
+
+  font-size: 20px;
+  color: #1f1f1f;
+  font-weight:  bold;
+}
+
+.match-score{
+      padding-top: 10px;
+      font-size: 30px;
+      color: #666;
+      font-weight:  bold;
+  }
+
+  .match-info, .match-phase, #match-header, .match-result{
+      text-align: center;
+      font-size: 16px;
+    }
+
+  .match-result{
+      padding-top: 5px;
+  }
+
+  .logrosContainer
+  {
+   overflow-y: scroll;
+   height: 300px;
+    overflow-x: hidden;
+  }

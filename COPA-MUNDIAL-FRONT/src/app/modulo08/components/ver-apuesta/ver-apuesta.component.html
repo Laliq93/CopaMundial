@@ -1,0 +1,260 @@
+<!-- ============================================================== -->
+<!-- Mostrar Apuestas -->
+<!-- ============================================================== -->
+
+<div class="row page-titles">
+  <div class="col-md-6 col-6 align-self-center">
+    <h2 class="text-themecolor m-b-0 m-t-0">Apuestas</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="">Inicio</a>
+      </li>
+      <li class="breadcrumb-item cursor" routerLink="/apuestas" routerLinkActive="active">Apuestas</li>
+      <li class="breadcrumb-item active">Logros Por Apuesta</li>
+    </ol>
+  </div>
+  <app-nav-buttons></app-nav-buttons>
+</div>
+
+<div class="row">
+  <!-- Column -->
+
+  <div class="col-lg-12 col-xlg-12 col-md-12">
+    <div class="card">
+
+      <ul class="nav nav-tabs profile-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#vf" role="tab">
+            <i class="material-icons">
+              repeat_one
+            </i>V o F</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#aciertos" role="tab">
+            <i class="material-icons">
+              library_add
+            </i>Cantidad</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#jugadores" role="tab">
+            <i class="material-icons">
+              directions_run
+            </i>Jugadores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#equipos" role="tab">
+            <i class="material-icons">
+              group_add
+            </i>Equipos</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="vf" role="tabpanel">
+          <div class="card-body">
+
+            <table datatable [dtOptions]="dtOptionsVof" [dtTrigger]="dtTriggerVof" class="row-border hover">
+              <thead>
+                <tr>
+                  <th class="center">ID</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Opción</th>
+                  <th class="center">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="center" *ngFor="let MostrarLogros of ListMostrarlogrovof; let i = index">
+                  <td>{{MostrarLogros.IdLogro}}</td>
+                  <td>{{MostrarLogros.Logro}}</td>
+                  <td>
+                    <select [(ngModel)]="opcionVof[i]" name="opcion" id="opcion">
+                      <option value="true">Si</option>
+                      <option value="false">No</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button type="button" (click)="ApostarVof(MostrarLogros.IdLogro, opcionVof[i])" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+        <div class="tab-pane" id="aciertos" role="tabpanel">
+          <div class="card-body">
+
+            <table datatable [dtOptions]="dtOptionsCantidad" [dtTrigger]="dtTriggerCantidad" class="row-border hover">
+              <thead>
+                <tr>
+                  <th class="center">ID</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Opción</th>
+                  <th class="center">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="center" *ngFor="let MostrarLogros of ListMostrarlogrocantidad; let i = index">
+                  <td>{{MostrarLogros.IdLogro}}</td>
+                  <td>{{MostrarLogros.Logro}}</td>
+
+                  <td>
+                    <div class="col-4">
+                      <input type="number" class="form-control form-control-line" name="newCantidad" id="newCantidad" pattern="^[0-9\s]+$" [(ngModel)]="opcionCantidad[i]"
+                        #newCantidad="ngModel">
+
+                      <div *ngIf="newCantidad.errors &&  (newCantidad.touched || newCantidad.dirty)" class="aler alert-danger">
+                        <div [hidden]="!newCantidad.errors?.pattern">
+                          Ingrese Solo Numeros
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <button type="button" (click)="ApostarCantidad(MostrarLogros.IdLogro, opcionCantidad[i])" class="btn btn-success-table" style="margin-right:16px;">
+                     ✓
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+        <div class="tab-pane" id="jugadores" role="tabpanel">
+          <div class="card-body">
+
+            <table datatable [dtOptions]="dtOptionsJugadores" [dtTrigger]="dtTriggerJugadores" class="row-border hover">
+              <thead>
+                <tr>
+                  <th class="center">ID</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Opción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="center" *ngFor="let MostrarLogros of ListMostrarlogrojugadores">
+                  <td>{{MostrarLogros.IdLogro}}</td>
+                  <td>{{MostrarLogros.Logro}}</td>
+                  <td>
+                    <button type="button" class="btn btn-success-table" (click)="openModaljugadores(MostrarLogros.IdLogro)" style="margin-right:16px;">
+                      <i class="material-icons">
+                        transfer_within_a_station
+                      </i>Ver Jugadores</button>
+                    <div class="backdrop" [ngStyle]="{'display':display}"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+
+        <div class="tab-pane" id="equipos" role="tabpanel">
+          <div class="card-body">
+
+            <table datatable [dtOptions]="dtOptionsEquipos" [dtTrigger]="dtTriggerEquipos" class="row-border hover">
+              <thead>
+                <tr>
+                  <th class="center">ID</th>
+                  <th class="center">Apuesta</th>
+                  <th class="center">Opción</th>
+                  <th class="center">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="center" *ngFor="let MostrarLogros of ListMostrarlogroequipos; let i = index">
+                  <td>{{MostrarLogros.IdLogro}}</td>
+                  <td>{{MostrarLogros.Logro}}</td>
+                  <td>
+                    <select [(ngModel)]="opcionEquipo[i]" name="opcionEquipo" id="opcionEquipo">
+                      <option value="1">Argentina</option>
+                      <option value="2">Brasil</option>
+                      <option value="3">España</option>
+                      <option value="4">Islandia</option>
+                      <option value="5">Irán</option>
+                      <option value="6">Inglaterra</option>
+                      <option value="7">Colombia</option>
+                      <option value="8">Mexico</option>
+                      <option value="9">Rusia</option>
+                      <option value="10">Alemania</option>
+                      <option value="11">Portugal</option>
+                      <option value="12">Perú</option>
+                      <option value="13">Arabia Saudita</option>
+                      <option value="14">Francia</option>
+                      <option value="15">Uruguay</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button type="button" (click)="ApostarEquipo(MostrarLogros.IdLogro, opcionEquipo[i])" class="btn btn-success-table" style="margin-right:16px;">
+                     ✓
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- modal -->
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+    <!-- modal-dialog -->
+    <div class="modal-dialog" role="document">
+      <!-- modal-content -->
+      <div class="modal-content">
+        <!-- modal-header -->
+        <div class="modal-header">
+          <button type="button" class="close" aria-label="Close" (click)="closeModalJuagdores()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <!-- <h4 class="modal-title">Login</h4> -->
+        </div>
+
+        <!-- modal-body -->
+        <div class="modal-body">
+          <table datatable [dtOptions]="dtOptionsMostrarJugadores" [dtTrigger]="dtTriggerMostrarJugadores" class="row-border hover">
+            <thead>
+              <tr>
+                <th class="center">ID</th>
+                <th class="center">Nombre</th>
+                <th class="center">Apellido</th>
+                <th class="center">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="center" *ngFor="let MostrarJugadores of ListMostrarJugadores">
+                <td>{{MostrarJugadores.Id}}</td>
+                <td>{{MostrarJugadores.Nombre}}</td>
+                <td>{{MostrarJugadores.Apellido}}</td>
+                <td>
+                  <button type="button" class="btn btn-success-table" (click)="ApostarJugador(MostrarJugadores.Id)" style="margin-right:16px;">
+                   ✓
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- modal-footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="closeModalJuagdores()">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- ============================================================== -->
+<!-- /Mostrar Apuestas -->
+<!-- ============================================================== -->

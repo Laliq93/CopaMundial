@@ -1,0 +1,68 @@
+
+.fecha{
+    color: #A11D1B;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.headline {
+    width: 100%;
+    border-bottom: 5px solid #02588e;
+    height: 66px;
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+
+.tittle {
+    padding: 20px;
+    color: #02588e;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.content-page {
+    margin-top: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.btn-global {
+    background-color: #A11D1B;
+    color: white;
+}
+
+.card-title {
+    font-size: 28px;
+    text-align: center;
+}
+
+.card-text {
+    font-size: 16px;
+}
+
+.image-team, .image-player {
+    width: auto;
+    height: 200px;
+}
+
+.subtitle-card {
+    font-weight: bold;
+}
+
+/*carousel and cards*/
+
+.card-img-overlay {
+    top: 0;
+}
+
+@media screen and (min-width: 980px) {
+    .row-statistics {
+        margin-left: 10%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .card-statistic {
+        margin-top: 5%;
+    }
+}

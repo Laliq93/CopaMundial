@@ -1,0 +1,87 @@
+/*
+Template Name: Copa Mundial
+Author: Desarrollo de Software UCAB
+Email: 
+File: css (style)
+*/
+
+/**
+ * Contenido
+ *
+ * 	1. Globales
+ *	2. Headers
+ *	3. Nav | Side
+ *	4. Banners
+ *	5. Footers
+ *	6. app
+ *	7. Widgets
+ *	8. Media's
+ *	9. Custom Templates
+ */
+
+/******************* 
+1. Global Styles 
+*******************/
+
+.material-icons {
+  font-size: 22px !important;
+  margin-right: 5px;
+}
+
+/*******************
+2. Headers
+*******************/
+
+/*******************
+3. Nav | Side
+******************/
+.main-container {
+  margin-left: 280px;
+  margin-right: 0px;
+}
+
+.page-content {
+  padding: 15px;
+}
+/*******************
+4. Banners
+******************/
+
+/*******************
+5. Footers
+******************/
+
+/*******************
+6. app
+******************/
+
+/*******************
+7. Footers
+******************/
+
+/*******************
+8. Media's
+******************/
+@media screen and (max-width: 992px) {
+  .main-container {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .page-content {
+    padding: 15px;
+  }
+}
+/*******************
+9. Custom Templates
+******************/
+    .material-icons {
+    font-size: 22px !important;
+    margin-right: 5px;
+}
+
+@media only screen and (min-width: 992px) {
+    .main-container {
+        margin-left: 280px;
+    }
+}

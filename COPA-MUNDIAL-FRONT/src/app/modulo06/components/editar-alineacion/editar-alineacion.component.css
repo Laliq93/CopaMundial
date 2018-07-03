@@ -1,0 +1,15 @@
+.back {
+    margin-top: 3%;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: #A11D1B;
+    color: white;
+}
+
+.enviar {
+    background-color: #A11D1B;
+}
+
+.pointer {
+    cursor: pointer;
+}

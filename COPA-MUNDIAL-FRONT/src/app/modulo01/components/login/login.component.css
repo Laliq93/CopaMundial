@@ -1,0 +1,35 @@
+.main-container-notlogged{
+	margin-left: 0px !important;
+    margin-right: 0px;
+}
+
+.page-content {
+	padding: 15px;
+}
+
+body{
+	overflow: hidden;
+}
+
+.item-border{
+	border-right: 1px solid #ffffff;
+}
+
+.img-logo-nav{
+	width: 50px;
+	height: 55px;
+}
+
+.container-fluid{
+	margin: 0;
+	padding: 0;
+}
+
+.carousel-inner{
+	height: 100vh;
+}
+
+.btn-signin{
+	background-color: #A11D1B;
+    color: white;
+}

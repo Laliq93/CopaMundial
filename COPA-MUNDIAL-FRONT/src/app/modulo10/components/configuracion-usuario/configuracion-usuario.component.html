@@ -1,0 +1,118 @@
+<!-- ============================================================== -->
+<!-- Formularios De Configuración Perfil del Cliente -->
+<!-- ============================================================== -->
+
+<div class="row page-titles">
+  <div class="col-md-12 col-12 align-self-center">
+    <h2 class="text-themecolor m-b-0 m-t-0">Perfil</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Home</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Configuración</li>
+    </ol>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-lg-4 col-xlg-3 col-md-5">
+    <div class="card">
+      <img class="card-img-top" src="../assets/images/background/profile-bg.jpg" alt="Card image cap">
+      <div class="card-block little-profile text-center">
+        <div class="pro-img">
+          <img src="../assets/images/users/1.jpg" alt="user" />
+        </div>
+        <h3 class="m-b-0">{{_usuario.Nombre+' '+_usuario.Apellido}}</h3>
+        <p>Cumpleaños: {{_usuario.FechaNacimiento}} </p>
+        <p>Correo: {{_usuario.Correo}}</p>
+        <div class="row text-center m-t-20">
+          <div class="col-lg-4 col-md-4 m-t-20">
+            <h3 class="m-b-0 font-light">1099</h3>
+            <small>Apuestas</small>
+          </div>
+          <div class="col-lg-4 col-md-4 m-t-20">
+            <h3 class="m-b-0 font-light">23,469</h3>
+            <small>Ganadas</small>
+          </div>
+          <div class="col-lg-4 col-md-4 m-t-20">
+            <h3 class="m-b-0 font-light">6035</h3>
+            <small>Perdidas</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-8 col-xlg-9 col-md-7">
+
+    <div class="tab-pane">
+      <div class="card">
+        <div class="card-block">
+          <form class="form-horizontal form-material">
+
+            <div class="form-group">
+              <label class="col-md-12">Nombre</label>
+              <div class="col-md-12">
+                <input type="text" value="{{_usuario.Nombre}}" class="form-control form-control-line" name="newName" id="newName" pattern="^[a-zA-Z\s]+$"
+                  [(ngModel)]="_nombreNew" #newName="ngModel">
+
+                <div *ngIf="newName.errors &&  (newName.touched || newName.dirty)" class="aler alert-danger">
+                  <div [hidden]="!newName.errors?.pattern">
+                    Ingrese Solo Letras
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-12">Apellido</label>
+              <div class="col-md-12">
+                <input type="text" value="{{_usuario.Apellido}}" class="form-control form-control-line" name="newApellido" id="newApellido"
+                  pattern="^[a-zA-Z\s]+$" [(ngModel)]="_apellidoNew" #newApellido="ngModel">
+
+                <div *ngIf="newApellido.errors &&  (newApellido.touched || newApellido.dirty)" class="aler alert-danger">
+                  <div [hidden]="!newApellido.errors?.pattern">
+                    Ingrese Solo Letras
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-12">Genero</label>
+              <div class="col-md-12">
+                <select [(ngModel)]="_usuario.Genero" name="genero" id="genero" class="form-control">
+                  <option value="M">Masculino</option>
+                  <option value="F">Femenino</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="exampleInputDate">Fecha de nacimiento</label>
+                <input type="date" [value]="_usuario.FechaNacimiento | date: 'yyyy-MM-dd'" [(ngModel)]="_fechaNew" name="_fechaNew" class="form-control"
+                  id="exampleInputDate">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleFormControlFile1" class="col-md-12">Foto</label>
+              <div class="col-md-12">
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-12">
+                <button class="btn btn-success" (click)="ActualizarPerfil()">Actualizar Perfil</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

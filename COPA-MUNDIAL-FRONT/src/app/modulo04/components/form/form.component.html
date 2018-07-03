@@ -1,0 +1,55 @@
+<form action="" class="container">
+    <div *ngIf="equipo || idEquipo === null">
+
+
+        <div class="row">
+            <div class="form-group floating-label col-md-10 col-9">
+                <label i18n="Label de nombre de equipos en el formulario @@m4LabelNombre" for="nombre">Nombre de Equipo</label>
+                <select *ngIf="paises" id="nombre" name="nombre" class="form-control" [(ngModel)]="equipo.pais.iso" #item (ngModelChange)="cambiarEquipo(item.value)">
+                    <option *ngFor="let pais of paises" [value]="pais.iso" [selected]="equipo.pais.iso.toLowerCase() == pais.iso.toLowerCase()"> {{ pais.nombre[0].mensaje }} </option>
+                </select>
+            </div>
+            <div class="col-md-2 col-3">
+                <img class="bandera" [src]="banderaSeleccionada" onerror="this.src='/assets/banderas/unknown.png'" />
+            </div>
+        </div>
+        
+        <div class="form-group floating-label">
+            <label i18n="Label del grupo en el formulario @@m4LabelGrupo" for="grupo">Grupo Perteneciente</label>
+            <select id="grupoF" name="grupoF" class="form-control" [(ngModel)]="equipo.grupo">
+                <option *ngFor="let grupo of grupos" [value]="grupo" [selected]="equipo.grupo == grupo">{{ grupo }}</option>
+            </select>
+        </div>
+
+        <div *ngFor="let desc of equipo.descripcion" class="form-group floating-label">
+            <label i18n="Label con la descripcion de equipos en los forms @@m4LabelDescripcion" for="descripcion">Descripcion ({{ desc.idioma }})</label>
+            <textarea class="form-control" name="descripcion" rows="5" [(ngModel)]="desc.mensaje"></textarea>
+        </div>
+
+        <div *ngIf="idEquipo !== null; then editar"></div>
+
+        <ng-template #editar>
+            <div class="row">
+                <div class="custom-control custom-radio col-lg-3 col-sm-6 offset-lg-3 participando">
+                    <input type="radio" id="participando" name="estatus" class="custom-control-input" [checked]="equipo.status">
+                    <label i18n="Opción que indica que el equipo aun participa en la copa @@m4LabelParticipando" class="custom-control-label"
+                        for="participando">El equipo aún participa en la copa</label>
+                </div>
+                <div class="custom-control custom-radio col-lg-3 col-sm-6 eliminado">
+                    <input type="radio" id="eliminado" name="estatus" class="custom-control-input" [checked]="!equipo.status">
+                    <label i18n="Opción que indica que el equipo fue eliminado @@m4LabelEliminado" class="custom-control-label" for="eliminado">El equipo fué eliminado de la copa</label>
+                </div>
+            </div>
+            
+        </ng-template>
+    </div>
+    <div class="row mt-4 text-center">
+        <div class="col-6">
+            <button i18n="Boton para guardar @@m4BtnGuardar" type="submit" class="btn btn-info" (click)="enviar()">Guardar</button>
+        </div>
+        <div class="col-6">
+            <button i18n="Boton para cancelar @@m4BtnCancelar" type="button" class="btn btn-danger" (click)="regresar()">Cancelar</button>
+        </div>
+        
+    </div>
+</form>

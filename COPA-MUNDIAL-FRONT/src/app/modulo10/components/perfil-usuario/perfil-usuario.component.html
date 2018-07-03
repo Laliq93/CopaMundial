@@ -1,0 +1,250 @@
+<!-- ============================================================== -->
+<!-- Perfil del Cliente -->
+<!-- ============================================================== -->
+
+<div class="row page-titles">
+  <div class="col-md-12 col-12 align-self-center">
+    <h2 class="text-themecolor m-b-0 m-t-0">Perfil</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="">Inicio</a>
+      </li>
+      <li class="breadcrumb-item active">Perfil</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="row">
+  <!-- Column -->
+  <div class="col-lg-4 col-xlg-3 col-md-5">
+    <div class="card">
+      <img class="card-img-top" src="../assets/images/background/profile-bg.jpg" alt="Card image cap">
+      <div class="card-block little-profile text-center">
+        <div class="pro-img">
+          <img src="../assets/images/users/1.jpg" alt="user" />
+        </div>
+        <h3 class="m-b-0">{{_usuario.Nombre+' '+_usuario.Apellido}}</h3>
+        <p>Cumpleaños: {{_usuario.FechaNacimiento}} </p>
+        <p>Correo: {{_usuario.Correo}}</p>
+        <div class="row text-center m-t-20">
+          <div class="col-lg-4 col-md-4 m-t-20">
+            <h3 class="m-b-0 font-light">1099</h3>
+            <small>Apuestas</small>
+          </div>
+          <div class="col-lg-4 col-md-4 m-t-20">
+            <h3 class="m-b-0 font-light">23,469</h3>
+            <small>Ganadas</small>
+          </div>
+          <div class="col-lg-4 col-md-4 m-t-20">
+            <h3 class="m-b-0 font-light">6035</h3>
+            <small>Perdidas</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-8 col-xlg-9 col-md-7">
+    <div class="card">
+
+      <ul class="nav nav-tabs profile-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#jugador" role="tab">Jugadores Favoritos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#equipo" role="tab">Equipos Favoritos</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="jugador" role="tabpanel">
+          <div class="card-body">
+            <table datatable class="row-border hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Opcion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Leo</td>
+                  <td>Messi </td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Cristiano</td>
+                  <td>Ronaldo</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Neimar</td>
+                  <td>Perez</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Juan</td>
+                  <td>Arango</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Patrick</td>
+                  <td>Evra</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Barack</td>
+                  <td>Obama</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>Maestrico</td>
+                  <td>Vega</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>Sergio</td>
+                  <td>Ramos</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>Chuck</td>
+                  <td>Norris</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>Dembele</td>
+                  <td>Diaz</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+        <div class="tab-pane" id="equipo" role="tabpanel">
+          <div class="card-body">
+            <table datatable class="row-border hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Opcion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Barcelona FC</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Real Madrid</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Manchester United</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>AC Milan</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Juventus</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Bayern Múnich</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>Chelsea FC</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>Liverpool FC</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>Arsenal FC</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>Inter de Milán</td>
+                  <td>
+                    <button type="button" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

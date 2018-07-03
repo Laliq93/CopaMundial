@@ -1,0 +1,442 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{156E0B9D-6454-4416-9E33-B171A16D01AF}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CopaMundialAPI</RootNamespace>
+    <AssemblyName>CopaMundialAPI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.5.6\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.4.0.0\lib\net451\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.6\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.6\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.6\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Comun\Entidades\Alineacion.cs" />
+    <Compile Include="Comun\Entidades\Apuesta.cs" />
+    <Compile Include="Comun\Entidades\ApuestaEquipo.cs" />
+    <Compile Include="Comun\Entidades\ApuestaJugador.cs" />
+    <Compile Include="Comun\Entidades\ApuestaCantidad.cs" />
+    <Compile Include="Comun\Entidades\ApuestaVoF.cs" />
+    <Compile Include="Comun\Entidades\Ciudad.cs" />
+    <Compile Include="Comun\Entidades\Entidad.cs" />
+    <Compile Include="Comun\Entidades\Estadios.cs" />
+    <Compile Include="Comun\Entidades\Estadio.cs" />
+    <Compile Include="Comun\Entidades\Equipo.cs" />
+    <Compile Include="Comun\Entidades\Equipos.cs" />
+    <Compile Include="Comun\Entidades\Fabrica\FabricaEntidades.cs" />
+    <Compile Include="Comun\Entidades\Jugador.cs" />
+    <Compile Include="Comun\Entidades\LogroCantidad.cs" />
+    <Compile Include="Comun\Entidades\LogroEquipo.cs" />
+    <Compile Include="Comun\Entidades\LogroJugador.cs" />
+    <Compile Include="Comun\Entidades\LogroPartido.cs" />
+    <Compile Include="Comun\Entidades\LogroVoF.cs" />
+    <Compile Include="Comun\Entidades\Partido.cs" />
+    <Compile Include="Comun\Entidades\TipoLogro.cs" />
+    <Compile Include="Comun\Entidades\Usuario.cs" />
+    <Compile Include="Comun\Excepciones\AlineacionFaltaJugadoresException.cs" />
+    <Compile Include="Comun\Excepciones\AlineacionMuchosJugadoresException.cs" />
+    <Compile Include="Comun\Excepciones\AlineacionMasDeUnCapitanException.cs" />
+    <Compile Include="Comun\Excepciones\AlineacionNoExisteException.cs" />
+    <Compile Include="Comun\Excepciones\ApuestaInvalidaException.cs" />
+    <Compile Include="Comun\Excepciones\ApuestaRepetidaException.cs" />
+    <Compile Include="Comun\Excepciones\BaseDeDatosException.cs" />
+    <Compile Include="Comun\Excepciones\CasteoInvalidoException.cs" />
+    <Compile Include="Comun\Excepciones\CasteoNoCorrectoException.cs" />
+    <Compile Include="Comun\Excepciones\CiudadNoEncontradaException.cs" />
+    <Compile Include="Comun\Excepciones\ClaveNoCoincideException.cs" />
+    <Compile Include="Comun\Excepciones\CorreoExistenteException.cs" />
+    <Compile Include="Comun\Excepciones\CorreoNoExisteException.cs" />
+    <Compile Include="Comun\Excepciones\DatabaseException.cs" />
+    <Compile Include="Comun\Excepciones\DatosInvalidosException.cs" />
+    <Compile Include="Comun\Excepciones\ExcepcionPersonalizada.cs" />
+    <Compile Include="Comun\Excepciones\JugadorNoExisteException.cs" />
+    <Compile Include="Comun\Excepciones\LogroNoExisteException.cs" />
+    <Compile Include="Comun\Excepciones\LogrosFinalizadosNoExisteException.cs" />
+    <Compile Include="Comun\Excepciones\LogrosPendientesNoExisteException.cs" />
+    <Compile Include="Comun\Excepciones\ObjetoNullException.cs" />
+    <Compile Include="Comun\Excepciones\UsuarioNoExisteException.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOApuestaEquipo.cs.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOUsuario.cs" />
+    <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOUsuario.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOLogroPartido.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoActualizarApuestaEquipo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoActualizarApuestaJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoActualizarApuestaCantidad.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoAgregarApuestaJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoAgregarApuestaCantidad.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoAgregarApuestaEquipo.cs" />
+    <Compile Include="Comun\Excepciones\PartidoNoExisteException.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOAlineacion.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOLogroEquipo.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOLogroJugador.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOLogroVF.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOPartido.cs" />
+    <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOPartido.cs" />
+    <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOAlineacion.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoEliminarApuestaEquipo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoEliminarApuestaJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoEliminarApuestaCantidad.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoEliminarApuestaVoF.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoFinalizarApuestas.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoFinalizarApuestasEquipo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoFinalizarApuestasJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoFinalizarApuestasCantidad.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoFinalizarApuestasVoF.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasCantidadFinalizadas.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasEquipoFinalizadas.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasEquipoEnCurso.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasJugadorFinalizadas.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasJugadorEnCurso.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasCantidadEnCurso.cs" />
+    <Compile Include="Comun\Excepciones\ExcepcionGeneral.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasVoFFinalizadas.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarApuestaCantidadValida.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarApuestaEquipoValida.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarApuestaJugadorValida.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarCantidadApuestaExiste.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarJugadorApuestaExiste.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarApuestaVoFValida.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarVoFApuestaExiste.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoVerificarEquipoApuestaExiste.cs" />
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoObtenerCiudadPorNombre.cs" />
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoObtenerCiudadTrue.cs" />
+    <Compile Include="Logica de Negocio\Comando\EquipoEstatico\ComandoObtenerEquipoEstatico.cs" />
+    <Compile Include="Logica de Negocio\Comando\EquipoEstatico\ComandoObtenerTodosLosEquipos.cs" />
+    <Compile Include="Logica de Negocio\Comando\EstadioEstatico\ComandoObtenerEstadioEstatico.cs" />
+    <Compile Include="Logica de Negocio\Comando\EstadioEstatico\ComandoObtenerTodosLosEstadios.cs" />
+    <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadoresActivo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadoresInactivo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadorId.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoAgregarLogroCantidad.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoAgregarLogroEquipo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoAgregarLogroJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoAgregarLogroVF.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoAsignarResultadoLogroCantidad.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoAsignarResultadoLogroEquipo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoAsignarResultadoLogroJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoAsignarResultadoLogroVF.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogroPartidoPorId.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogroPartidosFinalizados.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogrosCantidadPendientes.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogrosCantidadResultados.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogrosEquipoPendientes.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogrosEquipoResultados.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogrosJugadorPendientes.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogrosJugadorResultados.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogrosVFPendientes.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerLogrosVFResultados.cs" />
+    <Compile Include="Logica de Negocio\Comando\Logros\ComandoObtenerProximosLogrosPartidos.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoActualizarAlineacion.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoActualizarPartido.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoAlineacionPorPartido.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoCrearAlineacion.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoCrearPartido.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoEliminarAlineacion.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerListaPartidosPorFecha.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerPartido.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoObtenerPartidos.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoValidarAlineacion.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoValidarCapitan.cs" />
+    <Compile Include="Logica de Negocio\Comando\Partidos\ComandoValidarMaximoJugadores.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoActualizarCorreo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoActualizarPassword.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoActualizarUsuario.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoAgregarUsuario.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoAgregarUsuarioAdministrador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoGestionarCuenta.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoObtenerUsuarioActivo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoObtenerUsuarioDatos.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoObtenerUsuarioNoActivo.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoVerificarClaveUsuario.cs" />
+    <Compile Include="Logica de Negocio\Comando\Usuarios\ComandoVerificarCorreoExiste.cs" />
+    <Compile Include="Presentacion\Controllers\EquiposController.cs" />
+    <Compile Include="Presentacion\Controllers\EstadiosController.cs" />
+    <Compile Include="Presentacion\Controllers\JugadorController.cs" />
+    <Compile Include="Presentacion\Controllers\CiudadController.cs" />
+    <Compile Include="Presentacion\Controllers\ApuestaController.cs" />
+    <Compile Include="Presentacion\Controllers\AlineacionController.cs" />
+    <Compile Include="Presentacion\Controllers\LoginController.cs" />
+    <Compile Include="Presentacion\Controllers\PartidoController.cs" />
+    <Compile Include="Presentacion\Controllers\LogrosController.cs" />
+    <Compile Include="Presentacion\Controllers\UsuarioController.cs" />
+    <Compile Include="Presentacion\Controllers\TestController.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAO.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOApuesta.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOApuestaJugador.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOApuestaCantidad.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOApuestaVoF.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOCiudad.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOJugador.cs" />
+    <Compile Include="Fuente de Datos\DAO\DAOLogroCantidad.cs" />
+    <Compile Include="Fuente de Datos\DAO\Interfaces\IDAO.cs" />
+    <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOApuesta.cs" />
+    <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOJugador.cs" />
+    <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOCiudad.cs" />
+    <Compile Include="Fuente de Datos\DAO\Interfaces\IDAOLogro.cs" />
+    <Compile Include="Fuente de Datos\Fabrica\FabricaDAO.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoActivarJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerProximosPartidos.cs" />
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoActualizarCiudad.cs" />
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoEliminarCiudad.cs" />
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoListarCiudades.cs" />
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoObtenerCiudad.cs" />
+    <Compile Include="Logica de Negocio\Comando\Comando.cs" />
+    <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoAgregarJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoDesactivarJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoModificarJugador.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoObtenerApuestasVoFEnCurso.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoActualizarApuestaVoF.cs" />
+    <Compile Include="Logica de Negocio\Comando\Apuestas\ComandoAgregarApuestaVOF.cs" />
+    <Compile Include="Logica de Negocio\Comando\Ciudades\ComandoAgregarCiudad.cs" />
+    <Compile Include="Logica de Negocio\Comando\Jugadores\ComandoObtenerJugadores.cs" />
+    <Compile Include="Logica de Negocio\Fabrica\FabricaComando.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\DTO\Apuestas\DTOApuestaEquipo.cs" />
+    <Compile Include="Servicios\DTO\Apuestas\DTOApuestaJugador.cs" />
+    <Compile Include="Servicios\DTO\Apuestas\DTOApuestaCantidad.cs" />
+    <Compile Include="Servicios\DTO\Apuestas\DTOApuestaVOF.cs" />
+    <Compile Include="Servicios\DTO\Ciudades\DTOCiudad.cs" />
+    <Compile Include="Servicios\DTO\Ciudades\DTOCiudadID.cs" />
+    <Compile Include="Servicios\DTO\Equipos\DTOEquipo.cs" />
+    <Compile Include="Servicios\DTO\Estadios\DTOEstadio.cs" />
+    <Compile Include="Servicios\DTO\Jugadores\DTOModificarJugador.cs" />
+    <Compile Include="Servicios\DTO\Jugadores\DTOObtenerJugadores.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOListaPartidosLogros.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOLogroCantidad.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOLogroCantidadResultado.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOLogroEquipo.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOLogroEquipoResultado.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOLogroJugador.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOLogroJugadorResultado.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOLogroPartidoId.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOLogroVF.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOLogroVFResultado.cs" />
+    <Compile Include="Servicios\DTO\Logros\DTOMostrarLogrosPartido.cs" />
+    <Compile Include="Servicios\DTO\Ciudades\DTOCiudadNombre.cs" />
+    <Compile Include="Servicios\DTO\Jugadores\DTOJugador.cs" />
+    <Compile Include="Servicios\DTO\Jugadores\DTOJugadorId.cs" />
+    <Compile Include="Servicios\DTO\Apuestas\DTOListarProximosPartidos.cs" />
+    <Compile Include="Servicios\DTO\Partidos\DTOAlineacion.cs" />
+    <Compile Include="Servicios\DTO\Partidos\DTOAlineacionActualizar.cs" />
+    <Compile Include="Servicios\DTO\Partidos\DTOAlineacionNuevo.cs" />
+    <Compile Include="Servicios\DTO\Partidos\DTOAlineacionSoloId.cs" />
+    <Compile Include="Servicios\DTO\Partidos\DTOPartidoSoloId.cs" />
+    <Compile Include="Servicios\DTO\Partidos\DTOPartido.cs" />
+    <Compile Include="Servicios\DTO\Partidos\DTOPartidoActualizar.cs" />
+    <Compile Include="Servicios\DTO\Partidos\DTOPartidoFecha.cs" />
+    <Compile Include="Servicios\DTO\Partidos\DTOPartidoNuevo.cs" />
+    <Compile Include="Servicios\DTO\Partidos\DTOPartidoReducido.cs" />
+    <Compile Include="Servicios\DTO\Usuario\DTOUsuario.cs" />
+    <Compile Include="Servicios\DTO\Usuario\DTOUsuarioConfiguracion.cs" />
+    <Compile Include="Servicios\DTO\Usuario\DTOUsuarioId.cs" />
+    <Compile Include="Servicios\DTO\Usuario\DTOUsuarioRegistrar.cs" />
+    <Compile Include="Servicios\Fabrica\FabricaDTO.cs" />
+    <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaCantidad.cs" />
+    <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaJugador.cs" />
+    <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaVOF.cs" />
+    <Compile Include="Servicios\Traductores\Apuestas\TraductorApuestaEquipo.cs" />
+    <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudad.cs" />
+    <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudadID.cs" />
+    <Compile Include="Servicios\Traductores\Ciudades\TraductorCiudadNombre.cs" />
+    <Compile Include="Servicios\Traductores\Equipos\TraductorEquipo.cs" />
+    <Compile Include="Servicios\Traductores\Estadios\TraductorEstadio.cs" />
+    <Compile Include="Servicios\Traductores\Fabrica\FabricaTraductor.cs" />
+    <Compile Include="Servicios\Traductores\Jugadores\TraductorJugador.cs" />
+    <Compile Include="Servicios\Traductores\Jugadores\TraductorJugadorId.cs" />
+    <Compile Include="Servicios\Traductores\Jugadores\TraductorModificarJugador.cs" />
+    <Compile Include="Servicios\Traductores\Jugadores\TraductorObtenerJugadores.cs" />
+    <Compile Include="Servicios\Traductores\Logros\TraductorListaPartidosLogros.cs" />
+    <Compile Include="Servicios\Traductores\Logros\TraductorLogroCantidad.cs" />
+    <Compile Include="Servicios\Traductores\Logros\TraductorLogroCantidadResultado.cs" />
+    <Compile Include="Servicios\Traductores\Logros\TraductorLogroEquipo.cs" />
+    <Compile Include="Servicios\Traductores\Logros\TraductorLogroEquipoResultado.cs" />
+    <Compile Include="Servicios\Traductores\Logros\TraductorLogroJugador.cs" />
+    <Compile Include="Servicios\Traductores\Logros\TraductorLogroJugadorResultado.cs" />
+    <Compile Include="Servicios\Traductores\Logros\TraductorLogroPartidoId.cs" />
+    <Compile Include="Servicios\Traductores\Logros\TraductorLogroVF.cs" />
+    <Compile Include="Servicios\Traductores\Logros\TraductorLogroVFResultado.cs" />
+    <Compile Include="Servicios\Traductores\Logros\TraductorMostrarLogrosPartido.cs" />
+    <Compile Include="Servicios\Traductores\Apuestas\TraductorListarProximosPartidos.cs" />
+    <Compile Include="Servicios\Traductores\Partidos\TraductorAlineacion.cs" />
+    <Compile Include="Servicios\Traductores\Partidos\TraductorAlineacionActualizar.cs" />
+    <Compile Include="Servicios\Traductores\Partidos\TraductorAlineacionNuevo.cs" />
+    <Compile Include="Servicios\Traductores\Partidos\TraductorAlineacionSoloId.cs" />
+    <Compile Include="Servicios\Traductores\Partidos\TraductorPartidoSoloId.cs" />
+    <Compile Include="Servicios\Traductores\Partidos\TraductorPartido.cs" />
+    <Compile Include="Servicios\Traductores\Partidos\TraductorPartidoActualizar.cs" />
+    <Compile Include="Servicios\Traductores\Partidos\TraductorPartidoFecha.cs" />
+    <Compile Include="Servicios\Traductores\Partidos\TraductorPartidoNuevo.cs" />
+    <Compile Include="Servicios\Traductores\Partidos\TraductorPartidoReducido.cs" />
+    <Compile Include="Servicios\Traductores\TraductorGenerico.cs" />
+    <Compile Include="Servicios\Traductores\Usuarios\TraductorUsuario.cs" />
+    <Compile Include="Servicios\Traductores\Usuarios\TraductorUsuarioConfiguracion.cs" />
+    <Compile Include="Servicios\Traductores\Usuarios\TraductorUsuarioId.cs" />
+    <Compile Include="Servicios\Traductores\Usuarios\TraductorUsuarioRegistrar.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Logica de Negocio\Compuesto\" />
+    <Folder Include="Logica de Negocio\Singleton\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51543</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51543/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

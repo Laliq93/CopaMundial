@@ -1,0 +1,259 @@
+<!-- ============================================================== -->
+<!-- Perfil del Cliente -->
+<!-- ============================================================== -->
+
+<div class="row page-titles">
+  <div class="col-md-12 col-12 align-self-center">
+    <h2 class="text-themecolor m-b-0 m-t-0">Perfil</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="">Inicio</a>
+      </li>
+      <li class="breadcrumb-item active">Gestionar Usuarios</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="row">
+  <!-- Column -->
+
+  <div class="col-lg-12 col-xlg-12 col-md-12">
+    <div class="card">
+
+      <ul class="nav nav-tabs profile-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#crear" role="tab">Crear Administrador</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#activos" role="tab">Activos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#inactivos" role="tab">Inactivos</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="crear" role="tabpanel">
+          <div class="card-body">
+
+            <form class="form-horizontal form-material">
+
+              <div class="form-group">
+                <label class="col-md-12">Nombre Usuario</label>
+                <div class="col-md-12">
+                  <input type="text" class="form-control form-control-line" name="newUser" id="newUser" pattern="^[a-zA-Z0-9\s]+$" [(ngModel)]='_nombreUser'
+                    #newUser="ngModel">
+
+                  <div *ngIf="newUser.errors &&  (newUser.touched || newUser.dirty)" class="aler alert-danger">
+                    <div [hidden]="!newUser.errors?.pattern">
+                      Ingrese Solo Letras y Numeros
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-12">Nombre</label>
+                <div class="col-md-12">
+                  <input type="text" class="form-control form-control-line" name="newName" id="newName" pattern="^[a-zA-Z\s]+$" [(ngModel)]='_nombreNew'
+                    #newName="ngModel">
+
+                  <div *ngIf="newName.errors &&  (newName.touched || newName.dirty)" class="aler alert-danger">
+                    <div [hidden]="!newName.errors?.pattern">
+                      Ingrese Solo Letras
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-12">Apellido</label>
+                <div class="col-md-12">
+                  <input type="text" class="form-control form-control-line" name="newApellido" id="newApellido" pattern="^[a-zA-Z\s]+$" [(ngModel)]='_apellidoNew'
+                    #newApellido="ngModel">
+
+                  <div *ngIf="newApellido.errors &&  (newApellido.touched || newApellido.dirty)" class="aler alert-danger">
+                    <div [hidden]="!newApellido.errors?.pattern">
+                      Ingrese Solo Letras
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="col-md-12">Email</label>
+                <div class="col-md-12">
+                  <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control form-control-line" name="email"
+                    id="email" [(ngModel)]="_correoNew" #email="ngModel">
+
+                  <div *ngIf="email.errors &&  (email.touched || email.dirty)" class="aler alert-danger">
+                    <div [hidden]="!email.errors?.pattern">
+                      Email Invalido
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-12">Genero</label>
+                <div class="col-md-12">
+                  <select [(ngModel)]="_generoNew" name="genero" id="genero" class="form-control">
+                    <option value="M" selected="true">Masculino</option>
+                    <option value="F">Femenino</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label for="exampleInputDate">Fecha de nacimiento</label>
+                  <input type="date" [(ngModel)]="_fechaNew" name="_fechaNew" class="form-control" id="exampleInputDate">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-12">Contraseña</label>
+                <div class="col-md-12">
+                  <input type="password" class="form-control form-control-line" name="password1" id="password1" [(ngModel)]="_pass">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-12">Confirmar Contraseña</label>
+                <div class="col-md-12">
+                  <input type="password" placeholder="" class="form-control form-control-line" name="password2" id="password2" [(ngModel)]="_passConfirm"
+                    pattern="{{_pass}}" #password2="ngModel">
+
+                  <div *ngIf="password2.errors && (password2.touched || password2.dirty)" class="aler alert-danger">
+                    <div [hidden]="!password2.errors?.pattern">
+                      Las contraseñas son distintas
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <button class="btn btn-success" (click)='CrearAdmin()'>Crear</button>
+                </div>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+
+
+        <div class="tab-pane" id="activos" role="tabpanel">
+          <div class="card-body">
+
+            <div class="d-none d-sm-block">
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of ListUsuarios">
+                    <td>{{user.Id}}</td>
+                    <td>{{user.NombreUsuario }}</td>
+                    <td>{{user.Nombre }}</td>
+                    <td>{{user.Apellido }}</td>
+                    <td>{{user.Correo }}</td>
+                    <td>
+                      <button type="button" (click)="DesactivarCuenta(user.Id)" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class='d-sm-none d-lg-none'>
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of ListUsuarios">
+                    <td>{{user.Id}}</td>
+                    <td>{{user.NombreUsuario }}</td>
+                    <td>
+                      <button type="button" (click)="DesactivarCuenta(user.Id)" class="btn btn-danger-table" style="margin-right:16px;">x</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="inactivos" role="tabpanel">
+          <div class="card-body">
+            <div class='d-sm-none d-lg-none'>
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2" class="row-border hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of ListUsuarios2">
+                    <td>{{user.Id}}</td>
+                    <td>{{user.NombreUsuario }}</td>
+                    <td>
+                      <button type="button" (click)="ActivarCuenta(user.Id)" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="d-none d-sm-block">
+              <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2" class="row-border hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of ListUsuarios2">
+                    <td>{{user.Id}}</td>
+                    <td>{{user.NombreUsuario }}</td>
+                    <td>{{user.Nombre }}</td>
+                    <td>{{user.Apellido }}</td>
+                    <td>{{user.Correo }}</td>
+                    <td>
+                      <button type="button" (click)="ActivarCuenta(user.Id)" class="btn btn-success-table" style="margin-right:16px;">✓</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

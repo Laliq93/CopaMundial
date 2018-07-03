@@ -1,0 +1,30 @@
+<div class="central">
+
+  <form class="card">
+  <h1 i18n="Encabezado de consultar en la tarjeta Consultar Ciudad @@m2H1Consultar" style="color: black; font-size: 30px; text-align: center;">Consultar Ciudad</h1>
+  <div class="form-group">
+      <select (ngModelChange)="selectChange($event)" [(ngModel)]="id" [ngModelOptions]="{standalone: true}" id='Ciudad' class="form-control font-estilo"   >
+          <option  *ngFor = "let ciudad of ciudades; let i = index"  [value]="i">{{ciudad.Nombre}} </option>
+      </select>
+  </div>
+  
+  <button i18n="Boton de consultar en la tarjeta Consultar Ciudad @@m2BotonConsultar" (click)="mostrarInformacion();" type="submit" class="btn btn-primary btn-signin">Consultar Ciudad</button>
+  <button i18n="Boton de cancelar en la tarjeta Consultar Ciudad @@m2BotonCancelarConsulta" (click)="regresar()" type="submit" class="btn btn-primary btn-signin">Cancelar</button>
+  </form>
+</div>
+
+
+  <div class="card" id='infoCiudad' >
+    <div class="card-header" style=" background-color: #A11D1B;color: white">
+     <h2 id='nombreCiudad'>Información de la ciudad</h2>
+    </div>
+    <div class="card-body">
+      
+      <p class="card-text" id="nombre">Nombre</p>
+      <h5 i18n="Encabezado nombre en la tarjeta Consultar Ciudad @@m2H5NombreConsulta" class="card-title" >{{ciudadselected.Nombre}}</h5>
+      <p class="card-text" id="habitantes">Habitantes</p>
+      <h5 i18n="Encabezado habitantes en la tarjeta Consultar Ciudad @@m2H5HabitantesConsulta" class="card-title" >{{ciudadselected.Habitantes}}</h5>
+      <p class="card-text" id="descripcion">Descripción</p>
+      <h5 i18n="Encabezado descripcion en la tarjeta Consultar Ciudad @@m2H5DescripcionConsulta" class="card-title">{{ciudadselected.Descripcion}}</h5>
+    </div>
+  </div>
