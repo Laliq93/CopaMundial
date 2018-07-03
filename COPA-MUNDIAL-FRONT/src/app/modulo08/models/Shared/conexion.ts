@@ -8,14 +8,14 @@ export class Conexion {
   RutaApi = config.url;
 
   public GetApiJugador() {
-    return this.RutaApi + 'Jugador/';
+    return this.RutaApi + '/Jugador/';
   }
 
   public GetApiApuesta() {
-    return this.RutaApi + 'Apuesta/';
+    return this.RutaApi + '/Apuesta/';
   }
 
   public GetApiLogro() {
-    return this.RutaApi + 'Logros/';
+    return this.RutaApi + '/Logros/';
   }
 }
